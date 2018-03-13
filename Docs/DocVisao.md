@@ -8,7 +8,7 @@
 | 12/03/2018| 0.5 |Adicionado as descrições da parte interessada e do usuário | Helena Goulart, Larissa Sales |  
 | 13/03/2018| 0.6 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
 | 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino | 
-| 13/03/2018| 0.6.2 |Removido índice dos tópicos que não serão abordados nesse documento | Gabriel Albino | 
+| 13/03/2018| 0.6.2 |Atualização do índice | Gabriel Albino | 
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -38,9 +38,15 @@
   * [4.4 Custo e Precificação ](#44-Custo-e-Precificação)
   * [4.5 Licenciamento e Instalação](#45-Licenciamento-e-Instalação)
 * [5 Recursos do Produto](#5-Recursos-do-Produto)  
-  * [5.1 Recurso 1](#51-Recurso-1)
-  * [5.2 Recurso 2](#52-Recurso-2)
+  * [5.1 Sistema de autenticação de clubes](#51-Sistema-de-autenticação-de-clubes)
+  * [5.2 Sistema de rankings](#52-Sistema-de-rankings)
+  * [5.3 Sistema de desafios](#53-Sistema-de-desafios)
+  * [5.4 Gerenciamento de partidas](#54-Gerenciamento-de-partidas)
 * [6 Restrições](#6-Restrições)
+  * [6.1 Restrições de design](#61-Restrições-de-design)
+  * [6.2 Restrições de plataforma](#62-Restrições-de-plataforma)
+  * [6.3 Restrições de implementação](#63-Restrições-de-implementação)
+  * [6.4 Restrições de uso](#64-Restrições-de-uso)
 
 ## 1: Introdução
 Esta introdução fornece uma visão geral de todo o documento de visão. Ela inclui o propósito, escopo, definições, acrônimos, abreviações, referências e visão geral de todo o documento.  
@@ -71,7 +77,7 @@ Descreve o conteúdo do documento de visão e explica como o documento é organi
  Descreve brevemente a oportunidade de negócios que é tratada por este projeto.
 ### 2.2	Instrução do Problema
 
-A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes destinados ao exercício desse esporte. Dentre os problemas associados a essa desorganização destacam-se a falta de incentivo aos jogadores a continuarem a prática, a dificuldade na reserva de quadras e na procura de adversários. Possíveis formas de solucionar esses problemas encontram-se no desenvolvimento de um método gameficado que proporcione a praticidade dos usuários a encontrar novos oponentes em horários vantajosos para ambos, bem como na inserção de uma estrutura de reserva de quadras que beneficie os dois jogadores, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
+A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes destinados ao exercício desse esporte. Dentre os problemas associados a essa desorganização destacam-se a falta de incentivo aos jogadores a continuarem a prática e  na procura de adversários. Possíveis formas de solucionar esses problemas encontram-se no desenvolvimento de um método gameficado que proporcione a praticidade dos usuários a encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
 
 
 ### 2.3	Instrução de Posição do Produto
@@ -161,7 +167,6 @@ O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuin
 | Sistema de rankings | Colocação dos membros do clube com base em seu desempenho nas partidas. |
 | Gerenciamento de partidas. | Marcação da partida por meio de desafios com regras pré-definidas e controle de resultados para o sistema de rankings |
 | Sistema de gamificação.| Incentivo à competitividade sadia entre jogadores do clube|
-| Reserva de quadras | Parcerias com donos de quadras, condominios ou organizações para reserva com antecedência do local onde os jogos ocorrerão. |
 
 ### 4.3	Suposições e Dependências
 * Os membros do clube devem possuir um smartphone com harware suficiente para sua utilização.
@@ -187,11 +192,8 @@ O aplicativo torna possível o usuário desafiar outros jogadores seguindo regra
 ### 5.4 Gerenciamento de partidas
 O aplicativo gerencia as partidas realizadas, desde o desafio até a coleta do resultado.
 
-### 5.5 Reserva de quadras de tênis
-O aplicavo viabiliza por meio de parcerias o aluguél de quadras.
-
 ## 6: Restrições
-### 6.1 Restrição de design
+### 6.1 Restrições de design
 O design do aplicativo será limpo e "user-friendly", de modo a tornar a navegação o mais natural possível.
 ### 6.2 Restrições de plataforma
 O aplicativo será desenvolvido para smartphones com sistema android.
