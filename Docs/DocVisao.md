@@ -5,7 +5,8 @@
 | 10/03/2018| 0.2 |Início do preenchimento do Documento | Alexandre Miguel, Gabriel Albino, Helena Goulart, Larissa Sales, Letícia Meneses, Lorrany Freire|
 | 11/03/2018| 0.3 |Estrutura do documento foi completada | Geovanni Olivera|
 | 12/03/2018| 0.4 |Preenchimento inicial do posicionamento | Alexandre Miguel, Letícia Meneses, Lorrany Freire |  
-| 13/03/2018| 0.5 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
+| 12/03/2018| 0.5 |Adicionado as descrições da parte interessada e do usuário | Helena Goulart, Larissa Sales |  
+| 13/03/2018| 0.6 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -27,7 +28,7 @@
   * [3.5 Perfis das Partes Interessadas](#35-Perfis-das-Partes-Interessadas)
   * [3.6 Perfis do Usuário](#3.6-Perfis-do-Usuário)
   * [3.7 Principais Necessidades da Parte Interessada ou do Usuário](#37-Principais-Necessidades-da-Parte-Interessada-ou-do-Usuário)
-  *[3.8	Alternativas e Concorrência](#3.8-Alternativas-e-Concorrência)
+  * [3.8	Alternativas e Concorrência](#3.8-Alternativas-e-Concorrência)
 * [**4 Visão Geral do Produto**](#4-Visão-Geral-do-Produto)
   * [4.1 Perspectiva do Produto](#41-Perspectiva-do-Produto)
   * [4.2 Resumo das Capacidades](#42-Resumo-das-Capacidades)
@@ -105,30 +106,30 @@ Para os jogadores de tênis que necessitam de incentivo e praticidade pra exerce
 ## 3: Descrições da Parte Interessada e do Usuário
 Para fornecer produtos e serviços que atendam às necessidades das partes interessadas e dos usuários, você deve identificar e envolver todas as partes interessadas como parte do processo de definição dos requisitos. Você deve também identificar os usuários do sistema e assegurar que a comunidade das partes interessadas os represente adequadamente.
 Esta seção fornece um perfil das partes interessadas e usuários que estão envolvidos no projeto. Esta seção também identifica os principais problemas que as partes interessadas e os usuários consideram que a solução proposta deva tratar. Esta seção não descreve as solicitações ou requisitos específicos; um artefato separado de solicitações da parte interessada captura esses itens. A descrição do principal problema fornece o plano de fundo e a justificação para os requisitos.
-### 3.1	Demográficos de Mercado
- Resume os principais demográficos de mercado que motivam suas decisões sobre o produto. Descrevem e posicionam os segmentos do mercado alvo. Estime o tamanho e o crescimento do mercado usando o número de usuários potenciais. Como alternativa, estime a quantia de dinheiro que seus clientes gastam tentando atender às necessidades que seu produto ou aprimoramento preencheria. Revise as principais tendências do segmento de mercado e tecnologias. Responda estas questões estratégicas:
+
+### 3.1 Demográficos de Mercado
+Resume os principais demográficos de mercado que motivam suas decisões sobre o produto. Descrevem e posicionam os segmentos do mercado alvo. Estime o tamanho e o crescimento do mercado usando o número de usuários potenciais. Como alternativa, estime a quantia de dinheiro que seus clientes gastam tentando atender às necessidades que seu produto ou aprimoramento preencheria. Revise as principais tendências do segmento de mercado e tecnologias. Responda estas questões estratégicas:
 Qual é a reputação de sua organização nesses mercados?
 O que você gostaria que a reputação fosse?
 Como esse produto ou serviço suporta seus objetivos?
-### 3.2	Resumo da Parte Interessada
- Lista todas as partes interessadas identificadas. Para cada tipo de parte interessada, forneça estas informações:
-Nome: Nome do tipo da parte interessada.
-Representa: Descreve brevemente quais pessoas, equipes ou organizações esse tipo de parte interessada representa.
-Função: Descreve brevemente a função que esse tipo de parte interessada desempenha no esforço de desenvolvimento.
-### 3.3	Resumo do Usuário
- Lista todos os tipos de usuários identificados. Para cada tipo de usuário, forneça estas informações:
+
+### 3.2 Resumo da Parte Interessada
+A necessidade de desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings, apresentam três partes interessadas: tenistas, clubes e desenvolvedores do projeto.
+
+### 3.3 Resumo do Usuário
+O aplicativo Nexte conta com tenistas ativos acima de 18 anos como usuários, ou seja, com praticantes do esporte que tenham a idade mínima e disponibilidade de disputar o ranking como desafiantes e desafiados.
+
+Lista todos os tipos de usuários identificados. Para cada tipo de usuário, forneça estas informações:
 Nome: Nome do tipo de usuário
 Descrição: Descreve brevemente o relacionamento desse tipo de usuário com o sistema que está em desenvolvimento.
 Parte Interessada: Lista qual tipo de parte interessada representa esse tipo de usuário.
-### 3.4	Ambiente do Usuário
- Detalha o ambiente de trabalho do usuário alvo. Aqui estão algumas sugestões:
-Quantas pessoas estão envolvidas na conclusão da tarefa? Está sendo alterado?
-Quanto tempo leva um loop de tarefa? Quanto tempo os usuários gastam em cada atividade? Está sendo alterado?
-Quais restrições de ambiente exclusivas afetam o projeto? Por exemplo, os usuários requerem dispositivos remotos, trabalham externamente ou trabalham durante as viagens?
-Quais plataformas de sistema estão em uso atualmente? Existem plataformas futuras planejadas?
-Que outros aplicativos estão em uso? Seu aplicativo precisa se integrar a eles?
-Nesta seção, você pode incluir extrações do modelo de negócio para descrever a tarefa e os trabalhadores envolvidos.
-### 3.5	Perfis das Partes Interessadas
+
+### 3.4 Ambiente do Usuário
+As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras, por serem exclusivas a moradores e sócios. É importante ressaltar que o tempo de duração de cada partida varia de acordo com a pontuação de cada set.
+
+### 3.5 Perfis das Partes Interessadas
+
+
  Descreve cada parte interessada no projeto, preenchendo a seguinte tabela para cada parte interessada. Lembre-se: os tipos de partes interessadas podem ser usuários, departamentos estratégicos, departamentos jurídicos ou de conformidade, desenvolvedores técnicos, equipes de operação, entre outros. Um perfil completo abrange os seguintes tópicos para cada tipo de parte interessada:
 Representante: Determina quem representa a parte interessada para o projeto (Essa informação será opcional se estiver documentada em algum outro lugar.) Insira os nomes dos representantes.
 Descrição: Descreve brevemente o tipo de parte interessada.
@@ -138,7 +139,8 @@ Critérios de Sucesso: Determina como a parte interessada define o sucesso. Como
 Envolvimento - Descreve como a parte interessada está envolvida no projeto. Onde possível, relate o envolvimento nas funções do processo; por exemplo, uma parte interessada pode ser um revisor de requisitos.
 Entregas: Identifica as entregas adicionais que a parte interessada requer. Esses itens podem ser entregas do projeto ou saída a partir do sistema em desenvolvimento.
 Comentários ou Problemas: Determina os problemas que interferem com o sucesso e quaisquer outras informações relevantes.
-### 3.6	Perfis do Usuário
+
+### 3.6 Perfis do Usuário
 Descreve cada usuário do sistema aqui, preenchendo a seguinte tabela para cada tipo de usuário. Lembre-se que os tipos de usuário podem ser especialistas e novatos; por exemplo, um especialista pode precisar de uma ferramenta sofisticada e flexível com suporte para várias plataformas, enquanto um novato pode precisar de uma ferramenta que seja fácil de usar. Um perfil completo abrange esses tópicos para cada tipo de usuário:
 Representante: Indica quem representa o usuário para o projeto. (Essa informação será opcional se estiver documentada em algum outro lugar.) Esse representante, geralmente refere-se à parte interessada que representa o conjunto de usuários; por exemplo, Parte Interessada: Parte Interessada1.
 Descrição: Descreve brevemente o tipo de usuário.
@@ -148,7 +150,8 @@ Critérios de Sucesso: Determina como o usuário define o sucesso. Como o usuár
 Envolvimento: Descreve como o usuário está envolvido no projeto. Onde possível, relate o envolvimento nas funções do processo; por exemplo, uma parte interessada pode ser um revisor de requisitos.
 Entregas: Identifica as entregas que o usuário produz e para quem.
 Comentários ou Problemas: Determina os problemas que interferem com o sucesso e quaisquer outras informações relevantes. Descreve as tendências que tornam a tarefa do usuário mais fácil ou mais difícil.
-### 3.7	Principais Necessidades da Parte Interessada ou do Usuário
+
+### 3.7 Principais Necessidades da Parte Interessada ou do Usuário
  Lista os principais problemas com soluções existentes como observadas pela parte interessada. Esclarece estas questões para cada problema:
 Quais são os motivos para esse problema?
 Como o problema é resolvido agora?
@@ -162,7 +165,7 @@ Você deve entender a importância relativa que a parte interessada coloca na so
 |  |  |  |  |  |
 
 
-### 3.8	Alternativas e Concorrência
+### 3.8 Alternativas e Concorrência
  Identifica as alternativas que a parte interessada percebe como disponíveis. Essas alternativas podem incluir a compra do produto de um concorrente, a criação de uma solução desenvolvida internamente ou manter o status quo. Listam todas as opções disponíveis e conhecidas. Elas incluem os principais pontos fortes e fracos de cada concorrente como observados pela parte interessada.
 
  ## 4:	Visão Geral do Produto
