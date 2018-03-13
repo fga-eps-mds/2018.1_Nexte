@@ -4,6 +4,8 @@
 |:----:|:------:|:---------:|:-----:|
 | 12/03/2018 | 0.1 | Criando estrutura inicial do documento  | Luis Gustavo |
 | 12/03/2018 | 0.2 | Adicionado introdução, descrição, propósito e justivativa, objetivos, requisitos de alto nível e riscos do projeto  | Luis Gustavo |
+| 12/03/2018 | 0.3 | Adição do Resumo do cronograma de marcos, resumo do orçamento, partes interessadas, Requisitos para aprovação do projeto e gerência do projeto| Geovanni Oliveira |
+
 
 ## Sumário
 
@@ -70,14 +72,100 @@ Membros das equipes fazendo estágio ou outras atividades complementares, o que 
 Membros da equipe de gerência ter seus projetos selecionados para a WWDC2018.| Nesse caso a equipe irá conversar com a professora Carla para encontrar a melhor forma de resolver esse problema de forma gerar o menor prejuizo ao projeto.
 
 ## 7. Resumo do Cronograma de Marcos
+O projeto possui 2 marcos principais, quais são: entrega parcial do software funcional (_Release 1_) e a segunda entrega, que é a entrega final do aplicativo e da disciplina (_Release 2_). Os marcos principais possuem datas para suas entregas, as quais estão de acordo com tanto com a disciplina de Métodos de Desenvolvimento de Software (MDS) quanto a disciplina Engenharia de Produto de Software (EPS), cuja equipe é formada por 6 membros da turma de MDS e 4 membros da turma de EPS.
+
+Em cada marco principal haverá 6 marcos menores chamados _sprint_, cada um terá o prazo de 1 semana para ser entregue  dentro de cada macro prazo das _Releases_.
+
+## _Release 1_  - xx/ xx /xxxx
+
+| _Sprint_ | Data de entrega |
+| ---- | ---- | 
+| _Sprint 0_ | 10/03/2018 |
+| _Sprint 1_| 16/03/2018 |
+| _Sprint 2_| 23/03/2018 |
+
+## _Release 1_  - xx/ xx /xxxx
+
+| _Sprint_ | Data |
+| ---- | ---- | 
+| _Sprint 0_ | xx/xx/xxxx |
+| _Sprint 1_ | xx/xx/xxxx |
+| _Sprint 2_ | xx/xx/xxxx |
 
 ## 8. Resumo do Orçamento
 
+<p align="jusfity">Para estimar o orçamento do projeto é necessário verificar todos os gastos com insumos que serão usados no desenvolvimento do projeto, como: valor da hora trabalhada de cada integrante envolvido no projeto, aquisições e ferramentas.</p>
+
+### 8.1 Recursos Humanos
+<p align="jusfity">O tempo total do projeto é de paroximadamente 18 semanas, é estimado que cada um dos 10 integrantes do grupo trabalhará pelo menos 10 horas semanais no projeto e as 4 horas semanais assistindo aulas das disciplinas de MDS e EPS, logo serão 14 horas trabalhadas por integrante por semana. O grupo conta com um Coach, que aproximadamente trabalhará 2 horas por semana no auxílio do grupo no desenvolvimento do projeto.</p>
+
+<p align="justify">Segundo o relatório de gestão de custos da UnB do ano de 2016 um aluno de Engenharia de Software custa R$26.040,00 anualmente. Dado que o curso tem a duração de 5 anos, para se forma nesta estimativa um estudante deve pegar 48 créditos anuais, é de conhecimento geral que cada crédito equivale a 15 horas, e com essas informações é possivel obter o custo médio de um aluno, que é de R$36,17 por hora na universidade.</p>
+
+| Papel | Quantidade | Valor hora | Horas semanais | Duração do projeto | Total parcial |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| Desenvolvedor | 6 | R$ 36,17 | 14 | 18 | R$ 54.689,04 |
+| Gestor  | 4 | R$ 36,17 | 14 | 18 | R$ 36.459,36 |
+| Coach | 1 | R$ 36,17| 2 | 18 | R$ 1.302,12 |
+| **Total** | **R$ 92450,52** | 
+
+### 8.2 Recursos físicos e serviços 
+
+<p align="justify"> Os recursos físicos necessários para o desenvolvimento do projeto é que cada um dos envolvidos com o projeto tenha seu próprio notebook, a equipe de desenvolvimento necessita de máquinas que sejam capazes de suportar o seu ambiente de desenvolvimento com pelo menos os requisitos mínimos para desenvolver aplicativos na plataforma Android, os gestores e coaches também necessitam de notebooks compatíveis com suas responsabilidades. Dadas as necessidades dos notebooks um preço médio foi levantado de R$ 2.600,00 </p>
+
+| Recurso | Quantidade | Preço unitário | Mensal | Meses| Sub total |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| Notebook | 11 | R$ 2.600,00| Não | - |R$ 28.600,00 |
+| Internet (20 MB) | 1 | R$ 130| Sim | 4 |R$ 520,00  |
+| Energia Elétrica | 1 | R$ 190,00 | Sim | 4 | R$ 760,00 |
+| total | R$ 29.880,00|
+
+### 8.3 Custo total
+
+| Tipo do Recurso | Subtotal | 
+| ---- | ---- |
+| Humano | R$ 92450,52 |
+| Físico e serviço| R$ 29.880,00 |
+| **Total** | **R$ 122.330,52** |
+
 ## 9. Lista das Partes Interessadas
 
+Os interessados no projeto inicialmente são os envolvidos na idealização e concepção da ideia do projeto Next.
+
+* Eduardo Vital
+* Guilherme Baldissera
+* Miguel Pimentel
+* Jessica Sá
+
+A equipe de **Engenharia de Produto de Software**
+
+* Geovanni Oliveira
+* Guilherme Baldissera
+* Luis Gustavo
+* Miguel Pimentel
+
+A equipe de **Métodos de Desenvolvimento de Software** 
+
+* Alexandre
+* Gabriel
+* Helena
+* Larissa
+* Letícia
+* Lorrany 
+
 ## 10. Requisitos para a aprovação do projeto
+<p align="jusfity">Estar de acordo com os critérios de aceitação escritos pelo PO, assim como cumprir os requisitos levantados. Ao final de cada _Sprint_ na parte de desenvolvimento será entregue um incremento de software a ser validade pelos clientes, assim a cada incremente haverá a validação do trabalho feito. </p> 
 
 ## 11. Gerência do projeto
+
+O projeto será gerido pela equipe de **Engenharia de Produto de Software**, disciplina do curso de Engenharia de Software da Faculdade UnB do Gama (FGA), os integrantes da equipe são: 
+
+|Nome| Papel |
+| ---- | ---- |
+| Geovanni Oliveira | À designar (Joker) |
+| Guilherme Baldissera | Devops |
+| Luis Gustavo | Scrum Master |
+| Miguel Pimentel | Architecture Guy | 
+
 
 ## 12. Referências do Projeto
 ><p align = "justify">Artigo sobre o mercado brasileiro de tênis. Disponível em http://revistatenis.uol.com.br/artigo/mercado-brasileiro-esta-se-desenvolvendo_362.html#ixzz4xgKvxm00 . Acesso em 12/03/2017</p>
@@ -85,3 +173,5 @@ Membros da equipe de gerência ter seus projetos selecionados para a WWDC2018.| 
 <br/>
 
 ><p align = "justify">Site com clubes de tênis brasilieros. Disponível em: http://www.tenisintegrado.com.br/clube/ . Acesso em 12/03/2018</p>
+
+><p align="justify"> Site para compra de notebooks. Disponível em: https://www.walmart.com.br/kp/notebook-i5-4gb, acessádo 12/03/2018 ás 23:58
