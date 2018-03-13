@@ -7,7 +7,8 @@
 | 12/03/2018| 0.4 |Preenchimento inicial do posicionamento | Alexandre Miguel, Letícia Meneses, Lorrany Freire |  
 | 12/03/2018| 0.5 |Adicionado as descrições da parte interessada e do usuário | Helena Goulart, Larissa Sales |  
 | 13/03/2018| 0.6 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
-| 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino |  
+| 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino | 
+| 13/03/2018| 0.6.2 |Removido índice dos tópicos que não serão abordados nesse documento | Gabriel Albino | 
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -40,28 +41,6 @@
   * [5.1 Recurso 1](#51-Recurso-1)
   * [5.2 Recurso 2](#52-Recurso-2)
 * [6 Restrições](#6-Restrições)
-* [7 Faixas de Qualidade](#7-Faixas-de-Qualidade)
-* [8 Precedência e Prioridade](#8:-Precedência-e-Prioridade)
-* [9 Outros Requisitos do Produto](#9-Outros-Requisitos-do-Produto)
-    * [9.1	Padrões Aplicáveis](#91-Padrões-Aplicáveis)
-    * [9.2	Requisitos do Sistema](#92-Requisitos-do-Sistema)
-    * [9.3	Requisitos de Desempenho](#93-Requisitos-de-Desempenho)
-    * [9.4	Requisitos Ambientais](#94-Requisitos-Ambientais)
-* [10 Requisitos de Documentação](#10-Requisitos-de-Documentação)
-    * [10.1	Notas sobre a liberação, arquivo Leia-me](#101-Notas-sobre-a-liberação,-arquivo-Leia-me)
-    * [10.2	Ajuda On-line](#102-Ajuda-On-line)
-    * [10.3 Guias de Instalação](#103-Guias-de-Instalação)
-    * [10.4 Rótulo e Embalagem](#104-Rótulo-e-Embalagem)
-* [11:	Apêndice 1 - Atributos do Recurso](#11-Apêndice-1---Atributos-do-Recurso)
-    * [11.1 Status](#111-Status)
-    * [11.2 Benefício](#112-Benefício)
-    * [11.3 Esforço](#113-Esforço)
-    * [11.4 Risco](#114-Risco)
-    * [11.5 Estabilidade](#115-Estabilidade)
-    * [11.6 Liberação de destino](#116-Liberação-de-destino)
-    * [11.7 Designado Para](#117-Designado-Para)
-    * [11.8 Motivo](#118-Motivo)
-
 
 ## 1: Introdução
 Esta introdução fornece uma visão geral de todo o documento de visão. Ela inclui o propósito, escopo, definições, acrônimos, abreviações, referências e visão geral de todo o documento.  
