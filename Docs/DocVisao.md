@@ -7,6 +7,7 @@
 | 12/03/2018| 0.4 |Preenchimento inicial do posicionamento | Alexandre Miguel, Letícia Meneses, Lorrany Freire |  
 | 12/03/2018| 0.5 |Adicionado as descrições da parte interessada e do usuário | Helena Goulart, Larissa Sales |  
 | 13/03/2018| 0.6 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
+| 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino |  
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -219,79 +220,3 @@ O aplicativo será desenvolvido para smartphones com sistema android.
 Será utilizado no desenvolvimento a linguagem  Kotlin.
 ### 6.4 Restrições de uso
 Para a utilização do aplicativo é necessário que o usuário possua um dispositivo android com conexão de internet.
-## 7: Faixas de Qualidade
-Defina as faixas de qualidade para desempenho, robustez, tolerância a falhas, usabilidade e características similares que o conjunto de recursos não descreve.
-
-## 8: Precedência e Prioridade
-Define a prioridade dos diferentes recursos do sistema.
-
-## 9: Outros Requisitos do Produto
-Em um alto nível, lista os padrões aplicáveis, os requisitos de hardware ou plataforma, os requisitos de desempenho e os requisitos ambientais.
-### 9.1	Padrões Aplicáveis
-Lista todos os padrões que o produto deve estar em conformidade. A lista pode incluir estes padrões:
-Padrões jurídicos e regulamentares (FDA, UCC)
-Padrões de comunicações (TCP/IP, ISDN)
-Padrões de conformidade da plataforma (Windows, UNIX, etc.)
-Padrões de qualidade e segurança (UL, ISO, CMM)
-### 9.2	Requisitos do Sistema
-Define os requisitos do sistema para o aplicativo. Eles incluem os sistemas operacionais do host suportados e as plataformas de rede, configurações, memória, dispositivos periféricos e software de parceiros.
-
-### 9.3	Requisitos de Desempenho
-Detalha os requisitos de desempenho. Os problemas de desempenho podem incluir itens como fatores de carga do usuário, largura de banda ou capacidade de comunicação, rendimento, exatidão, confiabilidade ou tempos de resposta em uma variedade de condições de carregamento.
-
-### 9.4	Requisitos Ambientais
- Detalha os requisitos ambientais conforme necessário. Para sistemas baseados em hardware, os problemas ambientais podem incluir temperatura, choque elétrico, umidade e radiação. Para aplicativos de software, os fatores ambientais podem incluir condições de uso, ambiente do usuário, disponibilidade do recurso, problemas de manutenção, manipulação de erros e recuperação.
-
-## 10: Requisitos de Documentação
-Esta seção descreve a documentação que deve ser desenvolvida para suportar a implementação bem sucedida do aplicativo.
-
-### 10.1 Notas sobre a liberação, arquivo Leia-me
- As notas sobre a liberação ou um arquivo Leia-me abreviado podem incluir uma seção "O que Há de Novo", uma discussão sobre problemas de compatibilidade com liberações anteriores, e alertas de instalação e atualização. O documento pode também conter ou vincular correções na liberação e quaisquer problemas ou soluções alternativas conhecidos.
-
-### 10.2 Ajuda On-line
-Muitos aplicativos fornecem um sistema de ajuda on-line para ajudar o usuário. A natureza desses sistemas é exclusiva para desenvolvimento de aplicativo, pois eles combinam aspectos de programação (centros de informações pesquisáveis e navegação do tipo Web) com aspectos de composição técnica (organização, apresentação). Muitas equipes consideram que o desenvolvimento do sistema de ajuda on-line é um projeto dentro de um projeto que se beneficia do gerenciamento de escopo e planejamento no início do projeto.
-
-### 10.3 Guias de Instalação
- Um documento que inclui instalação, configuração e instruções de atualização como parte da oferta de solução integral.
-
-### 10.4 Rótulo e Embalagem
-Uma aparência consistente começa com a embalagem do produto e se aplica aos menus de instalação, telas iniciais, sistemas de ajuda, caixas de diálogo de GUI e assim por diante. Esta seção define as necessidades e tipos de rótulos a serem incorporados no código. Os exemplos incluem copyright e avisos de patentes, logotipos corporativos, ícones padronizados e outros elementos gráficos.
-
-## 11:	Apêndice 1 - Atributos do Recurso
-Fornece aos recursos atributos que podem ser usados para avaliar, controlar, priorizar e gerenciar os itens de produtos propostos para implementação. Descreve todos os tipos de requisitos e atributos em um plano de gerenciamento de requisitos. No entanto, você pode listar e descrever brevemente os atributos para os recursos que foram escolhidos. As subseções a seguir representam um conjunto de atributos de recursos sugeridos.
-
-### 11.1 Status
-As equipes configuram o status do recurso após negociação e revisão pela equipe de gerenciamento do projeto. O status controla o progresso enquanto durar o projeto. A tabela a seguir fornece um exemplo de valores típicos do atributo de status.  
-
-
-| Status| Descrição|  
-| ----| ----  |
-| Proposta| Descreve os recursos que estão em discussão, mas não foram revistos e aceitos pelo "canal oficial", O canal oficial pode ser um grupo de trabalho que consiste em representantes da equipe do projeto, gerenciamento do produto e comunidade do usuário ou do cliente.|  
-| Aprovado	|Capacidades que são consideradas úteis e factíveis e que foram aprovadas para implementação pelo canal oficial. |
-| Incorporado | Os recursos que foram incorporados na linha de base do produto.|
-
-
-### 11.2 Benefício
- O grupo de marketing, o gerente de produto ou o analista de negócios configura os benefícios do recurso. Todos os requisitos não são criados igualmente. A classificação de requisitos por seu benefício relativo para o usuário final abre um diálogo com clientes, analistas e membros da equipe de desenvolvimento. Use os benefícios no gerenciamento de escopo e na determinação da prioridade de desenvolvimento. A tabela a seguir fornece um exemplo de valores de atributos típicos de benefício ou prioridade.
-
-| Prioridade | Descrição |
-| ---- | ---- |
-| Crítico | Recursos essenciais. A falha na implementação de um recurso crítico significa que o sistema não atenderá às necessidades do cliente. Todos os recursos críticos devem ser implementados na liberação ou a programação falhará.|
-| Importante | Recursos importantes para a eficácia e eficiência do sistema para a maioria dos aplicativos. As funções não podem ser facilmente fornecidas de alguma outra maneira. Omitir um recurso importante pode afetar a satisfação do cliente ou do usuário, ou até mesmo a receita. No entanto, a liberação não será atrasada porque um recurso importante não foi incluído. |
-| Útil| Os recursos que são úteis em menos aplicativos típicos, são usados menos frequentemente, ou podem corresponder às soluções alternativas razoavelmente eficientes. Nenhuma receita significativa ou impacto na satisfação do cliente poderá ser esperada se tal item não for incluído em uma liberação.
-
-### 11.3 Esforço
- A equipe de desenvolvimento estima o esforço necessário para implementar os recursos. Alguns recursos requerem mais tempo e recursos do que outros. A estimativa de tempo, código necessário ou funções, ajuda a calibrar a complexidade e definir expectativas do que pode ser realizado em um determinado período de tempo. Use a estimativa para gerenciar o escopo e determinar a prioridade de desenvolvimento.
-
-### 11.4 Risco
- A equipe de desenvolvimento estabelece os níveis de risco, com base na probabilidade do projeto experimentar eventos indesejados, como saturações de custos, atrasos na programação ou até cancelamento. A maioria dos gerentes de projetos consideram os riscos de categorização como alto, médio e suficientemente baixo, embora as gradações mais finas sejam possíveis. Em geral, o risco pode ser avaliado indiretamente medindo-se a incerteza (faixa) da estimativa de programação da equipes de projetos.
-
-### 11.5 Estabilidade
- O analista e a equipe de desenvolvimento estabelece a estabilidade do recurso com base na probabilidade do recurso ser alterado ou no entendimento da equipe do recurso ser alterado. A estabilidade é usada para ajudar a estabelecer prioridades de desenvolvimento e determinar esses itens para os quais a descoberta adicional é a próxima ação apropriada.
-### 11.6 Liberação de destino
- As equipes registram a versão anterior do produto pretendido que incluirá o recurso. É possível usar esse campo para alocar recursos de um documento de visão para um release de base de linha específico. Quando combinado com o campo de status, sua equipe pode propor, registrar e discutir vários recursos da liberação sem comprometer o desenvolvimento deles. Somente os recursos cujo status é definido como "incorporado" e cuja liberação de destino é definida serão implementados. Com o gerenciamento de escopo, o número da versão da liberação de destino poderá ser aumentado para que o item permaneça no documento de visão, mas seja programado para uma liberação posterior.
-### 11.7 Designado Para
- Na maioria dos projetos, os recursos serão designados para equipes de recursos que são responsáveis pela descoberta adicional, compondo os requisitos e a implementação do software. O processo ajuda todos na equipe do projeto a entenderem melhor as responsabilidades.
-
-### 11.8 Motivo
- As equipes usam esse campo de texto para controlar a origem do recurso solicitado. Os requisitos existem por motivos específicos. Esse campo registra uma explicação ou uma referência a uma explicação. Por exemplo, a referência pode apontar para uma página e número da linha de uma especificação de requisito do produto, ou apontar para um marcador de minuto no vídeo de entrevista de um cliente importante.
