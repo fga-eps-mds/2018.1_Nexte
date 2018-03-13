@@ -7,8 +7,9 @@
 | 12/03/2018| 0.4 |Preenchimento inicial do posicionamento | Alexandre Miguel, Letícia Meneses, Lorrany Freire |  
 | 12/03/2018| 0.5 |Adicionado as descrições da parte interessada e do usuário | Helena Goulart, Larissa Sales |  
 | 13/03/2018| 0.6 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
-| 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino | 
+| 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino |
 | 13/03/2018| 0.6.2 |Atualização do índice | Gabriel Albino | 
+| 13/03/2018| 0.7 |Melhoria da descrição das partes interessadas e visão geral do documento | Alexandre Miguel, Gabriel Albino | 
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -65,58 +66,55 @@ O projeto contemplado por esse documento apresenta formas de auxiliar a interaç
 - CLT - Cinta Liga de Tênis
 
 ### 1.4	Referências
-Lista todos os documentos aos quais o documento de visão faz referência. Identifique cada documento por título, número de relatório (se aplicável), data e organização de publicação. Especifique as origens a partir das quais os leitores podem obter as referências; as origens estão disponíveis de maneira ideal no RM ou em outros repositórios online. Essas informações podem ser fornecidas por referência para um apêndice ou para outro documento.
-
+Entre as fontes de base para o desenvolvimento do projeto é importante citar:
+1. Regras de jogos da CLT
+2. [Tenis Integrado](http://www.tenisintegrado.com.br/clube/) 
 ### 1.5	Visão geral
-Descreve o conteúdo do documento de visão e explica como o documento é organizado.  
+O documento objetiva descrever de forma sucinta o software como serviço, ressaltando os aspectos fundamentais para o seu desenvolvimento, tais como:
+- O posicionamento do produto em relação ao mercado, assim como na perspectiva das partes interessadas e dos usuários;
+- Descrição das partes interessadas e dos usuários;
+- Custo, capacidades e depencias para a ampla funcionalidade do aplicativo;
+- Descrição dos recursos oferecidos pelo aplicativo, apresentando uma perspectiva da sua funcionalidade;
+- Restrições dos uso, desenvolvimento e funcionalidade do aplicativo.
 
 ## 2: Posicionando
 ### 2.1	Oportunidade de Negócios
+O projeto propõe uma melhoria no envolvimento dos associados do clube, gerando uma maior taxa de fidelidade, podendo trazer novos membros, alavancando o comércio local atraves da movimentação das quadras esportivas.
 
-
- Descreve brevemente a oportunidade de negócios que é tratada por este projeto.
 ### 2.2	Instrução do Problema
 
-A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes destinados ao exercício desse esporte. Dentre os problemas associados a essa desorganização destacam-se a falta de incentivo aos jogadores a continuarem a prática e  na procura de adversários. Possíveis formas de solucionar esses problemas encontram-se no desenvolvimento de um método gameficado que proporcione a praticidade dos usuários a encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
+A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes destinados ao exercício desse esporte. Dentre os problemas associados a essa desorganização destacam-se a falta de incentivo aos jogadores a continuarem a prática a dificuldade na procura de adversários. Possíveis formas de solucionar esses problemas encontram-se no desenvolvimento de um método gameficado, proporcionando a praticidade dos usuários a encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
 
 
 ### 2.3	Instrução de Posição do Produto
- Fornece uma instrução geral resumida no nível mais alto, a posição exclusiva que o produto pretende preencher no mercado de trabalho. Use as seguintes instruções como um modelo, fornecendo detalhes do projeto para substituir os elementos entre parênteses:
 
+Para o membro do clube de tênis que necessita de uma organização de partidas de tẽnis. O Nexte é um aplicativo Mobile que gerencia os jogos de tênis. De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, utilizando o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte
 
-Para o jogador de tênis que necessita de uma organização de partidas de tẽnis. O Nexte é um aplicativo Mobile que gerencia os jogos de tênis. De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, utilizando o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte
-
-Para os jogadores de tênis que necessitam de incentivo e praticidade pra exercer o esporte. O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, o Nexte possui sistema de gamificação, de modo a incentivar a utilização do aplicativo, além disso o Nexte é focado em engajar as comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
+Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte. O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, o Nexte possui sistema de gamificação, de modo a incentivar a utilização do aplicativo, além disso o Nexte é focado em engajar as comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
 
 
 ## 3: Descrições da Parte Interessada e do Usuário
-Para fornecer produtos e serviços que atendam às necessidades das partes interessadas e dos usuários, você deve identificar e envolver todas as partes interessadas como parte do processo de definição dos requisitos. Você deve também identificar os usuários do sistema e assegurar que a comunidade das partes interessadas os represente adequadamente.
-Esta seção fornece um perfil das partes interessadas e usuários que estão envolvidos no projeto. Esta seção também identifica os principais problemas que as partes interessadas e os usuários consideram que a solução proposta deva tratar. Esta seção não descreve as solicitações ou requisitos específicos; um artefato separado de solicitações da parte interessada captura esses itens. A descrição do principal problema fornece o plano de fundo e a justificação para os requisitos.
+
+Para os proprietários de clubes amadores de tênis, o problema enfrentado é, principalmente, a falta de estimulo dos membros do clube que acarretam em uma falta de frequência de participação. O aplicativo visa melhorar o engajamento dos sócios como um incentivador, atuando no aumento o envolvimento dos associados nos eventos, colaborando para a assiduidade.
+
+Para os membros de clubes amadores de tênis, o maior desafio enfrentado é dificuldade em achar oponentes em horarios adequados. O aplicativo visa administrar o sistema de partidas, atuando principalmente no gerenciamento dos jogos e competições, oferencendo comodidade na organização da prática do esporte.
+
+Para os patrocinadores, que necessitam de um ambiênte para expor seus produtos. O aplicativo visa oferecer uma plataforma conveniente para o anuncio de artefatos esportivos, aumentando a visibilidade da marca no nicho propício. 
 
 ### 3.1 Demográficos de Mercado
-Resume os principais demográficos de mercado que motivam suas decisões sobre o produto. Descrevem e posicionam os segmentos do mercado alvo. Estime o tamanho e o crescimento do mercado usando o número de usuários potenciais. Como alternativa, estime a quantia de dinheiro que seus clientes gastam tentando atender às necessidades que seu produto ou aprimoramento preencheria. Revise as principais tendências do segmento de mercado e tecnologias. Responda estas questões estratégicas:
-Qual é a reputação de sua organização nesses mercados?
-O que você gostaria que a reputação fosse?
-Como esse produto ou serviço suporta seus objetivos?
+O aplicativo Nexte pretende atingir as organizações amadores de tênis, assim como seus sócios. Atualmente, no Brasil, existem cerca de [300 clubes](#14-referencias) que poderiam se beneficiar do aplicativo.
 
 ### 3.2 Resumo da Parte Interessada
 A necessidade de desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings, apresentam três partes interessadas: tenistas, clubes e desenvolvedores do projeto.
 
 ### 3.3 Resumo do Usuário
-O aplicativo Nexte conta com tenistas ativos acima de 18 anos como usuários, ou seja, com praticantes do esporte que tenham a idade mínima e disponibilidade de disputar o ranking como desafiantes e desafiados.
-
-Lista todos os tipos de usuários identificados. Para cada tipo de usuário, forneça estas informações:
-Nome: Nome do tipo de usuário
-Descrição: Descreve brevemente o relacionamento desse tipo de usuário com o sistema que está em desenvolvimento.
-Parte Interessada: Lista qual tipo de parte interessada representa esse tipo de usuário.
+O aplicativo Nexte conta com tenistas ativos acima de 18 anos como usuários, ou seja, com praticantes do esporte que tenham a idade mínima e disponibilidade de disputar o ranking como desafiantes e desafiados, assim como o clube a qual ele pertence, que será responsável pelo cadastro do tenista, não sendo possível o cadastro de usuários não associados a um clube.
 
 ### 3.4 Ambiente do Usuário
-As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras, por serem exclusivas a moradores e sócios. É importante ressaltar que o tempo de duração de cada partida varia de acordo com a pontuação de cada set.
+As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras por serem exclusivas a moradores e sócios. É importante ressaltar que o tempo de duração de cada partida varia de acordo com a pontuação de cada set.
 
 ### 3.5 Perfis das Partes Interessadas
 
-
- Descreve cada parte interessada no projeto, preenchendo a seguinte tabela para cada parte interessada. Lembre-se: os tipos de partes interessadas podem ser usuários, departamentos estratégicos, departamentos jurídicos ou de conformidade, desenvolvedores técnicos, equipes de operação, entre outros. Um perfil completo abrange os seguintes tópicos para cada tipo de parte interessada:
 Representante: Determina quem representa a parte interessada para o projeto (Essa informação será opcional se estiver documentada em algum outro lugar.) Insira os nomes dos representantes.
 Descrição: Descreve brevemente o tipo de parte interessada.
 Tipo: Qualifica o conhecimento da parte interessada, como "usuário avançado", "especialista em negócios", ou "usuário informal". Essa designação pode sugerir a experiência técnica e o grau de sofisticação.
