@@ -95,14 +95,13 @@ A desorganização de partidas de tênis afeta os seus praticantes bem como os p
  Fornece uma instrução geral resumida no nível mais alto, a posição exclusiva que o produto pretende preencher no mercado de trabalho. Use as seguintes instruções como um modelo, fornecendo detalhes do projeto para substituir os elementos entre parênteses:
 
 
-Para o jogador de tênis que necessita de uma organização de partidas de tẽnis. O Nexte é um aplicativo Mobile que gerencia os jogos de tênis. De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).
-Uma instrução de posição do produto comunica o intento do aplicativo e a importância do projeto para todas as partes interessadas.
+Para o jogador de tênis que necessita de uma organização de partidas de tẽnis. O Nexte é um aplicativo Mobile que gerencia os jogos de tênis. De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, utilizando o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte
 
 
 
 
-Para o (cliente alvo) quem (instrução da necessidade ou oportunidade). O (nome do produto) é uma (categoria do produto) que (instrução do principal benefício, isto é, o motivo convincente para comprar). De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).
-Uma instrução de posição do produto comunica o intento do aplicativo e a importância do projeto para todas as partes interessadas.
+Para os jogadores de tênis que necessitam de incentivo e praticidade pra exercer o esporte . O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, (instrução da principal diferenciação)-------- . O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
+
 
 ## 3: Descrições da Parte Interessada e do Usuário
 Para fornecer produtos e serviços que atendam às necessidades das partes interessadas e dos usuários, você deve identificar e envolver todas as partes interessadas como parte do processo de definição dos requisitos. Você deve também identificar os usuários do sistema e assegurar que a comunidade das partes interessadas os represente adequadamente.
