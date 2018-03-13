@@ -1,9 +1,11 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 10/03/2018| 1.0 |Criação do documento | Geovanni Oliveira |
-| 10/03/2018| 1.0 |Início do preenchimento do Documento | Alexandre, Gabriel, Helena, Larissa, Letícia, Lorrany|
-| 11/03/2018| 1.0 |Estrutura do documento foi completada | Geovanni Olivera|  
+| 10/03/2018| 0.1 |Criação do documento | Geovanni Oliveira |
+| 10/03/2018| 0.2 |Início do preenchimento do Documento | Alexandre Miguel, Gabriel Albino, Helena Goulart, Larissa Sales, Letícia Meneses, Lorrany Freire|
+| 11/03/2018| 0.3 |Estrutura do documento foi completada | Geovanni Olivera|
+| 12/03/2018| 0.4 |Preenchimento inicial do posicionamento | Alexandre Miguel, Letícia Meneses, Lorrany Freire |  
+| 13/03/2018| 0.5 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -97,10 +99,7 @@ A desorganização de partidas de tênis afeta os seus praticantes bem como os p
 
 Para o jogador de tênis que necessita de uma organização de partidas de tẽnis. O Nexte é um aplicativo Mobile que gerencia os jogos de tênis. De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, utilizando o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte
 
-
-
-
-Para os jogadores de tênis que necessitam de incentivo e praticidade pra exercer o esporte . O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, (instrução da principal diferenciação)-------- . O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
+Para os jogadores de tênis que necessitam de incentivo e praticidade pra exercer o esporte. O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, o Nexte possui sistema de gamificação, de modo a incentivar a utilização do aplicativo, além disso o Nexte é focado em engajar as comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
 
 
 ## 3: Descrições da Parte Interessada e do Usuário
@@ -167,30 +166,23 @@ Você deve entender a importância relativa que a parte interessada coloca na so
  Identifica as alternativas que a parte interessada percebe como disponíveis. Essas alternativas podem incluir a compra do produto de um concorrente, a criação de uma solução desenvolvida internamente ou manter o status quo. Listam todas as opções disponíveis e conhecidas. Elas incluem os principais pontos fortes e fracos de cada concorrente como observados pela parte interessada.
 
  ## 4:	Visão Geral do Produto
-Esta seção fornece uma visualização de alto nível das capacidades do produto, interfaces para outros aplicativos e configurações dos sistemas. Esta seção, em geral, consiste em três subseções:
-Perspectiva do Produto
-Funções do Produto
-Suposições e Dependências
+O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuindo um sistema de ranking baseado nas regras da CLT.
 ### 4.1	Perspectiva do Produto
- Coloca o produto em perspectiva com respeito a outros produtos relacionados e ao ambiente do usuário. Se o produto for independente e totalmente autocontido, indique-o aqui. Se o produto for um componente de um sistema maior, relacione como esses sistemas interagem e identificam as interfaces relevantes entre os sistemas. Uma maneira de exibir os principais componentes do maior sistema, interconexões e interfaces externas é usar um processo de negócios ou diagrama de casos de uso.
+ O produto se difere dos demais pois ele é focado em clubes ao invés de jogadores, onde o clube é responsável pelo controle de seus membros. Utilizando a gamificação para incentivar os usuários, o aplicavo visa aumentar tanto a pratica do esporte, quanto a utilização do mesmo.
+ O Nexte é um aplicativo independente com possibilidade de parcerias.
 ### 4.2	Resumo das Capacidades
- Resume os principais benefícios e recursos que o produto fornecerá. Por exemplo, um sistema de suporte ao cliente pode usar essa parte para endereçar a documentação do problema, o roteamento e o relato de status sem elaborar em detalhes o que essas funções requerem. Organize as funções de modo que a lista seja compreensível para o cliente ou para qualquer outra pessoa que leia o documento pela primeira vez. Uma simples tabela que lista os principais benefícios cujos recursos de suporte são suficientes, como no exemplo a seguir.
 
 | Benefício para o Cliente| Recursos de Suporte|  
 | ----| ----|
-| A nova equipe de suporte pode aprender rapidamente como usar o produto| A base de conhecimento ajuda a equipe de suporte a identificar rapidamente as correções e soluções alternativas conhecidas.|
-| A satisfação do cliente é melhorada porque não há falhas. | Os problemas são exclusivamente detalhados em itens, classificados e controlados em todo o processo de resolução. A notificação automática ocorre para quaisquer problemas anteriores. |
-| O gerenciamento pode identificar as áreas com problema e calibrar a carga de trabalho da equipe. | Os relatórios de tendência e distribuição permitem a revisão de alto nível do status do problema |
-| Equipes de suporte distribuídas podem trabalhar juntas para resolver problemas. | Com um servidor de replicação, as informações do banco de dados podem ser compartilhadas em toda a empresa |
-| Os clientes podem se ajudar, reduzindo os custos de suporte e melhorando o tempo de resposta. | A base de conhecimento pode ficar disponível na Internet. A base de conhecimento inclui recursos de pesquisa de hipertexto e um mecanismo de consulta gráfica |
-
+| Gerenciamento de clubes. | Engajamento dos clubes já existentes de tênis, permitindo cadastro de seus membros. |
+| Sistema de rankings | Colocação dos membros do clube com base em seu desempenho nas partidas. |
+| Gerenciamento de partidas. | Marcação da partida por meio de desafios com regras pré-definidas e controle de resultados para o sistema de rankings |
+| Sistema de gamificação.| Incentivo à competitividade sadia entre jogadores do clube|
+| Reserva de quadras | Parcerias com donos de quadras, condominios ou organizações para reserva com antecedência do local onde os jogos ocorrerão. |
 
 ### 4.3	Suposições e Dependências
- Lista cada um dos fatores que afeta os recursos que o documento de visão inclui. Lista as suposições que, se modificadas, alterarão o documento de visão. Por exemplo, uma suposição pode indicar que um sistema operacional específico fique disponível para o hardware designado para o produto de software. Se o sistema operacional não estiver disponível, será necessário alterar o documento de visão.
-### 4.4	Custo e Precificação
-Registra os impactos e restrições relevantes de custo e precificação. Por exemplo, os custos de distribuição (o número de CDs e CD principal) ou outras restrições de custo de mercadorias vendidas (manuais e embalagem) podem ser material para o sucesso dos projetos, ou irrelevantes, dependendo da natureza do aplicativo.
-### 4.5	Licenciamento e Instalação
- - Os problemas de licenciamento e instalação também podem impactar diretamente o esforço de desenvolvimento. Por exemplo, a necessidade de suportar a serialização, a segurança da senha ou o licenciamento da rede criarão requisitos adicionais do sistema que devem ser considerados no esforço de desenvolvimento. Os requisitos de instalação também podem afetar a codificação ou criar a necessidade de separar o software de
+* Os membros do clube devem possuir um smartphone com harware suficiente para sua utilização.
+* Os membros do clube devem possuir uma versão mínima do sistema operacional Android (A definir).
 
  ## 5:	Recursos do Produto
 Lista e descreve brevemente os recursos do produto. Os recursos são capacidades de alto nível do sistema que são necessários para entregar benefícios aos usuários. Cada recurso é um serviço solicitado que, em geral, requer uma série de entradas para alcançar o resultado desejado. Por exemplo, um recurso de um sistema de rastreamento de problemas pode ser a capacidade de fornecer relatórios de tendências. À medida que o modelo de casos de uso toma forma, atualize a descrição para fazer referência aos casos de uso.
@@ -200,12 +192,30 @@ Em toda esta seção, torne cada recurso relevante para usuários, operadores ou
 * Evite design. Mantenha as descrições do recurso em um nível geral. Foque nas capacidades necessárias e por que (não como) elas devem ser implementadas.
 * Designe todos os recursos como requisitos de um tipo de recurso específico para fácil referência e rastreamento.
 
-### 5.1 Recurso 1.  
+### 5.1 Sistema de autenticação de clubes
+O aplicativo fornece um sistema de gerenciamento de clubes, permitindo cadastramento, atualização, login ou exclusão da conta.
 
-### 5.2 Recurso 2.
+### 5.2 Sistema de rankings
+O aplicativo segue regras pré-definidas para classificar o usuário.
+
+### 5.3 Sistema de desafios
+O aplicativo torna possível o usuário desafiar outros jogadores seguindo regras pré-definidas.
+
+### 5.4 Gerenciamento de partidas
+O aplicativo gerencia as partidas realizadas, desde o desafio até a coleta do resultado.
+
+### 5.5 Reserva de quadras de tênis
+O aplicavo viabiliza por meio de parcerias o aluguél de quadras.
 
 ## 6: Restrições
-Observe todas as restrições de design, restrições externas, como requisitos operacionais ou regulamentares) ou outras dependências.
+### 6.1 Restrição de design
+O design do aplicativo será limpo e "user-friendly", de modo a tornar a navegação o mais natural possível.
+### 6.2 Restrições de plataforma
+O aplicativo será desenvolvido para smartphones com sistema android.
+### 6.3 Restrições de implementação
+Será utilizado no desenvolvimento a linguagem  Kotlin.
+### 6.4 Restrições de uso
+Para a utilização do aplicativo é necessário que o usuário possua um dispositivo android com conexão de internet.
 ## 7: Faixas de Qualidade
 Defina as faixas de qualidade para desempenho, robustez, tolerância a falhas, usabilidade e características similares que o conjunto de recursos não descreve.
 
