@@ -33,7 +33,7 @@
   * [3.5 Perfis das Partes Interessadas](#35-Perfis-das-Partes-Interessadas)
   * [3.6 Perfis do Usuário](#3.6-Perfis-do-Usuário)
   * [3.7 Principais Necessidades da Parte Interessada ou do Usuário](#37-Principais-Necessidades-da-Parte-Interessada-ou-do-Usuário)
-  * [3.8	Alternativas e Concorrência](#3.8-Alternativas-e-Concorrência)
+  * [3.8 Alternativas e Concorrência](#3.8-Alternativas-e-Concorrência)
 * [**4 Visão Geral do Produto**](#4-Visão-Geral-do-Produto)
   * [4.1 Perspectiva do Produto](#41-Perspectiva-do-Produto)
   * [4.2 Resumo das Capacidades](#42-Resumo-das-Capacidades)
@@ -51,67 +51,68 @@
   * [6.3 Restrições de implementação](#63-Restrições-de-implementação)
   * [6.4 Restrições de uso](#64-Restrições-de-uso)
 
-## 1: Introdução
+## 1  Introdução
 Esta introdução fornece uma visão geral de todo o documento de visão. Ela inclui o propósito, escopo, definições, acrônimos, abreviações, referências e visão geral de todo o documento.  
 
 ### 1.1 Propósito
 O documento explana o funcionamento do aplicativo Nexte, assim como os requisitos necessários para a compreensão do escopo do projeto.
 
-### 1.2	Escopo
+### 1.2 Escopo
 O projeto contemplado por esse documento apresenta formas de auxiliar a interação entre os jogadores de tênis através do gerenciamento de rankings e partidas.
 
 ### 1.3 Definições, acrônimos e abreviações
-- MDS - Métodos de Desenvolvimento de Software
-- EPS - Engenharia de Produto de Software
-- FGA - Faculdade do Gama
-- UnB - Universidade de Brasília
-- CLT - Cinta Liga de Tênis
+- MDS - Métodos de Desenvolvimento de Software;
+- EPS - Engenharia de Produto de Software;
+- FGA - Faculdade do Gama;
+- UnB - Universidade de Brasília;
+- CLT - Cinta Liga de Tênis. 
 
-### 1.4	Referências
+### 1.4  Referências
 Entre as fontes de base para o desenvolvimento do projeto é importante citar:
 1. Regras de jogos da CLT
-2. [Tenis Integrado](http://www.tenisintegrado.com.br/clube/) 
-### 1.5	Visão geral
-O documento objetiva descrever de forma sucinta o software como serviço, ressaltando os aspectos fundamentais para o seu desenvolvimento, tais como:
-- O posicionamento do produto em relação ao mercado, assim como na perspectiva das partes interessadas e dos usuários;
-- Descrição das partes interessadas e dos usuários;
-- Custo, capacidades e depencias para a ampla funcionalidade do aplicativo;
-- Descrição dos recursos oferecidos pelo aplicativo, apresentando uma perspectiva da sua funcionalidade;
-- Restrições dos uso, desenvolvimento e funcionalidade do aplicativo.
+2. [Tênis Integrado](http://www.tenisintegrado.com.br/clube/) 
 
-## 2: Posicionando
+### 1.5  Visão geral
+O documento objetiva descrever de forma sucinta o software como serviço, ressaltando os aspectos fundamentais para o seu desenvolvimento, tais como:
+- O posicionamento do produto em relação ao mercado, a perspectiva das partes interessadas e dos usuários;
+- Descrição das partes interessadas e dos usuários;
+- Custo, capacidades e dependências para a ampla funcionalidade do aplicativo;
+- Descrição dos recursos oferecidos pelo aplicativo, apresentando a perspectiva da sua funcionalidade;
+- Restrições de uso, desenvolvimento e funcionalidade do aplicativo.
+
+## 2  Posicionando
 ### 2.1	Oportunidade de Negócios
-O projeto propõe uma melhoria no envolvimento dos associados do clube, gerando uma maior taxa de fidelidade, podendo trazer novos membros, alavancando o comércio local atraves da movimentação das quadras esportivas.
+O projeto propõe uma melhoria no envolvimento dos associados dos clubes, resultando em uma maior taxa de fidelidade dos membros e a oportunidade de adesão de novos, favorecendo o comércio local através da movimentação das quadras esportivas.
 
 ### 2.2	Instrução do Problema
 
-A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes destinados ao exercício desse esporte. Dentre os problemas associados a essa desorganização destacam-se a falta de incentivo aos jogadores a continuarem a prática a dificuldade na procura de adversários. Possíveis formas de solucionar esses problemas encontram-se no desenvolvimento de um método gameficado, proporcionando a praticidade dos usuários a encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
+A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes, ocasionando a falta de incentivo aos jogadores em se desenvolverem dentro do esporte através da prática com adversários distintos e seus diferentes níveis de habilidades. O desenvolvimento de um método gamificado possibilita a solução desse problema, uma vez que proporcia a praticidade dos usuários em encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
 
 
 ### 2.3	Instrução de Posição do Produto
 
-Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte. O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, o Nexte possui sistema de gamificação, de modo a incentivar a utilização do aplicativo, além disso o Nexte é focado em engajar as comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
+Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte, o Nexte é um aplicativo que administra os jogos de tênis e a competitividade entre seus usuários. Comparando-o com o sistema *Quero Jogar Tênis*, o projeto Nexte possui sistema de gamificação que possibilita a imersão do usuário no esporte, possibilitanto também o engajamento das comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para esse fim.
 
 
-## 3: Descrições da Parte Interessada e do Usuário
+## 3  Descrições da Parte Interessada e do Usuário
 
-Para os proprietários de clubes amadores de tênis, o problema enfrentado é, principalmente, a falta de estimulo dos membros do clube que acarretam em uma falta de frequência de participação. O aplicativo visa melhorar o engajamento dos sócios como um incentivador, atuando no aumento o envolvimento dos associados nos eventos, colaborando para a assiduidade.
+Para os proprietários de clubes amadores de tênis, o problema enfrentado é, principalmente, a falta de estímulo dos membros associados, acarretando na falta de frequência e participação nas quadras. O aplicativo visa melhorar o engajamento dos sócios como um incentivador, atuando no aumento o envolvimento dos associados nos eventos, colaborando para a assiduidade.
 
-Para os membros de clubes amadores de tênis, o maior desafio enfrentado é dificuldade em achar oponentes em horarios adequados. O aplicativo visa administrar o sistema de partidas, atuando principalmente no gerenciamento dos jogos e competições, oferencendo comodidade na organização da prática do esporte.
+Para os membros de clubes amadores de tênis, o maior desafio enfrentado é a dificuldade de achar oponentes em horários que se adequem à rotina pessoal. O aplicativo visa administrar o sistema de partidas, atuando principalmente no gerenciamento dos jogos e competições, oferencendo comodidade na organização da prática do esporte.
 
-Para os patrocinadores, que necessitam de um ambiênte para expor seus produtos. O aplicativo visa oferecer uma plataforma conveniente para o anuncio de artefatos esportivos, aumentando a visibilidade da marca no nicho propício. 
+Para os patrocinadores, que necessitam de um ambiente para expor seus produtos, o aplicativo visa oferecer uma plataforma conveniente para o anúncio de artefatos esportivos, aumentando a visibilidade da marca no nicho propício. 
 
 ### 3.1 Demográficos de Mercado
-O aplicativo Nexte pretende atingir as organizações amadores de tênis, assim como seus sócios. Atualmente, no Brasil, existem cerca de [300 clubes](#14-referencias) que poderiam se beneficiar do aplicativo.
+O aplicativo Nexte pretende atingir as organizações amadoras de tênis, assim como seus sócios. Atualmente, no Brasil, existem cerca de [300 clubes](#14-referencias) que poderiam se beneficiar do aplicativo.
 
 ### 3.2 Resumo da Parte Interessada
 A necessidade de desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings, apresentam três partes interessadas: tenistas, clubes e desenvolvedores do projeto.
 
 ### 3.3 Resumo do Usuário
-O aplicativo Nexte conta com representantes de clubes de tênis e tenistas ativos acima de 18 anos como usuários, ou seja, com praticantes do esporte que tenham a idade mínima e disponibilidade de disputar o ranking como desafiantes e desafiados, assim como o representante clube a qual ele pertence, que será responsável pelo cadastro do tenista, não sendo possível o cadastro de usuários não associados a um clube.
+O aplicativo Nexte conta com representantes de clubes de tênis e tenistas ativos acima de 18 anos como usuários que tenham disponibilidade de disputar o ranking como desafiantes e desafiados. Torna-se importante ressaltar que os clubes são os responsáveis pelo cadastro dos tenistas, não sendo possível o cadastro de usuários não associados a um clube.
 
 ### 3.4 Ambiente do Usuário
-As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras por serem exclusivas a moradores e sócios. É importante ressaltar que o tempo de duração de cada partida varia de acordo com a pontuação de cada set.
+As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras por serem exclusivas a moradores e sócios. O tempo de duração de cada partida varia de acordo com a pontuação de cada set.
 
 ### 3.5 Perfis das Partes Interessadas
 
@@ -138,7 +139,7 @@ Os principais concorrentes apresentam como pontos fortes a possibilidade de rese
 Como diferencial, o Nexte apresenta um sistema de gamificação, incentivando os usuários a manterem o uso constante do aplicativo, tanto pelo sistema de rank quanto pelo sistema de trofeús e conqusitas.
 
 
- ## 4:	Visão Geral do Produto
+ ## 4  Visão Geral do Produto
 O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuindo um sistema de ranking baseado nas regras da CLT.
 ### 4.1	Perspectiva do Produto
  O produto se difere dos demais pois ele é focado em clubes ao invés de jogadores, onde o clube é responsável pelo controle de seus membros. Utilizando a gamificação para incentivar os usuários, o aplicavo visa aumentar tanto a pratica do esporte, quanto a utilização do mesmo.
@@ -156,7 +157,7 @@ O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuin
 * Os membros do clube devem possuir um smartphone com harware suficiente para sua utilização.
 * Os membros do clube devem possuir uma versão mínima do sistema operacional Android (A definir).
 
- ## 5:	Recursos do Produto
+ ## 5  Recursos do Produto
 
 ### 5.1 Sistema de autenticação de clubes
 O aplicativo fornece um sistema de gerenciamento de clubes, permitindo cadastramento, atualização, login ou exclusão da conta.
@@ -170,7 +171,7 @@ O aplicativo torna possível o usuário desafiar outros jogadores seguindo regra
 ### 5.4 Gerenciamento de partidas
 O aplicativo gerencia as partidas realizadas, desde o desafio até a coleta do resultado.
 
-## 6: Restrições
+## 6  Restrições
 ### 6.1 Restrições de design
 O design do aplicativo será limpo e "user-friendly", de modo a tornar a navegação o mais natural possível.
 ### 6.2 Restrições de plataforma
