@@ -5,7 +5,7 @@
 | 12/03/2018 | 0.1 | Criando estrutura inicial do documento  | Luis Gustavo |
 | 12/03/2018 | 0.2 | Adicionado introdução, descrição, propósito e justivativa, objetivos, requisitos de alto nível e riscos do projeto  | Luis Gustavo |
 | 12/03/2018 | 0.3 | Adição do Resumo do cronograma de marcos, resumo do orçamento, partes interessadas, Requisitos para aprovação do projeto e gerência do projeto | Geovanni Oliveira |
-| 14/03/2018 | 0.4 | Ajuste e conclusão do TAP | Guilherme Baldissera |
+| 14/03/2018 | 0.4 | Ajuste e conclusão inicial do TAP | Guilherme Baldissera |
 
 
 ## Sumário
@@ -88,7 +88,7 @@ Em cada marco principal haverá 6 marcos menores chamados _sprints_, cada um ter
 | _Sprint 1_| 16/03/2018 |
 | _Sprint 2_| 23/03/2018 |
 
-## _Release 1_  - xx/ xx /xxxx
+## _Release 2_  - xx/ xx /xxxx
 
 | _Sprint_ | Data |
 | ---- | ---- | 
@@ -178,3 +178,5 @@ O projeto será gerido pela equipe de **Engenharia de Produto de Software**, dis
 ><p align = "justify">Site com clubes de tênis brasilieros. Disponível em: http://www.tenisintegrado.com.br/clube/ . Acesso em 12/03/2018</p>
 
 ><p align="justify"> Site para compra de notebooks. Disponível em: https://www.walmart.com.br/kp/notebook-i5-4gb, acessádo 12/03/2018 ás 23:58
+
+><p align = "justify">Relatório de Gestão 2016, Universidade de Brasília. Disponível em http://www.dpo.unb.br/index.php?option=com_phocadownload&view=category&download=558:relatorio-2016&id=1:relatorio-de-gestao&Itemid=675. Acesso em 10 de março de 2018 às 23:53.</p>
