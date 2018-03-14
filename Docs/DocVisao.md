@@ -12,7 +12,7 @@
 | 13/03/2018| 0.7 |Melhoria da descrição das partes interessadas e visão geral do documento| Alexandre Miguel, Gabriel Albino | 
 | 13/03/2018| 0.8 |Preenchimento das descrições das partes interessadas e do usuário| Gabriel Albino, Helena Goulart, Larissa Sales, Leticia Meneses | 
 | 13/03/2018| 0.9 | Atualização das necessidades das partes interessadas| Gabriel Albino|
-| 14/03/2018| 0.9.1 | Reviso de texto e formatação até o tópico 3.3 | ALexandre Miguel, Helena Goulart |
+| 14/03/2018| 0.9.1 | Revisão de texto e formatação até o tópico 3.3 | ALexandre Miguel, Helena Goulart |
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
