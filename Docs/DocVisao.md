@@ -11,6 +11,7 @@
 | 13/03/2018| 0.6.2 |Atualização do índice | Gabriel Albino | 
 | 13/03/2018| 0.7 |Melhoria da descrição das partes interessadas e visão geral do documento| Alexandre Miguel, Gabriel Albino | 
 | 13/03/2018| 0.8 |Preenchimento das descrições das partes interessadas e do usuário| Gabriel Albino, Helena Goulart, Larissa Sales, Leticia Meneses | 
+| 13/03/2018| 0.9| Atualização das necessidades das partes interessadas| Gabriel Albino|
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -107,7 +108,7 @@ O aplicativo Nexte pretende atingir as organizações amadores de tênis, assim 
 A necessidade de desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings, apresentam três partes interessadas: tenistas, clubes e desenvolvedores do projeto.
 
 ### 3.3 Resumo do Usuário
-O aplicativo Nexte conta com tenistas ativos acima de 18 anos como usuários, ou seja, com praticantes do esporte que tenham a idade mínima e disponibilidade de disputar o ranking como desafiantes e desafiados, assim como o clube a qual ele pertence, que será responsável pelo cadastro do tenista, não sendo possível o cadastro de usuários não associados a um clube.
+O aplicativo Nexte conta com representantes de clubes de tênis e tenistas ativos acima de 18 anos como usuários, ou seja, com praticantes do esporte que tenham a idade mínima e disponibilidade de disputar o ranking como desafiantes e desafiados, assim como o representante clube a qual ele pertence, que será responsável pelo cadastro do tenista, não sendo possível o cadastro de usuários não associados a um clube.
 
 ### 3.4 Ambiente do Usuário
 As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras por serem exclusivas a moradores e sócios. É importante ressaltar que o tempo de duração de cada partida varia de acordo com a pontuação de cada set.
@@ -117,25 +118,19 @@ As quadras de tênis de Brasília são os principais ambientes compartilhados pe
 Dentre as partes interessadas encontram-se os representantes dos clubes de tênis, responsáveis  pelo cadastro dos sócios do clube e infraestrutura do local.
 O engajamento de novos membros e a assiduidade dos antigos são as principais recompensas para os representantes.
 
-Tipo:
-Comentários ou Problemas: Determina os problemas que interferem com o sucesso e quaisquer outras informações relevantes.
-
 ### 3.6 Perfis do Usuário
 
 Dentre os usuários encontram-se os associados dos clubes de tênis, sendo responsáveis pela organização de partidas, sendo gratificados com a comodidade na organização da prática do esporte. 
 
 ### 3.7 Principais Necessidades da Parte Interessada ou do Usuário
- Lista os principais problemas com soluções existentes como observadas pela parte interessada. Esclarece estas questões para cada problema:
-Quais são os motivos para esse problema?
-Como o problema é resolvido agora?
-Quais soluções a parte interessada deseja?
-Você deve entender a importância relativa que a parte interessada coloca na solução de cada problema. A classificação e técnicas de votos acumulativos indicam os problemas que devem ser resolvidos versus os problemas que as partes interessadas gostariam de tratar. Use esta tabela para capturar as necessidades da parte interessada.
 
 | Necessidade | Prioridade | Interesses | Solução atual | Solução proposta |
 |---|---|---|---|---|
-| ex| ex2 | ex3 | ex4 | ex5 |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| Dificuldade no gerenciamento de partidas| Alta | Sócios dos clubes  | Softwares de baixa qualidade feita pelos próprios clubes, sendo a maioria sem suporte para mobile | Aplicativo que integra de forma mais rápida e funcional os membros do clube |
+| Falta de motivação dos membros do clube  | Alta | Representantes do clube | Os softwares existentes não se preocupam com essa necessidade, fornecendo apenas funcionalidades básicas sem nenhum tipo de incentivo | O aplicativo proposto utiliza a metodologia de gameficação, que vai incentivar o uso constante do aplicativo e uma eventual motivação para os membros do clube continuarem a desafiar novos oponentes. |
+| Ausência de dados dos jogadores (Vitorias, derrotas, aproveitamento, etc.) | Alta | Membros e representantes dos clubes | Os softwares existentes não se preocupam em armazenar os dados dos jogadores. | O aplicativo proposto deixará os dados dos jogadores mais acessíveis, tornando possível uma analise geral dos jogadores, assim como irá fornecer detalhes sobre o desempenho deles nas partidas. |
+| Falta de ferramentas de integração da comunidade | Media | Membros do clube | As soluções atuais não apresentam um canal de interação entre os usuários | Será implementado no aplicativo um sistema de feed que exibirá resumo das partidas, assim como chat e integração com redes sociais e/ou informações de contato. |
+
 
 
 ### 3.8 Alternativas e Concorrência
@@ -162,12 +157,6 @@ O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuin
 * Os membros do clube devem possuir uma versão mínima do sistema operacional Android (A definir).
 
  ## 5:	Recursos do Produto
-Lista e descreve brevemente os recursos do produto. Os recursos são capacidades de alto nível do sistema que são necessários para entregar benefícios aos usuários. Cada recurso é um serviço solicitado que, em geral, requer uma série de entradas para alcançar o resultado desejado. Por exemplo, um recurso de um sistema de rastreamento de problemas pode ser a capacidade de fornecer relatórios de tendências. À medida que o modelo de casos de uso toma forma, atualize a descrição para fazer referência aos casos de uso.
-Como o documento de visão é revisado por uma ampla variedade de equipes envolvidas, mantenha o nível de detalhes gerais suficiente para que todos possam entender. No entanto, ofereça detalhes suficientes para fornecer à equipe as informações que ela precisa para criar um modelo de casos de uso ou outros documentos de design.
-Para gerenciar a complexidade do aplicativo, para um novo sistema ou uma mudança incremental, liste os recursos em um alto nível para que você possa incluir aproximadamente 25 a 99 recursos. Esses recursos fornecem a base para a definição do produto, gerenciamento de escopo e gerenciamento do projeto. Cada recurso será expandido mais detalhadamente no modelo de casos de uso.
-Em toda esta seção, torne cada recurso relevante para usuários, operadores ou outros sistemas externos. Inclua uma descrição de funções e problemas de usabilidade que devem ser tratados. As seguintes diretrizes se aplicam:
-* Evite design. Mantenha as descrições do recurso em um nível geral. Foque nas capacidades necessárias e por que (não como) elas devem ser implementadas.
-* Designe todos os recursos como requisitos de um tipo de recurso específico para fácil referência e rastreamento.
 
 ### 5.1 Sistema de autenticação de clubes
 O aplicativo fornece um sistema de gerenciamento de clubes, permitindo cadastramento, atualização, login ou exclusão da conta.
