@@ -9,7 +9,8 @@
 | 13/03/2018| 0.6 |Finalização do preenchimento e Alternativas e concorrencia | Gabriel Albino, Letícia Meneses, Lorrany Freire |  
 | 13/03/2018| 0.6.1 |Removido tópicos que não serão abordados nesse documento | Gabriel Albino |
 | 13/03/2018| 0.6.2 |Atualização do índice | Gabriel Albino | 
-| 13/03/2018| 0.7 |Melhoria da descrição das partes interessadas e visão geral do documento | Alexandre Miguel, Gabriel Albino | 
+| 13/03/2018| 0.7 |Melhoria da descrição das partes interessadas e visão geral do documento| Alexandre Miguel, Gabriel Albino | 
+| 13/03/2018| 0.8 |Preenchimento das descrições das partes interessadas e do usuário| Gabriel Albino, Helena Goulart, Larissa Sales, Leticia Meneses | 
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -88,8 +89,6 @@ A desorganização de partidas de tênis afeta os seus praticantes bem como os p
 
 ### 2.3	Instrução de Posição do Produto
 
-Para o membro do clube de tênis que necessita de uma organização de partidas de tẽnis. O Nexte é um aplicativo Mobile que gerencia os jogos de tênis. De outro modo (principal alternativa competitiva), nosso produto (instrução da principal diferenciação).O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, utilizando o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte
-
 Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte. O Nexte é um aplicativo que administra os jogos de tênis e a competitividade sadia entre seus usuários. De outro modo comparando-o com o sistema Quero Jogar Tênis, o Nexte possui sistema de gamificação, de modo a incentivar a utilização do aplicativo, além disso o Nexte é focado em engajar as comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com mais facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para tal ação e possibilitar uma interação mais eficiente entre usuários interessados em praticar o esporte.
 
 
@@ -115,25 +114,15 @@ As quadras de tênis de Brasília são os principais ambientes compartilhados pe
 
 ### 3.5 Perfis das Partes Interessadas
 
-Representante: Determina quem representa a parte interessada para o projeto (Essa informação será opcional se estiver documentada em algum outro lugar.) Insira os nomes dos representantes.
-Descrição: Descreve brevemente o tipo de parte interessada.
-Tipo: Qualifica o conhecimento da parte interessada, como "usuário avançado", "especialista em negócios", ou "usuário informal". Essa designação pode sugerir a experiência técnica e o grau de sofisticação.
-Responsabilidades: Lista as principais responsabilidades da parte interessada no sistema em desenvolvimento; lista seus interesses como uma parte interessada.
-Critérios de Sucesso: Determina como a parte interessada define o sucesso. Como a parte interessada é recompensada?
-Envolvimento - Descreve como a parte interessada está envolvida no projeto. Onde possível, relate o envolvimento nas funções do processo; por exemplo, uma parte interessada pode ser um revisor de requisitos.
-Entregas: Identifica as entregas adicionais que a parte interessada requer. Esses itens podem ser entregas do projeto ou saída a partir do sistema em desenvolvimento.
+Dentre as partes interessadas encontram-se os representantes dos clubes de tênis, responsáveis  pelo cadastro dos sócios do clube e infraestrutura do local.
+O engajamento de novos membros e a assiduidade dos antigos são as principais recompensas para os representantes.
+
+Tipo:
 Comentários ou Problemas: Determina os problemas que interferem com o sucesso e quaisquer outras informações relevantes.
 
 ### 3.6 Perfis do Usuário
-Descreve cada usuário do sistema aqui, preenchendo a seguinte tabela para cada tipo de usuário. Lembre-se que os tipos de usuário podem ser especialistas e novatos; por exemplo, um especialista pode precisar de uma ferramenta sofisticada e flexível com suporte para várias plataformas, enquanto um novato pode precisar de uma ferramenta que seja fácil de usar. Um perfil completo abrange esses tópicos para cada tipo de usuário:
-Representante: Indica quem representa o usuário para o projeto. (Essa informação será opcional se estiver documentada em algum outro lugar.) Esse representante, geralmente refere-se à parte interessada que representa o conjunto de usuários; por exemplo, Parte Interessada: Parte Interessada1.
-Descrição: Descreve brevemente o tipo de usuário.
-Tipo: Qualifica o conhecimento do usuário, como "usuário avançado" ou "usuário informal." Essa designação pode sugerir a experiência técnica e o grau de sofisticação.
-Responsabilidades: Lista as principais responsabilidades do usuário com respeito ao sistema; por exemplo, determina quem captura os detalhes do cliente, produz relatórios e coordena trabalho, etc.
-Critérios de Sucesso: Determina como o usuário define o sucesso. Como o usuário é recompensado?
-Envolvimento: Descreve como o usuário está envolvido no projeto. Onde possível, relate o envolvimento nas funções do processo; por exemplo, uma parte interessada pode ser um revisor de requisitos.
-Entregas: Identifica as entregas que o usuário produz e para quem.
-Comentários ou Problemas: Determina os problemas que interferem com o sucesso e quaisquer outras informações relevantes. Descreve as tendências que tornam a tarefa do usuário mais fácil ou mais difícil.
+
+Dentre os usuários encontram-se os associados dos clubes de tênis, sendo responsáveis pela organização de partidas, sendo gratificados com a comodidade na organização da prática do esporte. 
 
 ### 3.7 Principais Necessidades da Parte Interessada ou do Usuário
  Lista os principais problemas com soluções existentes como observadas pela parte interessada. Esclarece estas questões para cada problema:
@@ -150,7 +139,9 @@ Você deve entender a importância relativa que a parte interessada coloca na so
 
 
 ### 3.8 Alternativas e Concorrência
- Identifica as alternativas que a parte interessada percebe como disponíveis. Essas alternativas podem incluir a compra do produto de um concorrente, a criação de uma solução desenvolvida internamente ou manter o status quo. Listam todas as opções disponíveis e conhecidas. Elas incluem os principais pontos fortes e fracos de cada concorrente como observados pela parte interessada.
+Os principais concorrentes apresentam como pontos fortes a possibilidade de reservar quadras e marcar horarios com treinadores, mas em contrapartida não possuem um sitema para manter os usuários engajados no uso diário do aplicativo.
+Como diferencial, o Nexte apresenta um sistema de gamificação, incentivando os usuários a manterem o uso constante do aplicativo, tanto pelo sistema de rank quanto pelo sistema de trofeús e conqusitas.
+
 
  ## 4:	Visão Geral do Produto
 O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuindo um sistema de ranking baseado nas regras da CLT.
