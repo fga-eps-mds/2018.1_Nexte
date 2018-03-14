@@ -1,14 +1,11 @@
-## Título <!--- Adicione um título significativo -->
-
-
 ## Descrição
 
-<!--- Adicione uma descrição detalhada -->
+<!--- Substitua aqui com uma descrição detalhada. Exemplo: Foram encontrados problemas na funcionalidade de login quando o usuário deseja utilizar o email e não seu usuário.  -->
 
 
 ## Critérios de Aceitação
 
-<!--- Coloque os critérios de aceitação para que essa issue seja dada como concluída em forma de tasks -->
+<!--- Substitua os exemplos com os critérios de aceitação para que essa issue seja dada como concluída em forma de tasks -->
 
- - [ ] É preciso...
- - [ ] Precisa ser feito...
+ - [ ] Exemplo: É preciso...
+ - [ ] Exemplo2: Precisa ser feito...

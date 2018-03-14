@@ -1,5 +1,5 @@
 ## Descrição
-<!--- Adicione uma descrição detalhada -->
+<!--- Substitua isso aqui por uma descrição detalhada sobre o Pull Request -->
 
 ### Qual tipo de mudança o Pull Request introduz?
 <!--- Exemplo: Adiciona um novo tipo de login para usuários. -->
