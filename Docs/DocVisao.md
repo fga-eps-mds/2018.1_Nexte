@@ -13,6 +13,7 @@
 | 13/03/2018| 0.8 |Preenchimento das descrições das partes interessadas e do usuário| Gabriel Albino, Helena Goulart, Larissa Sales, Leticia Meneses | 
 | 13/03/2018| 0.9 | Atualização das necessidades das partes interessadas| Gabriel Albino|
 | 14/03/2018| 0.9.1 | Revisão de texto e formatação até o tópico 3.3 | ALexandre Miguel, Helena Goulart |
+| 15/03/2018| 1.0 | Correções ortográficas e de informações erradas | Gabriel Albino |
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -87,19 +88,19 @@ O projeto propõe uma melhoria no envolvimento dos associados dos clubes, result
 
 ### 2.2	Instrução do Problema
 
-A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes, ocasionando a falta de incentivo aos jogadores em se desenvolverem dentro do esporte através da prática com adversários distintos e seus diferentes níveis de habilidades. O desenvolvimento de um método gamificado possibilita a solução desse problema, uma vez que proporcia a praticidade dos usuários em encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competividade sadia entre os jogadores e estimula a prática do esporte.
+A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes, ocasionando a falta de incentivo aos jogadores em se desenvolverem dentro do esporte através da prática com adversários distintos e seus diferentes níveis de habilidades. O desenvolvimento de um método gamificado possibilita a solução desse problema, uma vez que proporciona a praticidade dos usuários em encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competitividade sadia entre os jogadores e estimula a prática do esporte.
 
 
 ### 2.3	Instrução de Posição do Produto
 
-Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte, o Nexte é um aplicativo que administra os jogos de tênis e a competitividade entre seus usuários. Comparando-o com o sistema *Quero Jogar Tênis*, o projeto Nexte possui sistema de gamificação que possibilita a imersão do usuário no esporte, possibilitanto também o engajamento das comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com facilidade e rapidez em relação âs formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para esse fim.
+Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte, o Nexte é um aplicativo que administra os jogos de tênis e a competitividade entre seus usuários. Comparando-o com o sistema *Quero Jogar Tênis*, o projeto Nexte possui sistema de gamificação que possibilita a imersão do usuário no esporte, possibilitanto também o engajamento das comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com facilidade e rapidez em relação às formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para esse fim.
 
 
 ## 3  Descrições da Parte Interessada e do Usuário
 
 Para os proprietários de clubes amadores de tênis, o problema enfrentado é, principalmente, a falta de estímulo dos membros associados, acarretando na falta de frequência e participação nas quadras. O aplicativo visa melhorar o engajamento dos sócios como um incentivador, atuando no aumento o envolvimento dos associados nos eventos, colaborando para a assiduidade.
 
-Para os membros de clubes amadores de tênis, o maior desafio enfrentado é a dificuldade de achar oponentes em horários que se adequem à rotina pessoal. O aplicativo visa administrar o sistema de partidas, atuando principalmente no gerenciamento dos jogos e competições, oferencendo comodidade na organização da prática do esporte.
+Para os membros de clubes amadores de tênis, o maior desafio enfrentado é a dificuldade de achar oponentes em horários que se adequem à rotina pessoal. O aplicativo visa administrar o sistema de partidas, atuando principalmente no gerenciamento dos jogos e competições, oferecendo comodidade na organização da prática do esporte.
 
 Para os patrocinadores, que necessitam de um ambiente para expor seus produtos, o aplicativo visa oferecer uma plataforma conveniente para o anúncio de artefatos esportivos, aumentando a visibilidade da marca no nicho propício. 
 
@@ -107,10 +108,10 @@ Para os patrocinadores, que necessitam de um ambiente para expor seus produtos, 
 O aplicativo Nexte pretende atingir as organizações amadoras de tênis, assim como seus sócios. Atualmente, no Brasil, existem cerca de [300 clubes](#14-referencias) que poderiam se beneficiar do aplicativo.
 
 ### 3.2 Resumo da Parte Interessada
-A necessidade de desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings, apresentam três partes interessadas: tenistas, clubes e desenvolvedores do projeto.
+Os tenistas, clubes e desenvolvedores do projeto apresentam entre as necessidades os seguintes tópicos: Desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings.
 
 ### 3.3 Resumo do Usuário
-O aplicativo Nexte conta com representantes de clubes de tênis e tenistas ativos acima de 18 anos como usuários que tenham disponibilidade de disputar o ranking como desafiantes e desafiados. Torna-se importante ressaltar que os clubes são os responsáveis pelo cadastro dos tenistas, não sendo possível o cadastro de usuários não associados a um clube.
+O aplicativo Nexte conta com representantes de clubes de tênis, assim como tenistas ativos como usuários que tenham disponibilidade de disputar o ranking como desafiantes e desafiados. Torna-se importante ressaltar que os clubes são os responsáveis pelo cadastro dos tenistas, não sendo possível o cadastro de usuários não associados a um clube.
 
 ### 3.4 Ambiente do Usuário
 As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras por serem exclusivas a moradores e sócios. O tempo de duração de cada partida varia de acordo com a pontuação de cada set.
