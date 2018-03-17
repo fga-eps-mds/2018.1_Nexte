@@ -1,30 +1,33 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 15/03/2018| 0.1 |Criação do documento | Gabriel Albino, Letícia Meneses |
+| 16/03/2018| 0.1 |Criação do documento | Gabriel Albino, Letícia Meneses |
+| 17/03/2018| 0.1.1 |Correção do índice analítico | Gabriel Albino |
 
-### Índice analítico
 
-* [**1 INTRODUÇÃO**](#1-introdução)
-  * [1.1 Finalidade](#11-Propósito)
-  * [1.2 Escopo](#12-Escopo)
-  * [1.3 Definições, acrônimos e abreviações](#13-Definições,-acrônimos-e-abreviações)
-  * [1.4 Referências](#14-Referências)
-* [**2 REPRESENTAÇÃO ARQUITETURAL**](#2-REPRESENTAÇÃO-ARQUITETURAL)
-* [**3 REQUISITOS E RESTRIÇÕES DE ARQUITETURA**](#3-REQUISITOS-E-RESTRIÇÕES-DE-ARQUITETURA)
-* [**4 VISÃO DE CASO DE USO**](#4-VISAO-DE-CASO-DE-USO)
-   * [4.1 Casos de Uso significantes para a arquitetura](#11-Casos-de-Uso-significantes-para-a-arquitetura)
-* [**5 VISÃO LÓGICA**](#5-VISÃO-LÓGICA)
-   * [5.1 Visão Geral – pacotes e camadas](#51-Visão-Geral-–-pacotes-e-camadas)
-* [**6 VISÃO DE IMPLEMENTAÇÃO**](#6-VISÃO-DE-IMPLEMENTAÇÃO)
-   * [6.1 Caso de uso [00X]](#61-Caso-de-uso-[00XX])
-      * [6.1.1 Diagrama de classes](#611-Diagrama-de-classes)
-      * [6.1.2 Diagrama de sequência](#612-Diagrama-de-sequência)
-* [**7 VISÃO DE IMPLANTAÇÃO**](#7-VISÃO-DE-IMPLANTAÇÃO )
-* [**8 DIMENSIONAMENTO E PERFORMANCE**](#8-DIMENSIONAMENTO-E-PERFORMANCE)
-   * [8.1 Volume](#81-Volume)
-   * [8.2 Performance](#82-Performance)
-* [**9 QUALIDADE**](#9-QUALIDADE)
+### Índice Analítico
+
+* [1 INTRODUÇÃO](#1-introdução)
+    * [1.1 Finaliade](#11-finaliade)
+    * [1.2 Escopo](#12-escopo)
+    * [1.3 Definições, Acrônimos e Abreviações](#13-definições-acrônimos-e-abreviações)
+    * [1.4 Referências](#14-referências)
+* [2. REPRESENTAÇÃO ARQUITETURAL](#2-representação-arquitetural)
+* [3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA](#3-requisitos-e-restrições-de-arquitetura)
+* [4. VISÃO DE CASO DE USO](#4-visão-de-caso-de-uso)
+    * [Lista de casos de uso do sistema:](#lista-de-casos-de-uso-do-sistema)
+    * [4.1 Casos de Uso significantes para a arquitetura](#41-casos-de-uso-significantes-para-a-arquitetura)
+* [5. VISÃO LÓGICA](#5-visão-lógica)
+    * [5.1 Visão Geral – pacotes e camadas](#51-visão-geral-–-pacotes-e-camadas)
+* [6. VISÃO DE IMPLEMENTAÇÃO](#6-visão-de-implementação)
+    * [6.1 Caso de Uso](#61-caso-de-uso)
+    * [6.1.1  <em>Diagrama de Classes</em>](#611--diagrama-de-classes)
+    * [6.1.2 <em>Diagrama de Sequência</em>](#612-diagrama-de-sequência)
+* [7. VISÃO DE IMPLANTAÇÃO](#7-visão-de-implantação)
+* [8. DIMENSIONAMENTO E PERFORMANCE](#8-dimensionamento-e-performance)
+    * [8.1. Volume](#81-volume)
+    * [8.2. Performance](#82-performance)
+* [9. QUALIDADE](#9-qualidade)
 
 # Documento de arquitetura
 
