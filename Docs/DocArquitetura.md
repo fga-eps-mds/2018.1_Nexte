@@ -3,41 +3,16 @@
 |---|---|---|---|
 | 16/03/2018| 0.1 |Criação do documento | Gabriel Albino, Letícia Meneses |
 | 17/03/2018| 0.1.1 |Correção do índice analítico | Gabriel Albino |
+| 18/03/2018| 0.2 |Adicionado introdução e representação arquitetural | Gabriel Albino |
+
 
 
 ### Índice Analítico
-
-* [1 INTRODUÇÃO](#1-introdução)
-    * [1.1 Finaliade](#11-finaliade)
-    * [1.2 Escopo](#12-escopo)
-    * [1.3 Definições, Acrônimos e Abreviações](#13-definições-acrônimos-e-abreviações)
-    * [1.4 Referências](#14-referências)
-* [2. REPRESENTAÇÃO ARQUITETURAL](#2-representação-arquitetural)
-* [3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA](#3-requisitos-e-restrições-de-arquitetura)
-* [4. VISÃO DE CASO DE USO](#4-visão-de-caso-de-uso)
-    * [Lista de casos de uso do sistema:](#lista-de-casos-de-uso-do-sistema)
-    * [4.1 Casos de Uso significantes para a arquitetura](#41-casos-de-uso-significantes-para-a-arquitetura)
-* [5. VISÃO LÓGICA](#5-visão-lógica)
-    * [5.1 Visão Geral – pacotes e camadas](#51-visão-geral-–-pacotes-e-camadas)
-* [6. VISÃO DE IMPLEMENTAÇÃO](#6-visão-de-implementação)
-    * [6.1 Caso de Uso](#61-caso-de-uso)
-    * [6.1.1  <em>Diagrama de Classes</em>](#611--diagrama-de-classes)
-    * [6.1.2 <em>Diagrama de Sequência</em>](#612-diagrama-de-sequência)
-* [7. VISÃO DE IMPLANTAÇÃO](#7-visão-de-implantação)
-* [8. DIMENSIONAMENTO E PERFORMANCE](#8-dimensionamento-e-performance)
-    * [8.1. Volume](#81-volume)
-    * [8.2. Performance](#82-performance)
-* [9. QUALIDADE](#9-qualidade)
+[INSERIR INDICE ANALÍTICO AQUI]
 
 # Documento de arquitetura
 
-### Sigla/Nome do projeto
-
-| Gestor do projeto | Gerente do projeto |
-|:-:|:-:|
-| Nome | Nome |
-| E-mail | E-mail |
-| Telefone | Telefone |
+## Nexte
 
 ### Objetivo desse documento
 
@@ -48,56 +23,50 @@ parte de hardware e software do sistema.
 ## 1 INTRODUÇÃO
 
 ### 1.1 Finaliade
-Este documento fornece uma visão arquitetural abrangente do sistema [nome do sistema],
+Este documento fornece uma visão arquitetural abrangente do sistema Nexte,
 usando diversas visões de arquitetura para representar diferentes aspectos do sistema. O objetivo
 deste documento é capturar e comunicar as decisões arquiteturais significativas que foram tomadas
 em relação ao sistema.
-O documento irá adotar uma estrutura baseada na visão “4+1” de modelo de arquitetura [KRU41]
-
-![Arquitetura 4+1](  https://image.slidesharecdn.com/20090108slides-modelagem-arquitetural-1231554342642224-2/95/modelagem-arquitetural-e-viso-41-17-728.jpg?cb=1231526651)
 
 ### 1.2 Escopo
-Este Documento de Arquitetura de Software se aplica ao [nome do sistema], que será
-desenvolvido pela [área / equipe]. 
+Este Documento de Arquitetura de Software se aplica ao Next, auxiliando os desenvolvedores na construção do projeto. 
 
 ### 1.3 Definições, Acrônimos e Abreviações
-QoS – Quality of Service, ou qualidade de serviço. Termo utilizado para descrever um conjunto de
-qualidades que descrevem as requisitos não-funcionais de um sistema, como performance,
-disponibilidade e escalabilidade[QOS]. 
+- UnB: Universidade de Brasília
+- FGA: Faculdade do Gama
+- MDS: Métodos de desenvolvimento de software
+- EPS: EEngenharia de Produto de Software
+
 
 ### 1.4 Referências
-[KRU41]: The “4+1” view model of software architecture, Philippe Kruchten, November 1995,
-http://www3.software.ibm.com/ibmdl/pub/software/rational/web/whitepapers/2003/
-Pbk4p1.pdf
-
-[QOS] https://docs.oracle.com/cd/E19636-01/819-2326/6n4kfe7dj/index.html
 
 ## 2. REPRESENTAÇÃO ARQUITETURAL
-Este documento irá detalhar as visões baseado no modelo “4+1” [KRU41], utilizando como
-referência os modelos definidos na MDS. As visões utilizadas no documento serão: 
 
-| Visão | Púbico | Área | Modelo da MDS |
-|-------|--------|------|---------------|
-|Lógica|Analistas|Realizações do caso de uso||
-|Processo|Integradores|Performance, escalabilidade, concorrência||
-|Implementação|Programadores|Componentes de software||
-|Implantação|Gerência de configuração|Nodos físicos||
-|Casos de uso|Todos|Requisitos funcionais||
-|Dados|Especialsitas em dados e Administradores de dados|Persistência de dados||
+Para a arquitetura será utilizado a "clean architecture", que se baseia em oito modulos:
+- Model: Responsável pelas regras de manipulação de dados e pode possuir modelos globais ou modelos locais de cada cena;
+- Worker: É responsável por controlar as requisições de dados ao local em que esses dados estã armazenados, isto é, se comunica com a model;
+- View: Apresenta os elementos na interface gráfica;
+- Presenter: Formata os dados que serão exibidos e trata dos eventos da view;
+- Interactor: Módulo centralizador que controla o fluxo entre o Presenter e o Worker;
+-Router: Controla o fluxo entre as cenas.
+
+As relações entre os módulos estão representadas no esquema a seguir.
+
+![EsquemaDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/architectureScheme.jpg?raw=true)
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
-Esta seção descrever os requisitos de software e restrições que tem um impacto significante na
+Esta seção  decreverá os requisitos de software e restrições que tem um impacto significante na
 arquitetura.
 
+### 3.1 Restrições gerais
 |Requisito|Solução|
 |---|---|
-|Linguagem  |[Especificar a(s) linguagem(ns) utilizada(s) no desenvolvimento.]|
-|Plataforma|[Especificar o servidor de aplicações utilizado.]|
-|Segurança|[Especificar a necessidade de segurança e as características básicas da segurança.]|
-|Persistência|[Especificar a necessidade de persistência e qual o mecanismo de persistência que será adotado.]|
-|Internacionalização(i18n)|[Especificar a necessidade de internacionalização/localização na aplicação.]|
+|Linguagem  | Kotlin versão xxx |
+|Plataforma| Android versão xxx ou superior|
 
+### 3.2 Restrições de arquitetura
+[inserir aqui imagem das camadas]
 
 ## 4. VISÃO DE CASO DE USO
 
