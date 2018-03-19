@@ -52,21 +52,30 @@ Para a arquitetura será utilizado a "clean architecture", que se baseia em oito
 
 As relações entre os módulos estão representadas no esquema a seguir.
 
+Imagem 1: Relação entre os modulos da arquitetura clean
+
 ![EsquemaDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/architectureScheme.jpg?raw=true)
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
-Esta seção  decreverá os requisitos de software e restrições que tem um impacto significante na
-arquitetura.
+Esta seção  decreverá os requisitos de software e restrições que tem um impacto significante no projeto.
 
 ### 3.1 Restrições gerais
 |Requisito|Solução|
 |---|---|
-|Linguagem  | Kotlin versão xxx |
-|Plataforma| Android versão xxx ou superior|
+|Linguagem  | Kotlin |
+|Plataforma| Android versão 5.1 ou superior|
 
 ### 3.2 Restrições de arquitetura
-[inserir aqui imagem das camadas]
+A arquitetura clean é organizada de modo em que os elementos mais internos não conseguem acessar os dados ou metadados dos elementos mais externos.
+
+Imagem 2: Relação linear dos módulos
+
+![RelacaoLinearDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/cleanArchitectureLinearRelation.jpg?raw=true)
+
+Imagem 3: Relação circular dos módulos
+
+![RelacaoCircularDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/cleanArchitectureCircularRelation.jpg?raw=true)
 
 ## 4. VISÃO DE CASO DE USO
 
