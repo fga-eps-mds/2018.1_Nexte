@@ -4,6 +4,7 @@
 | 16/03/2018| 0.1 |Criação do documento | Gabriel Albino, Letícia Meneses |
 | 17/03/2018| 0.1.1 |Correção do índice analítico | Gabriel Albino |
 | 18/03/2018| 0.2 |Adicionado introdução e representação arquitetural | Gabriel Albino |
+| 18/03/2018| 0.3 | Finalizado restrições de arquitetura. | Gabriel Albino |
 
 
 
