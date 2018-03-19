@@ -5,6 +5,7 @@
 | 17/03/2018| 0.1.1 |Correção do índice analítico | Gabriel Albino |
 | 18/03/2018| 0.2 |Adicionado introdução e representação arquitetural | Gabriel Albino |
 | 18/03/2018| 0.3 | Finalizado restrições de arquitetura. | Gabriel Albino |
+| 18/03/2018| 0.4 | Produção do Dimensionamento e Performance. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 
 
 
@@ -36,7 +37,7 @@ Este Documento de Arquitetura de Software se aplica ao Next, auxiliando os desen
 - UnB: Universidade de Brasília
 - FGA: Faculdade do Gama
 - MDS: Métodos de desenvolvimento de software
-- EPS: EEngenharia de Produto de Software
+- EPS: Engenharia de Produto de Software
 
 
 ### 1.4 Referências
@@ -132,10 +133,9 @@ camadas.
 ### 7.1. Volume
 Enumerar os itens relativos ao volume de acesso aos recursos da aplicação:
 
-* Número estimado de usuários:
-* Número estimado de acessos diários:
-* Número estimado de acessos por período:
-* Tempo de sessão de um usuário:
+
+Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes esportivos e assim seus membros. Considerando que cada usuário terá um jogo por semana e que utilizará o aplicativo a cada dois dias devido o sistema de gameficação para conferir sua posição no ranking, estima-se uma média de quatro a cinco acessos semanais por membro, conectando-se ao aplicativo em torno de uma vez por dia para acompanhar as atualizações do mesmo, essencialmente no período da manhã e da tarde de aproximadamente 5-7 minutos de duração.
+
 
 ### 7.2. Performance
 Enumerar os itens referentes à resposta esperada do sistema:
