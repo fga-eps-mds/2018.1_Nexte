@@ -6,8 +6,9 @@
 | 17/03/2018| 0.1.1 |Correção do índice analítico | Gabriel Albino |
 | 18/03/2018| 0.2 |Adicionado introdução e representação arquitetural | Gabriel Albino |
 | 18/03/2018| 0.3 | Finalizado restrições de arquitetura. | Gabriel Albino |
-| 18/03/2018| 0.4 | Produção do Dimensionamento e Performance. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
-
+| 19/03/2018| 0.4 | Produção do Dimensionamento e Performance. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
+| 19/03/2018| 0.4.1 | Adicionado descrição e atributos das classes principais. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
+| 20/03/2018| 0.5 | Adicionado diagrama de pacotes e camadas, assim como sua descrição. | Gabriel Albino e Letícia Meneses |
 
 ### Índice Analítico
 [INSERIR INDICE ANALÍTICO AQUI]
@@ -70,23 +71,11 @@ Esta seção  decreverá os requisitos de software e restrições que tem um imp
 |Plataforma| Android versão 5.1 ou superior|
 
 ### 3.2 Restrições de arquitetura
-A arquitetura clean é organizada de modo em que os elementos mais internos não conseguem acessar os dados ou metadados dos elementos mais externos.
+A arquitetura clean é organizada de modo em que as camadas mais internos não conseguem acessar os dados ou metadados das camadas mais externas.
 
-Imagem 2: Relação linear dos módulos
+![](https://i.imgur.com/NLLi7Kr.jpg)
 
-![RelacaoLinearDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/cleanArchitectureLinearRelation.jpg?raw=true)
-
-Imagem 3: Relação circular dos módulos
-
-![RelacaoCircularDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/cleanArchitectureCircularRelation.jpg?raw=true)
-
-
-## 4. d lógica da arquitetura. Descrever as classes mais importantes, sua
-organização em pacotes de serviços e subsistemas, e a organização desses subsistemas em
-camadas. Também descreve as realizações dos casos de uso mais importantes, por exemplo,
-aspectos dinâmicos da arquitetura. Diagramas de classes e sequência devem ser incluídos para
-ilustrar os relacionamentos entre as classes significativas na arquitetura, subsistemas, pacotes e
-camadas.
+## 4. VISÃO LÓGICA
 
 
 |Nome da classe|Atributos|Descrição
@@ -100,11 +89,25 @@ camadas.
 
 ### 4.1 Visão Geral – pacotes e camadas
 
-![ Exemplo de Diagrama de Camadas da Aplicação](https://i.imgur.com/f7Y7Tdg.png)
+#### 4.1.1 Diagrama de pacotes
+![ Exemplo de Diagrama de Pacotes da Aplicação](https://i.imgur.com/hVXTV2M.jpg)
 
-![ Exemplo de Diagrama de Pacotes da Aplicação ](https://i.imgur.com/9paYDxg.png)
+No diagrama de pacotes temos que a arquitetura é composta de 3 pacotes, sendo eles:
+- Presentation: Responsável pela interface gráfica e controle da entrada e saída de dados;
+- Domain: Responsável pelo processamento de eventos, funcionando como intermediador entre a presentation e a infrastructure;
+- Infrastructure: Responsável pelo armazenamento e fornecimento de dados para a domain ou presentation.
 
+#### 4.1.2 Diagrama de camadas
+![ Exemplo de Diagrama de Camadas da Aplicação](https://i.imgur.com/roHKLJ1.jpg)
 
+No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:
+
+- Model: Responsável pelo armazenamento de dados;
+- Worker: Responsável pela requisição dos dados da model;
+- Iteractor: Responsável por controlar o fluxo entre o view, worker e presenter; 
+- Presenter: Formata os dados que serão exibidos na view;
+- View: Responsável pela interface gráfica e entrada de dados.
+- Router: Responsável por controlar o fluxo entre as telas
 
 ## 5. VISÃO DE IMPLEMENTAÇÃO
 
