@@ -1,8 +1,10 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 19/03/2018 | 0.1 |Criação do documento | Larissa Sales |
-| 19/03/2018 | 0.2 | Preenchimento do documento | Larissa Sales, Helena Goulart, Alexandre Miguel |
+| 19/03/2018 | 0.1 | Criação do documento | Larissa Sales |
+| 19/03/2018 | 0.2 | Preenchimento de Introdução, Usabilidade, Suportabilidade, Restrições de Design e Interface | Larissa Sales, Helena Goulart, Alexandre Miguel |
+| 20/03/2018 | 0.3 | Preenchimento de Requisitos de Licenciamento, Observações Legais e Padrões Aplicáveis | Larissa Sales |
+| 20/03/2018 | 0.4 | Preenchimento de  | Larissa Sales, Alexandre Miguel e Helena Goulart |
 
 -------------------------------------------------------------------------------------------------
 
@@ -60,6 +62,7 @@ As restrições e os requisitos aqui desritos buscam garantir o engajamento e a 
 ### 1.3 Definições, Acrônimos e Abreviações   
 
   - UnB - Universidade de Brasília;
+  - RUP - _Rational Unified Process_
 
 ### 1.4 Referências     
 
@@ -105,16 +108,25 @@ As principais interfaces do usuário permitirão a criação e edição dos dado
 
 ### 8.2 Interfaces de _Hardware_
 
-- Celular do tipo _Smartphone_
+- Celular do tipo _Smartphone_.
 
 ### 8.3 Interfaces de _Software_  
 
-- Sistema _Android_ 5.1 ou superior
+- Sistema _Android_ 5.1 ou superior.
 
 ### 8.4 Interfaces de Comunicação
 
+- Acesso remoto;
+- Comunicação com _apps_ de midia social (_WhatsApp_, e-mail, Telegram, outros).
+
 ## 9 Requisitos de Licenciamento  
+
+Licença MIT.
 
 ## 10 Observações Legais, de _Copyright_ e Outras
 
+Copyright do aplicativo original criado em versão iOS.
+
 ## 11 Padrões Aplicáveis
+
+_Template_ de documentação RUP.
