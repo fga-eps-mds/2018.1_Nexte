@@ -1,3 +1,4 @@
+
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
@@ -5,7 +6,6 @@
 | 17/03/2018| 0.1.1 |Correção do índice analítico | Gabriel Albino |
 | 18/03/2018| 0.2 |Adicionado introdução e representação arquitetural | Gabriel Albino |
 | 18/03/2018| 0.3 | Finalizado restrições de arquitetura. | Gabriel Albino |
-
 
 
 ### Índice Analítico
@@ -40,6 +40,7 @@ Este Documento de Arquitetura de Software se aplica ao Next, auxiliando os desen
 
 
 ### 1.4 Referências
+- CLT: Cinta Liga de Tênis
 
 ## 2. REPRESENTAÇÃO ARQUITETURAL
 
@@ -86,6 +87,16 @@ camadas. Também descreve as realizações dos casos de uso mais importantes, po
 aspectos dinâmicos da arquitetura. Diagramas de classes e sequência devem ser incluídos para
 ilustrar os relacionamentos entre as classes significativas na arquitetura, subsistemas, pacotes e
 camadas.
+
+
+|Nome da classe|Atributos|Descrição
+|:----:|:----:|:-----:|
+|Jogadores|Nome completo, nome de usuário, senha, contato (e-mail e telefone), vitórias e derrotas, é o diretor do clube|Define o jogador com suas informações pessoais, assim como seu desempenho nos jogos, podendo ele ser o diretor do clube, ou não.|
+|Clube|Nome, Contato(e-mail e telefone), número de jogadores, diretor, membros|Gerencia informações sobre o clube, incluindo número de jogadores e quem eles são.|
+|Ranking|Jogadores|Controla a partir das regras da CLT a colocação dos jogadores em relação aos demais membros do clube.|
+|Jogos|Data, horário, jogadores, resultado, tempo de partida, local|Responsável pelo gerenciamento de jogos, desde sua marcação por meio de um desafio até a coleta de resultados.|
+|Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torna-los visiveis, exbindo-os na pagina inicial do aplicativo.|
+
 
 ### 4.1 Visão Geral – pacotes e camadas
 
@@ -135,7 +146,7 @@ Enumerar os itens relativos ao volume de acesso aos recursos da aplicação:
 * Número estimado de usuários:
 * Número estimado de acessos diários:
 * Número estimado de acessos por período:
-* Tempo de sessão de um usuário:
+* Tempo de sessão de um usuário: 
 
 ### 7.2. Performance
 Enumerar os itens referentes à resposta esperada do sistema:
