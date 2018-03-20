@@ -18,7 +18,7 @@
 * [**5 Desempenho**](#5-Desempenho)
 * [**6 Suportabilidade**](#6-Restrições)
 * [**7 Restrições de Design**](#7-Restrições-de-Design)
-* [**8 Requisitos de Sistema de Ajuda e de Documentação de Usuário On-line**](#8:-Requisitos-de-Sistema-de-Ajuda-e-de-Documentação-de-Usuário-On-line)
+* [**8 Requisitos de Sistema de Ajuda e de Documentação de Usuário On-line**](#8-Requisitos-de-Sistema-de-Ajuda-e-de-Documentação-de-Usuário-On-line)
 * [**9 Componentes Comprados**](#9-Componentes-Comprados)
 * [**10 Interface**](#10-Interface)
     * [10.1	Interfaces de Usuário](#101-Interfaces-de-Usuário)
