@@ -80,7 +80,7 @@ As tarefas do P.O de acordo com este projeto são:
 - Compreender completamente as necessidades do cliente  
 - Aceitar ou rejeitar uma funcionalidade
 - Revisar Pull Requests
-- Realizar testes
+- guiar e liderar o planejamento da Sprint
 
 ## 3. Scrum Ritos
 Cada *sprint* se inicia ao domingo e termina ao sábado.
