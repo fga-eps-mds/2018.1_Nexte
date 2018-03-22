@@ -6,6 +6,7 @@
 | 20/03/2018 | 0.3 | Preenchimento de Requisitos de Licenciamento, Observações Legais e Padrões Aplicáveis | Larissa Sales |
 | 20/03/2018 | 0.4 | Preenchimento de Confiabilidade e Desempenho e modificação de Introdução | Larissa Sales, Alexandre Miguel e Helena Goulart |
 | 21/03/2018 | 0.4.1 | Alteração do Nome do Arquivo | Alexandre Miguel |
+| 22/03/2018 | 0.5 | Alteração dos Tópicos de Confiabilidade e Usabilidade | Alexandre Miguel, Lorrany Freire, Helena Goulart e Larissa Sales |
 
 -------------------------------------------------------------------------------------------------
 
@@ -70,6 +71,8 @@ O projeto contemplado por este documento foi desenvolvido por alunos das discipl
 ### 1.4 Referências
 * [O que é um Requisito Não-Funcional](http://www.ateomomento.com.br/o-que-e-um-requisito-nao-funcional/)
 * [Especificação Suplementar](http://www.funpar.ufpr.br:8080/rup/webtmpl/templates/req/rup_sspec.htm)
+* [User Onboarding](http://useronboarding.com.br/user-onboard/)
+
 
 ## 2 Funcionalidade
 
@@ -77,17 +80,19 @@ Os aspectos funcionais estão contemplados no [Documento de Visão]() e no [Docu
 
 ## 3 Usabilidade
 
-### 3.1 Mensagens de Erro
-
-Em caso de falha no sistema ou erro de conexão, o sistema apresentará uma mensagem de erro clara e objetiva, permitindo ao usuário identificar o erro apresentado.
-
-### 3.2 Facilidade de Uso
-
-O aplicativo será intuitivo e categorizado, assim como agradável e harmonioso, permitindo que o usuário identifique, sem dificuldade, as ações a serem realizadas, de modo que uma ação poderá ser desenvolvida em no máximo 6 cliques. Esta aplicação não possui opções de acessibilidade para usuários com deficiência.
+ - O aplicativo será intuitivo e categorizado, permitindo que o usuário identifique facilmente as ações a serem realizadas, fazendo uso de um sistema de _user-onboarding_ para auxiliá-lo na primeira utilização da aplicação;
+ - Para a comodidade de utilização, a distância entre as funcionalidades possuirá a menor quantidade de cliques possível;
+ - Em caso de falha no sistema ou de problemas de conexão, será apresentada uma mensagem clara e objetiva que permita ao usuário a identificação do erro apresentado;
+ - O aplicativo não possui opções de acessibilidade motora ou visual.
 
 ## 4 Confiabilidade
 
-Este requisito garante ao usuário a segurança do conjunto de informações cadastradas, a credibilidade dos dados apresentados e a convicção de acertividade nas ações propostas.
+ - O Software estará disponível a todo momento para o usuário, exceto nos períodos de manutenção;
+ - Erro Pouco Importante: Impedimento na atualização dos dados de perfil.
+ - Erro Importante: Desempenho incompleto ou ausente das funcionalidades.
+ - Erro Crítico: Falha de Comunicação com o servidor, perda de dados cadastrados, falha de autenticação de usuário, total incapacidade de utilização do sistema.
+ - As informações cadastradas serão armazenadas no servidor, sem visibilidade para os demais usuários, garantindo a segurança de dados pessoais.
+
 
 ## 5 Desempenho
 
