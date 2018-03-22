@@ -5,10 +5,6 @@
 | 19/03/2018| 0.1 | criação do Documento| Geovanni Oliveira|
 | 22/03/2018| 0.2 | criação das nomenclaturas a serem usadas e definições| Geovanni Oliveira|
 ----
-PRP - pontos total planejado para a Release
-Schedule base time = número de sprints planejadas vezes a duração delas
-BAC - total de despesas planejadas até o final da Release
-PPC - Planed Percente completed número da sprint atual / total de sprints planejadas
 
 ### Introdução
 Este documento é criado para saber o valor agregado e o andamento do projeto levando em consideração o lado do custo. Algumas siglas serão utilizadas para auxiliar a confecção do documento e a interpretação de seus resultados.
@@ -46,5 +42,3 @@ Tabela 2 - Equações de custo do projeto e definições
 Ao final de cada sprint os dados perinentes seram mensurados para obter o insumo para a análise de valor agregado ao projeto.
 
 [link para a planilha](https://docs.google.com/spreadsheets/d/1-YfPLlNFHWocxRSZ3WpIfGgju3ALPO0iJjQ94Ivyixs/edit?usp=sharing)
-
-### Referências
