@@ -13,6 +13,7 @@
 | 21/03/2018| 0.6 | Adicionado diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 21/03/2018| 0.7 | Adicionado o índice analítico e definidos os aspectos de qualidade | Alexandre Miguel e Helena Goulart |
 | 21/03/2018| 0.7.1 | Realizadas correções nos tópicos e no diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
+| 21/03/2018| 0.7.2 | Relizado correção na definição de model | Gabriel Albino |
 
 
 ### Índice Analítico
@@ -123,7 +124,7 @@ No diagrama de pacotes temos que a arquitetura é composta de 3 pacotes, sendo e
 
 No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:
 
-- _Model_ : Responsável pelo armazenamento de dados;
+- _Model_ : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
 - _Worker_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
 - _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter; 
 - _Presenter_ : Formata os dados que serão exibidos na view;
@@ -164,6 +165,6 @@ Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes 
 | Item  | Solução  | Descrição |
 |:---:|:---:|:---:|
 |  Escalabilidade | Encapsulamento e _Clean Architecture_  | Através da modularização e do encapsulamento do software, o sistema ficará propício para manutenção, tornando-se adaptável e acolhendo o número crescente de usuários.   |
-|  Disponibilidade | Manutenção periódica  | A solução apresentada permite que o software passe o menor tempo possível fora do ar devido às falhas do sistema, possibilitando o funcionamento contínuo. |  
-| Portabilidade  | Linguagem Kotlin  | A linguagem escolhida permite a compilação na máquina virtual Java, permitindo que os programas sejam executados em qualquer plataforma que contenha uma versão da JVM.  |
-| Segurança  |  |  |
+|  Disponibilidade | Manutenção periódica e _clean architecture_ | A solução apresentada permite que o software passe o menor tempo possível fora do ar devido às falhas do sistema, possibilitando o funcionamento contínuo. Isso ocorre pelo fato da arquitetura utilizada proporcionar um maior controle e maior modularização do código |  
+| Portabilidade  | Linguagem Kotlin  | A linguagem escolhida permite a compilação na máquina virtual Java, permitindo que os programas sejam executados em qualquer sistema Android que contenha uma versão da JVM.  |
+| Segurança  | Servidor remoto | Os dados dos usuários serão protegidos em um servidor remoto, e informações confidenciais como senha serão armazenadas em HASH. |
