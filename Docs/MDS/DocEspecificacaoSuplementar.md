@@ -8,7 +8,6 @@
 | 21/03/2018 | 0.4.1 | Alteração do Nome do Arquivo | Alexandre Miguel |
 | 22/03/2018 | 0.5 | Alteração dos Tópicos de Confiabilidade e Usabilidade | Alexandre Miguel, Lorrany Freire, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.6 | Padronização de tópicos e revisão | Larissa Sales |
-| 22/03/2018 | 0.6.1 | Alterado diretório do arquivo | Gabriel Albino e Larissa Sales |
 
 -------------------------------------------------------------------------------------------------
 
