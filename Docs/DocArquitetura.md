@@ -9,6 +9,7 @@
 | 19/03/2018| 0.4 | Produção do Dimensionamento e Performance. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 19/03/2018| 0.4.1 | Adicionado descrição e atributos das classes principais. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 20/03/2018| 0.5 | Adicionado diagrama de pacotes e camadas, assim como sua descrição. | Gabriel Albino e Letícia Meneses |
+| 21/03/2018| 0.6 | Adicionado diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 
 ### Índice Analítico
 [INSERIR INDICE ANALÍTICO AQUI]
@@ -100,7 +101,8 @@ No diagrama de pacotes temos que a arquitetura é composta de 3 pacotes, sendo e
 #### 4.1.2 Diagrama de camadas
 ![ Exemplo de Diagrama de Camadas da Aplicação](https://i.imgur.com/roHKLJ1.jpg)
 
-No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:
+No diagram
+a de camadas é mostrado a interação entre os módulos, que são definidos como:
 
 - Model: Responsável pelo armazenamento de dados;
 - Worker: Responsável pela requisição dos dados da model;
@@ -114,9 +116,8 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 ### 5.1 Caso de Uso
 
 #### 5.1.1  *Diagrama de Classes*
-[Exemplo:](https://wandersonalvesdev.files.wordpress.com/2013/02/diagrma-classe.png)
+![Diagrama de classes](https://i.imgur.com/ZMuSdM2.jpg)
 
-![Exemplo:](https://wandersonalvesdev.files.wordpress.com/2013/02/diagrma-classe.png)
 
 #### 5.1.2 *Diagrama de Sequência*
 [Exemplo:](https://camo.githubusercontent.com/4cc153d724bbed2843bfb19e638477a7c504b9c9/687474703a2f2f692e696d6775722e636f6d2f517868526875322e706e67)
