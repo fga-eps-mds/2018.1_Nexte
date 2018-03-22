@@ -2,9 +2,10 @@
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
 | 19/03/2018 | 0.1 | Criação do documento | Larissa Sales |
-| 19/03/2018 | 0.2 | Preenchimento de Introdução, Usabilidade, Suportabilidade, Restrições de Design e Interface | Larissa Sales, Helena Goulart, Alexandre Miguel |
+| 19/03/2018 | 0.2 | Preenchimento de Introdução, Usabilidade, Suportabilidade, Restrições de Design e Interface | Larissa Sales, Helena Goulart e Alexandre Miguel |
 | 20/03/2018 | 0.3 | Preenchimento de Requisitos de Licenciamento, Observações Legais e Padrões Aplicáveis | Larissa Sales |
 | 20/03/2018 | 0.4 | Preenchimento de Confiabilidade e Desempenho e modificação de Introdução | Larissa Sales, Alexandre Miguel e Helena Goulart |
+| 21/03/2018 | 0.4.1 | Alteração do Nome do Arquivo | Alexandre Miguel |
 
 -------------------------------------------------------------------------------------------------
 
