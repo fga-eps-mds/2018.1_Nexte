@@ -9,6 +9,7 @@
 | 19/03/2018| 0.4 | Produção do Dimensionamento e Performance. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 19/03/2018| 0.4.1 | Adicionado descrição e atributos das classes principais. | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 20/03/2018| 0.5 | Adicionado diagrama de pacotes e camadas, assim como sua descrição. | Gabriel Albino e Letícia Meneses |
+| 21/03/2018| 0.5.1 | Revisão de texto e padronização do formato das tabelas| Alexandre Miguel |
 | 21/03/2018| 0.6 | Adicionado diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 
 ### Índice Analítico
@@ -26,7 +27,7 @@ parte de hardware e software do sistema.
 
 ## 1 INTRODUÇÃO
 
-### 1.1 Finaliade
+### 1.1 Finalidade
 Este documento fornece uma visão arquitetural abrangente do sistema Nexte,
 usando diversas visões de arquitetura para representar diferentes aspectos do sistema. O objetivo
 deste documento é capturar e comunicar as decisões arquiteturais significativas que foram tomadas
@@ -53,7 +54,7 @@ Para a arquitetura será utilizado a "clean architecture", que se baseia em oito
 - View: Apresenta os elementos na interface gráfica;
 - Presenter: Formata os dados que serão exibidos e trata dos eventos da view;
 - Interactor: Módulo centralizador que controla o fluxo entre o Presenter e o Worker;
--Router: Controla o fluxo entre as cenas.
+- Router: Controla o fluxo entre as cenas.
 
 As relações entre os módulos estão representadas no esquema a seguir.
 
@@ -63,7 +64,7 @@ Imagem 1: Relação entre os modulos da arquitetura clean
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
-Esta seção  decreverá os requisitos de software e restrições que tem um impacto significante no projeto.
+Esta seção  decreverá os requisitos de software e restrições que têm um impacto significante no projeto.
 
 ### 3.1 Restrições gerais
 |Requisito|Solução|
@@ -72,7 +73,7 @@ Esta seção  decreverá os requisitos de software e restrições que tem um imp
 |Plataforma| Android versão 5.1 ou superior|
 
 ### 3.2 Restrições de arquitetura
-A arquitetura clean é organizada de modo em que as camadas mais internos não conseguem acessar os dados ou metadados das camadas mais externas.
+A arquitetura clean é organizada de modo em que as camadas mais internas não conseguem acessar os dados ou metadados das camadas mais externas.
 
 ![](https://i.imgur.com/NLLi7Kr.jpg)
 
@@ -81,11 +82,11 @@ A arquitetura clean é organizada de modo em que as camadas mais internos não c
 
 |Nome da classe|Atributos|Descrição
 |:----:|:----:|:-----:|
-|Jogadores|Nome completo, nome de usuário, senha, contato (e-mail e telefone), vitórias e derrotas, é o diretor do clube|Define o jogador com suas informações pessoais, assim como seu desempenho nos jogos, podendo ele ser o diretor do clube, ou não.|
+|Jogadores|Nome completo, nome de usuário, senha, contato (e-mail e telefone), vitórias e derrotas |Define o jogador com suas informações pessoais, assim como seu desempenho nos jogos, podendo ele ser o diretor do clube, ou não.|
 |Clube|Nome, Contato(e-mail e telefone), número de jogadores, diretor, membros|Gerencia informações sobre o clube, incluindo número de jogadores e quem eles são.|
-|Ranking|Jogadores|Controla a partir das regras da CLT a colocação dos jogadores em relação aos demais membros do clube.|
+|Ranking|Jogadores|Controla, a partir das regras da CLT, a colocação dos jogadores em relação aos demais membros do clube.|
 |Jogos|Data, horário, jogadores, resultado, tempo de partida, local|Responsável pelo gerenciamento de jogos, desde sua marcação por meio de um desafio até a coleta de resultados.|
-|Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torna-los visiveis, exbindo-os na pagina inicial do aplicativo.|
+|Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torná-los visíveis, exbindo-os na página inicial do aplicativo.|
 
 
 ### 4.1 Visão Geral – pacotes e camadas
@@ -160,8 +161,8 @@ Enumerar os itens referentes à resposta esperada do sistema:
 ## 8. QUALIDADE
 Enumerar os itens de qualidade de software [QOS] significativos para a aplicação:
 
-| Item  | Solução  | Descrição  |
-|:---:|:---:|:---:|:---:|
+| Item  | Solução  | Descrição |
+|:---:|:---:|:---:|
 |  Escalabilidade | [Breve Descrição]  |[Breve descrição da Solução]   |
 |  Confiabilidade, Disponibilidade | [Breve Descrição]  | [Breve descrição da Solução]  |  
 | Portabilidade  | [Breve Descrição]  |  [Breve descrição da Solução] |
