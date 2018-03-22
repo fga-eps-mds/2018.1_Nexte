@@ -72,7 +72,7 @@ São tarefas do time de desenvolvimento:
 - Elaborar folha de estilo;
 
 ### 2.5. Product Owner
-As tarefas do P.O são:
+As tarefas do P.O de acordo com este projeto são:
 
 - Escrever histórias de usuário
 - Escrever critério de aceitação
@@ -80,6 +80,7 @@ As tarefas do P.O são:
 - Compreender completamente as necessidades do cliente  
 - Aceitar ou rejeitar uma funcionalidade
 - Revisar Pull Requests
+- Realizar testes
 
 ## 3. Scrum Ritos
 Cada *sprint* se inicia ao domingo e termina ao sábado.
