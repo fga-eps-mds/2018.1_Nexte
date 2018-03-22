@@ -12,31 +12,33 @@
 | 21/03/2018| 0.5.1 | Revisão de texto e padronização do formato das tabelas| Alexandre Miguel |
 | 21/03/2018| 0.6 | Adicionado diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 21/03/2018| 0.7 | Adicionado o índice analítico e definidos os aspectos de qualidade | Alexandre Miguel e Helena Goulart |
+| 21/03/2018| 0.7.1 | Realizadas correções nos tópicos e no diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
+| 21/03/2018| 0.7.2 | Relizado correção na definição de _model_ | Gabriel Albino |
+| 21/03/2018| 0.7.3 | Relizado correção no diagrama de classes | Gabriel Albino |
+| 21/03/2018| 0.7.4 | Relizado correção no diagrama de classes | Gabriel Albino |
 
 ### Índice Analítico
-* [**1 Introdução**](#1-introdução)
-  * [1.1 Finalidade](#11-finalidade)
-  * [1.2 Escopo](#12-acrônimos-e-abreviações-escopo)
-  * [1.3 Definições, acrônimos e abreviações](#13-definições,-acrônimos-e-abreviações)
-  * [1.4 Referências](#14-referências)
-* [**2 Representação Arquitetural**](#2-Representação-arquitetural)
-* [**3 Requisitos e Restrições de Arquitetura**](#3-Requisitos-e-restrições-de-arquitetura)
-  * [3.1 Requisitos Gerais](#31-Restriçequisitos)
-  * [3.2 Restrições de Arquitetura](#32-Restrições de Arquitetura)
-* [**4 Visão Lógica**](#4-Visão-lógica)
-  * [4.1 Visão Geral - Pacotes e Camadas](#41-Visão-Geral-Pacotes-e-Camadas)
-  	* [4.1.1 Diagrama de Pacotes](#411-diagrama-de-pacotes)
-  	* [4.1.2 Diagrama de Camadas](#412-diagrama-de-camadas)  
-* [**5 Visão de implementação**](#5-visão-de-implementação)  
-  * [5.1 Casos de uso](#51-Casos-de-uso)
-  	* [5.1.1 Diagrama de Clases](#52-Diagrama-de-classes)
-  	* [5.1.2 Diagrama de Sequência](#53-Diagrama-de-sequência)
-* [**6 Visão de Implantação**](#6-Visão-de-implantação)
-* [**7 Dimensionamento**](#7-Dimensionamento)
-* [**8 Qualidade**](#8-Qualidade)
-  
 
-# Documento de arquitetura
+* [1 INTRODUÇÃO](#1-introdução)
+    * [1.1 Finalidade](#11-finalidade)
+    * [1.2 Escopo](#12-escopo)
+    * [1.3 Definições, Acrônimos e Abreviações](#13-definições-acrônimos-e-abreviações)
+    * [1.4 Referências](#14-referências)
+* [2. REPRESENTAÇÃO ARQUITETURAL](#2-representação-arquitetural)
+* [3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA](#3-requisitos-e-restrições-de-arquitetura)
+    * [3.1 Requisitos gerais](#31-requisitos-gerais)
+    * [3.2 Restrições de arquitetura](#32-restrições-de-arquitetura)
+* [4. VISÃO LÓGICA](#4-visÃo-lógica)
+    * [4.1 Visão Geral – pacotes e camadas](#41-visão-geral-–-pacotes-e-camadas)
+    * [4.1.1 Diagrama de pacotes](#411-diagrama-de-pacotes)
+    * [4.1.2 Diagrama de camadas](#412-diagrama-de-camadas)
+* [5. VISÃO DE IMPLEMENTAÇÃO](#5-visão-de-implementação)
+    * [5.1 Caso de Uso](#51-caso-de-uso)
+    * [5.1.1  <em>Diagrama de Classes</em>](#511--diagrama-de-classes)
+    * [5.1.2 <em>Diagrama de Sequência</em>](#512-diagrama-de-sequência)
+* [6. VISÃO DE IMPLANTAÇÃO](#6-visão-de-implantação)
+* [7. DIMENSIONAMENTO](#7-dimensionamento)
+* [8. QUALIDADE](#8-qualidade)
 
 ## Nexte
 
@@ -67,11 +69,11 @@ Este Documento de Arquitetura de Software se aplica ao Nexte, auxiliando os dese
 
 ## 2. REPRESENTAÇÃO ARQUITETURAL
 
-Para a arquitetura será utilizado a "clean architecture", que se baseia em oito módulos:
-- Model: Responsável pelas regras de manipulação de dados e pode possuir modelos globais ou modelos locais de cada cena;
-- Worker: É responsável por controlar as requisições de dados ao local em que esses dados estã armazenados, isto é, se comunica com a model;
+Para a arquitetura será utilizado a "clean architecture", que se baseia em seis módulos:
+- Model: Responsável pelas regras de definição de dados e pode possuir modelos globais ou modelos locais de cada cena;
+- Worker: É responsável por controlar as requisições de dados ao local em que esses dados estão armazenados, isto é, faz requisições ao servidor ou ao banco de dados local;
 - View: Apresenta os elementos na interface gráfica;
-- Presenter: Formata os dados que serão exibidos e trata dos eventos da view;
+- Presenter: Formata os dados que serão exibidos e transmite essa informação para a view;
 - Interactor: Módulo centralizador que controla o fluxo entre o Presenter e o Worker;
 - Router: Controla o fluxo entre as cenas.
 
@@ -79,7 +81,7 @@ As relações entre os módulos estão representadas no esquema a seguir.
 
 Imagem 1: Relação entre os modulos da arquitetura clean
 
-![EsquemaDaCleanArchitecture](https://github.com/fga-gpp-mds/2018.1-Grupo4/blob/master/Docs/Images/architectureScheme.jpg?raw=true)
+![EsquemaDaCleanArchitecture](https://i.imgur.com/Pdhg9vp.jpg)
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
@@ -123,8 +125,8 @@ No diagrama de pacotes temos que a arquitetura é composta de 3 pacotes, sendo e
 
 No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:
 
-- _Model_ : Responsável pelo armazenamento de dados;
-- _Worker_ : Responsável pela requisição dos dados da model;
+- _Model_ : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
+- _Worker_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
 - _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter; 
 - _Presenter_ : Formata os dados que serão exibidos na view;
 - _View_ : Responsável pela interface gráfica e entrada de dados.
@@ -135,15 +137,10 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 ### 5.1 Caso de Uso
 
 #### 5.1.1  *Diagrama de Classes*
-![Diagrama de classes](https://i.imgur.com/ZMuSdM2.jpg)
+![Diagrama de classes](https://i.imgur.com/OKMMC6h.jpg)
 
 
 #### 5.1.2 *Diagrama de Sequência*
-[Exemplo:](https://camo.githubusercontent.com/4cc153d724bbed2843bfb19e638477a7c504b9c9/687474703a2f2f692e696d6775722e636f6d2f517868526875322e706e67)
-
-![Exemplo:](https://camo.githubusercontent.com/4cc153d724bbed2843bfb19e638477a7c504b9c9/687474703a2f2f692e696d6775722e636f6d2f517868526875322e706e67)
-
-
 
 ## 6. VISÃO DE IMPLANTAÇÃO
 
@@ -169,6 +166,6 @@ Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes 
 | Item  | Solução  | Descrição |
 |:---:|:---:|:---:|
 |  Escalabilidade | Encapsulamento e _Clean Architecture_  | Através da modularização e do encapsulamento do software, o sistema ficará propício para manutenção, tornando-se adaptável e acolhendo o número crescente de usuários.   |
-|  Disponibilidade | Manutenção periódica  | A solução apresentada permite que o software passe o menor tempo possível fora do ar devido às falhas do sistema, possibilitando o funcionamento contínuo. |  
-| Portabilidade  | Linguagem Kotlin  | A linguagem escolhida permite a compilação na máquina virtual Java, permitindo que os programas sejam executados em qualquer plataforma que contenha uma versão da JVM.  |
-| Segurança  |  |  |
+|  Disponibilidade | Manutenção periódica e _clean architecture_ | A solução apresentada permite que o software passe o menor tempo possível fora do ar devido às falhas do sistema, possibilitando o funcionamento contínuo. Isso ocorre pelo fato da arquitetura utilizada proporcionar um maior controle e maior modularização do código |  
+| Portabilidade  | Linguagem Kotlin  | A linguagem escolhida permite a compilação na máquina virtual Java, permitindo que os programas sejam executados em qualquer sistema Android que contenha uma versão da JVM.  |
+| Segurança  | Servidor remoto | Os dados dos usuários serão protegidos em um servidor remoto, e informações confidenciais como senha serão armazenadas em HASH. |
