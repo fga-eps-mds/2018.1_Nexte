@@ -13,8 +13,8 @@
 | 21/03/2018| 0.6 | Adicionado diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
 | 21/03/2018| 0.7 | Adicionado o índice analítico e definidos os aspectos de qualidade | Alexandre Miguel e Helena Goulart |
 | 21/03/2018| 0.7.1 | Realizadas correções nos tópicos e no diagrama de classes | Gabriel Albino, Letícia Meneses e Lorrany Freire |
-| 21/03/2018| 0.7.2 | Relizado correção na definição de model | Gabriel Albino |
-
+| 21/03/2018| 0.7.2 | Relizado correção na definição de _model_ | Gabriel Albino |
+| 21/03/2018| 0.7.3 | Relizado correção no diagrama de classes | Gabriel Albino |
 
 ### Índice Analítico
 
@@ -136,7 +136,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 ### 5.1 Caso de Uso
 
 #### 5.1.1  *Diagrama de Classes*
-![Diagrama de classes](https://i.imgur.com/u8lGiaa.jpg)
+![Diagrama de classes](https://i.imgur.com/u6F5yHr.jpg)
 
 
 #### 5.1.2 *Diagrama de Sequência*
