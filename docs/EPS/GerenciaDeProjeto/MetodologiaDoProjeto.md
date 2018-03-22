@@ -52,7 +52,7 @@ São tarefas do time de desenvolvimento:
 - Montar *backlog* da *sprint*;
 - Elaborar folha de estilo;
 
-### 2.4. Product Owner
+### 2.5. Product Owner
 As tarefas do P.O são:
 
 - Escrever histórias de usuário
@@ -60,7 +60,8 @@ As tarefas do P.O são:
 - Priorizar o Backlog do produto
 - Compreender completamente as necessidades do cliente  
 - Aceitar ou rejeitar uma funcionalidade
-- 
+- Revisar Pull Requests
+
 
 
 ## 3. Ritos

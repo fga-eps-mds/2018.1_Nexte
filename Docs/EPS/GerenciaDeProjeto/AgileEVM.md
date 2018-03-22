@@ -10,6 +10,7 @@
 Este documento é criado para saber o valor agregado e o andamento do projeto levando em consideração o lado do custo. Algumas siglas serão utilizadas para auxiliar a confecção do documento e a interpretação de seus resultados.
 
 Tabela 1 - significado das siglas a serem utilizadas
+
 | Sigla | Definição |
 | ----| ----|
 | BAC | Total de despesas planejado para a Release |
