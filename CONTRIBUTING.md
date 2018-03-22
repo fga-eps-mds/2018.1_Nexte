@@ -10,6 +10,46 @@ If you've noticed a bug or have a question that doesn't belong on the
 someone else in the community has already created a ticket. If not, go ahead and
 [make one][new issue]!
 
+### 2. Política de branches
+![Gitflow](https://i.imgur.com/tETmqYN.png)  
+_Figura 1 - Política de branches, para mais informações visualizar [essa]() página._
+
+_**Branches hotfix**_ deverão ser utilizadas apenas pelos membros do repositório.
+
+_**Branches feature**_ poderão ser utilizadas pelos membros do repositório e por colaboradores externos. Para adicionar sua colaboração basta seguir os seguintes passos:
+
+* **Clonar o repositório**
+```sh
+  git clone https://github.com/fga-gpp-mds/2018.1_Nexte/
+```
+
+* **Entrar na _branch dev_**
+```sh
+  git checkout dev
+```
+
+* **Criar uma branch com a seguinte nomeação**
+```sh
+  git checkout -b feature/331
+```
+_Onde 331 é a issue que está sendo solucionada_
+
+* **Resolver a _issue_**
+
+* **Deixar a sua _branch_ atualizada com a _branch dev_**
+```sh
+  git pull origin dev
+```
+
+* **Subir a _branch_ para o repositório remoto**
+```sh
+  git pull origin feature/331
+```
+
+* **Submeter o _pull request_ da sua _branch_ para a _branch dev_**
+
+* **Esperar e ficar de olho na revisão que será feito por algum membro do repositório**
+
 ### 2. Fork & create a branch
 
 If this is something you think you can fix, then [fork Active Admin][] and
