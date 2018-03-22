@@ -7,6 +7,7 @@
 | 20/03/2018 | 0.4 | Preenchimento de Confiabilidade e Desempenho e modificação de Introdução | Larissa Sales, Alexandre Miguel e Helena Goulart |
 | 21/03/2018 | 0.4.1 | Alteração do Nome do Arquivo | Alexandre Miguel |
 | 22/03/2018 | 0.5 | Alteração dos Tópicos de Confiabilidade e Usabilidade | Alexandre Miguel, Lorrany Freire, Helena Goulart e Larissa Sales |
+| 22/03/2018 | 0.6 | Padronização de tópicos e revisão | Larissa Sales |
 
 -------------------------------------------------------------------------------------------------
 
@@ -19,14 +20,10 @@
   * [1.5 Visão Geral](#15-Visão-geral)
 * [**2 Funcionalidade**](#2-Funcionalidade)
 * [**3 Usabilidade**](#3-Usabilidade)
-  * [3.1 Mensagens de Erro](#31-Mensagens-de-Erro)
-  * [3.2 Facilidade de Uso](#32-Facilidade-de-Uso)
 * [**4 Confiabilidade**](#4-Confiabilidade)
 * [**5 Desempenho**](#5-Desempenho)
 * [**6 Suportabilidade**](#6-Restrições)
-  * [6.1 Suportabilidade para _Android_](#61-Suportabilidade-para-_Android_)
 * [**7 Restrições de Design**](#7-Restrições-de-Design)
-<<<<<<< 7b0046c674c4c32f825f4fbc8d0eaafe141af70d
 * [**8 Requisitos de Sistema de Ajuda e de Documentação de Usuário On-line**](#8-Requisitos-de-Sistema-de-Ajuda-e-de-Documentação-de-Usuário-On-line)
 * [**9 Componentes Comprados**](#9-Componentes-Comprados)
 * [**10 Interface**](#10-Interface)
@@ -37,19 +34,6 @@
 * [**11	Requisitos de Licenciamento**](#11-Requisitos-de-Licenciamento)
 * [**12	Observações Legais, de Direitos Autorais**](#12-Observações-Legais-de-Direitos-Autorais)
 * [**13	Padrões Aplicáveis**](#13-Padrões-Aplicáveis)
-=======
-  * [7.1 Compatibilidade](#71-Compatibilidade)
-  * [7.2 Aparência Geral](#72-Aparência-Geral)
-* [**8 Interface**](#8-Interface)
-    * [8.1 Interfaces de Usuário](#81-Interfaces-de-Usuário)
-    * [8.2 Interfaces de _Hardware_](#82-Interfaces-de-_Hardware_)
-    * [8.3 Interfaces de _Software_](#83-Interfaces-de-_Software_)
-    * [8.4 Interfaces de Comunicação](#84-Interfaces-de-Comunicação)
-* [**9	Requisitos de Licenciamento**](#9-Requisitos-de-Licenciamento)
-* [**10	Observações Legais, de _Copyright_ e Outras**](#10-Observações-Legais,-de-_Copyright_-e-Outras)
-* [**11	Padrões Aplicáveis**](#11-Padrões-Aplicáveis)
->>>>>>> Updated Supplementary Specifications Doc
-
 
 ## 1 Introdução
 
@@ -100,17 +84,11 @@ O tempo de resposta das solicitações dos usuários varia de acordo com o servi
 
 ## 6 Suportabilidade
 
-### 6.1 Suportabilidade para _Android_
+- Inicialmente o suporte será dado em forma de criação de _issues_ no repositório do projeto;
 
-O aplicativo terá suporte para Android 5.1 ou superior.
+- Não haverá atendimento imediato ao usuário.
 
 ## 7 Restrições de Design
-
-### 7.1 Compatibilidade
-
-O _software_ será compatível com o sistema operacional _Android_.
-
-### 7.2 Aparência Geral
 
 O _layout_ do produto será disposto de forma trivial e com esquema de cores equilibrado e harmonioso.
 
@@ -118,7 +96,7 @@ O _layout_ do produto será disposto de forma trivial e com esquema de cores equ
 
 ### 8.1 Interfaces de Usuário  
 
-As principais interfaces do usuário permitirão a criação e edição dos dados do perfil, acompanhamento do _ranking_ dos jogadores, reserva de quadra e de espaços para eventos.
+- Aplicativo instalado no celular.
 
 ### 8.2 Interfaces de _Hardware_
 
@@ -130,7 +108,7 @@ As principais interfaces do usuário permitirão a criação e edição dos dado
 
 ### 8.4 Interfaces de Comunicação
 
-- Acesso remoto;
+- Acesso remoto ao servidor;
 - Comunicação com _apps_ de midia social (_WhatsApp_, _e-mail_, _Facebook_, outros).
 
 ## 9 Requisitos de Licenciamento  
