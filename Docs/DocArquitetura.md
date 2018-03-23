@@ -127,7 +127,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 - _Model_ : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
 - _Worker_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
-- _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter; 
+- _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter;
 - _Presenter_ : Formata os dados que serão exibidos na view;
 - _View_ : Responsável pela interface gráfica e entrada de dados.
 - _Router_ : Responsável por controlar o fluxo entre as telas
@@ -141,6 +141,9 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 
 #### 5.1.2 *Diagrama de Sequência*
+No aprimoramento do aplicativo Nexte garantindo uma fácil manutenção e flexibilidade para se adaptar a transformações, utiliza-se a Clean Architecture para garantir esses quesitos.
+
+![Diagrama de Sequẽncia](https://i.imgur.com/eS0lMJk.png)
 
 ## 6. VISÃO DE IMPLANTAÇÃO
 
