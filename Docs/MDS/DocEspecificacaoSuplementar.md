@@ -9,32 +9,33 @@
 | 22/03/2018 | 0.5 | Alteração dos Tópicos de Confiabilidade e Usabilidade | Alexandre Miguel, Lorrany Freire, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.6 | Padronização de tópicos e revisão | Larissa Sales |
 | 22/03/2018 | 0.6.1 | Alterado diretório do arquivo | Gabriel Albino e Larissa Sales |
+| 22/03/2018 | 0.7 | Alterado tópico de desempenho e correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
 
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
 * [1 Introdução](#1-introdução)
-  * [1.1 Propósito](#11-propósito)
+  * [1.1 Finalidade](#11-finalidade)
   * [1.2 Escopo](#12-escopo)
-  * [1.3 Definições, acrônimos e abreviações](#13-definições,-acrônimos-e-abreviações)
+  * [1.3 Definições, acrônimos e abreviações](#13-definições-acrônimos-e-abreviações)
   * [1.4 Referências](#14-referências)
   * [1.5 Visão Geral](#15-visão-geral)
 * [2 Funcionalidade](#2-funcionalidade)
 * [3 Usabilidade](#3-usabilidade)
 * [4 Confiabilidade](#4-confiabilidade)
 * [5 Desempenho](#5-desempenho)
-* [6 Suportabilidade](#6-restrições)
+* [6 Suportabilidade](#6-suportabilidade)
 * [7 Restrições de Design](#7-restrições-de-design)
-* [8 Requisitos de Sistema de Ajuda e de Documentação de Usuário On-line](#8-requisitos-de-sistema-de-ajuda-e-de-documentação-de-usuário-on-line)
-* [9 Componentes Comprados](#9-componentes-Comprados)
+* [8 Requisitos de Sistema de Ajuda e de Documentação de Usuário _Online_](#8-requisitos-de-sistema-de-ajuda-e-de-documentação-de-usuário-online)
+* [9 Componentes Comprados](#9-componentes-comprados)
 * [10 Interface](#10-interface)
     * [10.1	Interfaces de Usuário](#101-interfaces-de-usuário)
     * [10.2	Interfaces de Hardware](#102-interfaces-de-hardware)
     * [10.3 Interfaces de Software](#103-interfaces-de-software)
     * [10.4 Interfaces de Comunicações](#104-interfaces-de-comunicações)
-* [11	Requisitos de Licenciamento](#11-requisitos-de-licenciamento)
-* [12	Observações Legais, de Direitos Autorais](#12-observações-legais-de-direitos-autorais)
-* [13	Padrões Aplicáveis](#13-padrões-aplicáveis)
+* [11	Requisitos de Licenciamento](#110-requisitos-de-licenciamento)
+* [12	Observações Legais, de Direitos Autorais](#120-observações-legais-de-direitos-autorais)
+* [13	Padrões Aplicáveis](#130-padrões-aplicáveis)
 
 ## 1 Introdução
 
@@ -81,7 +82,9 @@ Os aspectos funcionais estão contemplados no [Documento de Visão]() e no [Docu
 
 ## 5 Desempenho
 
-O tempo de resposta das solicitações dos usuários varia de acordo com o servidor utilizado, atingindo um tempo médio de 5 segundos. Em caso de erro interno, o usuário será notificado e o aplicativo será reiniciado.
+ - A aplicação fará uso, preferencialmente, das conexões Wi-fi disponíveis e, na ausência destas, o uso de internet móvel como 3G ou 4G;
+ - Ocorrerá alocação na memória interna dos resultados das partidas realizadas mesmo na ausência de conexão com o servidor, atualizando os dados quando a conexão for restabelecida;
+ - Quando executado em segundo plano, o _Nexte_ consumirá o menor recurso possível de processamento de dados, destinando a maior parte do processamento à identificação de partidas.
 
 ## 6 Suportabilidade
 
