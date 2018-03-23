@@ -11,6 +11,7 @@
 | 22/03/2018 | 0.6.1 | Alterado diretório do arquivo | Gabriel Albino e Larissa Sales |
 | 22/03/2018 | 0.7 | Alterado tópico de desempenho e correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.8 | Correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
+| 22/03/2018 | 0.9 | Correção do índice e formatação de tabela de erros| Alexandre Miguel |
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -29,7 +30,7 @@
   * [8.1	Interfaces de Usuário](#81-interfaces-de-usuário)
   * [8.2	Interfaces de _Hardware_](#82-interfaces-de-hardware)
   * [8.3 Interfaces de _Software_](#83-interfaces-de-software)
-  * [8.4 Interfaces de Comunicações](#84-interfaces-de-comunicações)
+  * [8.4 Interfaces de Comunicação](#84-interfaces-de-comunicação)
 * [9 Requisitos de Licenciamento](#9-requisitos-de-licenciamento)
 * [10 Observações Legais, de _Copyright_ e Outras](#10-observações-legais-de-copyright-e-outras)
 * [11	Padrões Aplicáveis](#11-padrões-aplicáveis)
@@ -71,10 +72,15 @@ Os aspectos funcionais estão contemplados no [Documento de Visão]() e no [Docu
 ## 4 Confiabilidade
 
  - O Software estará disponível a todo momento para o usuário, exceto nos períodos de manutenção;
- - Erro Pouco Importante: Impedimento na atualização dos dados de perfil.
- - Erro Importante: Desempenho incompleto ou ausente das funcionalidades.
- - Erro Crítico: Falha de Comunicação com o servidor, perda de dados cadastrados, falha de autenticação de usuário, total incapacidade de utilização do sistema.
- - As informações cadastradas serão armazenadas no servidor, sem visibilidade para os demais usuários, garantindo a segurança de dados pessoais.
+  - As informações cadastradas serão armazenadas no servidor, sem visibilidade para os demais usuários, garantindo a segurança de dados pessoais.
+ - Os Erros estão classificados da seguinte forma:
+
+|Tipo de Erro| Definição |Exemplificação|
+|----|----|----|
+| Erro Pouco Importante |Impedimento provisório ou de rápida duração| Impedimento na atualização dos dados de perfil |
+|Erro Importante | Falha estrutural ou de desenvolvimento | Desempenho incompleto ou ausente das funcionalidades|
+|Erro Crítico| Falha extendida a várias usuários ou que afete o escopo geral do funcionamento da aplicação |Falha de Comunicação com o servidor, perda de dados cadastrados, falha de autenticação de usuário, total incapacidade de utilização do sistema|
+
 
 
 ## 5 Desempenho
