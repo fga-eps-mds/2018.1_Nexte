@@ -1,6 +1,6 @@
 
 
-# 1. Goal Question Metrics - GQM
+## Goal Question Metrics - GQM
 
 Utilizou-se como metodologia o GQM,  pois esta metodologia permite visualizar de forma mais fácil a organizacao do projeto e seus possíveis tópicos a serem mensurados[1]. Isto é possível devido a sua organizacão, no qual, apresenta-se três níveis:
 
@@ -9,19 +9,15 @@ Utilizou-se como metodologia o GQM,  pois esta metodologia permite visualizar de
 * Quantitativo (*METRIC*): Fase  em que são definidas medidas e métricas a serem aplicadas no objeto alvo.
 
 
-Não obstante, Van Solingen, Rini e Berghout[2] definem  a divisão do GQM  em quatro fases:
+Não obstante, Van Solingen, Rini e Berghout[2] definem  a divisão do GQM  em quatro fases[2]:
 
 * Planejamento: Fase em que um plano de projeto é desenvolvido para caracterizar, definir, resultando em um plano de projeto.
 * Definicão: Realizacão do plano de medicão ( Objetivo, quesões, métricas e hipóteses)
 * Coleta de Dados: Os dados são coletados de acordo com o planejamento.
 * Interpretacão: Fase em que os dados são submetidos as métricas para assim serem interpretados. Os dados obtidos servem de insumos para respondes as questões proveninente do GQM, para então entender se os objetivos foram alcancados.
 
-Referências
 
-1. https://github.com/FGA-MED/MedeMais_2017-2/wiki/GQM
-
-
-GQM
+# #Plano Goal Question Metric(GQM)
 
 ### Objetivos (*Goals*)
 
@@ -52,7 +48,7 @@ Os objetivos de medicão do projeto foram criados a partir do objeto a ser mensu
 | **Sob o ponto de vista de** | Gerentes do Projeto  |
 | **No Contexto**             |   Projeto Nexte Android(EPS/MDS) |
 
-## 2.2 Questões (*Questions*)
+### Questões (*Questions*)
 
 A seguir foram definidas as questões para os objetivos de medicão de acordo com os interesses da organizacão. 
 
@@ -66,9 +62,9 @@ O1Q01 - Os membros da equipe estão sendo proativos em relacão as tarefas do pr
 O1Q01 - Qual o nível de manutenabilidade do código fonte?
 01Q02 - Qual a complexidade do código fonte?
 
-## 2.3 Métricas (*Metrics*)
+### Métricas (*Metrics*)
 
-### **Métricas para o objetivo 01(Equipe do Projeto Nexte Android)**
+#### **Métricas para o objetivo 01(Equipe do Projeto Nexte Android)**
 
 * Métrica 01 - Burndown
 
@@ -92,7 +88,7 @@ O1Q01 - Qual o nível de manutenabilidade do código fonte?
 | **Descrição**           | O *Velocity* é métrica que apresenta quantos *sprint points*  foram realizados em uma *sprint*         |
 | **Fórmula**             | Dado uma sprint n o velocity da equipe é calculado com base no histórico das sprints passadas logo velocity=1n−1∑i=0n−1PCSi. Onde PCS representa a quantidade de Pontos Completos na Sprint.  |
 | **Escala**              |  Racional        |
-| **Coleta**              |  Responsável: Luís Gustavo Periocidade: Semalmente   |
+| **Coleta**              |  Responsável: Luís Gustavo </br> Periocidade: Semalmente   |
 | **Procedimento**        |  Analisar a quantidade de pontos concluídos na *sprint*     |
 | **Análise**             |  O *velocity* é uma métrica oriunda de *sprints*, dessa forma, a partir das primeiras *sprints* será possível determina um *baseline* de pontos**. A partir disso, espera-se que a quantidade de pontos entre as *sprints* se mantenham ou aumentem. Ressalta-se que a partir do velocity que são planejados a quantidade de pontos** que são esperados para cada sprint. |
 | **Providência**         | Caso a equipe a equipe apresente diminuicões grande de pontos entre *sprints*, por exemplo (-13) pontos. Será necessário adotar uma série de práticas, tais como: Replanejar duplas de pareamento; definir horários de planejamento; e delegar histórias de acordo com preferências de cada dupla.        |
@@ -100,64 +96,36 @@ O1Q01 - Qual o nível de manutenabilidade do código fonte?
 
 * ## Métrica 03 - Nível de conhecimento sobre tecnologias
 
-| **Métrica**           | Burndown |
+| **Métrica**           | **Quadro de Conhecimento** |
 |---------------------|----------|
 | **Objetivo de Medição** |  Melhorar o conhecimento dos membros sobre as tecnologias do projeto   |
 | **Descrição**           |  Quadro utilizado para visualizar o conhecimento de cada membro sobre as tecnologias utilizadas no projeto   |
 | **Fórmula**             | Não se aplica    |
 | **Escala**              |  Ordinal        |
-| **Coleta**              | Responsável: Geovanni Oliveira Periocidade: Semanalmente  |
+| **Coleta**              | Responsável: Geovanni Oliveira </br> Periocidade: Semanalmente  |
 | **Procedimento**        | Verificar com todos os membros do time se houve melhora no conhecimento sobre determinadas tecnologias ou ferramentas em relacão a *sprint* anterior.  |
-| **Análise**              | A análise do conhecimento sobre tecnologias será descrito de acordo com a escala ordinal apresentadas a seguir: - Excelente: </br> * Bom:
-- Regular:  |
-| **Providência**        |          |
-
-
-
-<!--
-Melhorar o rendimento individual de cada membro da equipe.
-Descrição	Este quadro é utilizado para poder verificar o conhecimento da equipe.
-Fórmula	-
-Escala	Ordinal
-Coleta	Responsável: João Paulo
-Periodicidade: Ao fim de cada iteração.
-Procedimento	Verificar a cada iteração se houve melhora no conhecimento de uma determinada tecnologia ou ferramenta em relação, em relação à iteração anterior.
-Análise	​Analisar a confiança de cada membro na utilização das ferramentas e tecnologias presentes no projeto.O conhecimento do membro será de acordo com um dos níveis a seguir: 
-- Ótimo : Tenho muita segurança em usar a tecnologia. 
-- Bom : Consigo usar com facilidade na maior parte das vezes. 
-- Regular : Tenho um pouco de dificuldade, mas sei me virar. 
-- Ruim : Tenho dificuldade e preciso de ajuda nisso várias vezes. 
-- Péssimo : Tenho muita dificuldade e sempre preciso de ajuda nisso.
-Providência	Caso se verifique que o nível de conhecimento dos membros da equipe não está homogêneo em uma determinada ferramenta ou tecnologia, um treinamento sobre o mesmo deverá ser realizado para que o conhecimento seja nivelado.
-
--->
-
-<!--
-
-Verificar o nível de contribuição de cada membro da equipe de desenvolvimento durante uma iteração sob o ponto de vista dos outros membros.
-Descrição	O nível de contribuição é responsável por indicar o quanto um membro está contribuindo para o desenvolvimento do projeto.
-Fórmula	-
-Escala	Intervalar
-Coleta	Responsável: Thiago 
-Periodicidade: Ao fim de cada iteração.
-Procedimento	Verificar a cada iteração a quantidade de pontos atribuídas a cada membro pelos outros membros.
-Análise	Analisar a contribuição dos membros para o projeto.
-Providência	Caso se verifique que um membro tenha recebido uma pontuação menor ou igual 20 , deverá se verificar os motivos que levaram a isso e agir de acordo com o planejado pois a baixo deste índice considera-se que o indivíduo se esforçou pouco.
-
--->
+| **Análise**              | A análise do conhecimento sobre tecnologias será descrito de acordo com a escala ordinal apresentadas a seguir: </br>  **Excelente:** Tenho total seguraca sobre determinada tecnologia </br> **Bom:** Consigo fazer uso desta detcnologia quase sempre com facilidade </br> **Regular:** Tenho certa dificuldade, mas consigo trabalhar com esta tecnologia </br> **Ruim:**  Tenho dificuldade, e preciso de ajudar para trabalhar com esta tecnologia </br> **Péssimo:** Tenho dificuldades, e quase sempre procuro ajuda com esta tecnologia|
+| **Providência**        |  Caso seja notável uma grande dificuldade da maioria dos integrantes com certa tecnologia, será necessário a utilizacão de treinamentos. Caso esta dificuldade esteja reduzida a um pequeno grupo de integrantes, será realizada políticas de pareamento entre os que mais dominam o conteúdo e os que estão com mais dificuldades.        |
 
 * Métrica 04 - Nível de Contribuicão por *sprint* points
 
-| **Métrica**           | Burndown |
+| **Métrica**           | **Pontos integrantes por *Sprint*** |
 |---------------------|----------|
-| **Objetivo de Medição** |          |
-| **Descrição**           |          |
-| **Fórmula**             |          |
-| **Escala**              |          |
-| **Coleta**              |          |
-| **Procedimento**        |          |
-| **Análise**              |          |
-| **Providência**        |          |
+| **Objetivo de Medição** |  Verificar o nível de contribuicão em *sprint points* por interacão        |
+| **Descrição**           |  O nível de contribuicão refere-se a quantidade de pontos que um indivíduo concluiu em uma *sprint*, dessa forma, sua contribuicão com o time. |
+| **Fórmula**             |  Não se aplica        |
+| **Escala**              |  Intervalar |
+| **Coleta**              |  Responsável: Miguel Pimentel </br> Periodicidade: Semanalmente |
+| **Procedimento**        |  Verificar ao final de cada *sprint* quantos pontos foram entregues por cada integrante         |
+| **Análise**              |  Analisar a quantidade de pontos entregue por cada integrante, e ver sua contstância em relacao a outras *sprints*  |
+| **Providência**        |  Caso um mebro tenha um desempenho menor do que sua média, será necessário tentar compreender se há impedimentos, para então realizar medidas tais como:  Replanejar duplas de pareamento; definir horários de planejamento; delegar histórias de acordo com suas preferências; e até medidas mais severas. |
 
 
-* Ressalta-se que algumas das métricas, pode ser mais bem compreendidas como indicadores, visto que agrega mais valor a parte interna da organizacão.
+*  * Ressalta-se que algumas das métricas, pode ser mais bem compreendidas como indicadores, visto que agrega mais valor a parte interna da organizacão.
+
+* ** Os pontos serão definidos a partir da prática do *planning poker*, e utilizarão os valores apresentados pela sequência de Fibonacci.
+
+## **Referências:**
+
+1. Victor R. Basili - Goal Question Metric Paradigm.<br>
+2.  SOLINGEN, Rini; BERGHOUT, Egon. The Goal/Question/Metric: A Practical Guide for Quality Improvement and Software Development. ​McGraw-Hill, 1999.
