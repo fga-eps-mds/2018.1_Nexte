@@ -8,32 +8,33 @@
 | 21/03/2018 | 0.4.1 | Alteração do Nome do Arquivo | Alexandre Miguel |
 | 22/03/2018 | 0.5 | Alteração dos Tópicos de Confiabilidade e Usabilidade | Alexandre Miguel, Lorrany Freire, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.6 | Padronização de tópicos e revisão | Larissa Sales |
+| 22/03/2018 | 0.6.1 | Alterado diretório do arquivo | Gabriel Albino e Larissa Sales |
 
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
-* [**1 Introdução**](#1-Introdução)
-  * [1.1 Propósito](#11-Propósito)
-  * [1.2 Escopo](#12-Escopo)
-  * [1.3 Definições, acrônimos e abreviações](#13-Definições,-acrônimos-e-abreviações)
-  * [1.4 Referências](#14-Referências)
-  * [1.5 Visão Geral](#15-Visão-geral)
-* [**2 Funcionalidade**](#2-Funcionalidade)
-* [**3 Usabilidade**](#3-Usabilidade)
-* [**4 Confiabilidade**](#4-Confiabilidade)
-* [**5 Desempenho**](#5-Desempenho)
-* [**6 Suportabilidade**](#6-Restrições)
-* [**7 Restrições de Design**](#7-Restrições-de-Design)
-* [**8 Requisitos de Sistema de Ajuda e de Documentação de Usuário On-line**](#8-Requisitos-de-Sistema-de-Ajuda-e-de-Documentação-de-Usuário-On-line)
-* [**9 Componentes Comprados**](#9-Componentes-Comprados)
-* [**10 Interface**](#10-Interface)
-    * [10.1	Interfaces de Usuário](#101-Interfaces-de-Usuário)
-    * [10.2	Interfaces de Hardware](#102-Interfaces-de-Hardware)
-    * [10.3 Interfaces de Software](#103-Interfaces-de-Software)
-    * [10.4 Interfaces de Comunicações](#104-Interfaces-de-Comunicações)
-* [**11	Requisitos de Licenciamento**](#11-Requisitos-de-Licenciamento)
-* [**12	Observações Legais, de Direitos Autorais**](#12-Observações-Legais-de-Direitos-Autorais)
-* [**13	Padrões Aplicáveis**](#13-Padrões-Aplicáveis)
+* [1 Introdução](#1-introdução)
+  * [1.1 Propósito](#11-propósito)
+  * [1.2 Escopo](#12-escopo)
+  * [1.3 Definições, acrônimos e abreviações](#13-definições,-acrônimos-e-abreviações)
+  * [1.4 Referências](#14-referências)
+  * [1.5 Visão Geral](#15-visão-geral)
+* [2 Funcionalidade](#2-funcionalidade)
+* [3 Usabilidade](#3-usabilidade)
+* [4 Confiabilidade](#4-confiabilidade)
+* [5 Desempenho](#5-desempenho)
+* [6 Suportabilidade](#6-restrições)
+* [7 Restrições de Design](#7-restrições-de-design)
+* [8 Requisitos de Sistema de Ajuda e de Documentação de Usuário On-line](#8-requisitos-de-sistema-de-ajuda-e-de-documentação-de-usuário-on-line)
+* [9 Componentes Comprados](#9-componentes-Comprados)
+* [10 Interface](#10-interface)
+    * [10.1	Interfaces de Usuário](#101-interfaces-de-usuário)
+    * [10.2	Interfaces de Hardware](#102-interfaces-de-hardware)
+    * [10.3 Interfaces de Software](#103-interfaces-de-software)
+    * [10.4 Interfaces de Comunicações](#104-interfaces-de-comunicações)
+* [11	Requisitos de Licenciamento](#11-requisitos-de-licenciamento)
+* [12	Observações Legais, de Direitos Autorais](#12-observações-legais-de-direitos-autorais)
+* [13	Padrões Aplicáveis](#13-padrões-aplicáveis)
 
 ## 1 Introdução
 
