@@ -11,6 +11,7 @@ Utilizou-se como metodologia o GQM,  pois esta metodologia permite visualizar de
 
 Não obstante, Van Solingen, Rini e Berghout[2] definem  a divisão do GQM  em quatro fases[2]:
 
+
 * Planejamento: Fase em que um plano de projeto é desenvolvido para caracterizar, definir, resultando em um plano de projeto.
 * Definicão: Realizacão do plano de medicão ( Objetivo, quesões, métricas e hipóteses)
 * Coleta de Dados: Os dados são coletados de acordo com o planejamento.
