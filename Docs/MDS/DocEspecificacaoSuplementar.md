@@ -10,7 +10,7 @@
 | 22/03/2018 | 0.6 | Padronização de tópicos e revisão | Larissa Sales |
 | 22/03/2018 | 0.6.1 | Alterado diretório do arquivo | Gabriel Albino e Larissa Sales |
 | 22/03/2018 | 0.7 | Alterado tópico de desempenho e correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
-
+| 22/03/2018 | 0.8 | Correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -19,23 +19,20 @@
   * [1.2 Escopo](#12-escopo)
   * [1.3 Definições, acrônimos e abreviações](#13-definições-acrônimos-e-abreviações)
   * [1.4 Referências](#14-referências)
-  * [1.5 Visão Geral](#15-visão-geral)
 * [2 Funcionalidade](#2-funcionalidade)
 * [3 Usabilidade](#3-usabilidade)
 * [4 Confiabilidade](#4-confiabilidade)
 * [5 Desempenho](#5-desempenho)
 * [6 Suportabilidade](#6-suportabilidade)
 * [7 Restrições de Design](#7-restrições-de-design)
-* [8 Requisitos de Sistema de Ajuda e de Documentação de Usuário _Online_](#8-requisitos-de-sistema-de-ajuda-e-de-documentação-de-usuário-online)
-* [9 Componentes Comprados](#9-componentes-comprados)
-* [10 Interface](#10-interface)
-    * [10.1	Interfaces de Usuário](#101-interfaces-de-usuário)
-    * [10.2	Interfaces de Hardware](#102-interfaces-de-hardware)
-    * [10.3 Interfaces de Software](#103-interfaces-de-software)
-    * [10.4 Interfaces de Comunicações](#104-interfaces-de-comunicações)
-* [11	Requisitos de Licenciamento](#110-requisitos-de-licenciamento)
-* [12	Observações Legais, de Direitos Autorais](#120-observações-legais-de-direitos-autorais)
-* [13	Padrões Aplicáveis](#130-padrões-aplicáveis)
+* [8 Interfaces](#8-interfaces)
+  * [8.1	Interfaces de Usuário](#81-interfaces-de-usuário)
+  * [8.2	Interfaces de _Hardware_](#82-interfaces-de-hardware)
+  * [8.3 Interfaces de _Software_](#83-interfaces-de-software)
+  * [8.4 Interfaces de Comunicações](#84-interfaces-de-comunicações)
+* [9 Requisitos de Licenciamento](#9-requisitos-de-licenciamento)
+* [10 Observações Legais, de _Copyright_ e Outras](#10-observações-legais-de-copyright-e-outras)
+* [11	Padrões Aplicáveis](#11-padrões-aplicáveis)
 
 ## 1 Introdução
 
