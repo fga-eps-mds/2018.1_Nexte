@@ -16,8 +16,9 @@
 | 21/03/2018| 0.7.2 | Relizado correção na definição de _model_ | Gabriel Albino |
 | 21/03/2018| 0.7.3 | Relizado correção no diagrama de classes | Gabriel Albino |
 | 21/03/2018| 0.7.4 | Relizado correção no diagrama de classes | Gabriel Albino |
-| 21/03/2018| 0.8 | Adicionado diagrama de sequência | Lorrany Freire |
-| 21/03/2018| 1.0 | Correção de detalhes e remoção de tópicos que não serão abordados nesse documento. | Gabriel Albino |
+| 23/03/2018| 0.8 | Adicionado diagrama de sequência | Lorrany Freire |
+| 24/03/2018| 1.0 | Correção de detalhes e remoção de tópicos que não serão abordados nesse documento. | Gabriel Albino |
+| 24/03/2018| 1.0.1| Correção do tópico 3.2 (Restrições de arquitetura). | Gabriel Albino, Letícia Meneses, Lorrany Freire |
 
 ### Índice Analítico
 
@@ -95,9 +96,8 @@ Esta seção decreve os requisitos de software e restrições que têm um impact
 |Plataforma| Android versão 5.1 ou superior|
 
 ### 3.2 Restrições de arquitetura
-A _Clean Architecture_ é organizada de modo em que as camadas mais externas passam as informações para as camadas mais internas, facilitando o armazenamento e obtenção de dados.
 
-![](https://i.imgur.com/NLLi7Kr.jpg)
+A persistência e o servidor web são restrições da arquitetura utilizada, pois podem influenciar diretamente nela.
 
 ## 4. VISÃO LÓGICA
 
@@ -111,7 +111,11 @@ A _Clean Architecture_ é organizada de modo em que as camadas mais externas pas
 |Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torná-los visíveis, exbindo-os na página inicial do aplicativo.|
 
 
-### 4.1 Visão Geral – pacotes e camadas
+### 4.1 Visão Geral – pacotes e camada
+
+A _Clean Architecture_ é organizada de modo em que as camadas mais externas passam as informações para as camadas mais internas, facilitando o armazenamento e obtenção de dados.
+
+![](https://i.imgur.com/NLLi7Kr.jpg)
 
 #### 4.1.1 Diagrama de pacotes
 ![ Exemplo de Diagrama de Pacotes da Aplicação](https://i.imgur.com/hVXTV2M.jpg)
