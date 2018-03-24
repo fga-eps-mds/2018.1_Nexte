@@ -16,6 +16,8 @@
 | 21/03/2018| 0.7.2 | Relizado correção na definição de _model_ | Gabriel Albino |
 | 21/03/2018| 0.7.3 | Relizado correção no diagrama de classes | Gabriel Albino |
 | 21/03/2018| 0.7.4 | Relizado correção no diagrama de classes | Gabriel Albino |
+| 21/03/2018| 0.8 | Adicionado diagrama de sequência | Lorrany Freire |
+| 21/03/2018| 1.0 | Correção de detalhes e remoção de tópicos que não serão abordados nesse documento. | Gabriel Albino |
 
 ### Índice Analítico
 
@@ -34,11 +36,10 @@
     * [4.1.2 Diagrama de camadas](#412-diagrama-de-camadas)
 * [5. VISÃO DE IMPLEMENTAÇÃO](#5-visão-de-implementação)
     * [5.1 Caso de Uso](#51-caso-de-uso)
-    * [5.1.1  <em>Diagrama de Classes</em>](#511--diagrama-de-classes)
+    * [5.1.1  <em>Diagrama de Classes</em>](#511-diagrama-de-classes)
     * [5.1.2 <em>Diagrama de Sequência</em>](#512-diagrama-de-sequência)
-* [6. VISÃO DE IMPLANTAÇÃO](#6-visão-de-implantação)
-* [7. DIMENSIONAMENTO](#7-dimensionamento)
-* [8. QUALIDADE](#8-qualidade)
+* [6. DIMENSIONAMENTO](#6-dimensionamento)
+* [7. QUALIDADE](#7-qualidade)
 
 ## Nexte
 
@@ -136,7 +137,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ### 5.1 Caso de Uso
 
-#### 5.1.1  *Diagrama de Classes*
+#### 5.1.1 *Diagrama de Classes*
 ![Diagrama de classes](https://i.imgur.com/OKMMC6h.jpg)
 
 
@@ -145,26 +146,13 @@ No aprimoramento do aplicativo Nexte garantindo uma fácil manutenção e flexib
 
 ![Diagrama de Sequẽncia](https://i.imgur.com/eS0lMJk.png)
 
-## 6. VISÃO DE IMPLANTAÇÃO
 
-
-
-[Exemplo:](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/deployment-diagram/deployment-diagram-example-700x412.jpeg)
-
-
-
-![Exemplo:](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/deployment-diagram/deployment-diagram-example-700x412.jpeg)
-
-
-
-
-
-## 7. DIMENSIONAMENTO
+## 6. DIMENSIONAMENTO
 
 Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes esportivos e assim seus membros. Considerando que cada usuário terá um jogo por semana e que utilizará o aplicativo a cada dois dias devido o sistema de gameficação para conferir sua posição no ranking, estima-se uma média de quatro a cinco acessos semanais por membro, conectando-se ao aplicativo em torno de uma vez por dia para acompanhar as atualizações do mesmo, essencialmente no período da manhã e da tarde de aproximadamente 5-7 minutos de duração.
 
 
-## 8. QUALIDADE
+## 7. QUALIDADE
 
 | Item  | Solução  | Descrição |
 |:---:|:---:|:---:|
