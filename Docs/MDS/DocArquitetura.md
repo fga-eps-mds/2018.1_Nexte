@@ -95,7 +95,7 @@ Esta seção decreve os requisitos de software e restrições que têm um impact
 |Plataforma| Android versão 5.1 ou superior|
 
 ### 3.2 Restrições de arquitetura
-A _Clean Architecture_ é organizada de modo em que as camadas mais internas não conseguem acessar os dados ou metadados das camadas mais externas.
+A _Clean Architecture_ é organizada de modo em que as camadas mais externas passam as informações para as camadas mais internas, facilitando o armazenamento e obtenção de dados.
 
 ![](https://i.imgur.com/NLLi7Kr.jpg)
 
