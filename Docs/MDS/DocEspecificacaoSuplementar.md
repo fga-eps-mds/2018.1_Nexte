@@ -12,6 +12,7 @@
 | 22/03/2018 | 0.7 | Alterado tópico de desempenho e correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.8 | Correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.9 | Correção do índice e formatação de tabela de erros| Alexandre Miguel |
+| 24/03/2018 | 1.0 | Adição de conceitos de Flat Design e redefinição da suportabilidade de software| Alexandre Miguel |
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico
@@ -56,6 +57,7 @@ O projeto contemplado por este documento foi desenvolvido por alunos das discipl
 * [O que é um Requisito Não-Funcional](http://www.ateomomento.com.br/o-que-e-um-requisito-nao-funcional/)
 * [Especificação Suplementar](http://www.funpar.ufpr.br:8080/rup/webtmpl/templates/req/rup_sspec.htm)
 * [User Onboarding](http://useronboarding.com.br/user-onboard/)
+* [Flat Design](https://designmodo.com/flat-design-principles/)
 
 
 ## 2 Funcionalidade
@@ -64,7 +66,7 @@ Os aspectos funcionais estão contemplados no [Documento de Visão]() e no [Docu
 
 ## 3 Usabilidade
 
- - O aplicativo será intuitivo e categorizado, permitindo que o usuário identifique facilmente as ações a serem realizadas, fazendo uso de um sistema de _user-onboarding_ para auxiliá-lo na primeira utilização da aplicação;
+ - O aplicativo será intuitivo, fazendo uso de categorias com nomenclaturas autoexplicativas que permitam que o usuário identifique facilmente as ações a serem realizadas, contando ainda com um sistema de _user-onboarding_ para auxiliá-lo na primeira utilização da aplicação;
  - Para a comodidade de utilização, a distância entre as funcionalidades possuirá a menor quantidade de cliques possível;
  - Em caso de falha no sistema ou de problemas de conexão, será apresentada uma mensagem clara e objetiva que permita ao usuário a identificação do erro apresentado;
  - O aplicativo não possui opções de acessibilidade motora ou visual.
@@ -82,7 +84,6 @@ Os aspectos funcionais estão contemplados no [Documento de Visão]() e no [Docu
 |Erro Crítico| Falha extendida a várias usuários ou que afete o escopo geral do funcionamento da aplicação |Falha de Comunicação com o servidor, perda de dados cadastrados, falha de autenticação de usuário, total incapacidade de utilização do sistema|
 
 
-
 ## 5 Desempenho
 
  - A aplicação fará uso, preferencialmente, das conexões Wi-fi disponíveis e, na ausência destas, o uso de internet móvel como 3G ou 4G;
@@ -91,15 +92,22 @@ Os aspectos funcionais estão contemplados no [Documento de Visão]() e no [Docu
 
 ## 6 Suportabilidade
 
-- Inicialmente o suporte será dado em forma de criação de _issues_ no repositório do projeto;
-
-- Não haverá atendimento imediato ao usuário.
+ - O suporte da aplicação ocorrerá pela correção rápida e precisa de erros identificados pelos usuários e reportados na página do _Nexte_ na Play Store ou no Facebook;
+ - A atualização do aplicativo, mediante a correção de erros ou de melhorias implementadas, não acarretará na descontinuação de versões anteriores;
 
 ## 7 Restrições de Design
 
-O _layout_ do produto será disposto de forma trivial e com esquema de cores equilibrado e harmonioso.
+O layout do aplicativo será disposto de forma racionalizada e objetiva, facilitando a identificação de funcionalidades pelo usuário, propiciando que a interface utilizada seja mais adaptável às diferentes especificaçõs de dispositivo e que os elementos sejam dispostos de forma mais rápida e eficiente, dando mais agilididade no uso do aplicativo. Para isso, o design seguirá princípios de _Flat Design_, contando com:
+ - poucos elementos dispostos em tela;
+ - cores sólidas e complementares;
+ - formas simples em botões ou caixas de texto;
+ - tipografia sem serifas;
+ - itens com design minimalista;
 
-## 8  Interfaces            
+
+## 8  Interfaces         
+
+ As interfaces são definidas conforme as diferentes entidades envolvidas no funcionamento interagem com o aplicativo, da forma:
 
 ### 8.1 Interfaces de Usuário  
 
@@ -120,12 +128,12 @@ O _layout_ do produto será disposto de forma trivial e com esquema de cores equ
 
 ## 9 Requisitos de Licenciamento  
 
-Licença MIT.
+ - [Licensa MIT](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/LICENSE)
 
 ## 10 Observações Legais, de _Copyright_ e Outras
 
-Copyright do aplicativo original criado em versão iOS, _Nexte_.
+Autorização e Copyright do aplicativo original criado em versão iOS.
 
 ## 11 Padrões Aplicáveis
 
-_Template_ de documentação baseado no Modelo de Processo RUP.
+O Presente documento foi estruturado conforme _Template_ de documentação baseado no Modelo de Processo RUP.
