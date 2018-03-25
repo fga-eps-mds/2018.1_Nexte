@@ -81,7 +81,10 @@ Foi bastante positivo observar que as equipes conseguiram cumprir a maior parte 
 * A equipe de gerência irá acompanhar de perto o entendimento da arquitetura do software por parte da equipe de desenvolvimento, e se for necessário, realizar outro treinamento sobre a arquitetura;
 
 ### 7. EVM
+O valor agregado no projeto é calculado a cada sprint, a partir da 2, dado que as histórias feitas na sprint 0 e 1 não foram pontuadas, por conta disso as duas primeiras sprints não entraram para o cálculo.
+Com a Sprint 2 o projeto teve um resultado positivo entre o valor planejado e o valor agregado, esse valor foi de R$1203,96.
 
+![](https://i.imgur.com/2vlxBk1.png)
 ### 8. **Análise do Scrum Master**
 Durante essa _sprint_ ambas equipes mostraram evolução e comprometimento com o projeto, pois souberam lidar muito bem com o aumento na demanda. Além disso, foi extremamente positivo o fato de que não houve replanejamento durante a _sprint_, pois esse foi o principal ponto negativo na _sprint_ anterior.
 
