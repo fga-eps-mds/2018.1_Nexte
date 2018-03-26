@@ -9,6 +9,7 @@ class LoginWorker {
 
     constructor() { }
 
+    // Manipulate a request from interactor to a response
     fun authenticateUser(request: LoginModel.Request, completion: (LoginModel.Response) -> Unit) {
 
         val password: String = request.password
