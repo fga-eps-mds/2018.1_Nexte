@@ -49,7 +49,7 @@ Como pode-se observar houve nessa _sprint_, um aumento na quantidade de horas da
 Foi bastante positivo observar que as equipes conseguiram cumprir a maior parte das histórias planejadas, sem que houvesse um acréscimo muito grande na quantidade de horas trabalhadas.
 
 ### 6. **Retrospectiva**
-<h4> **Pontos Positivos:**</h4>
+<h4> Pontos Positivos:</h4>
 * A equipe de desenvolvimento conseguiu fazer o documento de arquitetura e especificação suplementar;
 
 * As equipes obtiveram mais conhecimento sobre o software, e o que é necessário especificar sobre ele;
@@ -64,7 +64,7 @@ Foi bastante positivo observar que as equipes conseguiram cumprir a maior parte 
 
 * Comprometimento dos membros da equipe com os ritos da _sprint_;
 
-<h4> **Pontos A Melhorar:** </h4>
+<h4> Pontos A Melhorar: </h4>
 * A equipe de desenvolvimetno teve dificuldade com o documento de especificação suplementar: dificuldade de escrevê-lo por conta de falta de conhecimento;
 
 * A equipe de desenvolvimento teve dificuldades com _markdown_: sumário não funcionava o link.
@@ -75,7 +75,7 @@ Foi bastante positivo observar que as equipes conseguiram cumprir a maior parte 
 
 * Equipe de desenvolvimento estava muito dependente do da equipe de gerência;
 
-<h4> **Como Melhorar:** </h4>
+<h4> Como Melhorar: </h4>
 * A equipe de gerência irá reforçar conceitos chaves do documento de especificação suplementar para a equipe de desenvolvimento;
 
 * A equipe de gerência irá acompanhar de perto o entendimento da arquitetura do software por parte da equipe de desenvolvimento, e se for necessário, realizar outro treinamento sobre a arquitetura;
