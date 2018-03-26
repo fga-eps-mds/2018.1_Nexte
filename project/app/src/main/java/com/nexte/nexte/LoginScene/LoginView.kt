@@ -7,29 +7,37 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_login_view.*
 import kotlinx.android.synthetic.main.activity_login_view.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-class LoginView : AppCompatActivity() {
+interface LoginDisplayLogic {
 
-    var interactor: LoginBusinessLogic? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_login_view)
-
-
-//        var passwordText: EditText =  findViewById<EditText>(R.id.passwordtext)
-//        var usernameText: EditText = findViewById<EditText>(R.id.usernametext)
-//        var signInButton: Button = findViewById<Button>(R.id.loginbutton)
-
-
-
-
-        loginbutton.setOnClickListener {
-            val request: LoginModel.Request = LoginModel.Request(usernametext.toString(), passwordtext.toString())
-            this.interactor?.doAuthentication()
-
-        }
-
-    }
+    fun displayAuthenticateState(viewModel: LoginModel.ViewModel)
 }
+
+//class LoginView : AppCompatActivity(), LoginDisplayLogic {
+//
+//    var interactor: LoginBusinessLogic? = null
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//
+//
+//
+////        var passwordText: EditText =  findViewById<EditText>(R.id.passwordtext)
+////        var usernameText: EditText = findViewById<EditText>(R.id.usernametext)
+////        var signInButton: Button = findViewById<Button>(R.id.loginbutton)
+//
+////        loginbutton.setOnClickListener {
+////
+////            val request: LoginModel.Request = LoginModel.Request(usernametext.toString(),
+////                                                                 passwordtext.toString())
+////            this.interactor?.doAuthentication(request)
+////
+////        }
+//    }
+//
+//    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
+//
+//    }
+//}
