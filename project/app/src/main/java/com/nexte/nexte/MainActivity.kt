@@ -11,23 +11,22 @@ import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 
-    var interactor: LoginBusinessLogic? = null
+    var loginInteractor: LoginBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.setupLoginScene()
+        this.setupLoginScene() // Setup Login Scene
 
-        val t: TextView = findViewById<TextView>(R.id.afuckingidentifier)
-        t.setText("üsdcusdn")
+        // Testing if works the architecture
+        val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
+        this.loginInteractor?.doAuthentication(loginRequest)
 
-        loginbutton.setOnClickListener {
-
-            val request: LoginModel.Request = LoginModel.Request(usernametext.toString(),
-                    passwordtext.toString())
-            this.interactor?.doAuthentication(request)
-        }
     }
+
+    /*
+     *  LOGIN SCENE
+     */
 
     // Setup all modules for exchange of data
     private fun setupLoginScene() {
@@ -36,17 +35,13 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
         val interactor = LoginIteractor()
         val presenter = LoginPresenter()
 
-        viewController.interactor = interactor
+        viewController.loginInteractor = interactor
         interactor.presenter = presenter
         presenter.viewControler = viewController
     }
 
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
-        setContentView(R.layout.activity_main)
-
-        if(viewModel.equals("")) {
-            afuckingidentifier.setText("User not existed")
-        }
+        textView.setText(viewModel.message)
     }
 }

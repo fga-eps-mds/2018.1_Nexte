@@ -5,6 +5,7 @@ package com.nexte.nexte.LoginScene
  */
 class LoginModel {
 
+    // Model data of a view request
     class Request(userName: String, password: String) {
 
         var userName: String = ""
@@ -14,8 +15,9 @@ class LoginModel {
             this.userName = userName
             this.password = password
         }
-
     }
+
+    // Model data of interactor/worker response
     class Response(tokenId: String) {
 
         var tokenId: String = ""
@@ -23,9 +25,9 @@ class LoginModel {
         init {
             this.tokenId = tokenId
         }
-
     }
 
+    // Model of present data in view
     class ViewModel(message: String) {
 
         var message: String = ""
@@ -33,6 +35,5 @@ class LoginModel {
         init {
             this.message = message
         }
-
     }
 }

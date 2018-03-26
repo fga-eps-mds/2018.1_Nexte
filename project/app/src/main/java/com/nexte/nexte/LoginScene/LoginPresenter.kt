@@ -11,13 +11,15 @@ interface LoginPresentationLogic {
 
 class LoginPresenter: LoginPresentationLogic {
 
-    var viewControler: LoginDisplayLogic? = null
+    var viewControler: LoginDisplayLogic? = null // Reference to view
 
+    // Format data to expected
     override fun presentLogin(response: LoginModel.Response) {
 
         var message: String = ""
+        val tokenId: String = response.tokenId
 
-        if(response.equals("")) {
+        if(tokenId.equals("")) {
             message = "Something is wrong. Try again"
         } else {
             message = "Congratz! U get it"

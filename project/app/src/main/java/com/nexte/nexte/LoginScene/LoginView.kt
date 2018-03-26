@@ -14,30 +14,24 @@ interface LoginDisplayLogic {
     fun displayAuthenticateState(viewModel: LoginModel.ViewModel)
 }
 
-//class LoginView : AppCompatActivity(), LoginDisplayLogic {
-//
-//    var interactor: LoginBusinessLogic? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//
-//
-//
-////        var passwordText: EditText =  findViewById<EditText>(R.id.passwordtext)
-////        var usernameText: EditText = findViewById<EditText>(R.id.usernametext)
-////        var signInButton: Button = findViewById<Button>(R.id.loginbutton)
-//
-////        loginbutton.setOnClickListener {
-////
-////            val request: LoginModel.Request = LoginModel.Request(usernametext.toString(),
-////                                                                 passwordtext.toString())
-////            this.interactor?.doAuthentication(request)
-////
-////        }
-//    }
-//
-//    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
-//
-//    }
-//}
+/*
+Commented cause it should make reference to main view at this point
+
+class LoginView : AppCompatActivity(), LoginDisplayLogic {
+
+    var interactor: LoginBusinessLogic? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+            val request: LoginModel.Request = LoginModel.Request(usernametext.toString(),
+                                                                 passwordtext.toString())
+            this.interactor?.doAuthentication(request)
+    }
+
+    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
+
+    }
+}
+
+*/
