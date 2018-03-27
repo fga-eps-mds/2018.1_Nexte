@@ -41,7 +41,7 @@ A priorização da *sprint* 2 foi com base em ambas equipes conseguirem terminar
 ### **Backlog da Sprint**
 
 | Issue | Descrição | Status | Pontos|
-|-----------------------|-------------|
+|-----------------------|-------------| ---------- | -----------|
 |[#4](https://github.com/fga-gpp-mds/2018.1-Grupo4/issues/4) |Eu, como desenvolvedor, desejo elaborar a EAP, para organizar o processo de subdivisão das entregas e do trabalho do projeto | Nova | 5 |
 |[#7](https://github.com/fga-gpp-mds/2018.1-Grupo4/issues/7) | Eu, como desenvoldor, quero elaborar o Documento de Arquitetura para me guiar no organização do projeto | Nova | 21 |
 |[#8](https://github.com/fga-gpp-mds/2018.1-Grupo4/issues/8) | Eu, como desenvolvedor, quero elaborar o Documento de Especificação Suplementar para definir os requisitos não funcionais | Nova | 5 |
