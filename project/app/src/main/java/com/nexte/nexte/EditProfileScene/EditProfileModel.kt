@@ -5,7 +5,7 @@ package com.nexte.nexte.EditProfileScene
  */
 class EditProfileModel {
     class Response {
-        var username: String = ""
+        var name: String = ""
         var rank: Int = -1
         var profilePictureURL: String = ""
         var club: String = ""
@@ -14,9 +14,9 @@ class EditProfileModel {
         var sex: Char = 'U'
         var facebookUsername: String = ""
 
-        constructor(username: String, rank: Int, profilePictureURL: String, club: String, age: Int,
+        constructor(name: String, rank: Int, profilePictureURL: String, club: String, age: Int,
                     email: String, sex: Char, facebookUsername: String){
-            this.username = username
+            this.name = name
             this.rank= rank
             this.profilePictureURL= profilePictureURL
             this.club= club

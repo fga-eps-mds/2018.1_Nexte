@@ -5,7 +5,7 @@ package com.nexte.nexte.EditProfileScene
  */
 class EditProfileWorker {
 
-    constructor() { }
+    constructor()
 
     fun editUserProfile(request: EditProfileModel.Request, completion:
     (EditProfileModel.Response) -> Unit) {
@@ -19,7 +19,7 @@ class EditProfileWorker {
         var email: String = ""
         var sex: Char = 'U'
         var facebookUsername: String = ""
-        if (username == "lorranyfreire"){
+        if (username == "lorranyfreire") {
             name = "Lorrany Freire"
             rank = 1
             profilePictureURL = "https://www.google.com.br/amaisgatadodf/eumesma.jpg"
@@ -30,8 +30,9 @@ class EditProfileWorker {
             facebookUsername = "lorrany.freire"
         }
 
-        var response:EditProfileModel.Response= EditProfileModel.Response(name, rank,
+        var response: EditProfileModel.Response = EditProfileModel.Response(name, rank,
                 profilePictureURL, club, age, email, sex, facebookUsername)
 
         completion(response)
     }
+}
