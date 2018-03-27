@@ -16,6 +16,9 @@
 | 21/03/2018| 0.7.2 | Relizado correção na definição de _model_ | Gabriel Albino |
 | 21/03/2018| 0.7.3 | Relizado correção no diagrama de classes | Gabriel Albino |
 | 21/03/2018| 0.7.4 | Relizado correção no diagrama de classes | Gabriel Albino |
+| 23/03/2018| 0.8 | Adicionado diagrama de sequência | Lorrany Freire |
+| 24/03/2018| 1.0 | Correção de detalhes e remoção de tópicos que não serão abordados nesse documento. | Gabriel Albino |
+| 24/03/2018| 1.0.1| Correção do tópico 3.2 (Restrições de arquitetura). | Gabriel Albino, Letícia Meneses, Lorrany Freire |
 
 ### Índice Analítico
 
@@ -34,11 +37,10 @@
     * [4.1.2 Diagrama de camadas](#412-diagrama-de-camadas)
 * [5. VISÃO DE IMPLEMENTAÇÃO](#5-visão-de-implementação)
     * [5.1 Caso de Uso](#51-caso-de-uso)
-    * [5.1.1  <em>Diagrama de Classes</em>](#511--diagrama-de-classes)
+    * [5.1.1  <em>Diagrama de Classes</em>](#511-diagrama-de-classes)
     * [5.1.2 <em>Diagrama de Sequência</em>](#512-diagrama-de-sequência)
-* [6. VISÃO DE IMPLANTAÇÃO](#6-visão-de-implantação)
-* [7. DIMENSIONAMENTO](#7-dimensionamento)
-* [8. QUALIDADE](#8-qualidade)
+* [6. DIMENSIONAMENTO](#6-dimensionamento)
+* [7. QUALIDADE](#7-qualidade)
 
 ## Nexte
 
@@ -94,9 +96,8 @@ Esta seção decreve os requisitos de software e restrições que têm um impact
 |Plataforma| Android versão 5.1 ou superior|
 
 ### 3.2 Restrições de arquitetura
-A _Clean Architecture_ é organizada de modo em que as camadas mais internas não conseguem acessar os dados ou metadados das camadas mais externas.
 
-![](https://i.imgur.com/NLLi7Kr.jpg)
+A persistência e o servidor web são restrições da arquitetura utilizada, pois podem influenciar diretamente nela.
 
 ## 4. VISÃO LÓGICA
 
@@ -110,7 +111,11 @@ A _Clean Architecture_ é organizada de modo em que as camadas mais internas nã
 |Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torná-los visíveis, exbindo-os na página inicial do aplicativo.|
 
 
-### 4.1 Visão Geral – pacotes e camadas
+### 4.1 Visão Geral – pacotes e camada
+
+A _Clean Architecture_ é organizada de modo em que as camadas mais externas passam as informações para as camadas mais internas, facilitando o armazenamento e obtenção de dados.
+
+![](https://i.imgur.com/NLLi7Kr.jpg)
 
 #### 4.1.1 Diagrama de pacotes
 ![ Exemplo de Diagrama de Pacotes da Aplicação](https://i.imgur.com/hVXTV2M.jpg)
@@ -127,7 +132,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 - _Model_ : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
 - _Worker_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
-- _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter; 
+- _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter;
 - _Presenter_ : Formata os dados que serão exibidos na view;
 - _View_ : Responsável pela interface gráfica e entrada de dados.
 - _Router_ : Responsável por controlar o fluxo entre as telas
@@ -136,32 +141,22 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ### 5.1 Caso de Uso
 
-#### 5.1.1  *Diagrama de Classes*
+#### 5.1.1 *Diagrama de Classes*
 ![Diagrama de classes](https://i.imgur.com/OKMMC6h.jpg)
 
 
 #### 5.1.2 *Diagrama de Sequência*
+No aprimoramento do aplicativo Nexte garantindo uma fácil manutenção e flexibilidade para se adaptar a transformações, utiliza-se a Clean Architecture para garantir esses quesitos.
 
-## 6. VISÃO DE IMPLANTAÇÃO
-
-
-
-[Exemplo:](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/deployment-diagram/deployment-diagram-example-700x412.jpeg)
+![Diagrama de Sequẽncia](https://i.imgur.com/eS0lMJk.png)
 
 
-
-![Exemplo:](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/deployment-diagram/deployment-diagram-example-700x412.jpeg)
-
-
-
-
-
-## 7. DIMENSIONAMENTO
+## 6. DIMENSIONAMENTO
 
 Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes esportivos e assim seus membros. Considerando que cada usuário terá um jogo por semana e que utilizará o aplicativo a cada dois dias devido o sistema de gameficação para conferir sua posição no ranking, estima-se uma média de quatro a cinco acessos semanais por membro, conectando-se ao aplicativo em torno de uma vez por dia para acompanhar as atualizações do mesmo, essencialmente no período da manhã e da tarde de aproximadamente 5-7 minutos de duração.
 
 
-## 8. QUALIDADE
+## 7. QUALIDADE
 
 | Item  | Solução  | Descrição |
 |:---:|:---:|:---:|
