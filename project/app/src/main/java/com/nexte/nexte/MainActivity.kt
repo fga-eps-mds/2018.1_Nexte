@@ -2,26 +2,48 @@ package com.nexte.nexte
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import com.nexte.nexte.LoginScene.*
-import kotlinx.android.synthetic.main.activity_login_view.*
+import com.nexte.nexte.ShowProfile.ShowProfileDisplayLogic
+import com.nexte.nexte.ShowProfile.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.w3c.dom.Text
+import com.nexte.nexte.LoginScene.*
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayLogic {
+
+    var showProfileInteractor : ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.setupShowProfileScene()
         this.setupLoginScene() // Setup Login Scene
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
 
+        //testing if it is working
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(
+                "gabrielalbino", "AUFDSASFSA321IEUNFDI23FIQ2F")
+        showProfileInteractor?.showProfile(showUserProfileRequest)
+    }
+
+    /*
+    * SHOW PROFILE SCENE
+    * */
+    fun setupShowProfileScene(){
+        var viewScene = this
+        val interactor = ShowProfileInteractor()
+        val presenter = ShowProfilePresenter()
+
+        interactor.presenter = presenter
+        presenter.viewScene = viewScene
+        viewScene.showProfileInteractor = interactor
+    }
+
+    override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
+        textView.text = viewModel.message
     }
 
     /*
@@ -42,6 +64,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
-        textView.setText(viewModel.message)
+        textView.text = viewModel.message
     }
+
 }
