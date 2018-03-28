@@ -2,46 +2,101 @@
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
 | 26/03/2018 | 0.1 | Criação do documento | Larissa Sales e Letícia Meneses |
+| 27/03/2018 | 0.2 | Definição das nomeações | Alexandre Miguel e Helena Goulart |
 
 
 ### Índice Analítico
+
 * [1 Nomeação](#1-nomeação)
 * [2 Formatação](#2-formatação)
 * [3 Comentários](#3-comentários)
+* [4 Teste](#4-teste)
+* [5 Imports](#5-imports)
+* [6 Estilo](#6-estilo-da-Model)
+* [7 Estruturas de Decisão](7-#estruturas-de-decisão)
+* [8 Identação](#8-identação)
+* [9 Linguagem](#9-linguagem)
+* [10 Definições, Acrônimos e Abreviações](#10-definições-acrônimos-e-abreviações)
+* [11 referência](#11-referência)
 
 
 
 ## 1 Nomeação
 ### 1.1 Pacotes
-  Devem ser preferencialmente suscintos, e caso sejam maiores serão utilizadas letras maiúsculas para facilitar a leitura. Não é recomendado o uso de _underscores_.
+  Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
+
+  Ex.:
 
   ```
-  Certo: NomeDoPacote 
-  Errado: nome_do_pacote 
-  ```
-### 1.2 Classes e Objetos
-  São nomeados conforme o padrão camelo, ou seja: palavras diferenciadas por letras maiúsculas.
-
-  ```
-  Certo: NomeDoObjeto ou NomeDaClasse
-  Errado: nomedoobjeto ou nomedaclasse
+  Certo: PackageName
+  Errado: package_name
   ```
 
+### 1.2 Classes
+  São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
 
-### 1.3 Interfaces
-### 1.4 Funções
-### 1.5 Atributos 
-### 1.6 Variáveis
+  Ex.:
+
+  ```
+  Certo: ClassName
+  Errado: classname
+  ```
+
+### 1.3 Objetos
+  São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
+
+  Ex.:
+
+  ```
+  Certo: ObjectName
+  Errado: objectname
+  ```
+
+### 1.4 Interfaces
+  São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
+
+  Ex.:
+
+  ```
+  Certo: InterfaceName
+  Errado: interfacename
+  ```
+
+### 1.5 Funções
+  A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
+
+  Ex.:
+
+  ```
+  Certo: functionName()
+  Errado: Function_name()
+  ```
 
 
+### 1.6 Atributos
+  Segue o padrão _lowerCamelCase_, contendo nomes significativos e sem _underscores_.
 
-* Atributos devem ser escritos no formato _lowerCamelCase_:
+  Ex.:
 
-  ``
-  Exemplo: exemploVariavel
-  ``
+  ```
+  Certo: attribute
+  Errado: Attribute_Example
+  ```
 
-* Os atributos devem ter nomes significativos;
+
+### 1.7 Variáveis
+  Devem ser precedidas pela declaração do tipo _var_ para valores alteráveis ou _val_ para valores fixos, seguindo o padrão _lowerCamelCase_ , contendo nomes significativos e sem _underscores_.
+
+  Ex.:
+
+  ```
+  Certo: var variableExample
+  Errado: Variable_Example
+  ```
+
+
+### 1.8 Testes
+
 
 * Pacotes, Classes e Interfaces devem ser escritos no formato _UpperCamelCase_:
 
