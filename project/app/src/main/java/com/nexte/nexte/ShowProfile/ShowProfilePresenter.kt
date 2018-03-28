@@ -13,13 +13,13 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     var viewScene : ShowProfileDisplayLogic? = null
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
-        var message : String = ""
+        var message: String
         val age : Int? = response.age
 
         if(age == (-1)) {
-            message = "usuário burro!"
+            message = "Não foi possível recuperar o usuário!"
         } else {
-            message = "boa mlk!"
+            message = "Usuário recuperado com sucesso!"
         }
 
         var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(message)
