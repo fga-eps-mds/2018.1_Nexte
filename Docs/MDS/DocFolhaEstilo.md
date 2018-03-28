@@ -96,38 +96,141 @@
 
 
 ### 1.8 Testes
+  Utilizarão do padrão _UpperCamelCase_ e permitirão o uso de _underscores_.
 
+  Ex.:
 
-* Pacotes, Classes e Interfaces devem ser escritos no formato _UpperCamelCase_:
+   ```
+  Certo: class Test_Case {
 
-  ``
-  Exemplo: ExemploClasse
-  ``
+         }
+
+  Errado: class testcase {
+
+         }
+
+  ```
 
 ## 2 Formatação
 
 * A identação deve ser de 4 espaços para cada nível;
 
-* Blocos que seguem a mesma lógica devem ser separados por uma linha vazia;
+  Ex.:
+
+```
+  Certo: if (examples != null)
+             examples == 1
+
+  Errado: if (examples == null)
+            examples == null
+  ```
+
+* As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta. 
+
+  Ex.:
+
+```
+  Certo: class Formating_Example {
+
+         }
+
+  Errado: Formating_Example {
+
+                                            }  
+  ```
+
+
+* Pontos e vírgulas não serão utilizados no final de cada linha de código.
+
+  Ex.:
+
+```
+  Certo: var rightExample
+  Errado: var wrongExample;
+  ```
+
+* Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
+
+  Ex.:
+
+```
+  Certo: rightExample = 1 + 1
+  Errado: wrongExample=1+1
+  ```
+
+  ```
+  Certo: i++
+  Errado: i + +
+  ```
+
+* Blocos que seguem a mesma lógica devem ser separados por uma linha vazia; // Não entendi. Alguém explica?
+
+* Serão colocados espaços entre as estruturas de condição e de repetição e os parênteses; 
+
+  Ex.:
+
+```
+  Certo: if (rightExample == right)
+             return rightExample 
+
+  Errado: if(wrongExample == wrong)
+              return wrongExample
+  ```
 
 ## 3 Comentários
 
 * Devem iniciar com letra maiúscula;
 
+  Ex.:
+
+  ```
+  Certo: // Right example
+  Errado: // wrong example
+  ```
+
+
 * Devem ser escritos no mesmo idioma do código;
 
-* Comentários de uma linha devem ser escritos usando `//`:
+  Ex.: 
 
-  ``
-  Exemplo: //Exemplo de comentário
-  ``
+  ```
+  Certo: // Right example
+  Errado: // Exemplo errado
+  ```
 
-* Comentários de mais de uma linha devem ser escritos usando `/* */`:
+* Comentários de uma linha devem ser escritos usando `//`
 
-    `Exemplo: /* Exemplo de comentário */`
+  Ex.:
+
+  ```
+  Certo: // Right example
+  Errado: /* Wrong example */
+  ```
+
+* Comentários de mais de uma linha devem ser escritos usando `/* */`
+
+  Ex.:
+
+  ```
+  Certo: /* This is an example about
+         how to use correctly the comentar
+         on the code */ 
+  Errado: // This is not the right example
+          // about using a comentar
+  ```
 
 * Comentários de testes devem descrever qual será o resultado esperado;
 
+## 9 Linguagem
+  
+  O linguagem padrão do programa é em inglês, extendendo-se para pacotes, classes, objetos, atributos e variáveis.
+
+  Ex.:
+
+  ```
+  Certo: class GreatExample;
+  Errado: classe ExemploErrado;
+  ```
 
 
 ## Referências
