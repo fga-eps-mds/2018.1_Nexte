@@ -16,8 +16,8 @@ class FeedInteractor : FeedBusinessLogic {
     var presenter : FeedPresentationLogic? = null
 
     override fun recentGames(request: FeedModel.Request) {
-        worker.getLastGame(request) { response ->
-            this.presenter?.presentLastGame(response) // entender melhor isso
+        worker.getGame(request) { response ->
+            this.presenter?.presentLastGame(response)
         }
     }
 }

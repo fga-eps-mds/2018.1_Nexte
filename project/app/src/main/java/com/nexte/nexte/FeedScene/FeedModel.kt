@@ -7,14 +7,12 @@ package com.nexte.nexte.FeedScene
 class FeedModel {
 
     class Request {
-        var lastGame: String? = null
-        var tokenID: String? = null
-        var maxShowGames: Int? = null
+        var challenged: String? = null
+        var challenger: String? = null
 
-        constructor(lastGame: String?, tokenID: String?, maxShowGames: Int?) {
-            this.lastGame = lastGame
-            this.tokenID = tokenID
-            this.maxShowGames = maxShowGames
+        constructor(challenged: String?, challenger: String?) {
+            this.challenged = challenged
+            this.challenger = challenger
         }
 
     }

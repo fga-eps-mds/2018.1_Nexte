@@ -8,14 +8,36 @@ class FeedWorker {
 
     constructor() { }
 
-    fun getLastGame(request: FeedModel.Request, completion: (FeedModel.Response) -> Unit) {
+    fun getGame(request: FeedModel.Request, completion: (FeedModel.Response) -> Unit) {
 
-        val lastGame: String? = request.lastGame
+        val challenger: String? = request.challenger
+        val challenged: String? = request.challenged
+        var firstPlayer: String? = null
+        var secondPlayer: String? = null
+        var rankFirstPlayer: Int? = null
+        var rankSecondPlayer: Int? = null
+        var linkFirstProfilePicture: String? = null
+        var linkSecondProfilePicture: String? = null
 
-        val response: FeedModel.Response = FeedModel.Response()
+        if (challenger.equals("larissa") && challenged.equals("leticia")){
+            firstPlayer = "larissa"
+            secondPlayer = "leticia"
+            rankFirstPlayer = 1
+            rankSecondPlayer = 2
+            linkFirstProfilePicture = "www.nexte.com/profile/larissa/picture.jpg"
+            linkSecondProfilePicture = "www.nexte.com/profile/leticia/picture.jpg"
+        } else {
+            firstPlayer = ""
+            secondPlayer = ""
+            rankFirstPlayer = -1
+            rankSecondPlayer = -1
+            linkFirstProfilePicture = ""
+            linkSecondProfilePicture = ""
+        }
+
+        val response: FeedModel.Response = FeedModel.Response(firstPlayer, secondPlayer, rankFirstPlayer, rankSecondPlayer,
+                                                             linkFirstProfilePicture, linkSecondProfilePicture)
         completion(response)
-
-
     }
 
 }
