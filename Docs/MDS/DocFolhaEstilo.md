@@ -191,34 +191,63 @@ Serão usados espaços entre operações lógicas, como somas e subtrações, to
 
 Ex.:
 
-  ```kotlin
-  Certo: rightExample = 1 + 1
-  Errado: wrongExample=1+1
-  ```
+  * Certo:
 
   ```kotlin
-  Certo: i++
-  Errado: i + +
+  rightExample = 1 + 1
+  ```
+
+  * Errado:
+
+  ```kotlin
+  wrongExample=1+1
+  ```
+  * Certo:
+
+  ```kotlin
+  i++
+  ```
+  * Errado:
+
+  ```kotlin
+  i + +
   ```
 
 
 ## 3 Comentários
 
-* Devem iniciar com letra maiúscula;
+Devem iniciar com letra maiúscula e ter espaço apoś "\\". Para uma maior compreensão do código, os comentários devem estar presentes neles como uma breve apresentação do objetivo e como o método funciona.
 
-  Ex.:
+Ex.:
+
+  - Certo:
+
+  ```kotlin
+  \\ Right example
+    ```
+  * Errado:
+
+  ```
+  \\wrong example
+  ```
+Ex.:
+
+  Métodos
 
   * Certo:
 
   ```kotlin
-  Right example
-  ```
+// Adds a [member] to this group.
+@return the new size of the group.
+//
+fun add(member: T): Int { ... }
+```
+
   * Errado:
 
+  ```kotlin
+   fun add(member: T): Int { ... }
   ```
-  wrong example
-  ```
-
 
 Devem ser escritos no mesmo idioma do código;
 
