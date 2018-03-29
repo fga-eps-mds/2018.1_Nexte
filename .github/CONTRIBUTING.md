@@ -1,15 +1,15 @@
-# Contributing to Nexte
+# Contribuir com o Nexte
 
 Obrigado por contribuir com este projeto maravilhoso, aqui podem ser encontradas alguns guidelines para serem conhecidos antes de contribuir, depois isso, basta mandar um pull request seguindo as regras apresentadas aqui.
 
-### Bug report
+### Relatar bug  
 Se você encontrou um bug, por favor, abra uma Issue com uma label de **Bug** e preencha o formulário com a descrição contando o que foi encontrado, além disso o template tem a parte de critérios de aceitação, para issue de bugs ele deve ser excluido.
 
-### First contribution
+### Primeira contribuição
 As issues que já foram criadas, elas tem labels que representam sua complexibilidade, _easy_, _medium_, _difficult_, é recomendado pegar uma issue com dificuldade _easy_ para primeira contribuição.
 
 ### Commits
-To commit on this project you might follow this commit template:  
+para commitar neste projeto você deve seguir o seguinte template:
 
     $ git commit -m "Titúlo princpal do commit
     > 
