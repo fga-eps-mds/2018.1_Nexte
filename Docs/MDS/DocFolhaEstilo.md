@@ -32,109 +32,166 @@
 
 ## 1 Nomeação
 ### 1.1 Pacotes
-  Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
+Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: PackageName
-  Errado: package_name
+    PackageName
+  ```
+  * Errado:
+
+  ```kotlin
+    package_name
   ```
 
 ### 1.2 Classes
-  São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
+São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: ClassName
-  Errado: classname
+  ClassName
+  ```
+  * Errado:
+
+  ```kotlin
+  classname
   ```
 
 ### 1.3 Objetos
-  São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
+São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: ObjectName
-  Errado: objectname
+  ObjectName
+  ```
+
+  * Errado:
+
+  ```kotlin
+  objectname
   ```
 
 ### 1.4 Interfaces
-  São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
+São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: InterfaceName
-  Errado: interfacename
+  InterfaceName
+  ```
+  * Errado:
+
+  ```kotlin
+  interfacename
   ```
 
 ### 1.5 Funções
-  A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
+A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: functionName()
-  Errado: Function_name()
+  functionName()
+  ```
+
+  * Errado:
+
+  ```kotlin
+  Function_name()
   ```
 
 
 ### 1.6 Atributos
-  Segue o padrão _lowerCamelCase_, contendo nomes significativos e sem _underscores_.
+Segue o padrão _lowerCamelCase_, contendo nomes significativos e sem _underscores_.
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: attribute
-  Errado: Attribute_Example
+  attribute
+  ```
+
+  * Errado:
+
+  ```
+   Attribute_Example
   ```
 
 
 ### 1.7 Variáveis
-  Devem ser precedidas pela declaração do tipo _var_ para valores alteráveis ou _val_ para valores fixos, seguindo o padrão _lowerCamelCase_ , contendo nomes significativos e sem _underscores_.
+Devem ser precedidas pela declaração do tipo _var_ para valores alteráveis ou _val_ para valores fixos, seguindo o padrão _lowerCamelCase_ , contendo nomes significativos e sem _underscores_.
 
-  Ex.:
+Ex.:
+
+  * Certo:
+  ```kotlin
+  var variableExample
+  ```
+
+  * Errado:
 
   ```kotlin
-  Certo: var variableExample
-  Errado: Variable_Example
+   Variable_Example
   ```
 
 
 ## 2 Formatação e Estilo
 
-* As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta. 
+As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta e haverá espaços após a escrita de classes, métodos e estruturas de decisão.
 
-  Ex.:
+Ex.:
 
-```kotlin
-  Certo: class Formating_Example {
+  * Certo:
+
+  ```kotlin
+  class Formating_Example {
 
          }
+  ```
 
-  Errado: Formating_Example {
+  * Errado:
+
+  ```kotlin
+  Formating_Example {
 
                                             }  
   ```
 
 
-* Pontos e vírgulas não serão utilizados no final de cada linha de código.
+Pontos e vírgulas não serão utilizados no final de cada linha de código.
 
-  Ex.:
+Ex.:
 
-```kotlin
-  Certo: var rightExample
+  * Certo:
+
+  ```kotlin
+  var rightExample
+  ```
+  * Errado:
+
+  ```kotlin
   Errado: var wrongExample;
   ```
 
-* Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
+Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
 
-  Ex.:
+Ex.:
 
-```kotlin
+  ```kotlin
   Certo: rightExample = 1 + 1
   Errado: wrongExample=1+1
   ```
@@ -151,51 +208,78 @@
 
   Ex.:
 
+  * Certo:
+
   ```kotlin
-  Certo: // Right example
-  Errado: // wrong example
+  Right example
+  ```
+  * Errado:
+
+  ```
+  wrong example
   ```
 
 
-* Devem ser escritos no mesmo idioma do código;
+Devem ser escritos no mesmo idioma do código;
 
-  Ex.: 
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: // Right example
-  Errado: // Exemplo errado
+  Right example
+  ```
+  * Errado:
+
+  ```
+  Exemplo errado
   ```
 
-* Comentários de uma linha devem ser escritos usando `//`
+Comentários de uma linha devem ser escritos usando `//`
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: // Right example
-  Errado: /* Wrong example */
+  Right example
   ```
 
-* Comentários de mais de uma linha devem ser escritos usando `/* */`
+  * Errado:
 
-  Ex.:
+  ```
+   /* Wrong example */
+  ```
+
+Comentários de mais de uma linha devem ser escritos usando `/* */`
+
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: /* This is an example about
+   /* This is an example about
          how to use correctly the comentar
-         on the code */ 
-  Errado: // This is not the right example
+         on the code */
+  ```
+
+  * Errado:
+
+  ```
+   // This is not the right example
           // about using a comentar
   ```
 
 
 ## 4 Testes
 
-  Utilizar comentários de uma linha para descrever cada etapa do teste
+Utilizar comentários de uma linha para descrever cada etapa do teste
 
-  Ex.:
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo:
   @Test
   fun testSuccess_basic() {
     // prepare
@@ -213,8 +297,10 @@
     testSub.assertValueCount(1)
     testSub.assertCompleted()
   }
+  ```
+  * Errado:
 
-  Errado:
+  ```kotlin
   @Test
   fun testSuccess_basic() {
     val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
@@ -226,20 +312,23 @@
     testSub.assertValueCount(1)
     testSub.assertCompleted()
   }
-
-
   ```
 
   Utilizarão do padrão _UpperCamelCase_ e permitirão o uso de _underscores_.
 
   Ex.:
 
+  * Certo:
    ```kotlin
-  Certo: class Test_Case {
+  class Test_Case {
 
          }
+  ```
 
-  Errado: class testcase {
+  * Errado:
+
+  ```kotlin
+   class testcase {
 
          }
 
@@ -247,68 +336,89 @@
 
 ## 5 Import
 
-  As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada. 
+As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada.
 
-  Ex.: 
+  Ex.:
 
+  * Certo:
    ```kotlin
-  Certo: import NameOfPackage
-         import NameOfClass
+  import NameOfPackage
+  import NameOfClass
+  ```
 
-  Errado: import NameOfPackage, import NameOfCLass
+  * Errado:
+  ```kotlin
+   import NameOfPackage, import NameOfCLass
   ```
 
 
 ## 6 Estruturas de Decisão
 
-  Serão colocados espaços entre essas estruturas e os parênteses que contém os termos. Sempre serão usadas chaves para implementar o corpo das condicionais. 
+Serão colocados espaços entre essas estruturas e os parênteses que contém os termos. Sempre serão usadas chaves para implementar o corpo das condicionais.
 
-  Ex.:
+Ex.:
 
-```kotlin
-  Certo:  if (rightExample == right) {
-            return rightExample 
-          }
+  * Certo:
 
-  Errado: if(wrongExample == wrong)
-              return wrongExample
+  ```kotlin
+  if (rightExample == right) {
+          return rightExample
+        }
   ```
+  * Errado:
 
+  ```
+   if(wrongExample == wrong)
+            return wrongExample
+  ```
 
 ## 7 Identação
 
-  A identação deve ser de 4 espaços para cada nível;
+A identação deve ser de 4 espaços para cada nível;
 
-  Ex.:
+Ex.:
 
-```kotlin
-  Certo: if (examples != null) {
+  * Certo:
+
+  ```kotlin
+  if (examples != null) {
              examples == 1
          }
+  ```
+  * Errado:
 
-  Errado: if (examples == null) {
+  ```kotlin
+   if (examples == null) {
             examples == null
           }
   ```
 
 ## 8 Linguagem
-  
-  O linguagem padrão do programa é em inglês, extendendo-se para pacotes, classes, objetos, atributos e variáveis.
 
-  Ex.:
+O linguagem padrão do programa é em inglês, extendendo-se para pacotes, classes, objetos, atributos e variáveis.
+
+Ex.:
+
+  * Certo:
 
   ```kotlin
-  Certo: class GreatExample;
+  class GreatExample;
+  ```
+  * Errado:
+
+  ```kotlin
   Errado: classe ExemploErrado;
   ```
 
 ## 9 Estilo da Model
 
-  A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
+A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
 
 Ex.:
+
+  * Certo:
+
   ````kotlin
-  Certo:
     class Model {
         class Request {
             var name: String? = null
@@ -329,13 +439,16 @@ Ex.:
             }
         }
     }
-  
-  Errado:
+```
+
+  * Errado:
+
+  ```
     class Model {
         var age: Int? = null
         var name: String? = null
     }
-  ````
+  ```
 
 ## 10 Referências
 [Kotlin Style Guide](https://kotlinlang.org/docs/reference/coding-conventions.html)
