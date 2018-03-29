@@ -10,14 +10,13 @@
 * [1 Nomeação](#1-nomeação)
 * [2 Formatação](#2-formatação)
 * [3 Comentários](#3-comentários)
-* [4 Teste](#4-teste)
-* [5 Imports](#5-imports)
-* [6 Estilo](#6-estilo-da-Model)
-* [7 Estruturas de Decisão](7-#estruturas-de-decisão)
-* [8 Identação](#8-identação)
-* [9 Linguagem](#9-linguagem)
-* [10 Definições, Acrônimos e Abreviações](#10-definições-acrônimos-e-abreviações)
-* [11 referência](#11-referência)
+* [4 Testes](#4-teste)
+* [5 Import](#5-import)
+* [6 Estruturas de Decisão](7-#estruturas-de-decisão)
+* [7 Identação](#8-identação)
+* [8 Linguagem](#9-linguagem)
+* [9 Definições, Acrônimos e Abreviações](#10-definições-acrônimos-e-abreviações)
+* [10 Referências](#11-referência)
 
 
 
@@ -95,35 +94,7 @@
   ```
 
 
-### 1.8 Testes
-  Utilizarão do padrão _UpperCamelCase_ e permitirão o uso de _underscores_.
-
-  Ex.:
-
-   ```
-  Certo: class Test_Case {
-
-         }
-
-  Errado: class testcase {
-
-         }
-
-  ```
-
-## 2 Formatação
-
-* A identação deve ser de 4 espaços para cada nível;
-
-  Ex.:
-
-```
-  Certo: if (examples != null)
-             examples == 1
-
-  Errado: if (examples == null)
-            examples == null
-  ```
+## 2 Formatação e Estilo
 
 * As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta. 
 
@@ -163,19 +134,6 @@
   Errado: i + +
   ```
 
-* Blocos que seguem a mesma lógica devem ser separados por uma linha vazia; // Não entendi. Alguém explica?
-
-* Serão colocados espaços entre as estruturas de condição e de repetição e os parênteses; 
-
-  Ex.:
-
-```
-  Certo: if (rightExample == right)
-             return rightExample 
-
-  Errado: if(wrongExample == wrong)
-              return wrongExample
-  ```
 
 ## 3 Comentários
 
@@ -219,9 +177,71 @@
           // about using a comentar
   ```
 
-* Comentários de testes devem descrever qual será o resultado esperado;
 
-## 9 Linguagem
+## 4 Testes
+
+  ***ADICIONAR DIVISÃO DO TESTE***
+
+  Utilizarão do padrão _UpperCamelCase_ e permitirão o uso de _underscores_.
+
+  Ex.:
+
+   ```
+  Certo: class Test_Case {
+
+         }
+
+  Errado: class testcase {
+
+         }
+
+  ```
+
+## 5 Import
+
+  As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada. 
+
+  Ex.: 
+
+   ```
+  Certo: import NameOfPackage
+         import NameOfClass
+
+  Errado: import NameOfPackage, import NameOfCLass
+  ```
+
+
+## 6 Estruturas de Decisão
+
+  Serão colocados espaços entre essas estruturas e os parênteses que contém os termos. Sempre serão usadas chaves para implementar o corpo das condicionais. 
+
+  Ex.:
+
+```kotlin
+  Certo:  if (rightExample == right) {
+            return rightExample 
+          }
+
+  Errado: if(wrongExample == wrong)
+              return wrongExample
+  ```
+
+
+## 7 Identação
+
+  A identação deve ser de 4 espaços para cada nível;
+
+  Ex.:
+
+```
+  Certo: if (examples != null)
+             examples == 1
+
+  Errado: if (examples == null)
+            examples == null
+  ```
+
+## 8 Linguagem
   
   O linguagem padrão do programa é em inglês, extendendo-se para pacotes, classes, objetos, atributos e variáveis.
 
@@ -232,6 +252,7 @@
   Errado: classe ExemploErrado;
   ```
 
+## 9 Definições, acrônimos e abreviações
 
-## Referências
+## 10 Referências
 [Kotlin Style Guide](https://kotlinlang.org/docs/reference/coding-conventions.html)
