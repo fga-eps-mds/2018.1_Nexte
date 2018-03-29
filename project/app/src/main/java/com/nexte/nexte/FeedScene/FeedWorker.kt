@@ -35,9 +35,9 @@ class FeedWorker {
             linkSecondProfilePicture = ""
         }
 
-        val response: FeedModel.Response = FeedModel.Response(firstPlayer, secondPlayer, rankFirstPlayer, rankSecondPlayer,
-                                                             linkFirstProfilePicture, linkSecondProfilePicture)
+        val response: FeedModel.Response = FeedModel.Response(firstPlayer, secondPlayer,
+                                                              rankFirstPlayer, rankSecondPlayer,
+                                                              linkFirstProfilePicture, linkSecondProfilePicture)
         completion(response)
     }
-
 }

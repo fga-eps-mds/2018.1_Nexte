@@ -7,6 +7,7 @@ package com.nexte.nexte.FeedScene
 class FeedModel {
 
     class Request {
+
         var challenged: String? = null
         var challenger: String? = null
 
@@ -26,7 +27,6 @@ class FeedModel {
         var linkFirstProfilePicture: String? = null
         var linkSecondProfilePicture: String? = null
 
-
         constructor(firstPlayer: String?, secondPlayer: String?, rankFirstPlayer: Int?,
                     rankSecondPlayer: Int?, linkFirstProfilePicture: String?,
                     linkSecondProfilePicture: String?) {
@@ -43,7 +43,7 @@ class FeedModel {
     class ViewModel {
         var message: String? = null
 
-        constructor(message: String){
+        constructor(message: String) {
             this.message = message
         }
 

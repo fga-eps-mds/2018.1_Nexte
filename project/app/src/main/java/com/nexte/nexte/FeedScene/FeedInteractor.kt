@@ -7,7 +7,6 @@ package com.nexte.nexte.FeedScene
 interface FeedBusinessLogic {
 
     fun recentGames(request: FeedModel.Request)
-
 }
 
 class FeedInteractor : FeedBusinessLogic {
