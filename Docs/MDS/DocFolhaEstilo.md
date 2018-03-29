@@ -3,20 +3,30 @@
 |---|---|---|---|
 | 26/03/2018 | 0.1 | Criação do documento | Larissa Sales e Letícia Meneses |
 | 27/03/2018 | 0.2 | Definição das nomeações | Alexandre Miguel e Helena Goulart |
+| 28/03/2018 | 0.3 | Adição de novos tópicos e correção dos topicos | Gabriel Albino e Helena Goulart |
+| 28/03/2018 | 1.0 | Finalização dos tópicos que estavam pendentes no documento | Gabriel Albino e Letícia Meneses |
+
 
 
 ### Índice Analítico
 
-* [1 Nomeação](#1-nomeação)
-* [2 Formatação](#2-formatação)
-* [3 Comentários](#3-comentários)
-* [4 Testes](#4-teste)
-* [5 Import](#5-import)
-* [6 Estruturas de Decisão](7-#estruturas-de-decisão)
-* [7 Identação](#8-identação)
-* [8 Linguagem](#9-linguagem)
-* [9 Definições, Acrônimos e Abreviações](#10-definições-acrônimos-e-abreviações)
-* [10 Referências](#11-referência)
+  * [1 Nomeação](#1-nomeação)
+    * [1.1 Pacotes](#11-pacotes)
+    * [1.2 Classes](#12-classes)
+    * [1.3 Objetos](#13-objetos)
+    * [1.4 Interfaces](#14-interfaces)
+    * [1.5 Funções](#15-funções)
+    * [1.6 Atributos](#16-atributos)
+    * [1.7 Variáveis](#17-variáveis)
+  * [2 Formatação e Estilo](#2-formatação-e-estilo)
+  * [3 Comentários](#3-comentários)
+  * [4 Testes](#4-testes)
+  * [5 Import](#5-import)
+  * [6 Estruturas de Decisão](#6-estruturas-de-decisão)
+  * [7 Identação](#7-identação)
+  * [8 Linguagem](#8-linguagem)
+  * [9 Estilo da Model](#9-estilo-da-model)
+  * [10 Referências](#10-referências)
 
 
 
@@ -26,7 +36,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: PackageName
   Errado: package_name
   ```
@@ -36,7 +46,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: ClassName
   Errado: classname
   ```
@@ -46,7 +56,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: ObjectName
   Errado: objectname
   ```
@@ -56,7 +66,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: InterfaceName
   Errado: interfacename
   ```
@@ -66,7 +76,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: functionName()
   Errado: Function_name()
   ```
@@ -77,7 +87,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: attribute
   Errado: Attribute_Example
   ```
@@ -88,7 +98,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: var variableExample
   Errado: Variable_Example
   ```
@@ -100,7 +110,7 @@
 
   Ex.:
 
-```
+```kotlin
   Certo: class Formating_Example {
 
          }
@@ -115,7 +125,7 @@
 
   Ex.:
 
-```
+```kotlin
   Certo: var rightExample
   Errado: var wrongExample;
   ```
@@ -124,12 +134,12 @@
 
   Ex.:
 
-```
+```kotlin
   Certo: rightExample = 1 + 1
   Errado: wrongExample=1+1
   ```
 
-  ```
+  ```kotlin
   Certo: i++
   Errado: i + +
   ```
@@ -141,7 +151,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: // Right example
   Errado: // wrong example
   ```
@@ -151,7 +161,7 @@
 
   Ex.: 
 
-  ```
+  ```kotlin
   Certo: // Right example
   Errado: // Exemplo errado
   ```
@@ -160,7 +170,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: // Right example
   Errado: /* Wrong example */
   ```
@@ -169,7 +179,7 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: /* This is an example about
          how to use correctly the comentar
          on the code */ 
@@ -180,13 +190,51 @@
 
 ## 4 Testes
 
-  ***ADICIONAR DIVISÃO DO TESTE***
+  Utilizar comentários de uma linha para descrever cada etapa do teste
+
+  Ex.:
+
+  ```kotlin
+  Certo:
+  @Test
+  fun testSuccess_basic() {
+    // prepare
+    val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
+    val response = Response.success(redditNewsResponse)
+
+    when (callMock.execute()).thenReturn(response)
+
+    // call
+    val newsManager = NewsManager(apiMock)
+    newsManager.getNews("").subscribe(testSub)
+
+    // assert
+    testSub.assertNoErrors()
+    testSub.assertValueCount(1)
+    testSub.assertCompleted()
+  }
+
+  Errado:
+  @Test
+  fun testSuccess_basic() {
+    val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
+    val response = Response.success(redditNewsResponse)
+    when (callMock.execute()).thenReturn(response)
+    val newsManager = NewsManager(apiMock)
+    newsManager.getNews("").subscribe(testSub)
+    testSub.assertNoErrors()
+    testSub.assertValueCount(1)
+    testSub.assertCompleted()
+  }
+
+
+  ```
 
   Utilizarão do padrão _UpperCamelCase_ e permitirão o uso de _underscores_.
 
   Ex.:
 
-   ```
+   ```kotlin
   Certo: class Test_Case {
 
          }
@@ -203,7 +251,7 @@
 
   Ex.: 
 
-   ```
+   ```kotlin
   Certo: import NameOfPackage
          import NameOfClass
 
@@ -233,12 +281,14 @@
 
   Ex.:
 
-```
-  Certo: if (examples != null)
+```kotlin
+  Certo: if (examples != null) {
              examples == 1
+         }
 
-  Errado: if (examples == null)
+  Errado: if (examples == null) {
             examples == null
+          }
   ```
 
 ## 8 Linguagem
@@ -247,12 +297,45 @@
 
   Ex.:
 
-  ```
+  ```kotlin
   Certo: class GreatExample;
   Errado: classe ExemploErrado;
   ```
 
-## 9 Definições, acrônimos e abreviações
+## 9 Estilo da Model
+
+  A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
+
+Ex.:
+  ````kotlin
+  Certo:
+    class Model {
+        class Request {
+            var name: String? = null
+            constructor(name: String?) {
+                this.name = name
+            }
+        }
+        class Response {
+            var age: Int? = null
+            constructor(age: Int?) {
+                this.age = age
+            }
+        }
+        class ViewModel {
+            var message: String?= null
+            constructor(message: String?) {
+                this.message = message
+            }
+        }
+    }
+  
+  Errado:
+    class Model {
+        var age: Int? = null
+        var name: String? = null
+    }
+  ````
 
 ## 10 Referências
 [Kotlin Style Guide](https://kotlinlang.org/docs/reference/coding-conventions.html)
