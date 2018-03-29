@@ -5,7 +5,6 @@ package com.nexte.nexte.LoginScene
  */
 
 interface LoginBusinessLogic {
-
     fun doAuthentication(request: LoginModel.Request)
 }
 

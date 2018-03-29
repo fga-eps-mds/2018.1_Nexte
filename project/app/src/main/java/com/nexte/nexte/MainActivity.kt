@@ -2,22 +2,22 @@ package com.nexte.nexte
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
-import kotlinx.android.synthetic.main.activity_login_view.*
+import com.nexte.nexte.ShowProfile.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.w3c.dom.Text
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, EditProfileDisplayLogic {
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayLogic,
+        EditProfileDisplayLogic {
 
+    var showProfileInteractor : ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.setupShowProfileScene()
         this.setupLoginScene() // Setup Login Scene
         this.setupEditProfileScene()
 
@@ -27,6 +27,27 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, EditProfileDisplayL
 
         val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorllranyfreire")
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
+        //testing if it is working
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(
+                "gabrielalbino", "AUFDSASFSA321IEUNFDI23FIQ2F")
+        showProfileInteractor?.showProfile(showUserProfileRequest)
+    }
+
+    /*
+    * SHOW PROFILE SCENE
+    * */
+    fun setupShowProfileScene(){
+        var viewScene = this
+        val interactor = ShowProfileInteractor()
+        val presenter = ShowProfilePresenter()
+
+        interactor.presenter = presenter
+        presenter.viewScene = viewScene
+        viewScene.showProfileInteractor = interactor
+    }
+
+    override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
+        textView.text = viewModel.message
     }
 
     /*
@@ -47,9 +68,8 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, EditProfileDisplayL
 
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
-        textView.setText(viewModel.message)
+        textView.text = viewModel.message
     }
-
 
     /*
      *  EDIT PROFILE SCENE
