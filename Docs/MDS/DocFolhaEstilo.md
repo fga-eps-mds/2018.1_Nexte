@@ -5,7 +5,7 @@
 | 27/03/2018 | 0.2 | Definição das nomeações | Alexandre Miguel e Helena Goulart |
 | 28/03/2018 | 0.3 | Adição de novos tópicos e correção dos topicos | Gabriel Albino e Helena Goulart |
 | 28/03/2018 | 1.0 | Finalização dos tópicos que estavam pendentes no documento | Gabriel Albino e Letícia Meneses |
-| 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart| 
+| 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart|
 
 ### Índice Analítico
 
@@ -24,7 +24,7 @@
     * [3.2 Comentários em Interfaces](#32-comentários-em-interfaces)
     * [3.3 Comentários em Métodos](#33-comentários-em-métodos)
     * [3.4 Comentários em Atributos](#34-comentários-em-atributos)
-    * [3.5 Comentários em Variáveis](#35-comentários-em-varáveis)
+    * [3.5 Comentários em Variáveis](#35-comentários-em-variáveis)
     * [3.6 Comentários em Testes](#36-comentários-em-testes)
   * [4 Import](#4-import)
   * [5 Estruturas de Decisão](#5-estruturas-de-decisão)
