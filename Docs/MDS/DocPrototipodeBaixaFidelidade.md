@@ -41,7 +41,7 @@ Na Cena 2, após o usuário clicar na opção "Esqueceu sua senha?" ele poderá 
 
   ### 2.3 Cena 3: Código de autentificação
 
-Na cena 3, tem como objetivo fornecer ao usuário um ambiente no qual ele poderá digitar o código enviado para o email dele, e assim aar continuidade no processo de redefinição de senha.
+Na cena 3, tem como objetivo fornecer ao usuário um ambiente no qual ele poderá digitar o código enviado para o email dele, e assim dar continuidade no processo de redefinição de senha.
 
   ### 2.4 Cena 4: Redefinição de senha
 
@@ -49,7 +49,7 @@ Na cena 4, o usuário após ter seu código enviado por email autentificado, pod
 
   ### 2.5 Cena 5: Feed
 
-A cena 5 consiste em um ambiente no qual o usuário visualiza as últimas partidas realizadas, assim como o resultado, o jogador desafiado e o jogador desafiante, e seus respectivos rankings e nomes.
+A cena 5 consiste em um ambiente no qual o usuário visualiza as últimas partidas realizadas, assim como o resultado, o jogador desafiado e o jogador desafiante e seus respectivos rankings e nomes.
 
   ### 2.6 Cena 6: Informação das partidas direto do feed
 
