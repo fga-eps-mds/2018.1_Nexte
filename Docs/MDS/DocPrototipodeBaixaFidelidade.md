@@ -37,11 +37,11 @@ A cena 1 do aplicativo Nexte inclui um espaço no qual o usuário deverá coloca
 
   ### 2.2 Cena 2: Esqueceu sua senha?
 
-Na Cena 2, após o usuário clicar na opção "Esqueceu sua senha?" ele poderá visualizar uma espaço disponibilizado para o email, que deve ser o mesmo que está no cadastro realizado no clube e receberá um código.
+Na Cena 2, após o usuário clicar na opção "Esqueceu sua senha?" ele poderá visualizar um espaço disponibilizado para o email, que deve ser o mesmo que está no cadastro realizado no clube e receberá um código.
 
   ### 2.3 Cena 3: Código de autentificação
 
-Na cena 3, tem como objetivo fornecer ao usuário um ambiente no qual ele poderá digitar o código enviado para o email dele, para prosseguir no processo de redefinição de senha.
+Na cena 3, tem como objetivo fornecer ao usuário um ambiente no qual ele poderá digitar o código enviado para o email dele, e assim aar continuidade no processo de redefinição de senha.
 
   ### 2.4 Cena 4: Redefinição de senha
 
@@ -49,15 +49,15 @@ Na cena 4, o usuário após ter seu código enviado por email autentificado, pod
 
   ### 2.5 Cena 5: Feed
 
-A cena 5 consiste em um ambiente no qual o usuário visualiza as últimas partidas realizadas, assim como, o resultado, o jogador desafiado e o jogador desafiante, seus respectivos rankings e nomes.
+A cena 5 consiste em um ambiente no qual o usuário visualiza as últimas partidas realizadas, assim como o resultado, o jogador desafiado e o jogador desafiante, e seus respectivos rankings e nomes.
 
   ### 2.6 Cena 6: Informação das partidas direto do feed
 
-A cena 6, após o clique em algumas das partidas do feed, o usuário tem acesso as informações da partidas, como o nomes dos jogadores, quem foi o desafiado e desafiante, placar, posições no ranking, duração do jogo, local, data e horário que a partida ocorreu. Além disso, nessa cena, o usuário pode interagir, por meio de comentários e likes na cena que exibe as partidas de modo mais detalhado.
+A cena 6, após o clique em algumas das partidas do feed, o usuário tem acesso as informações da partidas, como o nomes dos jogadores, quem foi o desafiado e desafiante, placar, posições no ranking, duração do jogo, local, data e horário que a partida ocorreu. Além disso, nessa cena, o usuário pode interagir por meio de comentários e likes na cena que exibe as partidas de modo mais detalhado.
 
   ### 2.7 Cena 7: Perfil dos jogadores
 
-Na cena 7, se o usuário clicar na foto ou no nome de um jogador específico, ele pode visualizar os dados desse jogador como o nome, a posição no ranking, sexo, email, idade, a qual clube é vinculado e o username do facebook.Se o usuário estiver vendo seu próprio perfil, o botão de "editar" estará visível caso ele queria atualizar alguma informação.
+Na cena 7, se o usuário clicar na foto ou no nome de um jogador específico, ele pode visualizar os dados desse jogador como o nome, a posição no ranking, sexo, email, idade, a qual clube é vinculado e o username do facebook. Se o usuário estiver vendo seu próprio perfil, o botão de "editar" estará visível caso ele queria atualizar alguma informação.
 
   ### 2.8 Cena 8: ícone de pesquisa
 
@@ -65,7 +65,7 @@ Na região superior à direita do ambiente do aplicativo, há um ícone fixo na 
 
   ### 2.9 Cena 9: Desafiar Jogadores
 
-Quando o ícone de desafio é solicitado, o usuário visualiza uma cena no qual ele pode marcar um partida de tênis, apenas preenchendo o local, que direciona ao google maps, para obter uma localização mais precisa, e preenchendo também o horário, após esse processo, é possível enviar uma solicitação para o jogador que deseja desafiar.
+Quando o ícone de desafio é solicitado, o usuário visualiza uma cena no qual ele pode marcar um partida de tênis, apenas preenchendo o local, que direciona ao google maps para obter uma localização mais precisa, e preenchendo também o horário. Após esse processo, é possível enviar uma solicitação para o jogador que deseja desafiar.
 
   ### 2.10 Cena 10: Menu
 
@@ -81,8 +81,8 @@ Na cena 12, o usuário tem acesso as notificações, nesse ambiente é apresenta
 
   ### 2.13 Cena 13: Histórico de partidas
 
-No histórico, são registradas todas as partidas já finalizadas, o resultado e quem foi o adversário. Partidas pendentes também estão presentes nessa cena.
+No histórico são registradas todas as partidas já finalizadas, o resultado e quem foi o adversário. Partidas pendentes também estão presentes nessa cena.
 
   ### 2.14 Cena 14: Atualizar ou cancelar partidas
 
-No clique nas partidas pendentes e após o término delas, o usuário tem a visão das informações delas, como o local, horário, seus pontos, pontos do adversário e duração.Quando a partida está pendente, ele pode cancelar o jogo, se o jogo tiver ocorrido, apenas o desafiante tem a autonomia de preencher o resultado no campo destinado a esse dado.
+No clique nas partidas pendentes e após o término delas, o usuário tem a visão das informações delas, como o local, horário, seus pontos, pontos do adversário e duração. Quando a partida está pendente, ele pode cancelar o jogo, se o jogo tiver ocorrido, apenas o desafiante tem a autonomia de preencher o resultado no campo destinado a esse dado.
