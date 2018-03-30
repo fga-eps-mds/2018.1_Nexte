@@ -1,6 +1,4 @@
-package com.nexte.nexte.LoginScene
-
-import com.nexte.nexte.CommentsScene.CommentsModel
+package com.nexte.nexte.CommentsScene
 
 /**
  * Created by leticia on 29/03/18.

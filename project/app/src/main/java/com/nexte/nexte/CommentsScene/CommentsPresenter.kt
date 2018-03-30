@@ -1,20 +1,18 @@
 package com.nexte.nexte.CommentsScene
 
-import com.nexte.nexte.LoginScene.CommentsDisplayLogic
-
 /**
  * Created by leticia on 29/03/18.
  */
 
 interface CommentsPresentationLogic {
 
-    fun presentLastComment(response: CommentsModel.Response)
+    fun presentComment(response: CommentsModel.Response)
 }
 
 class CommentsPresenter : CommentsPresentationLogic {
     var viewController: CommentsDisplayLogic? = null
 
-    override fun presentLastComment(response: CommentsModel.Response) {
+    override fun presentComment(response: CommentsModel.Response) {
         var message: String
         val comment: String? = response.userName
 
