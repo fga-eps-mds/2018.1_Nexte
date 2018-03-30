@@ -2,22 +2,25 @@ package com.nexte.nexte
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.nexte.nexte.CommentsScene.*
 import com.nexte.nexte.ShowProfile.ShowProfileDisplayLogic
 import com.nexte.nexte.ShowProfile.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.nexte.nexte.LoginScene.*
 
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayLogic {
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayLogic, CommentsDisplayLogic {
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
+    var commentsInteractor: CommentsBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupShowProfileScene()
         this.setupLoginScene() // Setup Login Scene
+        this.setupCommentsScene()
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
@@ -27,6 +30,10 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(
                 "gabrielalbino", "AUFDSASFSA321IEUNFDI23FIQ2F")
         showProfileInteractor?.showProfile(showUserProfileRequest)
+
+        //testing if is working
+        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro" )
+        commentsInteractor?.recentComments(commentsRequest)
     }
 
     /*
@@ -64,6 +71,27 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
 
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
+        textView.text = viewModel.message
+    }
+
+    /*
+     *  COMMENTS SCENE
+     */
+
+
+    private fun setupCommentsScene() {
+
+        val viewController = this
+        val interactor = CommentsInteractor()
+        val presenter = CommentsPresenter()
+
+        viewController.commentsInteractor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+
+
+    override fun displayComments(viewModel: CommentsModel.ViewModel) {
         textView.text = viewModel.message
     }
 

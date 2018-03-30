@@ -15,7 +15,7 @@ class CommentsInteractor : CommentsBusinessLogic {
     var presenter : CommentsPresentationLogic? = null
 
     override fun recentComments(request: CommentsModel.Request) {
-        worker.getComment(request) { response ->
+        worker.getCommentsData(request) { response ->
             this.presenter?.presentLastComment(response)
         }
     }

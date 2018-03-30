@@ -15,7 +15,6 @@ class CommentsModel {
             this.game = game
             this.user = user
         }
-
     }
 
     class Response {
@@ -27,16 +26,13 @@ class CommentsModel {
         var like: Boolean? = null
 
         constructor(comment: String?, userName: String?, linkUserProfilePicture: String?,
-                    commentTime: String?, like: Boolean? ) {
+                    commentTime: String?, like: Boolean?) {
             this.comment = comment
             this.userName = userName
             this.linkUserProfilePicture = linkUserProfilePicture
             this.commentTime = commentTime
             this.like = like
         }
-    }
-
-
     }
 
     class ViewModel {
@@ -46,6 +42,6 @@ class CommentsModel {
         constructor(message: String) {
 
             this.message = message
+        }
     }
-
 }
