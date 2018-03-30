@@ -29,17 +29,19 @@ class EditProfileModel {
     }
     class Request {
         var username: String = ""
+        var tokenID: String = ""
 
-        constructor(username: String) {
-            this.username= username
+        constructor(username: String, tokenID: String) {
+            this.username = username
+            this.tokenID = tokenID
         }
 
     }
     class ViewModel {
-        var message: String= ""
+        var message: String = ""
 
         constructor(message: String){
-            this.message= message
+            this.message = message
         }
     }
 }

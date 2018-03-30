@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
-import com.nexte.nexte.ShowProfile.*
+import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayLogic,
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
 
-        val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorllranyfreire")
+        val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorranyfreire", "HDDGFRUH65752")
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
         //testing if it is working
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(
