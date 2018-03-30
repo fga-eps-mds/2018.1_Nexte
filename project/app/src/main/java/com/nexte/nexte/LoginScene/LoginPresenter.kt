@@ -16,7 +16,7 @@ class LoginPresenter: LoginPresentationLogic {
     // Format data to expected
     override fun presentLogin(response: LoginModel.Response) {
 
-        var message: String = ""
+        var message: String
         val tokenId: String = response.tokenId
 
         if(tokenId.equals("")) {
