@@ -11,7 +11,7 @@ interface FeedPresentationLogic {
 
 class FeedPresenter : FeedPresentationLogic {
 
-    var view: FeedDisplayLogic? = null
+    var viewController: FeedDisplayLogic? = null
 
     override fun presentLastGame(response: FeedModel.Response){
 
@@ -26,6 +26,6 @@ class FeedPresenter : FeedPresentationLogic {
         }
 
         val viewModel: FeedModel.ViewModel = FeedModel.ViewModel(message)
-        this.view?.displayRecentGames(viewModel)
+        this.viewController?.displayRecentGames(viewModel)
     }
 }

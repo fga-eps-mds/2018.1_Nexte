@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic {
     var feedInteractor: FeedBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupLoginScene() // Setup Login Scene
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic {
         this.feedInteractor?.recentGames(feedRequest)
 
     }
+
 
     /*
      *  LOGIN SCENE
@@ -49,8 +51,10 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic {
 
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
+
         textView.setText(viewModel.message)
     }
+
 
     /*
      *  FEED SCENE
@@ -59,17 +63,18 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic {
     // Setup all modules for exchange of data
     private fun setupFeedScene() {
 
-        val viewScene = this
+        val viewController = this
         val interactor = FeedInteractor()
         val presenter = FeedPresenter()
 
-        viewScene.feedInteractor = interactor
+        viewController.feedInteractor = interactor
         interactor.presenter = presenter
-        presenter.viewScene = viewScene
+        presenter.viewController = viewController
     }
 
     // Print a message according with received data
     override fun displayRecentGames(viewModel: FeedModel.ViewModel) {
+
         textView.text = viewModel.message
     }
 }
