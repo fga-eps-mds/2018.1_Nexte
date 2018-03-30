@@ -18,10 +18,10 @@ class ChallengeModel{
         var challenged: Player? = null
         var place: String? = ""
         var hour: String? = ""
-        var date: DateFormat? = null
+        var date: String? = null
 
         constructor(challenger: Player?, challenged: Player?, place: String?, hour: String?,
-                    date: DateFormat?) {
+                    date: String?) {
             this.challenger = challenger
             this.challenged = challenged
             this.place = place

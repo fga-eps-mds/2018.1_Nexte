@@ -5,13 +5,13 @@ class ChallengeWorker {
 
     constructor() {}
 
-    /* Here, the variable 'request' would get the answer from the server
-    * as the actual challenged player give his response*/
+    fun setMatch (request: ChallengeModel.Request, completion: (ChallengeModel.Response) -> Unit) {
 
-    fun setMatch (request: Boolean?, completion: (ChallengeModel.Response) -> Unit) {
+        var challengedAnswer: Boolean? = null
+
+        challengedAnswer = request.place.equals("FGA")
 
 
-        var challengedAnswer: Boolean? = request
 
 
         val response: ChallengeModel.Response = ChallengeModel.Response(challengedAnswer)
