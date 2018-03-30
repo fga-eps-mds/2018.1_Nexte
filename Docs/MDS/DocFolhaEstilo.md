@@ -5,8 +5,142 @@
 | 27/03/2018 | 0.2 | Definição das nomeações | Alexandre Miguel e Helena Goulart |
 | 28/03/2018 | 0.3 | Adição de novos tópicos e correção dos topicos | Gabriel Albino e Helena Goulart |
 | 28/03/2018 | 1.0 | Finalização dos tópicos que estavam pendentes no documento | Gabriel Albino e Letícia Meneses |
+| 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart| 
 
 
+
+1
+### Histórico da Revisão
+2
+| Data | Versão | Descrição | Autor |
+3
+|---|---|---|---|
+4
+| 26/03/2018 | 0.1 | Criação do documento | Larissa Sales e Letícia Meneses |
+5
+| 27/03/2018 | 0.2 | Definição das nomeações | Alexandre Miguel e Helena Goulart |
+6
+| 28/03/2018 | 0.3 | Adição de novos tópicos e correção dos topicos | Gabriel Albino e Helena Goulart |
+7
+| 28/03/2018 | 1.0 | Finalização dos tópicos que estavam pendentes no documento | Gabriel Albino e Letícia Meneses |
+8
+| 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart 
+9
+​
+10
+​
+11
+​
+12
+### Índice Analítico
+13
+​
+14
+  * [1 Nomeação](#1-nomeação)
+15
+    * [1.1 Pacotes](#11-pacotes)
+16
+    * [1.2 Classes](#12-classes)
+17
+    * [1.3 Objetos](#13-objetos)
+18
+    * [1.4 Interfaces](#14-interfaces)
+19
+    * [1.5 Métodos](#15-métodos)
+20
+    * [1.6 Atributos](#16-atributos)
+21
+    * [1.7 Variáveis](#17-variáveis)
+22
+    * [1.8 Testes](#18-testes)
+23
+  * [2 Formatação e Estilo](#2-formatação-e-estilo)
+24
+  * [3 Comentários](#3-comentários)
+25
+    * [3.1 Comentários em Classes](#31-comentários-em-classes)
+26
+    * [3.2 Comentários em Interfaces](#32-comentários-em-interfaces)
+27
+    * [3.3 Comentários em Métodos](#33-comentários-em-métodos)
+28
+    * [3.4 Comentários em Atributos](#34-comentários-em-atributos)
+29
+    * [3.5 Comentários em Variáveis](#35-comentários-em-varáveis)
+30
+    * [3.6 Comentários em Testes](#36-comentários-em-testes)
+31
+  * [4 Import](#4-import)
+32
+  * [5 Estruturas de Decisão](#5-estruturas-de-decisão)
+33
+  * [6 Identação](#6-identação)
+34
+  * [7 Linguagem](#7-linguagem)
+35
+  * [8 Estilo da Model](#8-estilo-da-model)
+36
+  * [9 Referências](#9-referências)
+37
+​
+38
+​
+39
+​
+40
+## 1 Nomeação
+41
+### 1.1 Pacotes
+42
+Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
+43
+​
+44
+Ex.:
+45
+​
+46
+  * Certo:
+47
+​
+48
+  ```kotlin
+49
+    PackageName
+50
+  ```
+51
+  * Errado:
+52
+​
+53
+  ```kotlin
+54
+    package_name
+55
+  ```
+56
+​
+57
+### 1.2 Classes
+58
+São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
+59
+​
+60
+Ex.:
+61
+​
+62
+  * Certo:
+63
+​
+64
+  ```kotlin
+65
+  ClassName
+66
+  ```
 
 ### Índice Analítico
 
