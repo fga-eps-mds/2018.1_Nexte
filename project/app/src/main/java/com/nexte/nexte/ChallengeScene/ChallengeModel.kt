@@ -11,7 +11,15 @@ class ChallengeModel{
 
     class Request{
 
-        constructor(place: String)
+
+        var challenger: String? = ""
+        var place: String? = ""
+        var hour: Int? = null
+
+
+        constructor(challenger: Player, place: String) {
+            this.place = place
+        }
 
     }
 
