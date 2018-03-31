@@ -1,4 +1,4 @@
-package com.nexte.nexte.ShowProfile
+package com.nexte.nexte.ShowProfileScene
 
 /**
  * Created by albino on 25/03/18.
