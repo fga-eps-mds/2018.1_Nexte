@@ -7,6 +7,9 @@
 | 28/03/2018 | 1.0 | Finalização dos tópicos que estavam pendentes no documento | Gabriel Albino e Letícia Meneses |
 | 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart|
 | 29/03/2018 | 1.1.1 | Correções de design no documento | Gabriel Albino|
+| 31/03/2018 | 1.1.2 | Adição de tópico de nomeação de Interface e Model | Gabriel Albino e Larissa Sales|
+
+
 ### Índice Analítico
 
   * [1 Nomeação](#1-nomeação)
@@ -53,9 +56,9 @@ Ex.:
   ```
 
 ### 1.2 Classes
-São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
+- São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
 
-Ex.:
+  Ex.:
 
   * Certo:
 
@@ -67,6 +70,21 @@ Ex.:
   ```kotlin
   class classname
   ```
+
+- A classe Model de cada cena devem seguir o padrão _'SceneName'Model_
+
+Ex.:
+
+* Certo:
+
+```kotlin
+class LoginModel
+```
+* Errado:
+
+```kotlin
+class Model
+```
 
 ### 1.3 Objetos
 São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
@@ -86,7 +104,7 @@ Ex.:
   ```
 
 ### 1.4 Interfaces
-São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
+- São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
 
 Ex.:
 
@@ -100,6 +118,50 @@ Ex.:
   ```kotlin
   interface interfacename
   ```
+
+- Interfaces pertencentes à Presenter devem ser nomeadas com _'SceneName'PresentationLogic_
+
+Ex.:
+
+  * Certo:
+
+  ```kotlin
+  interface LoginPresentationLogic
+  ```
+  * Errado:
+
+  ```kotlin
+  interface PresentationLogic
+  ```
+
+  - Interfaces pertencentes à View devem ser nomeadas com _'SceneName'DisplayLogic_
+
+  Ex.:
+
+    * Certo:
+
+    ```kotlin
+    interface LoginDisplayLogic
+    ```
+    * Errado:
+
+    ```kotlin
+    interface DisplayLogic
+    ```
+
+    - Interfaces pertencentes à interactor devem ser nomeadas com _'SceneName'BusinessLogic_
+
+    Ex.:
+
+      * Certo:
+
+      ```kotlin
+      interface LoginBusinessLogic
+      * Errado:
+
+      ```kotlin
+      interface BusinessLogic
+      ```
 
 ### 1.5 Métodos
 A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
@@ -550,7 +612,7 @@ Ex.:
   * Certo:
 
   ```kotlin
-  if (examples != null) 
+  if (examples != null)
       examples == 1
   }
   ```
