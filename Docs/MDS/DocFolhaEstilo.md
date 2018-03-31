@@ -40,101 +40,101 @@
 
 ## 1 Nomeação
 ### 1.1 Pacotes
-Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
+1. Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
 
-Ex.:
+   Ex.:
 
   * Certo:
 
-  ```kotlin
-    package PackageName
-  ```
+     ```kotlin
+        package PackageName
+     ```
   * Errado:
 
-  ```kotlin
-    package package_name
-  ```
+    ```kotlin
+      package package_name
+    ```
 
 ### 1.2 Classes
-- São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
+1. São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
 
   Ex.:
 
   * Certo:
 
-  ```kotlin
-  class ClassName
-  ```
+    ```kotlin
+      class ClassName
+    ```
   * Errado:
 
-  ```kotlin
-  class classname
-  ```
+    ```kotlin
+      class classname
+    ```
 
 - A classe Model de cada cena devem seguir o padrão _'SceneName'Model_
 
-Ex.:
+  Ex.:
 
-* Certo:
+    * Certo:
 
-```kotlin
-class LoginModel
-```
-* Errado:
+    ```kotlin
+    class LoginModel
+    ```
+    * Errado:
 
-```kotlin
-class Model
-```
+    ```kotlin
+    class Model
+    ```
 
 ### 1.3 Objetos
-São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
+1. São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
 
-Ex.:
+  Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  var objectName = ObjectClass()
-  ```
+    ```kotlin
+    var objectName = ObjectClass()
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-  var objectname = ObjectClass()
-  ```
+    ```kotlin
+    var objectname = ObjectClass()
+    ```
 
 ### 1.4 Interfaces
-- São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
+1. São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
 
-Ex.:
-
-  * Certo:
-
-  ```kotlin
-  interface InterfaceName
-  ```
-  * Errado:
-
-  ```kotlin
-  interface interfacename
-  ```
-
-- Interfaces pertencentes à Presenter devem ser nomeadas com _'SceneName'PresentationLogic_
-
-Ex.:
+  Ex.:
 
   * Certo:
 
-  ```kotlin
-  interface LoginPresentationLogic
-  ```
+    ```kotlin
+    interface InterfaceName
+    ```
   * Errado:
 
-  ```kotlin
-  interface PresentationLogic
-  ```
+    ```kotlin
+    interface interfacename
+    ```
 
-  - Interfaces pertencentes à View devem ser nomeadas com _'SceneName'DisplayLogic_
+2. Interfaces pertencentes à Presenter devem ser nomeadas com _'SceneName'PresentationLogic_
+
+  Ex.:
+
+    * Certo:
+
+    ```kotlin
+    interface LoginPresentationLogic
+    ```
+    * Errado:
+
+    ```kotlin
+    interface PresentationLogic
+    ```
+
+3. Interfaces pertencentes à View devem ser nomeadas com _'SceneName'DisplayLogic_
 
   Ex.:
 
@@ -143,286 +143,287 @@ Ex.:
     ```kotlin
     interface LoginDisplayLogic
     ```
-    * Errado:
 
+    * Errado:
     ```kotlin
     interface DisplayLogic
     ```
 
-    - Interfaces pertencentes à interactor devem ser nomeadas com _'SceneName'BusinessLogic_
+- Interfaces pertencentes à interactor devem ser nomeadas com _'SceneName'BusinessLogic_
 
-    Ex.:
+  Ex.:
 
-      * Certo:
+    * Certo:
 
-      ```kotlin
-      interface LoginBusinessLogic
-      * Errado:
+    ```kotlin
+    interface LoginBusinessLogic
+    ```
 
-      ```kotlin
-      interface BusinessLogic
-      ```
+    * Errado:
+    ```kotlin
+    interface BusinessLogic_
+    ```
 
 ### 1.5 Métodos
-A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
+1. A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
 
-Ex.:
+  Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  fun methodName()
-  ```
+    ```kotlin
+    fun methodName()
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-  fun Method_name()
-  ```
+    ```kotlin
+    fun Method_name()
+    ```
 
 
 ### 1.6 Atributos
-Segue o padrão _lowerCamelCase_, contendo nomes significativos e sem _underscores_.
+1. Segue o padrão _lowerCamelCase_, contendo nomes significativos e sem _underscores_.
 
-Ex.:
+  Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  fun method(attribute: String)
-  ```
+    ```kotlin
+    fun method(attribute: String)
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-  fun method(Attribute_Example: String)
-  ```
+    ```kotlin
+    fun method(Attribute_Example: String)
+    ```
 
 
 ### 1.7 Variáveis
-Devem ser precedidas pela declaração do tipo _var_ para valores alteráveis ou _val_ para valores fixos, seguindo o padrão _lowerCamelCase_ , contendo nomes significativos e sem _underscores_.
+1. Devem ser precedidas pela declaração do tipo _var_ para valores alteráveis ou _val_ para valores fixos, seguindo o padrão _lowerCamelCase_ , contendo nomes significativos e sem _underscores_.
 
-Ex.:
+  Ex.:
 
-  * Certo:
-  ```kotlin
-  var variableExample
-  ```
+    * Certo:
+    ```kotlin
+    var variableExample
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-  var Variable_Example
-  ```
+    ```kotlin
+    var Variable_Example
+    ```
 
 
 ### 1.8 Testes
 
-Utilizarão do padrão _UpperCamelCase_ e não permitirão o uso de _underscores_.
+1. Utilizarão do padrão _UpperCamelCase_ e não permitirão o uso de _underscores_.
 
-Ex.:
+  Ex.:
 
-* Certo:
- ```kotlin
-class TestCase {
+    * Certo:
+    ```kotlin
+    class TestCase {
 
-       }
-```
+    }
+    ```
 
-* Errado:
+    * Errado:
 
-```kotlin
- class test_case {
+    ```kotlin
+     class test_case {
 
-       }
-```
+     }
+    ```
 
-* Classe de teste deverá ter o nome da classe a ser testada e deverá terminar com a palavra "Test", utilizando o padrão _upperCamelCase_
+2. Classe de teste deverá ter o nome da classe a ser testada e deverá terminar com a palavra "Test", utilizando o padrão _upperCamelCase_
 
-* Certo
-```Kotlin
-class LoginWorkerTest {
+  Ex.:
 
-}
-```
+    * Certo:
+    ```kotlin
+    class someClassTest {
 
-* Errado:
-```Kotlin
-class testLoginWorker {
+    }
+    ```
 
-}
-```
+    * Errado:
 
+    ```kotlin
+    class someclasstest {
+
+    }
+    ```
 
 ## 2 Formatação e Estilo
 
-As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta e haverá espaços após a escrita de classes, métodos e estruturas de decisão.
+1. As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta e haverá espaços após a escrita de classes, métodos e estruturas de decisão.
 
-Ex.:
+  Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  class Formating_Example {
+    ```kotlin
+    class Formating_Example {
 
-         }
-  ```
+           }
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-  class Formating_Example {
+    ```kotlin
+    class Formating_Example {
 
-                                            }  
-  ```
+                                              }  
+    ```
 
+2. Pontos e vírgulas não serão utilizados no final de cada linha de código.
 
-Pontos e vírgulas não serão utilizados no final de cada linha de código.
+  Ex.:
 
-Ex.:
+    * Certo:
 
-  * Certo:
+    ```kotlin
+    var rightExample
+    ```
+    * Errado:
 
-  ```kotlin
-  var rightExample
-  ```
-  * Errado:
+    ```kotlin
+    var   xample;
+    ```
 
-  ```kotlin
-  var   xample;
-  ```
+3. Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
 
-Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
+  Ex.:
 
-Ex.:
+    * Certo:
 
-  * Certo:
+    ```kotlin
+    var rightExample = 1 + 1
+    ```
 
-  ```kotlin
-  var rightExample = 1 + 1
-  ```
+    * Errado:
 
-  * Errado:
+    ```kotlin
+    var wrongExample=1+1
+    ```
+    * Certo:
 
-  ```kotlin
-  var wrongExample=1+1
-  ```
-  * Certo:
+    ```kotlin
+    i++
+    ```
+    * Errado:
 
-  ```kotlin
-  i++
-  ```
-  * Errado:
-
-  ```kotlin
-  i + +
-  ```
+    ```kotlin
+    i + +
+    ```
 
 
 ## 3 Comentários
 
-Devem iniciar com letra maiúscula e ter espaço apoś "//". Para uma maior compreensão do código, os comentários devem estar presentes neles como uma breve apresentação do objetivo e como o método funciona.
+1. Devem iniciar com letra maiúscula e ter espaço apoś "//". Para uma maior compreensão do código, os comentários devem estar presentes neles como uma breve apresentação do objetivo e como o método funciona.
 
-Ex.:
+  Ex.:
 
-  - Certo:
+    - Certo:
 
-  ```kotlin
-  // Right example
-  ```
-  * Errado:
-  ```kotlin
-  //wrong example
-  ```
+      ```kotlin
+      // Right example
+      ```
+    * Errado:
+      ```kotlin
+      //wrong example
+      ```
 
+2. Devem ser escritos no mesmo idioma do código
 
-- Devem ser escritos no mesmo idioma do código
+  Ex.:
 
-Ex.:
+    * Certo:
 
-  * Certo:
+    ```kotlin
+    //Right example
+    ```
+    * Errado:
 
-  ```kotlin
-  //Right example
-  ```
-  * Errado:
-
-  ```kotlin
-  //Exemplo errado
-  ```
+    ```kotlin
+    //Exemplo errado
+    ```
 
 * Comentários de uma linha devem ser escritos usando `//`
 
-Ex.:
+  Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  //Right example
-  ```
+    ```kotlin
+    //Right example
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-   /* Wrong example */
-  ```
+    ```kotlin
+     /* Wrong example */
+    ```
 
 * Comentários de mais de uma linha devem ser escritos usando `/* */`, contendo quebra de linhas que auxiliem na visualização do comentário, sendo iniciado e finalizado na mesma linha da sinalização. Cada linha do comentário deve estar alinhada com a primeira linha, mantendo a inicialização do texto na mesma coluna.
 
-Ex.:
+  Ex.:
 
   * Certo:
 
-  ```kotlin
-   /* This is an example about
-      how to use correctly the commentary
-      on the code */
-  ```
+    ```kotlin
+     /* This is an example about
+        how to use correctly the commentary
+        on the code */
+    ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-   /*
-   This is not
-      the right example
-     about using a commentary
-   */
-  ```
+    ```kotlin
+     /*
+     This is not
+        the right example
+       about using a commentary
+     */
+    ```
 
 
 ### 3.1 Comentários em classes
 
-Os comentários devem estar uma linha acima da classe referenciada, possuindo quebras de linha para melhor visualização do conteúdo e contendo uma breve descrição da funcionalidade dessa classe. O uso de comentários em classes é obrigatório.
+1. Os comentários devem estar uma linha acima da classe referenciada, possuindo quebras de linha para melhor visualização do conteúdo e contendo uma breve descrição da funcionalidade dessa classe. O uso de comentários em classes é obrigatório.
 
-Ex.:
+  Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-   /* This class exemplifies
-      and portraits how to correctly
-      use the commentaries on the classes */
+      ```kotlin
+       /* This class exemplifies
+          and portraits how to correctly
+          use the commentaries on the classes */
 
-   class ExampleClass<Parameter> : ClassImplementations {
+       class ExampleClass<Parameter> : ClassImplementations {
 
-   }
-  ```
+       }
+      ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-   // This is not the right example
-   // about using a commentary in class
-   class ExampleClass<Parameter> : ClassImplementations {
-     //neither is this expeficiations
+      ```kotlin
+       // This is not the right example
+       // about using a commentary in class
+       class ExampleClass<Parameter> : ClassImplementations {
+         //neither is this expeficiations
 
-   }
+       }
 
-  ```
+      ```
 
 ### 3.2 Comentários em interfaces
 
-Os comentários devem estar uma linha acima da interface referenciada e contendo uma breve descrição da funcionalidade dessa interface. O uso de comentários em interfaces é opcional.
+1. Os comentários devem estar uma linha acima da interface referenciada e contendo uma breve descrição da funcionalidade dessa interface. O uso de comentários em interfaces é opcional.
 
 Ex.:
 
