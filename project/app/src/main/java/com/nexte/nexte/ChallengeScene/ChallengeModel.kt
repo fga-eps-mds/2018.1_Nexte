@@ -14,14 +14,14 @@ class ChallengeModel{
     class Request{
 
 
-        var challenger: Player? = null
-        var challenged: Player? = null
+        var challenger: ChallengeModel.Player? = null
+        var challenged: ChallengeModel.Player? = null
         var place: String? = ""
         var hour: String? = ""
         var date: String? = null
 
-        constructor(challenger: Player?, challenged: Player?, place: String?, hour: String?,
-                    date: String?) {
+        constructor(challenger: ChallengeModel.Player?, challenged: ChallengeModel.Player?,
+                    place: String?, hour: String?, date: String?) {
             this.challenger = challenger
             this.challenged = challenged
             this.place = place
@@ -49,6 +49,26 @@ class ChallengeModel{
         }
     }
 
+    class Player {
 
+        var name: String? = ""
+        var rankingPosition: Int? = null
+        var wins: Int? = null
+        var losses: Int? = null
+        var pictureAdress: String? = ""
+
+
+        constructor(name: String?, rankingPosition: Int?, wins: Int?, losses: Int?,
+                    pictureAdress: String?) {
+            this.name = name
+            this.rankingPosition = rankingPosition
+            this.wins = wins
+            this.losses = losses
+            this.pictureAdress = pictureAdress
+        }
+
+
+
+    }
 
 }

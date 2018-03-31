@@ -3,21 +3,27 @@ package com.nexte.nexte
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import com.nexte.nexte.ChallengeScene.ChallengeModel
+import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.ChallengeScene.*
 import kotlinx.android.synthetic.main.activity_login_view.*
-import com.nexte.nexte.ShowProfile.*
+import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
+import com.nexte.nexte.FeedScene.*
 
 
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic, ChallengeDisplayLogic {
+
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
+        ChallengeDisplayLogic, EditProfileDisplayLogic {
+
+
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
+    var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
 
@@ -26,6 +32,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupLoginScene() // Setup Login Scene
+        this.setupEditProfileScene()
         this.setupFeedScene() // Setup Feed Scene
         this.setupShowProfileScene() // Setup Show Profile Scene
         this.setupChallengeScene() // Setup Challenge Scene
@@ -34,6 +41,8 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
 
+        val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorranyfreire", "HDDGFRUH65752")
+        this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
         //testing if it is working
         val feedRequest: FeedModel.Request = FeedModel.Request ("leticia", "larissa")
         this.feedInteractor?.recentGames(feedRequest)
@@ -44,12 +53,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
         //testing if it is working
-        var alexandre: Player = Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
-        var helena: Player = Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
+        var alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
+        var helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
         val challengeRequest: ChallengeModel.Request = ChallengeModel.Request(alexandre, helena, "FGA", "14:35", "15/12/2019")
         this.challengeInteractor?.sendChallenge(challengeRequest)
     }
-
 
     /*
      *  LOGIN SCENE
@@ -72,7 +80,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
 
         textView.setText(viewModel.message)
     }
-
 
     /*
      *  FEED SCENE
@@ -97,6 +104,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     }
 
     /*
+
     *  CHALLENGE SCENE
     */
 
@@ -113,6 +121,27 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     }
 
     override fun displayChallengeAnswer(viewModel: ChallengeModel.ViewModel) {
+        textView.text = viewModel.message
+    }
+
+    /*
+     *  EDIT PROFILE SCENE
+     */
+
+    // Setup all modules for exchange of data
+    private fun setupEditProfileScene() {
+
+        val viewController = this
+        val interactor = EditProfileInteractor()
+        val presenter = EditProfilePresenter()
+
+        viewController.editProfileInteractor = interactor
+        interactor.presenter = presenter
+        presenter.view = viewController
+    }
+
+    // Print a message according with received data
+    override fun displayEditProfileState(viewModel: EditProfileModel.ViewModel) {
         textView.text = viewModel.message
     }
 
@@ -134,7 +163,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     }
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-
         textView.text = viewModel.message
     }
 }

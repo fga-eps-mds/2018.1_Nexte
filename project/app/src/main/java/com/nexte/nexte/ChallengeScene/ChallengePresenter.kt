@@ -1,7 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-import com.nexte.nexte.ShowProfile.ShowProfileDisplayLogic
-
 
 interface ChallengePresentationLogic {
 
