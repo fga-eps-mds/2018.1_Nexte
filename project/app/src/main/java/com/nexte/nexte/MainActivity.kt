@@ -1,21 +1,31 @@
 package com.nexte.nexte
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-
+import com.nexte.nexte.ChallengeScene.ChallengeModel
 import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
+import com.nexte.nexte.FeedScene.*
+import com.nexte.nexte.ChallengeScene.*
+import kotlinx.android.synthetic.main.activity_login_view.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.nexte.nexte.FeedScene.*
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayLogic,
-        EditProfileDisplayLogic, FeedDisplayLogic {
+
+
+
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
+        ChallengeDisplayLogic, EditProfileDisplayLogic {
+
+
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
+    var challengeInteractor: ChallengeBussinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -25,6 +35,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
         this.setupEditProfileScene()
         this.setupFeedScene() // Setup Feed Scene
         this.setupShowProfileScene() // Setup Show Profile Scene
+        this.setupChallengeScene() // Setup Challenge Scene
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
@@ -40,6 +51,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
                                                                                         "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
+
+        //testing if it is working
+        var alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
+        var helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
+        val challengeRequest: ChallengeModel.Request = ChallengeModel.Request(alexandre, helena, "FGA", "14:35", "15/12/2019")
+        this.challengeInteractor?.sendChallenge(challengeRequest)
     }
 
     /*
@@ -87,6 +104,27 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
     }
 
     /*
+
+    *  CHALLENGE SCENE
+    */
+
+    // Setup all modules for exchange of data
+    private fun setupChallengeScene() {
+
+        val viewChallenge = this
+        val interactor = ChallengeInteractor()
+        val presenter = ChallengePresenter()
+
+        viewChallenge.challengeInteractor = interactor
+        interactor.presenter = presenter
+        presenter.viewChallenge = viewChallenge
+    }
+
+    override fun displayChallengeAnswer(viewModel: ChallengeModel.ViewModel) {
+        textView.text = viewModel.message
+    }
+
+    /*
      *  EDIT PROFILE SCENE
      */
 
@@ -106,6 +144,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, ShowProfileDisplayL
     override fun displayEditProfileState(viewModel: EditProfileModel.ViewModel) {
         textView.text = viewModel.message
     }
+
 
     /*
      * SHOW PROFILE SCENE
