@@ -3,13 +3,19 @@ package com.nexte.nexte.ChallengeScene
 
 class ChallengeWorker {
 
-    constructor() {}
 
     fun setMatch (request: ChallengeModel.Request, completion: (ChallengeModel.Response) -> Unit) {
 
         var challengedAnswer: Boolean? = null
+        var isValid: Boolean? = null
+        var place = request.place
 
-        challengedAnswer = request.place.equals("FGA")
+        if(place == "FGA")
+            isValid = true
+        else
+            isValid = false
+
+        challengedAnswer = isValid
 
 
 
