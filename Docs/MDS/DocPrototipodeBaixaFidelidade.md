@@ -1,27 +1,27 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 29/03/2018 | 0.1 | Criação do documento | Lorrany Freire |
+| 29/03/2018 | 0.1 | Criação e preenchimento do documento | Lorrany Freire |
+| 29/03/2018 | 1.0 | Correção do índice analítico | Gabriel Albino |
 
 ### Índice Analítico
 
-  * [1 Imagens do fluxo de cenas](#1 imagem de fluxo de cenas)
-  * [2 Descrição das cenas](#2 descrição das cenas)
-    * [2.1 Cena de Login](#21-cena de Login)
-    * [2.2 Esqueceu sua senha?](#22-esqueceu sua senha?)
-    * [2.3 Código de autentificação](#23-Código de autentificação)
-    * [2.4 Redefinição de senha](#24-redefinição de senha)
-    * [2.5 Feed](#25-Feed)
-    * [2.6 Informação das partidas direto do feed](#26-informação das partidas direto do feed)
-    * [2.7 Perfil dos jogadores](#27-perfil dos jogadores)
-    * [2.8 Ícone de pesquisa](#28-ícone de pesquisado)
-    * [2.9 Desafiar Jogadores](#29-Desafiar Jogadores)
-    * [2.10 Menu](#210-menu)
-    * [2.11 Rank](#211-rank)
-    * [2.12 Notificações](#212-notificações)
-    * [2.13 Histórico](#213-histórico)
-    * [2.14 Atualizar ou cancelar partidas](#214-atualizar ou cancelar partidas)
-
+  * [1 Imagens do fluxo de cenas](#1-imagens-do-fluxo-de-cenas)
+  * [2 Descrição das Cenas](#2-descrição-das-cenas)
+      * [2.1 Cena 1: Cena de Login](#21-cena-1-cena-de-login)
+      * [2.2 Cena 2: Esqueceu sua senha?](#22-cena-2-esqueceu-sua-senha)
+      * [2.3 Cena 3: Código de autentificação](#23-cena-3-código-de-autentificação)
+      * [2.4 Cena 4: Redefinição de senha](#24-cena-4-redefinição-de-senha)
+      * [2.5 Cena 5: Feed](#25-cena-5-feed)
+      * [2.6 Cena 6: Informação das partidas direto do feed](#26-cena-6-informação-das-partidas-direto-do-feed)
+      * [2.7 Cena 7: Perfil dos jogadores](#27-cena-7-perfil-dos-jogadores)
+      * [2.8 Cena 8: ícone de pesquisa](#28-cena-8-ícone-de-pesquisa)
+      * [2.9 Cena 9: Desafiar Jogadores](#29-cena-9-desafiar-jogadores)
+      * [2.10 Cena 10: Menu](#210-cena-10-menu)
+      * [2.11 Cena 11: Rank](#211-cena-11-rank)
+      * [2.12 Cena 12: Notificações](#212-cena-12-notificações)
+      * [2.13 Cena 13: Histórico de partidas](#213-cena-13-histórico-de-partidas)
+      * [2.14 Cena 14: Atualizar ou cancelar partidas](#214-cena-14-atualizar-ou-cancelar-partidas)
 
 ## 1 Imagens do fluxo de cenas
 
