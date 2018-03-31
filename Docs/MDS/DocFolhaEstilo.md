@@ -6,7 +6,7 @@
 | 28/03/2018 | 0.3 | Adição de novos tópicos e correção dos topicos | Gabriel Albino e Helena Goulart |
 | 28/03/2018 | 1.0 | Finalização dos tópicos que estavam pendentes no documento | Gabriel Albino e Letícia Meneses |
 | 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart|
-
+| 29/03/2018 | 1.1.1 | Correções de design no documento | Gabriel Albino|
 ### Índice Analítico
 
   * [1 Nomeação](#1-nomeação)
@@ -44,12 +44,12 @@ Ex.:
   * Certo:
 
   ```kotlin
-    PackageName
+    package PackageName
   ```
   * Errado:
 
   ```kotlin
-    package_name
+    package package_name
   ```
 
 ### 1.2 Classes
@@ -60,12 +60,12 @@ Ex.:
   * Certo:
 
   ```kotlin
-  ClassName
+  class ClassName
   ```
   * Errado:
 
   ```kotlin
-  classname
+  class classname
   ```
 
 ### 1.3 Objetos
@@ -76,13 +76,13 @@ Ex.:
   * Certo:
 
   ```kotlin
-  ObjectName
+  var objectName = ObjectClass()
   ```
 
   * Errado:
 
   ```kotlin
-  objectname
+  var objectname = ObjectClass()
   ```
 
 ### 1.4 Interfaces
@@ -93,12 +93,12 @@ Ex.:
   * Certo:
 
   ```kotlin
-  InterfaceName
+  interface InterfaceName
   ```
   * Errado:
 
   ```kotlin
-  interfacename
+  interface interfacename
   ```
 
 ### 1.5 Métodos
@@ -109,13 +109,13 @@ Ex.:
   * Certo:
 
   ```kotlin
-  methodName()
+  fun methodName()
   ```
 
   * Errado:
 
   ```kotlin
-  Method_name()
+  fun Method_name()
   ```
 
 
@@ -127,13 +127,13 @@ Ex.:
   * Certo:
 
   ```kotlin
-  attribute
+  fun method(attribute: String)
   ```
 
   * Errado:
 
-  ```
-   Attribute_Example
+  ```kotlin
+  fun method(Attribute_Example: String)
   ```
 
 
@@ -150,19 +150,19 @@ Ex.:
   * Errado:
 
   ```kotlin
-   Variable_Example
+  var Variable_Example
   ```
 
 
 ### 1.8 Testes
 
-Utilizarão do padrão _UpperCamelCase_ e permitirão o uso de _underscores_.
+Utilizarão do padrão _UpperCamelCase_ e não permitirão o uso de _underscores_.
 
 Ex.:
 
 * Certo:
  ```kotlin
-class Test_Case {
+class TestCase {
 
        }
 ```
@@ -170,10 +170,27 @@ class Test_Case {
 * Errado:
 
 ```kotlin
- class testcase {
+ class test_case {
 
        }
 ```
+
+* Classe de teste deverá ter o nome da classe a ser testada e deverá terminar com a palavra "Test", utilizando o padrão _upperCamelCase_
+
+* Certo
+```Kotlin
+class LoginWorkerTest {
+
+}
+```
+
+* Errado:
+```Kotlin
+class testLoginWorker {
+
+}
+```
+
 
 ## 2 Formatação e Estilo
 
@@ -192,7 +209,7 @@ Ex.:
   * Errado:
 
   ```kotlin
-  Formating_Example {
+  class Formating_Example {
 
                                             }  
   ```
@@ -210,7 +227,7 @@ Ex.:
   * Errado:
 
   ```kotlin
-  Errado: var wrongExample;
+  var   xample;
   ```
 
 Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
@@ -220,13 +237,13 @@ Ex.:
   * Certo:
 
   ```kotlin
-  rightExample = 1 + 1
+  var rightExample = 1 + 1
   ```
 
   * Errado:
 
   ```kotlin
-  wrongExample=1+1
+  var wrongExample=1+1
   ```
   * Certo:
 
@@ -242,34 +259,34 @@ Ex.:
 
 ## 3 Comentários
 
-Devem iniciar com letra maiúscula e ter espaço apoś "\\". Para uma maior compreensão do código, os comentários devem estar presentes neles como uma breve apresentação do objetivo e como o método funciona.
+Devem iniciar com letra maiúscula e ter espaço apoś "//". Para uma maior compreensão do código, os comentários devem estar presentes neles como uma breve apresentação do objetivo e como o método funciona.
 
 Ex.:
 
   - Certo:
 
   ```kotlin
-  \\ Right example
-    ```
+  // Right example
+  ```
   * Errado:
-
+  ```kotlin
+  //wrong example
   ```
-  \\wrong example
-  ```
 
-* Devem ser escritos no mesmo idioma do código;
+
+- Devem ser escritos no mesmo idioma do código
 
 Ex.:
 
   * Certo:
 
   ```kotlin
-  Right example
+  //Right example
   ```
   * Errado:
 
-  ```
-  Exemplo errado
+  ```kotlin
+  //Exemplo errado
   ```
 
 * Comentários de uma linha devem ser escritos usando `//`
@@ -279,12 +296,12 @@ Ex.:
   * Certo:
 
   ```kotlin
-  Right example
+  //Right example
   ```
 
   * Errado:
 
-  ```
+  ```kotlin
    /* Wrong example */
   ```
 
@@ -302,7 +319,7 @@ Ex.:
 
   * Errado:
 
-  ```
+  ```kotlin
    /*
    This is not
       the right example
@@ -519,7 +536,7 @@ Ex.:
   ```
   * Errado:
 
-  ```
+  ```kotlin
    if(wrongExample == wrong)
             return wrongExample
   ```
@@ -533,16 +550,16 @@ Ex.:
   * Certo:
 
   ```kotlin
-  if (examples != null) {
-             examples == 1
-         }
+  if (examples != null) 
+      examples == 1
+  }
   ```
   * Errado:
 
   ```kotlin
-   if (examples == null) {
-            examples == null
-          }
+  if (examples == null) {
+    examples == null
+  }
   ```
 
 ## 7 Linguagem
@@ -559,7 +576,7 @@ Ex.:
   * Errado:
 
   ```kotlin
-  Errado: classe ExemploErrado;
+  classe ExemploErrado;
   ```
 
 ## 8 Estilo da Model
@@ -595,7 +612,7 @@ Ex.:
 
   * Errado:
 
-  ```
+  ```kotlin
     class Model {
         var age: Int? = null
         var name: String? = null
