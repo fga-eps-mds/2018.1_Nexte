@@ -8,6 +8,8 @@
 | 29/03/2018 | 1.1 | Adição de subtópicos em comentários e remoção do tópico de Testes | Alexandre Miguel e Helena Goulart|
 | 29/03/2018 | 1.1.1 | Correções de design no documento | Gabriel Albino|
 | 31/03/2018 | 1.1.2 | Adição de tópico de nomeação de Interface e Model | Gabriel Albino e Larissa Sales|
+| 31/03/2018 | 1.1.3 | Melhoria na formatação do arquivo | Gabriel Albino e Larissa Sales|
+
 
 
 ### Índice Analítico
@@ -42,645 +44,645 @@
 ### 1.1 Pacotes
 1. Seguem o padrão _UpperCamelCase_, ou seja, com todas as palavras iniciadas por letras maiúsculas e sem elemento separador, com termos preferencialmente suscintos e sem o uso de _underscores_.
 
-   Ex.:
+    Ex.:
 
-  * Certo:
+      * Certo:
 
-     ```kotlin
-        package PackageName
-     ```
-  * Errado:
+        ```kotlin
+            package PackageName
+        ```
+      * Errado:
 
-    ```kotlin
-      package package_name
-    ```
+        ```kotlin
+          package package_name
+        ```
 
 ### 1.2 Classes
 1. São nomeadas conforme o padrão _UpperCamelCase_, sem _underscores_.
 
-  Ex.:
-
-  * Certo:
-
-    ```kotlin
-      class ClassName
-    ```
-  * Errado:
-
-    ```kotlin
-      class classname
-    ```
-
-- A classe Model de cada cena devem seguir o padrão _'SceneName'Model_
-
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    class LoginModel
-    ```
+      ```kotlin
+        class ClassName
+      ```
     * Errado:
 
-    ```kotlin
-    class Model
-    ```
+      ```kotlin
+        class classname
+      ```
+
+- A classe Model de cada cena devem seguir o padrão _'SceneName'Model_
+
+    Ex.:
+
+    * Certo:
+
+      ```kotlin
+      class LoginModel
+      ```
+    * Errado:
+
+      ```kotlin
+      class Model
+      ```
 
 ### 1.3 Objetos
 1. São nomeados conforme o padrão _lowerCamelCase_, ou seja, com a primeira palavra iniciada por letra minúscula e as demais palavras iniciadas por letras maiúsculas.
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    var objectName = ObjectClass()
-    ```
+      ```kotlin
+      var objectName = ObjectClass()
+      ```
 
     * Errado:
 
-    ```kotlin
-    var objectname = ObjectClass()
-    ```
+      ```kotlin
+      var objectname = ObjectClass()
+      ```
 
 ### 1.4 Interfaces
 1. São nomeados conforme o padrão _UpperCamelCase_ e sem _underscores_.
 
-  Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-    ```kotlin
-    interface InterfaceName
-    ```
-  * Errado:
+      ```kotlin
+      interface InterfaceName
+      ```
+    * Errado:
 
-    ```kotlin
-    interface interfacename
-    ```
+      ```kotlin
+      interface interfacename
+      ```
 
 2. Interfaces pertencentes à Presenter devem ser nomeadas com _'SceneName'PresentationLogic_
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    interface LoginPresentationLogic
-    ```
+      ```kotlin
+      interface LoginPresentationLogic
+      ```
     * Errado:
 
-    ```kotlin
-    interface PresentationLogic
-    ```
+      ```kotlin
+      interface PresentationLogic
+      ```
 
 3. Interfaces pertencentes à View devem ser nomeadas com _'SceneName'DisplayLogic_
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    interface LoginDisplayLogic
-    ```
+      ```kotlin
+      interface LoginDisplayLogic
+      ```
 
     * Errado:
-    ```kotlin
-    interface DisplayLogic
-    ```
+      ```kotlin
+      interface DisplayLogic
+      ```
 
-- Interfaces pertencentes à interactor devem ser nomeadas com _'SceneName'BusinessLogic_
+4. Interfaces pertencentes à interactor devem ser nomeadas com _'SceneName'BusinessLogic_
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    interface LoginBusinessLogic
-    ```
+      ```kotlin
+      interface LoginBusinessLogic
+      ```
 
     * Errado:
-    ```kotlin
-    interface BusinessLogic_
-    ```
+      ```kotlin
+      interface BusinessLogic_
+      ```
 
 ### 1.5 Métodos
 1. A nomenclatura segue o padrão _lowerCamelCase_, sem o uso de _underscores_ e acompanhado de parênteses.
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    fun methodName()
-    ```
+      ```kotlin
+      fun methodName()
+      ```
 
     * Errado:
 
-    ```kotlin
-    fun Method_name()
-    ```
+      ```kotlin
+      fun Method_name()
+      ```
 
 
 ### 1.6 Atributos
 1. Segue o padrão _lowerCamelCase_, contendo nomes significativos e sem _underscores_.
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    fun method(attribute: String)
-    ```
+      ```kotlin
+      fun method(attribute: String)
+      ```
 
     * Errado:
 
-    ```kotlin
-    fun method(Attribute_Example: String)
-    ```
+      ```kotlin
+      fun method(Attribute_Example: String)
+      ```
 
 
 ### 1.7 Variáveis
 1. Devem ser precedidas pela declaração do tipo _var_ para valores alteráveis ou _val_ para valores fixos, seguindo o padrão _lowerCamelCase_ , contendo nomes significativos e sem _underscores_.
 
-  Ex.:
+    Ex.:
 
     * Certo:
-    ```kotlin
-    var variableExample
-    ```
+      ```kotlin
+      var variableExample
+      ```
 
     * Errado:
 
-    ```kotlin
-    var Variable_Example
-    ```
+      ```kotlin
+      var Variable_Example
+      ```
 
 
 ### 1.8 Testes
 
 1. Utilizarão do padrão _UpperCamelCase_ e não permitirão o uso de _underscores_.
 
-  Ex.:
+   Ex.:
 
     * Certo:
-    ```kotlin
-    class TestCase {
+      ```kotlin
+      class TestCase {
 
-    }
-    ```
+      }
+      ```
 
     * Errado:
 
-    ```kotlin
-     class test_case {
+      ```kotlin
+      class test_case {
 
-     }
-    ```
+      }
+      ```
 
 2. Classe de teste deverá ter o nome da classe a ser testada e deverá terminar com a palavra "Test", utilizando o padrão _upperCamelCase_
 
-  Ex.:
+   Ex.:
 
     * Certo:
-    ```kotlin
-    class someClassTest {
+      ```kotlin
+      class someClassTest {
 
-    }
-    ```
+      }
+      ```
 
     * Errado:
 
-    ```kotlin
-    class someclasstest {
+      ```kotlin
+      class someclasstest {
 
-    }
-    ```
+      }
+      ```
 
 ## 2 Formatação e Estilo
 
 1. As chaves devem ser abertas no final de cada linha e fechadas em uma linha separada e alinhada com a mesma coluna em que foi aberta e haverá espaços após a escrita de classes, métodos e estruturas de decisão.
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    class Formating_Example {
+      ```kotlin
+      class Formating_Example {
 
-           }
-    ```
+      }
+      ```
 
     * Errado:
 
-    ```kotlin
-    class Formating_Example {
+      ```kotlin
+      class Formating_Example {
 
-                                              }  
-    ```
+                                                }  
+      ```
 
 2. Pontos e vírgulas não serão utilizados no final de cada linha de código.
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    var rightExample
-    ```
+      ```kotlin
+      var rightExample
+      ```
     * Errado:
 
-    ```kotlin
-    var   xample;
-    ```
+      ```kotlin
+      var example;
+      ```
 
 3. Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    var rightExample = 1 + 1
-    ```
+      ```kotlin
+      var rightExample = 1 + 1
+      ```
 
     * Errado:
 
-    ```kotlin
-    var wrongExample=1+1
-    ```
+      ```kotlin
+      var wrongExample=1+1
+      ```
     * Certo:
 
-    ```kotlin
-    i++
-    ```
+      ```kotlin
+      i++
+      ```
     * Errado:
 
-    ```kotlin
-    i + +
-    ```
+      ```kotlin
+      i + +
+      ```
 
 
 ## 3 Comentários
 
 1. Devem iniciar com letra maiúscula e ter espaço apoś "//". Para uma maior compreensão do código, os comentários devem estar presentes neles como uma breve apresentação do objetivo e como o método funciona.
 
-  Ex.:
+    Ex.:
 
     - Certo:
 
-      ```kotlin
-      // Right example
-      ```
+        ```kotlin
+        // Right example
+        ```
     * Errado:
-      ```kotlin
-      //wrong example
-      ```
+        ```kotlin
+        //wrong example
+        ```
 
 2. Devem ser escritos no mesmo idioma do código
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    //Right example
-    ```
+      ```kotlin
+      //Right example
+      ```
     * Errado:
 
-    ```kotlin
-    //Exemplo errado
-    ```
+      ```kotlin
+      //Exemplo errado
+      ```
 
-* Comentários de uma linha devem ser escritos usando `//`
+3. Comentários de uma linha devem ser escritos usando `//`
 
-  Ex.:
+    Ex.:
 
     * Certo:
 
-    ```kotlin
-    //Right example
-    ```
+      ```kotlin
+      //Right example
+      ```
 
     * Errado:
 
-    ```kotlin
-     /* Wrong example */
-    ```
+      ```kotlin
+      /* Wrong example */
+      ```
 
-* Comentários de mais de uma linha devem ser escritos usando `/* */`, contendo quebra de linhas que auxiliem na visualização do comentário, sendo iniciado e finalizado na mesma linha da sinalização. Cada linha do comentário deve estar alinhada com a primeira linha, mantendo a inicialização do texto na mesma coluna.
+4. Comentários de mais de uma linha devem ser escritos usando `/* */`, contendo quebra de linhas que auxiliem na visualização do comentário, sendo iniciado e finalizado na mesma linha da sinalização. Cada linha do comentário deve estar alinhada com a primeira linha, mantendo a inicialização do texto na mesma coluna.
 
-  Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-    ```kotlin
-     /* This is an example about
-        how to use correctly the commentary
-        on the code */
-    ```
+      ```kotlin
+      /* This is an example about
+          how to use correctly the commentary
+          on the code */
+      ```
 
     * Errado:
 
-    ```kotlin
-     /*
-     This is not
-        the right example
-       about using a commentary
-     */
-    ```
+      ```kotlin
+      /*
+      This is not
+          the right example
+        about using a commentary
+      */
+      ```
 
 
 ### 3.1 Comentários em classes
 
 1. Os comentários devem estar uma linha acima da classe referenciada, possuindo quebras de linha para melhor visualização do conteúdo e contendo uma breve descrição da funcionalidade dessa classe. O uso de comentários em classes é obrigatório.
 
-  Ex.:
+    Ex.:
 
-    * Certo:
+      * Certo:
 
-      ```kotlin
-       /* This class exemplifies
-          and portraits how to correctly
-          use the commentaries on the classes */
+        ```kotlin
+        /* This class exemplifies
+            and portraits how to correctly
+            use the commentaries on the classes */
 
-       class ExampleClass<Parameter> : ClassImplementations {
+        class ExampleClass<Parameter> : ClassImplementations {
 
-       }
-      ```
+        }
+        ```
 
-    * Errado:
+      * Errado:
 
-      ```kotlin
-       // This is not the right example
-       // about using a commentary in class
-       class ExampleClass<Parameter> : ClassImplementations {
-         //neither is this expeficiations
+        ```kotlin
+        // This is not the right example
+        // about using a commentary in class
+        class ExampleClass<Parameter> : ClassImplementations {
+          //neither is this expeficiations
 
-       }
+        }
 
-      ```
+        ```
 
 ### 3.2 Comentários em interfaces
 
 1. Os comentários devem estar uma linha acima da interface referenciada e contendo uma breve descrição da funcionalidade dessa interface. O uso de comentários em interfaces é opcional.
 
-Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-   /* This interface do the
-      comunication between other
-      packages and classes */
+      ```kotlin
+      /* This interface do the
+          comunication between other
+          packages and classes */
 
-      interface ExampleInterfaceLogic {
+          interface ExampleInterfaceLogic {
 
-          fun doComunication(request: ExampleModel.Request)
+              fun doComunication(request: ExampleModel.Request)
+          }
+      ```
+
+    * Errado:
+
+      ```kotlin
+      // This interface do the
+        //    comunication between other
+          //  packages and classes
+            interface ExampleInterfaceLogic {
+
+                fun doComunication(request: ExampleModel.Request)
+            }
+
       }
-  ```
 
-  * Errado:
-
-  ```kotlin
-   // This interface do the
-    //    comunication between other
-      //  packages and classes
-        interface ExampleInterfaceLogic {
-
-            fun doComunication(request: ExampleModel.Request)
-        }
-
-   }
-
-  ```
+      ```
 
 ### 3.3 Comentários em Métodos
 
-Os comentários devem estar uma linha acima do método, contendo uma breve explicação da funcionalidade implementada, bem como a relação dessa funcionalidade com os parâmteros declarados. O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
+1. Os comentários devem estar uma linha acima do método, contendo uma breve explicação da funcionalidade implementada, bem como a relação dessa funcionalidade com os parâmteros declarados. O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
 
-Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  /* This method adds
-     a member "T" to
-     this function */
+      ```kotlin
+      /* This method adds
+        a member "T" to
+        this function */
 
-  fun addThis(member: T): Int { ... }
-```
+      fun addThis(member: T): Int { ... }
+      ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-   fun addThis(member: T): Int { ... }
-  ```
+      ```kotlin
+      fun addThis(member: T): Int { ... }
+      ```
 
 ### 3.4 Comentários em Atributos
 
-Os comentários em atributos devem ser feitos na mesma linha de declaração dos mesmos, separados por um espaço entre o símbolo ``//`` e iniciados com letra maiúscula, explicitando o conteúdo referenciado. O Uso de comentários em atributos é obrigatório.
+1. Os comentários em atributos devem ser feitos na mesma linha de declaração dos mesmos, separados por um espaço entre o símbolo ``//`` e iniciados com letra maiúscula, explicitando o conteúdo referenciado. O Uso de comentários em atributos é obrigatório.
 
-Ex.:
+   Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-    class ExampleClass<Parameter> : ClassImplementations {
+      ```kotlin
+        class ExampleClass<Parameter> : ClassImplementations {
 
-      var example : String? = "" // Reference to worker
+          var example : String? = "" // Reference to worker
 
-    }
-  ```
+        }
+      ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-    class ExampleClass<Parameter> : ClassImplementations {
+      ```kotlin
+        class ExampleClass<Parameter> : ClassImplementations {
 
-      var example : String? = "" /* wrong reference to worker*/
+          var example : String? = "" /* wrong reference to worker*/
 
-    }
-  ```
+        }
+      ```
 
 
 ### 3.5 Comentários em Variáveis
 
-Os comentários em variáveis devem ser feitos na mesma linha de declaração, separados por um espaço entre o símbolo ``//`` e iniciados com letra maiúscula, explicitando o conteúdo utilizado. O Uso de comentários em variáveis é opcional.
+1. Os comentários em variáveis devem ser feitos na mesma linha de declaração, separados por um espaço entre o símbolo ``//`` e iniciados com letra maiúscula, explicitando o conteúdo utilizado. O Uso de comentários em variáveis é opcional.
 
-Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-    var name : String? = null // Stores name of players
-  ```
+        ```kotlin
+          var name : String? = null // Stores name of players
+        ```
 
-  * Errado:
+    * Errado:
 
-  ```kotlin
-    var name : String? = null /* the variable is called name*/
+        ```kotlin
+          var name : String? = null /* the variable is called name*/
 
-  ```
+        ```
 
 ### 3.6 Comentários em Testes
 
-Utilizar comentários de uma linha para descrever cada etapa do teste, imetiadamente antes da etapa descrita.
+1. Utilizar comentários de uma linha para descrever cada etapa do teste, imetiadamente antes da etapa descrita.
 
-Ex.:
+   Ex.:
 
-  * Certo:
+   * Certo:
 
-  ```kotlin
-  @Test
-  fun testSuccess_basic() {
-    // prepare
-    val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
-    val response = Response.success(redditNewsResponse)
+      ```kotlin
+      @Test
+      fun testSuccess_basic() {
+        // prepare
+        val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
+        val response = Response.success(redditNewsResponse)
 
-    when (callMock.execute()).thenReturn(response)
+        when (callMock.execute()).thenReturn(response)
 
-    // call
-    val newsManager = NewsManager(apiMock)
-    newsManager.getNews("").subscribe(testSub)
+        // call
+        val newsManager = NewsManager(apiMock)
+        newsManager.getNews("").subscribe(testSub)
 
-    // assert
-    testSub.assertNoErrors()
-    testSub.assertValueCount(1)
-    testSub.assertCompleted()
-  }
-  ```
-  * Errado:
+        // assert
+        testSub.assertNoErrors()
+        testSub.assertValueCount(1)
+        testSub.assertCompleted()
+      }
+      ```
+   * Errado:
 
-  ```kotlin
-  @Test
-  fun testSuccess_basic() {
-    val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
-    val response = Response.success(redditNewsResponse)
-    when (callMock.execute()).thenReturn(response)
-    val newsManager = NewsManager(apiMock)
-    newsManager.getNews("").subscribe(testSub)
-    testSub.assertNoErrors()
-    testSub.assertValueCount(1)
-    testSub.assertCompleted()
-  }
-  ```
+      ```kotlin
+      @Test
+      fun testSuccess_basic() {
+        val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
+        val response = Response.success(redditNewsResponse)
+        when (callMock.execute()).thenReturn(response)
+        val newsManager = NewsManager(apiMock)
+        newsManager.getNews("").subscribe(testSub)
+        testSub.assertNoErrors()
+        testSub.assertValueCount(1)
+        testSub.assertCompleted()
+      }
+      ```
 
 ## 4 Import
 
-As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada.
+1. As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada.
 
-  Ex.:
+    Ex.:
 
-  * Certo:
-   ```kotlin
-  import NameOfPackage
-  import NameOfClass
-  ```
+    * Certo:
+      ```kotlin
+      import NameOfPackage
+      import NameOfClass
+      ```
 
-  * Errado:
-  ```kotlin
-   import NameOfPackage, import NameOfCLass
-  ```
+    * Errado:
+      ```kotlin
+      import NameOfPackage, import NameOfCLass
+      ```
 
 
 ## 5 Estruturas de Decisão
 
-Serão colocados espaços entre essas estruturas e os parênteses que contém os termos. Sempre serão usadas chaves para implementar o corpo das condicionais.
+1. Serão colocados espaços entre essas estruturas e os parênteses que contém os termos. Sempre serão usadas chaves para implementar o corpo das condicionais.
 
-Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  if (rightExample == right) {
-          return rightExample
-        }
-  ```
-  * Errado:
+      ```kotlin
+      if (rightExample == right) {
+              return rightExample
+            }
+      ```
+    * Errado:
 
-  ```kotlin
-   if(wrongExample == wrong)
-            return wrongExample
-  ```
+      ```kotlin
+      if(wrongExample == wrong)
+                return wrongExample
+      ```
 
 ## 6 Identação
 
-A identação deve ser de 4 espaços para cada nível;
+1. A identação deve ser de 4 espaços para cada nível;
 
-Ex.:
+    Ex.:
 
-  * Certo:
+      * Certo:
 
-  ```kotlin
-  if (examples != null)
-      examples == 1
-  }
-  ```
-  * Errado:
+        ```kotlin
+        if (examples != null)
+            examples == 1
+        }
+        ```
+      * Errado:
 
-  ```kotlin
-  if (examples == null) {
-    examples == null
-  }
-  ```
+        ```kotlin
+        if (examples == null) {
+          examples == null
+        }
+        ```
 
 ## 7 Linguagem
 
-O linguagem padrão do programa é em inglês, extendendo-se para pacotes, classes, objetos, atributos e variáveis.
+1. O linguagem padrão do programa é em inglês, extendendo-se para pacotes, classes, objetos, atributos e variáveis.
 
-Ex.:
+    Ex.:
 
-  * Certo:
+    * Certo:
 
-  ```kotlin
-  class GreatExample;
-  ```
-  * Errado:
+      ```kotlin
+      class GreatExample;
+      ```
+    * Errado:
 
-  ```kotlin
-  classe ExemploErrado;
-  ```
+      ```kotlin
+      classe ExemploErrado;
+      ```
 
 ## 8 Estilo da Model
 
-A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
+1. A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
 
-Ex.:
+   Ex.:
 
-  * Certo:
+   * Certo:
 
-  ```kotlin
-    class Model {
-        class Request {
-            var name: String? = null
-            constructor(name: String?) {
-                this.name = name
+      ```kotlin
+        class Model {
+            class Request {
+                var name: String? = null
+                constructor(name: String?) {
+                    this.name = name
+                }
+            }
+            class Response {
+                var age: Int? = null
+                constructor(age: Int?) {
+                    this.age = age
+                }
+            }
+            class ViewModel {
+                var message: String?= null
+                constructor(message: String?) {
+                    this.message = message
+                }
             }
         }
-        class Response {
+      ```
+
+    * Errado:
+
+      ```kotlin
+        class Model {
             var age: Int? = null
-            constructor(age: Int?) {
-                this.age = age
-            }
+            var name: String? = null
         }
-        class ViewModel {
-            var message: String?= null
-            constructor(message: String?) {
-                this.message = message
-            }
-        }
-    }
-```
-
-  * Errado:
-
-  ```kotlin
-    class Model {
-        var age: Int? = null
-        var name: String? = null
-    }
-  ```
+      ```
 
 
 ## 9 Referências
