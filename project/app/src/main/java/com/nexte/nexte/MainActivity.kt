@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nexte.nexte.ChallengeScene.ChallengeModel
+import com.nexte.nexte.CommentsScene.*
 import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.FeedScene.*
@@ -17,7 +18,7 @@ import com.nexte.nexte.FeedScene.*
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
-        ChallengeDisplayLogic, EditProfileDisplayLogic {
+        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
 
 
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
+    var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,19 +37,22 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.setupEditProfileScene()
         this.setupFeedScene() // Setup Feed Scene
         this.setupShowProfileScene() // Setup Show Profile Scene
+        this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
 
+        // Testing if is working
         val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorranyfreire", "HDDGFRUH65752")
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
-        //testing if it is working
+
+        // Testing if is working    
         val feedRequest: FeedModel.Request = FeedModel.Request ("leticia", "larissa")
         this.feedInteractor?.recentGames(feedRequest)
 
-        //testing if it is working
+        // Testing if it is working
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
                                                                                         "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
@@ -57,6 +62,10 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         var helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
         val challengeRequest: ChallengeModel.Request = ChallengeModel.Request(alexandre, helena, "FGA", "14:35", "15/12/2019")
         this.challengeInteractor?.sendChallenge(challengeRequest)
+
+        // Testing if is working
+        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro" )
+        commentsInteractor?.recentComments(commentsRequest)
     }
 
     /*
@@ -145,6 +154,27 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         textView.text = viewModel.message
     }
 
+
+    /*
+     *  COMMENTS SCENE
+     */
+
+
+    private fun setupCommentsScene() {
+
+        val viewController = this
+        val interactor = CommentsInteractor()
+        val presenter = CommentsPresenter()
+
+        viewController.commentsInteractor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+
+
+    override fun displayComments(viewModel: CommentsModel.ViewModel) {
+        textView.text = viewModel.message
+    }
 
     /*
      * SHOW PROFILE SCENE
