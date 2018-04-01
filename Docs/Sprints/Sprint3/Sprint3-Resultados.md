@@ -81,7 +81,9 @@ Nessa _sprint_ foi feito o documento de gestão de riscos do projeto. Para mais 
 * Será realizado um segundo treinamento de Kotlin no final da _sprint_ pois a equipe de desenvolvimento teve muita dificuldade e gastou muito tempo com as histórias de implementação; 
 
 ### 8. EVM
+O valor agregado referente à sprint 3,o projeto teve um resultado positivo entre o valor planejado e o valor agregado, esse valor foi de R$1631,07. Como arealização de pontos foi maior que na Sprint 2, houve o aumento do valor agregado para o projeto.
 
+![](https://i.imgur.com/2vlxBk1.png)
 
 ![]()
 ### 9. **Análise do Scrum Master**
