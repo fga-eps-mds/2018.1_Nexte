@@ -1,7 +1,8 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 02/04/2018| 0.1 |Criação do documento | Geovanni Oliveira |
+| 02/04/2018| 0.1 |Criação do documento | Luis Gustavo |
+| 02/04/2018| 0.2 |Arrumado formatação da tabela | Luis Gustavo |
 -------------------------------------------------------------------------------------------------
 
 **Número da Sprint:** 4
