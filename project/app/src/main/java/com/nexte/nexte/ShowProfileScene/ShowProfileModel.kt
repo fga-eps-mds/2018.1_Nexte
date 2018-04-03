@@ -15,23 +15,14 @@ class ShowProfileModel{
     }
 
     class Response {
-        var facebookUsername: String? = null
-        var pictureAddress: String? = null
-        var rankingPosition: Int? = null
-        var team: String? = null
-        var teamLocation: String? = null
-        var age: Int? = null
+        var user: Player? = null
 
-        constructor(facebookUsername: String?, pictureAddress: String?, rankingPosition: Int?,
-                    team: String?, teamLocation: String?, age: Int?){
-            this.facebookUsername = facebookUsername
-            this.pictureAddress = pictureAddress
-            this.rankingPosition = rankingPosition
-            this.team = team
-            this.teamLocation = teamLocation
-            this.age = age
+        constructor(user: Player?){
+            this.user = user
         }
     }
+
+
 
     class ViewModel {
         var message: String? = null
@@ -39,5 +30,30 @@ class ShowProfileModel{
         constructor(message: String){
             this.message = message
         }
+    }
+
+    class Player {
+
+        var name: String? = ""
+        var rankingPosition: Int? = null
+        var pictureAdress: String? = ""
+        var email: String? = ""
+        var gender: String? = ""
+        var club: String? = ""
+        var age: Int? = -1
+
+        constructor(name: String?, rankingPosition: Int?, pictureAdress: String?,
+                    email: String?, gender: String?, club: String?, age: Int?) {
+            this.name = name
+            this.rankingPosition = rankingPosition
+            this.pictureAdress = pictureAdress
+            this.email = email
+            this.gender = gender
+            this.club = club
+            this.age = age
+        }
+
+
+
     }
 }

@@ -12,31 +12,22 @@ class ShowProfileWorker {
         val username = request.username
         val tokenID = request.tokenID
 
-        var facebookUsername: String = ""
-        var pictureAddress: String = ""
-        var rankingPosition: Int = -1
-        var team: String = ""
-        var teamLocation: String = ""
-        var age: Int? = -1
+        val empty = ShowProfileModel.Player("", -1, "", "",
+                                             "", "", -1)
+
+        val userTest = ShowProfileModel.Player("gabrielalbino", 2,
+                                                "imgur.com/nudh486d4",
+                                                "enggabriel@gmail.com", "masculino",
+                                                "ASCAD", 19)
+        var returned: ShowProfileModel.Player? = null
 
         if(tokenID.equals("")){
-            facebookUsername = ""
-            pictureAddress = ""
-            rankingPosition = -1
-            team = ""
-            teamLocation = ""
-            age = -1
+            returned = empty
         } else if(username.equals("gabrielalbino")) {
-            facebookUsername = "you.albino"
-            pictureAddress = "https://www.nexte.com.br/pictures/user/gabrielalbino/avatar156x156.jpg"
-            rankingPosition = 1
-            team = "jagaritigaricaFon"
-            teamLocation = "Brasília"
-            age = 19
+            returned = userTest
         }
 
-        var response: ShowProfileModel.Response = ShowProfileModel.Response(facebookUsername,
-                pictureAddress, rankingPosition, team, teamLocation, age)
+        var response: ShowProfileModel.Response = ShowProfileModel.Response(returned)
 
         completion(response)
     }

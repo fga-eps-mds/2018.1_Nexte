@@ -14,7 +14,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
         var message: String
-        val age : Int? = response.age
+        val age : Int? = response.user?.age
 
         if(age == (-1)) {
             message = "Não foi possível recuperar o usuário!"
