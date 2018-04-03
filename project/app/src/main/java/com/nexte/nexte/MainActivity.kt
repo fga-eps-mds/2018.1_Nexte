@@ -13,12 +13,11 @@ import kotlinx.android.synthetic.main.activity_login_view.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.nexte.nexte.FeedScene.*
-
-
+import com.nexte.nexte.RankScene.*
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
-        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
+        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic, RankDisplayLogic {
 
 
 
@@ -28,6 +27,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
+    var rankInteractor: RankBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -66,6 +66,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         // Testing if is working
         val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro" )
         commentsInteractor?.recentComments(commentsRequest)
+
+        //Testing if rank is working
+        setupRankScene()
+        val rankRequest: RankModel.Request = RankModel.Request()
+        rankInteractor?.getPlayersRanksForScene(rankRequest)
     }
 
     /*
@@ -193,6 +198,24 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     }
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
+        textView.text = viewModel.message
+    }
+
+    /*
+     *RANK SCENE
+     */
+
+    fun setupRankScene(){
+        val viewScene = this
+        val interactor = RankInteractor()
+        val presenter = RankPresenter()
+
+        viewScene.rankInteractor = interactor
+        interactor.presenter = presenter
+        presenter.viewScene = viewScene
+    }
+
+    override fun displayRankInScreen(viewModel: RankModel.ViewModel) {
         textView.text = viewModel.message
     }
 }
