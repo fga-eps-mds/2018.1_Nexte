@@ -52,7 +52,7 @@ A priorização da *sprint* 4 foi com base na equipe de desenvolvimento começar
 
 #### 4.1 **Dívida Técnicas**
 | Issue | Descrição | Pontos|
-|-------|-----------|-------------|----|
+|-------|-----------|-------------|
 |[#41](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/41) |Eu, como desenvolvedor gostaria de criar a Gestão de Qualidade do projeto, para saber quais métricas e ferramentas a serem utilizadas | 13 |
 |[#64](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/64) |Eu, como desenvolvedor, quero implementar a cena arquitetural do ranking para exibir a classificação dos usuários | 8 |
 |[#67](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/67) |Eu, como DevOps, quero configurar a Integração Contínua ao repositório | 5 |
@@ -63,7 +63,7 @@ A priorização da *sprint* 4 foi com base na equipe de desenvolvimento começar
 #### 4.2 **Novas Histórias**
 
 | Issue | Descrição | Pontos|
-|-------|-----------|-------------|----|
+|-------|-----------|-------------|
 |[#60](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/60) |Eu, como gerente de projeto, quero criar a definição de produtividade para saber como está o andamento da produtividade do time no projeto | 5 |
 |[#73](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/73) |Eu, como gerente do projeto, desejo fazer com que o gitHub Pages seja utilizado para ver a documentação do projeto | 2 |
 |[#92](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/92) |Eu, como usuário, quero ver meu perfil de usuário para visualizar minhas informações | 5 |
