@@ -1,11 +1,11 @@
-package com.nexte.nexte.RankScene
+package com.nexte.nexte.RankingScene
 
 /**
  * Created by albino on 02/04/18.
  */
 
 interface RankPresentationLogic {
-    fun presentRank(response: RankModel.Response)
+    fun presentRank(response: RankingModel.Response)
 }
 
 class RankPresenter : RankPresentationLogic {
@@ -13,7 +13,7 @@ class RankPresenter : RankPresentationLogic {
 
     var viewScene: RankDisplayLogic? = null
 
-    override fun presentRank(response: RankModel.Response) {
+    override fun presentRank(response: RankingModel.Response) {
         var message: String = ""
 
         if(response?.players?.get(0)?.name == "Gabriel Albino" && response?.players?.get(1)?.name == "Helena Goulart") {
@@ -22,7 +22,7 @@ class RankPresenter : RankPresentationLogic {
         else {
             message = "algo deu errado!"
         }
-        var viewModel: RankModel.ViewModel = RankModel.ViewModel(message)
+        var viewModel: RankingModel.ViewModel = RankingModel.ViewModel(message)
 
         viewScene?.displayRankInScreen(viewModel)
     }

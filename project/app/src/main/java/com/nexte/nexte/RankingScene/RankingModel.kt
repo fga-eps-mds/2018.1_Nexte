@@ -1,12 +1,10 @@
-package com.nexte.nexte.RankScene
-
-import java.text.DateFormat
+package com.nexte.nexte.RankingScene
 
 /**
  * Created by albino on 02/04/18.
  */
 
-class RankModel {
+class RankingModel {
     class Request {
         constructor()
     }

@@ -1,6 +1,5 @@
 package com.nexte.nexte
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nexte.nexte.ChallengeScene.ChallengeModel
@@ -9,11 +8,9 @@ import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.ChallengeScene.*
-import kotlinx.android.synthetic.main.activity_login_view.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
-import com.nexte.nexte.FeedScene.*
-import com.nexte.nexte.RankScene.*
+import com.nexte.nexte.RankingScene.*
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
@@ -69,8 +66,8 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
 
         //Testing if rank is working
         setupRankScene()
-        val rankRequest: RankModel.Request = RankModel.Request()
-        rankInteractor?.getPlayersRanksForScene(rankRequest)
+        val rankingRequest: RankingModel.Request = RankingModel.Request()
+        rankInteractor?.getPlayersRanksForScene(rankingRequest)
     }
 
     /*
@@ -215,7 +212,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         presenter.viewScene = viewScene
     }
 
-    override fun displayRankInScreen(viewModel: RankModel.ViewModel) {
+    override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
         textView.text = viewModel.message
     }
 }
