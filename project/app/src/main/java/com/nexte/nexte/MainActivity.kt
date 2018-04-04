@@ -11,6 +11,7 @@ import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.nexte.nexte.RankingScene.*
+import android.content.Intent
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
@@ -68,6 +69,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         setupRankScene()
         val rankingRequest: RankingModel.Request = RankingModel.Request()
         rankInteractor?.getPlayersRanksForScene(rankingRequest)
+
+        //button ranking
+        rankingButton.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /*

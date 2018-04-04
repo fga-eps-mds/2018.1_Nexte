@@ -24,7 +24,8 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".LoginScene.LoginView"></activity>
+        <activity android:name=".LoginScene.LoginView" />
+        <activity android:name=".RankingScene.RankingActivity"></activity>
     </application>
 
 </manifest>
