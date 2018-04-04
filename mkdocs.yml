@@ -1,0 +1,34 @@
+site_name: nexte
+site_description: 'Aplicativo que integra tenistas dentro de clubes, por meio de partidas e desafios, juntando estatísticas e gamificação em forma de ranking. Tem como objetivo gamificar comunidades locais de tênis.'
+repo_url: https://github.com/fga-gpp-mds/2018.1_Nexte
+theme: readthedocs
+
+pages:
+  - Home: README.md
+  - EPS:
+    - Termo de abertura: EPS/TAP.md
+    - Estrutura analítica do projeto: EPS/EAP.md
+    - AgileEVM: EPS/AgileEVM.md
+    - ROADMAP: EPS/RoadMap.md
+    - Metodologia: EPS/MetodologiaDoProjeto.md
+    - Politica de Branches: EPS/PoliticaDeBranches.md
+    - Definição de Pronto: Definicao-de-Pronto.md
+  - MDS:
+    - Documento de visão: MDS/DocVisao.md
+    - Documento de arquitetura: MDS/DocArquitetura.md
+    - Especificação Suplementar: mds/DocEspecificacaoSuplementar.md
+    - Protótipo de Baixa Fidelidade: DocPrototipodeBaixaFidelidade.md
+    - Folha de Estilo: DocFolhaEstilo.md
+ 
+  - Sprint 0:
+    - Planejamento: Sprints/Sprint0/Sprint0-Planejamento.md
+    - Resultado: Sprints/Sprint0/Sprint0-Resultados.md
+  - Sprint 1:
+    - Planejamento: Sprints/Sprint1/Sprint1-Planejamento.md
+    - Resultado: Sprints/Sprint1/Sprint1-Resultados.md
+  - Sprint 2:
+    - Planejamento: Sprints/Sprint2/Sprint2-Planejamento.md
+    - Resultado: Sprints/Sprint2/Sprint2-Resultados.md
+  - Sprint 3:
+    - Planejamento: Sprints/Sprint3/Sprint3-Planejamento.md
+    - Resultado: Sprints/Sprint3/Sprint3-Resultados.md
