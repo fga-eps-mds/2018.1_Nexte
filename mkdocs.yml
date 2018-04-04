@@ -4,7 +4,7 @@ repo_url: https://github.com/fga-gpp-mds/2018.1_Nexte
 theme: readthedocs
 
 pages:
-  - Home: README.md
+  - Home: index.md
   - EPS:
     - Termo de abertura: EPS/TAP.md
     - Estrutura analítica do projeto: EPS/EAP.md
