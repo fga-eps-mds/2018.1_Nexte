@@ -24,7 +24,11 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".LoginScene.LoginView"></activity>
+        <activity android:name=".LoginScene.LoginView" />
+        <activity
+            android:name=".ShowProfileScene.ShowProfileActivity"
+            android:label="@string/title_activity_show_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
