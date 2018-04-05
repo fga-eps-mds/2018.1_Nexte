@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
     }
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-        textView.text = viewModel.message
+        //textView.text = viewModel.message
     }
 
     /*

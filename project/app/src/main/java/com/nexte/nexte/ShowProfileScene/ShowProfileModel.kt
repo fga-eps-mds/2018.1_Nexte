@@ -25,10 +25,11 @@ class ShowProfileModel{
 
 
     class ViewModel {
-        var message: String? = null
+        var player: ShowProfileModel.Player? = null
 
-        constructor(message: String){
-            this.message = message
+        constructor(player: Player?){
+
+            this.player = player
         }
     }
 
