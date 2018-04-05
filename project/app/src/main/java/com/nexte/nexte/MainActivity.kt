@@ -12,8 +12,9 @@ import com.nexte.nexte.ChallengeScene.*
 import kotlinx.android.synthetic.main.activity_login_view.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
-import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.RankScene.*
+import android.content.Intent
+import com.nexte.nexte.R
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupLoginScene() // Setup Login Scene
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.setupShowProfileScene() // Setup Show Profile Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
+
+        profileButtons.setOnClickListener {
+            val intent = Intent(this, ShowProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
