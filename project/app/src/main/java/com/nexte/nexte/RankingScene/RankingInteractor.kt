@@ -4,18 +4,18 @@ package com.nexte.nexte.RankingScene
  * Created by albino on 02/04/18.
  */
 
-interface RankBusinessLogic {
+interface RankingBusinessLogic {
     fun getPlayersRanksForScene(request: RankingModel.Request)
 }
 
-class RankInteractor : RankBusinessLogic {
+class RankingInteractor : RankingBusinessLogic {
 
     var worker = RankingWorker()
-    var presenter: RankPresentationLogic? = null
+    var presenter: RankingPresentationLogic? = null
 
     override fun getPlayersRanksForScene(request: RankingModel.Request) {
-        worker.getUsersInRank(request){ response ->
-            presenter?.presentRank(response)
+        worker.getUsersInRanking(request){ response ->
+            presenter?.presentRanking(response)
         }
 
     }

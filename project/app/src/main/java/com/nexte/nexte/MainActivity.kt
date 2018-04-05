@@ -15,17 +15,15 @@ import android.content.Intent
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
-        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic, RankDisplayLogic {
+        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
 
 
-
-    var showProfileInteractor : ShowProfileBusinessLogic? = null
+    var showProfileInteractor: ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
-    var rankInteractor: RankBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -47,12 +45,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
 
         // Testing if is working    
-        val feedRequest: FeedModel.Request = FeedModel.Request ("leticia", "larissa")
+        val feedRequest: FeedModel.Request = FeedModel.Request("leticia", "larissa")
         this.feedInteractor?.recentGames(feedRequest)
 
         // Testing if it is working
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                                                                                        "AUFDSASFSA321IEUNFDI23FIQ2F")
+                "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
         //testing if it is working
@@ -62,13 +60,8 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.challengeInteractor?.sendChallenge(challengeRequest)
 
         // Testing if is working
-        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro" )
+        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro")
         commentsInteractor?.recentComments(commentsRequest)
-
-        //Testing if rank is working
-        setupRankScene()
-        val rankingRequest: RankingModel.Request = RankingModel.Request()
-        rankInteractor?.getPlayersRanksForScene(rankingRequest)
 
         //button ranking
         rankingButton.setOnClickListener {
@@ -190,7 +183,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
      */
 
     // Setup all modules for exchange of data
-    fun setupShowProfileScene(){
+    fun setupShowProfileScene() {
 
         val viewScene = this
         val interactor = ShowProfileInteractor()
@@ -205,21 +198,4 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         textView.text = viewModel.message
     }
 
-    /*
-     *RANK SCENE
-     */
-
-    fun setupRankScene(){
-        val viewScene = this
-        val interactor = RankInteractor()
-        val presenter = RankPresenter()
-
-        viewScene.rankInteractor = interactor
-        interactor.presenter = presenter
-        presenter.viewScene = viewScene
-    }
-
-    override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
-        textView.text = viewModel.message
-    }
 }
