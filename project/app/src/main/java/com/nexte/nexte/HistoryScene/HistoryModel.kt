@@ -1,6 +1,7 @@
 package com.nexte.nexte.HistoryScene
 
 import android.widget.BaseAdapter
+import android.content.Context
 
 /**
  * Created by helena on 03/04/18.
@@ -49,17 +50,20 @@ class HistoryModel {
 
     class Request {
         var name: String? = null
-
-        constructor(name: String) {
+        var context: Context
+        constructor(name: String, context: Context) {
+            this.context = context
             this.name = name
         }
     }
 
     class Response {
         var match: Array<Match>
+        var context: Context
 
-        constructor(match: Array<Match>) {
+        constructor(match: Array<Match>, context: Context) {
             this.match = match
+            this.context = context
         }
     }
 
