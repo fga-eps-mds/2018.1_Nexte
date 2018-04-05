@@ -13,11 +13,15 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     var viewScene : ShowProfileDisplayLogic? = null
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
-        var player: ShowProfileModel.Player? = null
-        player = response.user
+        val name = response.user?.name
+        val rank = response.user?.rankingPosition
+        val club = response.user?.club
+        val email = response.user?.email
+        val age = response.user?.age
 
 
-        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(player)
+
+        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club, email, age)
 
         viewScene?.displayProfile(viewModel)
     }

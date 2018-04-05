@@ -4,6 +4,7 @@ package com.nexte.nexte.ShowProfileScene
  * Created by albino on 25/03/18.
  */
 class ShowProfileModel{
+
     class Request {
         var username: String? = null
         var tokenID: String? = null
@@ -25,11 +26,20 @@ class ShowProfileModel{
 
 
     class ViewModel {
-        var player: ShowProfileModel.Player? = null
 
-        constructor(player: Player?){
+        var name: String? = null
+        var rank: Int? = null
+        var club: String? = null
+        var email: String? = null
+        var age: Int? = null
 
-            this.player = player
+        constructor(name: String?, rank: Int?, club: String?, email: String?, age: Int?){
+
+            this.name = name
+            this.rank = rank
+            this.club = club
+            this.email = email
+            this.age = age
         }
     }
 

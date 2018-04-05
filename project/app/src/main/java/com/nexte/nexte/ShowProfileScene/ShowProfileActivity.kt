@@ -9,16 +9,43 @@ import kotlinx.android.synthetic.main.activity_show_profile.*
 
 class ShowProfileActivity : AppCompatActivity(), ShowProfileDisplayLogic {
 
+    var showProfileInteractor : ShowProfileBusinessLogic? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_profile)
+        setupShowProfileScene()
+
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
+                "AUFDSASFSA321IEUNFDI23FIQ2F")
+        this.showProfileInteractor?.showProfile(showUserProfileRequest)
+
 
 
     }
 
+
+    fun setupShowProfileScene(){
+
+        val viewScene = this
+        val interactor = ShowProfileInteractor()
+        val presenter = ShowProfilePresenter()
+
+        interactor.presenter = presenter
+        presenter.viewScene = viewScene
+        viewScene.showProfileInteractor = interactor
+    }
+
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         // textView.text = viewModel.message
-        username.text = viewModel.player?.name
+        val rankToShow: String = "#" + viewModel.rank.toString()
+        username.text = viewModel.name
+        RankID.text = rankToShow
+        club.text = viewModel.club
+        number.text = viewModel.age.toString()
+        email.text = viewModel.email
+
 
     }
 }
