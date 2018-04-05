@@ -13,11 +13,12 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     var viewScene : ShowProfileDisplayLogic? = null
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
+
         val name = response.user?.name
-        val rank = response.user?.rankingPosition
+        val rank = "#" + response.user?.rankingPosition.toString()
         val club = response.user?.club
         val email = response.user?.email
-        val age = response.user?.age
+        val age = response.user?.age.toString()
 
 
 

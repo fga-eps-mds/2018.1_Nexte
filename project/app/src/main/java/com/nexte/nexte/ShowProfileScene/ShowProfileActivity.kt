@@ -21,8 +21,6 @@ class ShowProfileActivity : AppCompatActivity(), ShowProfileDisplayLogic {
                 "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
-
-
     }
 
 
@@ -39,11 +37,10 @@ class ShowProfileActivity : AppCompatActivity(), ShowProfileDisplayLogic {
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         // textView.text = viewModel.message
-        val rankToShow: String = "#" + viewModel.rank.toString()
         username.text = viewModel.name
-        RankID.text = rankToShow
+        RankID.text = viewModel.rank
         club.text = viewModel.club
-        number.text = viewModel.age.toString()
+        number.text = viewModel.age
         email.text = viewModel.email
 
 

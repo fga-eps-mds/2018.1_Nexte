@@ -28,12 +28,12 @@ class ShowProfileModel{
     class ViewModel {
 
         var name: String? = null
-        var rank: Int? = null
+        var rank: String? = null
         var club: String? = null
         var email: String? = null
-        var age: Int? = null
+        var age: String? = null
 
-        constructor(name: String?, rank: Int?, club: String?, email: String?, age: Int?){
+        constructor(name: String?, rank: String?, club: String?, email: String?, age: String?){
 
             this.name = name
             this.rank = rank
