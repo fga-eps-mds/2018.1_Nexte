@@ -33,6 +33,10 @@ Por favor, leia [CONTRIBUTING](CONTRIBUTING.md) para detalhes do nosso código d
 
 Neste momento, ainda não há nenhuma versão de *deployment* para Android.
 
+# Documentação
+
+Para saber mais sobre o projeto acesse a [documentação do projeto](https://fga-gpp-mds.github.io/2018.1_Nexte/)
+
 # Autores
 
 * **Guilherme Baldissera** - *Trabalho inicial* - [Github](https://github.com/guibaldissera)
