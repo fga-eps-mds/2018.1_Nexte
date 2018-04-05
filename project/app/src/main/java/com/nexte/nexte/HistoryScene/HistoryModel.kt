@@ -1,5 +1,7 @@
 package com.nexte.nexte.HistoryScene
 
+import android.widget.BaseAdapter
+
 /**
  * Created by helena on 03/04/18.
  */
@@ -62,10 +64,10 @@ class HistoryModel {
     }
 
     class ViewModel {
-        var message: String? = null
+        var adapter: BaseAdapter? = null
 
-        constructor(message: String) {
-            this.message = message
+        constructor(adapter: BaseAdapter) {
+            this.adapter = adapter
         }
 
     }

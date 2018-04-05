@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_login_view.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.nexte.nexte.FeedScene.*
+import android.content.Intent
+import com.nexte.nexte.HistoryScene.HistoryActivity
 import com.nexte.nexte.RankScene.*
 
 
@@ -39,6 +41,13 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.setupShowProfileScene() // Setup Show Profile Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
+
+        //setting up history button listener
+        historyButton.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
