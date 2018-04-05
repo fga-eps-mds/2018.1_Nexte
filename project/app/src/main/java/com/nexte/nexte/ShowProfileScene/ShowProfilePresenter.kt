@@ -5,12 +5,16 @@ package com.nexte.nexte.ShowProfileScene
  */
 
 interface ShowProfilePresentationLogic {
+
     fun presentUserProfile(response: ShowProfileModel.Response)
 }
 
+/* Receives the response of Interactor,
+    processing data to display in View */
+
 class ShowProfilePresenter : ShowProfilePresentationLogic {
 
-    var viewScene : ShowProfileDisplayLogic? = null
+    var viewScene : ShowProfileDisplayLogic? = null // Show datas from ViewModel on screen
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
 
@@ -20,9 +24,8 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val email = response.user?.email
         val age = response.user?.age.toString()
 
-
-
-        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club, email, age)
+        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club,
+                                                                                email, age)
 
         viewScene?.displayProfile(viewModel)
     }

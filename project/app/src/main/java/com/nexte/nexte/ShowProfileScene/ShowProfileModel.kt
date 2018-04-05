@@ -3,11 +3,18 @@ package com.nexte.nexte.ShowProfileScene
 /**
  * Created by albino on 25/03/18.
  */
-class ShowProfileModel{
+
+/* This class declarates the request,
+    response, viewmodel and player */
+
+class ShowProfileModel {
+
+    /* This class contain the parameters necessary
+       for validation of the user */
 
     class Request {
-        var username: String? = null
-        var tokenID: String? = null
+        var username: String? = null // Name provided by user
+        var tokenID: String? = null // TokenID provided by server
 
         constructor(username: String, tokenID: String){
             this.username = username
@@ -15,23 +22,27 @@ class ShowProfileModel{
         }
     }
 
+    /* This class will return the attributes of player
+       after the validation step */
+
     class Response {
-        var user: Player? = null
+        var user: Player? = null // User returned after validation
 
         constructor(user: Player?){
             this.user = user
         }
     }
 
-
+    /* Receives the attribute already processed by Presenter class
+       for display on screen */
 
     class ViewModel {
 
-        var name: String? = null
-        var rank: String? = null
-        var club: String? = null
-        var email: String? = null
-        var age: String? = null
+        var name: String? = null // Name displayed
+        var rank: String? = null // The rank position displayed
+        var club: String? = null // User club displayed
+        var email: String? = null // User email displayed
+        var age: String? = null // User age displayed
 
         constructor(name: String?, rank: String?, club: String?, email: String?, age: String?){
 
@@ -42,16 +53,18 @@ class ShowProfileModel{
             this.age = age
         }
     }
+    /* This class represents the user,
+        with your all characteristics */
 
     class Player {
 
-        var name: String? = ""
-        var rankingPosition: Int? = null
-        var pictureAdress: String? = ""
-        var email: String? = ""
-        var gender: String? = ""
-        var club: String? = ""
-        var age: Int? = -1
+        var name: String? = "" // User name
+        var rankingPosition: Int? = null // Ranking position of user
+        var pictureAdress: String? = "" // Picture profile
+        var email: String? = "" // User email
+        var gender: String? = "" // User gender
+        var club: String? = "" // User club
+        var age: Int? = -1 // Age of user
 
         constructor(name: String?, rankingPosition: Int?, pictureAdress: String?,
                     email: String?, gender: String?, club: String?, age: Int?) {

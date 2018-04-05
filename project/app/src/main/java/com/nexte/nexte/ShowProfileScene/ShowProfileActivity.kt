@@ -7,9 +7,12 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
+/* This class implements ShowProfileDisplayLogic,
+    printing on screen the user data */
+
 class ShowProfileActivity : AppCompatActivity(), ShowProfileDisplayLogic {
 
-    var showProfileInteractor : ShowProfileBusinessLogic? = null
+    var showProfileInteractor : ShowProfileBusinessLogic? = null // Receives request exemple
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

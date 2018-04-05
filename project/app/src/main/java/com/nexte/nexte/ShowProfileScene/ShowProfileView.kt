@@ -5,5 +5,8 @@ package com.nexte.nexte.ShowProfileScene
  */
 
 interface ShowProfileDisplayLogic {
+
+    /* This function turns data avaliable of impression on screen */
+
     fun displayProfile(viewModel : ShowProfileModel.ViewModel)
 }
