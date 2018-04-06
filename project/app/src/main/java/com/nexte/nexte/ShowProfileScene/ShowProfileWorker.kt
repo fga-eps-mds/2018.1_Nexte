@@ -17,23 +17,24 @@ class ShowProfileWorker {
         val username = request.username
         val tokenID = request.tokenID
 
-        val empty = ShowProfileModel.Player("", -1, "", "",
+        val emptyUser = ShowProfileModel.Player("", -1, "", "",
                                              "", "", -1)
 
-        val userTest = ShowProfileModel.Player("gabrielalbino", 2,
+        val validUser = ShowProfileModel.Player("gabrielalbino", 2,
                                                 "imgur.com/nudh486d4",
                                                 "enggabriel@gmail.com", "masculino",
                                                 "ASCAD", 19)
-        var returned: ShowProfileModel.Player? = null
+
+        var returnedUser: ShowProfileModel.Player? = null
 
         // This condition verify if exist a user
         if(tokenID.equals("")) {
-            returned = empty
+            returnedUser = emptyUser
         } else if(username.equals("gabrielalbino")) {
-            returned = userTest
+            returnedUser = validUser
         }
 
-        var response: ShowProfileModel.Response = ShowProfileModel.Response(returned)
+        var response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
 
         completion(response)
     }
