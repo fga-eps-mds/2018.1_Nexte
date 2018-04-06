@@ -123,4 +123,21 @@
         android:text="name"
         app:layout_constraintEnd_toStartOf="@+id/secondPlayerPicture"
         app:layout_constraintTop_toTopOf="@+id/secondPlayerPicture" />
+
+    <TextView
+        android:id="@+id/pendencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Pendente"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/firstPlayerPicture"
+        app:layout_constraintEnd_toStartOf="@+id/secondPlayerPicture"
+        app:layout_constraintStart_toEndOf="@+id/firstPlayerPicture"
+        app:layout_constraintTop_toTopOf="@+id/secondPlayerPicture" />
 </android.support.constraint.ConstraintLayout>
