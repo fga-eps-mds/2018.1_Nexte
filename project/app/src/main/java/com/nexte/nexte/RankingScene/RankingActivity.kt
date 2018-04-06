@@ -10,6 +10,7 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
     var interactor: RankingInteractor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
         setupScene()
@@ -17,10 +18,10 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
         val request = RankingModel.Request(this)
 
         interactor?.getPlayersRanksForScene(request)
-
     }
 
     private fun setupScene(){
+
         val viewScene = this
         val interactor = RankingInteractor()
         val presenter = RankingPresenter()
@@ -31,6 +32,7 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
     }
 
     override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
+
         ranking_list_view.adapter = viewModel.adapter
     }
 }

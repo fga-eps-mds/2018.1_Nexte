@@ -5,6 +5,7 @@ package com.nexte.nexte.RankingScene
  */
 
 interface RankingBusinessLogic {
+
     fun getPlayersRanksForScene(request: RankingModel.Request)
 }
 
@@ -14,9 +15,9 @@ class RankingInteractor : RankingBusinessLogic {
     var presenter: RankingPresentationLogic? = null
 
     override fun getPlayersRanksForScene(request: RankingModel.Request) {
+
         worker.getUsersInRanking(request){ response ->
             presenter?.presentRanking(response)
         }
-
     }
 }
