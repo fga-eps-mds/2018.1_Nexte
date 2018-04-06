@@ -14,8 +14,8 @@ interface ShowProfileBusinessLogic {
 
 class ShowProfileInteractor : ShowProfileBusinessLogic {
 
-    private var worker = ShowProfileWorker() // Receives request and send response
-    var presenter : ShowProfilePresentationLogic? = null // Receives response
+    private var worker = ShowProfileWorker() // Receives token and send empty or valid player
+    var presenter : ShowProfilePresentationLogic? = null // Receives player as response
 
     override fun showProfile(request: ShowProfileModel.Request) {
 

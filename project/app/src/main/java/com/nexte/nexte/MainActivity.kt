@@ -1,6 +1,5 @@
 package com.nexte.nexte
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nexte.nexte.ChallengeScene.ChallengeModel
@@ -9,20 +8,16 @@ import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.ChallengeScene.*
-import kotlinx.android.synthetic.main.activity_login_view.*
 import com.nexte.nexte.ShowProfileScene.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.nexte.nexte.RankScene.*
 import android.content.Intent
-import com.nexte.nexte.R
 
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
-        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic, RankDisplayLogic {
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ChallengeDisplayLogic,
+                     EditProfileDisplayLogic, CommentsDisplayLogic, RankDisplayLogic {
 
 
-
-    var showProfileInteractor : ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
@@ -38,11 +33,10 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.setupLoginScene() // Setup Login Scene
         this.setupEditProfileScene()
         this.setupFeedScene() // Setup Feed Scene
-        this.setupShowProfileScene() // Setup Show Profile Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
 
-        profileButtons.setOnClickListener {
+        showProfileButton.setOnClickListener {
             val intent = Intent(this, ShowProfileActivity::class.java)
             startActivity(intent)
         }
@@ -58,11 +52,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         // Testing if is working    
         val feedRequest: FeedModel.Request = FeedModel.Request ("leticia", "larissa")
         this.feedInteractor?.recentGames(feedRequest)
-
-        // Testing if it is working
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                                                                                        "AUFDSASFSA321IEUNFDI23FIQ2F")
-        this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
         //testing if it is working
         var alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
@@ -188,25 +177,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         textView.text = viewModel.message
     }
 
-    /*
-     * SHOW PROFILE SCENE
-     */
-
-    // Setup all modules for exchange of data
-    fun setupShowProfileScene(){
-
-        val viewScene = this
-        val interactor = ShowProfileInteractor()
-        val presenter = ShowProfilePresenter()
-
-        interactor.presenter = presenter
-        presenter.viewScene = viewScene
-        viewScene.showProfileInteractor = interactor
-    }
-
-    override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-        //textView.text = viewModel.message
-    }
 
     /*
      *RANK SCENE

@@ -4,37 +4,39 @@ package com.nexte.nexte.ShowProfileScene
  * Created by albino on 25/03/18.
  */
 
-/* This class declarates the request,
-    response, viewmodel and player */
+/* This class declares the request,
+    response, viewModel and player */
 
 class ShowProfileModel {
 
     /* This class contain the parameters necessary
-       for validation of the user */
+        for validation of the user */
 
     class Request {
         var username: String? = null // Name provided by user
         var tokenID: String? = null // TokenID provided by server
 
-        constructor(username: String, tokenID: String){
+        constructor(username: String, tokenID: String) {
             this.username = username
             this.tokenID = tokenID
         }
     }
 
     /* This class will return the attributes of player
-       after the validation step */
+        after the validation step */
 
     class Response {
         var user: Player? = null // User returned after validation
 
-        constructor(user: Player?){
+        constructor(user: Player?) {
+
             this.user = user
+
         }
     }
 
     /* Receives the attribute already processed by Presenter class
-       for display on screen */
+        for display on screen */
 
     class ViewModel {
 
@@ -44,7 +46,7 @@ class ShowProfileModel {
         var email: String? = null // User email displayed
         var age: String? = null // User age displayed
 
-        constructor(name: String?, rank: String?, club: String?, email: String?, age: String?){
+        constructor(name: String?, rank: String?, club: String?, email: String?, age: String?) {
 
             this.name = name
             this.rank = rank
@@ -53,8 +55,8 @@ class ShowProfileModel {
             this.age = age
         }
     }
-    /* This class represents the user,
-        with your all characteristics */
+    /* This class represents the user, with the
+        characteristics of interest for the functionality */
 
     class Player {
 
@@ -68,6 +70,7 @@ class ShowProfileModel {
 
         constructor(name: String?, rankingPosition: Int?, pictureAdress: String?,
                     email: String?, gender: String?, club: String?, age: Int?) {
+
             this.name = name
             this.rankingPosition = rankingPosition
             this.pictureAdress = pictureAdress
@@ -75,8 +78,8 @@ class ShowProfileModel {
             this.gender = gender
             this.club = club
             this.age = age
-        }
 
+        }
 
 
     }

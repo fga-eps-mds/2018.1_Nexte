@@ -27,7 +27,7 @@ class ShowProfileActivity : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
 
-    fun setupShowProfileScene(){
+    fun setupShowProfileScene() {
 
         val viewScene = this
         val interactor = ShowProfileInteractor()
@@ -36,16 +36,16 @@ class ShowProfileActivity : AppCompatActivity(), ShowProfileDisplayLogic {
         interactor.presenter = presenter
         presenter.viewScene = viewScene
         viewScene.showProfileInteractor = interactor
+
     }
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-        // textView.text = viewModel.message
+
         username.text = viewModel.name
         RankID.text = viewModel.rank
         club.text = viewModel.club
         number.text = viewModel.age
         email.text = viewModel.email
-
 
     }
 }

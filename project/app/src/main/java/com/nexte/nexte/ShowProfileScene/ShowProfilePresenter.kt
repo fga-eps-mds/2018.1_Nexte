@@ -18,11 +18,11 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
 
-        val name = response.user?.name
-        val rank = "#" + response.user?.rankingPosition.toString()
-        val club = response.user?.club
-        val email = response.user?.email
-        val age = response.user?.age.toString()
+        val name: String? = response.user?.name
+        val rank: String? = "#" + response.user?.rankingPosition.toString()
+        val club: String? = response.user?.club
+        val email: String? = response.user?.email
+        val age: String? = response.user?.age.toString()
 
         var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club,
                                                                                 email, age)
