@@ -1,5 +1,5 @@
 # Command to build
-# docker run --tty --interactive --volume=$(pwd)/project:/application nexte-android  /bin/sh -c "./gradlew build"
+# docker run -v $(pwd)/project:/application -v $(pwd)/local.properties.env:/application/local.properties baldissera/android-container
 
 FROM openjdk:8
 
@@ -43,5 +43,4 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --update \
 RUN mkdir /application
 WORKDIR /application
 
-# Add local.properties with local sdk location
-ADD ./project/local.properties .
+CMD ./gradlew build

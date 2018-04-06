@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  android:
+    image: baldissera/android-container
+    container_name: android-container
+    environment:
+      SDK_LOCATION: "/usr/local/android-sdk"
+    volumes:
+      - ./project:/application
+      - ./local.properties.env:/application/local.properties
+    # command: ./gradlew build
