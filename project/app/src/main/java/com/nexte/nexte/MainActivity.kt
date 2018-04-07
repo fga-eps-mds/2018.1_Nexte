@@ -1,17 +1,17 @@
 package com.nexte.nexte
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.nexte.nexte.ChallengeScene.ChallengeModel
+import android.support.v7.app.AppCompatActivity
+import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.CommentsScene.*
 import com.nexte.nexte.EditProfileScene.*
-import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.FeedScene.*
-import com.nexte.nexte.ChallengeScene.*
-import com.nexte.nexte.ShowProfileScene.*
-import kotlinx.android.synthetic.main.activity_main.*
+import com.nexte.nexte.HistoryScene.HistoryActivity
+import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankScene.*
-import android.content.Intent
+import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ChallengeDisplayLogic,
@@ -35,6 +35,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, C
         this.setupFeedScene() // Setup Feed Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
+
+        //setting up history button listener
+        historyButton.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
 
         showProfileButton.setOnClickListener {
             val intent = Intent(this, ShowProfileActivity::class.java)

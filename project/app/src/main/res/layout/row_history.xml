@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/secondPlayerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="M"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/secondPlayerPicture"
+        app:layout_constraintStart_toEndOf="@+id/versusTextView"
+        app:layout_constraintTop_toTopOf="@+id/secondPlayerPicture" />
+
+    <ImageView
+        android:id="@+id/firstPlayerPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challangerTextView"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/secondPlayerPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challangedTextView"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/firstPlayerRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="#rank"
+        app:layout_constraintBottom_toBottomOf="@+id/firstPlayerPicture"
+        app:layout_constraintStart_toEndOf="@+id/firstPlayerPicture" />
+
+    <TextView
+        android:id="@+id/secondPlayerRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="#rank"
+        app:layout_constraintBottom_toBottomOf="@+id/secondPlayerPicture"
+        app:layout_constraintEnd_toStartOf="@+id/secondPlayerPicture" />
+
+    <TextView
+        android:id="@+id/challangerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Desafiante"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/challangedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Desafiado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/firstPlayerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="N"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/firstPlayerPicture"
+        app:layout_constraintEnd_toStartOf="@+id/versusTextView"
+        app:layout_constraintTop_toTopOf="@+id/firstPlayerPicture" />
+
+    <TextView
+        android:id="@+id/firstPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="name"
+        app:layout_constraintStart_toEndOf="@+id/firstPlayerPicture"
+        app:layout_constraintTop_toTopOf="@+id/firstPlayerPicture" />
+
+    <TextView
+        android:id="@+id/versusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="X"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/secondPlayerPicture"
+        app:layout_constraintEnd_toStartOf="@+id/secondPlayerPicture"
+        app:layout_constraintStart_toEndOf="@+id/firstPlayerPicture"
+        app:layout_constraintTop_toTopOf="@+id/firstPlayerPicture" />
+
+    <TextView
+        android:id="@+id/secondPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="name"
+        app:layout_constraintEnd_toStartOf="@+id/secondPlayerPicture"
+        app:layout_constraintTop_toTopOf="@+id/secondPlayerPicture" />
+
+    <TextView
+        android:id="@+id/pendencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Pendente"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/firstPlayerPicture"
+        app:layout_constraintEnd_toStartOf="@+id/secondPlayerPicture"
+        app:layout_constraintStart_toEndOf="@+id/firstPlayerPicture"
+        app:layout_constraintTop_toTopOf="@+id/secondPlayerPicture" />
+</android.support.constraint.ConstraintLayout>
