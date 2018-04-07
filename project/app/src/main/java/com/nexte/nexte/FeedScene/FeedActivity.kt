@@ -8,6 +8,15 @@ import kotlinx.android.synthetic.main.activity_history.*
 /*
 Class responsible to exhibit player history
  */
+<<<<<<< HEAD:project/app/src/main/java/com/nexte/nexte/FeedScene/FeedActivity.kt
+=======
+
+interface HistoryDisplayLogic {
+    fun displayPlayerMatches(viewModel: HistoryModel.ViewModel)
+}
+
+class FeedActivity : AppCompatActivity(), HistoryDisplayLogic {
+>>>>>>> 637ee999a9228b18d1117ab4775be4389e8f731f:project/app/src/main/java/com/nexte/nexte/FeedScene/FeedActivity.kt
 
 interface FeedDisplayLogic {
     fun displayFeed(viewModel: HistoryModel.ViewModel)
