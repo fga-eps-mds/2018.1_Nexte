@@ -8,9 +8,10 @@ services:
   - docker:dind
 
 before_script:
-  - docker info
+  - apk add --no-cache py-pip
+  - pip install docker-compose
 
 build:
   stage: build
   script:
-    - docker run -v $(pwd)/project:/application -v $(pwd)/local.properties.env:/application/local.properties $ANDROID_CONTAINER_IMAGE:latest
+    - docker-compose up
