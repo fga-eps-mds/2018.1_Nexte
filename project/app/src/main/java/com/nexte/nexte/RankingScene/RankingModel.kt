@@ -61,6 +61,4 @@ class RankingModel {
             this.adapter = adapter
         }
     }
-
-
 }

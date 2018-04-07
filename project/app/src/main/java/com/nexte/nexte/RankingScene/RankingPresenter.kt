@@ -59,7 +59,7 @@ class RankingPresenter : RankingPresentationLogic {
 
         val rankingAdapter = RankingAdapter(response.context, response.players!!)
 
-        var viewModel: RankingModel.ViewModel = RankingModel.ViewModel(rankingAdapter)
+        val viewModel: RankingModel.ViewModel = RankingModel.ViewModel(rankingAdapter)
 
         viewScene?.displayRankInScreen(viewModel)
     }

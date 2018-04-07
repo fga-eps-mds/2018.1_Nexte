@@ -4,6 +4,6 @@ package com.nexte.nexte.EditProfileScene
  * Created by lorrany on 27/03/18.
  */
 interface EditProfileDisplayLogic {
-    fun displayEditProfileState (ViewModel: EditProfileModel.ViewModel)
+    fun displayEditProfileState (viewModel: EditProfileModel.ViewModel)
 
 }
