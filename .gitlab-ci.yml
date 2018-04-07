@@ -7,9 +7,11 @@ variables:
 services:
   - docker:dind
 
+before_script:
+  - docker info
+
 build:
   stage: build
   script:
     - docker pull $ANDROID_CONTAINER_IMAGE:latest
     - docker-compose up
-    
