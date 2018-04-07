@@ -13,10 +13,12 @@ import kotlinx.android.synthetic.main.row_ranking.view.*
  */
 
 interface RankingPresentationLogic {
+
     fun presentRanking(response: RankingModel.Response)
 }
 
 class RankingPresenter : RankingPresentationLogic {
+
     class RankingAdapter : BaseAdapter {
 
         private val inflater: LayoutInflater
