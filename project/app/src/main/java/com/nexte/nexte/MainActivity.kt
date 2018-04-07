@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
-        this.loginInteractor?.doAuthentication(loginRequest)
+        this.loginInteractor?.doAuthentication(loginRequest).
 
         // Testing if is working
         val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorranyfreire", "HDDGFRUH65752")
