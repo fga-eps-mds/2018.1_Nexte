@@ -1,33 +1,31 @@
 package com.nexte.nexte
 
-import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.nexte.nexte.ChallengeScene.ChallengeModel
+import android.support.v7.app.AppCompatActivity
+import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.CommentsScene.*
 import com.nexte.nexte.EditProfileScene.*
+import com.nexte.nexte.FeedScene.*
+import com.nexte.nexte.HistoryScene.HistoryActivity
 import com.nexte.nexte.LoginScene.*
-import com.nexte.nexte.FeedScene.*
-import com.nexte.nexte.ChallengeScene.*
-import kotlinx.android.synthetic.main.activity_login_view.*
-import com.nexte.nexte.ShowProfileScene.*
+import com.nexte.nexte.RankingScene.RankingActivity
+import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
+import com.nexte.nexte.ShowProfileScene.ShowProfileBusinessLogic
+import com.nexte.nexte.ShowProfileScene.ShowProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
-import com.nexte.nexte.FeedScene.*
-import com.nexte.nexte.RankScene.*
 
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ShowProfileDisplayLogic,
-        ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic, RankDisplayLogic {
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
+                     ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
 
 
-
-    var showProfileInteractor : ShowProfileBusinessLogic? = null
+    var showProfileInteractor: ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
-    var rankInteractor: RankBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,9 +34,19 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.setupLoginScene() // Setup Login Scene
         this.setupEditProfileScene()
         this.setupFeedScene() // Setup Feed Scene
-        this.setupShowProfileScene() // Setup Show Profile Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
+
+        //setting up history button listener
+        historyButton.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
+        showProfileButton.setOnClickListener {
+            val intent = Intent(this, ShowProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
@@ -49,28 +57,29 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
 
         // Testing if is working    
-        val feedRequest: FeedModel.Request = FeedModel.Request ("leticia", "larissa")
+        val feedRequest: FeedModel.Request = FeedModel.Request("leticia", "larissa")
         this.feedInteractor?.recentGames(feedRequest)
 
         // Testing if it is working
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                                                                                        "AUFDSASFSA321IEUNFDI23FIQ2F")
+                "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
         //testing if it is working
-        var alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
-        var helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
+        val alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
+        val helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
         val challengeRequest: ChallengeModel.Request = ChallengeModel.Request(alexandre, helena, "FGA", "14:35", "15/12/2019")
         this.challengeInteractor?.sendChallenge(challengeRequest)
 
         // Testing if is working
-        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro" )
+        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro")
         commentsInteractor?.recentComments(commentsRequest)
 
-        //Testing if rank is working
-        setupRankScene()
-        val rankRequest: RankModel.Request = RankModel.Request()
-        rankInteractor?.getPlayersRanksForScene(rankRequest)
+        // Ranking button
+        rankingButton.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /*
@@ -178,44 +187,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, S
 
 
     override fun displayComments(viewModel: CommentsModel.ViewModel) {
-        textView.text = viewModel.message
-    }
-
-    /*
-     * SHOW PROFILE SCENE
-     */
-
-    // Setup all modules for exchange of data
-    fun setupShowProfileScene(){
-
-        val viewScene = this
-        val interactor = ShowProfileInteractor()
-        val presenter = ShowProfilePresenter()
-
-        interactor.presenter = presenter
-        presenter.viewScene = viewScene
-        viewScene.showProfileInteractor = interactor
-    }
-
-    override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-        textView.text = viewModel.message
-    }
-
-    /*
-     *RANK SCENE
-     */
-
-    fun setupRankScene(){
-        val viewScene = this
-        val interactor = RankInteractor()
-        val presenter = RankPresenter()
-
-        viewScene.rankInteractor = interactor
-        interactor.presenter = presenter
-        presenter.viewScene = viewScene
-    }
-
-    override fun displayRankInScreen(viewModel: RankModel.ViewModel) {
         textView.text = viewModel.message
     }
 }
