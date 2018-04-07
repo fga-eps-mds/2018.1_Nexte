@@ -4,39 +4,37 @@ package com.nexte.nexte.ShowProfileScene
  * Created by albino on 25/03/18.
  */
 
+/* This class verify if the user is validad
+    and return the user as response */
+
 class ShowProfileWorker {
 
     constructor() { }
 
-    fun getUserProfile(request: ShowProfileModel.Request, completion: (ShowProfileModel.Response) -> Unit) {
+    fun getUserProfile(request: ShowProfileModel.Request,
+                       completion: (ShowProfileModel.Response) -> Unit) {
+
         val username = request.username
         val tokenID = request.tokenID
 
-        var facebookUsername: String = ""
-        var pictureAddress: String = ""
-        var rankingPosition: Int = -1
-        var team: String = ""
-        var teamLocation: String = ""
-        var age: Int? = -1
+        val emptyUser = ShowProfileModel.Player("", -1, "", "",
+                                             "", "", -1)
 
-        if(tokenID.equals("")){
-            facebookUsername = ""
-            pictureAddress = ""
-            rankingPosition = -1
-            team = ""
-            teamLocation = ""
-            age = -1
+        val validUser = ShowProfileModel.Player("gabrielalbino", 2,
+                                                "imgur.com/nudh486d4",
+                                                "enggabriel@gmail.com", "masculino",
+                                                "ASCAD", 19)
+
+        var returnedUser: ShowProfileModel.Player? = null
+
+        // This condition verify if exist a user
+        if(tokenID.equals("")) {
+            returnedUser = emptyUser
         } else if(username.equals("gabrielalbino")) {
-            facebookUsername = "you.albino"
-            pictureAddress = "https://www.nexte.com.br/pictures/user/gabrielalbino/avatar156x156.jpg"
-            rankingPosition = 1
-            team = "jagaritigaricaFon"
-            teamLocation = "Brasília"
-            age = 19
+            returnedUser = validUser
         }
 
-        var response: ShowProfileModel.Response = ShowProfileModel.Response(facebookUsername,
-                pictureAddress, rankingPosition, team, teamLocation, age)
+        var response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
 
         completion(response)
     }
