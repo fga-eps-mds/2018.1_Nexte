@@ -1,6 +1,5 @@
-package com.nexte.nexte.HistoryScene
+package com.nexte.nexte.FeedScene
 
-import java.util.Date
 /**
  * Created by helena on 03/04/18.
  */

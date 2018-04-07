@@ -1,4 +1,4 @@
-package com.nexte.nexte.HistoryScene
+package com.nexte.nexte.FeedScene
 
 /**
  * Created by helena on 03/04/18.

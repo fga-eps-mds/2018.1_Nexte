@@ -1,4 +1,4 @@
-package com.nexte.nexte.HistoryScene
+package com.nexte.nexte.FeedScene
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +8,12 @@ import kotlinx.android.synthetic.main.activity_history.*
 /*
 Class responsible to exhibit player history
  */
-class HistoryActivity : AppCompatActivity(), HistoryDisplayLogic {
+
+interface HistoryDisplayLogic {
+    fun displayPlayerMatches(viewModel: HistoryModel.ViewModel)
+}
+
+class FeedActivity : AppCompatActivity(), HistoryDisplayLogic {
 
     var historyInteractor: HistoryInteractor?= null // reference to the interactor
 

@@ -26,7 +26,7 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".LoginScene.LoginView" />
-        <activity android:name=".HistoryScene.HistoryActivity"></activity>
+        <activity android:name=".FeedScene.FeedActivity"></activity>
         <activity
             android:name=".ShowProfileScene.ShowProfileActivity"
             android:label="@string/title_activity_show_profile"

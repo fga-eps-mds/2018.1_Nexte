@@ -25,8 +25,12 @@ class CommentsModel {
         var commentTime: String? = null
         var like: Boolean? = null
 
-        constructor(comment: String?, userName: String?, linkUserProfilePicture: String?,
-                    commentTime: String?, like: Boolean?) {
+        constructor(comment: String?,
+                    userName: String?,
+                    linkUserProfilePicture: String?,
+                    commentTime: String?,
+                    like: Boolean?) {
+
             this.comment = comment
             this.userName = userName
             this.linkUserProfilePicture = linkUserProfilePicture

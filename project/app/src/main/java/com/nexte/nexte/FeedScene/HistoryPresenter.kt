@@ -1,4 +1,4 @@
-package com.nexte.nexte.HistoryScene
+package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.R
 import android.content.Context
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import kotlinx.android.synthetic.main.row_history.view.*
-import org.w3c.dom.Text
 
 /**
  * Created by helena on 03/04/18.
