@@ -1,6 +1,7 @@
 # Command to build
 # docker run -v $(pwd)/project:/application -v $(pwd)/local.properties.env:/application/local.properties baldissera/android-container
 
+# Image of JDK
 FROM openjdk:8
 
 # Setup environments to android sdk
@@ -11,6 +12,7 @@ ENV ANDROID_HOME="/usr/local/android-sdk" \
 
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
+# Run update and install need library
 RUN apt-get update \
     && apt-get install --yes lib32stdc++6 lib32z1
 
@@ -39,8 +41,13 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --update \
 # RUN echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n nexteavd -k "system-images;android-26;google_apis_playstore;x86"
 
 # Create workspace
-
 RUN mkdir /application
 WORKDIR /application
 
-CMD ./gradlew build
+# Copy test.sh to execute build
+COPY ./test.sh /test.sh
+RUN sed -i 's/\r//' /test.sh \
+    && chmod +x /test.sh
+
+# Set default execute command
+CMD /test.sh
