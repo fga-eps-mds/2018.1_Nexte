@@ -6,24 +6,24 @@ import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.CommentsScene.*
 import com.nexte.nexte.EditProfileScene.*
-import com.nexte.nexte.FeedScene.*
-import com.nexte.nexte.HistoryScene.HistoryActivity
+import com.nexte.nexte.FeedScene.FeedActivity
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingActivity
 import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
 import com.nexte.nexte.ShowProfileScene.ShowProfileBusinessLogic
 import com.nexte.nexte.ShowProfileScene.ShowProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
+
+class MainActivity : AppCompatActivity(), LoginDisplayLogic,
                      ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
 
 
     var showProfileInteractor: ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
-    var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
 
@@ -33,13 +33,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
         setContentView(R.layout.activity_main)
         this.setupLoginScene() // Setup Login Scene
         this.setupEditProfileScene()
-        this.setupFeedScene() // Setup Feed Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
 
         //setting up history button listener
         historyButton.setOnClickListener {
-            val intent = Intent(this, HistoryActivity::class.java)
+            val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
         }
 
@@ -55,10 +54,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
         // Testing if is working
         val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorranyfreire", "HDDGFRUH65752")
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
-
-        // Testing if is working    
-        val feedRequest: FeedModel.Request = FeedModel.Request("leticia", "larissa")
-        this.feedInteractor?.recentGames(feedRequest)
 
         // Testing if it is working
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
@@ -90,6 +85,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     private fun setupLoginScene() {
 
         val viewController = this
+        var date = Date(20)
         val interactor = LoginIteractor()
         val presenter = LoginPresenter()
 
@@ -102,28 +98,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
 
         textView.setText(viewModel.message)
-    }
-
-    /*
-     *  FEED SCENE
-     */
-
-    // Setup all modules for exchange of data
-    private fun setupFeedScene() {
-
-        val viewController = this
-        val interactor = FeedInteractor()
-        val presenter = FeedPresenter()
-
-        viewController.feedInteractor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-    }
-
-    // Print a message according with received data
-    override fun displayRecentGames(viewModel: FeedModel.ViewModel) {
-
-        textView.text = viewModel.message
     }
 
     /*

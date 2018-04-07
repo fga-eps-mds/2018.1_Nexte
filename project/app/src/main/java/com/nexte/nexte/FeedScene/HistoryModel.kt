@@ -1,4 +1,4 @@
-package com.nexte.nexte.HistoryScene
+package com.nexte.nexte.FeedScene
 
 import android.widget.BaseAdapter
 import android.content.Context
@@ -130,9 +130,11 @@ class HistoryModel {
     This class is responsible to pass the data for Presenter
      */
     class Response {
+
         var match: Array<Match> // Holds information about matches that user played
         var context: Context // Reference to the view that will be used on presenter
         var requesterName: String // Name of user that requested the history
+
         constructor(match: Array<Match>, context: Context, requestedName: String) {
             this.match = match
             this.context = context
