@@ -13,5 +13,4 @@ before_script:
 build:
   stage: build
   script:
-    - docker pull $ANDROID_CONTAINER_IMAGE:latest
-    - docker-compose up
+    - docker run -v $(pwd)/project:/application -v $(pwd)/local.properties.env:/application/local.properties $ANDROID_CONTAINER_IMAGE:latest
