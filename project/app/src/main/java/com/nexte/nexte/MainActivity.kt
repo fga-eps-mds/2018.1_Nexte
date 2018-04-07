@@ -9,24 +9,25 @@ import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.HistoryScene.HistoryActivity
 import com.nexte.nexte.LoginScene.*
-import com.nexte.nexte.RankScene.*
+import com.nexte.nexte.RankingScene.RankingActivity
 import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
+import com.nexte.nexte.ShowProfileScene.ShowProfileBusinessLogic
+import com.nexte.nexte.ShowProfileScene.ShowProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, ChallengeDisplayLogic,
-                     EditProfileDisplayLogic, CommentsDisplayLogic, RankDisplayLogic {
+class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
+                     ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
 
 
+    var showProfileInteractor: ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
     var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
-    var rankInteractor: RankBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,23 +57,29 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, C
         this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
 
         // Testing if is working    
-        val feedRequest: FeedModel.Request = FeedModel.Request ("leticia", "larissa")
+        val feedRequest: FeedModel.Request = FeedModel.Request("leticia", "larissa")
         this.feedInteractor?.recentGames(feedRequest)
 
+        // Testing if it is working
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
+                "AUFDSASFSA321IEUNFDI23FIQ2F")
+        this.showProfileInteractor?.showProfile(showUserProfileRequest)
+
         //testing if it is working
-        var alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
-        var helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
+        val alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
+        val helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")
         val challengeRequest: ChallengeModel.Request = ChallengeModel.Request(alexandre, helena, "FGA", "14:35", "15/12/2019")
         this.challengeInteractor?.sendChallenge(challengeRequest)
 
         // Testing if is working
-        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro" )
+        val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro")
         commentsInteractor?.recentComments(commentsRequest)
 
-        //Testing if rank is working
-        setupRankScene()
-        val rankRequest: RankModel.Request = RankModel.Request()
-        rankInteractor?.getPlayersRanksForScene(rankRequest)
+        // Ranking button
+        rankingButton.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /*
@@ -180,25 +187,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic, C
 
 
     override fun displayComments(viewModel: CommentsModel.ViewModel) {
-        textView.text = viewModel.message
-    }
-
-
-    /*
-     *RANK SCENE
-     */
-
-    fun setupRankScene(){
-        val viewScene = this
-        val interactor = RankInteractor()
-        val presenter = RankPresenter()
-
-        viewScene.rankInteractor = interactor
-        interactor.presenter = presenter
-        presenter.viewScene = viewScene
-    }
-
-    override fun displayRankInScreen(viewModel: RankModel.ViewModel) {
         textView.text = viewModel.message
     }
 }
