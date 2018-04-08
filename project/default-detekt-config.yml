@@ -21,7 +21,7 @@ test-pattern: # Configure exclusions for test sources
 
 build:
   warningThreshold: 5
-  failThreshold: 100
+  failThreshold: 1000
   weights:
     complexity: 2
     formatting: 1
