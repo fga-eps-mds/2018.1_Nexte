@@ -9,6 +9,7 @@
 | 29/03/2018 | 1.1.1 | Correções de design no documento | Gabriel Albino|
 | 31/03/2018 | 1.1.2 | Adição de tópico de nomeação de Interface e Model | Gabriel Albino e Larissa Sales|
 | 31/03/2018 | 1.1.3 | Melhoria na formatação do arquivo | Gabriel Albino e Larissa Sales|
+| 08/04/2018 | 1.1.4 | Alteração do tópico 3.3 | Gabriel Albino e Larissa Sales|
 
 
 
@@ -459,24 +460,48 @@
 
 ### 3.3 Comentários em Métodos
 
-1. Os comentários devem estar uma linha acima do método, contendo uma breve explicação da funcionalidade implementada, bem como a relação dessa funcionalidade com os parâmteros declarados. O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
+1. Os comentários devem estar uma linha acima do método, contendo uma breve explicação da funcionalidade implementada, bem como a relação dessa funcionalidade com os parâmetros declarados e o tipo de retorno. O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
 
     Ex.:
 
     * Certo:
 
       ```kotlin
-      /* This method adds
-        a member "T" to
-        this function */
+      /**
+      * Returns an Image object that can then be painted on the screen.
+      * The url argument must specify an absolute {@link URL}. The name
+      * argument is a specifier that is relative to the url argument.
+      * <p>
+      * This method always returns immediately, whether or not the
+      * image exists. When this applet attempts to draw the image on
+      * the screen, the data will be loaded. The graphics primitives
+      * that draw the image will incrementally paint on the screen.
+      *
+      * @param  url  an absolute URL giving the base location of the image
+      * @param  name the location of the image, relative to the url argument
+      * @return      the image at the specified URL
+      * @see         Image
+      */
 
-      fun addThis(member: T): Int { ... }
+      fun getImage(URL url, String name): Image {
+          try {
+             return getImage(new URL(url, name));
+          } catch (MalformedURLException e) {
+             return null;
+          }
+      }
       ```
 
     * Errado:
 
       ```kotlin
-      fun addThis(member: T): Int { ... }
+      fun getImage(URL url, String name): Image {
+          try {
+             return getImage(new URL(url, name));
+          } catch (MalformedURLException e) {
+             return null;
+          }
+      }
       ```
 
 ### 3.4 Comentários em Atributos
