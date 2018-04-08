@@ -1,7 +1,9 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,6 +33,12 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
                 "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
+        editProfileButton.setOnClickListener {
+
+            val intent = Intent(this, EditProfileView::class.java)
+
+            startActivity(intent)
+        }
     }
 
 
