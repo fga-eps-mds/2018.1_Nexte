@@ -1,5 +1,7 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.UserSingleton
+
 /**
  * Created by albino on 25/03/18.
  */
@@ -17,21 +19,22 @@ class ShowProfileWorker {
         val username = request.username
         val tokenID = request.tokenID
 
-        val emptyUser = ShowProfileModel.Player("", -1, "", "",
-                                             "", "", -1)
-
-        val validUser = ShowProfileModel.Player("gabrielalbino", 2,
-                                                "imgur.com/nudh486d4",
-                                                "enggabriel@gmail.com", "masculino",
-                                                "ASCAD", 19)
+        val emptyUser = ShowProfileModel.Player("",
+            -1,
+            "",
+            "",
+            "",
+            "",
+            -1)
 
         var returnedUser: ShowProfileModel.Player? = null
 
         // This condition verify if exist a user
         if(tokenID.equals("")) {
             returnedUser = emptyUser
+            UserSingleton.setUserInformations(emptyUser)
         } else if(username.equals("gabrielalbino")) {
-            returnedUser = validUser
+            returnedUser = UserSingleton.getUserInformations()
         }
 
         var response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)

@@ -9,8 +9,8 @@ import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.HistoryScene.HistoryActivity
 import com.nexte.nexte.LoginScene.*
-import com.nexte.nexte.RankingScene.RankingActivity
-import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
+import com.nexte.nexte.RankingScene.RankingView
+import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.ShowProfileScene.ShowProfileBusinessLogic
 import com.nexte.nexte.ShowProfileScene.ShowProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
         }
 
         showProfileButton.setOnClickListener {
-            val intent = Intent(this, ShowProfileActivity::class.java)
+            val intent = Intent(this, ShowProfileView::class.java)
             startActivity(intent)
         }
 
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
 
         // Ranking button
         rankingButton.setOnClickListener {
-            val intent = Intent(this, RankingActivity::class.java)
+            val intent = Intent(this, RankingView::class.java)
             startActivity(intent)
         }
     }
