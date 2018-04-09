@@ -22,6 +22,7 @@ out/
 .gradle
 .gradle/
 build/
+gradle/wrapper/gradle-wrapper.properties/
 
 # Signing files
 .signing/
@@ -80,6 +81,10 @@ obj/
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/uiDesigner.xml
+.idea/caches/build_file_checksums.ser
+.idea/codeStyles/Project.xml
+
+
 
 # OS-specific files
 .DS_Store
