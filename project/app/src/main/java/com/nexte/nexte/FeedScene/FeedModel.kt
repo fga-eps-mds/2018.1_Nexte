@@ -59,7 +59,7 @@ class FeedModel {
      */
     class FeedActivity(var challenge: FeedChallenge,
                        var feedDate: Date,
-                       var likes: Array<FeedModel.FeedPlayer>)
+                       var likes: ArrayList<FeedModel.FeedPlayer>)
 
     /**
      * Class responsible to define how the list view will display with the formatted data

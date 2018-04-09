@@ -29,28 +29,35 @@ class FeedWorker {
 
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
-        var likesListOne= ArrayList<FeedModel.FeedPlayer>()
+        var likesList1  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger2 = FeedModel.FeedPlayer("Letícia", R.mipmap.ic_launcher, 2)
         val challenged2 = FeedModel.FeedPlayer("Lorrany", R.mipmap.ic_launcher, 1)
+        var likesList2  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger3 = FeedModel.FeedPlayer("Luis", R.mipmap.ic_launcher, 2)
         val challenged3 = FeedModel.FeedPlayer("Miguel", R.mipmap.ic_launcher, 0)
+        var likesList3  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger4 = FeedModel.FeedPlayer("Geovanni", R.mipmap.ic_launcher, 3)
         val challenged4 = FeedModel.FeedPlayer("Alexandre", R.mipmap.ic_launcher, 2)
+        var likesList4  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger5 = FeedModel.FeedPlayer("Larissa", R.mipmap.ic_launcher, 0)
         val challenged5 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 1)
+        var likesList5  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger6 = FeedModel.FeedPlayer("Miguel", R.mipmap.ic_launcher, 0)
         val challenged6 = FeedModel.FeedPlayer("Letícia", R.mipmap.ic_launcher, 2)
+        var likesList6  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger7 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
         val challenged7 = FeedModel.FeedPlayer("Geovanni", R.mipmap.ic_launcher, 1)
+        var likesList7  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenger8 = FeedModel.FeedPlayer("Alexandre", R.mipmap.ic_launcher, 3)
         val challenged8 = FeedModel.FeedPlayer("Larissa", R.mipmap.ic_launcher, 0)
+        var likesList8  = ArrayList<FeedModel.FeedPlayer>()
 
         val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
         val challenge2 = FeedModel.FeedChallenge(challenger2, challenged2, Date())
@@ -61,14 +68,14 @@ class FeedWorker {
         val challenge7 = FeedModel.FeedChallenge(challenger7, challenged7, Date())
         val challenge8 = FeedModel.FeedChallenge(challenger8, challenged8, Date())
 
-        val feedActivity1 = FeedModel.FeedActivity(challenge1, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity2 = FeedModel.FeedActivity(challenge2, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity3 = FeedModel.FeedActivity(challenge3, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity4 = FeedModel.FeedActivity(challenge4, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity5 = FeedModel.FeedActivity(challenge5, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity6 = FeedModel.FeedActivity(challenge6, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity7 = FeedModel.FeedActivity(challenge7, Date(), Array<FeedModel.FeedPlayer> (0))
-        val feedActivity8 = FeedModel.FeedActivity(challenge8, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity1 = FeedModel.FeedActivity(challenge1, Date(), likesList1)
+        val feedActivity2 = FeedModel.FeedActivity(challenge2, Date(), likesList2)
+        val feedActivity3 = FeedModel.FeedActivity(challenge3, Date(), likesList3)
+        val feedActivity4 = FeedModel.FeedActivity(challenge4, Date(), likesList4)
+        val feedActivity5 = FeedModel.FeedActivity(challenge5, Date(), likesList5)
+        val feedActivity6 = FeedModel.FeedActivity(challenge6, Date(), likesList6)
+        val feedActivity7 = FeedModel.FeedActivity(challenge7, Date(), likesList7)
+        val feedActivity8 = FeedModel.FeedActivity(challenge8, Date(), likesList8)
 
 
         return arrayOf(feedActivity1, feedActivity2, feedActivity3, feedActivity4,

@@ -42,7 +42,8 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
                     activity.challenge.challenged.name,
                     activity.challenge.challenged.photo,
                     activity.challenge.challenged.set.toString(),
-                    activity.feedDate.toString())
+                    activity.feedDate.toString(),
+                    activity.likes.size)
 
             feedActivitiesFormatted.add(feedActivityFormatted)
         }
