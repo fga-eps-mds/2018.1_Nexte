@@ -1,144 +1,51 @@
 package com.nexte.nexte.FeedScene
 
-import com.nexte.nexte.R
-import android.content.Context
-import android.graphics.Color
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
-import kotlinx.android.synthetic.main.row_history.view.*
+/**
+ * Interface to define Presentation Logic to Feed Class that will used to call this Interactor on other class layer
+ */
+interface FeedPresentationLogic {
+
+    /**
+     * Method responsible to format feed data and send for view
+     *
+     * @param response Feed model response that contains not formatted data received of worker [FeedModel]
+     */
+    fun formatFeed(response: FeedModel.Response)
+}
 
 /**
- * Created by helena on 03/04/18.
+ * Class needed to format response for data can be displayed on activity
+ *
+ * @property viewScene Reference to the activity where data will be displayed [FeedView]
  */
+class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
-interface FeedPresentationLogic {
-    fun formatFeed(response: HistoryModel.Response)
-}
-/*
-This class need to format response so it can be displayed on activity
- */
-class FeedPresenter : FeedPresentationLogic {
-
-    var viewScene: FeedDisplayLogic? = null // reference to the activity where data will be displayed
-
-    /*
-    Method responsible to format data (games that user played) for the view
-     */
-    override fun formatFeed(response: HistoryModel.Response) {
-
-        val compareDate = HistoryModel.Date(2018,
-                                            4,
-                                            5,
-                                            22,
-                                            35)
-
-        var formatedList: Array<HistoryModel.Match> = arrayOf() // Empty array to hold the matches starting, the first items will be matches that didn't happened yet
-
-        //This loop sorts list with recent games in front of older ones
-        for (counter in 0 until response.match.size) {
-            for(secondCounter in counter until response.match.size) {
-                if(response.match[counter].matchDate?.isDateAlreadyPassed(response.match[secondCounter].matchDate!!)!!) {
-                    val gameTemp = response.match[counter]
-                    response.match[counter] = response.match[secondCounter]
-                    response.match[secondCounter] = gameTemp
-                }
-            }
-        }
-
-        //this loop split the pendent games from the finished ones
-        for (game in response.match) {
-            if(!game.matchDate?.isDateAlreadyPassed(compareDate)!!) {
-                formatedList += game
-            }
-        }
-
-        // this loop adds the finished games in the end of pendent games list
-        for (game in response.match) {
-            if(!formatedList.contains(game)) {
-                formatedList += game
-            }
-        }
-
-        val adapter = HistoryAdapter(formatedList, response.context, compareDate, response.requesterName)
-        var viewModel: HistoryModel.ViewModel = HistoryModel.ViewModel(adapter)
+    override fun formatFeed(response: FeedModel.Response) {
+        val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
         viewScene?.displayFeed(viewModel)
     }
 
-    /*
-    This class is responsible for format data that will be displayed in the list view
+    /**
+     * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     *
+     * @param activities Array of not formatted activities
+     * @return list of formatted activities
      */
-    class HistoryAdapter: BaseAdapter {
+    private fun formatFeedActivities(activities: Array<FeedModel.FeedActivity>): List<FeedModel.FeedActivityFormatted> {
+        val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
-        var date: HistoryModel.Date
-        var context: Context // reference to my activity
-        var playerMatches: Array<HistoryModel.Match> // data that will be formatted
-        var requesterName: String
+        for (activity in activities) {
+            val feedActivityFormatted = FeedModel.FeedActivityFormatted(activity.challenge.challenger.name,
+                    activity.challenge.challenger.photo,
+                    activity.challenge.challenger.set.toString(),
+                    activity.challenge.challenged.name,
+                    activity.challenge.challenged.photo,
+                    activity.challenge.challenged.set.toString(),
+                    activity.feedDate.toString())
 
-        constructor (playerMatches: Array<HistoryModel.Match>, context: Context, date: HistoryModel.Date, requesterName: String) : super() {
-            this.playerMatches = playerMatches
-            this.context = context
-            this.date = date
-            this.requesterName = requesterName
+            feedActivitiesFormatted.add(feedActivityFormatted)
         }
 
-        /*
-        Returns the listview rows number
-         */
-        override fun getCount(): Int {
-            return playerMatches.size
-        }
-
-        /*
-        This method returns each row of my list view
-         */
-        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
-            val layoutInflater = LayoutInflater.from(context) //it is a kind of converter, that can covert layout files to views
-            val currentRow = layoutInflater.inflate(R.layout.row_history, viewGroup, false) //converts our layout to a view
-
-            currentRow.firstPlayerName.text = playerMatches[position].players[0].playerName
-            currentRow.secondPlayerName.text = playerMatches[position].players[1].playerName
-
-            if(playerMatches[position].matchDate?.isDateAlreadyPassed(date)!!) {
-                currentRow.firstPlayerScore.text = String.format("%d", playerMatches[position].players[0].score)
-                currentRow.secondPlayerScore.text = String.format("%d", playerMatches[position].players[1].score)
-                currentRow.firstPlayerRank.text = String.format("#%d", playerMatches[position].players[0].rank)
-                currentRow.secondPlayerRank.text = String.format("#%d", playerMatches[position].players[1].rank)
-                if(playerMatches[position].getWinner().playerName == requesterName){
-                    currentRow.setBackgroundColor(Color.GREEN)
-                }
-                else{
-                    currentRow.setBackgroundColor(Color.RED)
-                }
-            }
-            else {
-                currentRow.firstPlayerRank.visibility = TextView.INVISIBLE
-                currentRow.secondPlayerRank.visibility = TextView.INVISIBLE
-                currentRow.versusTextView.visibility = TextView.INVISIBLE
-                currentRow.firstPlayerScore.visibility = TextView.INVISIBLE
-                currentRow.secondPlayerScore.visibility = TextView.INVISIBLE
-                currentRow.pendencyTextView.visibility = TextView.VISIBLE
-                currentRow.setBackgroundColor(Color.GRAY)
-            }
-
-            return currentRow
-        }
-
-        /*
-        This method returns the item that must be formatted and is contained in 'position'
-         */
-        override fun getItem(position: Int): Any {
-            return playerMatches[position]
-        }
-
-        /*
-        Returns an unique ID for each item on my data list.
-         */
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-
+        return feedActivitiesFormatted.toList()
     }
 }

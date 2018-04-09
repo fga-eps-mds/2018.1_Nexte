@@ -1,26 +1,30 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Created by helena on 03/04/18.
+ * Interface to define Business Logic to Feed Class that will used to call this Interactor on other class layer
  */
-
 interface FeedBusinessLogic {
-    fun fetchFeed(request: HistoryModel.Request)
-}
-/*
-This class is responsible for the communication between worker and presenter
- */
-class FeedInteractor : FeedBusinessLogic {
-
-    var worker = FeedWorker() // Reference to worker
-    var presenter: FeedPresentationLogic? = null // Reference to presenter
-
-    /*
-    This method is responsible to get the response of the worker and send it to the presenter
+    /**
+     * Method that define fetch feed informations that will be responsable to get
+     * pass request for the Worker and send response to the Presenter
+     *
+     * @param request Request model of feed that contains data to pass for Worker
      */
-    override fun fetchFeed(request: HistoryModel.Request) {
+    fun fetchFeed(request: FeedModel.Request)
+}
 
-        worker.requestFeedData(request) { response ->
+/**
+ * Class that implements [FeedBusinessLogic] and is responsible for the communication between worker and presenter
+ *
+ * @property worker Reference to worker [FeedWorker]
+ * @property presenter Reference to presenter [FeedPresenter]
+ */
+class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusinessLogic {
+
+    val worker: FeedWorker = FeedWorker()
+
+    override fun fetchFeed(request: FeedModel.Request) {
+        worker.fetchFeedData(request) { response ->
             presenter?.formatFeed(response)
         }
     }

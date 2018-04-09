@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.CommentsScene.*
 import com.nexte.nexte.EditProfileScene.*
-import com.nexte.nexte.FeedScene.FeedActivity
+import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingActivity
 import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
@@ -36,14 +36,19 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
 
-        //setting up history button listener
-        historyButton.setOnClickListener {
-            val intent = Intent(this, FeedActivity::class.java)
+        // Setting up feed button listener
+        feedButton.setOnClickListener {
+            val intent = Intent(this, FeedView::class.java)
             startActivity(intent)
         }
 
         showProfileButton.setOnClickListener {
             val intent = Intent(this, ShowProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        rankingButton.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
             startActivity(intent)
         }
 
@@ -69,12 +74,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
         // Testing if is working
         val commentsRequest: CommentsModel.Request = CommentsModel.Request("Gandalf vs Saruman", "Frodo_Bolseiro")
         commentsInteractor?.recentComments(commentsRequest)
-
-        // Ranking button
-        rankingButton.setOnClickListener {
-            val intent = Intent(this, RankingActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     /*
@@ -96,8 +95,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
-
-        textView.setText(viewModel.message)
+//        textView.setText(viewModel.message)
     }
 
     /*
@@ -118,7 +116,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
     }
 
     override fun displayChallengeAnswer(viewModel: ChallengeModel.ViewModel) {
-        textView.text = viewModel.message
+//        textView.text = viewModel.message
     }
 
     /*
@@ -139,7 +137,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
     // Print a message according with received data
     override fun displayEditProfileState(viewModel: EditProfileModel.ViewModel) {
-        textView.text = viewModel.message
+//        textView.text = viewModel.message
     }
 
 
@@ -161,6 +159,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
 
     override fun displayComments(viewModel: CommentsModel.ViewModel) {
-        textView.text = viewModel.message
+//        textView.text = viewModel.message
     }
 }
