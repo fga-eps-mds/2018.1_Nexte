@@ -22,7 +22,6 @@ out/
 .gradle
 .gradle/
 build/
-gradle/wrapper/gradle-wrapper.properties/
 
 # Signing files
 .signing/
