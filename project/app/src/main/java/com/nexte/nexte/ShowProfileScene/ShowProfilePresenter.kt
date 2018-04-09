@@ -5,24 +5,27 @@ package com.nexte.nexte.ShowProfileScene
  */
 
 interface ShowProfilePresentationLogic {
+
     fun presentUserProfile(response: ShowProfileModel.Response)
 }
 
+/* Receives the response of Interactor,
+    processing data to display in View */
+
 class ShowProfilePresenter : ShowProfilePresentationLogic {
 
-    var viewScene : ShowProfileDisplayLogic? = null
+    var viewScene : ShowProfileDisplayLogic? = null // Show datas from ViewModel on screen
 
     override fun presentUserProfile(response: ShowProfileModel.Response) {
-        var message: String
-        val age : Int? = response.age
 
-        if(age == (-1)) {
-            message = "Não foi possível recuperar o usuário!"
-        } else {
-            message = "Usuário recuperado com sucesso!"
-        }
+        val name: String? = response.user?.name
+        val rank: String? = "#" + response.user?.rankingPosition.toString()
+        val club: String? = response.user?.club
+        val email: String? = response.user?.email
+        val age: String? = response.user?.age.toString()
 
-        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(message)
+        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club,
+                                                                                email, age)
 
         viewScene?.displayProfile(viewModel)
     }

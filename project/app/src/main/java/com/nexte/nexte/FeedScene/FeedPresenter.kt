@@ -1,31 +1,51 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Created by larissa on 27/03/18.
+ * Interface to define Presentation Logic to Feed Class that will used to call this Interactor on other class layer
  */
-
 interface FeedPresentationLogic {
 
-    fun presentLastGame(response: FeedModel.Response)
+    /**
+     * Method responsible to format feed data and send for view
+     *
+     * @param response Feed model response that contains not formatted data received of worker [FeedModel]
+     */
+    fun formatFeed(response: FeedModel.Response)
 }
 
-class FeedPresenter : FeedPresentationLogic {
+/**
+ * Class needed to format response for data can be displayed on activity
+ *
+ * @property viewScene Reference to the activity where data will be displayed [FeedView]
+ */
+class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
-    var viewController: FeedDisplayLogic? = null
+    override fun formatFeed(response: FeedModel.Response) {
+        val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
+        viewScene?.displayFeed(viewModel)
+    }
 
-    override fun presentLastGame(response: FeedModel.Response){
+    /**
+     * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     *
+     * @param activities Array of not formatted activities
+     * @return list of formatted activities
+     */
+    private fun formatFeedActivities(activities: Array<FeedModel.FeedActivity>): List<FeedModel.FeedActivityFormatted> {
+        val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
-        var message: String = ""
-        var firstPlayer: String? = response.firstPlayer
-        var secondPlayer: String? = response.secondPlayer
+        for (activity in activities) {
+            val feedActivityFormatted = FeedModel.FeedActivityFormatted(activity.challenge.challenger.name,
+                    activity.challenge.challenger.photo,
+                    activity.challenge.challenger.set.toString(),
+                    activity.challenge.challenged.name,
+                    activity.challenge.challenged.photo,
+                    activity.challenge.challenged.set.toString(),
+                    activity.feedDate.toString())
 
-        if (firstPlayer.equals("") || secondPlayer.equals("")) {
-            message = "Erro ao mostrar últimas partidas"
-        } else {
-            message = "Última partida recuperada com sucesso"
+            feedActivitiesFormatted.add(feedActivityFormatted)
         }
 
-        val viewModel: FeedModel.ViewModel = FeedModel.ViewModel(message)
-        this.viewController?.displayRecentGames(viewModel)
+        return feedActivitiesFormatted.toList()
     }
 }

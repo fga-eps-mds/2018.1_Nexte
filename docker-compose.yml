@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  android:
+    image: baldissera/android-container
+    container_name: android-container
+    volumes:
+      - ./project:/application
+      - ./docker/local.properties:/application/local.properties
