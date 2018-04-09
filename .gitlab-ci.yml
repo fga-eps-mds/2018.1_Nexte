@@ -1,0 +1,18 @@
+# Official docker image.
+image: docker:latest
+
+variables:
+  ANDROID_CONTAINER_IMAGE: baldissera/android-container
+
+services:
+  - docker:dind
+
+# before_script:
+#   - apk add --no-cache py-pip
+#   - pip install docker-compose
+
+build:
+  stage: build
+  script:
+    - docker run -v $(pwd)/project:/application -v $(pwd)/local.properties.env:/application/local.properties baldissera/android-container
+    # - docker-compose up
