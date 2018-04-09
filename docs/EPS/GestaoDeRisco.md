@@ -54,25 +54,6 @@ A Exposição do Risco(E) é calculada com base no produto entre probabilidade (
 | Média | De 6 a 12 |
 | Alta | De 15 a 25 |
 
-## 2. Principais Riscos do projeto
+## 2. Riscos do projeto e priorização
 
-### 2.1 Registro
-
-| ID | Descrição | Causa | Consequência |
-|:----:|:------:|:---------:|:-----:|
-| R01 | Dificuldade com a tecnologia | Inexperiência de ambas as equipes com a tecnologia | Atraso na entrega das atividades |
-| R02 | Baixa produtividade dos integrantes do grupo | Desmotivação dos membros da equipe |  Atraso na entrega das atividades |
-| R03 | Problema com a configuração de ambiente | Ineperiência de membros da equipe de gerência em utilizar docker com android |  Não na entrega das atividades completas |
-| R04 | O servidor RestFull de requisições não estar pronto. | Time externo do Nexte não desenvolver o servidor a tempo| Histórias não serão finalizadas, pois os dados não estarão disponíveis |
-| R05 | Membro(s) da equipe de gerência ter seus projetos selecionados para a WWDC2018. | Membros da equipe de gerência tiveram que enviaram projetos para o WWDC 2018 Scholarship| Membros da equipe de gerência que forem selecionados ficarão aproximadamente 2 semanas fora do país, dessa forma não terão tempo para se dedicar ao projeto|
-| R06 | Atividades atrasadas | Dificuldade com a tecnologia/Desmotivação dos membros da equipe/Baixa produtivade | Entregas incompletas |
-
-## 2.2 Priorização
-| ID | Probabildade | Impacto | Exposição do Risco |
-|:----:|:------:|:---------:|:-----:|
-| R01 | Muito Alta(5) | Muito Alto(5) | Alta(25) |
-| R02 | Média(3) | Muito Alto(5) | Alta(15) |
-| R03 | Alta(4) | Muito Alto(5) |  Alta(20) |
-| R04 | Média(3) | Muito Alto(5) | Alta(15) |
-| R05 | Média(3) | Muito Alto(5)| Alta(15)|
-| R06 | Media(3) | Alto(4) | Média(12)|
+Para visualizar os principais riscos do projeto e os riscos priorizados pro sprint clique [nesse link](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing)
