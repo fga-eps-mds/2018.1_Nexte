@@ -43,7 +43,10 @@ class RankingPresenter : RankingPresentationLogic {
             return position.toLong()
         }
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        override fun getView(position: Int,
+                             convertView: View?,
+                             parent: ViewGroup?): View {
+
             val rowView = inflater.inflate(R.layout.row_ranking, parent, false)
 
             rowView.name.text = dataSource[position].name

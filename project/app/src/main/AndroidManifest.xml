@@ -21,12 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RankingScene.RankingActivity"></activity>
+        <activity android:name=".RankingScene.RankingActivity" />
+        <!-- <activity android:name=".LoginActivity" android:label="@string/title_activity_login" /> -->
+        <!-- <activity android:name=".LoginScene.LoginView" /> -->
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".LoginScene.LoginView" />
-        <activity android:name=".HistoryScene.HistoryActivity"></activity>
+            android:name=".FeedScene.FeedView"
+            android:label="@string/title_activity_feed_view" />
         <activity
             android:name=".ShowProfileScene.ShowProfileActivity"
             android:label="@string/title_activity_show_profile"
