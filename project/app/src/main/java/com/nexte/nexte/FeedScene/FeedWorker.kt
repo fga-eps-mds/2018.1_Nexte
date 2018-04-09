@@ -2,6 +2,7 @@ package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.R
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Class responsible to do request for anywhere, format response and call completion to send data for called class
@@ -28,6 +29,7 @@ class FeedWorker {
 
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
+        var likesListOne= ArrayList<FeedModel.FeedPlayer>()
 
         val challenger2 = FeedModel.FeedPlayer("Letícia", R.mipmap.ic_launcher, 2)
         val challenged2 = FeedModel.FeedPlayer("Lorrany", R.mipmap.ic_launcher, 1)
@@ -59,15 +61,17 @@ class FeedWorker {
         val challenge7 = FeedModel.FeedChallenge(challenger7, challenged7, Date())
         val challenge8 = FeedModel.FeedChallenge(challenger8, challenged8, Date())
 
-        val feedActivity1 = FeedModel.FeedActivity(challenge1, Date())
-        val feedActivity2 = FeedModel.FeedActivity(challenge2, Date())
-        val feedActivity3 = FeedModel.FeedActivity(challenge3, Date())
-        val feedActivity4 = FeedModel.FeedActivity(challenge4, Date())
-        val feedActivity5 = FeedModel.FeedActivity(challenge5, Date())
-        val feedActivity6 = FeedModel.FeedActivity(challenge6, Date())
-        val feedActivity7 = FeedModel.FeedActivity(challenge7, Date())
-        val feedActivity8 = FeedModel.FeedActivity(challenge8, Date())
+        val feedActivity1 = FeedModel.FeedActivity(challenge1, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity2 = FeedModel.FeedActivity(challenge2, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity3 = FeedModel.FeedActivity(challenge3, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity4 = FeedModel.FeedActivity(challenge4, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity5 = FeedModel.FeedActivity(challenge5, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity6 = FeedModel.FeedActivity(challenge6, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity7 = FeedModel.FeedActivity(challenge7, Date(), Array<FeedModel.FeedPlayer> (0))
+        val feedActivity8 = FeedModel.FeedActivity(challenge8, Date(), Array<FeedModel.FeedPlayer> (0))
 
-        return arrayOf(feedActivity1, feedActivity2, feedActivity3, feedActivity4, feedActivity5, feedActivity6, feedActivity7, feedActivity8)
+
+        return arrayOf(feedActivity1, feedActivity2, feedActivity3, feedActivity4,
+                feedActivity5, feedActivity6, feedActivity7, feedActivity8)
     }
 }

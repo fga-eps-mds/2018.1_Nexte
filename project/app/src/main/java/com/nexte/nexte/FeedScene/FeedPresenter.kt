@@ -35,7 +35,8 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
-            val feedActivityFormatted = FeedModel.FeedActivityFormatted(activity.challenge.challenger.name,
+            val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                    activity.challenge.challenger.name,
                     activity.challenge.challenger.photo,
                     activity.challenge.challenger.set.toString(),
                     activity.challenge.challenged.name,

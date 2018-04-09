@@ -48,7 +48,8 @@ class FeedModel {
      */
     class FeedChallenge(var challenger: FeedPlayer,
                         var challenged: FeedPlayer,
-                        var challengeDate: Date)
+                        var challengeDate: Date
+                        )
 
     /**
      * Class that contains informations about activity to show in feed screen
@@ -57,7 +58,8 @@ class FeedModel {
      * @param feedDate Date of feed are created
      */
     class FeedActivity(var challenge: FeedChallenge,
-                       var feedDate: Date)
+                       var feedDate: Date,
+                       var likes: Array<FeedModel.FeedPlayer>)
 
     /**
      * Class responsible to define how the list view will display with the formatted data
@@ -76,5 +78,6 @@ class FeedModel {
                                 var challengedName: String,
                                 var challengedPhoto: Int,
                                 var challengedSets: String,
-                                var feedDate: String)
+                                var feedDate: String,
+                                var numberOfLikes: Int)
 }
