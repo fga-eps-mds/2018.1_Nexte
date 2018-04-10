@@ -27,11 +27,11 @@ Assim como a probabilidade é dada pela estimativa da equipe de gerência, o imp
 
   |**Impacto**   |**Descrição**                                       |**Peso**|
   |------------- |--------------------------------------------------- |----------|
-  |Muito Baixo   |Menos de 0.3 dias (6 horas)                  |1|
-  |Baixo         |De 6 horas a 1 dia                 |2|
-  |Médio         |De 1 a 3 dias   |3|
-  |Alto          |3 a 7 dias                    |4|
-  |Muito Alto    |7 ou mais dias                  |5|
+  |Muito Baixo   |Menos de 1 dia                  |1|
+  |Baixo         |De 1 a 2 dias                 |2|
+  |Médio         |De 3 a 7 dias   |3|
+  |Alto          |De 7 a 12 dias                    |4|
+  |Muito Alto    |12+ dias                  |5|
 
 
 ### 1.3 Exposição do Risco
