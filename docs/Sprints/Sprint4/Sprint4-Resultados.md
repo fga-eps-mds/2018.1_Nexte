@@ -3,6 +3,7 @@
 |---|---|---|---|
 | 09/04/2018| 0.1 |Criação da estrutura do documento | Luis Gustavo |
 | 09/04/2018| 0.2 | Adição do burndown, velocity, gestão de riscos e demais métricas| Luis Gustavo |
+| 10/04/2018| 0.3 | Adição da EVM e análise estática do código| Geovanni Oliveira |
 -------------------------------------------------------------------------------------------------
 
 **Número da Sprint:** 4
@@ -132,7 +133,9 @@ Como pode-se ver a maior parte dos riscos permaceu inalterada, entretanto alguns
 * Membros irão se comprometer mais com a daily
 
 ### **10. EVM**
-![EVM]()
+Com o velocity feito na sprint a 76, o projeto acabou ficou com o valor agregado acima do valor planejado, o que fez com que o time agregasse mais valor para o cliente. 
+segue a imagem da planilha de EVM para melhor averiguação.
+![EVM](https://i.imgur.com/VAijw3Z.png)
 
 ### **11. Análise do Scrum Master**
 
@@ -141,3 +144,10 @@ De maneira geral a equipe conseguiu progredir muito nessa _sprint_. Várias hist
 Vale destacar o amadurecimento dos membros de MDS, que tem conseguido entregar as histórias de desenvolvimento e que tem sido mais independentes de EPS em relação dúvidas de código e também os membros de MDS estão sendo mais proativos no github, criando novas _issues_.
 
 Também vale ressaltar, como ponto a melhorar, que a equipe tem de estar mais engajada para começar a trabalhar nas histórias da _sprint_ desde o início da _sprint_, pois na _sprint_ passada os membros de EPS ficaram um pouco sobrecarregados para corrigir _pull requests_ nos últimos dias da _sprint_.
+
+### **12. Análise da qulidade do código
+A análise do código é feita com a ferramenta Detekt, e o relatório sobre o código é apresentada abaixo:
+
+![](https://i.imgur.com/JyXSLRC.png)
+![](https://i.imgur.com/JuvrPls.png)
+![](https://i.imgur.com/xkemGVH.png)
