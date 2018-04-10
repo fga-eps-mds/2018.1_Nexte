@@ -59,7 +59,7 @@ class FeedModel {
      */
     class FeedActivity(var challenge: FeedChallenge,
                        var feedDate: Date,
-                       var likes: ArrayList<FeedModel.FeedPlayer>)
+                       var likes: List<FeedModel.FeedPlayer>)
 
     /**
      * Class responsible to define how the list view will display with the formatted data
@@ -79,5 +79,5 @@ class FeedModel {
                                 var challengedPhoto: Int,
                                 var challengedSets: String,
                                 var feedDate: String,
-                                var numberOfLikes: Int)
+                                var numberOfLikes: String)
 }
