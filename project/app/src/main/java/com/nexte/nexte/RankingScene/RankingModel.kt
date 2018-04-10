@@ -11,54 +11,26 @@ import android.widget.ListView
 
 class RankingModel {
 
-    class Request {
+    class Request(var context: Context)
 
-        val context: Context
 
-        constructor(context: Context){
+    class Response(var rankingActivities: Array<RankingActivity>)
 
-            this.context = context
-        }
-    }
+    //val context: Context
 
-    class Player {
 
-        var name: String? = null
-        var pictureURL: String? = null
-        var wins: Int? = null
-        var losses: Int? = null
-        var rankPosition : Int? = null
+    class ViewModel(var rankingActivities: Array<RankingActivityFormatted>)
 
-        constructor(name: String, pictureURL: String, wins: Int, losses: Int,
-                    lastGame: String, rankPosition: Int) {
 
-            this.name = name
-            this.pictureURL = pictureURL
-            this.wins = wins
-            this.losses = losses
-            this.rankPosition = rankPosition
-        }
-    }
+    class RankingPlayer(var name: String, var pictureURL: String, var wins: Int, var losses: Int,
+                        var rankPosition: Int)
 
-    class Response {
+    class RankingActivity(var userRanking: RankingPlayer)
 
-        var players: Array<Player>? = null
-        val context: Context
-
-        constructor(players: Array<Player>, context: Context) {
-
-            this.players = players
-            this.context = context
-        }
-    }
-
-    class ViewModel {
-
-        var adapter: BaseAdapter? = null
-
-        constructor(adapter: BaseAdapter) {
-
-            this.adapter = adapter
-        }
-    }
+    class RankingActivityFormatted(var userName: String,
+                                   var userPictureURL: Int,
+                                   var userWins: Int,
+                                   var userLosses: Int,
+                                   var userRankPosition: String)
 }
+
