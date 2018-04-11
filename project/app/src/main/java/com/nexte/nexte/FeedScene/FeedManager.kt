@@ -35,19 +35,20 @@ object FeedManager {
      *
      * @param identifier Use for find activity feed that will be updated
      * @param activity New data for store in specific feed activity
-     * @return Boolean for know if feed activity was updated.
+     * @return Activity that is updated
      */
-    fun updateFeedActivity(identifier: String, activity: FeedModel.FeedActivity): Boolean {
+    fun updateFeedActivity(identifier: String, activity: FeedModel.FeedActivity): FeedModel.FeedActivity {
         val activityOfFeed = feedList.find { it.identifier == identifier }
 
         if (activityOfFeed == null) {
             this.feedListMutable.add(activity)
         } else {
+            activity.identifier = activityOfFeed.identifier
             activityOfFeed.challenge = activity.challenge
             activityOfFeed.feedDate = activity.feedDate
             activityOfFeed.likes = activity.likes
         }
 
-        return true
+        return activity
     }
 }
