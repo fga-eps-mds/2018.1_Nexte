@@ -1,9 +1,16 @@
 package com.nexte.nexte.RankingScene
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_ranking.*
+import kotlinx.android.synthetic.main.row_ranking.view.*
 
 interface RankingDisplayLogic {
     fun displayRankInScreen(viewModel: RankingModel.ViewModel)
@@ -17,26 +24,59 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
-        setupScene()
 
-        val request = RankingModel.Request(this)
+        rankingRecyclerView.layoutManager = LinearLayoutManager(this)
+        this.setupRankingScene()
+
+        val request = RankingModel.Request()
 
         interactor?.getPlayersRanksForScene(request)
     }
 
-    private fun setupScene(){
+    private fun setupRankingScene(){
 
-        val viewScene = this
+        val view = this
         val interactor = RankingInteractor()
         val presenter = RankingPresenter()
 
-        viewScene.interactor = interactor
+        view.interactor = interactor
         interactor.presenter = presenter
-        presenter.viewScene = viewScene
+        presenter.viewScene = view
     }
 
     override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
 
-        ranking_list_view.adapter = viewModel.adapter
+        rankingRecyclerView.adapter = RankingAdapter(viewModel.rankingActivities, this)
+    }
+
+    class RankingAdapter(private val activities: List<RankingModel.RankingActivityFormatted>,
+                         private val context: Context): RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
+
+        override fun onCreateViewHolder (parent: ViewGroup, viewType: Int): RankingAdapter.ViewHolder{
+
+            val view = LayoutInflater.from(context).inflate(R.layout.row_ranking, parent, false)
+            return RankingAdapter.ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.bindView(activities[position])
+        }
+
+        override fun getItemCount(): Int {
+            return this.activities.size
+        }
+
+
+
+        class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+
+            fun bindView(activity: RankingModel.RankingActivityFormatted) {
+                itemView.picture_img_view.setImageResource(activity.userPictureURL)
+                itemView.name.text(activity.userName)
+                itemView.victory.text(activity.userWins)
+                itemView.position.text(activity.userRankPosition)
+                itemView.losses.text(activity.userLosses)
+            }
+        }
     }
 }

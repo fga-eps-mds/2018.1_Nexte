@@ -17,15 +17,33 @@ interface RankingPresentationLogic {
     fun presentRanking(response: RankingModel.Response)
 }
 
-class RankingPresenter : RankingPresentationLogic {
+class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPresentationLogic {
+
+    override fun presentRanking(response: RankingModel.Response) {
+        val viewModel = RankingModel.ViewModel(this.formatRankingActivities(response.rankingActivities))
+
+        viewScene?.displayRankInScreen(viewModel)
+    }
+
+    private fun formatRankingActivities(activities: Array<RankingModel.RankingActivity>): List<RankingModel.RankingActivityFormatted> {
+        var rankingActivitiesFormatted: MutableList<RankingModel.RankingActivityFormatted> = mutableListOf()
+
+        for(activity in activities) {
+            val rankingActivityFormated = RankingModel.RankingActivityFormatted(activity.userRanking.name,
+                    activity.userRanking.pictureURL.toInt(), activity.userRanking.wins, activity.userRanking.losses,
+                    activity.userRanking.rankPosition.toString())
+            rankingActivitiesFormatted.add(rankingActivityFormated)
+        }
+        return rankingActivitiesFormatted.toList()
+    }
 
     class RankingAdapter : BaseAdapter {
 
         private val inflater: LayoutInflater
         private val context: Context //where will be formated.
-        private val dataSource: Array<RankingModel.Player> //what will be formated
+        private val dataSource: Array<RankingModel.RankingPlayer> //what will be formated
 
-        constructor(context: Context, dataSource: Array<RankingModel.Player>) : super() {
+        constructor(context: Context, dataSource: Array<RankingModel.RankingPlayer>) : super() {
             this.context = context
             this.dataSource = dataSource
             inflater = LayoutInflater.from(context)
@@ -58,14 +76,7 @@ class RankingPresenter : RankingPresentationLogic {
         }
     }
 
-    var viewScene: RankingDisplayLogic? = null
 
-    override fun presentRanking(response: RankingModel.Response) {
 
-        val rankingAdapter = RankingAdapter(response.context, response.players!!)
 
-        val viewModel: RankingModel.ViewModel = RankingModel.ViewModel(rankingAdapter)
-
-        viewScene?.displayRankInScreen(viewModel)
-    }
 }

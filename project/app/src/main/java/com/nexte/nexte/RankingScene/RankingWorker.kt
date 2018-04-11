@@ -1,5 +1,8 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.R
+
+
 import com.nexte.nexte.FeedScene.FeedModel
 
 /**

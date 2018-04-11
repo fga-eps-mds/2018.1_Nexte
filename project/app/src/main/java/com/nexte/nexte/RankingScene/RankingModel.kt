@@ -11,7 +11,7 @@ import android.widget.ListView
 
 class RankingModel {
 
-    class Request(var context: Context)
+    class Request
 
 
     class Response(var rankingActivities: Array<RankingActivity>)
@@ -19,7 +19,7 @@ class RankingModel {
     //val context: Context
 
 
-    class ViewModel(var rankingActivities: Array<RankingActivityFormatted>)
+    class ViewModel(var rankingActivities: List<RankingActivityFormatted>)
 
 
     class RankingPlayer(var name: String, var pictureURL: String, var wins: Int, var losses: Int,
