@@ -71,8 +71,8 @@ A priorização da *sprint* 4 foi com base na equipe de desenvolvimento começar
 |[#93](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/93) |Eu, como usuário, quero ver a lista de atividades das minhas atividades (partidas | 13 |
 |[#94](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/94) |Eu, como gerente do projeto, desejo escrever as histórias de usuário que faltam no projeto, para ter um backlog e não de features para serem feitas | 2 |
 |[#96](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/96) |Eu, como gerente de projeto, desejo averiguar a cobertura de código do projeto na Integração contínua, para saber a porcentagem do código que está coberto por testes | 13 |
-|[#97](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/97) |Eu, como gerente do projeto, desejo realizar treinamento de Kotlin para o time de desenvolvimento para sanar dúvidas do time | 5 |
+|[#97](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/97) |Eu, como gerente do projeto, desejo realizar treinamento de Kotlin para o time de desenvolvimento para sanar dúvidas do time | 3 |
 |[#91](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/91) |Eu, como usuário, quero visualizar lista de tenistas no ranking para ver a posição dos tenistas | 13 |
 
 
-**Total de pontos: 58**
+**Total de pontos: 56**
