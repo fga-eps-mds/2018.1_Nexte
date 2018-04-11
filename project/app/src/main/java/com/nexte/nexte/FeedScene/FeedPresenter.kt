@@ -31,11 +31,12 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
      * @param activities Array of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: Array<FeedModel.FeedActivity>): List<FeedModel.FeedActivityFormatted> {
+    private fun formatFeedActivities(activities: List<FeedModel.FeedActivity>): List<FeedModel.FeedActivityFormatted> {
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                    activity.identifier,
                     activity.challenge.challenger.name,
                     activity.challenge.challenger.photo,
                     activity.challenge.challenger.set.toString(),
