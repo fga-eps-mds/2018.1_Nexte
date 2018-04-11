@@ -78,7 +78,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * @property context Context that will show this adapter
      */
     class FeedAdapter(private val activities: List<FeedModel.FeedActivityFormatted>,
-                      private val unformattedActivities: Array<FeedActivity>,
+                      private val unformattedActivities: List<FeedActivity>,
                       private val context: Context): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
 
