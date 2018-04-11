@@ -35,3 +35,28 @@ Para realizar o pull request deve ser observado o template criado e o padrão j�
 
     Quais as issues o Pull Request finaliza?
     Issue que é finalizada por este pull request: ex #100
+
+### Análise de código
+
+Neste projeto é utilizada a ferramenta **Detekt** para análise estática de código, para executá-la é necessário estar dentro da pasta _project_ e no terminal executar o comando :
+
+    ./gradlew detektCheck
+
+**Métricas a serem analisadas:**
+
+* Quantidade de linhas por método
+* Quantidade de métodos por classe
+* Adequação à folha de estilo
+* Complexidade ciclomática
+* Quantidade de Code smells
+
+## INSERIR VALORES ACEITÁVEIS
+
+**Cobertura de código**
+
+A cobertura de código é feita pelo Jacoco, para averiguar a cobertura é necessário gerar o relatório de cobertura de testes e olha-lo na pasta _build/reports/coverage/debug_ o arquivo gerado é um index.html.
+
+O comando para gerar o relatório de cobertura de código é:
+
+    ./gradlew createDebugCoverageReport
+
