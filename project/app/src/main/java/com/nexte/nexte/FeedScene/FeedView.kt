@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_feed_view.*
+import kotlinx.android.synthetic.main.row_feed.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 
 /**
@@ -42,6 +43,8 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         val request = FeedModel.Request()
         interactor?.fetchFeed(request)
+
+        likesButtom.setOnClickListener()
     }
 
     /**
@@ -111,6 +114,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.challengedName.text = activity.challengedName
                 itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
                 itemView.challengedSet.text = activity.challengedSets
+                itemView.numberOfLikes.text = activity.numberOfLikes
             }
         }
     }
