@@ -25,7 +25,8 @@ class ShowProfileWorker {
             "",
             "",
             "",
-            -1)
+            -1,
+            "")
 
         var returnedUser: ShowProfileModel.Player? = null
 

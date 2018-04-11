@@ -4,9 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nexte.nexte.EditProfileScene.EditProfileView
-import com.nexte.nexte.MainActivity
 import com.nexte.nexte.R
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
 interface ShowProfileDisplayLogic {
@@ -57,9 +55,9 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
 
         username.text = viewModel.name
-        RankID.text = viewModel.rank
+        RankingID.text = viewModel.rank
         club.text = viewModel.club
-        number.text = viewModel.age
+        age.text = viewModel.age
         email.text = viewModel.email
 
     }

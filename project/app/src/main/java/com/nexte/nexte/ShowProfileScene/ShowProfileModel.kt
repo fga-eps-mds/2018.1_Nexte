@@ -60,16 +60,23 @@ class ShowProfileModel {
 
     class Player {
 
-        var name: String? = "" // User name
-        var rankingPosition: Int? = null // Ranking position of user
-        var pictureAdress: String? = "" // Picture profile
-        var email: String? = "" // User email
-        var gender: String? = "" // User gender
-        var club: String? = "" // User club
-        var age: Int? = -1 // Age of user
+        var name: String // User name
+        var rankingPosition: Int// Ranking position of user
+        var pictureAdress: String// Picture profile
+        var email: String // User email
+        var gender: String // User gender
+        var club: String // User club
+        var age: Int // Age of user
+        var password: String // User password
 
-        constructor(name: String?, rankingPosition: Int?, pictureAdress: String?,
-                    email: String?, gender: String?, club: String?, age: Int?) {
+        constructor(name: String,
+                    rankingPosition: Int,
+                    pictureAdress: String,
+                    email: String,
+                    gender: String,
+                    club: String,
+                    age: Int,
+                    password: String) {
 
             this.name = name
             this.rankingPosition = rankingPosition
@@ -78,7 +85,7 @@ class ShowProfileModel {
             this.gender = gender
             this.club = club
             this.age = age
-
+            this.password = password
         }
 
 

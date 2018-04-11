@@ -9,7 +9,8 @@ object UserSingleton {
             "enggabriel@gmail.com",
             "masculino",
             "ASCAD",
-            19)
+            19,
+            "feioso")
 
     fun getUserInformations(): ShowProfileModel.Player {
         return userInformations
