@@ -1,9 +1,9 @@
 package com.nexte.nexte.RankingScene
 
 import com.nexte.nexte.R
+import java.util.*
 
 
-import com.nexte.nexte.FeedScene.FeedModel
 
 /**
  * Created by albino on 02/04/18.
@@ -42,8 +42,8 @@ class RankingWorker {
         val rankingActivity9 = RankingModel.RankingActivity(userRanking9)
         val rankingActivity10 = RankingModel.RankingActivity(userRanking10)
 
-        return arrayOf(rankingActivity1, rankingActivity2, rankingActivity3, rankingActivity4,
-                rankingActivity5, rankingActivity6, rankingActivity7, rankingActivity8, rankingActivity9, rankingActivity10)
+        return arrayOf(rankingActivity1, rankingActivity2, rankingActivity3, rankingActivity4, rankingActivity5,
+                        rankingActivity6, rankingActivity7, rankingActivity8, rankingActivity9, rankingActivity10)
 
 
     }

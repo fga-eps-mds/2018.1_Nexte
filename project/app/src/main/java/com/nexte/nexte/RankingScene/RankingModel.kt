@@ -22,15 +22,15 @@ class RankingModel {
     class ViewModel(var rankingActivities: List<RankingActivityFormatted>)
 
 
-    class RankingPlayer(var name: String, var pictureURL: String, var wins: Int, var losses: Int,
+    class RankingPlayer(var name: String, var pictureURL: Int, var wins: Int, var losses: Int,
                         var rankPosition: Int)
 
     class RankingActivity(var userRanking: RankingPlayer)
 
     class RankingActivityFormatted(var userName: String,
                                    var userPictureURL: Int,
-                                   var userWins: Int,
-                                   var userLosses: Int,
+                                   var userWins: String,
+                                   var userLosses: String,
                                    var userRankPosition: String)
 }
 

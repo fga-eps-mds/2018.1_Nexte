@@ -30,7 +30,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
 
         for(activity in activities) {
             val rankingActivityFormated = RankingModel.RankingActivityFormatted(activity.userRanking.name,
-                    activity.userRanking.pictureURL.toInt(), activity.userRanking.wins, activity.userRanking.losses,
+                    activity.userRanking.pictureURL.toInt(), activity.userRanking.wins.toString(), activity.userRanking.losses.toString(),
                     activity.userRanking.rankPosition.toString())
             rankingActivitiesFormatted.add(rankingActivityFormated)
         }

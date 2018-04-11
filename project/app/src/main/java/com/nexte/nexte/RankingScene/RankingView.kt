@@ -72,10 +72,10 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
 
             fun bindView(activity: RankingModel.RankingActivityFormatted) {
                 itemView.picture_img_view.setImageResource(activity.userPictureURL)
-                itemView.name.text(activity.userName)
-                itemView.victory.text(activity.userWins)
-                itemView.position.text(activity.userRankPosition)
-                itemView.losses.text(activity.userLosses)
+                itemView.name.text = activity.userName
+                itemView.victory.text = activity.userWins
+                itemView.position.text = activity.userRankPosition
+                itemView.losses.text = activity.userLosses
             }
         }
     }
