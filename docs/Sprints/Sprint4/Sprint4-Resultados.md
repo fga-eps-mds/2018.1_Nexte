@@ -4,6 +4,7 @@
 | 09/04/2018| 0.1 |Criação da estrutura do documento | Luis Gustavo |
 | 09/04/2018| 0.2 | Adição do burndown, velocity, gestão de riscos e demais métricas| Luis Gustavo |
 | 10/04/2018| 0.3 | Adição da EVM e análise estática do código| Geovanni Oliveira |
+| 10/04/2018| 0.4 | Atualização na parte de gestão de riscos
 -------------------------------------------------------------------------------------------------
 
 **Número da Sprint:** 4
@@ -89,16 +90,40 @@ A maior parte dos membros da equipe mantiveram suas quantidade de horas em torno
 
 ### **8. Gestão de Risco**
 
-* Riscos priorizados para _sprint 3 e 4_ 
-![Gestão de Risco](https://i.imgur.com/e1z8uod.png)
+#### 8.1 Riscos priorizados
 
-* _Burndown risk_
-![Gestão de Risco](https://i.imgur.com/p6S2vMC.png)
+![Gestão de Risco](https://i.imgur.com/wk3XwxG.png)
 
-Acima pode-se observar os riscos priorizados para as _sprints 3 e 4_ juntamente com o _burndown risk_, que mostra a progressão dos principais riscos do projeto durante essa _sprints_.
+Mantiveram-se priorizados para a _sprint 4_ os mesmos riscos priorizados na _sprint 3_
 
-Como pode-se ver a maior parte dos riscos permaceu inalterada, entretanto alguns riscos caíram razoavelmente ao longo dessas _sprints_. Para mais informações sobre o cálculo dos risco veja [esse link](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/docs/EPS/GestaoDeRisco.md), e para melhor visualização dos riscos do projeto veja [esse link](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing)
+#### 8.2 _Burndown risk_
 
+Para criar _burndown_ de riscos o scrum master optou por criar um gráfico de _burndown_ para cada risco individual, pois dessa forma fica mais fácil analisar cada risco. Visto que 10 riscos estão sendo priorizados por _sprint_ é inviável colocar as 10 imagens nesse arquivo, sendo assim para ver os gráficos clique nesse [link](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Sprint4".
+
+#### 8.3 Diferenças da sprint anterior
+
+A maior parte dos riscos priorizados nessa _sprint_ mantiveram o valor da _sprint_ passada, pois não foram tomadas ações específicas para mitigá-los. Apenas os riscos abaixo tiveram alterações:
+
+| ID | Status | Por que mudou? |
+|---|---|---|
+| RN01 | Diminuiu | Essa foi a segunda _sprint_ seguida em que MDS trabalhou com código, e em ambas, todas as histórias foram entregues. Assim a confiança da equipe com a tecnologia está bem mais alta e EPS considerou que a probabilidade desse risco acontecer no futuro diminuiu. |
+| RN03 | Diminuiu | Esse risco diminuiu pois a equipe não enfrentou nenhum problema no ambiente de desenvolvimento até então. Além disso, o _devops_ da equipe conseguiu concluir a história de integração contínua e está mais seguro em relação a infraestrutura do projeto. |
+| RN07 | Diminuiu | Desde a primeira _sprint_ a comunicação entre os membros da equipe funciona bem. Na _sprint 4_ a equipe passou a utilizar a plataforma github com bem mais frequência em relação a criação/conversa nas _issues e pull requests_. Sendo assim, viável dizer que esse risco se torna menor agora que os integrantes estão utilizando melhor mais uma plataforma para comunicação. |
+| RN22 | Diminuiu | Os integrantes de MDS conseguiram entregar todas as histórias, seguindo a arquitetura, pela segunda _sprint_ consecutiva. Além disso, foi abordado na restrospectiva que os membros de MDS entenderem melhor e estão mais seguros em relação a arquitetura.|
+
+
+#### 8.4 Ações para riscos atuais
+
+| ID | Como mitigar |
+|---|---|
+| RN01 | Foi dado um treinamento de boas práticas com Kotlin, a equipe de MDS forneceu um código exemplo de Recycle View para a equipe de MDS e também está sendo preparado um treinamento de _integration tests_ para a equipe de MDS. |
+| RN02 | O scrum master fará, a partir dessa _sprint_, melhor análise/coleta da produtividade da equipe |
+| RN03 | Assim como na _sprint_ passada, mais de um membro de EPS trabalhará na parte de _devops_ do projeto durante essa _sprint_. |
+| RN04 | Para mitigar esse risco o quanto antes, nessa própria _sprint_ será criado o servidor com algumas funcionalidades essenciais e ele já será integrado ao Docker como um micro serviço. |
+| RN07 | Será cobrado dos integrantes da equipe maior responsabilidade com as _daily meetings_, que é aonde a equipe ainda tem bastante espaço para melhorar na comunicação. Além disso, o _scrum master_ irá apoiar os membros do grupo para que os mesmos não deixem de falar seus impedimentos. |
+| RN15 | Esse risco estava acontecendo bastante, visto que um integrante de MDS está dominando mais a tecnologia(Androind com Kotlin) mais que os outros integrantes, o que resultava em os outros integrantes necessitarem da ajuda dele para entregar suas histórias. Para mitigar esse risco, os pareamentos essa _sprint_ serão fixos, de forma que os integrantes que ainda não dominam a tecnologia terão de correr atrás desde o início da _sprint_ para aprender e conseguir finalizar suas histórias. |
+| RN20 | Essa sprint serão entregue parte do servidor e ao final da _sprint_ parte de três cenas(ranking, feed e perfil) já estarão parcialmente implementadas, o que possibilitará que novas histórias já possam ser feitas, visto que essas três "macro" cenas estarão prontas. |
+ 
 
 ### **9. Retrospectiva**
 <h4> Pontos Positivos:</h4>
@@ -130,7 +155,7 @@ Como pode-se ver a maior parte dos riscos permaceu inalterada, entretanto alguns
 * Mais cuidado e esforço para definir os critérios de aceitação
 * Duplas de pareamento serão fixas para cada história(não poderá parear com membros que não são responsáveis pela história)
 * Estudar mais sobre a linguagem Kotlin antes começar as histórias
-* Membros irão se comprometer mais com a daily
+* Membros serão cobrados de se comprometer mais com a daily
 
 ### **10. EVM**
 Com o velocity feito na sprint a 76, o projeto acabou ficou com o valor agregado acima do valor planejado, o que fez com que o time agregasse mais valor para o cliente. 
@@ -144,10 +169,3 @@ De maneira geral a equipe conseguiu progredir muito nessa _sprint_. Várias hist
 Vale destacar o amadurecimento dos membros de MDS, que tem conseguido entregar as histórias de desenvolvimento e que tem sido mais independentes de EPS em relação dúvidas de código e também os membros de MDS estão sendo mais proativos no github, criando novas _issues_.
 
 Também vale ressaltar, como ponto a melhorar, que a equipe tem de estar mais engajada para começar a trabalhar nas histórias da _sprint_ desde o início da _sprint_, pois na _sprint_ passada os membros de EPS ficaram um pouco sobrecarregados para corrigir _pull requests_ nos últimos dias da _sprint_.
-
-### **12. Análise da qulidade do código
-A análise do código é feita com a ferramenta Detekt, e o relatório sobre o código é apresentada abaixo:
-
-![](https://i.imgur.com/JyXSLRC.png)
-![](https://i.imgur.com/JuvrPls.png)
-![](https://i.imgur.com/xkemGVH.png)
