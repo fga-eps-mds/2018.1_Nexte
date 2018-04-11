@@ -3,6 +3,7 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 10/04/2018| 0.1 | Criação do documento e adição do roadmap do scrum master| Luis Gustavo|
+| 10/04/2018| 0.2 | Adição do roadmap do DevOps | Guilherme Baldissera|
 ----
 
 ## Sumário
@@ -22,6 +23,9 @@
 ![Scrum Master Roadmap 0.1](https://i.imgur.com/a3GDXYB.png)
 
 ## 2. Devops
+
+* **Versão 0.1**
+![DevOps Roadmap 0.1](https://imgur.com/kyd7LXY.png)
 
 ## 3. Arquitetura
 
