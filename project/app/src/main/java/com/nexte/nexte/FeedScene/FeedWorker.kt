@@ -29,35 +29,35 @@ class FeedWorker {
 
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
-        val likesList1: List<FeedModel.FeedPlayer> = listOf()
+        val likesList1: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger2 = FeedModel.FeedPlayer("Letícia", R.mipmap.ic_launcher, 2)
         val challenged2 = FeedModel.FeedPlayer("Lorrany", R.mipmap.ic_launcher, 1)
-        val likesList2: List<FeedModel.FeedPlayer> = listOf()
+        val likesList2: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger3 = FeedModel.FeedPlayer("Luis", R.mipmap.ic_launcher, 2)
         val challenged3 = FeedModel.FeedPlayer("Miguel", R.mipmap.ic_launcher, 0)
-        val likesList3: List<FeedModel.FeedPlayer> = listOf()
+        val likesList3: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger4 = FeedModel.FeedPlayer("Geovanni", R.mipmap.ic_launcher, 3)
         val challenged4 = FeedModel.FeedPlayer("Alexandre", R.mipmap.ic_launcher, 2)
-        val likesList4: List<FeedModel.FeedPlayer> = listOf()
+        val likesList4: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger5 = FeedModel.FeedPlayer("Larissa", R.mipmap.ic_launcher, 0)
         val challenged5 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 1)
-        val likesList5: List<FeedModel.FeedPlayer> = listOf()
+        val likesList5: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger6 = FeedModel.FeedPlayer("Miguel", R.mipmap.ic_launcher, 0)
         val challenged6 = FeedModel.FeedPlayer("Letícia", R.mipmap.ic_launcher, 2)
-        val likesList6: List<FeedModel.FeedPlayer> = listOf()
+        val likesList6: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger7 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
         val challenged7 = FeedModel.FeedPlayer("Geovanni", R.mipmap.ic_launcher, 1)
-        val likesList7: List<FeedModel.FeedPlayer> = listOf()
+        val likesList7: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenger8 = FeedModel.FeedPlayer("Alexandre", R.mipmap.ic_launcher, 3)
         val challenged8 = FeedModel.FeedPlayer("Larissa", R.mipmap.ic_launcher, 0)
-        val likesList8: List<FeedModel.FeedPlayer> = listOf()
+        val likesList8: MutableList<FeedModel.FeedPlayer> = mutableListOf()
 
         val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
         val challenge2 = FeedModel.FeedChallenge(challenger2, challenged2, Date())

@@ -22,7 +22,7 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
 
     override fun formatFeed(response: FeedModel.Response) {
         val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
-        viewScene?.displayFeed(viewModel)
+        viewScene?.displayFeed(viewModel, response)
     }
 
     /**

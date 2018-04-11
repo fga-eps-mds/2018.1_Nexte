@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nexte.nexte.FeedScene.FeedModel.FeedActivity
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.*
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.row_feed.view.*
  * Interface to define Display Logic to FeedVeiw Class that will used received call of Presenter
  */
 interface FeedDisplayLogic {
-    fun displayFeed(viewModel: FeedModel.ViewModel)
+    fun displayFeed(viewModel: FeedModel.ViewModel, response: FeedModel.Response)
 }
 
 /**
@@ -44,7 +45,6 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         val request = FeedModel.Request()
         interactor?.fetchFeed(request)
 
-        likesButtom.setOnClickListener()
     }
 
     /**
@@ -66,8 +66,8 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param viewModel Feed view model received for presenter to show on screen
      */
-    override fun displayFeed(viewModel: FeedModel.ViewModel) {
-        feedRecyclerView.adapter = FeedAdapter(viewModel.feedActivities, this)
+    override fun displayFeed(viewModel: FeedModel.ViewModel, response: FeedModel.Response) {
+        feedRecyclerView.adapter = FeedAdapter(viewModel.feedActivities, response.feedActivities, this)
     }
 
 
@@ -78,16 +78,18 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * @property context Context that will show this adapter
      */
     class FeedAdapter(private val activities: List<FeedModel.FeedActivityFormatted>,
+                      private val unformattedActivities: Array<FeedActivity>,
                       private val context: Context): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedAdapter.ViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent, false)
             return FeedAdapter.ViewHolder(view)
+
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bindView(activities[position])
+            holder.bindView(activities[position], unformattedActivities[position] )
         }
 
         override fun getItemCount(): Int {
@@ -102,11 +104,13 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
             /**
-             * Function to bind all information about acitivty
+             * Function to bind all information about activity
              *
              * @param activity Formatted data to show in row of activity feed
              */
-            fun bindView(activity: FeedModel.FeedActivityFormatted) {
+            fun bindView(activity: FeedModel.FeedActivityFormatted,
+                         unformattedActivity: FeedModel.FeedActivity) {
+
                 itemView.challengerName.text = activity.challengerName
                 itemView.challengerPhoto.setImageResource(activity.challengerPhoto)
                 itemView.challengerSet.text = activity.challengerSets
@@ -115,7 +119,16 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
                 itemView.challengedSet.text = activity.challengedSets
                 itemView.numberOfLikes.text = activity.numberOfLikes
+
+                itemView.likesButtom.setOnClickListener {
+                    val baldissera = FeedModel.FeedPlayer("Guilherme",123456, 1)
+                    unformattedActivity.likes.add(baldissera)
+                    itemView.numberOfLikes.text = "1"
+
+
+                }
             }
+
         }
     }
 }
