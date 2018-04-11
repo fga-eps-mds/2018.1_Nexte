@@ -122,7 +122,7 @@ A maior parte dos riscos priorizados nessa _sprint_ mantiveram o valor da _sprin
 
 | ID | Como mitigar |
 |---|---|
-| RN01 | Foi dado um treinamento de boas práticas com Kotlin, a equipe de MDS forneceu um código exemplo de Recycle View para a equipe de MDS e também está sendo preparado um treinamento de _integration tests_ para a equipe de MDS. |
+| RN01 | Foi dado um treinamento de boas práticas com Kotlin, a equipe de EPS forneceu um código exemplo de Recycle View para a equipe de MDS e também está sendo preparado um treinamento de _integration tests_ para a equipe de MDS. |
 | RN02 | O scrum master fará, a partir dessa _sprint_, melhor análise/coleta da produtividade da equipe |
 | RN03 | Assim como na _sprint_ passada, mais de um membro de EPS trabalhará na parte de _devops_ do projeto durante essa _sprint_. |
 | RN04 | Para mitigar esse risco o quanto antes, nessa própria _sprint_ será criado o servidor com algumas funcionalidades essenciais e ele já será integrado ao Docker como um micro serviço. |
