@@ -123,7 +123,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.likesButtom.setOnClickListener {
                     val baldissera = FeedModel.FeedPlayer("Guilherme",123456, 1)
                     unformattedActivity.likes.add(baldissera)
-                    itemView.numberOfLikes.text = "1"
+                    itemView.numberOfLikes.text = unformattedActivity.likes.size.toString()
 
 
                 }
