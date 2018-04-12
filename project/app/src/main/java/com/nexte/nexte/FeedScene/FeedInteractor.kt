@@ -11,7 +11,7 @@ interface FeedBusinessLogic {
      * @param request Request model of feed that contains data to pass for Worker
      */
     fun fetchFeed(request: FeedModel.Request)
-    fun fetchManageLikes(identifier: String, activity: FeedModel.FeedActivity)
+    fun fetchManageLikes(identifier: String)
 }
 
 /**
@@ -30,8 +30,9 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusines
         }
     }
 
-    override fun fetchManageLikes(identifier: String, activity: FeedModel.FeedActivity) {
-        worker.manageLikes(activity, identifier) { updatedFeedActivity ->
+    override fun fetchManageLikes(identifier: String) {
+        val activity = FeedManager.getFeedActivity(identifier)
+        worker.manageLikes(activity) { updatedFeedActivity ->
             presenter?.updateViewActivity(updatedFeedActivity)
         }
     }

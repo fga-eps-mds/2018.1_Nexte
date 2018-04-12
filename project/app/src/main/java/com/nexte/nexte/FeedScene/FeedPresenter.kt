@@ -11,7 +11,7 @@ interface FeedPresentationLogic {
      * @param response Feed model response that contains not formatted data received of worker [FeedModel]
      */
     fun formatFeed(response: FeedModel.Response)
-    fun updateViewActivity(activity: FeedModel.FeedActivity)
+    fun updateViewActivity(activity: FeedModel.FeedActivity?)
 }
 
 /**
@@ -23,14 +23,13 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
 
     override fun formatFeed(response: FeedModel.Response) {
         val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
-        viewScene?.displayFeed(viewModel, response)
+        viewScene?.displayFeed(viewModel)
     }
 
 
-    override fun updateViewActivity(activity: FeedModel.FeedActivity) {
+    override fun updateViewActivity(activity: FeedModel.FeedActivity?) {
         val newActivityFormatted = this.formatFeedActivity(activity)
-        val sameIdentifier = activity.identifier
-        viewScene?.actualizeLike(newActivityFormatted, sameIdentifier)
+        viewScene?.actualizeLike(newActivityFormatted)
     }
     /**
      * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
@@ -38,38 +37,38 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
      * @param activities Array of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: List<FeedModel.FeedActivity>): List<FeedModel.FeedActivityFormatted> {
+    private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>): MutableList<FeedModel.FeedActivityFormatted> {
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.identifier,
-                    activity.challenge.challenger.name,
-                    activity.challenge.challenger.photo,
-                    activity.challenge.challenger.set.toString(),
-                    activity.challenge.challenged.name,
-                    activity.challenge.challenged.photo,
-                    activity.challenge.challenged.set.toString(),
+                    activity.challenge?.challenger?.name,
+                    activity.challenge?.challenger?.photo,
+                    activity.challenge?.challenger?.set.toString(),
+                    activity.challenge?.challenged?.name,
+                    activity.challenge?.challenged?.photo,
+                    activity.challenge?.challenged?.set.toString(),
                     activity.feedDate.toString(),
-                    activity.likes.size.toString())
+                    activity.likes?.size.toString())
 
             feedActivitiesFormatted.add(feedActivityFormatted)
         }
 
-        return feedActivitiesFormatted.toList()
+        return feedActivitiesFormatted
     }
 
-    private fun formatFeedActivity(activity: FeedModel.FeedActivity): FeedModel.FeedActivityFormatted {
+    private fun formatFeedActivity(activity: FeedModel.FeedActivity?): FeedModel.FeedActivityFormatted {
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(
-                activity.identifier,
-                activity.challenge.challenger.name,
-                activity.challenge.challenger.photo,
-                activity.challenge.challenger.set.toString(),
-                activity.challenge.challenged.name,
-                activity.challenge.challenged.photo,
-                activity.challenge.challenged.set.toString(),
-                activity.feedDate.toString(),
-                activity.likes.size.toString())
+                activity?.identifier,
+                activity?.challenge?.challenger?.name,
+                activity?.challenge?.challenger?.photo,
+                activity?.challenge?.challenger?.set.toString(),
+                activity?.challenge?.challenged?.name,
+                activity?.challenge?.challenged?.photo,
+                activity?.challenge?.challenged?.set.toString(),
+                activity?.feedDate.toString(),
+                activity?.likes?.size.toString())
 
         return feedActivityFormatted
     }

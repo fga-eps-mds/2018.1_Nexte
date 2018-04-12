@@ -19,8 +19,9 @@ import kotlinx.android.synthetic.main.row_feed.view.*
  * Interface to define Display Logic to FeedVeiw Class that will used received call of Presenter
  */
 interface FeedDisplayLogic {
-    fun displayFeed(viewModel: FeedModel.ViewModel, response: FeedModel.Response)
-    fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted, identifier: String?)
+    fun displayFeed(viewModel: FeedModel.ViewModel)
+    fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted)
+    fun sendLike(identifier: String)
 }
 
 /**
@@ -47,6 +48,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         val request = FeedModel.Request()
         interactor?.fetchFeed(request)
 
+        var FeedViewAdapter = FeedAdapter(mutableListOf(),this)
     }
 
     /**
@@ -68,20 +70,17 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param viewModel Feed view model received for presenter to show on screen
      */
-    override fun displayFeed(viewModel: FeedModel.ViewModel, response: FeedModel.Response) {
+    override fun displayFeed(viewModel: FeedModel.ViewModel) {
         feedRecyclerView.adapter = FeedAdapter(viewModel.feedActivities,
-                                               response.feedActivities, this)
+                                                       this)
     }
 
-    override fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted, identifier: String?, response: FeedModel.Response) {
-        val finder =
-        if(response.feedActivities { } == identifier) {
-            FeedModel.FeedActivityFormatted.likes.add(baldissera)
-        }
-        else {
-            activity.likes.remove(baldissera)
-        }
+    override fun sendLike(identifier: String) {
+        interactor?.fetchManageLikes(activity, listOfActivities)
+
     }
+
+
 
     /**
      * Adapter Class to control recycler view on feed activity
@@ -89,8 +88,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * @property activities List of all feed activities
      * @property context Context that will show this adapter
      */
-    class FeedAdapter(private val activities: List<FeedModel.FeedActivityFormatted>,
-                      private val unformattedActivities: List<FeedActivity>,
+    class FeedAdapter(private val activities: MutableList<FeedModel.FeedActivityFormatted>,
                       private val context: Context): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
 
@@ -101,12 +99,26 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bindView(activities[position], unformattedActivities[position] )
+            holder.bindView(activities[position], context)
         }
 
         override fun getItemCount(): Int {
             return this.activities.size
         }
+
+
+        fun actualizeFormattedList (formattedActivity: FeedModel.FeedActivityFormatted) {
+            val identifier = formattedActivity.identifier
+            val activityToChange = activities.find { it.identifier.equals(identifier) }
+            val indexOfActivityToChange = activities.indexOf(activityToChange)
+            activities.add(indexOfActivityToChange, formattedActivity)
+        }
+
+
+
+
+
+
 
         /**
          * View Holder Class to control itens that will show on Recycler view
@@ -121,7 +133,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
              * @param activity Formatted data to show in row of activity feed
              */
             fun bindView(activity: FeedModel.FeedActivityFormatted,
-                         unformattedActivity: FeedModel.FeedActivity) {
+                         context: Context) {
 
                 itemView.challengerName.text = activity.challengerName
                 itemView.challengerPhoto.setImageResource(activity.challengerPhoto)
@@ -134,9 +146,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
                 itemView.likesButtom.setOnClickListener {
 
-                    itemView.numberOfLikes.text = unformattedActivity.likes.size.toString()
-
-
+                    (context as FeedModel.ViewModel)
 
                 }
             }

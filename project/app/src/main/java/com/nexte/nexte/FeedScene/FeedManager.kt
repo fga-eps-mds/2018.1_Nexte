@@ -11,12 +11,12 @@ object FeedManager {
 
     private var feedListMutable: MutableList<FeedModel.FeedActivity> = mutableListOf()
 
-    var feedList: List<FeedModel.FeedActivity> = emptyList()
+    var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
         get() {
             if (feedListMutable.isEmpty()) {
                 feedListMutable = FeedMocker.createFeedList()
             }
-            return feedListMutable.toList()
+            return feedListMutable
         }
         private set
 
@@ -37,7 +37,7 @@ object FeedManager {
      * @param activity New data for store in specific feed activity
      * @return Activity that is updated
      */
-    fun updateFeedActivity(identifier: String, activity: FeedModel.FeedActivity): FeedModel.FeedActivity {
+    fun updateFeedActivity(identifier: String?, activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
         val activityOfFeed = feedList.find { it.identifier == identifier }
 
         if (activityOfFeed == null) {

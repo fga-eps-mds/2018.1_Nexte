@@ -28,20 +28,21 @@ class FeedWorker {
      * @param identifier
      * @param completion
      */
-    fun manageLikes(activity: FeedModel.FeedActivity, identifier: String, completion: (FeedModel.FeedActivity) -> Unit) {
-        var activity = addAndRemoveUser(activity)
+    fun manageLikes(activity: FeedModel.FeedActivity?, completion: (FeedModel.FeedActivity?) -> Unit) {
+        var activity:  FeedModel.FeedActivity? = addAndRemoveUser(activity)
+        val identifier = activity?.identifier
         val updatedActivity = (FeedManager.updateFeedActivity(identifier, activity))
         completion(updatedActivity)
     }
 
-    private fun addAndRemoveUser(activity: FeedModel.FeedActivity): FeedModel.FeedActivity {
+    private fun addAndRemoveUser(activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
         val baldissera = FeedModel.FeedPlayer("Guilherme",123456, 1)
-        val finder = activity.likes.find { it.equals(baldissera) }
+        val finder = activity?.likes?.find { it.equals(baldissera) }
         if(finder == null) {
-            activity.likes.add(baldissera)
+            activity?.likes?.add(baldissera)
         }
         else {
-            activity.likes.remove(baldissera)
+            activity?.likes?.remove(baldissera)
         }
 
         return activity
