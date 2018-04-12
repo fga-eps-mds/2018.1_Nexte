@@ -11,7 +11,7 @@ class EditProfilePresenter: EditProfilePresentationLogic{
     var view: EditProfileDisplayLogic? = null
 
     override fun presentEditProfile(response: EditProfileModel.Response){
-        var message: String= ""
+        var message: String
         if(response.sex == 'U'){
             message = "Não foi possível editar o usuário"
         }

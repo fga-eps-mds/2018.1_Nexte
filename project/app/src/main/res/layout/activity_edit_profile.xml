@@ -149,18 +149,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
 
-            <EditText
-                android:id="@+id/passwordTextEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
-                android:layout_marginStart="8dp"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:text="password"
-                app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/passwordLabel" />
+        <EditText
+            android:id="@+id/passwordTextEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/passwordLabel" />
 
         <TextView
             android:id="@+id/passwordConfirmationLabel"
@@ -181,7 +180,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="password"
             app:layout_constraintBottom_toBottomOf="@+id/passwordConfirmationLabel"
             app:layout_constraintEnd_toEndOf="@+id/passwordTextEdit"
             app:layout_constraintStart_toStartOf="@+id/passwordTextEdit" />
@@ -191,8 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginEnd="20dp"
-            android:text="✔"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/passwordLabel" />
