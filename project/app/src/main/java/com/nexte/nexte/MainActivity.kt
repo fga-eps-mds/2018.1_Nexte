@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.CommentsScene.*
-import com.nexte.nexte.EditProfileScene.*
 import com.nexte.nexte.FeedScene.*
 import com.nexte.nexte.HistoryScene.HistoryActivity
 import com.nexte.nexte.LoginScene.*
@@ -17,12 +16,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
-                     ChallengeDisplayLogic, EditProfileDisplayLogic, CommentsDisplayLogic {
+                     ChallengeDisplayLogic, CommentsDisplayLogic {
 
 
     var showProfileInteractor: ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
-    var editProfileInteractor: EditProfileBusinessLogic? = null
     var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupLoginScene() // Setup Login Scene
-        this.setupEditProfileScene()
         this.setupFeedScene() // Setup Feed Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
@@ -51,10 +48,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
-
-        // Testing if is working
-        val editProfileRequest: EditProfileModel.Request = EditProfileModel.Request("lorranyfreire", "HDDGFRUH65752")
-        this.editProfileInteractor?.getProfileToEdit(editProfileRequest)
 
         // Testing if is working    
         val feedRequest: FeedModel.Request = FeedModel.Request("leticia", "larissa")
@@ -101,7 +94,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
 
-        textView.setText(viewModel.message)
+        textView.text = viewModel.message
     }
 
     /*
@@ -146,28 +139,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     override fun displayChallengeAnswer(viewModel: ChallengeModel.ViewModel) {
         textView.text = viewModel.message
     }
-
-    /*
-     *  EDIT PROFILE SCENE
-     */
-
-    // Setup all modules for exchange of data
-    private fun setupEditProfileScene() {
-
-        val viewController = this
-        val interactor = EditProfileInteractor()
-        val presenter = EditProfilePresenter()
-
-        viewController.editProfileInteractor = interactor
-        interactor.presenter = presenter
-        presenter.view = viewController
-    }
-
-    // Print a message according with received data
-    override fun displayEditProfileState(viewModel: EditProfileModel.ViewModel) {
-        textView.text = viewModel.message
-    }
-
 
     /*
      *  COMMENTS SCENE

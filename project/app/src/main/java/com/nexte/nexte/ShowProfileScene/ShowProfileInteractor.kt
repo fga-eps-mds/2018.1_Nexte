@@ -8,10 +8,10 @@ interface ShowProfileBusinessLogic {
 
     fun showProfile(request: ShowProfileModel.Request)
 }
+
 /* This class connects Presenter and Worker,
     passing the request to Worker and sending
     response received by Worker to Presenter */
-
 class ShowProfileInteractor : ShowProfileBusinessLogic {
 
     private var worker = ShowProfileWorker() // Receives token and send empty or valid player

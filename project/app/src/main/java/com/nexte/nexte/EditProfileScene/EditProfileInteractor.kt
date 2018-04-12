@@ -4,18 +4,29 @@ package com.nexte.nexte.EditProfileScene
  * Created by lorrany on 27/03/18.
  */
 
-interface EditProfileBusinessLogic{
-    fun getProfileToEdit(request: EditProfileModel.Request)
+interface GetProfileToEditBusinessLogic {
+
+    fun getProfileToEdit(request: EditProfileModel.FirstRequest.Request)
 }
 
-class EditProfileInteractor : EditProfileBusinessLogic {
-    var presenter: EditProfilePresentationLogic? = null
+interface EditProfileBusinessLogic {
+
+    fun setEditedProfile(request: EditProfileModel.SecondRequest.Request)
+}
+
+class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusinessLogic {
+
+    var presenter: ShowProfileToEditPresentationLogic? = null
     var worker = EditProfileWorker()
 
-    override fun getProfileToEdit(request: EditProfileModel.Request){
-        worker.editUserProfile(request){response ->
-            presenter?.presentEditProfile(response)
+    override fun getProfileToEdit(request: EditProfileModel.FirstRequest.Request){
+        worker.getUserProfileToEdit(request){response ->
+            presenter?.presentProfileToEdit(response)
         }
+    }
+
+    override fun setEditedProfile(request: EditProfileModel.SecondRequest.Request) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

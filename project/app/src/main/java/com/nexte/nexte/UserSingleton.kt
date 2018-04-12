@@ -1,9 +1,11 @@
 package com.nexte.nexte
-import com.nexte.nexte.ShowProfileScene.*
+
+/* This class represents the user, with the
+    characteristics of interest for the functionality */
 
 object UserSingleton {
 
-    private var userInformations: ShowProfileModel.Player = ShowProfileModel.Player("gabrielalbino",
+    private var userInformations: Player = Player("gabrielalbino",
             2,
             "imgur.com/nudh486d4",
             "enggabriel@gmail.com",
@@ -12,11 +14,11 @@ object UserSingleton {
             19,
             "feioso")
 
-    fun getUserInformations(): ShowProfileModel.Player {
+    fun getUserInformations(): Player {
         return userInformations
     }
 
-    fun setUserInformations(userInformations: ShowProfileModel.Player) {
+    fun setUserInformations(userInformations: Player) {
         this.userInformations = userInformations
     }
 }

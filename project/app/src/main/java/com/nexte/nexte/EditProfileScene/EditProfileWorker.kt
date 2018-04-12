@@ -1,38 +1,45 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Player
+import com.nexte.nexte.UserSingleton
+
 /**
  * Created by lorrany on 27/03/18.
  */
 class EditProfileWorker {
 
-    constructor()
+    fun getUserProfileToEdit(request: EditProfileModel.FirstRequest.Request, completion:
+        (EditProfileModel.FirstRequest.Response) -> Unit) {
 
-    fun editUserProfile(request: EditProfileModel.Request, completion:
-    (EditProfileModel.Response) -> Unit) {
-        var username: String = request.username
+        val username = request.username
+        val tokenID = request.tokenID
 
-        var name: String = ""
-        var rank: Int = -1
-        var profilePictureURL: String = ""
-        var club: String = ""
-        var age: Int = -1
-        var email: String = ""
-        var sex: Char = 'U'
-        var facebookUsername: String = ""
-        if (username == "lorranyfreire") {
-            name = "Lorrany Freire"
-            rank = 1
-            profilePictureURL = "https://www.google.com.br/amaisgatadodf/eumesma.jpg"
-            club = "Minas Tenis Club"
-            age = 19
-            email = "lorranyfreire@hotmail.com"
-            sex = 'F'
-            facebookUsername = "lorrany.freire"
+        val emptyUser = Player("",
+                -1,
+                "",
+                "",
+                "",
+                "",
+                -1,
+                "")
+
+        var returnedUser: Player? = null
+
+        // This condition verify if exist a user
+        if(tokenID == "") {
+            returnedUser = emptyUser
+            UserSingleton.setUserInformations(emptyUser)
+        } else if(username == "gabrielalbino") {
+            returnedUser = UserSingleton.getUserInformations()
         }
 
-        var response: EditProfileModel.Response = EditProfileModel.Response(name, rank,
-                profilePictureURL, club, age, email, sex, facebookUsername)
+        val response: EditProfileModel.FirstRequest.Response = EditProfileModel.FirstRequest.Response(returnedUser!!)
 
         completion(response)
+    }
+
+    fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
+    (EditProfileModel.SecondRequest.Response) -> Unit) {
+        TODO("NOT IMPLEMENTED YET")
     }
 }

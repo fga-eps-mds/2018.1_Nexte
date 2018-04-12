@@ -24,7 +24,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val email: String? = response.user?.email
         val age: String? = response.user?.age.toString()
 
-        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club,
+        val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club,
                                                                                 email, age)
 
         viewScene?.displayProfile(viewModel)
