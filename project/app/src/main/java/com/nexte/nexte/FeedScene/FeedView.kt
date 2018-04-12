@@ -3,6 +3,7 @@ package com.nexte.nexte.FeedScene
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.service.carrier.CarrierIdentifier
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -19,10 +20,11 @@ import kotlinx.android.synthetic.main.row_feed.view.*
  */
 interface FeedDisplayLogic {
     fun displayFeed(viewModel: FeedModel.ViewModel, response: FeedModel.Response)
+    fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted, identifier: String?)
 }
 
 /**
- * Class that implements [FeedDisplayLogic] and is responsible for control feed screen
+ * Class that implements [FeedLogic] and is responsible for control feed screen
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
  */
@@ -67,9 +69,19 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * @param viewModel Feed view model received for presenter to show on screen
      */
     override fun displayFeed(viewModel: FeedModel.ViewModel, response: FeedModel.Response) {
-        feedRecyclerView.adapter = FeedAdapter(viewModel.feedActivities, response.feedActivities, this)
+        feedRecyclerView.adapter = FeedAdapter(viewModel.feedActivities,
+                                               response.feedActivities, this)
     }
 
+    override fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted, identifier: String?, response: FeedModel.Response) {
+        val finder =
+        if(response.feedActivities { } == identifier) {
+            FeedModel.FeedActivityFormatted.likes.add(baldissera)
+        }
+        else {
+            activity.likes.remove(baldissera)
+        }
+    }
 
     /**
      * Adapter Class to control recycler view on feed activity
@@ -123,6 +135,8 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.likesButtom.setOnClickListener {
 
                     itemView.numberOfLikes.text = unformattedActivity.likes.size.toString()
+
+
 
                 }
             }

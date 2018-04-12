@@ -11,7 +11,7 @@ interface FeedPresentationLogic {
      * @param response Feed model response that contains not formatted data received of worker [FeedModel]
      */
     fun formatFeed(response: FeedModel.Response)
-    fun updateFeedActivity(activity: FeedModel.FeedActivity)
+    fun updateViewActivity(activity: FeedModel.FeedActivity)
 }
 
 /**
@@ -27,8 +27,10 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
     }
 
 
-    override fun updateFeedActivity(activity: FeedModel.FeedActivity) {
-        val viewModel = FeedModel.ViewModel(this.formatFeedActivity())
+    override fun updateViewActivity(activity: FeedModel.FeedActivity) {
+        val newActivityFormatted = this.formatFeedActivity(activity)
+        val sameIdentifier = activity.identifier
+        viewScene?.actualizeLike(newActivityFormatted, sameIdentifier)
     }
     /**
      * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
