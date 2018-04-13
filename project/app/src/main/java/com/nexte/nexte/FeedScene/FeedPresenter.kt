@@ -11,7 +11,7 @@ interface FeedPresentationLogic {
      * @param response Feed model response that contains not formatted data received of worker [FeedModel]
      */
     fun formatFeed(response: FeedModel.Response)
-    fun updateViewActivity(activity: FeedModel.FeedActivity?)
+    fun updateViewActivity(activity: FeedModel.FeedActivity)
 }
 
 /**
@@ -27,7 +27,7 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
     }
 
 
-    override fun updateViewActivity(activity: FeedModel.FeedActivity?) {
+    override fun updateViewActivity(activity: FeedModel.FeedActivity) {
         val newActivityFormatted = this.formatFeedActivity(activity)
         viewScene?.actualizeLike(newActivityFormatted)
     }
@@ -43,14 +43,14 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
         for (activity in activities) {
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.identifier,
-                    activity.challenge?.challenger?.name,
-                    activity.challenge?.challenger?.photo,
-                    activity.challenge?.challenger?.set.toString(),
-                    activity.challenge?.challenged?.name,
-                    activity.challenge?.challenged?.photo,
-                    activity.challenge?.challenged?.set.toString(),
+                    activity.challenge.challenger.name,
+                    activity.challenge.challenger.photo,
+                    activity.challenge.challenger.set.toString(),
+                    activity.challenge.challenged.name,
+                    activity.challenge.challenged.photo,
+                    activity.challenge.challenged.set.toString(),
                     activity.feedDate.toString(),
-                    activity.likes?.size.toString())
+                    activity.likes.size.toString())
 
             feedActivitiesFormatted.add(feedActivityFormatted)
         }
@@ -58,17 +58,17 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
         return feedActivitiesFormatted
     }
 
-    private fun formatFeedActivity(activity: FeedModel.FeedActivity?): FeedModel.FeedActivityFormatted {
+    private fun formatFeedActivity(activity: FeedModel.FeedActivity): FeedModel.FeedActivityFormatted {
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(
-                activity?.identifier,
-                activity?.challenge?.challenger?.name,
-                activity?.challenge?.challenger?.photo,
-                activity?.challenge?.challenger?.set.toString(),
-                activity?.challenge?.challenged?.name,
-                activity?.challenge?.challenged?.photo,
-                activity?.challenge?.challenged?.set.toString(),
-                activity?.feedDate.toString(),
-                activity?.likes?.size.toString())
+                activity.identifier,
+                activity.challenge.challenger.name,
+                activity.challenge.challenger.photo,
+                activity.challenge.challenger.set.toString(),
+                activity.challenge.challenged.name,
+                activity.challenge.challenged.photo,
+                activity.challenge.challenged.set.toString(),
+                activity.feedDate.toString(),
+                activity.likes.size.toString())
 
         return feedActivityFormatted
     }

@@ -27,7 +27,7 @@ object FeedManager {
      * @return Feed activity with specific identifier
      */
     fun getFeedActivity(identifier: String): FeedModel.FeedActivity? {
-        return feedList.find { it.identifier == identifier }
+        return feedList.find { it.identifier == identifier}
     }
 
     /**
@@ -37,8 +37,9 @@ object FeedManager {
      * @param activity New data for store in specific feed activity
      * @return Activity that is updated
      */
-    fun updateFeedActivity(identifier: String?, activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
+    fun updateFeedActivity(identifier: String?, activity: FeedModel.FeedActivity?): FeedModel.FeedActivity {
         val activityOfFeed = feedList.find { it.identifier == identifier }
+        (activity as FeedModel.FeedActivity)
 
         if (activityOfFeed == null) {
             this.feedListMutable.add(activity)

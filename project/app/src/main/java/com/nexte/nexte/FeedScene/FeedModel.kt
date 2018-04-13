@@ -46,9 +46,9 @@ class FeedModel {
      * @property challenged Player that are challenged
      * @property challengeDate Date that the match are played
      */
-    class FeedChallenge(var challenger: FeedPlayer?,
-                        var challenged: FeedPlayer?,
-                        var challengeDate: Date?
+    class FeedChallenge(var challenger: FeedPlayer,
+                        var challenged: FeedPlayer,
+                        var challengeDate: Date
                         )
 
     /**
@@ -58,10 +58,10 @@ class FeedModel {
      * @property challenge Challenge informations with players, result and date
      * @property feedDate Date of feed are created
      */
-    class FeedActivity(var identifier: String?,
-                       var challenge: FeedChallenge?,
-                       var feedDate: Date?,
-                       var likes: MutableList<FeedModel.FeedPlayer>?)
+    class FeedActivity(var identifier: String,
+                       var challenge: FeedChallenge,
+                       var feedDate: Date,
+                       var likes: MutableList<FeedModel.FeedPlayer>)
 
     /**
      * Class responsible to define how the list view will display with the formatted data
@@ -75,13 +75,13 @@ class FeedModel {
      * @property challengedSets String that have sets of challenger
      * @property feedDate String date of feed to show on screen
      */
-    class FeedActivityFormatted(var identifier: String?,
-                                var challengerName: String?,
-                                var challengerPhoto: Int?,
-                                var challengerSets: String?,
-                                var challengedName: String?,
-                                var challengedPhoto: Int?,
-                                var challengedSets: String?,
-                                var feedDate: String?,
-                                var numberOfLikes: String?)
+    class FeedActivityFormatted(var identifier: String,
+                                var challengerName: String,
+                                var challengerPhoto: Int,
+                                var challengerSets: String,
+                                var challengedName: String,
+                                var challengedPhoto: Int,
+                                var challengedSets: String,
+                                var feedDate: String,
+                                var numberOfLikes: String)
 }
