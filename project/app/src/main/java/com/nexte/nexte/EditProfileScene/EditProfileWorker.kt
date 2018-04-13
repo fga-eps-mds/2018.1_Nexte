@@ -48,10 +48,13 @@ class EditProfileWorker {
 
         if(!user.email.contains('@')) {
             errorID = 1
-        } else if(user.password.length < 6) {
+        } else if(user.password.isNotEmpty() && user.password.length < 6) {
             errorID = 2
         } else {
             newUser = user
+            if(user.password.isEmpty()) {
+                user.password = UserSingleton.getUserInformations().password
+            }
         }
 
         val response: EditProfileModel.SecondRequest.Response = EditProfileModel.SecondRequest.Response(errorID, newUser)
