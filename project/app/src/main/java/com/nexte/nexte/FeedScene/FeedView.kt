@@ -46,9 +46,10 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         this.setupFeedScene()
 
-        feedRecyclerView.adapter = FeedAdapter(mutableListOf(), this)
-        feedRecyclerView.layoutManager = LinearLayoutManager(this)
+        this.feedViewAdapter = FeedAdapter(mutableListOf(), this)
         feedRecyclerView.adapter = this.feedViewAdapter
+        feedRecyclerView.layoutManager = LinearLayoutManager(this)
+
 
         val request = FeedModel.Request()
         interactor?.fetchFeed(request)
@@ -78,25 +79,17 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * @param viewModel Feed view model received for presenter to show on screen
      */
     override fun displayFeed(viewModel: FeedModel.ViewModel) {
-        this.feedViewAdapter?.updateActivities(viewModel.feedActivities)
+        feedViewAdapter?.updateActivities(viewModel.feedActivities)
     }
 
     override fun sendLike(identifier: String) {
-        changeableIdentifier = identifier
-    }
-
-    val sendLikeClickListener: View.OnClickListener = View.OnClickListener {
-        interactor?.fetchManageLikes(changeableIdentifier)
-
+        interactor?.fetchManageLikes(identifier)
     }
 
     override fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted) {
-
         feedViewAdapter?.actualizeFormattedList(formattedActivity)
 
     }
-
-
 
 
     /**
@@ -106,7 +99,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * @property context Context that will show this adapter
      */
     class FeedAdapter(private var activities: MutableList<FeedModel.FeedActivityFormatted>,
-                      private val context: Context): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+                      private val context: Context) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedAdapter.ViewHolder {
@@ -125,18 +118,18 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         fun updateActivities(newActivities: MutableList<FeedModel.FeedActivityFormatted>) {
             this.activities = newActivities
-
+            this.notifyDataSetChanged()
         }
 
 
-        fun actualizeFormattedList (formattedActivity: FeedModel.FeedActivityFormatted) {
+        fun actualizeFormattedList(formattedActivity: FeedModel.FeedActivityFormatted) {
             val identifier = formattedActivity.identifier
             val activityToChange = activities.find { it.identifier.equals(identifier) }
             val indexOfActivityToChange = activities.indexOf(activityToChange)
+            activities.removeAt(indexOfActivityToChange)
             activities.add(indexOfActivityToChange, formattedActivity)
             notifyItemChanged(indexOfActivityToChange)
         }
-
 
 
         /**
@@ -144,7 +137,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
          *
          * @property itemView View that contains properties to show on recycler view
          */
-        class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             /**
              * Function to bind all information about activity
@@ -168,12 +161,10 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                     (context as FeedView).sendLike(activity.identifier)
                 }
 
-                itemView.likesButtom.setOnClickListener((context as FeedView).sendLikeClickListener)
-                }
-
             }
 
         }
     }
+}
 
 

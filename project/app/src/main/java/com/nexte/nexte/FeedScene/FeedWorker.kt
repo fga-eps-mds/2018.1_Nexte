@@ -42,7 +42,7 @@ class FeedWorker {
             activity?.likes?.add(baldissera)
         }
         else {
-            activity?.likes?.remove(baldissera)
+            activity.likes.remove(baldissera)
         }
 
         return activity
