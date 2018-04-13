@@ -46,7 +46,8 @@ class EditProfileWorker {
             returnedUser = UserSingleton.getUserInformations()
         }
 
-        val response: EditProfileModel.RecoverUserRequest.Response = EditProfileModel.RecoverUserRequest.Response(returnedUser!!)
+        val response: EditProfileModel.RecoverUserRequest.Response =
+                EditProfileModel.RecoverUserRequest.Response(returnedUser!!)
 
         completion(response)
     }

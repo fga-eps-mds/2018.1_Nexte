@@ -72,9 +72,10 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         this.passwordConfirmationTextEdit.addTextChangedListener(PasswordWatcher(this))
         this.passwordTextEdit.addTextChangedListener(PasswordWatcher(this))
 
-        val recoverUserRequest: EditProfileModel.RecoverUserRequest.Request = EditProfileModel.RecoverUserRequest.Request(
-                "gabrielalbino",
-                "UHDASFUHADSUHF2828HJDDJFHA")
+        val recoverUserRequest: EditProfileModel.RecoverUserRequest.Request =
+                EditProfileModel.RecoverUserRequest.Request(
+                 "gabrielalbino",
+                 "UHDASFUHADSUHF2828HJDDJFHA")
 
         getUserInformationInteractor?.getProfileToEdit(recoverUserRequest)
 
@@ -89,7 +90,8 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
                     ageTextEdit.text.trim().toString().toInt(),
                     passwordTextEdit.text.trim().toString())
 
-            val editProfileRequest: EditProfileModel.EditProfileRequest.Request = EditProfileModel.EditProfileRequest.Request(user)
+            val editProfileRequest: EditProfileModel.EditProfileRequest.Request =
+                    EditProfileModel.EditProfileRequest.Request(user)
 
             editUserInformationInteractor?.setEditedProfile(editProfileRequest)
         }

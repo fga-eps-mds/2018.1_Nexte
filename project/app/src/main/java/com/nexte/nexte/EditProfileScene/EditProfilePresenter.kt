@@ -60,7 +60,8 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
     }
 
     /**
-     * Format error contained in [EditProfileModel.RecoverUserRequest.Response] (if exists) and sends it to [EditProfileView]
+     * Format error contained in [EditProfileModel.RecoverUserRequest.Response] (if exists)
+     * and sends it to [EditProfileView]
      */
     override fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response) {
 
