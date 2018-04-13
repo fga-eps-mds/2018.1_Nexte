@@ -45,9 +45,10 @@ RUN mkdir /application
 WORKDIR /application
 
 # Copy test.sh to execute build
-COPY ./test.sh /test.sh
-RUN sed -i 's/\r//' /test.sh \
-    && chmod +x /test.sh
+COPY ./*.sh /
+
+RUN sed -i 's/\r//' /*.sh \
+    && chmod +x /*.sh
 
 # Set default execute command
 CMD /test.sh

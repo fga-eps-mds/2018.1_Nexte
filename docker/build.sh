@@ -5,4 +5,4 @@ set -o pipefail
 set -o nounset
 set -o xtrace
 
-./gradlew clean test
+./gradlew clean assembleRelease
