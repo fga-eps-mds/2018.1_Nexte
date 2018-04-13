@@ -7,20 +7,25 @@ import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
+/**
+ * This interface will be responsible to define the methods that will receive the formatted data from [ShowProfilePresenter]
+ */
 interface ShowProfileDisplayLogic {
-
-    /* This function turns data avaliable of impression on screen */
 
     fun displayProfile(viewModel : ShowProfileModel.ViewModel)
 }
 
-/* This class implements ShowProfileDisplayLogic,
-    printing on screen the user data */
+/**
+ * This class implements ShowProfileDisplayLogic, and it is responsible to display information about the user
+ */
 
 class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
-    var showProfileInteractor : ShowProfileBusinessLogic? = null // Receives request exemple
+    var showProfileInteractor : ShowProfileBusinessLogic? = null // Reference for the interactor responsible to receive request and send it to worker
 
+    /**
+     * Method called when screen is loaded, responsible to load user information
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -39,6 +44,9 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         }
     }
 
+    /**
+     * This method is called when user edited information.
+     */
     override fun onResume() {
 
         super.onResume()
@@ -48,8 +56,10 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
     }
 
-
-    fun setupShowProfileScene() {
+    /**
+     * Method responsible to set all the references on this scene
+     */
+    private fun setupShowProfileScene() {
 
         val viewScene = this
         val interactor = ShowProfileInteractor()
@@ -61,13 +71,18 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     }
 
+    /**
+     * Method responsible to receive data from presenter and show it
+     *
+     * @param viewModel Contains the formatted data to be displayed
+     */
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
 
-        username.text = viewModel.name
-        RankingID.text = viewModel.rank
-        club.text = viewModel.club
-        age.text = viewModel.age
-        email.text = viewModel.email
+        username.text = viewModel.playerInfo.name
+        RankingID.text = viewModel.playerInfo.rank
+        club.text = viewModel.playerInfo.club
+        age.text = viewModel.playerInfo.age
+        email.text = viewModel.playerInfo.email
 
     }
 }

@@ -7,8 +7,17 @@ import com.nexte.nexte.UserSingleton
  * Created by lorrany on 27/03/18.
  */
 
+
+/**
+ * Class responsible to get a request and generate a response
+ */
 class EditProfileWorker {
 
+    /**
+     * Gets and username and returns user information
+     *
+     * @param request Contains the username and TokenID that will be used to recover the user
+     */
     fun getUserProfileToEdit(request: EditProfileModel.FirstRequest.Request, completion:
         (EditProfileModel.FirstRequest.Response) -> Unit) {
 
@@ -39,6 +48,11 @@ class EditProfileWorker {
         completion(response)
     }
 
+    /**
+     * Responsible to get edited user information, validate it and if there is no error set it to our user, otherwise sends and error code.
+     *
+     * @param request Contains the edited user information
+     */
     fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
                        (EditProfileModel.SecondRequest.Response) -> Unit) {
 

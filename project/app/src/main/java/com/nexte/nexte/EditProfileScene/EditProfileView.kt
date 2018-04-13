@@ -10,11 +10,17 @@ import com.nexte.nexte.Player
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
+/**
+ * Interface responsible to define methods used to get user information data from presenter and display it
+ */
 interface ShowProfileToEditDisplayLogic {
 
     fun displayProfileToEdit (viewModel: EditProfileModel.FirstRequest.ViewModel)
 }
 
+/**
+ * Interface responsible to define methods used to get error message from presenter and display it
+ */
 interface EditProfileDisplayLogic {
 
     fun displayEditedProfile (viewModel: EditProfileModel.SecondRequest.ViewModel)
@@ -23,9 +29,12 @@ interface EditProfileDisplayLogic {
 
 class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, EditProfileDisplayLogic {
 
-    var firstRequestInteractor: GetProfileToEditBusinessLogic? = null
-    var secondRequestInteractor: EditProfileBusinessLogic? = null
+    private var firstRequestInteractor: GetProfileToEditBusinessLogic? = null
+    private var secondRequestInteractor: EditProfileBusinessLogic? = null
 
+    /**
+     * Class responsible to define behavior of password validation (checking if password and confirmation match)
+     */
     private class PasswordWatcher(var view: EditProfileView) : TextWatcher {
 
         override fun afterTextChanged(s: Editable?) {
@@ -49,6 +58,9 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         }
     }
 
+    /**
+     * Method called on scene creation and responsible to show initial user information for edition
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -82,15 +94,25 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         }
     }
 
+    /**
+     * Method responsible to get user information and display it
+     *
+     * @param viewModel contains formatted player data
+     */
     override fun displayProfileToEdit(viewModel: EditProfileModel.FirstRequest.ViewModel) {
 
-        this.username.text = viewModel.username
-        this.rankingID.text = viewModel.ranking
-        this.emailTextEdit.setText(viewModel.email, TextView.BufferType.EDITABLE)
-        this.ageTextEdit.setText(viewModel.age, TextView.BufferType.EDITABLE)
-        this.clubName.text = viewModel.club
+        this.username.text = viewModel.playerToEdit.username
+        this.rankingID.text = viewModel.playerToEdit.ranking
+        this.emailTextEdit.setText(viewModel.playerToEdit.email, TextView.BufferType.EDITABLE)
+        this.ageTextEdit.setText(viewModel.playerToEdit.age, TextView.BufferType.EDITABLE)
+        this.clubName.text = viewModel.playerToEdit.club
     }
 
+    /**
+     * Method responsible to get edit profile error and display it
+     *
+     * @param viewModel contains formatted error message
+     */
     override fun displayEditedProfile(viewModel: EditProfileModel.SecondRequest.ViewModel) {
 
         val errorMessage = viewModel.errorMessage
@@ -102,7 +124,9 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         }
     }
 
-
+    /**
+     * Method responsible to set all the references in this scene
+     */
     private fun setupEditProfileScene() {
         val interactor = EditProfileInteractor()
         val presenter = EditProfilePresenter()

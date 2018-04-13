@@ -6,11 +6,15 @@ import com.nexte.nexte.*
  * Created by albino on 25/03/18.
  */
 
-/* This class verify if the user is validad
-    and return the user as response */
+/**
+ * This class verify if the logged user is valid and return the user information as response
+ */
 
 class ShowProfileWorker {
 
+    /**
+     * Method responsible to get the [ShowProfileModel.Request] with data to be validated and generate an [ShowProfileModel.Response] with user information.
+     */
     fun getUserProfile(request: ShowProfileModel.Request,
                        completion: (ShowProfileModel.Response) -> Unit) {
 
