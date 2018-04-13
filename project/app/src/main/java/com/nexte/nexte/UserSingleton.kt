@@ -4,14 +4,14 @@ package com.nexte.nexte
     characteristics of interest for the functionality */
 
 object UserSingleton {
-    const val age = 19
+    private const val AGECONSTANT = 19
     private var userInformations: Player = Player("gabrielalbino",
             2,
             "imgur.com/nudh486d4",
             "enggabriel@gmail.com",
             "masculino",
             "ASCAD",
-            age,
+            AGECONSTANT,
             "feioso")
 
     fun getUserInformations(): Player {

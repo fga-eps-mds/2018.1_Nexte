@@ -57,14 +57,14 @@ class EditProfileWorker {
     fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
                        (EditProfileModel.SecondRequest.Response) -> Unit) {
 
-        val minPasswordLength = 6
+        val MINPASSWORDLENGTH = 6
         val user = request.user
         var errorID: Int? = null
         var newUser: Player? = null
 
         if(!user.email.contains('@')) {
             errorID = 1
-        } else if(user.password.isNotEmpty() && user.password.length < minPasswordLength) {
+        } else if(user.password.isNotEmpty() && user.password.length < MINPASSWORDLENGTH) {
             errorID = 2
         } else {
             newUser = user

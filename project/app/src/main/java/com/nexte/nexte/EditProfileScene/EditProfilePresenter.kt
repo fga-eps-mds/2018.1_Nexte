@@ -30,7 +30,8 @@ interface SendEditedProfileDataPresentationLogic {
 class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic{
 
     var firstView: ShowProfileToEditDisplayLogic? = null // Reference for show profile view with method to show user
-    var secondView: EditProfileDisplayLogic? = null // Reference for show profile view with method to show edit profile error
+    var secondView: EditProfileDisplayLogic? = null // Reference for show profile view with method
+    // to show edit profile error
 
     /**
      * Format user information contained in [EditProfileModel.FirstRequest.Response]
