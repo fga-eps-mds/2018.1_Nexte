@@ -38,11 +38,13 @@ class FeedWorker {
     private fun addAndRemoveUser(activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
         val baldissera = FeedModel.FeedPlayer("Guilherme",123456, 1)
         val finder = activity?.likes?.find { it.name.equals("Guilherme") }
+        val indexToChange = activity?.likes?.indexOf(finder)
+        (indexToChange as Int)
         if(finder == null) {
             activity?.likes?.add(baldissera)
         }
         else {
-            activity.likes.remove(baldissera)
+            activity.likes.removeAt(indexToChange)
         }
 
         return activity
