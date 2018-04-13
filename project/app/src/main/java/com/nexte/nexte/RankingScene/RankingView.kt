@@ -28,6 +28,7 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
         rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
 
+
         val request = RankingModel.Request()
 
         interactor?.getPlayersRanksForScene(request)
@@ -53,11 +54,19 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
                          private val context: Context): RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder (parent: ViewGroup, viewType: Int): RankingAdapter.ViewHolder{
-
-            val view = LayoutInflater.from(context).inflate(R.layout.row_ranking, parent, false)
+            val view: View
+            if(TODO("Add condition to show expanded view(boolean == TRUE")) {
+                view = LayoutInflater.from(context).inflate(R.layout.row_ranking, parent, false)
+            }
+            else {
+                view = LayoutInflater.from(context).inflate(R.layout.row_ranking_not_expanded, parent, false)
+            }
+            view.setOnClickListener {
+                TODO("changebolean (boolean = !boolean")
+                TODO("update reciclelist")
+            }
             return RankingAdapter.ViewHolder(view)
         }
-
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.bindView(activities[position])
         }

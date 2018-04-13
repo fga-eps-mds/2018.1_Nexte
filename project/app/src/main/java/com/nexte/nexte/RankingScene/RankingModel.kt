@@ -31,6 +31,7 @@ class RankingModel {
                                    var userPictureURL: Int,
                                    var userWins: String,
                                    var userLosses: String,
-                                   var userRankPosition: String)
+                                   var userRankPosition: String,
+                                   var shouldExpandRow: Boolean)
 }
 
