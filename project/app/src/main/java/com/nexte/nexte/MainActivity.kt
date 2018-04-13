@@ -5,23 +5,18 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.ChallengeScene.*
 import com.nexte.nexte.CommentsScene.*
-import com.nexte.nexte.FeedScene.*
-import com.nexte.nexte.HistoryScene.HistoryActivity
+import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
-import com.nexte.nexte.ShowProfileScene.ShowProfileBusinessLogic
-import com.nexte.nexte.ShowProfileScene.ShowProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import com.nexte.nexte.R
 
-
-class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
+class MainActivity : AppCompatActivity(), LoginDisplayLogic,
                      ChallengeDisplayLogic, CommentsDisplayLogic {
 
-
-    var showProfileInteractor: ShowProfileBusinessLogic? = null
     var loginInteractor: LoginBusinessLogic? = null
-    var feedInteractor: FeedBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBussinessLogic? = null
 
@@ -30,13 +25,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.setupLoginScene() // Setup Login Scene
-        this.setupFeedScene() // Setup Feed Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
 
-        //setting up history button listener
-        historyButton.setOnClickListener {
-            val intent = Intent(this, HistoryActivity::class.java)
+        // Setting up feed button listener
+        feedButton.setOnClickListener {
+            val intent = Intent(this, FeedView::class.java)
             startActivity(intent)
         }
 
@@ -45,18 +39,14 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
             startActivity(intent)
         }
 
+        rankingButton.setOnClickListener {
+            val intent = Intent(this, RankingView::class.java)
+            startActivity(intent)
+        }
+
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
-
-        // Testing if is working    
-        val feedRequest: FeedModel.Request = FeedModel.Request("leticia", "larissa")
-        this.feedInteractor?.recentGames(feedRequest)
-
-        // Testing if it is working
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                "AUFDSASFSA321IEUNFDI23FIQ2F")
-        this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
         //testing if it is working
         val alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
@@ -83,6 +73,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     private fun setupLoginScene() {
 
         val viewController = this
+        var date = Date(20)
         val interactor = LoginIteractor()
         val presenter = LoginPresenter()
 
@@ -94,33 +85,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
 
-        textView.text = viewModel.message
+        // textView.text = viewModel.message
     }
+
 
     /*
-     *  FEED SCENE
-     */
-
-    // Setup all modules for exchange of data
-    private fun setupFeedScene() {
-
-        val viewController = this
-        val interactor = FeedInteractor()
-        val presenter = FeedPresenter()
-
-        viewController.feedInteractor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-    }
-
-    // Print a message according with received data
-    override fun displayRecentGames(viewModel: FeedModel.ViewModel) {
-
-        textView.text = viewModel.message
-    }
-
-    /*
-
     *  CHALLENGE SCENE
     */
 
@@ -137,13 +106,13 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
     }
 
     override fun displayChallengeAnswer(viewModel: ChallengeModel.ViewModel) {
-        textView.text = viewModel.message
+
+        // textView.text = viewModel.message
     }
 
     /*
      *  COMMENTS SCENE
      */
-
 
     private fun setupCommentsScene() {
 
@@ -158,6 +127,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic, FeedDisplayLogic,
 
 
     override fun displayComments(viewModel: CommentsModel.ViewModel) {
-        textView.text = viewModel.message
+        // textView.text = viewModel.message
     }
 }

@@ -5,7 +5,6 @@ package com.nexte.nexte.RankingScene
  */
 
 class RankingWorker {
-    constructor()
 
     fun getUsersInRanking(request: RankingModel.Request, completion: (RankingModel.Response) -> Unit) {
 

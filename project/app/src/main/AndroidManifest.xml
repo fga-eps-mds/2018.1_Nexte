@@ -24,8 +24,11 @@
         <activity
             android:name=".RankingScene.RankingView"
             android:screenOrientation="portrait"/>
+        <!-- <activity android:name=".LoginActivity" android:label="@string/title_activity_login" /> -->
+        <!-- <activity android:name=".LoginScene.LoginView" /> -->
         <activity
-            android:name=".HistoryScene.HistoryActivity"
+            android:name=".FeedScene.FeedView"
+            android:label="@string/title_activity_feed_view"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ShowProfileScene.ShowProfileView"
