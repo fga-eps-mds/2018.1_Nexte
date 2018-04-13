@@ -12,6 +12,9 @@ import com.nexte.nexte.UserSingleton
  * Class responsible to get a request and generate a response
  */
 class EditProfileWorker {
+    companion object {
+        const val MINPASSWORDLENGTH = 6
+    }
 
     /**
      * Gets and username and returns user information
@@ -57,7 +60,6 @@ class EditProfileWorker {
     fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
                        (EditProfileModel.SecondRequest.Response) -> Unit) {
 
-        val MINPASSWORDLENGTH = 6
         val user = request.user
         var errorID: Int? = null
         var newUser: Player? = null
