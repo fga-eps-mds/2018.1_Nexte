@@ -22,26 +22,43 @@ class FeedWorker {
     }
 
     /**
-     * Function that updates the data from server
+     * Function that receives the unformattedActivity from Interactor and sends it
+     * unformatted Activity to presenter as a completion, after calling the function to add
+     * or remove users from likes list
      *
-     * @param activity
-     * @param identifier
-     * @param completion
+     * @param activity unformatted activity received from interactor [FeedInteractor]
+     * @param identifier Activity identifier to use in updateFeedActivity function
+     * @param updatedActivity unformatted activity updated with or without user on likesList
+     * @param completion unformatted activity sent to interactor
      */
     fun manageLikes(activity: FeedModel.FeedActivity?, completion: (FeedModel.FeedActivity) -> Unit) {
+
         var newActivity:  FeedModel.FeedActivity? = addAndRemoveUser(activity)
         val identifier = activity?.identifier
         val updatedActivity = (FeedManager.updateFeedActivity(identifier, newActivity))
         completion(updatedActivity)
     }
 
+
+    /**
+     * Function that receives the unformattedActivity from Interactor and sends it
+     * unformatted Activity to presenter as a completion, after calling the function to add
+     * or remove users from likes list
+     *
+     * @param randomUser user that will be added to likesList
+     * @param matchingUser user that corresponds to previous randomUser
+     * @param indexToChange index of the found activity
+     * @return activity changed, with or without the member on likes List
+     */
     private fun addAndRemoveUser(activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
-        val baldissera = FeedModel.FeedPlayer("Guilherme",123456, 1)
-        val finder = activity?.likes?.find { it.name.equals("Guilherme") }
-        val indexToChange = activity?.likes?.indexOf(finder)
+        val randomUser = FeedModel.FeedPlayer("UserName",123456, 1)
+        val matchingUser = activity?.likes?.find { it.name.equals("UserName") }
+        val indexToChange = activity?.likes?.indexOf(matchingUser)
+
         (indexToChange as Int)
-        if(finder == null) {
-            activity?.likes?.add(baldissera)
+
+        if(matchingUser == null) {
+            activity.likes.add(randomUser)
         }
         else {
             activity.likes.removeAt(indexToChange)

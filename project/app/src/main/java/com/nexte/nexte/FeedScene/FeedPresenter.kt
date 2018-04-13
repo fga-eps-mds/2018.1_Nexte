@@ -11,6 +11,13 @@ interface FeedPresentationLogic {
      * @param response Feed model response that contains not formatted data received of worker [FeedModel]
      */
     fun formatFeed(response: FeedModel.Response)
+
+    /**
+     * Method responsible to format the updated Activity after the addition or removal
+     * of the like in likes list
+     *
+     * @param activity Activity that needs to be altered for presentation on screen
+     */
     fun updateViewActivity(activity: FeedModel.FeedActivity)
 }
 
@@ -22,19 +29,22 @@ interface FeedPresentationLogic {
 class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
     override fun formatFeed(response: FeedModel.Response) {
+
         val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
         viewScene?.displayFeed(viewModel)
     }
 
 
     override fun updateViewActivity(activity: FeedModel.FeedActivity) {
+
         val newActivityFormatted = this.formatFeedActivity(activity)
         viewScene?.actualizeLike(newActivityFormatted)
     }
+
     /**
      * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
      *
-     * @param activities Array of not formatted activities
+     * @param activities MutableList of not formatted activities
      * @return list of formatted activities
      */
     private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>): MutableList<FeedModel.FeedActivityFormatted> {
@@ -58,6 +68,12 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
         return feedActivitiesFormatted
     }
 
+    /**
+     * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     *
+     * @param activity Unformatted activity
+     * @return Formatted activity
+     */
     private fun formatFeedActivity(activity: FeedModel.FeedActivity): FeedModel.FeedActivityFormatted {
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                 activity.identifier,

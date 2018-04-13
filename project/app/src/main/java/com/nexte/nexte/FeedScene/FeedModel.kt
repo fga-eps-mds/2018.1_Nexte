@@ -15,14 +15,14 @@ class FeedModel {
     /**
      * Class responsible to store received informations of worker to pass for Presenter
      *
-     * @property feedActivities Array that hold informations to show in screen
+     * @property feedActivities MutableList that hold informations to show in screen
      */
     class Response(var feedActivities: MutableList<FeedActivity>)
 
     /**
      * Class responsible to define how the list view will display the formatted data, passed to view
      *
-     * @property feedActivities Array that hold informations to show in screen
+     * @property feedActivities MutableList that hold informations to show in screen
      */
     class ViewModel(var feedActivities: MutableList<FeedActivityFormatted>)
 

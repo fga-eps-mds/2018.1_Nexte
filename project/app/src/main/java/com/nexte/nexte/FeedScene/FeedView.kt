@@ -28,12 +28,12 @@ interface FeedDisplayLogic {
  * Class that implements [FeedLogic] and is responsible for control feed screen
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
+ * @property feedViewAdapter FeedAdapter instance for broad using on class
  */
 class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
-    var changeableIdentifier: String = ""
 
     /**
      * On Create method that will setup this scene and call first request for interactor.
@@ -82,10 +82,23 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         feedViewAdapter?.updateActivities(viewModel.feedActivities)
     }
 
+
+    /**
+     * Method responsible to receive identifier and call interactor
+     * to add or remove user on likesList of specific activity
+     *
+     * @param identifer parameter to identify activity
+     */
     override fun sendLike(identifier: String) {
-        interactor?.fetchManageLikes(identifier)
+        interactor?.fetchLikes(identifier)
     }
 
+
+    /**
+     * Method to update the formatted like list of activities
+     *
+     * @param formattedActivity Formatted Activity that needs to be added on activities list
+     */
     override fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted) {
         feedViewAdapter?.actualizeFormattedList(formattedActivity)
 
@@ -116,16 +129,26 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
             return this.activities.size
         }
 
+        /**
+         * Function that updates the entire set o Formatted Feed Activites on list
+         *
+         * @param newActivities MutableList of elements to be displayed
+         */
         fun updateActivities(newActivities: MutableList<FeedModel.FeedActivityFormatted>) {
             this.activities = newActivities
             this.notifyDataSetChanged()
         }
 
-
+        /**
+         * Function that replaces an deprecated item on MutableList displayed on screen
+         * with an updated item
+         *
+         * @param formattedActivity Activity that needs to be replaced
+         */
         fun actualizeFormattedList(formattedActivity: FeedModel.FeedActivityFormatted) {
-            val identifier = formattedActivity.identifier
-            val activityToChange = activities.find { it.identifier.equals(identifier) }
-            val indexOfActivityToChange = activities.indexOf(activityToChange)
+            val identifier = formattedActivity.identifier //identifier of the activities to be swapped
+            val activityToChange = activities.find { it.identifier.equals(identifier) } //activity to be replaced
+            val indexOfActivityToChange = activities.indexOf(activityToChange) //position of the activities that will be swapped
             activities.removeAt(indexOfActivityToChange)
             activities.add(indexOfActivityToChange, formattedActivity)
             notifyItemChanged(indexOfActivityToChange)
@@ -157,7 +180,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.numberOfLikes.text = activity.numberOfLikes
 
 
-                itemView.likesButtom.setOnClickListener {
+                itemView.likesButton.setOnClickListener {
                     (context as FeedView).sendLike(activity.identifier)
                 }
 
