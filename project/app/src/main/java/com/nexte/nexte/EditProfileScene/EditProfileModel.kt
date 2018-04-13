@@ -15,7 +15,7 @@ class EditProfileModel {
      * This class is responsible to determinate what will be passed between classes
      * of scene when recovering an existing user
      */
-    class FirstRequest {
+    class RecoverUserRequest {
 
         /**
          * Class responsible to holds the information that will be passed
@@ -51,7 +51,7 @@ class EditProfileModel {
      * This class is responsible to determinate what will be passed
      * between classes of scene when editing an existing user
      */
-    class SecondRequest {
+    class EditProfileRequest {
         /**
          * Class responsible to holds the information that will be
          * passed from [EditProfileView] to [EditProfileInteractor]

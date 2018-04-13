@@ -21,8 +21,8 @@ class EditProfileWorker {
      *
      * @param request Contains the username and TokenID that will be used to recover the user
      */
-    fun getUserProfileToEdit(request: EditProfileModel.FirstRequest.Request, completion:
-        (EditProfileModel.FirstRequest.Response) -> Unit) {
+    fun getUserProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request, completion:
+        (EditProfileModel.RecoverUserRequest.Response) -> Unit) {
 
         val username = request.username
         val tokenID = request.tokenID
@@ -46,7 +46,7 @@ class EditProfileWorker {
             returnedUser = UserSingleton.getUserInformations()
         }
 
-        val response: EditProfileModel.FirstRequest.Response = EditProfileModel.FirstRequest.Response(returnedUser!!)
+        val response: EditProfileModel.RecoverUserRequest.Response = EditProfileModel.RecoverUserRequest.Response(returnedUser!!)
 
         completion(response)
     }
@@ -57,8 +57,8 @@ class EditProfileWorker {
      *
      * @param request Contains the edited user information
      */
-    fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
-                       (EditProfileModel.SecondRequest.Response) -> Unit) {
+    fun editUserProfile(request: EditProfileModel.EditProfileRequest.Request, completion:
+                       (EditProfileModel.EditProfileRequest.Response) -> Unit) {
 
         val user = request.user
         var errorID: Int? = null
@@ -75,8 +75,8 @@ class EditProfileWorker {
             }
         }
 
-        val response: EditProfileModel.SecondRequest.Response =
-                EditProfileModel.SecondRequest.Response(errorID, newUser)
+        val response: EditProfileModel.EditProfileRequest.Response =
+                EditProfileModel.EditProfileRequest.Response(errorID, newUser)
 
         completion(response)
     }

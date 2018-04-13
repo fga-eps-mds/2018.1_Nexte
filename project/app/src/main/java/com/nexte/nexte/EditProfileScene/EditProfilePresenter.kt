@@ -12,7 +12,7 @@ import com.nexte.nexte.UserSingleton
  */
 interface ShowProfileToEditPresentationLogic {
 
-    fun presentProfileToEdit(response: EditProfileModel.FirstRequest.Response)
+    fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response)
 }
 
 /**
@@ -20,24 +20,25 @@ interface ShowProfileToEditPresentationLogic {
  */
 interface SendEditedProfileDataPresentationLogic {
 
-    fun sendEditedProfileStatus(response: EditProfileModel.SecondRequest.Response)
+    fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response)
 }
 
 /**
- * Class responsible to interpretation of [EditProfileModel.FirstRequest]
- * and [EditProfileModel.SecondRequest] Responses and generate viewModels
+ * Class responsible to interpretation of [EditProfileModel.RecoverUserRequest]
+ * and [EditProfileModel.EditProfileRequest] Responses and generate viewModels
  */
 class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic{
 
-    var firstView: ShowProfileToEditDisplayLogic? = null // Reference for show profile view with method to show user
-    var secondView: EditProfileDisplayLogic? = null // Reference for show profile view with method
+    var viewToShowUserInformation: ShowProfileToEditDisplayLogic? = null // Reference for
+    // show profile view with method to show user
+    var viewToShowEditProfileError: EditProfileDisplayLogic? = null // Reference for show profile view with method
     // to show edit profile error
 
     /**
-     * Format user information contained in [EditProfileModel.FirstRequest.Response]
+     * Format user information contained in [EditProfileModel.RecoverUserRequest.Response]
      * and sends it to [EditProfileView]
      */
-    override fun presentProfileToEdit(response: EditProfileModel.FirstRequest.Response) {
+    override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
 
         val username: String = response.user.name
         val ranking: String = String.format("#%d", response.user.rankingPosition)
@@ -45,23 +46,23 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
         val age: String = String.format("%d", response.user.age)
         val email: String =  response.user.email
 
-        val formattedPlayer: EditProfileModel.FirstRequest.FormattedPlayer =
-                EditProfileModel.FirstRequest.FormattedPlayer(username,
+        val formattedPlayer: EditProfileModel.RecoverUserRequest.FormattedPlayer =
+                EditProfileModel.RecoverUserRequest.FormattedPlayer(username,
         ranking,
         club,
         age,
         email)
 
-        val viewModel: EditProfileModel.FirstRequest.ViewModel =
-                EditProfileModel.FirstRequest.ViewModel(formattedPlayer)
+        val viewModel: EditProfileModel.RecoverUserRequest.ViewModel =
+                EditProfileModel.RecoverUserRequest.ViewModel(formattedPlayer)
 
-        firstView?.displayProfileToEdit(viewModel)
+        viewToShowUserInformation?.displayProfileToEdit(viewModel)
     }
 
     /**
-     * Format error contained in [EditProfileModel.FirstRequest.Response] (if exists) and sends it to [EditProfileView]
+     * Format error contained in [EditProfileModel.RecoverUserRequest.Response] (if exists) and sends it to [EditProfileView]
      */
-    override fun sendEditedProfileStatus(response: EditProfileModel.SecondRequest.Response) {
+    override fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response) {
 
         val errorID: Int? = response.errorID
         val messageError: String?
@@ -76,10 +77,10 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
             }
         }
 
-        val viewModel: EditProfileModel.SecondRequest.ViewModel = EditProfileModel.SecondRequest.ViewModel(
+        val viewModel: EditProfileModel.EditProfileRequest.ViewModel = EditProfileModel.EditProfileRequest.ViewModel(
             messageError
         )
 
-        secondView?.displayEditedProfile(viewModel)
+        viewToShowEditProfileError?.displayEditedProfile(viewModel)
     }
 }

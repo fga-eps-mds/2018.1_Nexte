@@ -10,7 +10,7 @@ package com.nexte.nexte.EditProfileScene
  */
 interface GetProfileToEditBusinessLogic {
 
-    fun getProfileToEdit(request: EditProfileModel.FirstRequest.Request)
+    fun getProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request)
 }
 
 /**
@@ -19,7 +19,7 @@ interface GetProfileToEditBusinessLogic {
  */
 interface EditProfileBusinessLogic {
 
-    fun setEditedProfile(request: EditProfileModel.SecondRequest.Request)
+    fun setEditedProfile(request: EditProfileModel.EditProfileRequest.Request)
 }
 
 /**
@@ -28,8 +28,8 @@ interface EditProfileBusinessLogic {
  */
 class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusinessLogic {
 
-    var firstPresenter: ShowProfileToEditPresentationLogic? = null
-    var secondPresenter: SendEditedProfileDataPresentationLogic? = null
+    var formatUserDataPresenter: ShowProfileToEditPresentationLogic? = null
+    var formatErrorCodePresenter: SendEditedProfileDataPresentationLogic? = null
     var worker = EditProfileWorker()
 
     /**
@@ -38,10 +38,10 @@ class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusiness
      *
      * @param request Has the unverified user information
      */
-    override fun getProfileToEdit(request: EditProfileModel.FirstRequest.Request){
+    override fun getProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request){
 
         worker.getUserProfileToEdit(request) { response ->
-            firstPresenter?.presentProfileToEdit(response)
+            formatUserDataPresenter?.presentProfileToEdit(response)
         }
     }
 
@@ -50,10 +50,10 @@ class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusiness
      *
      * @param request Has the edited user information
      */
-    override fun setEditedProfile(request: EditProfileModel.SecondRequest.Request) {
+    override fun setEditedProfile(request: EditProfileModel.EditProfileRequest.Request) {
 
         worker.editUserProfile(request) { response ->
-            secondPresenter?.sendEditedProfileStatus(response)
+            formatErrorCodePresenter?.sendEditedProfileStatus(response)
         }
     }
 }

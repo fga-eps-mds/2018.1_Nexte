@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_edit_profile.*
  */
 interface ShowProfileToEditDisplayLogic {
 
-    fun displayProfileToEdit (viewModel: EditProfileModel.FirstRequest.ViewModel)
+    fun displayProfileToEdit (viewModel: EditProfileModel.RecoverUserRequest.ViewModel)
 }
 
 /**
@@ -23,14 +23,14 @@ interface ShowProfileToEditDisplayLogic {
  */
 interface EditProfileDisplayLogic {
 
-    fun displayEditedProfile (viewModel: EditProfileModel.SecondRequest.ViewModel)
+    fun displayEditedProfile (viewModel: EditProfileModel.EditProfileRequest.ViewModel)
 }
 
 
 class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, EditProfileDisplayLogic {
 
-    private var firstRequestInteractor: GetProfileToEditBusinessLogic? = null
-    private var secondRequestInteractor: EditProfileBusinessLogic? = null
+    private var getUserInformationInteractor: GetProfileToEditBusinessLogic? = null
+    private var editUserInformationInteractor: EditProfileBusinessLogic? = null
 
     /**
      * Class responsible to define behavior of password validation (checking if password and confirmation match)
@@ -72,11 +72,11 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         this.passwordConfirmationTextEdit.addTextChangedListener(PasswordWatcher(this))
         this.passwordTextEdit.addTextChangedListener(PasswordWatcher(this))
 
-        val firstRequest: EditProfileModel.FirstRequest.Request = EditProfileModel.FirstRequest.Request(
+        val recoverUserRequest: EditProfileModel.RecoverUserRequest.Request = EditProfileModel.RecoverUserRequest.Request(
                 "gabrielalbino",
                 "UHDASFUHADSUHF2828HJDDJFHA")
 
-        firstRequestInteractor?.getProfileToEdit(firstRequest)
+        getUserInformationInteractor?.getProfileToEdit(recoverUserRequest)
 
         updateProfileButton.setOnClickListener {
 
@@ -89,9 +89,9 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
                     ageTextEdit.text.trim().toString().toInt(),
                     passwordTextEdit.text.trim().toString())
 
-            val secondRequest: EditProfileModel.SecondRequest.Request = EditProfileModel.SecondRequest.Request(user)
+            val editProfileRequest: EditProfileModel.EditProfileRequest.Request = EditProfileModel.EditProfileRequest.Request(user)
 
-            secondRequestInteractor?.setEditedProfile(secondRequest)
+            editUserInformationInteractor?.setEditedProfile(editProfileRequest)
         }
     }
 
@@ -100,7 +100,7 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
      *
      * @param viewModel contains formatted player data
      */
-    override fun displayProfileToEdit(viewModel: EditProfileModel.FirstRequest.ViewModel) {
+    override fun displayProfileToEdit(viewModel: EditProfileModel.RecoverUserRequest.ViewModel) {
 
         this.username.text = viewModel.playerToEdit.username
         this.rankingID.text = viewModel.playerToEdit.ranking
@@ -114,7 +114,7 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
      *
      * @param viewModel contains formatted error message
      */
-    override fun displayEditedProfile(viewModel: EditProfileModel.SecondRequest.ViewModel) {
+    override fun displayEditedProfile(viewModel: EditProfileModel.EditProfileRequest.ViewModel) {
 
         val errorMessage = viewModel.errorMessage
 
@@ -133,11 +133,11 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         val presenter = EditProfilePresenter()
         val view = this
 
-        view.firstRequestInteractor = interactor
-        view.secondRequestInteractor = interactor
-        interactor.firstPresenter = presenter
-        interactor.secondPresenter = presenter
-        presenter.firstView = view
-        presenter.secondView = view
+        view.getUserInformationInteractor = interactor
+        view.editUserInformationInteractor = interactor
+        interactor.formatUserDataPresenter = presenter
+        interactor.formatErrorCodePresenter = presenter
+        presenter.viewToShowUserInformation = view
+        presenter.viewToShowEditProfileError = view
     }
 }
