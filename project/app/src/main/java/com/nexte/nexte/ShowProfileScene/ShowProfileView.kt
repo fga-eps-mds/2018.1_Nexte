@@ -8,7 +8,8 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
 /**
- * This interface will be responsible to define the methods that will receive the formatted data from [ShowProfilePresenter]
+ * This interface will be responsible to define the methods that
+ * will receive the formatted data from [ShowProfilePresenter]
  */
 interface ShowProfileDisplayLogic {
 
@@ -21,7 +22,8 @@ interface ShowProfileDisplayLogic {
 
 class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
-    var showProfileInteractor : ShowProfileBusinessLogic? = null // Reference for the interactor responsible to receive request and send it to worker
+    var showProfileInteractor : ShowProfileBusinessLogic? = null // Reference for the
+    // interactor responsible to receive request and send it to worker
 
     /**
      * Method called when screen is loaded, responsible to load user information

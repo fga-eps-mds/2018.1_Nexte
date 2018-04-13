@@ -1,6 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
-import com.nexte.nexte.*
+import com.nexte.nexte.Player
 
 /**
  * Created by albino on 27/03/18.
@@ -12,22 +12,26 @@ import com.nexte.nexte.*
 class EditProfileModel {
 
     /**
-     * This class is responsible to determinate what will be passed between classes of scene when recovering an existing user
+     * This class is responsible to determinate what will be passed between classes
+     * of scene when recovering an existing user
      */
     class FirstRequest {
 
         /**
-         * Class responsible to holds the information that will be passed from [ViewModel] to [EditProfileInteractor]
+         * Class responsible to holds the information that will be passed
+         * from [ViewModel] to [EditProfileInteractor]
          */
         class Request(var username: String, var tokenID: String)
 
         /**
-         * Class responsible to holds the information that will be passed for [EditProfilePresenter] by [EditProfileWorker]
+         * Class responsible to holds the information that will be passed
+         * for [EditProfilePresenter] by [EditProfileWorker]
          */
         class Response(var user: Player)
 
         /**
-         * Class responsible to holds the information that will be passed from [EditProfilePresenter] to [EditProfileView]
+         * Class responsible to holds the information that will be passed
+         * from [EditProfilePresenter] to [EditProfileView]
          */
         class ViewModel( var playerToEdit: FormattedPlayer)
 
@@ -44,22 +48,26 @@ class EditProfileModel {
     }
 
     /**
-     * This class is responsible to determinate what will be passed between classes of scene when editing an existing user
+     * This class is responsible to determinate what will be passed
+     * between classes of scene when editing an existing user
      */
     class SecondRequest {
         /**
-         * Class responsible to holds the information that will be passed from [EditProfileView] to [EditProfileInteractor]
+         * Class responsible to holds the information that will be
+         * passed from [EditProfileView] to [EditProfileInteractor]
          */
         class Request(var user: Player)
 
         /**
-         * Class responsible to holds the information that will be passed for [EditProfilePresenter] by [EditProfileWorker]
+         * Class responsible to holds the information that will be
+         * passed for [EditProfilePresenter] by [EditProfileWorker]
          */
         class Response(var errorID: Int?,
                        var newUser: Player?)
 
         /**
-         * Class responsible to holds the information that will be passed from [EditProfilePresenter] to [EditProfileView]
+         * Class responsible to holds the information that will be
+         * passed from [EditProfilePresenter] to [EditProfileView]
          */
         class ViewModel(var errorMessage: String?)
     }

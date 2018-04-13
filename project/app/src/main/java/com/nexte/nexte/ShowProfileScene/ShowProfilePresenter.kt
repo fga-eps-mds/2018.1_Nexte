@@ -13,7 +13,8 @@ interface ShowProfilePresentationLogic {
 }
 
 /**
- * This class will be responsible to receive a [ShowProfileModel.Response] and generate a [ShowProfileModel.ViewModel], sending it to the [ShowProfileView]
+ * This class will be responsible to receive a [ShowProfileModel.Response]
+ * and generate a [ShowProfileModel.ViewModel], sending it to the [ShowProfileView]
  */
 
 class ShowProfilePresenter : ShowProfilePresentationLogic {
@@ -21,7 +22,8 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     var viewScene : ShowProfileDisplayLogic? = null // Reference for the viewScene responsible to display formatted data
 
     /**
-     * This method is responsible for formatting data contained on [ShowProfileModel.Response] and send it to [ShowProfileView]
+     * This method is responsible for formatting data contained on
+     * [ShowProfileModel.Response] and send it to [ShowProfileView]
      */
     override fun presentUserProfile(response: ShowProfileModel.Response) {
 

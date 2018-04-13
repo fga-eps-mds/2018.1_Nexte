@@ -46,7 +46,8 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            if(this.view.passwordConfirmationTextEdit.text.trim().toString() == view.passwordTextEdit.text.trim().toString()) {
+            if(this.view.passwordConfirmationTextEdit.text.trim().toString() ==
+               this.view.passwordTextEdit.text.trim().toString()) {
                 view.passwordValidationTextView.text = "✓"
                 view.passwordValidationTextView.setTextColor(Color.GREEN)
                 view.updateProfileButton.isEnabled = true

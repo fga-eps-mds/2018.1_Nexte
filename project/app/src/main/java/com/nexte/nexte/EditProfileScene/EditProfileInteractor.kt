@@ -5,7 +5,8 @@ package com.nexte.nexte.EditProfileScene
  */
 
 /**
- * Interface responsible to define methods that will be used to communicate between worker and presenter to get user information to edit
+ * Interface responsible to define methods that will be used to communicate between worker and presenter
+ * to get user information to edit
  */
 interface GetProfileToEditBusinessLogic {
 
@@ -13,7 +14,8 @@ interface GetProfileToEditBusinessLogic {
 }
 
 /**
- * Interface responsible to define methods that will be used to communicate between worker and presenter to set the edited user information in the user
+ * Interface responsible to define methods that will be used to communicate between worker and presenter
+ * to set the edited user information in the user
  */
 interface EditProfileBusinessLogic {
 
@@ -21,7 +23,8 @@ interface EditProfileBusinessLogic {
 }
 
 /**
- * Class responsible to intermediate communication between worker and presenter, for both getting user information to edit and set user edited information in user
+ * Class responsible to intermediate communication between worker and presenter, for both getting user
+ * information to edit and set user edited information in user
  */
 class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusinessLogic {
 
@@ -30,7 +33,8 @@ class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusiness
     var worker = EditProfileWorker()
 
     /**
-     * Method responsible to get unverified logged user, get user information in worker and send it to presenter for formatting
+     * Method responsible to get unverified logged user, get user information in worker and send
+     * it to presenter for formatting
      *
      * @param request Has the unverified user information
      */

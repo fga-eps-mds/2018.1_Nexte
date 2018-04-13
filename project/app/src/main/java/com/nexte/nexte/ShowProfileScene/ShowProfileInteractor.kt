@@ -17,8 +17,10 @@ interface ShowProfileBusinessLogic {
  */
 class ShowProfileInteractor : ShowProfileBusinessLogic {
 
-    private var worker = ShowProfileWorker() // Reference for the worker that will receive the request and create an response
-    var presenter : ShowProfilePresentationLogic? = null // Reference for the presenter that will receive the response and create an viewModel
+    private var worker = ShowProfileWorker() // Reference for the worker that will
+    // receive the request and create an response
+    var presenter : ShowProfilePresentationLogic? = null // Reference for the presenter
+    // that will receive the response and create an viewModel
 
     /**
      * This method does the communication between worker and presenter

@@ -49,20 +49,22 @@ class EditProfileWorker {
     }
 
     /**
-     * Responsible to get edited user information, validate it and if there is no error set it to our user, otherwise sends and error code.
+     * Responsible to get edited user information, validate it and if there is no error, set it
+     * to our user, otherwise sends and error code.
      *
      * @param request Contains the edited user information
      */
     fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
                        (EditProfileModel.SecondRequest.Response) -> Unit) {
 
+        val minPasswordLength = 6
         val user = request.user
         var errorID: Int? = null
         var newUser: Player? = null
 
         if(!user.email.contains('@')) {
             errorID = 1
-        } else if(user.password.isNotEmpty() && user.password.length < 6) {
+        } else if(user.password.isNotEmpty() && user.password.length < minPasswordLength) {
             errorID = 2
         } else {
             newUser = user
@@ -71,7 +73,8 @@ class EditProfileWorker {
             }
         }
 
-        val response: EditProfileModel.SecondRequest.Response = EditProfileModel.SecondRequest.Response(errorID, newUser)
+        val response: EditProfileModel.SecondRequest.Response =
+                EditProfileModel.SecondRequest.Response(errorID, newUser)
 
         completion(response)
     }

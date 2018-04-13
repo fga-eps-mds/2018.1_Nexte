@@ -1,6 +1,7 @@
 package com.nexte.nexte.ShowProfileScene
 
-import com.nexte.nexte.*
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.Player
 
 /**
  * Created by albino on 25/03/18.
@@ -13,7 +14,8 @@ import com.nexte.nexte.*
 class ShowProfileWorker {
 
     /**
-     * Method responsible to get the [ShowProfileModel.Request] with data to be validated and generate an [ShowProfileModel.Response] with user information.
+     * Method responsible to get the [ShowProfileModel.Request] with data to be validated
+     * and generate an [ShowProfileModel.Response] with user information.
      */
     fun getUserProfile(request: ShowProfileModel.Request,
                        completion: (ShowProfileModel.Response) -> Unit) {

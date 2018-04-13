@@ -7,7 +7,8 @@ import com.nexte.nexte.Player
  */
 
 /**
- * This class declares the request, response, viewModel and player, information that will define what will be passed between classes
+ * This class declares the request, response, viewModel and player,
+ * information that will define what will be passed between classes
  */
 class ShowProfileModel {
 

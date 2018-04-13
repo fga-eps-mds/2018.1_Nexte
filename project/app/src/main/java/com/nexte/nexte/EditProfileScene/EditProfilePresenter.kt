@@ -24,7 +24,8 @@ interface SendEditedProfileDataPresentationLogic {
 }
 
 /**
- * Class responsible to interpretation of [EditProfileModel.FirstRequest] and [EditProfileModel.SecondRequest] Responses and generate viewModels
+ * Class responsible to interpretation of [EditProfileModel.FirstRequest]
+ * and [EditProfileModel.SecondRequest] Responses and generate viewModels
  */
 class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic{
 
@@ -32,7 +33,8 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
     var secondView: EditProfileDisplayLogic? = null // Reference for show profile view with method to show edit profile error
 
     /**
-     * Format user information contained in [EditProfileModel.FirstRequest.Response] and sends it to [EditProfileView]
+     * Format user information contained in [EditProfileModel.FirstRequest.Response]
+     * and sends it to [EditProfileView]
      */
     override fun presentProfileToEdit(response: EditProfileModel.FirstRequest.Response) {
 
@@ -42,14 +44,15 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
         val age: String = String.format("%d", response.user.age)
         val email: String =  response.user.email
 
-        val formattedPlayer: EditProfileModel.FirstRequest.FormattedPlayer = EditProfileModel.FirstRequest.FormattedPlayer(
-        username,
+        val formattedPlayer: EditProfileModel.FirstRequest.FormattedPlayer =
+                EditProfileModel.FirstRequest.FormattedPlayer(username,
         ranking,
         club,
         age,
         email)
 
-        val viewModel: EditProfileModel.FirstRequest.ViewModel = EditProfileModel.FirstRequest.ViewModel(formattedPlayer)
+        val viewModel: EditProfileModel.FirstRequest.ViewModel =
+                EditProfileModel.FirstRequest.ViewModel(formattedPlayer)
 
         firstView?.displayProfileToEdit(viewModel)
     }
