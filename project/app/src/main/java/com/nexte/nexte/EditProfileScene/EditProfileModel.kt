@@ -18,17 +18,17 @@ class EditProfileModel {
                         var ranking: String,
                         var club: String,
                         var age: String,
-                        var email: String
-                        )
+                        var email: String)
     }
 
     class SecondRequest {
 
-        class Response {}
+        class Response(var errorID: Int?,
+                       var newUser: Player?)
 
-        class Request {}
+        class Request(var user: Player)
 
-        class ViewModel {}
+        class ViewModel(var errorMessage: String?)
     }
 }
 

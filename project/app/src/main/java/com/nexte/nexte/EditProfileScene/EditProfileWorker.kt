@@ -6,6 +6,7 @@ import com.nexte.nexte.UserSingleton
 /**
  * Created by lorrany on 27/03/18.
  */
+
 class EditProfileWorker {
 
     fun getUserProfileToEdit(request: EditProfileModel.FirstRequest.Request, completion:
@@ -15,13 +16,13 @@ class EditProfileWorker {
         val tokenID = request.tokenID
 
         val emptyUser = Player("",
-                -1,
-                "",
-                "",
-                "",
-                "",
-                -1,
-                "")
+            -1,
+            "",
+            "",
+            "",
+            "",
+            -1,
+            "")
 
         var returnedUser: Player? = null
 
@@ -39,7 +40,22 @@ class EditProfileWorker {
     }
 
     fun editUserProfile(request: EditProfileModel.SecondRequest.Request, completion:
-    (EditProfileModel.SecondRequest.Response) -> Unit) {
-        TODO("NOT IMPLEMENTED YET")
+                       (EditProfileModel.SecondRequest.Response) -> Unit) {
+
+        val user = request.user
+        var errorID: Int? = null
+        var newUser: Player? = null
+
+        if(!user.email.contains('@')) {
+            errorID = 1
+        } else if(user.password.length < 6) {
+            errorID = 2
+        } else {
+            newUser = user
+        }
+
+        val response: EditProfileModel.SecondRequest.Response = EditProfileModel.SecondRequest.Response(errorID, newUser)
+
+        completion(response)
     }
 }

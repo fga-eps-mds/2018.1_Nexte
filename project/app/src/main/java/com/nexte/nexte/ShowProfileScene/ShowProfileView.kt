@@ -39,6 +39,15 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         }
     }
 
+    override fun onResume() {
+
+        super.onResume()
+
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
+                "AUFDSASFSA321IEUNFDI23FIQ2F")
+        this.showProfileInteractor?.showProfile(showUserProfileRequest)
+    }
+
 
     fun setupShowProfileScene() {
 

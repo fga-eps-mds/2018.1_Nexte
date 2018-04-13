@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
 import android.widget.TextView
+import com.nexte.nexte.Player
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
@@ -65,20 +64,44 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
                 "UHDASFUHADSUHF2828HJDDJFHA")
 
         firstRequestInteractor?.getProfileToEdit(firstRequest)
-    }
 
-    override fun displayEditedProfile(viewModel: EditProfileModel.SecondRequest.ViewModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        updateProfileButton.setOnClickListener {
+
+            val user = Player(username.text.toString(),
+                    rankingID.text.removeRange(0, 1).toString().toInt(),
+                    "",
+                    emailTextEdit.text.trim().toString(),
+                    "",
+                    clubName.text.toString(),
+                    ageTextEdit.text.trim().toString().toInt(),
+                    passwordTextEdit.text.trim().toString())
+
+            val secondRequest: EditProfileModel.SecondRequest.Request = EditProfileModel.SecondRequest.Request(user)
+
+            secondRequestInteractor?.setEditedProfile(secondRequest)
+        }
     }
 
     override fun displayProfileToEdit(viewModel: EditProfileModel.FirstRequest.ViewModel) {
 
         this.username.text = viewModel.username
-        this.RankingId.text = viewModel.ranking
+        this.rankingID.text = viewModel.ranking
         this.emailTextEdit.setText(viewModel.email, TextView.BufferType.EDITABLE)
         this.ageTextEdit.setText(viewModel.age, TextView.BufferType.EDITABLE)
         this.clubName.text = viewModel.club
     }
+
+    override fun displayEditedProfile(viewModel: EditProfileModel.SecondRequest.ViewModel) {
+
+        val errorMessage = viewModel.errorMessage
+
+        if(errorMessage == null) {
+            this.finish()
+        } else {
+            this.errorMessageTextView.text = errorMessage
+        }
+    }
+
 
     private fun setupEditProfileScene() {
         val interactor = EditProfileInteractor()
@@ -87,7 +110,8 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
 
         view.firstRequestInteractor = interactor
         view.secondRequestInteractor = interactor
-        interactor.presenter = presenter
+        interactor.firstPresenter = presenter
+        interactor.secondPresenter = presenter
         presenter.firstView = view
         presenter.secondView = view
     }
