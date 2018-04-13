@@ -10,7 +10,7 @@
 | 31/03/2018 | 1.1.2 | Adição de tópico de nomeação de Interface e Model | Gabriel Albino e Larissa Sales|
 | 31/03/2018 | 1.1.3 | Melhoria na formatação do arquivo | Gabriel Albino e Larissa Sales|
 | 08/04/2018 | 1.1.4 | Alteração do tópico 3.3 | Gabriel Albino e Larissa Sales|
-
+| 13/04/2018 | 1.1.4 | Alteração das regras dos comentários e da model. | Gabriel Albino|
 
 
 ### Índice Analítico
@@ -426,7 +426,10 @@
 
 ### 3.2 Comentários em interfaces
 
-1. Os comentários devem estar uma linha acima da interface referenciada e contendo uma breve descrição da funcionalidade dessa interface. O uso de comentários em interfaces é opcional.
+1. Os comentários devem estar uma linha acima da interface referenciada.
+  - A primeira linha deve conter uma breve descrição da funcionalidade dessa interface.
+  
+  O uso de comentários em interfaces é opcional.
 
     Ex.:
 
@@ -460,7 +463,15 @@
 
 ### 3.3 Comentários em Métodos
 
-1. Os comentários devem estar uma linha acima do método, contendo uma breve explicação da funcionalidade implementada, bem como a relação dessa funcionalidade com os parâmetros declarados e o tipo de retorno. O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
+1. Os comentários devem seguir o padrão KDoc, isto é, iniciar com `\**` e ser finalizado com `*\`, além de estar uma linha acima do método.
+
+- A primeira linha deve conter uma breve explicação da funcionalidade implementada, seguida de uma linha em branco.
+- A partir da segunda lista são descritos as tags da função. São elas:
+  - @param: Descreve os argumentos da função. cada argumento deve estar em uma nova linha seguindo o padrão `@param [name] description`
+  - @return: Descreve o tipo e a descrição do retorno da função seguindo o padrão `@return [name] description`
+  - @throws: Descreve as excessões que o método pode lançar separadas por virgula, seguindo o padrão `@throws InvalidArgumentExeption, NullPointerException`
+  
+  O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
 
     Ex.:
 
@@ -480,7 +491,6 @@
       * @param  url  an absolute URL giving the base location of the image
       * @param  name the location of the image, relative to the url argument
       * @return      the image at the specified URL
-      * @see         Image
       */
 
       fun getImage(URL url, String name): Image {
@@ -593,6 +603,26 @@
       }
       ```
 
+### 3.7 Referencia a outras documentações
+
+1. Referencia a outra classe podem ser feitas para evitar documentação reduntante. Para utiliza-la deve-se seguir o padrão `[nomeDaClasse]`
+   Ex.:
+
+   * Certo:
+
+      ```kotlin
+      /**
+      * Class that implements [ProgramDisplayLogic] and controls program scene.
+      */
+      ```
+   * Errado:
+
+      ```kotlin
+      /**
+      * Class that use the function doSomething that is on ProgramDisplayLogic and this function is responsible to do something.
+      */
+      ```
+
 ## 4 Import
 
 1. As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada.
@@ -671,7 +701,7 @@
 
 ## 8 Estilo da Model
 
-1. A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
+1. A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_, necessáriamente nessa ordem.
 
    Ex.:
 
@@ -708,6 +738,90 @@
             var name: String? = null
         }
       ```
+2. As classes da model devem conter apenas informações essenciais para seu funcionamento.
+
+    Ex.:
+        
+    * Certo:
+
+      ```kotlin
+        class Model {
+            class Request(userID: Integer) 
+            ...
+        }
+      ```
+      
+    * Errado:
+
+      ```kotlin
+        class Model {
+            class Request(userID: Integer, someUnusedArgument: String, anotherUnusedArgument: Integer) 
+            ...
+        }
+      ```
+
+3. Classes da model que não são as essenciais (Request, Response e ViewModel) devem estar separadas por um comentário que segue o modelo:
+
+   ````// ------------------------------ Aux classes to use in this scene --------------------------------------````
+
+   E esse comentário deve estar localizado abaixo das mesmas.
+
+    Ex.:
+          
+    * Certo:
+
+      ```kotlin
+        class Model {
+            class Request {
+                var name: String? = null
+                constructor(name: String?) {
+                    this.name = name
+                }
+            }
+            class Response {
+                var age: Int? = null
+                constructor(age: Int?) {
+                    this.age = age
+                }
+            }
+            class ViewModel {
+                var message: String?= null
+                constructor(message: String?) {
+                    this.message = message
+                }
+            }
+            // ------------------------------ Aux classes to use in this scene --------------------------------------
+            class User (userID: Integer)
+        }
+      ```
+      
+    * Errado:
+
+      ```kotlin
+        class User (userID: Integer)
+ 
+        class Model {
+            class Request {
+                var name: String? = null
+                constructor(name: String?) {
+                    this.name = name
+                }
+            }
+
+            class Response {
+                var age: Int? = null
+                constructor(age: Int?) {
+                    this.age = age
+                }
+            }
+            class ViewModel {
+                var message: String?= null
+                constructor(message: String?) {
+                    this.message = message
+                }
+            }
+      ```
+
 
 
 ## 9 Referências
