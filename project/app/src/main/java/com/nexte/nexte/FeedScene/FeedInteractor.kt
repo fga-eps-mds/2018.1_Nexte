@@ -1,7 +1,8 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Interface to define Business Logic to Feed Class that will used to call this Interactor on other class layer
+ * Interface to define Business Logic to Feed Class
+ * that will used to call this Interactor on other class layer
  */
 interface FeedBusinessLogic {
 
@@ -24,7 +25,8 @@ interface FeedBusinessLogic {
 }
 
 /**
- * Class that implements [FeedBusinessLogic] and is responsible for the communication between worker and presenter
+ * Class that implements [FeedBusinessLogic] and is responsible for the communication
+ * between worker and presenter
  *
  * @property worker Reference to worker [FeedWorker]
  * @property presenter Reference to presenter [FeedPresenter]

@@ -1,14 +1,15 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Interface to define Presentation Logic to Feed Class that will used to call this Interactor on other class layer
+ * Interface to define Presentation Logic to Feed Class that
+ * will used to call this Interactor on other class layer
  */
 interface FeedPresentationLogic {
 
     /**
      * Method responsible to format feed data and send for view
      *
-     * @param response Feed model response that contains not formatted data received of worker [FeedModel]
+     * @param response Feed model response containing unformatted data received [FeedModel]
      */
     fun formatFeed(response: FeedModel.Response)
 
@@ -47,7 +48,8 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
      * @param activities MutableList of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>): MutableList<FeedModel.FeedActivityFormatted> {
+    private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>):
+            MutableList<FeedModel.FeedActivityFormatted> {
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
@@ -74,7 +76,8 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
      * @param activity Unformatted activity
      * @return Formatted activity
      */
-    private fun formatFeedActivity(activity: FeedModel.FeedActivity): FeedModel.FeedActivityFormatted {
+    private fun formatFeedActivity(activity: FeedModel.FeedActivity):
+            FeedModel.FeedActivityFormatted {
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                 activity.identifier,
                 activity.challenge.challenger.name,

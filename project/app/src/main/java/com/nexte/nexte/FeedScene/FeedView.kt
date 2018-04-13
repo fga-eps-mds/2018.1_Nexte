@@ -116,7 +116,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedAdapter.ViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent, false)
+            val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent,false)
             return FeedAdapter.ViewHolder(view)
 
         }
@@ -146,9 +146,11 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
          * @param formattedActivity Activity that needs to be replaced
          */
         fun actualizeFormattedList(formattedActivity: FeedModel.FeedActivityFormatted) {
-            val identifier = formattedActivity.identifier //identifier of the activities to be swapped
-            val activityToChange = activities.find { it.identifier.equals(identifier) } //activity to be replaced
-            val indexOfActivityToChange = activities.indexOf(activityToChange) //position of the activities that will be swapped
+
+            val identifier = formattedActivity.identifier
+            val activityToChange = activities.find { it.identifier.equals(identifier) }
+            val indexOfActivityToChange = activities.indexOf(activityToChange)
+
             activities.removeAt(indexOfActivityToChange)
             activities.add(indexOfActivityToChange, formattedActivity)
             notifyItemChanged(indexOfActivityToChange)
