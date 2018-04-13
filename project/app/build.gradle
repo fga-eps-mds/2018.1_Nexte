@@ -40,5 +40,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+dependencies {
     implementation 'com.facebook.android:account-kit-sdk:4.+'
 }

@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
             startActivity(intent)
         }
 
+        loginButton.setOnClickListener {
+            val intent = Intent(this, LoginView::class.java)
+            startActivity(intent)
+        }
+
         // Testing if works the architecture
         val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
         this.loginInteractor?.doAuthentication(loginRequest)
@@ -84,7 +89,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
     private fun setupLoginScene() {
 
         val viewController = this
-        var date = Date(20)
         val interactor = LoginIteractor()
         val presenter = LoginPresenter()
 
