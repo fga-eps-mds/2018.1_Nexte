@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.row_feed.view.*
  */
 interface FeedDisplayLogic {
     fun displayFeed(viewModel: FeedModel.ViewModel)
-    fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted)
+    fun updateLike(formattedActivity: FeedModel.FeedActivityFormatted)
     fun sendLike(identifier: String)
 }
 
@@ -99,7 +99,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param formattedActivity Formatted Activity that needs to be added on activities list
      */
-    override fun actualizeLike(formattedActivity: FeedModel.FeedActivityFormatted) {
+    override fun updateLike(formattedActivity: FeedModel.FeedActivityFormatted) {
         feedViewAdapter?.actualizeFormattedList(formattedActivity)
 
     }

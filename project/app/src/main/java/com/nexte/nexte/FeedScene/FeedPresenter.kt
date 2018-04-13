@@ -39,7 +39,7 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
     override fun updateViewActivity(activity: FeedModel.FeedActivity) {
 
         val newActivityFormatted = this.formatFeedActivity(activity)
-        viewScene?.actualizeLike(newActivityFormatted)
+        viewScene?.updateLike(newActivityFormatted)
     }
 
     /**
