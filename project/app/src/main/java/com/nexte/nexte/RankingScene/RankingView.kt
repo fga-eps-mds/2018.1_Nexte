@@ -1,5 +1,6 @@
 package com.nexte.nexte.RankingScene
 
+import android.app.ExpandableListActivity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListAdapter
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
@@ -69,12 +71,12 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
         }
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.bindView(activities[position])
+
         }
 
         override fun getItemCount(): Int {
             return this.activities.size
         }
-
 
 
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
