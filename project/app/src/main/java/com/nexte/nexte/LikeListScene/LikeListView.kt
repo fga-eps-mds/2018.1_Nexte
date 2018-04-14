@@ -1,8 +1,12 @@
 package com.nexte.nexte.LikeListScene
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.Adapter
 import com.nexte.nexte.LikeListScene.LikeListModel
 import com.nexte.nexte.R
 import com.nexte.nexte.LikeListScene.LikeListDisplayLogic
@@ -23,14 +27,11 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_like)
 
-        setUpLikeListScene()
-
-        feedRecyclerView.layoutManager = LinearLayoutManager(this)
-        this.
+        likesListRecyclerView.layoutManager = LinearLayoutManager(this)
+        this.setUpLikeListScene()
 
         val request = LikeListModel.Request()
         interactor?.fetchDataToList(request)
-
 
     }
 
@@ -43,5 +44,31 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewList = view
+    }
+
+    override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
+        likesListRecyclerView.adapter = LikesListAdapter(viewModel.PlayersFormatted, this)
+    }
+
+
+    class LikesListAdapter(private val listOfPlayers: MutableList<LikeListModel.PlayersFormatted>,
+                           private val context: Context): RecyclerView.Adapter<LikesListAdapter.ViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikesListAdapter.ViewHolder {
+            val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent, false)
+            return LikesListAdapter.ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.bindView(listOfPlayers[position])
+        }
+
+        override fun getItemCount(): Int {
+            return this.listOfPlayers.size
+        }
+
+        class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+            
+        }
     }
 }
