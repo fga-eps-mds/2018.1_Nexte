@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Adapter
-import com.nexte.nexte.LikeListScene.LikeListModel
 import com.nexte.nexte.R
-import com.nexte.nexte.LikeListScene.LikeListDisplayLogic
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,7 +30,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         likesListRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setUpLikeListScene()
 
-        val request = LikeListModel.Request("exampleString")
+        val request = LikeListModel.Request("exampleStringv")
         interactor?.fetchDataToList(request)
 
     }
@@ -58,7 +55,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
                            private val context: Context): RecyclerView.Adapter<LikesListAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikesListAdapter.ViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent, false)
+            val view = LayoutInflater.from(context).inflate(R.layout.row_likes, parent, false)
             return LikesListAdapter.ViewHolder(view)
         }
 

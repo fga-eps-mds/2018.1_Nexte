@@ -1,5 +1,6 @@
 package com.nexte.nexte.FeedScene
 
+import android.content.Intent
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
@@ -42,6 +44,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         val request = FeedModel.Request()
         interactor?.fetchFeed(request)
+
     }
 
     /**
@@ -56,6 +59,12 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewScene = view
+    }
+
+    internal fun goToLikesList() {
+
+        val intent = Intent(this, LikeListView::class.java)
+        startActivity(intent)
     }
 
     /**
@@ -84,7 +93,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bindView(activities[position])
+            holder.bindView(activities[position], context)
         }
 
         override fun getItemCount(): Int {
@@ -103,7 +112,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
              *
              * @param activity Formatted data to show in row of activity feed
              */
-            fun bindView(activity: FeedModel.FeedActivityFormatted) {
+            fun bindView(activity: FeedModel.FeedActivityFormatted, context: Context) {
                 itemView.challengerName.text = activity.challengerName
                 itemView.challengerPhoto.setImageResource(activity.challengerPhoto)
                 itemView.challengerSet.text = activity.challengerSets
@@ -111,6 +120,11 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.challengedName.text = activity.challengedName
                 itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
                 itemView.challengedSet.text = activity.challengedSets
+
+                itemView.viewLikesText.setOnClickListener {
+
+                    (context as FeedView).goToLikesList()
+                }
             }
         }
     }
