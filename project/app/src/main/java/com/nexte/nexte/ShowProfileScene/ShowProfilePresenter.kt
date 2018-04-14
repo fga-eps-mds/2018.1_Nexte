@@ -4,18 +4,27 @@ package com.nexte.nexte.ShowProfileScene
  * Created by albino on 25/03/18.
  */
 
+/**
+ * This interface will define methods used to format player data and send it to [ShowProfileView]
+ */
 interface ShowProfilePresentationLogic {
 
     fun presentUserProfile(response: ShowProfileModel.Response)
 }
 
-/* Receives the response of Interactor,
-    processing data to display in View */
+/**
+ * This class will be responsible to receive a [ShowProfileModel.Response]
+ * and generate a [ShowProfileModel.ViewModel], sending it to the [ShowProfileView]
+ */
 
 class ShowProfilePresenter : ShowProfilePresentationLogic {
 
-    var viewScene : ShowProfileDisplayLogic? = null // Show datas from ViewModel on screen
+    var viewScene : ShowProfileDisplayLogic? = null // Reference for the viewScene responsible to display formatted data
 
+    /**
+     * This method is responsible for formatting data contained on
+     * [ShowProfileModel.Response] and send it to [ShowProfileView]
+     */
     override fun presentUserProfile(response: ShowProfileModel.Response) {
 
         val name: String? = response.user?.name
@@ -24,8 +33,14 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val email: String? = response.user?.email
         val age: String? = response.user?.age.toString()
 
-        var viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(name, rank, club,
-                                                                                email, age)
+        val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(
+                name,
+                rank,
+                club,
+                email,
+                age)
+
+        val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer)
 
         viewScene?.displayProfile(viewModel)
     }

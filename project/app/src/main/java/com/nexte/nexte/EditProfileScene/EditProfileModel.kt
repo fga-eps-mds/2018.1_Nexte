@@ -1,47 +1,74 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Player
+
 /**
  * Created by albino on 27/03/18.
  */
+
+/**
+ * Class responsible to determinate what will be passed between classes of scene
+ */
 class EditProfileModel {
-    class Response {
-        var name: String = ""
-        var rank: Int = -1
-        var profilePictureURL: String = ""
-        var club: String = ""
-        var age: Int = -1
-        var email: String = ""
-        var sex: Char = 'U'
-        var facebookUsername: String = ""
 
-        constructor(name: String, rank: Int, profilePictureURL: String, club: String, age: Int,
-                    email: String, sex: Char, facebookUsername: String){
-            this.name = name
-            this.rank= rank
-            this.profilePictureURL= profilePictureURL
-            this.club= club
-            this.age= age
-            this.email= email
-            this.sex= sex
-            this.facebookUsername= facebookUsername
+    /**
+     * This class is responsible to determinate what will be passed between classes
+     * of scene when recovering an existing user
+     */
+    class RecoverUserRequest {
 
-        }
+        /**
+         * Class responsible to holds the information that will be passed
+         * from [ViewModel] to [EditProfileInteractor]
+         */
+        class Request(var username: String, var tokenID: String)
+
+        /**
+         * Class responsible to holds the information that will be passed
+         * for [EditProfilePresenter] by [EditProfileWorker]
+         */
+        class Response(var user: Player)
+
+        /**
+         * Class responsible to holds the information that will be passed
+         * from [EditProfilePresenter] to [EditProfileView]
+         */
+        class ViewModel( var playerToEdit: FormattedPlayer)
+
+        //-----------------------------------Aux classes ---------------------------------------------
+
+        /**
+         * Class responsible to holds formatted player information ceded by [EditProfilePresenter]
+         */
+        class FormattedPlayer(var username: String, //name of the logged user
+                             var ranking: String, // ranking of the logged user
+                             var club: String, // club of the logged user
+                             var age: String, //age of the logged user
+                             var email: String) //email of the logged user
     }
-    class Request {
-        var username: String = ""
-        var tokenID: String = ""
 
-        constructor(username: String, tokenID: String) {
-            this.username = username
-            this.tokenID = tokenID
-        }
+    /**
+     * This class is responsible to determinate what will be passed
+     * between classes of scene when editing an existing user
+     */
+    class EditProfileRequest {
+        /**
+         * Class responsible to holds the information that will be
+         * passed from [EditProfileView] to [EditProfileInteractor]
+         */
+        class Request(var user: Player)
 
-    }
-    class ViewModel {
-        var message: String = ""
+        /**
+         * Class responsible to holds the information that will be
+         * passed for [EditProfilePresenter] by [EditProfileWorker]
+         */
+        class Response(var errorID: Int?,
+                       var newUser: Player?)
 
-        constructor(message: String){
-            this.message = message
-        }
+        /**
+         * Class responsible to holds the information that will be
+         * passed from [EditProfilePresenter] to [EditProfileView]
+         */
+        class ViewModel(var errorMessage: String?)
     }
 }
