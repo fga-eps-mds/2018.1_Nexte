@@ -15,10 +15,20 @@ import kotlinx.android.synthetic.main.row_likes.view.*
 /**
  * Created by lorrany on 12/04/18.
  */
+
+/**
+ * Interface to define Display Logic to LikeListView Class that will used received call of Presenter
+ */
 interface LikeListDisplayLogic {
     fun displayLikeList(viewModel: LikeListModel.ViewModel)
 }
 
+
+/**
+ * Class that implements [LikeListDisplayLogic] and is responsible for control feed screen
+ *
+ * @property interactor Interactor layer for send requests [LikeListInteractor]
+ */
 class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
 
     var interactor: LikeListInteractor? = null
@@ -35,6 +45,9 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
 
     }
 
+    /**
+     * Method responsible to setup all the references of this scene
+     */
     private fun setUpLikeListScene() {
 
         var view = this
@@ -46,11 +59,21 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         presenter.viewList = view
     }
 
+    /**
+    * Method responsible to receive the viewModel from presenter and show it to the user
+    *
+    * @param viewModel Feed view model received for presenter to show on screen
+    */
     override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
         likesListRecyclerView.adapter = LikesListAdapter(viewModel.PlayersFormatted, this)
     }
 
-
+    /**
+     * Adapter Class to control recycler view on ListLike
+     *
+     * @property listOflikes List of all players
+     * @property context Context that will show this adapter
+     */
     class LikesListAdapter(private val listOfPlayers: MutableList<LikeListModel.PlayersFormatted>,
                            private val context: Context): RecyclerView.Adapter<LikesListAdapter.ViewHolder>() {
 
@@ -67,9 +90,19 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
             return this.listOfPlayers.size
         }
 
+
+        /**
+         * View Holder Class to control itens that will show on Recycler view
+         *
+         * @property itemView View that contains properties to show on recycler view
+         */
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-
+            /**
+             * Function to bind all information about printedPLayer
+             *
+             * @param printedPlayer Formatted data to show in row of LikeList Row
+             */
             fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
                 itemView.PlayerName.text = printedPlayer.name
                 itemView.LikeDate.text = printedPlayer.time
