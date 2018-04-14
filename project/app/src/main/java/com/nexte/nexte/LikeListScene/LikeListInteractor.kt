@@ -18,15 +18,14 @@ interface LikeListBusinessLogic {
     fun fetchDataToList(request: LikeListModel.Request)
 }
 
-class LikeListInteractor : LikeListBusinessLogic {
+class LikeListInteractor(var presenter:LikeListPresentationLogic? = null ) : LikeListBusinessLogic {
 
     var worker: LikeListWorker = LikeListWorker()
-    var presenter: LikeListPresentationLogic
 
 
     override fun fetchDataToList(request: LikeListModel.Request) {
-        worker.fetchDataToList(request) { response ->
-            presenter.presentLikeList(response)
+        worker.getListLikesPlayers(request) { response ->
+            presenter?.formatLikeList(response)
 
         }
     }
