@@ -1,19 +1,38 @@
 package com.nexte.nexte.LikeListScene
 
+import kotlinx.android.synthetic.main.row_feed.view.*
+import kotlinx.android.synthetic.main.row_ranking.view.*
+
 
 /**
  * Created by lorrany on 12/04/18.
  */
 interface LikeListPresentationLogic {
 
-    fun presentLikeList(response: LikeListModel.Response)
+    fun formatLikeList(response: LikeListModel.Response)
 }
 
-class LikeListPresenter : LikeListPresentationLogic {
+class LikeListPresenter(viewList: LikeListDisplayLogic?= null) : LikeListPresentationLogic {
 
-    override fun presentLikeList(response: LikeListModel.Response) {
-        val viewModel: LikeListModel.ViewModel
+    override fun formatLikeList(response: LikeListModel.Response) {
+        val viewModel = LikeListModel.ViewModel(this.formatPlayers(response.Players))
+        viewList.displayLikeList
+
+
     }
+    private fun formatPlayers(likeplayer: MutableList<LikeListModel.Players>):
+            MutableList<LikeListModel.PlayersFormatted>{
+        val likeplayersformatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
 
+    for (likeplayers in likeplayer) {
+        val likeplayerformatted = LikeListModel.PlayersFormatted(
+                likeplayer.Players.name,
+                likeplayer.Players.photo,
+                likePlayer.Players.time.toString())
 
+        likeplayersformatted.add(likeplayerformatted)
+        }
+
+            return likeplayersformatted
+    }
 }
