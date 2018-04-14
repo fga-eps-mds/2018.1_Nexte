@@ -61,7 +61,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         presenter.viewScene = view
     }
 
-    internal fun goToLikesList() {
+    private fun goToLikesList() {
 
         val intent = Intent(this, LikeListView::class.java)
         startActivity(intent)
