@@ -31,6 +31,13 @@
             android:name=".ShowProfileScene.ShowProfileActivity"
             android:label="@string/title_activity_show_profile"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".LikeListScene.LikeListView"
+            android:screenOrientation="portrait"
+            android:label="LikeListView"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
+
+
 
 </manifest>

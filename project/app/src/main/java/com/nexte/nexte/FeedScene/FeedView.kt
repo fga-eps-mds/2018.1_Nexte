@@ -67,6 +67,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         startActivity(intent)
     }
 
+
     /**
      * Method responsible to receive the viewModel from presenter and show it to the user
      *
@@ -99,6 +100,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         override fun getItemCount(): Int {
             return this.activities.size
         }
+
 
         /**
          * View Holder Class to control itens that will show on Recycler view
