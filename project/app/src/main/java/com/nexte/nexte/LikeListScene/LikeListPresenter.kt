@@ -20,19 +20,19 @@ class LikeListPresenter(viewList: LikeListDisplayLogic?= null) : LikeListPresent
 
 
     }
-    private fun formatPlayers(likeplayer: MutableList<LikeListModel.Players>):
+    private fun formatPlayers(likeplayers: MutableList<LikeListModel.Players>):
             MutableList<LikeListModel.PlayersFormatted>{
-        val likeplayersformatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
+        val playersformatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
 
-    for (likeplayers in likeplayer) {
+    for (likeplayer in likeplayers) {
         val likeplayerformatted = LikeListModel.PlayersFormatted(
                 likeplayer.Players.name,
                 likeplayer.Players.photo,
                 likePlayer.Players.time.toString())
 
-        likeplayersformatted.add(likeplayerformatted)
-        }
+        playersformatted.add(likeplayerformatted)
+    }
 
-            return likeplayersformatted
+            return playersformatted
     }
 }
