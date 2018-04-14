@@ -15,6 +15,7 @@ import com.facebook.accountkit.AccountKitLoginResult
 import com.facebook.accountkit.ui.AccountKitConfiguration
 import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.LoginType
+import com.github.kittinunf.fuel.httpGet
 import com.nexte.nexte.R
 
 interface LoginDisplayLogic {
@@ -37,6 +38,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         val request: LoginModel.Request = LoginModel.Request("Miguel", "123456")
         this.interactor?.doAuthentication(request)
+
+        this.requireLogin()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -47,22 +50,29 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             var loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY) as AccountKitLoginResult
             var message = ""
 
-           if (loginResult.error != null) {
+            if (loginResult.error != null) {
 
-           } else if (loginResult.wasCancelled()) {
+            } else if (loginResult.wasCancelled()) {
 
-           } else {
+            } else {
 
-               if(loginResult.accessToken != null) { }
-               else { }
-           }
+                if (loginResult.accessToken != null) {  } else { }
+            }
         }
-
-
-//
-        }
+    }
 
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) { }
+
+    private fun requireLogin() {
+
+        val URL = "http://httpbin.org/get"
+
+        URL.httpGet().responseString { request, response, result ->
+
+            println(response)
+            println(response.statusCode)
+        }
+    }
 
     fun phoneLogin(view: View) {
 
