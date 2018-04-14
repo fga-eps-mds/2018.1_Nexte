@@ -14,7 +14,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ShowProfileScene.ShowProfileView">
+        tools:context=".EditProfileScene.EditProfileView">
 
         <ImageView
             android:id="@+id/imageView"
@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/RankingID"
+            android:id="@+id/rankingID"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="30dp"
@@ -79,66 +79,131 @@
             android:id="@+id/ageLabel"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Idade:"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="@+id/emailLabel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clubLabel"
             tools:text="Idade: " />
 
         <TextView
-            android:id="@+id/club"
+            android:id="@+id/clubName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="60dp"
             android:text="clubName"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/clubLabel"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="@+id/clubLabel" />
 
 
-        <TextView
-            android:id="@+id/email"
+        <EditText
+            android:id="@+id/emailTextEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
             android:text="email"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/emailLabel"
-            app:layout_constraintTop_toBottomOf="@+id/ageLabel" />
+            app:layout_constraintStart_toEndOf="@+id/emailLabel" />
 
-        <TextView
-            android:id="@+id/age"
+        <EditText
+            android:id="@+id/ageTextEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:inputType="numberSigned"
             android:text="age"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ageLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ageLabel"
-            app:layout_constraintTop_toBottomOf="@+id/clubLabel" />
+            app:layout_constraintStart_toEndOf="@+id/ageLabel" />
 
         <Button
-            android:id="@+id/editProfileButton"
+            android:id="@+id/updateProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Editar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Atualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordConfirmationTextEdit" />
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Senha:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/emailLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
+
+        <EditText
+            android:id="@+id/passwordTextEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/passwordLabel" />
+
+        <TextView
+            android:id="@+id/passwordConfirmationLabel"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Confirma:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/passwordLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+
+        <EditText
+            android:id="@+id/passwordConfirmationTextEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordConfirmationLabel"
+            app:layout_constraintEnd_toEndOf="@+id/passwordTextEdit"
+            app:layout_constraintStart_toStartOf="@+id/passwordTextEdit" />
+
+        <TextView
+            android:id="@+id/passwordValidationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/passwordLabel" />
+
+        <TextView
+            android:id="@+id/errorMessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/updateProfileButton" />
+
 
     </android.support.constraint.ConstraintLayout>
 
