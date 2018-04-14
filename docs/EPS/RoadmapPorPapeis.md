@@ -30,5 +30,10 @@
 
 ## 3. Arquitetura
 
+* **Versão 0.1**
+[![Screen_Shot_2018-04-14_at_13.57.32.png](https://s17.postimg.cc/pdtey123j/Screen_Shot_2018-04-14_at_13.57.32.png)](https://postimg.cc/image/4tokzjmcb/)
+
 ## 4. PO
+
+* **Versão 0.1**
 ![Product Owner 0.1](https://i.imgur.com/FeJGS94.png)
