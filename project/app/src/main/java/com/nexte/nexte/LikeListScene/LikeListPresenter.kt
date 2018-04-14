@@ -12,27 +12,30 @@ interface LikeListPresentationLogic {
     fun formatLikeList(response: LikeListModel.Response)
 }
 
-class LikeListPresenter(viewList: LikeListDisplayLogic?= null) : LikeListPresentationLogic {
+class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) : LikeListPresentationLogic {
 
     override fun formatLikeList(response: LikeListModel.Response) {
+
         val viewModel = LikeListModel.ViewModel(this.formatPlayers(response.Players))
-        viewList.displayLikeList
-
+        viewList?.displayLikeList(viewModel)
 
     }
-    private fun formatPlayers(likeplayers: MutableList<LikeListModel.Players>):
-            MutableList<LikeListModel.PlayersFormatted>{
-        val playersformatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
 
-    for (likeplayer in likeplayers) {
+
+    private fun formatPlayers(likePlayers: MutableList<LikeListModel.Players>):
+            MutableList<LikeListModel.PlayersFormatted> {
+
+        val playersFormatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
+
+    for (likePlayer in likePlayers) {
         val likeplayerformatted = LikeListModel.PlayersFormatted(
-                likeplayer.Players.name,
-                likeplayer.Players.photo,
-                likePlayer.Players.time.toString())
+                likePlayer.name,
+                likePlayer.photo,
+                likePlayer.time.toString())
 
-        playersformatted.add(likeplayerformatted)
+        playersFormatted.add(likeplayerformatted)
     }
 
-            return playersformatted
+            return playersFormatted
     }
 }

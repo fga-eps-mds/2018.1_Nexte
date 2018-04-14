@@ -23,6 +23,8 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_like)
 
+        setUpLikeListScene()
+
         feedRecyclerView.layoutManager = LinearLayoutManager(this)
         this.
 
@@ -30,5 +32,16 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         interactor?.fetchDataToList(request)
 
 
+    }
+
+    private fun setUpLikeListScene() {
+
+        var view = this
+        var interactor = LikeListInteractor()
+        var presenter = LikeListPresenter()
+
+        view.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewList = view
     }
 }
