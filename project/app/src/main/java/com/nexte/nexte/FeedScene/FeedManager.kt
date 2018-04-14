@@ -52,4 +52,34 @@ object FeedManager {
 
         return activity
     }
+
+
+
+    /**
+     * Function that receives the unformattedActivity from Interactor and sends it
+     * unformatted Activity to presenter as a completion, after calling the function to add
+     * or remove users from likes list
+     *
+     * @param randomUser user that will be added to likesList
+     * @param matchingUser user that corresponds to previous randomUser
+     * @param indexToChange index of the found activity
+     * @return activity changed, with or without the member on likes List
+     */
+     fun addAndRemoveUser(activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
+        val randomUser = FeedModel.FeedPlayer("UserName",1, 1)
+        val matchingUser = activity?.likes?.find { it.name.equals("UserName") }
+        val indexToChange = activity?.likes?.indexOf(matchingUser)
+
+        (indexToChange as Int)
+
+        if(matchingUser == null) {
+            activity.likes.add(randomUser)
+        }
+        else {
+            activity.likes.removeAt(indexToChange)
+        }
+
+        return activity
+    }
+
 }

@@ -11,7 +11,7 @@ interface FeedPresentationLogic {
      *
      * @param response Feed model response containing unformatted data received [FeedModel]
      */
-    fun formatFeed(response: FeedModel.Response)
+    fun formatFeed(response: FeedModel.GetFeedActivities.Response)
 
     /**
      * Method responsible to format the updated Activity after the addition or removal
@@ -19,7 +19,7 @@ interface FeedPresentationLogic {
      *
      * @param activity Activity that needs to be altered for presentation on screen
      */
-    fun updateViewActivity(activity: FeedModel.FeedActivity)
+    fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response)
 }
 
 /**
@@ -29,17 +29,19 @@ interface FeedPresentationLogic {
  */
 class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
-    override fun formatFeed(response: FeedModel.Response) {
+    override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
 
-        val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
+        val viewModel = FeedModel.GetFeedActivities.ViewModel(this.formatFeedActivities(response.feedActivities))
         viewScene?.displayFeed(viewModel)
     }
 
 
-    override fun updateViewActivity(activity: FeedModel.FeedActivity) {
+    override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
 
-        val newActivityFormatted = this.formatFeedActivity(activity)
-        viewScene?.updateLike(newActivityFormatted)
+        val viewModel = FeedModel.LikeAndUnlike.ViewModel(
+                this.formatFeedActivity(response.likedActivity))
+
+        viewScene?.updateLike(viewModel)
     }
 
     /**

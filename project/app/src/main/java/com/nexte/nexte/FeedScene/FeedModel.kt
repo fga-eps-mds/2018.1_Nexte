@@ -8,24 +8,62 @@ import java.util.*
 class FeedModel {
 
     /**
-     * Class responsible to pass data of view to interactor and after to worker can do request data.
+     * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
+     * flow of getting the scene started and getting the information from FeedMocker data
      */
-    class Request
+
+    class GetFeedActivities {
+
+        /**
+         * Class responsible to pass data of view to interactor and after to worker can do request data.
+         */
+        class Request
+
+        /**
+         * Class responsible to store received informations of worker to pass for Presenter
+         *
+         * @property feedActivities MutableList that hold informations to show in screen
+         */
+        class Response(var feedActivities: MutableList<FeedActivity>)
+
+        /**
+         * Class responsible to define how the list view will display the formatted data, passed to view
+         *
+         * @property feedActivities MutableList that hold informations to show in screen
+         */
+        class ViewModel(var feedActivities: MutableList<FeedActivityFormatted>)
+
+    }
 
     /**
-     * Class responsible to store received informations of worker to pass for Presenter
-     *
-     * @property feedActivities MutableList that hold informations to show in screen
+     * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
+     * flow of allowing an user
      */
-    class Response(var feedActivities: MutableList<FeedActivity>)
 
-    /**
-     * Class responsible to define how the list view will display the formatted data, passed to view
-     *
-     * @property feedActivities MutableList that hold informations to show in screen
-     */
-    class ViewModel(var feedActivities: MutableList<FeedActivityFormatted>)
+    class LikeAndUnlike {
 
+        /**
+         * Class responsible to receive the identifier to be passed to worker
+         *
+         * @property identifier identifier of the activity to be found in worker
+         */
+        class Request(var identifier: String)
+
+        /**
+         * Class responsible to store the activity to add or remove user from likes list
+         *
+         * @property likedActivity activity to be altered on likes list (adding or removing user)
+         */
+        class Response(var likedActivity: FeedActivity)
+
+        /**
+         * Class responsible to define the format of the activity to be displayed
+         *
+         * @property formattedLikedActivities activity already altered and ready to display on screen
+         */
+        class ViewModel(var formattedLikedActivities: FeedActivityFormatted)
+
+    }
 
     // --------- Aux classes to use in this scene ---------
 

@@ -12,7 +12,7 @@ interface FeedBusinessLogic {
      *
      * @param request Request model of feed that contains data to pass for Worker
      */
-    fun fetchFeed(request: FeedModel.Request)
+    fun fetchFeed(request: FeedModel.GetFeedActivities.Request)
 
     /**
      * Method that define the identifier of the activity to be altered
@@ -21,7 +21,7 @@ interface FeedBusinessLogic {
      *
      * @param identifier Activity identifier to fetch the activity to be altered
      */
-    fun fetchLikes(identifier: String)
+    fun fetchLikes(request: FeedModel.LikeAndUnlike.Request)
 }
 
 /**
@@ -36,16 +36,15 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusines
 
     val worker: FeedWorker = FeedWorker()
 
-    override fun fetchFeed(request: FeedModel.Request) {
+    override fun fetchFeed(request: FeedModel.GetFeedActivities.Request) {
         worker.fetchFeedData(request) { response ->
             presenter?.formatFeed(response)
         }
     }
 
-    override fun fetchLikes(identifier: String) {
-        val activity = FeedManager.getFeedActivity(identifier)
-        worker.manageLikes(activity) { updatedFeedActivity ->
-            presenter?.updateViewActivity(updatedFeedActivity)
+    override fun fetchLikes(request: FeedModel.LikeAndUnlike.Request) {
+        worker.manageLikes(request) { response ->
+            presenter?.updateViewActivity(response)
         }
     }
 }

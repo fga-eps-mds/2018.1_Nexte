@@ -19,9 +19,9 @@ import kotlinx.android.synthetic.main.row_feed.view.*
  * Interface to define Display Logic to FeedVeiw Class that will used received call of Presenter
  */
 interface FeedDisplayLogic {
-    fun displayFeed(viewModel: FeedModel.ViewModel)
-    fun updateLike(formattedActivity: FeedModel.FeedActivityFormatted)
-    fun sendLike(identifier: String)
+    fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel)
+    fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel)
+    fun sendLike(identifier: FeedModel.LikeAndUnlike.Request)
 }
 
 /**
@@ -51,7 +51,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
 
-        val request = FeedModel.Request()
+        val request = FeedModel.GetFeedActivities.Request()
         interactor?.fetchFeed(request)
 
 
@@ -78,7 +78,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param viewModel Feed view model received for presenter to show on screen
      */
-    override fun displayFeed(viewModel: FeedModel.ViewModel) {
+    override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
         feedViewAdapter?.updateActivities(viewModel.feedActivities)
     }
 
@@ -89,7 +89,8 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param identifer parameter to identify activity
      */
-    override fun sendLike(identifier: String) {
+    override fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
+
         interactor?.fetchLikes(identifier)
     }
 
@@ -99,9 +100,9 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param formattedActivity Formatted Activity that needs to be added on activities list
      */
-    override fun updateLike(formattedActivity: FeedModel.FeedActivityFormatted) {
-        feedViewAdapter?.actualizeFormattedList(formattedActivity)
+    override fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel) {
 
+        feedViewAdapter?.actualizeFormattedList(viewModel.formattedLikedActivities)
     }
 
 
@@ -183,7 +184,9 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
 
                 itemView.likesButton.setOnClickListener {
-                    (context as FeedView).sendLike(activity.identifier)
+
+                    val sendLikesAux = FeedModel.LikeAndUnlike.Request(activity.identifier)
+                    (context as FeedView).sendLike(sendLikesAux)
                 }
 
             }
