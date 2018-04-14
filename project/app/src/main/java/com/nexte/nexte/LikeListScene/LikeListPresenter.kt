@@ -7,11 +7,25 @@ import kotlinx.android.synthetic.main.row_ranking.view.*
 /**
  * Created by lorrany on 12/04/18.
  */
+
+/**
+ Interface to define Presentation Logic to LikeList Class that will used to call this Interactor on other class layer
+ */
 interface LikeListPresentationLogic {
 
+    /**
+     * Method responsible to format feed data and send for view.
+     *
+     * @param response
+     */
     fun formatLikeList(response: LikeListModel.Response)
 }
 
+/**
+* Class needed to format response for data can be displayed on activity
+*
+* @property viewList Reference to the activity where data will be displayed [LikeListView].
+ */
 class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) : LikeListPresentationLogic {
 
     override fun formatLikeList(response: LikeListModel.Response) {
@@ -21,6 +35,12 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) : LikeListPr
 
     }
 
+    /**
+     * Function that converts the MutableList PLayers  unformatted to MutableList PLayersformatted.
+     *
+     * @param likePlayers MutableList of unformatted players
+     * @return MutableList of formatted players
+     */
 
     private fun formatPlayers(likePlayers: MutableList<LikeListModel.Players>):
             MutableList<LikeListModel.PlayersFormatted> {
