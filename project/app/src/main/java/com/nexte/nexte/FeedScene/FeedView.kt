@@ -61,6 +61,10 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         presenter.viewScene = view
     }
 
+
+    /**
+     * Method to open LikesList scene
+     */
     private fun goToLikesList() {
 
         val intent = Intent(this, LikeListView::class.java)
