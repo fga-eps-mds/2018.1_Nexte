@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.widget.Adapter
 import com.nexte.nexte.LikeListScene.LikeListModel
 import com.nexte.nexte.R
 import com.nexte.nexte.LikeListScene.LikeListDisplayLogic
+import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_list_like.*
+import kotlinx.android.synthetic.main.row_likes.view.*
 
 /**
  * Created by lorrany on 12/04/18.
@@ -30,7 +33,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         likesListRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setUpLikeListScene()
 
-        val request = LikeListModel.Request()
+        val request = LikeListModel.Request("exampleString")
         interactor?.fetchDataToList(request)
 
     }
@@ -68,7 +71,12 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         }
 
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-            
+
+
+            fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
+                itemView.PlayerName.text = printedPlayer.name
+                itemView.LikeDate.text = printedPlayer.time
+            }
         }
     }
 }
