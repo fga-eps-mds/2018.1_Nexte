@@ -17,6 +17,41 @@ para commitar neste projeto você deve seguir o seguinte template:
     > * Frase que descreve outra alteração feita"
 
 
+### Docker e CI
+
+Neste projeto foi utilizado o Gitlab CI junto ao docker para gerenciar o controle de versão e qualidade. Desta forma, nosso processo de CI pode ser divido em etapas:
+
+1. Análise Estática: Fase que o CI a partir do docker executa a análise estática do código. Utiliza-se do Docker para realizar essa tarefa, nesta fase é provida um relatório com duração de 48 horas
+
+Caso deseje executar apenas a análise estática:
+
+```
+```
+    
+2. Testes: Fase que o CI executa os testes unitários. Utiliza-se do Docker para realizar essa tarefa. 
+
+Caso deseje executar apenas os testes:
+
+```
+```
+
+3. Build: Fase em que é criado uma build, .apk. Utiliza-se do Docker para realizar essa tarefa. 
+
+Caso deseje executar apenas os testes:
+
+```
+```
+
+4. *Deploy*: Cria uma *build* pronta para ser disponibilizada como *beta* na *Google Play*. Esta interação do CI apenas ocorre nas branches master e dev. GitlabCI faz uso do *Fastlane*, e é necessário a criação de uma TAG para o app estar disponibilizado na loja.
+
+Ressalta-se que as fases 1, 2 e 3 são realizadas por todas as *branches*.
+
+ A imagem a seguir apresenta estrutura do nosso processo de integração contínua:
+ 
+ [![Group_2.png](https://s17.postimg.cc/yru8x54m7/Group_2.png)](https://postimg.cc/image/sqwk02hzv/)
+
+ 
+
 ### Pull request
 
 Para realizar o pull request deve ser observado o template criado e o padrão já escrito 
@@ -35,6 +70,8 @@ Para realizar o pull request deve ser observado o template criado e o padrão j�
 
     Quais as issues o Pull Request finaliza?
     Issue que é finalizada por este pull request: ex #100
+
+**Observação**: Os *pull requests* só serão avaliados quando o *pipeline* não estiver falho.
 
 ### Análise de código
 
