@@ -10,12 +10,12 @@ As issues que já foram criadas, elas tem labels que representam sua complexibil
 
 ### Commits
 para commitar neste projeto você deve seguir o seguinte template:
-
+```bash
     $ git commit -m "Titúlo princpal do commit
     > 
     > * Frase de uma alteração que foi feita
     > * Frase que descreve outra alteração feita"
-
+```
 
 ### Docker e CI
 
@@ -25,21 +25,24 @@ Neste projeto foi utilizado o Gitlab CI junto ao docker para gerenciar o control
 
 Caso deseje executar apenas a análise estática:
 
-```
+```bash
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/static_analysis.sh"
 ```
     
 2. Testes: Fase que o CI executa os testes unitários. Utiliza-se do Docker para realizar essa tarefa. 
 
 Caso deseje executar apenas os testes:
 
-```
+```bash
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/test.sh"
 ```
 
 3. Build: Fase em que é criado uma build, .apk. Utiliza-se do Docker para realizar essa tarefa. 
 
-Caso deseje executar apenas os testes:
+Caso deseje executar uma build:
 
-```
+```bash
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/build.sh"
 ```
 
 4. *Deploy*: Cria uma *build* pronta para ser disponibilizada como *beta* na *Google Play*. Esta interação do CI apenas ocorre nas branches master e dev. GitlabCI faz uso do *Fastlane*, e é necessário a criação de uma TAG para o app estar disponibilizado na loja.
@@ -50,7 +53,16 @@ Ressalta-se que as fases 1, 2 e 3 são realizadas por todas as *branches*.
  
  [![Group_2.png](https://s17.postimg.cc/yru8x54m7/Group_2.png)](https://postimg.cc/image/sqwk02hzv/)
 
- 
+5. Para integração com o servidor, basta rodá-lo utilizando o docker para o mesmo ficar disponível em seu ambiente de desenvolvimento. O Servidor ficará disponível na porta 3000.
+
+O comando para isso é:
+```bash
+  docker run -d -p 3000:3000 registry.gitlab.com/nexte/bepid/nexte-server:0.1.0
+```
+OU
+```
+  docker-compose up -d
+```
 
 ### Pull request
 
