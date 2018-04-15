@@ -1,5 +1,6 @@
 package com.nexte.nexte.FeedScene
 
+import android.content.Intent
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.FeedScene.FeedModel.FeedActivity
+import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.*
@@ -19,9 +21,9 @@ import kotlinx.android.synthetic.main.row_feed.view.*
  * Interface to define Display Logic to FeedVeiw Class that will used received call of Presenter
  */
 interface FeedDisplayLogic {
+
     fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel)
     fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel)
-    fun sendLike(identifier: FeedModel.LikeAndUnlike.Request)
 }
 
 /**
@@ -54,7 +56,6 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         val request = FeedModel.GetFeedActivities.Request()
         interactor?.fetchFeed(request)
 
-
     }
 
     /**
@@ -73,6 +74,17 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
     }
 
+
+    /**
+     * Method to open LikesList scene
+     */
+    private fun goToLikesList() {
+
+        val intent = Intent(this, LikeListView::class.java)
+        startActivity(intent)
+    }
+
+
     /**
      * Method responsible to receive the viewModel from presenter and show it to the user
      *
@@ -89,7 +101,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param identifer parameter to identify activity
      */
-    override fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
+    private fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
 
         interactor?.fetchLikes(identifier)
     }
@@ -129,6 +141,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         override fun getItemCount(): Int {
             return this.activities.size
         }
+
 
         /**
          * Function that updates the entire set o Formatted Feed Activites on list
@@ -170,6 +183,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
              *
              * @param activity Formatted data to show in row of activity feed
              */
+
             fun bindView(activity: FeedModel.FeedActivityFormatted,
                          context: Context) {
 
@@ -182,11 +196,15 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.challengedSet.text = activity.challengedSets
                 itemView.numberOfLikes.text = activity.numberOfLikes
 
-
                 itemView.likesButton.setOnClickListener {
 
                     val sendLikesAux = FeedModel.LikeAndUnlike.Request(activity.identifier)
                     (context as FeedView).sendLike(sendLikesAux)
+                }
+
+                itemView.numberOfLikes.setOnClickListener {
+
+                    (context as FeedView).goToLikesList()
                 }
 
             }
@@ -194,5 +212,3 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         }
     }
 }
-
-

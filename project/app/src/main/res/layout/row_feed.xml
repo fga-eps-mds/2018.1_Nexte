@@ -113,9 +113,11 @@
         android:id="@+id/numberOfLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="22dp"
         android:text="Likes"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/likesButton"
         app:layout_constraintTop_toBottomOf="@+id/challengedPhoto" />
 
