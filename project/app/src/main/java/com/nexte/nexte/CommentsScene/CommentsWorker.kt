@@ -7,31 +7,30 @@ package com.nexte.nexte.CommentsScene
 
 class CommentsWorker {
 
-    constructor() {}
 
     fun getCommentsData (request: CommentsModel.Request, completion: (CommentsModel.Response) -> Unit) {
 
-        val game: String? = null
-        val user: String? = null
+        val game = request.game
+        val user = request.user
 
-        var comment: String? = null
-        var userName: String? = null
-        var linkUserProfilePicture: String? = null
-        var commentTime: String? = null
-        var like: Boolean? = null
+        var comment = ""
+        var userName = ""
+        var linkUserProfilePicture = ""
+        var commentTime = ""
+        var like = false
 
         if(game.equals("Gandalf vs Saruman") && user.equals("Frodo_Bolseiro")) {
-            var comment: String = "Esse jogo foi digno da terra média"
-            var userName: String = "Frodo_do_condado"
-            var linkUserProfilePicture: String = "https://www.nexte.com.br/pictures/user/frodo_do_condado/avatar156x156.jpg"
-            var commentTime: String = "16:50"
-            var like: Boolean = true
+            comment = "Esse jogo foi digno da terra média"
+            userName = "Frodo_do_condado"
+            linkUserProfilePicture = "https://www.nexte.com.br/pictures/user/frodo_do_condado/avatar156x156.jpg"
+            commentTime = "16:50"
+            like = true
         } else {
-            var comment: String = ""
-            var userName: String = ""
-            var linkUserProfilePicture: String = ""
-            var commentTime: String = ""
-            var like: Boolean = false
+            comment = ""
+            userName = ""
+            linkUserProfilePicture = ""
+            commentTime = ""
+            like = false
         }
         var response: CommentsModel.Response = CommentsModel.Response(comment, userName, linkUserProfilePicture,
                                                                       commentTime, like)
