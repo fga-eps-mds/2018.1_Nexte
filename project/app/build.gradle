@@ -15,7 +15,7 @@ jacoco {
     reportsDir = file("$buildDir/reports")
 }
 
-task jacocoTestReport(type:JacocoReport, dependsOn: ["testDebugUnitTest"]) {
+task jacocoTestReport(type:JacocoReport, dependsOn: ["clean", "testDebugUnitTest"]) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
     
@@ -26,17 +26,8 @@ task jacocoTestReport(type:JacocoReport, dependsOn: ["testDebugUnitTest"]) {
     
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
-            excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/*$ViewBinder*.*',
-                       '**/*$InjectAdapter*.*',
-                       '**/*Injector*.*',
-                       '**/BuildConfig.*',
-                       '**/Manifest*.*',
-                       '**/*Test*.*',
-                       '**/*Activity*.*',
-                       '**/CiMattersApplication*.*',
-                       'android/**/*.*']
+            excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
     
     additionalSourceDirs = files(coverageSourceDirs)
@@ -44,7 +35,7 @@ task jacocoTestReport(type:JacocoReport, dependsOn: ["testDebugUnitTest"]) {
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
 
-task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: ["testDebugUnitTest"]) {
+task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: ["clean", "testDebugUnitTest"]) {
     violationRules {
         rule {
             limit {
@@ -52,20 +43,14 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
             }
         }
     }
+
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
     
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
-            excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/*$ViewBinder*.*',
-                       '**/*$InjectAdapter*.*',
-                       '**/*Injector*.*',
-                       '**/BuildConfig.*',
-                       '**/Manifest*.*',
-                       '**/*Test*.*',
-                       '**/*Activity*.*',
-                       '**/CiMattersApplication*.*',
-                       'android/**/*.*']
+            excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
     
     additionalSourceDirs = files(coverageSourceDirs)
