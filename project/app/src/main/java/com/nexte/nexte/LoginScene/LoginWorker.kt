@@ -1,5 +1,10 @@
 package com.nexte.nexte.LoginScene
 
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.result.failure
+import com.github.kittinunf.result.success
+import org.json.JSONObject
+
 /**
  * Class responsible to manager request provided from interactor to response
  * and request user authentication for nexte server
@@ -18,17 +23,34 @@ class LoginWorker {
     fun authenticateUser(request: LoginModel.Request,
                          completion: (LoginModel.Response) -> Unit) {
 
-        val password: String = request.password
-        val username: String = request.userName
-        var token: String
+        val AUTHENTICATION = "http://localhost:3000/auth/login"
+        val header = "Accept-Version" to "1.0.0"
+        var token: String = ""
+        val json = JSONObject()
+        json.put("username", request.userName) // Expected ramires
+        json.put("password", request.password) // Expected test-nexte-ramires
 
-        if (username.equals("miguelpimentel") && password.equals("123456")) {
-            token = "sd723gs261g2sv1234ss"
-        } else {
-            token = ""
+        val (request, response, result) = Fuel.post(AUTHENTICATION).
+                                               header(header).
+                                               body(json.toString()).
+                                               responseString()
+
+        result.success {
+
+            token = "Usuário autenticado com sucesso"
+            //UserSingleton.getUserInformations().isLoggedIn = truex
         }
 
-        val response: LoginModel.Response = LoginModel.Response(token)
-        completion(response)
+        result.failure { token  = "Mensagem inválida" }
+
+        completion(LoginModel.Response(token))
     }
+
+    // Another way
+
+//        Fuel.post(AUTHENTICATION).header(header).body(json.toString()).responseString { request, response, result ->
+//
+//            println(request)
+//            println(response.statusCode)
+//        }
 }
