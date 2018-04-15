@@ -9,7 +9,7 @@ interface RankingDisplayLogic {
     fun displayRankInScreen(viewModel: RankingModel.ViewModel)
 }
 
-class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
+class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
     var interactor: RankingInteractor? = null
 
