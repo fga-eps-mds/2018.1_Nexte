@@ -1,37 +1,83 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Player
+import com.nexte.nexte.UserSingleton
+
 /**
  * Created by lorrany on 27/03/18.
  */
+
+
+/**
+ * Class responsible to get a request and generate a response
+ */
 class EditProfileWorker {
+    companion object {
+        const val MINPASSWORDLENGTH = 6
+    }
 
-    constructor()
+    /**
+     * Gets and username and returns user information
+     *
+     * @param request Contains the username and TokenID that will be used to recover the user
+     */
+    fun getUserProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request, completion:
+        (EditProfileModel.RecoverUserRequest.Response) -> Unit) {
 
-    fun editUserProfile(request: EditProfileModel.Request, completion:
-    (EditProfileModel.Response) -> Unit) {
-        var username: String = request.username
+        val username = request.username
+        val tokenID = request.tokenID
 
-        var name: String = ""
-        var rank: Int = -1
-        var profilePictureURL: String = ""
-        var club: String = ""
-        var age: Int = -1
-        var email: String = ""
-        var sex: Char = 'U'
-        var facebookUsername: String = ""
-        if (username == "lorranyfreire") {
-            name = "Lorrany Freire"
-            rank = 1
-            profilePictureURL = "https://www.google.com.br/amaisgatadodf/eumesma.jpg"
-            club = "Minas Tenis Club"
-            age = 19
-            email = "lorranyfreire@hotmail.com"
-            sex = 'F'
-            facebookUsername = "lorrany.freire"
+        val emptyUser = Player("",
+            -1,
+            "",
+            "",
+            "",
+            "",
+            -1,
+            "")
+
+        var returnedUser: Player? = null
+
+        // This condition verify if exist a user
+        if(tokenID == "") {
+            returnedUser = emptyUser
+            UserSingleton.setUserInformations(emptyUser)
+        } else if(username == "gabrielalbino") {
+            returnedUser = UserSingleton.getUserInformations()
         }
 
-        var response: EditProfileModel.Response = EditProfileModel.Response(name, rank,
-                profilePictureURL, club, age, email, sex, facebookUsername)
+        val response: EditProfileModel.RecoverUserRequest.Response =
+                EditProfileModel.RecoverUserRequest.Response(returnedUser!!)
+
+        completion(response)
+    }
+
+    /**
+     * Responsible to get edited user information, validate it and if there is no error, set it
+     * to our user, otherwise sends and error code.
+     *
+     * @param request Contains the edited user information
+     */
+    fun editUserProfile(request: EditProfileModel.EditProfileRequest.Request, completion:
+                       (EditProfileModel.EditProfileRequest.Response) -> Unit) {
+
+        val user = request.user
+        var errorID: Int? = null
+        var newUser: Player? = null
+
+        if(!user.email.contains('@')) {
+            errorID = 1
+        } else if(user.password.isNotEmpty() && user.password.length < MINPASSWORDLENGTH) {
+            errorID = 2
+        } else {
+            newUser = user
+            if(user.password.isEmpty()) {
+                user.password = UserSingleton.getUserInformations().password
+            }
+        }
+
+        val response: EditProfileModel.EditProfileRequest.Response =
+                EditProfileModel.EditProfileRequest.Response(errorID, newUser)
 
         completion(response)
     }
