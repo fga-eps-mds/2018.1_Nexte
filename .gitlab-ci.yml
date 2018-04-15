@@ -13,6 +13,10 @@ before_script:
   - gem install bundler
   - bundle install
 
+after_script:
+  - rm /key.json
+  - rm /project/keystore.properties
+
 stages:
   - test
   - build
@@ -46,22 +50,23 @@ unit_test:
 build:
   stage: build
   script:
+    - echo $KEYSTORE_PROPERTIES > /project/keystore.properties
     - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/build.sh"
   artifacts:
     paths:
     - project/app/build/outputs/apk
-  only:
-    - dev
 
 deploy_beta:
   stage: deploy
   script:
-    - fastlane beta
+    - echo $DEPLOY_KEY_FILE > /key.json
+    - cd project
+    - bundle exec fastlane beta
+  dependencies:
+    - build
   artifacts:
     paths:
       - fastlane/logs
-  only:
-    - tag
 
 # This config is for run docker-compose
 # before_script:
