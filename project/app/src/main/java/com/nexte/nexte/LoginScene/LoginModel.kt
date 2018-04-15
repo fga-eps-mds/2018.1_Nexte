@@ -1,39 +1,33 @@
 package com.nexte.nexte.LoginScene
 
+
 /**
- * Created by baldissera on 24/03/2018.
+ * Class to define Model of Login Scene to send informations between layers
  */
 class LoginModel {
 
-    // Model data of a view request
-    class Request(userName: String, password: String) {
+    /**
+     * Class responsible to store received information from View to Interactor      *
+     * @param userName username registered by user
+     * @param password password registered by user
+     */
+    class Request(val userName: String,  val password: String)
 
-        var userName: String = ""
-        var password: String = ""
+    /**
+     * Class responsible to store received information from worker to Presenter
+     * @param tokenId authentication token
+     */
+    class Response(val tokenId: String)
 
-        init {
-            this.userName = userName
-            this.password = password
-        }
-    }
+    /**
+     * Class responsible to store received information from Presenter to View
+     * @param message message according with authentication result
+     */
+    class ViewModel(val message: String)
 
-    // Model data of interactor/worker response
-    class Response(tokenId: String) {
+    enum class AuhthenticationError(val statusCode: Int) {
 
-        var tokenId: String = ""
+        unauthorized(401)
 
-        init {
-            this.tokenId = tokenId
-        }
-    }
-
-    // Model of present data in view
-    class ViewModel(message: String) {
-
-        var message: String = ""
-
-        init {
-            this.message = message
-        }
     }
 }

@@ -4,12 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_login_view.*
-import kotlinx.android.synthetic.main.activity_login_view.view.*
-import kotlinx.android.synthetic.main.activity_main.*
 import com.facebook.accountkit.AccountKit
 import com.facebook.accountkit.AccountKitLoginResult
 import com.facebook.accountkit.ui.AccountKitConfiguration
@@ -72,6 +66,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             println(response)
             println(response.statusCode)
         }
+
     }
 
     fun phoneLogin(view: View) {
@@ -102,11 +97,11 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     private fun setup() {
 
         val view = this
-        val interactor = LoginIteractor()
+        val interactor = LoginInteractor()
         val presenter = LoginPresenter()
 
         view.interactor = interactor
         interactor.presenter = presenter
-        presenter.viewControler = view
+        presenter.view = view
     }
 }

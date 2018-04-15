@@ -1,16 +1,22 @@
 package com.nexte.nexte.LoginScene
 
 /**
- * Created by miguelpimentel on 24/03/18.
+ * Class responsible to manager request provided from interactor to response
+ * and request user authentication for nexte server
  */
-
 
 class LoginWorker {
 
-    constructor() { }
 
-    // Manipulate a request from interactor to a response
-    fun authenticateUser(request: LoginModel.Request, completion: (LoginModel.Response) -> Unit) {
+    /**
+     * Method that realize request for user authentication
+     * pass request for the Worker and send response to the Presenter
+     *
+     * @param request request provided from Interactor
+     * @completion task to be completed at Interactor
+     */
+    fun authenticateUser(request: LoginModel.Request,
+                         completion: (LoginModel.Response) -> Unit) {
 
         val password: String = request.password
         val username: String = request.userName

@@ -1,19 +1,28 @@
 package com.nexte.nexte.LoginScene
 
 /**
- * Created by miguelpimentel on 24/03/18.
+ * Interface resposible to format request provided in Interactor to data as
+ * it should be presented at view as viewModel
  */
-
 interface LoginPresentationLogic {
 
     fun presentLogin(response: LoginModel.Response)
 }
 
+/**
+ * Class that formats data from LoginInteractor(request) to LoginView(viewModel)
+ *
+ * @property view reference to view
+ */
 class LoginPresenter: LoginPresentationLogic {
 
-    var viewControler: LoginDisplayLogic? = null // Reference to view
+    var view: LoginDisplayLogic? = null
 
-    // Format data to expected
+    /**
+     * Method that formats data from response to viewModel
+     *
+     * @property view reference to view
+     */
     override fun presentLogin(response: LoginModel.Response) {
 
         var message: String
@@ -26,6 +35,6 @@ class LoginPresenter: LoginPresentationLogic {
         }
 
         val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
-        this.viewControler?.displayAuthenticateState(viewModel)
+        this.view?.displayAuthenticateState(viewModel)
     }
 }

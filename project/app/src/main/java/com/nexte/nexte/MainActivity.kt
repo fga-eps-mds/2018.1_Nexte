@@ -13,8 +13,6 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileActivity
 import com.nexte.nexte.ShowProfileScene.ShowProfileBusinessLogic
 import com.nexte.nexte.ShowProfileScene.ShowProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-
 
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic,
@@ -89,12 +87,12 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
     private fun setupLoginScene() {
 
         val viewController = this
-        val interactor = LoginIteractor()
+        val interactor = LoginInteractor()
         val presenter = LoginPresenter()
 
         viewController.loginInteractor = interactor
         interactor.presenter = presenter
-        presenter.viewControler = viewController
+        presenter.view = viewController
     }
 
     // Print a message according with received data
