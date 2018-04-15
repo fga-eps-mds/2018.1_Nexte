@@ -9,6 +9,12 @@ variables:
 services:
   - docker:dind
 
+before_script:
+  - echo $KEYSTORE_PROPERTIES > /project/keystore.properties
+
+after_script:
+    - rm /project/keystore.properties
+
 stages:
   - test
   - build
@@ -19,7 +25,7 @@ static_analysis:
   script:
     - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/static_analysis.sh"
   artifacts:
-    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}"
+    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_static_analysis"
     when: always
     expire_in: 2 days
     paths:
@@ -29,24 +35,20 @@ unit_test:
   stage: test
   script:
     - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/test.sh"
-  artifacts:
-    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}"
-    when: always
-    expire_in: 2 days
-    paths:
-      - project/app/build/reports/tests/
+  # artifacts:
+  #   name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
+  #   when: always
+  #   expire_in: 2 days
+  #   paths:
+  #     - project/app/build/reports/tests/
 
 # instrumentation_tests:
 #   stage: test
 
 build:
   stage: build
-  before_script:
-    - echo $KEYSTORE_PROPERTIES > /project/keystore.properties
   script:
     - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/build.sh"
-  after_script:
-    - rm /project/keystore.properties
   artifacts:
     paths:
     - project/app/build/outputs/apk
