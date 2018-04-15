@@ -1,5 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Before
 
@@ -27,70 +28,62 @@ class ShowProfileModelTest {
         assertEquals(tokenId, request.tokenID)
     }
 
-//    @Test
-//    fun successResponse(){
-//        //prepare
-//        val player = ShowProfileModel.Player(name = "Luis Gustavo", rankingPosition = 1, pictureAdress = "",
-//        email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21)
-//
-//        //call
-//        val response = ShowProfileModel.Response(user = player)
-//
-//        //assert
-//        assertEquals(player, response.user)
-//        assertEquals(player.name, response.user?.name)
-//        assertEquals(player.rankingPosition, response.user?.rankingPosition)
-//        assertEquals(player.pictureAdress, response.user?.pictureAdress)
-//        assertEquals(player.email, response.user?.email)
-//        assertEquals(player.gender, response.user?.gender)
-//        assertEquals(player.club, response.user?.club)
-//        assertEquals(player.age, response.user?.age)
-//    }
+    @Test
+    fun successResponse(){
+        //prepare
+        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAdress = "", email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21, password = "123456")
 
-//    @Test
-//    fun successViewModel(){
-//        //prepare
-//        val name = "Luis"
-//        val rank = "Major"
-//        val club = "Tenis House"
-//        val email = "luis@email.com"
-//        val age = "21"
-//
-//        //call
-//        val viewModel = ShowProfileModel.ViewModel(name = name, rank = rank, club = club, email = email, age = age)
-//
-//        //assert
-//        assertEquals(name, viewModel.name)
-//        assertEquals(rank, viewModel.rank)
-//        assertEquals(club, viewModel.club)
-//        assertEquals(email, viewModel.email)
-//        assertEquals(age, viewModel.age)
-//    }
+        //call
+        val response = ShowProfileModel.Response(user = player)
 
-//    @Test
-//    fun successPlayer(){
-//        //prepare
-//        val name = "Luis Gustavo"
-//        val rankingPosition = 1
-//        val pictureAdress = ""
-//        val email = "luis@email.com"
-//        val gender = "Masculino"
-//        val club = "Tenis House"
-//        val age = 21
-//
-//        //call
-//        val player = ShowProfileModel.Player(name = "Luis Gustavo", rankingPosition = 1, pictureAdress = "",
-//                email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21)
-//
-//        //assert
-//        assertEquals(name, player.name)
-//        assertEquals(rankingPosition, player.rankingPosition)
-//        assertEquals(pictureAdress, player.pictureAdress)
-//        assertEquals(email, player.email)
-//        assertEquals(gender, player.gender)
-//        assertEquals(club, player.club)
-//        assertEquals(age, player.age)
-//    }
+        //assert
+        assertEquals(player, response.user)
+        assertEquals(player.name, response.user?.name)
+        assertEquals(player.rankingPosition, response.user?.rankingPosition)
+        assertEquals(player.pictureAdress, response.user?.pictureAdress)
+        assertEquals(player.email, response.user?.email)
+        assertEquals(player.gender, response.user?.gender)
+        assertEquals(player.club, response.user?.club)
+        assertEquals(player.age, response.user?.age)
+        assertEquals(player.password, response.user?.password)
+    }
+
+    @Test
+    fun successViewModel(){
+        //prepare
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", club = "AASCD", email = "luis@email.com", age = "21")
+
+        //call
+        val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer)
+
+        //assert
+        assertEquals(formattedPlayer, viewModel.playerInfo)
+        assertEquals(formattedPlayer.name, viewModel.playerInfo.name)
+        assertEquals(formattedPlayer.rank, viewModel.playerInfo.rank)
+        assertEquals(formattedPlayer.club, viewModel.playerInfo.club)
+        assertEquals(formattedPlayer.email, viewModel.playerInfo.email)
+        assertEquals(formattedPlayer.age, viewModel.playerInfo.age)
+    }
+
+    @Test
+    fun successFormattedPlayer(){
+        //prepare
+        val name = "Luis Gustavo"
+        val rank = "1"
+        val club = "AASCD"
+        val email = "luis@email.com"
+        val age = "21"
+
+        //call
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", club = "AASCD", email = "luis@email.com", age = "21")
+
+        //assert
+        assertEquals(name, formattedPlayer.name)
+        assertEquals(rank, formattedPlayer.rank)
+        assertEquals(club, formattedPlayer.club)
+        assertEquals(email, formattedPlayer.email)
+        assertEquals(age, formattedPlayer.age)
+    }
 
     @After
     fun tearDown() {

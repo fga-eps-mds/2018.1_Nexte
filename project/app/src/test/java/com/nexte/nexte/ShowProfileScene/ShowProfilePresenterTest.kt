@@ -1,5 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Before
 
@@ -19,25 +20,21 @@ class ShowProfilePresenterTest {
     }
 
     @Test
-//    fun successPresentUserProfile(){
-//        //prepare
-//        val response = ShowProfileModel.Response(user = ShowProfileModel.Player(name = "gabrielalbino", rankingPosition = 2, pictureAdress = "imgur.com/nudh486d4", email = "enggabriel@gmail.com", gender = "masculino", club = "ASCAD", age = 19))
-//        val name = "gabrielalbino"
-//        val rank = "#2"
-//        val club = "ASCAD"
-//        val email = "enggabriel@gmail.com"
-//        val age = "19"
-//
-//        //call
-//        this.presenter?.presentUserProfile(response = response)
-//
-//        //assert
-//        assertEquals(name, this.mock?.name)
-//        assertEquals(rank, this.mock?.rank)
-//        assertEquals(club, this.mock?.club)
-//        assertEquals(email, this.mock?.email)
-//        assertEquals(age, this.mock?.age)
-//    }
+    fun successPresentUserProfile(){
+        //prepare
+        val response = ShowProfileModel.Response(user = Player(name = "gabrielalbino", rankingPosition = 2, pictureAdress = "imgur.com/nudh486d4", email = "enggabriel@gmail.com", gender = "masculino", club = "ASCAD", age = 19, password = "123456"))
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "gabrielalbino", rank = "#2", club = "ASCAD", email = "enggabriel@gmail.com", age = "19")
+
+        //call
+        this.presenter?.presentUserProfile(response = response)
+
+        //assert
+        assertEquals(formattedPlayer.name, this.mock?.formatedPlayer?.name)
+        assertEquals(formattedPlayer.rank, this.mock?.formatedPlayer?.rank)
+        assertEquals(formattedPlayer.club, this.mock?.formatedPlayer?.club)
+        assertEquals(formattedPlayer.email, this.mock?.formatedPlayer?.email)
+        assertEquals(formattedPlayer.age, this.mock?.formatedPlayer?.age)
+    }
 
     @After
     fun tearDown() {
@@ -47,18 +44,9 @@ class ShowProfilePresenterTest {
 }
 
 private class MockShowProfileDisplayLogic: ShowProfileDisplayLogic{
-    var name = " "
-    var rank = " "
-    var club = " "
-    var email = " "
-    var age = " "
+    var formatedPlayer: ShowProfileModel.FormattedPlayer? = null
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-//        this.name = viewModel.name!!
-//        this.rank = viewModel.rank!!
-//        this.club = viewModel.club!!
-//        this.email = viewModel.email!!
-//        this.age = viewModel.age!!
-
+        this.formatedPlayer = viewModel.playerInfo
     }
 }
