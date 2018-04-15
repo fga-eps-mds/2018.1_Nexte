@@ -20,56 +20,60 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/picture_img_view"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
-
-    <TextView
-        android:id="@+id/victory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/name"
-        android:layout_below="@+id/name"
-        android:layout_marginStart="16dp"
-        android:text="Vitórias:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/picture_img_view"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <TextView
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="#N"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 
-    <TextView
-        android:id="@+id/losses"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/expandedView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Derrotas:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/picture_img_view"
-        app:layout_constraintTop_toBottomOf="@+id/victory" />
+        android:layout_marginTop="87dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/victory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Vitórias:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/losses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Derrotas:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/victory" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

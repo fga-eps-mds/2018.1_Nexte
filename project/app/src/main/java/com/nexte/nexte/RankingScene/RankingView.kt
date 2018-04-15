@@ -1,6 +1,5 @@
 package com.nexte.nexte.RankingScene
 
-import android.app.ExpandableListActivity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListAdapter
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
@@ -49,45 +47,68 @@ class RankingActivity : AppCompatActivity(), RankingDisplayLogic {
 
     override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
 
-        rankingRecyclerView.adapter = RankingAdapter(viewModel.rankingActivities, this)
+        rankingRecyclerView.adapter = RankingAdapter(viewModel.formattedPlayers, this)
     }
 
-    class RankingAdapter(private val activities: List<RankingModel.RankingActivityFormatted>,
-                         private val context: Context): RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
+    class RankingAdapter(private val playerInformation: List<RankingModel.FormattedPlayerInfo>,
+                         private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        override fun onCreateViewHolder (parent: ViewGroup, viewType: Int): RankingAdapter.ViewHolder{
-            val view: View
-            if(TODO("Add condition to show expanded view(boolean == TRUE")) {
-                view = LayoutInflater.from(context).inflate(R.layout.row_ranking, parent, false)
-            }
-            else {
-                view = LayoutInflater.from(context).inflate(R.layout.row_ranking_not_expanded, parent, false)
-            }
-            view.setOnClickListener {
-                TODO("changebolean (boolean = !boolean")
-                TODO("update reciclelist")
-            }
-            return RankingAdapter.ViewHolder(view)
+        var expandedId = -1
+
+        override fun onCreateViewHolder (parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
+            val inflater = LayoutInflater.from(context)
+            var view: View? = null
+
+            view = inflater.inflate(R.layout.row_ranking, parent, false)
+
+            return ItemHolder(view!!)
+
         }
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bindView(activities[position])
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+            val  itemHolder = holder as? ItemHolder
+            val item = playerInformation[position]
+
+            itemHolder?.itemView?.setOnClickListener {
+                if(expandedId >= 0) {
+                    notifyItemChanged(expandedId)
+                }
+                item.shouldDrawChild = expandedId != itemHolder.layoutPosition
+                if(item.shouldDrawChild) {
+                    expandedId = itemHolder.layoutPosition
+                } else {
+                    expandedId = -1
+                }
+                notifyItemChanged(expandedId)
+            }
+
+            itemHolder?.nameText?.text = item.player.userName
+            itemHolder?.rankingText?.text = item.player.userRankPosition
+            itemHolder?.victory?.text = item.player.userWins
+            itemHolder?.losses?.text = item.player.userLosses
+
+            if(expandedId == itemHolder?.layoutPosition) {
+                itemHolder.expandedView.visibility = View.VISIBLE
+            } else {
+                itemHolder?.expandedView?.visibility = View.GONE
+            }
+
+
 
         }
 
         override fun getItemCount(): Int {
-            return this.activities.size
+            return this.playerInformation.size
         }
 
+        inner class ItemHolder(v: View): RecyclerView.ViewHolder(v) {
+            var nameText = v.name
+            var rankingText = v.position
+            var victory = v.victory
+            var losses = v.losses
 
-        class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-            fun bindView(activity: RankingModel.RankingActivityFormatted) {
-                itemView.picture_img_view.setImageResource(activity.userPictureURL)
-                itemView.name.text = activity.userName
-                itemView.victory.text = activity.userWins
-                itemView.position.text = activity.userRankPosition
-                itemView.losses.text = activity.userLosses
-            }
+            var expandedView = v.expandedView
         }
+
     }
 }

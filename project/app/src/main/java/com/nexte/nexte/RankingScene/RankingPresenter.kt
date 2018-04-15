@@ -1,13 +1,5 @@
 package com.nexte.nexte.RankingScene
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.nexte.nexte.R
-import android.widget.BaseAdapter
-import kotlinx.android.synthetic.main.row_ranking.view.*
-
 /**
  * Created by albino on 02/04/18.
  */
@@ -20,20 +12,25 @@ interface RankingPresentationLogic {
 class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPresentationLogic {
 
     override fun presentRanking(response: RankingModel.Response) {
-        val viewModel = RankingModel.ViewModel(this.formatRankingActivities(response.rankingActivities))
+
+        val viewModel = RankingModel.ViewModel(this.formatPlayers(response.players))
 
         viewScene?.displayRankInScreen(viewModel)
     }
 
-    private fun formatRankingActivities(activities: Array<RankingModel.RankingActivity>): List<RankingModel.RankingActivityFormatted> {
-        var rankingActivitiesFormatted: MutableList<RankingModel.RankingActivityFormatted> = mutableListOf()
+    private fun formatPlayers(players: Array<RankingModel.Player>): List<RankingModel.FormattedPlayerInfo> {
 
-        for(activity in activities) {
-            val rankingActivityFormated = RankingModel.RankingActivityFormatted(activity.userRanking.name,
-                    activity.userRanking.pictureURL.toInt(), activity.userRanking.wins.toString(), activity.userRanking.losses.toString(),
-                    activity.userRanking.rankPosition.toString(),true)
-            rankingActivitiesFormatted.add(rankingActivityFormated)
+        val rankingPlayerFormatted: MutableList<RankingModel.FormattedPlayerInfo> = mutableListOf()
+
+        for(player in players) {
+            val playerFormatted = RankingModel.FormattedPlayer(player.name,
+                    player.pictureURL,
+                    String.format("Vitórias: %d", player.wins),
+                    String.format("Derrotas: %d", player.losses),
+                    String.format("#%d", player.rankPosition))
+            val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted, false)
+            rankingPlayerFormatted.add(playerFormattedInfo)
         }
-        return rankingActivitiesFormatted.toList()
+        return rankingPlayerFormatted.toList()
     }
 }

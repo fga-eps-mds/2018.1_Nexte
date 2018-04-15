@@ -13,25 +13,20 @@ class RankingModel {
 
     class Request
 
+    class Response(var players: Array<Player>)
 
-    class Response(var rankingActivities: Array<RankingActivity>)
+    class ViewModel(var formattedPlayers: List<FormattedPlayerInfo> )
 
-    //val context: Context
-
-
-    class ViewModel(var rankingActivities: List<RankingActivityFormatted>)
-
-
-    class RankingPlayer(var name: String, var pictureURL: Int, var wins: Int, var losses: Int,
+    class Player(var name: String, var pictureURL: Int, var wins: Int, var losses: Int,
                         var rankPosition: Int)
 
-    class RankingActivity(var userRanking: RankingPlayer)
+    class FormattedPlayerInfo(var player: FormattedPlayer,
+                              var shouldDrawChild: Boolean)
 
-    class RankingActivityFormatted(var userName: String,
+    class FormattedPlayer(var userName: String,
                                    var userPictureURL: Int,
                                    var userWins: String,
                                    var userLosses: String,
-                                   var userRankPosition: String,
-                                   var shouldExpandRow: Boolean)
+                                   var userRankPosition: String)
 }
 
