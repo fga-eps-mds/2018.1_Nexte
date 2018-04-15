@@ -4,7 +4,7 @@ repo_url: https://github.com/fga-gpp-mds/2018.1_Nexte
 theme: readthedocs
 
 pages:
-  - Home: README.md
+  - Home: index.md
   - EPS:
     - Termo de abertura: EPS/TAP.md
     - Estrutura analítica do projeto: EPS/EAP.md
@@ -12,13 +12,22 @@ pages:
     - ROADMAP: EPS/RoadMap.md
     - Metodologia: EPS/MetodologiaDoProjeto.md
     - Politica de Branches: EPS/PoliticaDeBranches.md
-    - Definição de Pronto: Definicao-de-Pronto.md
+    - Definição de Pronto: EPS/Definicao-de-Pronto.md
+    - Arquitetura de Microserviços: EPS/ArquiteturaMicroservicos.md
+    - Gestão de Risco: EPS/GestaoDeRisco.md
+    - Definição de Produtividade: EPS/DefinicaoDeProdutividade.md
+    - Plano de Qualidade:
+      - Abtraction Sheet: EPS/PlanoDeQualidade/AbstractionSheet.md
+      - GQM: EPS/PlanoDeQualidade/GQM.md
+      - Métricas: EPS/PlanoDeQualidade/Metricas.md
+      - Objetivos: EPS/PlanoDeQualidade/Objetivos.md
+      - Questões: EPS/PlanoDeQualidade/Questoes.md
   - MDS:
     - Documento de visão: MDS/DocVisao.md
     - Documento de arquitetura: MDS/DocArquitetura.md
-    - Especificação Suplementar: mds/DocEspecificacaoSuplementar.md
-    - Protótipo de Baixa Fidelidade: DocPrototipodeBaixaFidelidade.md
-    - Folha de Estilo: DocFolhaEstilo.md
+    - Especificação Suplementar: MDS/DocEspecificacaoSuplementar.md
+    - Protótipo de Baixa Fidelidade: MDS/DocPrototipodeBaixaFidelidade.md
+    - Folha de Estilo: MDS/DocFolhaEstilo.md
  
   - Sprint 0:
     - Planejamento: Sprints/Sprint0/Sprint0-Planejamento.md
@@ -33,4 +42,7 @@ pages:
     - Planejamento: Sprints/Sprint3/Sprint3-Planejamento.md
     - Resultado: Sprints/Sprint3/Sprint3-Resultados.md
   - Sprint 4:
-    - lanejamento: Sprints/Sprint4/Sprint4-Planejamento.md
+    - Planejamento: Sprints/Sprint4/Sprint4-Planejamento.md
+    - Resultado: Sprints/Sprint4/Sprint4-Resultados.md
+  - Sprint 5:
+    - Planejamento: Sprints/Sprint5/Sprint5-Planejamento.md

@@ -1,16 +1,25 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Interface to define Presentation Logic to Feed Class that will used to call this Interactor on other class layer
+ * Interface to define Presentation Logic to Feed Class that
+ * will used to call this Interactor on other class layer
  */
 interface FeedPresentationLogic {
 
     /**
      * Method responsible to format feed data and send for view
      *
-     * @param response Feed model response that contains not formatted data received of worker [FeedModel]
+     * @param response Feed model response containing unformatted data received [FeedModel]
      */
-    fun formatFeed(response: FeedModel.Response)
+    fun formatFeed(response: FeedModel.GetFeedActivities.Response)
+
+    /**
+     * Method responsible to format the updated Activity after the addition or removal
+     * of the like in likes list
+     *
+     * @param activity Activity that needs to be altered for presentation on screen
+     */
+    fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response)
 }
 
 /**
@@ -20,32 +29,68 @@ interface FeedPresentationLogic {
  */
 class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
-    override fun formatFeed(response: FeedModel.Response) {
-        val viewModel = FeedModel.ViewModel(this.formatFeedActivities(response.feedActivities))
+    override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
+
+        val viewModel = FeedModel.GetFeedActivities.ViewModel(this.formatFeedActivities(response.feedActivities))
         viewScene?.displayFeed(viewModel)
+    }
+
+
+    override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
+
+        val viewModel = FeedModel.LikeAndUnlike.ViewModel(
+                this.formatFeedActivity(response.likedActivity))
+
+        viewScene?.updateLike(viewModel)
     }
 
     /**
      * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
      *
-     * @param activities Array of not formatted activities
+     * @param activities MutableList of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: Array<FeedModel.FeedActivity>): List<FeedModel.FeedActivityFormatted> {
+    private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>):
+            MutableList<FeedModel.FeedActivityFormatted> {
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
-            val feedActivityFormatted = FeedModel.FeedActivityFormatted(activity.challenge.challenger.name,
+            val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                    activity.identifier,
+                    activity.challenge.challenger.name,
                     activity.challenge.challenger.photo,
                     activity.challenge.challenger.set.toString(),
                     activity.challenge.challenged.name,
                     activity.challenge.challenged.photo,
                     activity.challenge.challenged.set.toString(),
-                    activity.feedDate.toString())
+                    activity.feedDate.toString(),
+                    activity.likes.size.toString())
 
             feedActivitiesFormatted.add(feedActivityFormatted)
         }
 
-        return feedActivitiesFormatted.toList()
+        return feedActivitiesFormatted
+    }
+
+    /**
+     * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     *
+     * @param activity Unformatted activity
+     * @return Formatted activity
+     */
+    private fun formatFeedActivity(activity: FeedModel.FeedActivity):
+            FeedModel.FeedActivityFormatted {
+        val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                activity.identifier,
+                activity.challenge.challenger.name,
+                activity.challenge.challenger.photo,
+                activity.challenge.challenger.set.toString(),
+                activity.challenge.challenged.name,
+                activity.challenge.challenged.photo,
+                activity.challenge.challenged.set.toString(),
+                activity.feedDate.toString(),
+                activity.likes.size.toString())
+
+        return feedActivityFormatted
     }
 }

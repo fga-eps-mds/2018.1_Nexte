@@ -45,20 +45,7 @@
 | **Análise**              | A análise do conhecimento sobre tecnologias será descrito de acordo com a escala ordinal apresentadas a seguir: </br>  **Excelente:** Tenho total seguraca sobre determinada tecnologia </br> **Bom:** Consigo fazer uso desta detcnologia quase sempre com facilidade </br> **Regular:** Tenho certa dificuldade, mas consigo trabalhar com esta tecnologia </br> **Ruim:**  Tenho dificuldade, e preciso de ajudar para trabalhar com esta tecnologia </br> **Péssimo:** Tenho dificuldades, e quase sempre procuro ajuda com esta tecnologia|
 | **Providência**        |  Caso seja notável uma grande dificuldade da maioria dos integrantes com certa tecnologia, será necessário a utilizacão de treinamentos. Caso esta dificuldade esteja reduzida a um pequeno grupo de integrantes, será realizada políticas de pareamento entre os que mais dominam o conteúdo e os que estão com mais dificuldades.        |
 
-* Métrica 04 - Nível de Contribuicão por *sprint* points
-
-| **Métrica**           | **Pontos integrantes por *Sprint*** |
-|---------------------|----------|
-| **Objetivo de Medição** |  Verificar o nível de contribuição em *sprint points* por interação        |
-| **Descrição**           |  O nível de contribuição refere-se a quantidade de pontos que um indivíduo concluiu em uma *sprint*, dessa forma, sua contribuição com o time. |
-| **Fórmula**             |  Não se aplica        |
-| **Escala**              |  Intervalar |
-| **Coleta**              |  Responsável: Miguel Pimentel </br> Periodicidade: Semanalmente |
-| **Procedimento**        |  Verificar ao final de cada *sprint* quantos pontos foram entregues por cada integrante         |
-| **Análise**              |  Analisar a quantidade de pontos entregue por cada integrante, e ver sua constância em relação a outras *sprints*  |
-| **Providência**        |  Caso um membro tenha um desempenho menor do que sua média, será necessário tentar compreender se há impedimentos, para então realizar medidas tais como:  Replanejar duplas de pareamento; definir horários de planejamento; delegar histórias de acordo com suas preferências; e até medidas mais severas. |
-
-* Métrica 05 - Nível de contribuição por número de *commits* diários
+* Métrica 04 - Nível de contribuição por número de *commits* diários
 
 | **Métrica**           | **Números de commits por dia da *Sprint*** |
 |---------------------|----------|
@@ -71,7 +58,7 @@
 | **Análise**              | Analisar a quantidade de *commits* para cada dia da interação, e comparar em valores absolutos com os demais dias dessa *sprint*  |
 | **Providência**        | Caso seja possível notar grandes diferenças de *commits* por dia ao longo da sprint, será necessário tentar compreender se há impedimentos, para então realizar medidas tais como:  Replanejar duplas de pareamento; definir horários de planejamento;  e delegar histórias de acordo com preferências de cada integrante. |
 
-* Métrica 06 - Nível de horas dedicadas por **sprint**
+* Métrica 05 - Nível de horas dedicadas por **sprint**
 
 | **Métrica**           | **Números de horas dedicadas por *sprint*** |
 |---------------------|----------|
@@ -86,7 +73,7 @@
 
 #### **Métricas para o objetivo 02(Código Fonte)**
 
-* Métrica 07 - Cobertura de Testes do Código
+* Métrica 06 - Cobertura de Testes do Código
 
 | **Métrica**           | **Cobertura de Testes do Código Fonte*** |
 |---------------------|----------|
@@ -99,7 +86,7 @@
 | **Análise**              | O projeto se divide em dois momentos:<br>Release I : onde ao final da release a cobertura deve ser maior ou igual a 40%<br> - [40, 100[ - Completo <br> - [0, 40[ - Incompleto <br>Release II: onde ao final da release a cobertura deve ser maior ou igual a 90%<br> - [90, 100[ - Completo<br> - [0, 90[ - Incompleto|
 | **Providência**        |  Caso o status de cobertura de teste se encontre como incompleta, deve-se adicionar histórias com esta finalidade, realizar mais treinamentos, e mudar o quadro de pareamentos.|
 
-* Métrica 08 - Duplicação de Código
+* Métrica 07 - Duplicação de Código
 
 | **Métrica** | Duplicação de Código |
 | --- | --- |
@@ -112,7 +99,7 @@
 | **Análise** | Se MC > X - Código Duplicado<br>Se MC <= X - Código Não Duplicado |
 | **Providência** | Caso o estado do arquivo esteja como duplicado, deve-se utilizar da abordagem apresentada no *Code Craft*, ou seja, o refatoramento a partir da técnica: "*Do not repear yourself*". |
 
-* Métrica 09- Média da complexidade ciclomática dos métodos (_Average McCabe’s Cyclomatic Complexity_)
+* Métrica 08- Média da complexidade ciclomática dos métodos (_Average McCabe’s Cyclomatic Complexity_)
 
 | **Métrica** | Média da complexidade ciclomática dos métodos(AMCC) |
 | --- | --- |
@@ -125,20 +112,7 @@
 | **Análise** | <ul> <li>[X, Y[ - Excelente </li> <li>[Y, Z[ - Bom </li><li> [Z, T[ - Regular </li> <li> [T, ∞[ - Preocupante</li> </ul>  |
 | **Providência** | Caso o módulo ou classe se encontre nas classificações de Regular ou Preocupante, deve-se optar pela refatoração, principalmente fazendo uso de funções atômicas. |
 
-* Métrica 10 - Cobertura de Testes do Código
-
-| **Métrica**           | **Cobertura de Testes do Código Fonte*** |
-|---------------------|----------|
-| **Objetivo de Medição** | Garantir se o *software* funciona de acordo com o comportamento esperado, e consequentemente, sua qualidade. |
-| **Descrição**           | Determina por meio de um porcentual a quantidade de código que foi testada |
-| **Fórmula**             | No contexto de cósigo fonte, a cobertura do código é dado por: `CoberturadoCódigo=LOC/LCT` <br>No LOC é a quantidade de linhas de código (_Lines of Code_) e LCT é a quantidade de linhas de código testadas |
-| **Escala**              | Racional |
-| **Coleta**              | Responsável: Miguel Pimentel </br> Periodicidade: Semanalmente |
-| **Procedimento**        | Submeter o código fonte a ferramenta nativa de *test coverage* presente no Android Studio |
-| **Análise**              | O projeto se divide em dois momentos:<br>Release I : onde ao final da release a cobertura deve ser maior ou igual a 40%<br> - [40, 100[ - Completo <br> - [0, 40[ - Incompleto <br>Release II: onde ao final da release a cobertura deve ser maior ou igual a 90%<br> - [90, 100[ - Completo<br> - [0, 90[ - Incompleto|
-| **Providência**        |  Caso o status de cobertura de teste se encontre como incompleta, deve-se adicionar história com esta finalidade, realizar mais treinamentos,  e mudar quadro de pareamentos.|
-
-* Métrica 11 - Code *Style*
+* Métrica 10 - Code *Style*
 
 | **Métrica**           | *Code Style* |
 |---------------------|----------|
@@ -152,6 +126,8 @@
 | **Providência**        | Refatoração do código aos padrões definidos na folha de estilo
 
 #### **Métricas para o objetivo 03(Riscos do Projeto)**
+
+* Métrica 11 - *Burndown de Riscos*
 
 | **Métrica**           | *Burndown de Riscos* |
 |---------------------|----------|
