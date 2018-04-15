@@ -1,6 +1,3 @@
-# Command to build
-# docker run -v $(pwd)/project:/application -v $(pwd)/local.properties.env:/application/local.properties baldissera/android-container
-
 # Image of JDK
 FROM openjdk:8
 
@@ -44,11 +41,11 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --update \
 RUN mkdir /application
 WORKDIR /application
 
-# Copy test.sh to execute build
+# Copy *.sh to execute builds
 COPY ./*.sh /
 
 RUN sed -i 's/\r//' /*.sh \
     && chmod +x /*.sh
 
 # Set default execute command
-CMD /test.sh
+CMD /compose.sh

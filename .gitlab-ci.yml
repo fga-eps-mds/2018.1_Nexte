@@ -9,10 +9,6 @@ variables:
 services:
   - docker:dind
 
-before_script:
-  - gem install bundler
-  - bundle install
-
 stages:
   - test
   - build
@@ -45,9 +41,11 @@ unit_test:
 
 build:
   stage: build
-  script:
+  before_script:
     - echo $KEYSTORE_PROPERTIES > /project/keystore.properties
+  script:
     - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/build.sh"
+  after_script:
     - rm /project/keystore.properties
   artifacts:
     paths:
@@ -55,10 +53,14 @@ build:
 
 deploy_beta:
   stage: deploy
-  script:
+  before_script:
+    - gem install bundler
+    - bundle install
     - echo $DEPLOY_KEY_FILE > /key.json
+  script:
     - cd project
     - bundle exec fastlane beta
+  after_script:
     - rm /key.json
   dependencies:
     - build
