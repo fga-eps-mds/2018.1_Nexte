@@ -13,10 +13,6 @@ before_script:
   - gem install bundler
   - bundle install
 
-after_script:
-  - rm /key.json
-  - rm /project/keystore.properties
-
 stages:
   - test
   - build
@@ -52,6 +48,7 @@ build:
   script:
     - echo $KEYSTORE_PROPERTIES > /project/keystore.properties
     - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/build.sh"
+    - rm /project/keystore.properties
   artifacts:
     paths:
     - project/app/build/outputs/apk
@@ -62,6 +59,7 @@ deploy_beta:
     - echo $DEPLOY_KEY_FILE > /key.json
     - cd project
     - bundle exec fastlane beta
+    - rm /key.json
   dependencies:
     - build
   artifacts:
