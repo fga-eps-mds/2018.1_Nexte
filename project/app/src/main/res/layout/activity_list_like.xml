@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RankingScene.RankingView">
+    tools:context=".LikeListScene.LikeListView">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rankingRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/likesListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/row_ranking_child" />
-
-
-
-
-
-
+        tools:listitem="@layout/row_likes" />
 </android.support.constraint.ConstraintLayout>

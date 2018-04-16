@@ -14,7 +14,7 @@ class CommentsPresenter : CommentsPresentationLogic {
 
     override fun presentComment(response: CommentsModel.Response) {
         var message: String
-        val comment: String? = response.userName
+        val comment: String? = response.comment
 
         if(comment.equals("")) {
             message = "Não há comentário"
