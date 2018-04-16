@@ -10,10 +10,10 @@ services:
   - docker:dind
 
 before_script:
-  - echo $KEYSTORE_PROPERTIES > /application/keystore.properties
+  - echo $KEYSTORE_PROPERTIES > /keystore.properties
 
 after_script:
-    - rm /application/keystore.properties
+    - rm /keystore.properties
 
 stages:
   - test
@@ -58,12 +58,12 @@ deploy_beta:
   before_script:
     - gem install bundler
     - bundle install
-    - echo $DEPLOY_KEY_FILE > /application/key.json
+    - echo $DEPLOY_KEY_FILE > /key.json
   script:
     - cd project
     - bundle exec fastlane beta
   after_script:
-    - rm /application/key.json
+    - rm /key.json
   dependencies:
     - build
   artifacts:
