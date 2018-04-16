@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import android.util.Log
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
@@ -23,34 +24,25 @@ class LoginWorker {
     fun authenticateUser(request: LoginModel.Request,
                          completion: (LoginModel.Response) -> Unit) {
 
-        val AUTHENTICATION = "http://localhost:3000/auth/login"
-        val header = "Accept-Version" to "1.0.0"
+        val AUTHENTICATION = "http://172.29.50.182:3000/auth/login" // Works only with IP
+        var headers = mapOf("Content-Type" to "application/json", "Accept-Version" to "1.0.0")
         var token: String = ""
         val json = JSONObject()
-        json.put("username", request.userName) // Expected ramires
-        json.put("password", request.password) // Expected test-nexte-ramires
+        json.put("username",  request.userName) // Expected ramires
+        json.put("password",  request.password) // Expected test-nexte-ramires
 
-        val (request, response, result) = Fuel.post(AUTHENTICATION).
-                                               header(header).
-                                               body(json.toString()).
-                                               responseString()
+        Fuel.post(AUTHENTICATION).header(headers).body(json.toString()).responseString { request, response, result ->
 
-        result.success {
+            Log.d("Request", request.toString())
+            Log.d("Response", response.toString())
+            Log.d("Result", result.toString())
 
-            token = "Usuário autenticado com sucesso"
-            //UserSingleton.getUserInformations().isLoggedIn = truex
+            result.success {  println("Authentication has been sucessed")  }
+            result.failure {  println("Authentication has been failed") }
         }
-
-        result.failure { token  = "Mensagem inválida" }
 
         completion(LoginModel.Response(token))
     }
-
-    // Another way
-
-//        Fuel.post(AUTHENTICATION).header(header).body(json.toString()).responseString { request, response, result ->
-//
-//            println(request)
-//            println(response.statusCode)
-//        }
 }
+
+

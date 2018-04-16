@@ -32,25 +32,36 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         AccountKit.initialize(this) // Account Kit
 
-        val request: LoginModel.Request = LoginModel.Request("Miguel", "123456")
-        this.interactor?.doAuthentication(request)
+//        val request: LoginModel.Request = LoginModel.Request("ramires",
+//                                                             "test-nexte-ramires")
+//        this.interactor?.doAuthentication(request)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        println("Result: $resultCode")
+        println("Data: $data")
+        println("RequestCode: $requestCode ")
+
         if (requestCode == 101) {
 
-            var loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY) as AccountKitLoginResult
+            var loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
             var message = ""
 
             if (loginResult.error != null) {
-
+                println("1 $loginResult?.error")
             } else if (loginResult.wasCancelled()) {
-
+                message = "Login cancelled"
+                println("2 $message")
             } else {
-
-                if (loginResult.accessToken != null) {  } else { }
+                if (loginResult.accessToken != null) {
+                    message = "Sucess" + loginResult.accessToken
+                    println("1 message")
+                } else {
+                    println(loginResult.authorizationCode)
+                }
             }
         }
     }

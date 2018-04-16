@@ -15,7 +15,7 @@ class LoginPresenterTest {
     fun setUp() {
         this.mock = MockLoginDisplayLogic()
         this.presenter = LoginPresenter()
-        this.presenter?.viewControler = mock
+        this.presenter?.view = mock
     }
 
     @Test

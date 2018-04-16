@@ -49,10 +49,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
             startActivity(intent)
         }
 
-        // Testing if works the architecture
-        val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
-        this.loginInteractor?.doAuthentication(loginRequest)
-
         //testing if it is working
         val alexandre: ChallengeModel.Player = ChallengeModel.Player("Alexandre Miguel", 1, 3, 4, "www.facebook.com")
         val helena: ChallengeModel.Player = ChallengeModel.Player("Helena Goulart", 1, 4, 3, "www.instagram.com")

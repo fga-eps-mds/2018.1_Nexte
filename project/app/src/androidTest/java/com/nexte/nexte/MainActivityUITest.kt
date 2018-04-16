@@ -31,9 +31,9 @@ class MainActivityUITest {
         val appContext = InstrumentationRegistry.getTargetContext()
         Assert.assertEquals("com.nexte.nexte", appContext.packageName)
     }
-    @Test
-    fun testClickProfileButton() {
-        onView(withId(R.id.showProfileButton)).perform(click())
-        onView(withId(R.id.username)).check(matches(withText("gabrielalbino")))
-    }
+//    @Test
+//    fun testClickProfileButton() {
+//        onView(withId(R.id.showProfileButton)).perform(click())
+//        onView(withId(R.id.username)).check(matches(withText("gabrielalbino")))
+//    }
 }
