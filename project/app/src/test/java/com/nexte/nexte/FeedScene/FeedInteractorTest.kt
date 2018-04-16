@@ -18,14 +18,28 @@ class FeedInteractorTest {
     }
 
     @Test
-    fun testFetchFeed(){
+    fun testFetchFeed() {
         //prepare
-        val request = FeedModel.Request()
+        val request = FeedModel.GetFeedActivities.Request()
 
         //call
         this.interactor?.fetchFeed(request = request)
 
         //assert
+        assertNotNull(this.mock?.passedHere)
+        assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
+    fun testFetchLikes(){
+        //prepare
+        val request = FeedModel.LikeAndUnlike.Request(identifier = "1")
+
+        //call
+        this.interactor?.fetchLikes(request = request)
+
+        //assert
+        assertNotNull(this.mock?.passedHere)
         assertEquals(this.mock?.passedHere, true)
     }
 
@@ -37,9 +51,15 @@ class FeedInteractorTest {
 }
 
 private class MockFeedPresentationLogic: FeedPresentationLogic{
-    var passedHere = false
+    var passedHere: Boolean? = null
 
-    override fun formatFeed(response: FeedModel.Response) {
-        this.passedHere = true
+    override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
+        passedHere = null
+        passedHere = true
+    }
+
+    override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
+        passedHere = null
+        passedHere = true
     }
 }
