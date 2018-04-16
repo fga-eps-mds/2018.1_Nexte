@@ -48,4 +48,4 @@ RUN sed -i 's/\r//' /*.sh \
     && chmod +x /*.sh
 
 # Set default execute command
-CMD /compose.sh
+CMD /test.sh
