@@ -1,39 +1,38 @@
 package com.nexte.nexte.LoginScene
 
 /**
- * Created by baldissera on 24/03/2018.
+ * Class to define Model of Login Scene to enable the acess to users. It contains [Request],
+ * [Response] and [ViewModel] classes to be used on the flow of getting the login data and
+ * setting the token that contains personal information from user on the system
  */
+
 class LoginModel {
 
-    // Model data of a view request
-    class Request(userName: String, password: String) {
+    /**
+     * Class responsible to pass data of View to Interactor and after to worker can do
+     * request data
+     *
+     * @property userName variable that hold the name chosen by the user on the app
+     * @property password variable that hold the secret keyword of the user
+     */
 
-        var userName: String = ""
-        var password: String = ""
+    class Request(var userName: String, var password: String)
 
-        init {
-            this.userName = userName
-            this.password = password
-        }
-    }
+    /**
+     * Class responsible to store received informations of worker to pass for Presenter
+     *
+     * @property tokenId variable that contains the user's personal data in the system and
+     * validates them in the application
+     */
 
-    // Model data of interactor/worker response
-    class Response(tokenId: String) {
+    class Response(var tokenId: String)
 
-        var tokenId: String = ""
+    /**
+     * Class responsible to define how the list view will display the formatted data, passed to view
+     *
+     * @property message that hold informations to show in screen if login was sucessful or not
+     */
 
-        init {
-            this.tokenId = tokenId
-        }
-    }
+    class ViewModel(var message: String)
 
-    // Model of present data in view
-    class ViewModel(message: String) {
-
-        var message: String = ""
-
-        init {
-            this.message = message
-        }
-    }
 }
