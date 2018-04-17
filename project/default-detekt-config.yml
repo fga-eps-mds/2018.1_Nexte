@@ -21,7 +21,7 @@ test-pattern: # Configure exclusions for test sources
 
 build:
   warningThreshold: 5
-  failThreshold: 1000
+  failThreshold: 10
   weights:
     complexity: 2
     formatting: 1
@@ -74,7 +74,7 @@ complexity:
     threshold: 5
   LongMethod:
     active: true
-    threshold: 20
+    threshold: 50
   LargeClass:
     active: true
     threshold: 150
@@ -241,9 +241,9 @@ style:
     active: true
     max: 2
   NewLineAtEndOfFile:
-    active: true
+    active: false
   WildcardImport:
-    active: true
+    active: false
     excludeImports: 'java.util.*,kotlinx.android.synthetic.*'
   MaxLineLength:
     active: true
@@ -287,10 +287,10 @@ style:
     privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
   ObjectPropertyNaming:
     active: true
-    propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
+    propertyPattern: '[a-z][_A-Za-z0-9]*'
   PackageNaming:
     active: true
-    packagePattern: '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+    packagePattern: '^[a-z$]+(\.[a-zA-Z][a-zA-Z0-9]*)*$'
   ClassNaming:
     active: true
     classPattern: '[A-Z$][a-zA-Z0-9$]*'
@@ -314,7 +314,7 @@ style:
   UnnecessaryAbstractClass:
     active: false
   UnnecessaryParentheses:
-    active: false
+    active: true
   UnnecessaryInheritance:
     active: false
   UtilityClassWithPublicConstructor:
@@ -353,6 +353,6 @@ style:
   ExpressionBodySyntax:
     active: false
   NestedClassesVisibility:
-    active: false
+    active: true
   RedundantVisibilityModifierRule:
-    active: false
+    active: true
