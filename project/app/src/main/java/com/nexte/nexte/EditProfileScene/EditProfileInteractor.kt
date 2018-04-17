@@ -1,15 +1,17 @@
 package com.nexte.nexte.EditProfileScene
 
 /**
- * Created by lorrany on 27/03/18.
- */
-
-/**
- * Interface responsible to define methods that will be used to communicate between worker and presenter
- * to get user information to edit
+ * Interface responsible to define methods that will be used to communicate between
+ * worker and presenter
  */
 interface GetProfileToEditBusinessLogic {
 
+    /**
+     * Method that defines profile informations that will be responsible to
+     * pass the request to Worker and send the response to Presenter
+     *
+     * @param request Request model of edit profile that contains data to pass for Worker
+     */
     fun getProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request)
 }
 
@@ -19,12 +21,22 @@ interface GetProfileToEditBusinessLogic {
  */
 interface EditProfileBusinessLogic {
 
+    /**
+     * Method that defines profile informations that will be responsible to
+     * pass the request to Worker and send the response to Presenter
+     *
+     * @param request Request model of edit profile that contains data to pass for Worker
+     */
     fun setEditedProfile(request: EditProfileModel.EditProfileRequest.Request)
 }
 
 /**
  * Class responsible to intermediate communication between worker and presenter, for both getting user
  * information to edit and set user edited information in user
+ *
+ * @property formatUserDataPresenter
+ * @property formatErrorCodePresenter
+ * @property worker
  */
 class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusinessLogic {
 

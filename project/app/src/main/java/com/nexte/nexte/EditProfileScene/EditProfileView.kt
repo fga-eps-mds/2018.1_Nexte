@@ -26,7 +26,12 @@ interface EditProfileDisplayLogic {
     fun displayEditedProfile (viewModel: EditProfileModel.EditProfileRequest.ViewModel)
 }
 
-
+/**
+ * Class that implements [ShowProfileToEditDisplayLogic] and [EditProfileDisplayLogic]
+ *
+ * @property getUserInformationInteractor
+ * @property editUserInformationInteractor
+ */
 class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, EditProfileDisplayLogic {
 
     private var getUserInformationInteractor: GetProfileToEditBusinessLogic? = null
@@ -37,15 +42,21 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
      */
     private class PasswordWatcher(var view: EditProfileView) : TextWatcher {
 
-        override fun afterTextChanged(s: Editable?) {
-            // Does nothing
-        }
+        /**
+         * AfterTextChanged method does nothing
+         */
+        override fun afterTextChanged(s: Editable?) {}
 
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            // Does nothing
-        }
+        /**
+         * BeforeTextChanged method does nothing
+         */
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+        /**
+         * OnTextChanged method validates and setup the new password
+         */
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
             if(this.view.passwordConfirmationTextEdit.text.trim().toString() ==
                this.view.passwordTextEdit.text.trim().toString()) {
                 view.passwordValidationTextView.text = "✓"
@@ -61,6 +72,8 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
 
     /**
      * Method called on scene creation and responsible to show initial user information for edition
+     *
+     * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 

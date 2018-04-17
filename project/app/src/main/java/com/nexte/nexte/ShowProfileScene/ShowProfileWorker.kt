@@ -4,18 +4,16 @@ import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.Player
 
 /**
- * Created by albino on 25/03/18.
+ * This class verifies if the logged user is valid and return the user information as response
  */
-
-/**
- * This class verify if the logged user is valid and return the user information as response
- */
-
 class ShowProfileWorker {
 
     /**
      * Method responsible to get the [ShowProfileModel.Request] with data to be validated
      * and generate an [ShowProfileModel.Response] with user information.
+     *
+     * @param request Contains the username and TokenID that will be used to recover the user
+     * @param completion Unformatted activity sent to Interactor
      */
     fun getUserProfile(request: ShowProfileModel.Request,
                        completion: (ShowProfileModel.Response) -> Unit) {
@@ -34,7 +32,7 @@ class ShowProfileWorker {
 
         var returnedUser: Player? = null
 
-        // This condition verify if exist a user
+        // This condition verifies if exists a user
         if(tokenID.equals("")) {
             returnedUser = emptyUser
             UserSingleton.setUserInformations(emptyUser)

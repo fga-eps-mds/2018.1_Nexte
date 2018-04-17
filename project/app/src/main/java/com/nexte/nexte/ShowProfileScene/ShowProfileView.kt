@@ -17,13 +17,14 @@ interface ShowProfileDisplayLogic {
 }
 
 /**
- * This class implements ShowProfileDisplayLogic, and it is responsible to display information about the user
+ * This class implements ShowProfileDisplayLogic, and it is responsible to
+ * display information about the user
+ *
+ * @property showProfileInteractor responsible to receive request and send it to worker
  */
-
 class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
-    var showProfileInteractor : ShowProfileBusinessLogic? = null // Reference for the
-    // interactor responsible to receive request and send it to worker
+    var showProfileInteractor : ShowProfileBusinessLogic? = null
 
     /**
      * Method called when screen is loaded, responsible to load user information
@@ -47,7 +48,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * This method is called when user edited information.
+     * This method is called when user edits information.
      */
     override fun onResume() {
 
@@ -70,7 +71,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         interactor.presenter = presenter
         presenter.viewScene = viewScene
         viewScene.showProfileInteractor = interactor
-
     }
 
     /**
@@ -85,6 +85,5 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         club.text = viewModel.playerInfo.club
         age.text = viewModel.playerInfo.age
         email.text = viewModel.playerInfo.email
-
     }
 }
