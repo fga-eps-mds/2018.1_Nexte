@@ -21,16 +21,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RankingScene.RankingActivity" />
+        <activity
+            android:name=".RankingScene.RankingView"
+            android:screenOrientation="portrait"/>
         <!-- <activity android:name=".LoginActivity" android:label="@string/title_activity_login" /> -->
         <!-- <activity android:name=".LoginScene.LoginView" /> -->
         <activity
             android:name=".FeedScene.FeedView"
-            android:label="@string/title_activity_feed_view" />
+            android:label="@string/title_activity_feed_view"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".ShowProfileScene.ShowProfileActivity"
+            android:name=".ShowProfileScene.ShowProfileView"
             android:label="@string/title_activity_show_profile"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LikeListScene.LikeListView"
+            android:label="LikeListView"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EditProfileScene.EditProfileView"
+            android:screenOrientation="portrait"/>
     </application>
+
+
 
 </manifest>

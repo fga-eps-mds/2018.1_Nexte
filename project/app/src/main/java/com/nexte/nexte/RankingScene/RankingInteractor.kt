@@ -9,10 +9,10 @@ interface RankingBusinessLogic {
     fun getPlayersRanksForScene(request: RankingModel.Request)
 }
 
-class RankingInteractor : RankingBusinessLogic {
+class RankingInteractor(var presenter: RankingPresentationLogic? = null) : RankingBusinessLogic {
 
     var worker = RankingWorker()
-    var presenter: RankingPresentationLogic? = null
+
 
     override fun getPlayersRanksForScene(request: RankingModel.Request) {
 

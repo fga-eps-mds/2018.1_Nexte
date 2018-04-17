@@ -8,24 +8,62 @@ import java.util.*
 class FeedModel {
 
     /**
-     * Class responsible to pass data of view to interactor and after to worker can do request data.
+     * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
+     * flow of getting the scene started and getting the information from FeedMocker data
      */
-    class Request
+
+    class GetFeedActivities {
+
+        /**
+         * Class responsible to pass data of view to interactor and after to worker can do request data.
+         */
+        class Request
+
+        /**
+         * Class responsible to store received informations of worker to pass for Presenter
+         *
+         * @property feedActivities MutableList that hold informations to show in screen
+         */
+        class Response(var feedActivities: MutableList<FeedActivity>)
+
+        /**
+         * Class responsible to define how the list view will display the formatted data, passed to view
+         *
+         * @property feedActivities MutableList that hold informations to show in screen
+         */
+        class ViewModel(var feedActivities: MutableList<FeedActivityFormatted>)
+
+    }
 
     /**
-     * Class responsible to store received informations of worker to pass for Presenter
-     *
-     * @param feedActivities Array that hold informations to show in screen
+     * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
+     * flow of allowing an user
      */
-    class Response(var feedActivities: Array<FeedActivity>)
 
-    /**
-     * Class responsible to define how the list view will display the formatted data, passed to view
-     *
-     * @param feedActivities Array that hold informations to show in screen
-     */
-    class ViewModel(var feedActivities: List<FeedActivityFormatted>)
+    class LikeAndUnlike {
 
+        /**
+         * Class responsible to receive the identifier to be passed to worker
+         *
+         * @property identifier identifier of the activity to be found in worker
+         */
+        class Request(var identifier: String)
+
+        /**
+         * Class responsible to store the activity to add or remove user from likes list
+         *
+         * @property likedActivity activity to be altered on likes list (adding or removing user)
+         */
+        class Response(var likedActivity: FeedActivity)
+
+        /**
+         * Class responsible to define the format of the activity to be displayed
+         *
+         * @property formattedLikedActivities activity already altered and ready to display on screen
+         */
+        class ViewModel(var formattedLikedActivities: FeedActivityFormatted)
+
+    }
 
     // --------- Aux classes to use in this scene ---------
 
@@ -33,48 +71,55 @@ class FeedModel {
     /**
      * Class for players in feed that contains just needed data
      *
-     * @param name String that contains name of player
-     * @param photo Profile image of player
-     * @param set Result in Set of match that this player done
+     * @property name String that contains name of player
+     * @property photo Profile image of player
+     * @property set Result in Set of match that this player done
     */
     class FeedPlayer(var name: String, var photo: Int, var set: Int)
 
     /**
      * Class to define a challenge for feed activities
      *
-     * @param challenger Player that are challenger
-     * @param challenged Player that are challenged
-     * @param challengeDate Date that the match are played
+     * @property challenger Player that are challenger
+     * @property challenged Player that are challenged
+     * @property challengeDate Date that the match are played
      */
     class FeedChallenge(var challenger: FeedPlayer,
                         var challenged: FeedPlayer,
-                        var challengeDate: Date)
+                        var challengeDate: Date
+                        )
 
     /**
      * Class that contains informations about activity to show in feed screen
      *
-     * @param challenge Challenge informations with players, result and date
-     * @param feedDate Date of feed are created
+     * @property identifier String identifier for this activity
+     * @property challenge Challenge informations with players, result and date
+     * @property feedDate Date of feed are created
      */
-    class FeedActivity(var challenge: FeedChallenge,
-                       var feedDate: Date)
+    class FeedActivity(var identifier: String,
+                       var challenge: FeedChallenge,
+                       var feedDate: Date,
+                       var likes: MutableList<FeedModel.FeedPlayer>)
 
     /**
      * Class responsible to define how the list view will display with the formatted data
      *
-     * @param challengerName String that contains name of challenger player
-     * @param challengerPhoto Profile image of challenger
-     * @param challengerSets String that have sets of challenger
-     * @param challengedName String that contains name of challenged player
-     * @param challengedPhoto Profile image of challenged
-     * @param challengedSets String that have sets of challenger
-     * @param feedDate String date of feed to show on screen
+     * @property identifier String identifier for this activity
+     * @property challengerName String that contains name of challenger player
+     * @property challengerPhoto Profile image of challenger
+     * @property challengerSets String that have sets of challenger
+     * @property challengedName String that contains name of challenged player
+     * @property challengedPhoto Profile image of challenged
+     * @property challengedSets String that have sets of challenger
+     * @property feedDate String date of feed to show on screen
      */
-    class FeedActivityFormatted(var challengerName: String,
+    class FeedActivityFormatted(var identifier: String,
+                                var challengerName: String,
                                 var challengerPhoto: Int,
                                 var challengerSets: String,
                                 var challengedName: String,
                                 var challengedPhoto: Int,
                                 var challengedSets: String,
-                                var feedDate: String)
+                                var feedDate: String,
+                                var numberOfLikes: String)
 }

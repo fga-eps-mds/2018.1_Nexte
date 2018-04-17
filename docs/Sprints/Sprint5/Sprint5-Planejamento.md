@@ -46,14 +46,14 @@ Os pareamentos dessa _sprint_ serão fixos, ou seja, só poderá parear para res
 
 ### 3. **Priorização**
 
-A priorização dessa _sprint_ foi em ambas equipes terminarem as histórias essenciais para que o projeto e o produto estajam funcionais para a _release 1_. Para EPS tem principalmente histórias relacionadas a _devops_, que é ,até então, aonde se encontra maior gargalo da equipe. Já para MDS, as histórias pririzadas foram as relacionadas ao feed, perfil de usuário e ranking, que é o _core_ a ser desenvolvido para a _release 1_.
+A priorização dessa _sprint_ foi em ambas equipes terminarem as histórias essenciais para que o projeto e o produto estajam funcionais para a _release 1_. Para EPS tem principalmente histórias relacionadas a _devops_, que é ,até então, aonde se encontra maior gargalo da equipe. Já para MDS, as histórias priorizadas foram as relacionadas ao feed, perfil de usuário e ranking, que é o _core_ a ser desenvolvido para a _release 1_.
 
 ### 4. **Backlog da Sprint**
 
 #### 4.1 **Dívida Técnicas**
 | Issue | Descrição | Pontos|
 |-------|-----------|-------------|
-|[#96](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/96) |Eu, como gerente de projeto, desejo averiguar a cobertura de código do projeto na Integração contínua, para saber a porcentagem do código que está coberto por testes | 96 |
+|[#96](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/96) |Eu, como gerente de projeto, desejo averiguar a cobertura de código do projeto na Integração contínua, para saber a porcentagem do código que está coberto por testes | 13 |
 
 **Total de pontos: 13**
 
