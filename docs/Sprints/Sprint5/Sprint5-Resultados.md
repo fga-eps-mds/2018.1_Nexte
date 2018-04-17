@@ -2,6 +2,7 @@
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
 | 09/04/2018| 0.1 |Criação da estrutura do documento | Luis Gustavo |
+| 17/04/2018| 0.2 |Preenchimento da EVM e métricas de código | Geovanni Oliveira |
 -------------------------------------------------------------------------------------------------
 
 **Número da Sprint:** 5
@@ -27,7 +28,9 @@
 
 [7. EVM](#7-evm)
 
-[8. Análise do Scrum Master](#8-análise-do-scrum-master)
+[8. Análise de código](#8-análise-de-código)
+
+[9. Análise do Scrum Master](#9-análise-do-scrum-master)
 
 
 ## **Resultados**
@@ -146,10 +149,26 @@ Visto o scrum master optou por fazer o gráfico de burndown de risco para cada r
 * Na próxima sprint será criado um documento para centralizar os estudos referentes as tecnologias do projeto, em especial Kotlin. Dessa forma, ficará mais fácil que todos fiquem a par do desenvolvimento do projeto e ficará mais fácil encontrar material de estudo para auxiliar o desenvolvimento das histórias
 
 ### **7. EVM**
+Nesta sprint, o resultado do valor agregado foi maior do que a sprint passada, dado que dois pontos a mais foram concluídos, e foi maior do que o planejado.
+![EVM](https://i.imgur.com/wx4vDNP.png)
 
-![EVM]()
+### **8. Análise de código**
+A análise de código é feita com a ferramenta Detekt, ao executar seu diagnóstico ela gera um relatório de acordo com a configuração personalizada para os parâmetros aceitáveis de código para o projeto, o que está sendo analisado de acordo com o documento CONTRUBUTIN.md são as seguintes métricas:
 
-### **8. Análise do Scrum Master**
+* Quantidade de linhas por método
+* Quantidade de métodos por classe
+* Adequação à folha de estilo
+* Complexidade ciclomática
+* Quantidade de Code smells
+
+Os valores aceitáveis para cada métrica estão também no arquivo CONTRUBUTING.md, para as tês primeiras métricas da lista acima, a ferramenta relata somente se as condições aceitáveis forem quebradas, já para a Complexidade Ciclomática e a quantidade de Code Smells são geradas sempre que o relatório é demandado. A análise do código da Sprint 5 é mostrado logo abaixo:
+
+![Análise estática do código](https://i.imgur.com/Bba1iMh.png)
+
+É possivel analisar que nenhuma das duas primeiras métricas foram apontadas no relatório, o que significa que elas estão dentro dos padrões desejáveis, existem algumas inconsistências com a folha de estilo, porém ao analisár, a ferramenta não consegue distinguir variáveis de constantes, e na folha de estilo cada uma está de uma maneira diferente, logo como não há distinção para constantes existem 2 notificações sobre nomes e constantes, e o total de Code Smells para o projeto foi de 7, sendo que o limite é 10.   
+O resultado da complexidade ciclomática do projeto teve o resultado de 161, dado que o padrão recomendável por método é de no máximo 10, 161 para o projeto por completo é um número aceitável, dado que existem bem mais que 16 métodos no projeto, o que acarretaria que cada um teria 10 de Complexidade Ciclomática, logo cada método tem um número bem abaixo do máximo recomendável. 
+
+### **9. Análise do Scrum Master**
 
 Alguns pontos positivos são que a equipe está praticamente alinhada com o que era esperado no roadmap do projeto, tirando as duas dívidas técnicas dessa sprint, a comunicação entre as equipes tem funcionado bem desde o início do projeto, todos os membros tem mostrado compromisso com o projeto, tendo sempre trabalhado no projeto.
 
