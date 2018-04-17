@@ -1,4 +1,4 @@
-# Official docker image.
+# Baldissera image of android container.
 image: baldissera/android-container
 
 variables:
@@ -15,29 +15,29 @@ after_script:
   # - rm project/keystore.properties
 
 stages:
-  # - test
+  - test
   - build
   - deploy
 
-# static_analysis:
-#   stage: test
-#   script:
-#     - mv ../docker/static_analysis.sh ./static_analysis.sh
-#     - chmod +x ./static_analysis.sh
-#     - ./static_analysis.sh
-#   artifacts:
-#     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_static_analysis"
-#     when: always
-#     expire_in: 2 days
-#     paths:
-#       - project/app/build/reports/
+static_analysis:
+  stage: test
+  script:
+    - mv ../docker/static_analysis.sh ./static_analysis.sh
+    - chmod +x ./static_analysis.sh
+    - ./static_analysis.sh
+  artifacts:
+    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_static_analysis"
+    when: always
+    expire_in: 2 days
+    paths:
+      - project/app/build/reports/
 
-# unit_test:
-#   stage: test
-#   script:
-#     - mv ../docker/test.sh ./test.sh
-#     - chmod +x ./test.sh
-#     - ./test.sh
+unit_test:
+  stage: test
+  script:
+    - mv ../docker/test.sh ./test.sh
+    - chmod +x ./test.sh
+    - ./test.sh
   # artifacts:
   #   name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
   #   when: always
