@@ -1,21 +1,17 @@
 # Official docker image.
-image: docker:latest
+image: baldissera/android-container
 
 variables:
-  ANDROID_CONTAINER_IMAGE: baldissera/android-container
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
-  
-services:
-  - docker:dind
 
 before_script:
-  - ls -la
-  - echo $KEYSTORE_PROPERTIES >> project/keystore.properties
+  - export ANDROID_HOME="/usr/local/android-sdk"
+  - cd project
+  # - echo $KEYSTORE_PROPERTIES >> project/keystore.properties
 
 after_script:
-  - ls -la project
-  - rm project/keystore.properties
+  # - rm project/keystore.properties
 
 stages:
   - test
@@ -25,7 +21,9 @@ stages:
 static_analysis:
   stage: test
   script:
-    - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/static_analysis.sh"
+    - mv ../docker/static_analysis.sh ./static_analysis.sh
+    - chmod +x ./static_analysis.sh
+    - ./static_analysis.sh
   artifacts:
     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_static_analysis"
     when: always
@@ -36,7 +34,9 @@ static_analysis:
 unit_test:
   stage: test
   script:
-    - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/test.sh"
+    - mv ../docker/test.sh ./test.sh
+    - chmod +x ./test.sh
+    - ./test.sh
   # artifacts:
   #   name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
   #   when: always
@@ -50,7 +50,8 @@ unit_test:
 build:
   stage: build
   script:
-    - docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container /bin/bash "/build.sh"
+    - mv ../docker/build.sh ./build.sh
+    - ./build.sh
   artifacts:
     paths:
     - project/app/build/outputs/apk
