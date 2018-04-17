@@ -1,8 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import com.nexte.nexte.FeedScene.FeedModel
-import com.nexte.nexte.FeedScene.FeedView
-
 /**
  * Interface to define Presentation Logic to Login Class that
  * will be used to call this Interactor on other class layer
@@ -28,7 +25,7 @@ class LoginPresenter(var viewScene: LoginDisplayLogic? = null): LoginPresentatio
 
     override fun presentLogin(response: LoginModel.Response) {
 
-        var message: String
+        val message: String
         val tokenId: String = response.tokenId
 
         if(tokenId.equals("")) {

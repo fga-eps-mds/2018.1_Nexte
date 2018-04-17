@@ -39,7 +39,6 @@ class FeedModel {
      * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
      * flow of allowing an user
      */
-
     class LikeAndUnlike {
 
         /**
@@ -86,8 +85,7 @@ class FeedModel {
      */
     class FeedChallenge(var challenger: FeedPlayer,
                         var challenged: FeedPlayer,
-                        var challengeDate: Date
-                        )
+                        var challengeDate: Date)
 
     /**
      * Class that contains informations about activity to show in feed screen
