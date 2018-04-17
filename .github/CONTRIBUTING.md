@@ -79,15 +79,34 @@ Neste projeto é utilizada a ferramenta **Detekt** para análise estática de c�
 
     ./gradlew detektCheck
 
-**Métricas a serem analisadas:**
+**Métricas de código a  serem analisadas:**
 
 * Quantidade de linhas por método
 * Quantidade de métodos por classe
 * Adequação à folha de estilo
 * Complexidade ciclomática
 * Quantidade de Code smells
+ Coisas que não são um problema atualmente, mas no futuro pode vir a ser um bug no projeto  
 
-## INSERIR VALORES ACEITÁVEIS
+**Parametros**
+
+* Quantidade de linhas por método
+    * máximo 50 linhas 
+* Quantidade de métodos por classe
+    * 50 métodos por classe
+* Adequação à folha de estilo
+    * ser totalmente condizente com a folha de estilo
+* Complexidade ciclomática
+    De acordo com o [artigo publicado](http://www.mccabe.com/pdf/MeasuringSoftwareComplexityUAV.pdf) pelo criador da métrica de complexidade ciclomática os padrões por método são descritos na tabela abaixo
+    | Complexidade | Avaliação |
+    | ---- | ---- |
+    | 1-10 | Método simples. Baixo risco |
+    | 11-20 | Método razoavelmente complexo. Moderado risco. |
+    | 21-50 | Método muito complexo. Elevado risco. |
+    | 51-N | Método de altíssimo risco e bastante instável. |
+
+* Quantidade de Code smells
+    * máximo 5 Code Smells
 
 **Cobertura de código**
 
@@ -97,3 +116,4 @@ O comando para gerar o relatório de cobertura de código é:
 
     ./gradlew createDebugCoverageReport
 
+Ela deve ser de no minimo 40%  para a primeira Release e de 90% para a segunda Release 
