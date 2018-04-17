@@ -5,6 +5,8 @@ theme: readthedocs
 
 pages:
   - Home: index.md
+  - Estudos: 
+    - Centralização de Informações: CentralizacaoInformacoes.md
   - EPS:
     - Termo de abertura: EPS/TAP.md
     - Estrutura analítica do projeto: EPS/EAP.md
