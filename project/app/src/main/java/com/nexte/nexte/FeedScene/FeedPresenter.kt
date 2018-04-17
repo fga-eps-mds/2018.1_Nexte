@@ -7,9 +7,9 @@ package com.nexte.nexte.FeedScene
 interface FeedPresentationLogic {
 
     /**
-     * Method responsible to format feed data and send for view
+     * Method responsible to format feed data and send to view
      *
-     * @param response It's feed model response containing unformatted data received [FeedModel]
+     * @param response contains unformatted data received from [FeedModel]
      */
     fun formatFeed(response: FeedModel.GetFeedActivities.Response)
 
@@ -17,7 +17,7 @@ interface FeedPresentationLogic {
      * Method responsible to format the updated Activity after the addition or removal
      * of the like in likes list
      *
-     * @param activity Activity that needs to be altered for presentation on screen
+     * @param response Activity that needs to be altered for presentation on screen
      */
     fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response)
 }
@@ -34,7 +34,6 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
         val viewModel = FeedModel.GetFeedActivities.ViewModel(this.formatFeedActivities(response.feedActivities))
         viewScene?.displayFeed(viewModel)
     }
-
 
     override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
 
@@ -73,7 +72,7 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
     }
 
     /**
-     * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     * Auxiliary function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
      *
      * @param activity Unformatted activity
      * @return Formatted activity

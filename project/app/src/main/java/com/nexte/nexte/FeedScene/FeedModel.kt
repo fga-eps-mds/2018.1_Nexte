@@ -3,31 +3,31 @@ package com.nexte.nexte.FeedScene
 import java.util.*
 
 /**
- * Class to define Model of Feed Scene to send informations between layers
+ * Class to define the Model of Feed Scene to send informations between layers
  */
 class FeedModel {
 
     /**
      * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
-     * flow of getting the scene started and getting the information from FeedMocker data
+     * flow of getting the scene started and to get the information from FeedMocker data
      */
 
     class GetFeedActivities {
 
         /**
-         * Class responsible to pass data of view to interactor and after to worker can do request data.
+         * Class responsible to pass data from View to Interactor and then to worker, so it can request data.
          */
         class Request
 
         /**
-         * Class responsible to store received informations of worker to pass for Presenter
+         * Class responsible to store received informations from Worker and pass to Presenter
          *
          * @property feedActivities MutableList that hold informations to show in screen
          */
         class Response(var feedActivities: MutableList<FeedActivity>)
 
         /**
-         * Class responsible to define how the list view will display the formatted data, passed to view
+         * Class responsible to define how the list view will display the formatted data passed to view
          *
          * @property feedActivities MutableList that hold informations to show in screen
          */
@@ -65,7 +65,7 @@ class FeedModel {
 
     }
 
-    // --------- Aux classes to use in this scene ---------
+    // --------- Aux classes ---------
 
 
     /**
@@ -102,7 +102,7 @@ class FeedModel {
                        var likes: MutableList<FeedModel.FeedPlayer>)
 
     /**
-     * Class responsible to define how the list view will display with the formatted data
+     * Class responsible to define how the list view will display the formatted data
      *
      * @property identifier String identifier for this activity
      * @property challengerName String that contains name of challenger player

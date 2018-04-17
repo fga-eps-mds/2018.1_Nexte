@@ -4,21 +4,18 @@ import android.content.Intent
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.service.carrier.CarrierIdentifier
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nexte.nexte.FeedScene.FeedModel.FeedActivity
 import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_feed_view.*
-import kotlinx.android.synthetic.main.row_feed.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 
 /**
- * Interface to define Display Logic to FeedVeiw Class that will used received call of Presenter
+ * Interface to define Display Logic to FeedView Class that will be used received call of Presenter
  */
 interface FeedDisplayLogic {
 
@@ -27,7 +24,7 @@ interface FeedDisplayLogic {
 }
 
 /**
- * Class that implements [FeedLogic] and is responsible for control feed screen
+ * Class that implements [FeedDisplayLogic] and is responsible to control feed screen
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
  * @property feedViewAdapter FeedAdapter instance for broad using on class
@@ -38,11 +35,12 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
     var feedViewAdapter: FeedAdapter? = null
 
     /**
-     * On Create method that will setup this scene and call first request for interactor.
+     * On Create method that will setup this scene and call first Request for Interactor.
      *
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed_view)
 
@@ -55,7 +53,6 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         val request = FeedModel.GetFeedActivities.Request()
         interactor?.fetchFeed(request)
-
     }
 
     /**
@@ -70,10 +67,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewScene = view
-
-
     }
-
 
     /**
      * Method to open LikesList scene
@@ -84,39 +78,36 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         startActivity(intent)
     }
 
-
     /**
-     * Method responsible to receive the viewModel from presenter and show it to the user
+     * Method responsible to receive the viewModel from Presenter and show it to the user
      *
-     * @param viewModel Feed view model received for presenter to show on screen
+     * @param viewModel Feed view model received from Presenter to show on screen
      */
     override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
+
         feedViewAdapter?.updateActivities(viewModel.feedActivities)
     }
-
 
     /**
      * Method responsible to receive identifier and call interactor
      * to add or remove user on likesList of specific activity
      *
-     * @param identifer parameter to identify activity
+     * @param identifier parameter to identify activity
      */
     private fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
 
         interactor?.fetchLikes(identifier)
     }
 
-
     /**
      * Method to update the formatted like list of activities
      *
-     * @param formattedActivity Formatted Activity that needs to be added on activities list
+     * @param viewModel Formatted Activity that needs to be added on activities list
      */
     override fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel) {
 
         feedViewAdapter?.actualizeFormattedList(viewModel.formattedLikedActivities)
     }
-
 
     /**
      * Adapter Class to control recycler view on feed activity
@@ -127,21 +118,21 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
     class FeedAdapter(private var activities: MutableList<FeedModel.FeedActivityFormatted>,
                       private val context: Context) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
-
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedAdapter.ViewHolder {
+
             val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent,false)
             return FeedAdapter.ViewHolder(view)
-
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
             holder.bindView(activities[position], context)
         }
 
         override fun getItemCount(): Int {
+
             return this.activities.size
         }
-
 
         /**
          * Function that updates the entire set o Formatted Feed Activites on list
@@ -149,6 +140,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
          * @param newActivities MutableList of elements to be displayed
          */
         fun updateActivities(newActivities: MutableList<FeedModel.FeedActivityFormatted>) {
+
             this.activities = newActivities
             this.notifyDataSetChanged()
         }
@@ -170,9 +162,8 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
             notifyItemChanged(indexOfActivityToChange)
         }
 
-
         /**
-         * View Holder Class to control itens that will show on Recycler view
+         * View Holder Class to control itens that will be shown on Recycler view
          *
          * @property itemView View that contains properties to show on recycler view
          */
@@ -206,9 +197,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
                     (context as FeedView).goToLikesList()
                 }
-
             }
-
         }
     }
 }

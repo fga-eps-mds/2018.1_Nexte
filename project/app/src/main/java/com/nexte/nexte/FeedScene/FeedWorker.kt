@@ -1,12 +1,7 @@
 package com.nexte.nexte.FeedScene
 
-import com.nexte.nexte.MainActivity
-import com.nexte.nexte.R
-import java.util.*
-import kotlin.collections.ArrayList
-
 /**
- * Class responsible to do request for anywhere, format response and
+ * Class responsible to do request for anywhere, format Response and
  * call completion to send data for called class
  */
 class FeedWorker {
@@ -14,8 +9,8 @@ class FeedWorker {
     /**
      * Function to fetch feed data of server
      *
-     * @param request Feed model request that contains need information to send for server
-     * @param completion Method for call on parent class
+     * @param request Feed model request that contains needed informations to send to server
+     * @param completion Method to call on parent class
      */
     fun fetchFeedData(request: FeedModel.GetFeedActivities.Request,
                       completion: (FeedModel.GetFeedActivities.Response) -> Unit) {
@@ -25,7 +20,7 @@ class FeedWorker {
 
     /**
      * Function that receives the unformattedActivity from Interactor and sends it
-     * unformatted Activity to presenter as a completion, after calling the function to add
+     * unformatted Activity to Presenter as a completion, after calling the function to add
      * or remove users from likes list
      *
      * @param request String as the identifier to find the activity to be altered
@@ -42,6 +37,4 @@ class FeedWorker {
 
         completion(updatedActivity)
     }
-
-
 }
