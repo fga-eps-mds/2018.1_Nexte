@@ -7,7 +7,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="vertical"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#2E2E2E">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -34,6 +35,7 @@
             android:layout_marginTop="44dp"
             android:text="username"
             android:textSize="21sp"
+            android:textColor="#ffff"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +47,7 @@
             android:layout_marginTop="36dp"
             android:text="#Ranking"
             android:textSize="30sp"
+            android:textColor="#ffff"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -55,7 +58,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
             android:text="Clube:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/ageLabel"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +72,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="E-mail:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ageLabel"
@@ -82,7 +85,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Idade:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/emailLabel"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +99,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="10dp"
             android:text="clubName"
+            android:textColor="#aaaaaa"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/clubLabel"
@@ -110,6 +114,7 @@
             android:layout_marginStart="10dp"
             android:text="email"
             android:textSize="18sp"
+            android:textColor="#aaaaaa"
             app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/emailLabel" />
@@ -123,6 +128,7 @@
             android:inputType="numberSigned"
             android:text="age"
             android:textSize="18sp"
+            android:textColor="#aaaaaa"
             app:layout_constraintBottom_toBottomOf="@+id/ageLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ageLabel" />
@@ -144,7 +150,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Senha:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/emailLabel"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,6 +164,7 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPassword"
+            android:textColor="#aaaaaa"
             app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/passwordLabel" />
@@ -169,7 +176,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Confirma:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/passwordLabel"
             app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/passwordLabel" />

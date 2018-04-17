@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha="1"
-    tools:context="com.nexte.nexte.FeedScene.FeedView">
+    tools:context="com.nexte.nexte.FeedScene.FeedView"
+    android:background="#2E2E2E">
 
     <ListView
         android:id="@+id/historyListView"
