@@ -2,14 +2,14 @@ package com.nexte.nexte.FeedScene
 
 /**
  * Interface to define Presentation Logic to Feed Class that
- * will used to call this Interactor on other class layer
+ * will be used to call this Interactor on other class layer
  */
 interface FeedPresentationLogic {
 
     /**
      * Method responsible to format feed data and send for view
      *
-     * @param response Feed model response containing unformatted data received [FeedModel]
+     * @param response It's feed model response containing unformatted data received [FeedModel]
      */
     fun formatFeed(response: FeedModel.GetFeedActivities.Response)
 

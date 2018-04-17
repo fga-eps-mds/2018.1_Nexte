@@ -1,19 +1,31 @@
 package com.nexte.nexte.LoginScene
 
-/**
- * Created by miguelpimentel on 24/03/18.
- */
+import com.nexte.nexte.FeedScene.FeedModel
+import com.nexte.nexte.FeedScene.FeedView
 
+/**
+ * Interface to define Presentation Logic to Login Class that
+ * will be used to call this Interactor on other class layer
+ */
 interface LoginPresentationLogic {
 
+    /**
+     * Method responsible to format feed data and send for view
+     *
+     * @param response It's login model response containing unformatted data
+     * received [LoginModel]
+     */
     fun presentLogin(response: LoginModel.Response)
 }
 
-class LoginPresenter: LoginPresentationLogic {
 
-    var viewControler: LoginDisplayLogic? = null // Reference to view
+/**
+ * Class needed to format response for data can be displayed on activity
+ *
+ * @property viewScene Reference to the activity where data will be displayed [LoginView]
+ */
+class LoginPresenter(var viewScene: LoginDisplayLogic? = null): LoginPresentationLogic {
 
-    // Format data to expected
     override fun presentLogin(response: LoginModel.Response) {
 
         var message: String
@@ -26,6 +38,6 @@ class LoginPresenter: LoginPresentationLogic {
         }
 
         val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
-        this.viewControler?.displayAuthenticateState(viewModel)
+            this.viewScene?.displayAuthenticateState(viewModel)
     }
 }
