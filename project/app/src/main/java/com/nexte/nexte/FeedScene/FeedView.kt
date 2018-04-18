@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 
 /**
- * Interface to define Display Logic to FeedView Class that will that will
- * receive information from Presenter
+ * Interface to define Display Logic to FeedView Class that will receive information
+ * from Presenter
  */
 interface FeedDisplayLogic {
 
@@ -36,7 +36,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
     var feedViewAdapter: FeedAdapter? = null
 
     /**
-     * On Create method that will setup this scene and call first Request for Interactor.
+     * On Create is a method that will setup this scene and call first Request for Interactor
      *
      * @param savedInstanceState
      */

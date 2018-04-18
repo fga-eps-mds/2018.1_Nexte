@@ -1,13 +1,13 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Interface to define Business Logic to Feed Class
- * that will used to call this Interactor on other class layer
+ * Interface to define Business Logic of Feed Class
+ * that will be used to call this Interactor on other class layer
  */
 interface FeedBusinessLogic {
 
     /**
-     * Method that defines fetch feed informations that will be responsible to
+     * Method that defines fetch feed information that will be responsible to
      * pass the request to Worker and send the response to Presenter
      *
      * @param request Request model of feed that contains data to pass for Worker
