@@ -140,6 +140,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:text="Atualizar"
+            android:textColor="#ffffff"
+            android:background="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordConfirmationTextEdit" />
 

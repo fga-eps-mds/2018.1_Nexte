@@ -7,6 +7,7 @@
     tools:context=".RankingScene.RankingView"
     android:background="#2E2E2E">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rankingRecyclerView"
         android:layout_width="0dp"
