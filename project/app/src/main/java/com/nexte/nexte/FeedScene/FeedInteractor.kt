@@ -26,7 +26,7 @@ interface FeedBusinessLogic {
 
 /**
  * Class that implements [FeedBusinessLogic] and is responsible for the communication
- * between worker and presenter
+ * between Worker and Presenter
  *
  * @property worker Reference to worker [FeedWorker]
  * @property presenter Reference to presenter [FeedPresenter]

@@ -33,8 +33,11 @@ class LikeListWorker {
             val player3 = LikeListModel.Players("Letícia", R.mipmap.ic_launcher, String())
             val player4 = LikeListModel.Players("Larissa", R.mipmap.ic_launcher, String())
 
-            val addPlayers: MutableList<LikeListModel.Players> = mutableListOf(player1, player2,
-                                                                 player3, player4)
+            val addPlayers: MutableList<LikeListModel.Players> = mutableListOf(
+                    player1,
+                    player2,
+                    player3,
+                    player4)
             return addPlayers
             }
         }

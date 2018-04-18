@@ -17,7 +17,7 @@ class LoginModel {
     class Request(var userName: String, var password: String)
 
     /**
-     * Class responsible to store received informations of worker to pass for Presenter
+     * Class responsible to store received information of worker to pass for Presenter
      *
      * @property tokenId variable that contains the user's personal data in the system and
      * validates them in the application
@@ -25,9 +25,10 @@ class LoginModel {
     class Response(var tokenId: String)
 
     /**
-     * Class responsible to define how the list view will display the formatted data, passed to view
+     * Class responsible to define how the list view will display the formatted data,
+     * passed to view
      *
-     * @property message that hold informations to show in screen if login was sucessful or not
+     * @property message hold information to show in screen if login was successful or not
      */
     class ViewModel(var message: String)
 }

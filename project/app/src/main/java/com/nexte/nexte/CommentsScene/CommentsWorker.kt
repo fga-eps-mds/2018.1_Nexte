@@ -9,7 +9,7 @@ class CommentsWorker {
     /**
      * Function to get comments data of server
      *
-     * @param request comments model request that contains needed informations to send to server
+     * @param request Comments model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
     fun getCommentsData (request: CommentsModel.Request,

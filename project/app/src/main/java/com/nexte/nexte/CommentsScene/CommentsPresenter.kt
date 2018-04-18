@@ -7,7 +7,7 @@ package com.nexte.nexte.CommentsScene
 interface CommentsPresentationLogic {
 
     /**
-     * Method responsible to format feed data and send to view
+     * Method responsible to format comments data and send to view
      *
      * @param response contains unformatted data received from [CommentsModel]
      */
@@ -17,7 +17,8 @@ interface CommentsPresentationLogic {
 /**
  * Class needed to format response so the data can be displayed on activity
  *
- * @property viewController Reference to the activity where data will be displayed on view
+ * @property viewController Reference to the activity where data will be displayed
+ * on view
  */
 class CommentsPresenter : CommentsPresentationLogic {
     var viewController: CommentsDisplayLogic? = null
