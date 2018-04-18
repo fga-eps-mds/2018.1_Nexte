@@ -11,11 +11,12 @@
         android:id="@+id/rankingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
         android:background="@android:color/black"
         android:text="Ver Ranking"
         android:textColor="#ffffff"
-        app:layout_constraintTop_toTopOf="@+id/showProfileButton"
-        tools:layout_editor_absoluteX="305dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/showProfileButton" />
 
     <Button
         android:id="@+id/showProfileButton"
@@ -29,7 +30,7 @@
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="1.0" />
@@ -38,11 +39,12 @@
         android:id="@+id/feedButton"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:background="@android:color/black"
         android:text="Feed de Atividades"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="@+id/showProfileButton"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
