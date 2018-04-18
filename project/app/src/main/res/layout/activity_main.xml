@@ -14,14 +14,15 @@
         android:background="@android:color/black"
         android:text="Ver Ranking"
         android:textColor="#ffffff"
-        tools:layout_editor_absoluteX="305dp"
-        tools:layout_editor_absoluteY="539dp" />
+        app:layout_constraintTop_toTopOf="@+id/showProfileButton"
+        tools:layout_editor_absoluteX="305dp" />
 
     <Button
         android:id="@+id/showProfileButton"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/black"
         android:elevation="0dp"
         android:text="Perfil"
@@ -29,7 +30,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.594"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/feedButton"
@@ -38,15 +41,19 @@
         android:background="@android:color/black"
         android:text="Feed de Atividades"
         android:textColor="#ffffff"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="539dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/showProfileButton"
+        tools:layout_editor_absoluteX="16dp" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="372dp"
         android:layout_height="314dp"
-        app:srcCompat="@mipmap/ic_launcher_foreground"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="98dp" />
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
 
 </android.support.constraint.ConstraintLayout>
