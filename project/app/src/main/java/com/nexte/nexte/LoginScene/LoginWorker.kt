@@ -16,7 +16,7 @@ class LoginWorker {
 
         val password = request.password
         val username = request.userName
-        var token: String
+        val token: String
 
         if (username.equals("miguelpimentel") && password.equals("123456")) {
             token = "sd723gs261g2sv1234ss"
