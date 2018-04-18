@@ -24,7 +24,7 @@ interface RankingDisplayLogic {
 /**
  * Class that implements [RankingDisplayLogic]
  *
- * @property interactor
+ * @property interactor responsible to receive request and send it to worker
  */
 class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
@@ -76,8 +76,8 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     /**
      * Class responsible to expand user information on click
      *
-     * @property playerInformation list of formatted information
-     * @property context
+     * @property playerInformation List of formatted information
+     * @property context Context that will show this adapter
      */
     class RankingAdapter(private val playerInformation: List<RankingModel.FormattedPlayerInfo>,
                          private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -87,8 +87,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         /**
          * Method called on view holder creation
          *
-         * @param parent
-         * @param viewType
+         * @param parent cell not expanded
+         * @param viewType condition to know which layout will be used
+         * (parent or child, expanded or not)
          */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -101,9 +102,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         }
 
         /**
-         * Method responsible to set the view holder
+         * Method responsible to set the view holder and expand player cell
          *
-         * @param holder will expand user information
+         * @param holder reuses the same cell to display another player information
          */
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
 
@@ -146,7 +147,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         }
 
         /**
-         * Class that updates screen
+         * Class that shows user information on an expanded cell
          */
         inner class ItemHolder(v: View): RecyclerView.ViewHolder(v) {
 
