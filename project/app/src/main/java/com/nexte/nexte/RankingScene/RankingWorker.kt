@@ -1,22 +1,30 @@
 package com.nexte.nexte.RankingScene
 
 import com.nexte.nexte.R
-import java.util.*
-
-
 
 /**
- * Created by albino on 02/04/18.
+ * Class responsible to do request for anywhere, format Response and
+ * call completion to send data for called class
  */
-
 class RankingWorker {
 
+    /**
+     * Function to get users in rank
+     *
+     * @param request Ranking Model Request that contains need information to send for server
+     * @param completion Method to call on parent class
+     */
     fun getUsersInRanking(request: RankingModel.Request, completion: (RankingModel.Response) -> Unit) {
         val response = RankingModel.Response(this.generateRankingMockData())
 
         completion(response)
     }
 
+    /**
+     * Method for create initial mocker data to use in fictional app mode of ranking scene
+     *
+     * @return a array of users on ranking
+     */
     private fun generateRankingMockData(): Array<RankingModel.Player> {
 
         val userRanking1 = RankingModel.Player("Helena", R.mipmap.ic_launcher, 10, 0, 1)

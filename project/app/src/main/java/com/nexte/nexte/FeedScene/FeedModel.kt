@@ -3,7 +3,7 @@ package com.nexte.nexte.FeedScene
 import java.util.*
 
 /**
- * Class to define the Model of Feed Scene to send informations between layers
+ * Class to define the Model of Feed Scene to send information between layers
  */
 class FeedModel {
 

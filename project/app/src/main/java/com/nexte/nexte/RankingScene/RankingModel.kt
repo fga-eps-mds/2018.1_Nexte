@@ -1,28 +1,64 @@
 package com.nexte.nexte.RankingScene
 
-import android.content.Context
-import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
-import android.widget.ListView
-
 /**
- * Created by albino on 02/04/18.
+ * Class to define the Model of Ranking Scene to send information about players position
+ * on rank. It contains [Request],  * [Response] and [ViewModel] classes to be used on the flow
+ * of getting players and setting details about their wins and losses
  */
-
 class RankingModel {
 
+    /**
+     * Class responsible to pass data from View to Interactor and then to worker,
+     * so it can request data
+     */
     class Request
 
+    /**
+     * Class responsible to store received informations from Worker and pass it to Presenter
+     *
+     * @property players it's a array of all Players
+     */
     class Response(var players: Array<Player>)
 
+    /**
+     * Class responsible to define how the list view will display the formatted data
+     * passed to view
+     *
+     * @property formattedPlayers it's a list that hold information on the
+     * right way to show in screen
+     */
     class ViewModel(var formattedPlayers: List<FormattedPlayerInfo> )
 
+
+    /**
+     * Class responsible to define personal data of all players
+     *
+     * @property name it's the name of the player
+     * @property pictureURL it's the photo of the player
+     * @property wins are all the games won by the player
+     * @property losses are all the games lost by the player
+     * @property rankPosition it's the position of the player on the rank
+     */
     class Player(var name: String, var pictureURL: Int, var wins: Int, var losses: Int,
                         var rankPosition: Int)
 
+    /**
+     * Class responsible to define format players information
+     *
+     * @property player it's the player
+     * @property shouldDrawChild
+    */
     class FormattedPlayerInfo(var player: FormattedPlayer,
                               var shouldDrawChild: Boolean)
-
+    /**
+     * Class responsible to format all the params of Player considering how they gonna
+     * be show on screen
+     * @property userName it's the name of the player presented as a String
+     * @property userPictureURL it's the photo of the player presented as a int format
+     * @property userWins are all the games won by the player presented as a String
+     * @property userLosses are all the games lost by the player presented as a String
+     * @property userRankPosition it's the position of the player on the rank presented as a String
+     */
     class FormattedPlayer(var userName: String,
                                    var userPictureURL: Int,
                                    var userWins: String,
