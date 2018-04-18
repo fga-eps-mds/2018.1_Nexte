@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
         val viewController = this
         var date = Date(20)
-        val interactor = LoginIteractor()
+        val interactor = LoginInteractor()
         val presenter = LoginPresenter()
 
         viewController.loginInteractor = interactor

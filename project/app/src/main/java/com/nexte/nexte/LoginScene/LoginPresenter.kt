@@ -15,13 +15,12 @@ interface LoginPresentationLogic {
     fun presentLogin(response: LoginModel.Response)
 }
 
-
 /**
  * Class needed to format response for data can be displayed on activity
  *
- * @property viewScene Reference to the activity where data will be displayed [LoginView]
+ * @property viewController Reference to the activity where data will be displayed on View
  */
-class LoginPresenter(var viewScene: LoginDisplayLogic? = null): LoginPresentationLogic {
+class LoginPresenter(var viewController: LoginDisplayLogic? = null): LoginPresentationLogic {
 
     override fun presentLogin(response: LoginModel.Response) {
 
@@ -35,6 +34,6 @@ class LoginPresenter(var viewScene: LoginDisplayLogic? = null): LoginPresentatio
         }
 
         val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
-            this.viewScene?.displayAuthenticateState(viewModel)
+            this.viewController?.displayAuthenticateState(viewModel)
     }
 }
