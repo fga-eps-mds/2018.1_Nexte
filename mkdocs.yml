@@ -18,6 +18,7 @@ pages:
     - Arquitetura de Microserviços: EPS/ArquiteturaMicroservicos.md
     - Gestão de Risco: EPS/GestaoDeRisco.md
     - Definição de Produtividade: EPS/DefinicaoDeProdutividade.md
+    - Canvas: EPS/Canvas.md
     - Plano de Qualidade:
       - Abtraction Sheet: EPS/PlanoDeQualidade/AbstractionSheet.md
       - GQM: EPS/PlanoDeQualidade/GQM.md
@@ -48,3 +49,5 @@ pages:
     - Resultado: Sprints/Sprint4/Sprint4-Resultados.md
   - Sprint 5:
     - Planejamento: Sprints/Sprint5/Sprint5-Planejamento.md
+  - Sprint 6:
+    - Planejamento: Sprints/Sprint6/Sprint6-Planejamento.md
