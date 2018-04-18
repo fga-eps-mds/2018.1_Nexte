@@ -4,13 +4,15 @@ import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.Player
 
 /**
- * This class verifies if the logged user is valid and return the user information as response
+ * This class verifies if the logged user is valid and return the user information as response.
+ * She format Response and call completion to send data for called class
  */
+
 class ShowProfileWorker {
 
     /**
      * Method responsible to get the [ShowProfileModel.Request] with data to be validated
-     * and generate an [ShowProfileModel.Response] with user information.
+     * and generate an [ShowProfileModel.Response] with user information
      *
      * @param request Contains the username and TokenID that will be used to recover the user
      * @param completion Unformatted activity sent to Interactor

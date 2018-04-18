@@ -1,9 +1,12 @@
 package com.nexte.nexte.ShowProfileScene
 
 /**
- * This interface will define methods used to format player data and send it to [ShowProfileView]
+ * Interface to define Presentation Logic to Show Profile Class that
+ * will be used to call this Interactor on other class layer
  */
+
 interface ShowProfilePresentationLogic {
+
     /**
      * Method responsible to present profile data
      *

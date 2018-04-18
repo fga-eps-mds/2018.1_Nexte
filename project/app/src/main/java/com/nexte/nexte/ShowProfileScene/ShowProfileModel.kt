@@ -5,7 +5,7 @@ import com.nexte.nexte.Player
 /**
  * Class to define Model of ShowProfile Scene to enable the access to users
  * This class declares the [Request], [Response], [ViewModel] and [Player],
- * informations that will define what will be passed between classes
+ * information that will define what will be passed between classes
  */
 class ShowProfileModel {
 
@@ -19,11 +19,11 @@ class ShowProfileModel {
     class Request(var username: String, var tokenID: String)
 
     /**
-     * Class responsible to store received informations of worker to pass for Presenter
+     * Class responsible to store received information of worker to pass for Presenter
      *
      * @property user variable that return the attributes of player after the validation step
      **/
-    class Response(var user: Player?) // User returned after validation
+    class Response(var user: Player?)
 
     /**
      * Class responsible to define how the list view will display the formatted data, passed to view
