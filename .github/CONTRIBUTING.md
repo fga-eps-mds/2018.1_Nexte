@@ -91,9 +91,9 @@ Neste projeto é utilizada a ferramenta **Detekt** para análise estática de c�
 **Parametros**
 
 * Quantidade de linhas por método
-    * máximo 50 linhas 
+    * máximo 30 linhas 
 * Quantidade de métodos por classe
-    * 50 métodos por classe
+    * 30 métodos por classe
 * Adequação à folha de estilo
     * ser totalmente condizente com a folha de estilo
 * Complexidade ciclomática
