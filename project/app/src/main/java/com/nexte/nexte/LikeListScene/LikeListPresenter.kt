@@ -1,8 +1,5 @@
 package com.nexte.nexte.LikeListScene
 
-import kotlinx.android.synthetic.main.row_feed.view.*
-import kotlinx.android.synthetic.main.row_ranking.view.*
-
 /**
  * Interface to define Presentation Logic to LikeList Class that will be used
  * to call this Interactor on other class layer
@@ -10,7 +7,7 @@ import kotlinx.android.synthetic.main.row_ranking.view.*
 interface LikeListPresentationLogic {
 
     /**
-     * Method responsible to format feed data and send for view
+     * Method responsible to format like list data and send for view
      *
      * @param response
      */
@@ -39,19 +36,18 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
      * @param likePlayers MutableList of unformatted players
      * @return MutableList of formatted players
      */
-
     private fun formatPlayers(likePlayers: MutableList<LikeListModel.Players>):
             MutableList<LikeListModel.PlayersFormatted> {
 
         val playersFormatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
 
     for (likePlayer in likePlayers) {
-        val likeplayerformatted = LikeListModel.PlayersFormatted(
+        val likePlayerFormatted = LikeListModel.PlayersFormatted(
                 likePlayer.name,
                 likePlayer.photo,
                 likePlayer.time)
 
-        playersFormatted.add(likeplayerformatted)
+        playersFormatted.add(likePlayerFormatted)
     }
 
             return playersFormatted

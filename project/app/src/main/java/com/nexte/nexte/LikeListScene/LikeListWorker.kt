@@ -8,7 +8,7 @@ import com.nexte.nexte.R
 class LikeListWorker {
 
     /**
-     * Function to fetch feed data of server
+     * Function to fetch like list data of server
      *
      * @param request
      * @param completion
@@ -22,7 +22,7 @@ class LikeListWorker {
     }
 
     /**
-     * Function to create a fictions users to use in fictional app mode
+     * Function to create fictions users to be use in fictional app mode
      *
      * @return MutableList of addPLayers
      */

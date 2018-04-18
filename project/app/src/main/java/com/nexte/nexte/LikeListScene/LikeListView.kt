@@ -24,7 +24,7 @@ interface LikeListDisplayLogic {
  * Class that implements [LikeListDisplayLogic] and is responsible to control
  * like list screen
  *
- * @property interactor Interactor layer for send requests [LikeListInteractor]
+ * @property interactor it's a Interactor layer for sending requests [LikeListInteractor]
  */
 class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
 
@@ -73,7 +73,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     /**
      * Adapter Class to control recycler view on ListLike
      *
-     * @property listOfPlayers is a list of all players
+     * @property listOfPlayers it's a list of all players
      * @property context Context that will show this adapter
      */
     class LikesListAdapter(private val listOfPlayers: MutableList<LikeListModel.PlayersFormatted>,
