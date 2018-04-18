@@ -12,14 +12,29 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 
+/**
+ * Interface responsible to define methods used to get user information data
+ * from presenter and display it
+ */
 interface RankingDisplayLogic {
+
     fun displayRankInScreen(viewModel: RankingModel.ViewModel)
 }
 
+/**
+ * Class that implements [RankingDisplayLogic]
+ *
+ * @property interactor
+ */
 class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
     var interactor: RankingInteractor? = null
 
+    /**
+     * Method called on scene creation
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -34,6 +49,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         interactor?.getPlayersRanksForScene(request)
     }
 
+    /**
+     * Method responsible to set the ranking information on screen
+     */
     private fun setupRankingScene(){
 
         val view = this
@@ -45,35 +63,60 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         presenter.viewScene = view
     }
 
+    /**
+     * Method responsible to get user information and display it
+     *
+     * @param viewModel contains formatted player data
+     */
     override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
 
         rankingRecyclerView.adapter = RankingAdapter(viewModel.formattedPlayers, this)
     }
 
+    /**
+     * Class responsible to expand user information on click
+     *
+     * @property playerInformation list of formatted information
+     * @property context
+     */
     class RankingAdapter(private val playerInformation: List<RankingModel.FormattedPlayerInfo>,
                          private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         var expandedId = -1
 
-        override fun onCreateViewHolder (parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
+        /**
+         * Method called on view holder creation
+         *
+         * @param parent
+         * @param viewType
+         */
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
             val inflater = LayoutInflater.from(context)
-            var view: View? = null
+            val view: View?
 
             view = inflater.inflate(R.layout.row_ranking, parent, false)
 
             return ItemHolder(view!!)
-
         }
 
+        /**
+         * Method responsible to set the view holder
+         *
+         * @param holder will expand user information
+         */
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-            val  itemHolder = holder as? ItemHolder
+
+            val itemHolder = holder as? ItemHolder
             val item = playerInformation[position]
 
             itemHolder?.itemView?.setOnClickListener {
                 if(expandedId >= 0) {
                     notifyItemChanged(expandedId)
                 }
+
                 item.shouldDrawChild = expandedId != itemHolder.layoutPosition
+
                 if(item.shouldDrawChild) {
                     expandedId = itemHolder.layoutPosition
                 } else {
@@ -92,23 +135,26 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             } else {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
-
-
-
         }
 
+        /**
+         * Method responsible to return size of ranking
+         */
         override fun getItemCount(): Int {
+
             return this.playerInformation.size
         }
 
+        /**
+         * Class that updates screen
+         */
         inner class ItemHolder(v: View): RecyclerView.ViewHolder(v) {
+
             var nameText = v.name
             var rankingText = v.position
             var victory = v.victory
             var losses = v.losses
-
             var expandedView = v.expandedView
         }
-
     }
 }

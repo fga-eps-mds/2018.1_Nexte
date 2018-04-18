@@ -36,11 +36,13 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusines
     val worker: FeedWorker = FeedWorker()
 
     override fun fetchFeed(request: FeedModel.GetFeedActivities.Request) {
+
         worker.fetchFeedData { response -> presenter?.formatFeed(response)
         }
     }
 
     override fun fetchLikes(request: FeedModel.LikeAndUnlike.Request) {
+
         worker.manageLikes(request) { response ->
             presenter?.updateViewActivity(response)
         }

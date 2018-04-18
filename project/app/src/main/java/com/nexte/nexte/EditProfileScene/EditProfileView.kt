@@ -11,7 +11,8 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
 /**
- * Interface responsible to define methods used to get user information data from presenter and display it
+ * Interface responsible to define methods used to get user information data
+ * from presenter and display it
  */
 interface ShowProfileToEditDisplayLogic {
 
@@ -19,7 +20,8 @@ interface ShowProfileToEditDisplayLogic {
 }
 
 /**
- * Interface responsible to define methods used to get error message from presenter and display it
+ * Interface responsible to define methods used to get error message
+ * from presenter and display it
  */
 interface EditProfileDisplayLogic {
 
@@ -29,10 +31,12 @@ interface EditProfileDisplayLogic {
 /**
  * Class that implements [ShowProfileToEditDisplayLogic] and [EditProfileDisplayLogic]
  *
- * @property getUserInformationInteractor
- * @property editUserInformationInteractor
+ * @property getUserInformationInteractor get user information from interactor
+ * @property editUserInformationInteractor edit user information from interactor
  */
-class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, EditProfileDisplayLogic {
+class EditProfileView : AppCompatActivity(),
+                        ShowProfileToEditDisplayLogic,
+                        EditProfileDisplayLogic {
 
     private var getUserInformationInteractor: GetProfileToEditBusinessLogic? = null
     private var editUserInformationInteractor: EditProfileBusinessLogic? = null
@@ -43,17 +47,17 @@ class EditProfileView : AppCompatActivity(), ShowProfileToEditDisplayLogic, Edit
     private class PasswordWatcher(var view: EditProfileView) : TextWatcher {
 
         /**
-         * AfterTextChanged method does nothing
+         * This method does nothing but is necessary
          */
         override fun afterTextChanged(s: Editable?) {}
 
         /**
-         * BeforeTextChanged method does nothing
+         * This method does nothing but is necessary
          */
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         /**
-         * OnTextChanged method validates and setup the new password
+         * Method that validates and setup the new password
          */
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
