@@ -41,7 +41,7 @@ class EditProfileModel {
         //--------------------- Aux classes ---------------------
 
         /**
-         * Class responsible to holds formatted player information ceded by [EditProfilePresenter]
+         * Class responsible to hold formatted player information ceded by [EditProfilePresenter]
          * @property username Name of the logged user
          * @property ranking Ranking of the logged user
          * @property club Club of the logged user

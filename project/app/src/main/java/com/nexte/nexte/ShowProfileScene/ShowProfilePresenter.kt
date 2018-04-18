@@ -16,9 +16,8 @@ interface ShowProfilePresentationLogic {
  * This class will be responsible to receive a [ShowProfileModel.Response]
  * and generate a [ShowProfileModel.ViewModel], sending it to the [ShowProfileView]
  *
- * @property viewScene Reference for the viewScene responsible to display formatted data
+ * @property viewScene Reference to display formatted data
  */
-
 class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     var viewScene : ShowProfileDisplayLogic? = null

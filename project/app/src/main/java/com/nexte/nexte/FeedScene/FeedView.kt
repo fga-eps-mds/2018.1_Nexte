@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 
 /**
- * Interface to define Display Logic to FeedView Class that will be used received call of Presenter
+ * Interface to define Display Logic to FeedView Class that will that will
+ * receive information from Presenter
  */
 interface FeedDisplayLogic {
 

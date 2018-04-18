@@ -11,16 +11,16 @@ class FeedModel {
      * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
      * flow of getting the scene started and to get the information from FeedMocker data
      */
-
     class GetFeedActivities {
 
         /**
-         * Class responsible to pass data from View to Interactor and then to worker, so it can request data.
+         * Class responsible to pass data from View to Interactor and then to worker,
+         * so it can request data
          */
         class Request
 
         /**
-         * Class responsible to store received informations from Worker and pass to Presenter
+         * Class responsible to store received informations from Worker and pass it to Presenter
          *
          * @property feedActivities MutableList that hold informations to show in screen
          */
@@ -32,14 +32,12 @@ class FeedModel {
          * @property feedActivities MutableList that hold informations to show in screen
          */
         class ViewModel(var feedActivities: MutableList<FeedActivityFormatted>)
-
     }
 
     /**
      * Class containing [Request], [Response] and [ViewModel] classes to be used on the activity
      * flow of allowing an user
      */
-
     class LikeAndUnlike {
 
         /**
@@ -62,11 +60,9 @@ class FeedModel {
          * @property formattedLikedActivities activity already altered and ready to display on screen
          */
         class ViewModel(var formattedLikedActivities: FeedActivityFormatted)
-
     }
 
     // --------- Aux classes ---------
-
 
     /**
      * Class for players in feed that contains just needed data
@@ -86,8 +82,7 @@ class FeedModel {
      */
     class FeedChallenge(var challenger: FeedPlayer,
                         var challenged: FeedPlayer,
-                        var challengeDate: Date
-                        )
+                        var challengeDate: Date)
 
     /**
      * Class that contains informations about activity to show in feed screen

@@ -11,14 +11,13 @@ import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import com.nexte.nexte.R
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic,
                      ChallengeDisplayLogic, CommentsDisplayLogic {
 
     var loginInteractor: LoginBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
-    var challengeInteractor: ChallengeBussinessLogic? = null
+    var challengeInteractor: ChallengeBusinessLogic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -79,7 +78,7 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
         viewController.loginInteractor = interactor
         interactor.presenter = presenter
-        presenter.viewControler = viewController
+        presenter.viewController = viewController
     }
 
     // Print a message according with received data
