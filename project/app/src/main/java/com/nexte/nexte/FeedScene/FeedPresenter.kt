@@ -25,14 +25,14 @@ interface FeedPresentationLogic {
 /**
  * Class needed to format response for data can be displayed on activity
  *
- * @property viewScene Reference to the activity where data will be displayed [FeedView]
+ * @property viewController Reference to the activity where data will be displayed on [FeedView]
  */
-class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationLogic {
+class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
     override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
 
         val viewModel = FeedModel.GetFeedActivities.ViewModel(this.formatFeedActivities(response.feedActivities))
-        viewScene?.displayFeed(viewModel)
+        viewController?.displayFeed(viewModel)
     }
 
     override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
@@ -40,7 +40,7 @@ class FeedPresenter(var viewScene: FeedDisplayLogic? = null) : FeedPresentationL
         val viewModel = FeedModel.LikeAndUnlike.ViewModel(
                 this.formatFeedActivity(response.likedActivity))
 
-        viewScene?.updateLike(viewModel)
+        viewController?.updateLike(viewModel)
     }
 
     /**

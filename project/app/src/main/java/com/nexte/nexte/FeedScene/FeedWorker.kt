@@ -9,11 +9,10 @@ class FeedWorker {
     /**
      * Function to fetch feed data of server
      *
-     * @param request Feed model request that contains needed informations to send to server
      * @param completion Method to call on parent class
      */
-    fun fetchFeedData(request: FeedModel.GetFeedActivities.Request,
-                      completion: (FeedModel.GetFeedActivities.Response) -> Unit) {
+    fun fetchFeedData(completion: (FeedModel.GetFeedActivities.Response) -> Unit) {
+
         val response = FeedModel.GetFeedActivities.Response(FeedManager.feedList)
         completion(response)
     }
