@@ -1,23 +1,28 @@
 package com.nexte.nexte.CommentsScene
 
 /**
- * Created by leticia on 29/03/18.
+ * Class responsible to do request for anywhere, format Response and
+ * call completion to send data for called class
  */
-
-
 class CommentsWorker {
 
-
-    fun getCommentsData (request: CommentsModel.Request, completion: (CommentsModel.Response) -> Unit) {
+    /**
+     * Function to get comments data of server
+     *
+     * @param request comments model request that contains needed informations to send to server
+     * @param completion Method to call on parent class
+     */
+    fun getCommentsData (request: CommentsModel.Request,
+                         completion: (CommentsModel.Response) -> Unit) {
 
         val game = request.game
         val user = request.user
 
-        var comment = ""
-        var userName = ""
-        var linkUserProfilePicture = ""
-        var commentTime = ""
-        var like = false
+        val comment: String
+        val userName: String
+        val linkUserProfilePicture: String
+        val commentTime: String
+        val like: Boolean
 
         if(game.equals("Gandalf vs Saruman") && user.equals("Frodo_Bolseiro")) {
             comment = "Esse jogo foi digno da terra média"
@@ -32,8 +37,13 @@ class CommentsWorker {
             commentTime = ""
             like = false
         }
-        var response: CommentsModel.Response = CommentsModel.Response(comment, userName, linkUserProfilePicture,
-                                                                      commentTime, like)
+
+        val response: CommentsModel.Response = CommentsModel.Response(comment,
+                userName,
+                linkUserProfilePicture,
+                commentTime,
+                like)
+
         completion(response)
     }
 }

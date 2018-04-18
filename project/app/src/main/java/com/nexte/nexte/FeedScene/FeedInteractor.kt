@@ -36,8 +36,7 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusines
     val worker: FeedWorker = FeedWorker()
 
     override fun fetchFeed(request: FeedModel.GetFeedActivities.Request) {
-        worker.fetchFeedData(request) { response ->
-            presenter?.formatFeed(response)
+        worker.fetchFeedData { response -> presenter?.formatFeed(response)
         }
     }
 

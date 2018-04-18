@@ -1,51 +1,39 @@
 package com.nexte.nexte.CommentsScene
 
 /**
- * Created by leticia on 29/03/18.
- */
-
+* Class to define the Model of Feed Scene to send informations between layers
+*/
 class CommentsModel {
 
-    class Request {
+    /**
+    * Class responsible to pass data from View to Interactor and then to worker,
+    * so it can request data
+    *
+    * @property game which game the user commented at
+    * @property user which user commented
+    */
+    class Request(var game: String?,
+                  var user: String?)
 
-        var game: String? = null
-        var user: String? = null
+    /**
+     * Class responsible to store received informations from Worker and pass it to Presenter
+     *
+     * @property comment the user's comment
+     * @property userName the username of the user that commented
+     * @property linkUserProfilePicture the profile picture of the user
+     * @property commentTime the time of the comment
+     * @property like like option to the comment
+     */
+    class Response(var comment: String?,
+                   var userName: String?,
+                   var linkUserProfilePicture: String?,
+                   var commentTime: String?,
+                   var like: Boolean?)
 
-        constructor(game: String?, user: String?) {
-            this.game = game
-            this.user = user
-        }
-    }
-
-    class Response {
-
-        var comment: String? = null
-        var userName: String? = null
-        var linkUserProfilePicture: String? = null
-        var commentTime: String? = null
-        var like: Boolean? = null
-
-        constructor(comment: String?,
-                    userName: String?,
-                    linkUserProfilePicture: String?,
-                    commentTime: String?,
-                    like: Boolean?) {
-
-            this.comment = comment
-            this.userName = userName
-            this.linkUserProfilePicture = linkUserProfilePicture
-            this.commentTime = commentTime
-            this.like = like
-        }
-    }
-
-    class ViewModel {
-
-        var message: String? = null
-
-        constructor(message: String) {
-
-            this.message = message
-        }
-    }
+    /**
+     * Class responsible to define how message will display the formatted data passed to view
+     *
+     * @property message message that will be shown in te screen
+     */
+    class ViewModel(var message: String?)
 }

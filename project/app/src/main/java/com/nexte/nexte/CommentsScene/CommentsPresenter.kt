@@ -1,29 +1,38 @@
 package com.nexte.nexte.CommentsScene
 
 /**
- * Created by leticia on 29/03/18.
- */
-
+* Interface to define Presentation Logic to Comment Class that
+* will be used to call this Interactor on other class layer
+*/
 interface CommentsPresentationLogic {
 
+    /**
+     * Method responsible to format feed data and send to view
+     *
+     * @param response contains unformatted data received from [CommentsModel]
+     */
     fun presentComment(response: CommentsModel.Response)
 }
 
+/**
+ * Class needed to format response so the data can be displayed on activity
+ *
+ * @property viewController Reference to the activity where data will be displayed on view
+ */
 class CommentsPresenter : CommentsPresentationLogic {
     var viewController: CommentsDisplayLogic? = null
 
     override fun presentComment(response: CommentsModel.Response) {
-        var message: String
+        val message: String
         val comment: String? = response.comment
 
-        if(comment.equals("")) {
-            message = "Não há comentário"
-        } else {
-            message = "Um comentário existente"
+        message = when {
+            comment.equals("") -> "Não há comentário"
+            else -> "Um comentário existente"
         }
-        var viewModel : CommentsModel.ViewModel = CommentsModel.ViewModel(message)
+
+        val viewModel : CommentsModel.ViewModel = CommentsModel.ViewModel(message)
 
         viewController?.displayComments(viewModel)
     }
-
 }

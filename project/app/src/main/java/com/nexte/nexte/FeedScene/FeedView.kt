@@ -67,7 +67,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
-        presenter.viewScene = view
+        presenter.viewController = view
     }
 
     /**
