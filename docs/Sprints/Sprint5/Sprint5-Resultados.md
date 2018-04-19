@@ -87,7 +87,7 @@ Entretanto, a equipe estava acostumada a realizar de 75-80 pontos por sprint, e 
 ![Quadro de Conhecimento sprint 4](https://i.imgur.com/7XaE6gr.png)
 
 * **Sprint 5**
-![Quadro de Conhecimento sprint 5]()
+![Quadro de Conhecimento sprint 5](https://i.imgur.com/pvx1sbh.png)
 
 Houveram algumas melhoras, principalmente dos integrantes de MDS em relação a Kotlin, XML e Android Studio. Será prioridade para próximas sprints que os membros de MDS melhorem ainda mais seus conhecimentos nessas tecnolgias mas que também melhorem, principalmente, em relação aos testes unitários/instrumentação.
 
