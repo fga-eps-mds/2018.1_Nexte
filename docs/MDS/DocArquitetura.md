@@ -19,6 +19,7 @@
 | 23/03/2018| 0.8 | Adicionado diagrama de sequência | Lorrany Freire |
 | 24/03/2018| 1.0 | Correção de detalhes e remoção de tópicos que não serão abordados nesse documento. | Gabriel Albino |
 | 24/03/2018| 1.0.1| Correção do tópico 3.2 (Restrições de arquitetura). | Gabriel Albino, Letícia Meneses, Lorrany Freire |
+| 19/04/2018| 1.1| Adição dos novos diagramas de classe. | Gabriel Albino, Alexandre Miguel |
 
 ### Índice Analítico
 
