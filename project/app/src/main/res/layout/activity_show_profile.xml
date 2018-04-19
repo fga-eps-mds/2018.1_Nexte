@@ -7,7 +7,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="vertical"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#2E2E2E">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -33,6 +34,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="44dp"
             android:text="username"
+            android:textColor="#ffffff"
             android:textSize="21sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +46,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="36dp"
             android:text="#Ranking"
+            android:textColor="#ffffff"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -55,7 +58,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
             android:text="Clube:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/ageLabel"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +72,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="E-mail:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ageLabel"
@@ -83,7 +86,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Idade:"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/email"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +102,7 @@
             android:layout_marginTop="60dp"
             android:text="clubName"
             android:textSize="18sp"
+            android:textColor="#aaaaaa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/clubLabel"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -112,6 +116,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:text="email"
+            android:textColor="#aaaaaa"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/emailLabel"
@@ -126,6 +131,7 @@
             android:layout_marginTop="20dp"
             android:text="age"
             android:textSize="18sp"
+            android:textColor="#aaaaaa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ageLabel"
             app:layout_constraintTop_toBottomOf="@+id/clubLabel" />
@@ -137,6 +143,8 @@
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
             android:text="Editar"
+            android:textColor="#ffffff"
+            android:background="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

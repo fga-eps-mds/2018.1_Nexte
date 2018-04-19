@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="8dp">
-
     <TextView
         android:id="@+id/challangerDescription"
         android:layout_width="wrap_content"
@@ -14,6 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Desafiante"
+        android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="name"
+        android:textColor="#aaaaaa"
         app:layout_constraintStart_toEndOf="@+id/challengerPhoto"
         app:layout_constraintTop_toTopOf="@+id/challengerPhoto" />
 
@@ -43,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="N"
+        android:textColor="#ffffff"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -57,6 +59,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="Desafiado"
+        android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="name"
+        android:textColor="#aaaaaa"
         app:layout_constraintEnd_toStartOf="@+id/challengedPhoto"
         app:layout_constraintTop_toTopOf="@+id/challengedPhoto" />
 
@@ -88,6 +92,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="M"
+        android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/challengedPhoto"
@@ -103,6 +108,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="X"
+        android:textColor="#ffffff"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/challengedPhoto"
         app:layout_constraintEnd_toStartOf="@+id/challengedPhoto"
@@ -116,7 +122,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="22dp"
         android:text="Likes"
-        android:textColor="?attr/colorPrimaryDark"
+        android:textColor="#ffffff"
         android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/likesButton"
         app:layout_constraintTop_toBottomOf="@+id/challengedPhoto" />
