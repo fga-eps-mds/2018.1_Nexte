@@ -1,31 +1,98 @@
 package com.nexte.nexte.FeedScene
 
 /**
- * Created by larissa on 27/03/18.
+ * Interface to define Presentation Logic to Feed Class that
+ * will be used to call this Interactor on other class layer
  */
-
 interface FeedPresentationLogic {
 
-    fun presentLastGame(response: FeedModel.Response)
+    /**
+     * Method responsible to format feed data and send to view
+     *
+     * @param response contains unformatted data received from [FeedModel]
+     */
+    fun formatFeed(response: FeedModel.GetFeedActivities.Response)
+
+    /**
+     * Method responsible to format the updated Activity after the addition or removal
+     * of the like in likes list
+     *
+     * @param response Activity that needs to be altered for presentation on screen
+     */
+    fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response)
 }
 
-class FeedPresenter : FeedPresentationLogic {
+/**
+ * Class needed to format response for data can be displayed on activity
+ *
+ * @property viewController Reference to the activity where data will be displayed on [FeedView]
+ */
+class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
-    var viewController: FeedDisplayLogic? = null
+    override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
 
-    override fun presentLastGame(response: FeedModel.Response){
+        val viewModel = FeedModel.GetFeedActivities.ViewModel(
+                this.formatFeedActivities(response.feedActivities))
+        viewController?.displayFeed(viewModel)
+    }
 
-        var message: String = ""
-        var firstPlayer: String? = response.firstPlayer
-        var secondPlayer: String? = response.secondPlayer
+    override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
 
-        if (firstPlayer.equals("") || secondPlayer.equals("")) {
-            message = "Erro ao mostrar últimas partidas"
-        } else {
-            message = "Última partida recuperada com sucesso"
+        val viewModel = FeedModel.LikeAndUnlike.ViewModel(
+                this.formatFeedActivity(response.likedActivity))
+
+        viewController?.updateLike(viewModel)
+    }
+
+    /**
+     * Auxiliar function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     *
+     * @param activities MutableList of not formatted activities
+     * @return list of formatted activities
+     */
+    private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>):
+            MutableList<FeedModel.FeedActivityFormatted> {
+
+        val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
+
+        for (activity in activities) {
+            val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                    activity.identifier,
+                    activity.challenge.challenger.name,
+                    activity.challenge.challenger.photo,
+                    activity.challenge.challenger.set.toString(),
+                    activity.challenge.challenged.name,
+                    activity.challenge.challenged.photo,
+                    activity.challenge.challenged.set.toString(),
+                    activity.feedDate.toString(),
+                    activity.likes.size.toString())
+
+            feedActivitiesFormatted.add(feedActivityFormatted)
         }
 
-        val viewModel: FeedModel.ViewModel = FeedModel.ViewModel(message)
-        this.viewController?.displayRecentGames(viewModel)
+        return feedActivitiesFormatted
+    }
+
+    /**
+     * Auxiliary function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     *
+     * @param activity Unformatted activity
+     * @return Formatted activity
+     */
+    private fun formatFeedActivity(activity: FeedModel.FeedActivity):
+            FeedModel.FeedActivityFormatted {
+
+        val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                activity.identifier,
+                activity.challenge.challenger.name,
+                activity.challenge.challenger.photo,
+                activity.challenge.challenger.set.toString(),
+                activity.challenge.challenged.name,
+                activity.challenge.challenged.photo,
+                activity.challenge.challenged.set.toString(),
+                activity.feedDate.toString(),
+                activity.likes.size.toString())
+
+        return feedActivityFormatted
     }
 }

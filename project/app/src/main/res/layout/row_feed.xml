@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feedActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp">
+    <TextView
+        android:id="@+id/challangerDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Desafiante"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/challengerPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challangerDescription"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/challengerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="name"
+        android:textColor="#aaaaaa"
+        app:layout_constraintStart_toEndOf="@+id/challengerPhoto"
+        app:layout_constraintTop_toTopOf="@+id/challengerPhoto" />
+
+    <TextView
+        android:id="@+id/challengerSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="N"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/challengerPhoto"
+        app:layout_constraintEnd_toStartOf="@+id/versusTextView"
+        app:layout_constraintTop_toTopOf="@+id/challengerPhoto" />
+
+    <TextView
+        android:id="@+id/challangedDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Desafiado"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/challengedPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challangedDescription"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/challengedName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="name"
+        android:textColor="#aaaaaa"
+        app:layout_constraintEnd_toStartOf="@+id/challengedPhoto"
+        app:layout_constraintTop_toTopOf="@+id/challengedPhoto" />
+
+    <TextView
+        android:id="@+id/challengedSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="M"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/challengedPhoto"
+        app:layout_constraintStart_toEndOf="@+id/versusTextView"
+        app:layout_constraintTop_toTopOf="@+id/challengedPhoto" />
+
+    <TextView
+        android:id="@+id/versusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="X"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/challengedPhoto"
+        app:layout_constraintEnd_toStartOf="@+id/challengedPhoto"
+        app:layout_constraintStart_toEndOf="@+id/challengerPhoto"
+        app:layout_constraintTop_toTopOf="@+id/challengerPhoto" />
+
+    <TextView
+        android:id="@+id/numberOfLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="22dp"
+        android:text="Likes"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/likesButton"
+        app:layout_constraintTop_toBottomOf="@+id/challengedPhoto" />
+
+    <Button
+        android:id="@+id/likesButton"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="👍"
+        android:textColor="@android:color/background_light"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challengedPhoto"
+        tools:text="👍" />
+
+</android.support.constraint.ConstraintLayout>

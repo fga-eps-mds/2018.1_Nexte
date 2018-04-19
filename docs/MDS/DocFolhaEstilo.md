@@ -9,8 +9,9 @@
 | 29/03/2018 | 1.1.1 | Correções de design no documento | Gabriel Albino|
 | 31/03/2018 | 1.1.2 | Adição de tópico de nomeação de Interface e Model | Gabriel Albino e Larissa Sales|
 | 31/03/2018 | 1.1.3 | Melhoria na formatação do arquivo | Gabriel Albino e Larissa Sales|
-
-
+| 08/04/2018 | 1.1.4 | Alteração do tópico 3.3 | Gabriel Albino e Larissa Sales|
+| 13/04/2018 | 1.1.4 | Alteração das regras dos comentários e da model. | Gabriel Albino|
+| 13/04/2018 | 1.1.5 | Corrigido erros de formatação | Gabriel Albino|
 
 ### Índice Analítico
 
@@ -48,12 +49,12 @@
 
       * Certo:
 
-        ```kotlin
+        ```
             package PackageName
         ```
       * Errado:
 
-        ```kotlin
+        ```
           package package_name
         ```
 
@@ -64,12 +65,12 @@
 
     * Certo:
 
-      ```kotlin
+      ```
         class ClassName
       ```
     * Errado:
 
-      ```kotlin
+      ```
         class classname
       ```
 
@@ -79,13 +80,13 @@
 
     * Certo:
 
-      ```kotlin
-      class LoginModel
+      ```
+      	class LoginModel
       ```
     * Errado:
 
-      ```kotlin
-      class Model
+      ```
+      	class Model
       ```
 
 ### 1.3 Objetos
@@ -95,14 +96,14 @@
 
     * Certo:
 
-      ```kotlin
-      var objectName = ObjectClass()
+      ```
+      	var objectName = ObjectClass()
       ```
 
     * Errado:
 
-      ```kotlin
-      var objectname = ObjectClass()
+      ```
+      	var objectname = ObjectClass()
       ```
 
 ### 1.4 Interfaces
@@ -112,13 +113,13 @@
 
     * Certo:
 
-      ```kotlin
-      interface InterfaceName
+      ```
+      	interface InterfaceName
       ```
     * Errado:
 
-      ```kotlin
-      interface interfacename
+      ```
+      	interface interfacename
       ```
 
 2. Interfaces pertencentes à Presenter devem ser nomeadas com _'SceneName'PresentationLogic_
@@ -127,13 +128,13 @@
 
     * Certo:
 
-      ```kotlin
-      interface LoginPresentationLogic
+      ```
+      	interface LoginPresentationLogic
       ```
     * Errado:
 
-      ```kotlin
-      interface PresentationLogic
+      ```
+      	interface PresentationLogic
       ```
 
 3. Interfaces pertencentes à View devem ser nomeadas com _'SceneName'DisplayLogic_
@@ -142,13 +143,14 @@
 
     * Certo:
 
-      ```kotlin
-      interface LoginDisplayLogic
+      ```
+      	interface LoginDisplayLogic
       ```
 
     * Errado:
-      ```kotlin
-      interface DisplayLogic
+
+      ```
+      	interface DisplayLogic
       ```
 
 4. Interfaces pertencentes à interactor devem ser nomeadas com _'SceneName'BusinessLogic_
@@ -157,13 +159,14 @@
 
     * Certo:
 
-      ```kotlin
-      interface LoginBusinessLogic
+      ```
+      	interface LoginBusinessLogic
       ```
 
     * Errado:
-      ```kotlin
-      interface BusinessLogic_
+
+      ```
+      	interface BusinessLogic_
       ```
 
 ### 1.5 Métodos
@@ -173,14 +176,14 @@
 
     * Certo:
 
-      ```kotlin
-      fun methodName()
+      ```
+      	fun methodName()
       ```
 
     * Errado:
 
-      ```kotlin
-      fun Method_name()
+      ```
+      	fun Method_name()
       ```
 
 
@@ -191,14 +194,14 @@
 
     * Certo:
 
-      ```kotlin
-      fun method(attribute: String)
+      ```
+      	fun method(attribute: String)
       ```
 
     * Errado:
 
-      ```kotlin
-      fun method(Attribute_Example: String)
+      ```
+      	fun method(Attribute_Example: String)
       ```
 
 
@@ -208,14 +211,15 @@
     Ex.:
 
     * Certo:
-      ```kotlin
-      var variableExample
+
+      ```
+      	var variableExample
       ```
 
     * Errado:
 
-      ```kotlin
-      var Variable_Example
+      ```
+      	var Variable_Example
       ```
 
 
@@ -226,18 +230,19 @@
    Ex.:
 
     * Certo:
-      ```kotlin
-      class TestCase {
 
+    ```
+      class TestCase {
+      
       }
-      ```
+    ```
 
     * Errado:
 
-      ```kotlin
-      class test_case {
+      ```
+      	class test_case {
 
-      }
+      	}
       ```
 
 2. Classe de teste deverá ter o nome da classe a ser testada e deverá terminar com a palavra "Test", utilizando o padrão _upperCamelCase_
@@ -245,18 +250,19 @@
    Ex.:
 
     * Certo:
-      ```kotlin
-      class someClassTest {
 
-      }
+      ```
+      	class someClassTest {
+
+      	}
       ```
 
     * Errado:
 
-      ```kotlin
-      class someclasstest {
+      ```
+      	class someclasstest {
 
-      }
+      	}
       ```
 
 ## 2 Formatação e Estilo
@@ -267,16 +273,16 @@
 
     * Certo:
 
-      ```kotlin
-      class Formating_Example {
+      ```
+      	class Formating_Example {
 
-      }
+      	}
       ```
 
     * Errado:
 
-      ```kotlin
-      class Formating_Example {
+      ```
+      	class Formating_Example {
 
                                                 }  
       ```
@@ -287,13 +293,13 @@
 
     * Certo:
 
-      ```kotlin
-      var rightExample
+      ```
+      	var rightExample
       ```
     * Errado:
 
-      ```kotlin
-      var example;
+      ```
+      	var example;
       ```
 
 3. Serão usados espaços entre operações lógicas, como somas e subtrações, todavia não serão utilizados em casos de incrementação.
@@ -302,24 +308,24 @@
 
     * Certo:
 
-      ```kotlin
-      var rightExample = 1 + 1
+      ```
+      	var rightExample = 1 + 1
       ```
 
     * Errado:
 
-      ```kotlin
-      var wrongExample=1+1
+      ```
+      	var wrongExample=1+1
       ```
     * Certo:
 
-      ```kotlin
-      i++
+      ```
+      	i++
       ```
     * Errado:
 
-      ```kotlin
-      i + +
+      ```
+      	i + +
       ```
 
 
@@ -331,13 +337,14 @@
 
     - Certo:
 
-        ```kotlin
+      ```
         // Right example
-        ```
+      ```
     * Errado:
-        ```kotlin
+  
+      ```
         //wrong example
-        ```
+      ```
 
 2. Devem ser escritos no mesmo idioma do código
 
@@ -345,13 +352,13 @@
 
     * Certo:
 
-      ```kotlin
+    ```
       //Right example
-      ```
+    ```
     * Errado:
 
-      ```kotlin
-      //Exemplo errado
+      ```
+      	//Exemplo errado
       ```
 
 3. Comentários de uma linha devem ser escritos usando `//`
@@ -360,14 +367,14 @@
 
     * Certo:
 
-      ```kotlin
-      //Right example
+      ```
+      	//Right example
       ```
 
     * Errado:
 
-      ```kotlin
-      /* Wrong example */
+      ```
+      	/* Wrong example */
       ```
 
 4. Comentários de mais de uma linha devem ser escritos usando `/* */`, contendo quebra de linhas que auxiliem na visualização do comentário, sendo iniciado e finalizado na mesma linha da sinalização. Cada linha do comentário deve estar alinhada com a primeira linha, mantendo a inicialização do texto na mesma coluna.
@@ -376,15 +383,15 @@
 
     * Certo:
 
-      ```kotlin
-      /* This is an example about
+      ```
+      	/* This is an example about
           how to use correctly the commentary
           on the code */
       ```
 
     * Errado:
 
-      ```kotlin
+      ```
       /*
       This is not
           the right example
@@ -401,8 +408,8 @@
 
       * Certo:
 
-        ```kotlin
-        /* This class exemplifies
+        ```
+          /* This class exemplifies
             and portraits how to correctly
             use the commentaries on the classes */
 
@@ -413,25 +420,28 @@
 
       * Errado:
 
-        ```kotlin
-        // This is not the right example
-        // about using a commentary in class
-        class ExampleClass<Parameter> : ClassImplementations {
-          //neither is this expeficiations
+        ```
+          // This is not the right example
+          // about using a commentary in class
+          class ExampleClass<Parameter> : ClassImplementations {
+            //neither is this expeficiations
 
-        }
+          }
 
         ```
 
 ### 3.2 Comentários em interfaces
 
-1. Os comentários devem estar uma linha acima da interface referenciada e contendo uma breve descrição da funcionalidade dessa interface. O uso de comentários em interfaces é opcional.
+1. Os comentários devem estar uma linha acima da interface referenciada.
+  - A primeira linha deve conter uma breve descrição da funcionalidade dessa interface.
+  
+  O uso de comentários em interfaces é opcional.
 
     Ex.:
 
     * Certo:
 
-      ```kotlin
+      ```
       /* This interface do the
           comunication between other
           packages and classes */
@@ -444,7 +454,7 @@
 
     * Errado:
 
-      ```kotlin
+      ```
       // This interface do the
         //    comunication between other
           //  packages and classes
@@ -459,24 +469,55 @@
 
 ### 3.3 Comentários em Métodos
 
-1. Os comentários devem estar uma linha acima do método, contendo uma breve explicação da funcionalidade implementada, bem como a relação dessa funcionalidade com os parâmteros declarados. O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
+1. Os comentários devem seguir o padrão KDoc, isto é, iniciar com `\**` e ser finalizado com `*\`, além de estar uma linha acima do método.
+
+- A primeira linha deve conter uma breve explicação da funcionalidade implementada, seguida de uma linha em branco.
+- A partir da segunda lista são descritos as tags da função. São elas:
+  - @param: Descreve os argumentos da função. cada argumento deve estar em uma nova linha seguindo o padrão `@param [name] description`
+  - @return: Descreve o tipo e a descrição do retorno da função seguindo o padrão `@return [name] description`
+  - @throws: Descreve as excessões que o método pode lançar separadas por virgula, seguindo o padrão `@throws InvalidArgumentExeption, NullPointerException`
+  
+  O uso de comentários em métodos não é obrigatório, mas é extremamente recomendado.
 
     Ex.:
 
     * Certo:
 
-      ```kotlin
-      /* This method adds
-        a member "T" to
-        this function */
+      ```
+      /**
+      * Returns an Image object that can then be painted on the screen.
+      * The url argument must specify an absolute {@link URL}. The name
+      * argument is a specifier that is relative to the url argument.
+      * <p>
+      * This method always returns immediately, whether or not the
+      * image exists. When this applet attempts to draw the image on
+      * the screen, the data will be loaded. The graphics primitives
+      * that draw the image will incrementally paint on the screen.
+      *
+      * @param  url  an absolute URL giving the base location of the image
+      * @param  name the location of the image, relative to the url argument
+      * @return      the image at the specified URL
+      */
 
-      fun addThis(member: T): Int { ... }
+      fun getImage(URL url, String name): Image {
+          try {
+             return getImage(new URL(url, name));
+          } catch (MalformedURLException e) {
+             return null;
+          }
+      }
       ```
 
     * Errado:
 
-      ```kotlin
-      fun addThis(member: T): Int { ... }
+      ```
+      fun getImage(URL url, String name): Image {
+          try {
+             return getImage(new URL(url, name));
+          } catch (MalformedURLException e) {
+             return null;
+          }
+      }
       ```
 
 ### 3.4 Comentários em Atributos
@@ -487,7 +528,7 @@
 
     * Certo:
 
-      ```kotlin
+      ```
         class ExampleClass<Parameter> : ClassImplementations {
 
           var example : String? = "" // Reference to worker
@@ -497,7 +538,7 @@
 
     * Errado:
 
-      ```kotlin
+      ```
         class ExampleClass<Parameter> : ClassImplementations {
 
           var example : String? = "" /* wrong reference to worker*/
@@ -514,13 +555,13 @@
 
     * Certo:
 
-        ```kotlin
+        ```
           var name : String? = null // Stores name of players
         ```
 
     * Errado:
 
-        ```kotlin
+        ```
           var name : String? = null /* the variable is called name*/
 
         ```
@@ -533,7 +574,7 @@
 
    * Certo:
 
-      ```kotlin
+      ```
       @Test
       fun testSuccess_basic() {
         // prepare
@@ -554,7 +595,7 @@
       ```
    * Errado:
 
-      ```kotlin
+      ```
       @Test
       fun testSuccess_basic() {
         val redditNewsResponse = RedditNewsResponse(RedditDataResponse(listOf(), null, null))
@@ -568,6 +609,26 @@
       }
       ```
 
+### 3.7 Referencia a outras documentações
+
+1. Referencia a outra classe podem ser feitas para evitar documentação reduntante. Para utiliza-la deve-se seguir o padrão `[nomeDaClasse]`
+   Ex.:
+
+   * Certo:
+
+      ```
+      /**
+      * Class that implements [ProgramDisplayLogic] and controls program scene.
+      */
+      ```
+   * Errado:
+
+      ```
+      /**
+      * Class that use the function doSomething that is on ProgramDisplayLogic and this function is responsible to do something.
+      */
+      ```
+
 ## 4 Import
 
 1. As importações deverão usar o termo _import_ seguido do nome do pacote ou classe, e em caso de mais de uma chamada é necessário que seja realizada em uma linha separada.
@@ -575,13 +636,13 @@
     Ex.:
 
     * Certo:
-      ```kotlin
+      ```
       import NameOfPackage
       import NameOfClass
       ```
 
     * Errado:
-      ```kotlin
+      ```
       import NameOfPackage, import NameOfCLass
       ```
 
@@ -594,14 +655,14 @@
 
     * Certo:
 
-      ```kotlin
+      ```
       if (rightExample == right) {
               return rightExample
             }
       ```
     * Errado:
 
-      ```kotlin
+      ```
       if(wrongExample == wrong)
                 return wrongExample
       ```
@@ -614,14 +675,14 @@
 
       * Certo:
 
-        ```kotlin
+        ```
         if (examples != null)
             examples == 1
         }
         ```
       * Errado:
 
-        ```kotlin
+        ```
         if (examples == null) {
           examples == null
         }
@@ -635,24 +696,24 @@
 
     * Certo:
 
-      ```kotlin
+      ```
       class GreatExample;
       ```
     * Errado:
 
-      ```kotlin
+      ```
       classe ExemploErrado;
       ```
 
 ## 8 Estilo da Model
 
-1. A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_
+1. A _Model_ deve ser organizada de modo em que possua 3 classes internas, que serão a _request_, a _response_ e a _ViewModel_, necessáriamente nessa ordem.
 
    Ex.:
 
    * Certo:
 
-      ```kotlin
+      ```
         class Model {
             class Request {
                 var name: String? = null
@@ -677,12 +738,96 @@
 
     * Errado:
 
-      ```kotlin
+      ```
         class Model {
             var age: Int? = null
             var name: String? = null
         }
       ```
+2. As classes da model devem conter apenas informações essenciais para seu funcionamento.
+
+    Ex.:
+        
+    * Certo:
+
+      ```
+        class Model {
+            class Request(userID: Integer) 
+            ...
+        }
+      ```
+      
+    * Errado:
+
+      ```
+        class Model {
+            class Request(userID: Integer, someUnusedArgument: String, anotherUnusedArgument: Integer) 
+            ...
+        }
+      ```
+
+3. Classes da model que não são as essenciais (Request, Response e ViewModel) devem estar separadas por um comentário que segue o modelo:
+
+   ````// ------------------------------ Aux classes to use in this scene --------------------------------------````
+
+   E esse comentário deve estar localizado abaixo das mesmas.
+
+    Ex.:
+          
+    * Certo:
+
+      ```
+        class Model {
+            class Request {
+                var name: String? = null
+                constructor(name: String?) {
+                    this.name = name
+                }
+            }
+            class Response {
+                var age: Int? = null
+                constructor(age: Int?) {
+                    this.age = age
+                }
+            }
+            class ViewModel {
+                var message: String?= null
+                constructor(message: String?) {
+                    this.message = message
+                }
+            }
+            // ------------------------------ Aux classes to use in this scene --------------------------------------
+            class User (userID: Integer)
+        }
+      ```
+      
+    * Errado:
+
+      ```
+        class User (userID: Integer)
+ 
+        class Model {
+            class Request {
+                var name: String? = null
+                constructor(name: String?) {
+                    this.name = name
+                }
+            }
+
+            class Response {
+                var age: Int? = null
+                constructor(age: Int?) {
+                    this.age = age
+                }
+            }
+            class ViewModel {
+                var message: String?= null
+                constructor(message: String?) {
+                    this.message = message
+                }
+            }
+      ```
+
 
 
 ## 9 Referências

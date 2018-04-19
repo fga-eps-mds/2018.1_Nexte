@@ -6,6 +6,7 @@
 | 12/03/2018 | 0.2 | Adicionado introdução, descrição, propósito e justivativa, objetivos, requisitos de alto nível e riscos do projeto  | Luis Gustavo |
 | 12/03/2018 | 0.3 | Adição do Resumo do cronograma de marcos, resumo do orçamento, partes interessadas, Requisitos para aprovação do projeto e gerência do projeto | Geovanni Oliveira |
 | 14/03/2018 | 0.4 | Ajuste e conclusão inicial do TAP | Guilherme Baldissera |
+| 17/04/2018 | 0.5 | Ajustes na formatação | Gabriel Albino |
 
 
 ## Sumário
@@ -66,14 +67,14 @@ O Nexte será um aplicativo mobile para melhorar a integração de tenistas em c
 ## 6. Riscos do Projeto
 Os principais riscos do projeto Nexte e as ações preventivas para os devidos riscos são:
 
-**Risco** | **Plano de Ação**
-----------|------------|
-Difícil adaptação de equipe de desenvolvimento com as tecnologias.| Realização de treinamentos sobre tecnologias.
-A equipe de desenvolvimento e a equipe de gerência tem horário muitos divergentes, tornando difícil a comunicação entre as equipes.| Os membros de ambas as equipes se reunirão presencialmente aos finais de semana, além disso será utilizado a ferramente slack intensamente para comunicação e feedback entre as equipes e será realizado reuniões via hangouts durante a semana.
-Membros da equipe de desenvolvimento não conseguirem instalar ou utilizar corretamente as ferramentas.| Disponibilização do ambiente de desenvolvimento padronizado com a ferramenta Docker.
-Membros das equipes fazendo estágio ou outras atividades complementares, o que pode gerar falta de comprometimento das equipes| Os membros das equipes serão comunicados que seu comprometimento e dedicação é essencial para que o projeto seja bem sucedido. Caso haja problemas recorrentes com um mesmo membro a situação será discutida com a professora Carla.
-Membros da equipe de gerência ter seus projetos selecionados para a WWDC2018.| Nesse caso a equipe irá conversar com a professora Carla para encontrar a melhor forma de resolver esse problema de forma a gerar o menor prejuizo ao projeto.
-O servidor RestFull de requisições não estar pronto. |  Requisição ao time externo do Nexte para que o MVP esteja pronto e em condições para uso pela equipe de desenvolvimento.
+|**Risco** | **Plano de Ação**|
+|----------|------------|
+|Difícil adaptação de equipe de desenvolvimento com as tecnologias.| Realização de treinamentos sobre tecnologias.|
+|A equipe de desenvolvimento e a equipe de gerência tem horário muitos divergentes, tornando difícil a comunicação entre as equipes.| Os membros de ambas as equipes se reunirão presencialmente aos finais de semana, além disso será utilizado a ferramente slack intensamente para comunicação e feedback entre as equipes e será realizado reuniões via hangouts durante a semana.|
+|Membros da equipe de desenvolvimento não conseguirem instalar ou utilizar corretamente as ferramentas.| Disponibilização do ambiente de desenvolvimento padronizado com a ferramenta Docker.|
+|Membros das equipes fazendo estágio ou outras atividades complementares, o que pode gerar falta de comprometimento das equipes| Os membros das equipes serão comunicados que seu comprometimento e dedicação é essencial para que o projeto seja bem sucedido. Caso haja problemas recorrentes com um mesmo membro a situação será discutida com a professora Carla.|
+|Membros da equipe de gerência ter seus projetos selecionados para a WWDC2018.| Nesse caso a equipe irá conversar com a professora Carla para encontrar a melhor forma de resolver esse problema de forma a gerar o menor prejuizo ao projeto.|
+|O servidor RestFull de requisições não estar pronto.|Requisição ao time externo do Nexte para que o MVP esteja pronto e em condições para uso pela equipe de desenvolvimento.|
 
 ## 7. Resumo do Cronograma de Marcos
 O projeto possui 2 marcos principais, aos quais são: entrega parcial do software funcional (_Release 1_) e a segunda entrega, que é a entrega final do aplicativo e da disciplina (_Release 2_). Os marcos principais possuem datas para suas entregas, as quais estão de acordo tanto com a disciplina de Métodos de Desenvolvimento de Software (MDS) quanto a disciplina Engenharia de Produto de Software (EPS), cuja equipe é formada por 6 membros da turma de MDS e 4 membros da turma de EPS.

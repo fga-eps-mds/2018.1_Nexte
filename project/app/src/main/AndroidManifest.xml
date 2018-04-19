@@ -3,9 +3,9 @@
     package="com.nexte.nexte">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> -->
 
     <application
         android:allowBackup="true"
@@ -22,9 +22,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".LoginScene.LoginView"></activity>
+            android:name=".RankingScene.RankingView"
+            android:screenOrientation="portrait"/>
+        <!-- <activity android:name=".LoginActivity" android:label="@string/title_activity_login" /> -->
+        <!-- <activity android:name=".LoginScene.LoginView" /> -->
+        <activity
+            android:name=".FeedScene.FeedView"
+            android:label="@string/title_activity_feed_view"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ShowProfileScene.ShowProfileView"
+            android:label="@string/title_activity_show_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LikeListScene.LikeListView"
+            android:label="LikeListView"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EditProfileScene.EditProfileView"
+            android:screenOrientation="portrait"/>
     </application>
+
+
 
 </manifest>

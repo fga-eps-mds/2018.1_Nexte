@@ -19,6 +19,7 @@
 | 23/03/2018| 0.8 | Adicionado diagrama de sequência | Lorrany Freire |
 | 24/03/2018| 1.0 | Correção de detalhes e remoção de tópicos que não serão abordados nesse documento. | Gabriel Albino |
 | 24/03/2018| 1.0.1| Correção do tópico 3.2 (Restrições de arquitetura). | Gabriel Albino, Letícia Meneses, Lorrany Freire |
+| 19/04/2018| 1.1| Adição dos novos diagramas de classe. | Gabriel Albino, Alexandre Miguel |
 
 ### Índice Analítico
 
@@ -142,7 +143,21 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 ### 5.1 Caso de Uso
 
 #### 5.1.1 *Diagrama de Classes*
-![Diagrama de classes](https://i.imgur.com/OKMMC6h.jpg)
+![Diagrama de classes da editProfile](https://i.imgur.com/tXgt9oo.jpg)
+
+![Diagrama de classes da showProfile](https://i.imgur.com/OCn6Gh3.jpg)
+
+![Diagrama de classes da comments](https://i.imgur.com/PJxn31v.jpg)
+
+![Diagrama de classes do feed](https://i.imgur.com/z6icAhU.jpg)
+
+![Diagrama de classes do challange](https://i.imgur.com/ChZoYuL.jpg)
+
+![Diagrama de classes da likelist](https://i.imgur.com/HBW40Qv.jpg)
+
+![Diagrama de classes do login](https://i.imgur.com/JXGEqyj.jpg)
+
+![Diagrama de classes da ranking](https://i.imgur.com/MHfir5I.jpg)
 
 
 #### 5.1.2 *Diagrama de Sequência*

@@ -1,40 +1,49 @@
 package com.nexte.nexte.CommentsScene
 
 /**
- * Created by leticia on 29/03/18.
+ * Class responsible to do request for anywhere, format Response and
+ * call completion to send data for called class
  */
-
-
 class CommentsWorker {
 
-    constructor() {}
+    /**
+     * Function to get comments data of server
+     *
+     * @param request Comments model request that contains needed information to send to server
+     * @param completion Method to call on parent class
+     */
+    fun getCommentsData (request: CommentsModel.Request,
+                         completion: (CommentsModel.Response) -> Unit) {
 
-    fun getCommentsData (request: CommentsModel.Request, completion: (CommentsModel.Response) -> Unit) {
+        val game = request.game
+        val user = request.user
 
-        val game: String? = null
-        val user: String? = null
-
-        var comment: String? = null
-        var userName: String? = null
-        var linkUserProfilePicture: String? = null
-        var commentTime: String? = null
-        var like: Boolean? = null
+        val comment: String
+        val userName: String
+        val linkUserProfilePicture: String
+        val commentTime: String
+        val like: Boolean
 
         if(game.equals("Gandalf vs Saruman") && user.equals("Frodo_Bolseiro")) {
-            var comment: String = "Esse jogo foi digno da terra média"
-            var userName: String = "Frodo_do_condado"
-            var linkUserProfilePicture: String = "https://www.nexte.com.br/pictures/user/frodo_do_condado/avatar156x156.jpg"
-            var commentTime: String = "16:50"
-            var like: Boolean = true
+            comment = "Esse jogo foi digno da terra média"
+            userName = "Frodo_do_condado"
+            linkUserProfilePicture = "https://www.nexte.com.br/pictures/user/frodo_do_condado/avatar156x156.jpg"
+            commentTime = "16:50"
+            like = true
         } else {
-            var comment: String = ""
-            var userName: String = ""
-            var linkUserProfilePicture: String = ""
-            var commentTime: String = ""
-            var like: Boolean = false
+            comment = ""
+            userName = ""
+            linkUserProfilePicture = ""
+            commentTime = ""
+            like = false
         }
-        var response: CommentsModel.Response = CommentsModel.Response(comment, userName, linkUserProfilePicture,
-                                                                      commentTime, like)
+
+        val response: CommentsModel.Response = CommentsModel.Response(comment,
+                userName,
+                linkUserProfilePicture,
+                commentTime,
+                like)
+
         completion(response)
     }
 }

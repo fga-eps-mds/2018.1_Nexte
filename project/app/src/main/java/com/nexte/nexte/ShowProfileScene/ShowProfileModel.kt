@@ -1,43 +1,52 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Player
+
 /**
- * Created by albino on 25/03/18.
+ * Class to define Model of ShowProfile Scene to enable the access to users
+ * This class declares the [Request], [Response], [ViewModel] and [Player],
+ * information that will define what will be passed between classes
  */
-class ShowProfileModel{
-    class Request {
-        var username: String? = null
-        var tokenID: String? = null
+class ShowProfileModel {
 
-        constructor(username: String, tokenID: String){
-            this.username = username
-            this.tokenID = tokenID
-        }
-    }
+    /**
+     * Class responsible to pass data of View to Interactor and after to Worker so it can
+     * request data
+     *
+     * @property username variable that holds the name chosen by the user on the app
+     * @property tokenID variable that holds the token that validates the user in the system
+     **/
+    class Request(var username: String, var tokenID: String)
 
-    class Response {
-        var facebookUsername: String? = null
-        var pictureAddress: String? = null
-        var rankingPosition: Int? = null
-        var team: String? = null
-        var teamLocation: String? = null
-        var age: Int? = null
+    /**
+     * Class responsible to store received information of worker to pass for Presenter
+     *
+     * @property user variable that return the attributes of player after the validation step
+     **/
+    class Response(var user: Player?)
 
-        constructor(facebookUsername: String?, pictureAddress: String?, rankingPosition: Int?,
-                    team: String?, teamLocation: String?, age: Int?){
-            this.facebookUsername = facebookUsername
-            this.pictureAddress = pictureAddress
-            this.rankingPosition = rankingPosition
-            this.team = team
-            this.teamLocation = teamLocation
-            this.age = age
-        }
-    }
+    /**
+     * Class responsible to define how the list view will display the formatted data, passed to view
+     *
+     * @property playerInfo attribute already processed by [ShowProfilePresenter] class for display on screen
+     **/
+    class ViewModel(var playerInfo: FormattedPlayer)
 
-    class ViewModel {
-        var message: String? = null
+    //-------------- Aux Classes --------------
 
-        constructor(message: String){
-            this.message = message
-        }
-    }
+    /**
+     * This class holds the formatted player information that will be defined on [ShowProfilePresenter]
+     *
+     * @property name Name displayed
+     * @property rank The ranking position displayed
+     * @property club User club displayed
+     * @property email User email displayed
+     * @property age User age displayed
+     */
+    class FormattedPlayer(
+            var name: String?,
+            var rank: String?,
+            var club: String?,
+            var email: String?,
+            var age: String?)
 }

@@ -1,42 +1,48 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.Player
+
 /**
- * Created by albino on 25/03/18.
+ * This class verifies if the logged user is valid and return the user information as response.
+ * She format Response and call completion to send data for called class
  */
 
 class ShowProfileWorker {
 
-    constructor() { }
+    /**
+     * Method responsible to get the [ShowProfileModel.Request] with data to be validated
+     * and generate an [ShowProfileModel.Response] with user information
+     *
+     * @param request Contains the username and TokenID that will be used to recover the user
+     * @param completion Unformatted activity sent to Interactor
+     */
+    fun getUserProfile(request: ShowProfileModel.Request,
+                       completion: (ShowProfileModel.Response) -> Unit) {
 
-    fun getUserProfile(request: ShowProfileModel.Request, completion: (ShowProfileModel.Response) -> Unit) {
         val username = request.username
         val tokenID = request.tokenID
 
-        var facebookUsername: String = ""
-        var pictureAddress: String = ""
-        var rankingPosition: Int = -1
-        var team: String = ""
-        var teamLocation: String = ""
-        var age: Int? = -1
+        val emptyUser = Player("",
+            -1,
+            "",
+            "",
+            "",
+            "",
+            -1,
+            "")
 
-        if(tokenID.equals("")){
-            facebookUsername = ""
-            pictureAddress = ""
-            rankingPosition = -1
-            team = ""
-            teamLocation = ""
-            age = -1
+        var returnedUser: Player? = null
+
+        // This condition verifies if exists a user
+        if(tokenID.equals("")) {
+            returnedUser = emptyUser
+            UserSingleton.setUserInformations(emptyUser)
         } else if(username.equals("gabrielalbino")) {
-            facebookUsername = "you.albino"
-            pictureAddress = "https://www.nexte.com.br/pictures/user/gabrielalbino/avatar156x156.jpg"
-            rankingPosition = 1
-            team = "jagaritigaricaFon"
-            teamLocation = "Brasília"
-            age = 19
+            returnedUser = UserSingleton.getUserInformations()
         }
 
-        var response: ShowProfileModel.Response = ShowProfileModel.Response(facebookUsername,
-                pictureAddress, rankingPosition, team, teamLocation, age)
+        val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
 
         completion(response)
     }
