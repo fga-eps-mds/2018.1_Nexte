@@ -5,6 +5,8 @@ theme: readthedocs
 
 pages:
   - Home: index.md
+  - Estudos: 
+    - Centralização de Informações: CentralizacaoInformacoes.md
   - EPS:
     - Termo de abertura: EPS/TAP.md
     - Estrutura analítica do projeto: EPS/EAP.md
@@ -16,6 +18,7 @@ pages:
     - Arquitetura de Microserviços: EPS/ArquiteturaMicroservicos.md
     - Gestão de Risco: EPS/GestaoDeRisco.md
     - Definição de Produtividade: EPS/DefinicaoDeProdutividade.md
+    - Canvas: EPS/Canvas.md
     - Plano de Qualidade:
       - Abtraction Sheet: EPS/PlanoDeQualidade/AbstractionSheet.md
       - GQM: EPS/PlanoDeQualidade/GQM.md
@@ -46,3 +49,8 @@ pages:
     - Resultado: Sprints/Sprint4/Sprint4-Resultados.md
   - Sprint 5:
     - Planejamento: Sprints/Sprint5/Sprint5-Planejamento.md
+  - Sprint 6:
+    - Planejamento: Sprints/Sprint6/Sprint6-Planejamento.md
+
+  - Post Mortem:
+    - Post Mortem - Release 1: PostMortem/PostMortemRelease1.md
