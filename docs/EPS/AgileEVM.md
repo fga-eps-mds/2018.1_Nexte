@@ -4,6 +4,8 @@
 | -----|--------|-----------|-----------|
 | 19/03/2018| 0.1 | criação do Documento| Geovanni Oliveira|
 | 22/03/2018| 0.2 | criação das nomenclaturas a serem usadas e definições| Geovanni Oliveira|
+| 22/03/2018| 0.3 | Corrigido formatação errada.| Gabriel Albino|
+
 ----
 
 ### Introdução
