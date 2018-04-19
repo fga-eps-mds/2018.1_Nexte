@@ -24,7 +24,7 @@ class LoginWorker {
     fun authenticateUser(request: LoginModel.Request,
                          completion: (LoginModel.Response) -> Unit) {
 
-        val AUTHENTICATION = "http://172.29.50.182:3000/auth/login" // Works only with IP
+        val AUTHENTICATION = "http://192.168.100.2:3000/auth/login" // Works only with IP
         var headers = mapOf("Content-Type" to "application/json", "Accept-Version" to "1.0.0")
         var token: String = ""
         val json = JSONObject()
@@ -37,11 +37,18 @@ class LoginWorker {
             Log.d("Response", response.toString())
             Log.d("Result", result.toString())
 
-            result.success {  println("Authentication has been sucessed")  }
-            result.failure {  println("Authentication has been failed") }
-        }
+            result.success {
+                token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+                val response = LoginModel.Response(token)
+                completion(response)
+            }
 
-        completion(LoginModel.Response(token))
+            result.failure {
+                token = ""
+                val response = LoginModel.Response(token)
+                completion(response)
+            }
+        }
     }
 }
 

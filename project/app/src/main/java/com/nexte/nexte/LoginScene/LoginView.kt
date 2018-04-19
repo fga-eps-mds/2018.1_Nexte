@@ -12,6 +12,7 @@ import com.facebook.accountkit.ui.LoginType
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.httpGet
 import com.nexte.nexte.R
+import kotlinx.android.synthetic.main.activity_login_view.*
 import org.json.JSONObject
 
 interface LoginDisplayLogic {
@@ -32,9 +33,14 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         AccountKit.initialize(this) // Account Kit
 
-//        val request: LoginModel.Request = LoginModel.Request("ramires",
-//                                                             "test-nexte-ramires")
-//        this.interactor?.doAuthentication(request)
+        requestAuthentication.setOnClickListener {
+
+            val account = accountField.text.toString()
+            val password = passwordField.text.toString()
+
+            val request: LoginModel.Request = LoginModel.Request(account, password)
+            this.interactor?.doAuthentication(request)
+        }
 
     }
 

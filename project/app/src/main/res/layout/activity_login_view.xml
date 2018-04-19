@@ -23,4 +23,27 @@
         android:layout_height="wrap_content"
         android:text="Login By Email"
         android:onClick="emailLogin"/>
+
+    <EditText
+        android:id="@+id/accountField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/requestAuthentication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Entrar" />
+
 </LinearLayout>

@@ -27,6 +27,7 @@ class LoginPresenter: LoginPresentationLogic {
 
         var message: String
         val tokenId: String = response.tokenId
+        println("TOOKEN: ${response.tokenId}")
 
         if(tokenId.equals("")) {
             message = "Something is wrong. Try again"
