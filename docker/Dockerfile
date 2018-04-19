@@ -1,5 +1,6 @@
-# Image of JDK
+# Image of JDK and Ruby
 FROM openjdk:8
+FROM ruby:2
 
 # Setup environments to android sdk
 ENV SDK_URL="https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip"
@@ -36,6 +37,10 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --update \
 
 # Create an emulator
 # RUN echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n nexteavd -k "system-images;android-26;google_apis_playstore;x86"
+
+# Install gems of Fastlane to Deploy
+RUN gem install fastlane -NV
+
 
 # Create workspace
 RUN mkdir /application

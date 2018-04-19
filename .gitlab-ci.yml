@@ -9,35 +9,31 @@ variables:
 before_script:
   - export ANDROID_HOME="/usr/local/android-sdk"
   - cd project
-  # - echo $KEYSTORE_PROPERTIES >> project/keystore.properties
-
-after_script:
-  # - rm project/keystore.properties
 
 stages:
-  # - test
+  - test
   - build
   - deploy
 
-# static_analysis:
-#   stage: test
-#   script:
-#     - mv ../docker/static_analysis.sh ./static_analysis.sh
-#     - chmod +x ./static_analysis.sh
-#     - ./static_analysis.sh
+static_analysis:
+  stage: test
+  script:
+    - mv ../docker/static_analysis.sh ./static_analysis.sh
+    - chmod +x ./static_analysis.sh
+    - ./static_analysis.sh
 
-# unit_test:
-#   stage: test
-#   script:
-#     - mv ../docker/test.sh ./test.sh
-#     - chmod +x ./test.sh
-#     - ./test.sh
-#   artifacts:
-#     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
-#     when: always
-#     expire_in: 2 days
-#     paths:
-#       - project/app/build/reports/jacocoTestReport/html
+unit_test:
+  stage: test
+  script:
+    - mv ../docker/test.sh ./test.sh
+    - chmod +x ./test.sh
+    - ./test.sh
+  artifacts:
+    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
+    when: always
+    expire_in: 2 days
+    paths:
+      - project/app/build/reports/jacocoTestReport/html
 
 # instrumentation_tests:
 #   stage: test
@@ -60,6 +56,9 @@ build:
   artifacts:
     paths:
     - project/app/build/outputs/apk
+  only:
+    - dev
+    - master
 
 deploy_beta:
   stage: deploy
@@ -75,6 +74,8 @@ deploy_beta:
   artifacts:
     paths:
       - fastlane/logs
+  only:
+    - tags
 
 cache:
   key: ${CI_PROJECT_ID}
