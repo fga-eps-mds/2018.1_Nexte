@@ -4,25 +4,23 @@ import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
 
 /**
- * Created by lorrany on 27/03/18.
- */
-
-
-/**
  * Class responsible to get a request and generate a response
  */
 class EditProfileWorker {
+
     companion object {
+
         const val MINPASSWORDLENGTH = 6
     }
 
     /**
-     * Gets and username and returns user information
+     * Gets an username and returns user information
      *
      * @param request Contains the username and TokenID that will be used to recover the user
+     * @param completion Unformatted activity sent to Interactor
      */
-    fun getUserProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request, completion:
-        (EditProfileModel.RecoverUserRequest.Response) -> Unit) {
+    fun getUserProfileToEdit(request: EditProfileModel.RecoverUserRequest.Request,
+                             completion: (EditProfileModel.RecoverUserRequest.Response) -> Unit) {
 
         val username = request.username
         val tokenID = request.tokenID
@@ -57,9 +55,10 @@ class EditProfileWorker {
      * to our user, otherwise sends and error code.
      *
      * @param request Contains the edited user information
+     * @param completion Unformatted activity sent to Interactor
      */
-    fun editUserProfile(request: EditProfileModel.EditProfileRequest.Request, completion:
-                       (EditProfileModel.EditProfileRequest.Response) -> Unit) {
+    fun editUserProfile(request: EditProfileModel.EditProfileRequest.Request,
+                        completion: (EditProfileModel.EditProfileRequest.Response) -> Unit) {
 
         val user = request.user
         var errorID: Int? = null

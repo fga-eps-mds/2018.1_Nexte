@@ -4,14 +4,15 @@ import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
 
 /**
- * Created by lorrany on 27/03/18.
- */
-
-/**
- * Interface responsible interpret received user information and send it to [EditProfileView]
+ * Interface responsible to interpret received user information and send it to [EditProfileView]
  */
 interface ShowProfileToEditPresentationLogic {
 
+    /**
+     * Method responsible to present profile data
+     *
+     * @param response contains unformatted data received from [EditProfileModel]
+     */
     fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response)
 }
 
@@ -20,23 +21,32 @@ interface ShowProfileToEditPresentationLogic {
  */
 interface SendEditedProfileDataPresentationLogic {
 
+    /**
+     * Method responsible to send edited data to view
+     *
+     * @param response contains unformatted data received from [EditProfileModel]
+     */
     fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response)
 }
 
 /**
  * Class responsible to interpretation of [EditProfileModel.RecoverUserRequest]
  * and [EditProfileModel.EditProfileRequest] Responses and generate viewModels
+ *
+ * @property viewToShowUserInformation Shows profile view with method to show user
+ * @property viewToShowEditProfileError Reference for show profile view with method
+ * to show edit profile error
  */
 class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic{
 
-    var viewToShowUserInformation: ShowProfileToEditDisplayLogic? = null // Reference for
-    // show profile view with method to show user
-    var viewToShowEditProfileError: EditProfileDisplayLogic? = null // Reference for show profile view with method
-    // to show edit profile error
+    var viewToShowUserInformation: ShowProfileToEditDisplayLogic? = null
+    var viewToShowEditProfileError: EditProfileDisplayLogic? = null
 
     /**
-     * Format user information contained in [EditProfileModel.RecoverUserRequest.Response]
+     * Formats user information contained in [EditProfileModel.RecoverUserRequest.Response]
      * and sends it to [EditProfileView]
+     *
+     * @param response contains unformatted data received from [EditProfileModel]
      */
     override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
 
@@ -48,10 +58,10 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
 
         val formattedPlayer: EditProfileModel.RecoverUserRequest.FormattedPlayer =
                 EditProfileModel.RecoverUserRequest.FormattedPlayer(username,
-        ranking,
-        club,
-        age,
-        email)
+                    ranking,
+                    club,
+                    age,
+                    email)
 
         val viewModel: EditProfileModel.RecoverUserRequest.ViewModel =
                 EditProfileModel.RecoverUserRequest.ViewModel(formattedPlayer)
@@ -62,6 +72,8 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
     /**
      * Format error contained in [EditProfileModel.RecoverUserRequest.Response] (if exists)
      * and sends it to [EditProfileView]
+     *
+     * @param response contains unformatted data received from [EditProfileModel]
      */
     override fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response) {
 
@@ -79,8 +91,7 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
         }
 
         val viewModel: EditProfileModel.EditProfileRequest.ViewModel = EditProfileModel.EditProfileRequest.ViewModel(
-            messageError
-        )
+            messageError)
 
         viewToShowEditProfileError?.displayEditedProfile(viewModel)
     }

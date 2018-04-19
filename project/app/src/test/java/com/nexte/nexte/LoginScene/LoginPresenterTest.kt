@@ -19,7 +19,7 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun successMessagePresentLogin(){
+    fun successMessagePresentLogin() {
         //prepare
         val response = LoginModel.Response(tokenId = "h1n3vv3u13ola")
         val expectedMessage = "Congratz! U get it"
@@ -32,7 +32,7 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun failMessagePresentLogin(){
+    fun failMessagePresentLogin() {
         //prepare
         val response = LoginModel.Response(tokenId =  "")
         val expectedMessage = "Something is wrong. Try again"
@@ -51,11 +51,11 @@ class LoginPresenterTest {
     }
 }
 
-private class MockLoginDisplayLogic: LoginDisplayLogic{
+private class MockLoginDisplayLogic: LoginDisplayLogic {
 
     var message: String? = null
 
-    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel){
+    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
         this.message = viewModel.message
         print(this.message)
     }

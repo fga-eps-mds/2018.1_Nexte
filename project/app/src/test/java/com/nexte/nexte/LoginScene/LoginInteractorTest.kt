@@ -6,7 +6,7 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 
-class LoginIteractorTest {
+class LoginInteractorTest {
 
     private var mock: MockLoginPresentationLogic? = null
     private var interactor: LoginInteractor? = null

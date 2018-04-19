@@ -6,6 +6,12 @@ package com.nexte.nexte.LoginScene
  */
 interface LoginPresentationLogic {
 
+    /**
+     * Method responsible to format feed data and send for view
+     *
+     * @param response It's login model response containing unformatted data
+     * received [LoginModel]
+     */
     fun presentLogin(response: LoginModel.Response)
 }
 
@@ -25,7 +31,7 @@ class LoginPresenter: LoginPresentationLogic {
      */
     override fun presentLogin(response: LoginModel.Response) {
 
-        var message: String
+        val message: String
         val tokenId: String = response.tokenId
         println("TOOKEN: ${response.tokenId}")
 
