@@ -6,15 +6,15 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 
-class LoginIteractorTest {
+class LoginInteractorTest {
 
     private var mock: MockLoginPresentationLogic? = null
-    private var interactor: LoginIteractor? = null
+    private var interactor: LoginInteractor? = null
 
     @Before
     fun setUp() {
         this.mock = MockLoginPresentationLogic()
-        this.interactor = LoginIteractor()
+        this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
     }
 

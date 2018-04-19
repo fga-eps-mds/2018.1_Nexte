@@ -96,6 +96,7 @@ Neste projeto é utilizada a ferramenta **Detekt** para análise estática de c�
     * 20 métodos por classe
 * Adequação à folha de estilo
     * ser totalmente condizente com a [folha de estilo](/docs/MDS/DocFolhaEstilo.md)
+
 * Complexidade ciclomática
     De acordo com o [artigo publicado](http://www.mccabe.com/pdf/MeasuringSoftwareComplexityUAV.pdf) pelo criador da métrica de complexidade ciclomática os padrões por método são descritos na tabela abaixo
     | Complexidade | Avaliação |

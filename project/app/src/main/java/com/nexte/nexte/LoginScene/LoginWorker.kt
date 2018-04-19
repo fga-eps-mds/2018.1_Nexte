@@ -1,20 +1,22 @@
 package com.nexte.nexte.LoginScene
 
 /**
- * Created by miguelpimentel on 24/03/18.
+ * Class responsible to do request for anywhere, format response and
+ * call completion to send data for called class
  */
-
-
 class LoginWorker {
 
-    constructor() { }
-
-    // Manipulate a request from interactor to a response
+    /**
+     * Function to authenticated the user data of server
+     *
+     * @param request Login Model Request that contains need information to send for server
+     * @param completion Method for call on parent class
+     */
     fun authenticateUser(request: LoginModel.Request, completion: (LoginModel.Response) -> Unit) {
 
-        val password: String = request.password
-        val username: String = request.userName
-        var token: String
+        val password = request.password
+        val username = request.userName
+        val token: String
 
         if (username.equals("miguelpimentel") && password.equals("123456")) {
             token = "sd723gs261g2sv1234ss"

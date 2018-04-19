@@ -1,13 +1,11 @@
 package com.nexte.nexte.ShowProfileScene
 
 import com.nexte.nexte.Player
-import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
-import kotlin.concurrent.thread
 
 class ShowProfileWorkerTest {
 
@@ -36,7 +34,7 @@ class ShowProfileWorkerTest {
             //assert
             assertEquals(response.user?.name, player.name)
             assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAdress, player.pictureAdress)
+            assertEquals(response.user?.pictureAddress, player.pictureAddress)
             assertEquals(response.user?.email, player.email)
             assertEquals(response.user?.gender, player.gender)
             assertEquals(response.user?.club, player.club)
@@ -63,7 +61,7 @@ class ShowProfileWorkerTest {
             //assert
             assertEquals(response.user?.name, player.name)
             assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAdress, player.pictureAdress)
+            assertEquals(response.user?.pictureAddress, player.pictureAddress)
             assertEquals(response.user?.email, player.email)
             assertEquals(response.user?.gender, player.gender)
             assertEquals(response.user?.club, player.club)
