@@ -1,53 +1,46 @@
 package com.nexte.nexte.LikeListScene
 
-import android.provider.ContactsContract
-import java.util.*
-
 /**
- * Created by lorrany on 12/04/18.
- */
-
-/**
- * Class Responsable to add a list of likes
+ * Class to define the Model of Like List Scene responsible to add a list of likes
  */
 class LikeListModel {
-    /**
-     * Class responsible to pass data of view to interactor and after to worker.
-     */
 
+    /**
+     * Class responsible to pass data from View to Interactor and then to Worker,
+     * so it can request data.
+     */
     class Request(var request: String)
 
-
     /**
-     * Class responsible to take the informations of worker to pass for Presenter
+     * Class responsible to store received information from Worker and pass to Presenter
      *
-     * @param PLayers MutableList that hold informations to show in screen(name,photo and time)
+     * @param players MutableList that hold personal information of name, photo and time
+     * about the players to show in screen
      */
-    class Response(var Players: MutableList<Players>)
+    class Response(var players: MutableList<Players>)
 
     /**
      * Class responsible to define how the list view will display the formatted data, passed to view
      *
-     * @param PlayersFormatted MutableList that hold informations to show in screen
+     * @param playersFormatted MutableList that hold information to show in screen
      */
-
-    class ViewModel(var PlayersFormatted: MutableList<PlayersFormatted> )
+    class ViewModel(var playersFormatted: MutableList<PlayersFormatted> )
 
     /**
-     * Class with informations about users who will be displayed in the likes list
+     * Class with information about users who will be displayed in the likes list
      * @param: name
      * @param:photo
      * @param: time
      */
-    class Players(var name: String, var photo: Int, var time: Date)
+    class Players(var name: String, var photo: Int, var time: String)
+
     /**
-     * Class with informations about users who will be displayed in View
+     * Class with formatted information about users and how they will be displayed in View
      * @param: name
      * @param:photo
      * @param: time
      */
-
     class PlayersFormatted(var name: String,
-                               var photo: Int,
-                               var time: String)
+                           var photo: Int,
+                           var time: String)
 }

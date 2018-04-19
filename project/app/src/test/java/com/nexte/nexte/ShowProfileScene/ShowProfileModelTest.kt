@@ -31,7 +31,7 @@ class ShowProfileModelTest {
     @Test
     fun successResponse(){
         //prepare
-        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAdress = "", email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21, password = "123456")
+        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAddress = "", email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21, password = "123456")
 
         //call
         val response = ShowProfileModel.Response(user = player)
@@ -40,7 +40,7 @@ class ShowProfileModelTest {
         assertEquals(player, response.user)
         assertEquals(player.name, response.user?.name)
         assertEquals(player.rankingPosition, response.user?.rankingPosition)
-        assertEquals(player.pictureAdress, response.user?.pictureAdress)
+        assertEquals(player.pictureAddress, response.user?.pictureAddress)
         assertEquals(player.email, response.user?.email)
         assertEquals(player.gender, response.user?.gender)
         assertEquals(player.club, response.user?.club)
