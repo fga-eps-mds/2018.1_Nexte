@@ -11,7 +11,8 @@ class FeedWorker {
      *
      * @param completion Method to call on parent class
      */
-    fun fetchFeedData(completion: (FeedModel.GetFeedActivities.Response) -> Unit) {
+    fun fetchFeedData(request: FeedModel.GetFeedActivities.Request,
+                      completion: (FeedModel.GetFeedActivities.Response) -> Unit) {
 
         val response = FeedModel.GetFeedActivities.Response(FeedManager.feedList)
         completion(response)
