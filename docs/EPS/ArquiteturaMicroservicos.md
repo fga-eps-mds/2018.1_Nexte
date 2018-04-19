@@ -24,3 +24,5 @@ Além disso, foram adicionados muitos serviços externos, no qual cada é relaci
 A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utilizados.
 
 ## Arquitetura de micro serviços
+
+[![microservice2.png](https://s17.postimg.cc/i0gs7p1i7/microservice2.png)](https://postimg.cc/image/bzj3amevv/)
