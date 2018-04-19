@@ -51,7 +51,6 @@ build:
     - mv ./key/$STORE_FILE ./app/
     - rm -Rf ./key
   script:
-    - ls -la
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
     - ./build.sh
