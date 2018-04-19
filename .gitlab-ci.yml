@@ -1,5 +1,5 @@
 # Baldissera image of android container.
-image: baldissera/android-container
+image: baldissera/android-container:1.0
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -65,11 +65,9 @@ deploy_beta:
   stage: deploy
   before_script:
     - cd project
-    - gem install bundler
-    - bundle install
     - echo $DEPLOY_KEY_FILE >> key.json
   script:
-    - bundle exec fastlane beta
+    - fastlane beta
   after_script:
     - rm key.json
   dependencies:
