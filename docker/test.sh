@@ -6,5 +6,5 @@ set -o nounset
 set -o xtrace
 
 ./gradlew clean 
-./gradlew jacocoTestReport 
 ./gradlew jacocoTestCoverageVerification
+./gradlew jacocoTestReport 
