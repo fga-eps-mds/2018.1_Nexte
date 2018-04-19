@@ -5,5 +5,6 @@ set -o pipefail
 set -o nounset
 set -o xtrace
 
-./gradlew clean
-./gradlew assembleRelease
+./gradlew clean 
+./gradlew jacocoTestCoverageVerification
+./gradlew jacocoTestReport 

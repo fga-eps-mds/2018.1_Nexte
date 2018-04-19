@@ -52,3 +52,6 @@ pages:
     - Resultados: Sprints/Sprint5/Sprint5-Resultados.md
   - Sprint 6:
     - Planejamento: Sprints/Sprint6/Sprint6-Planejamento.md
+
+  - Post Mortem:
+    - Post Mortem - Release 1: PostMortem/PostMortemRelease1.md
