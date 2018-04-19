@@ -1,13 +1,26 @@
-
 # Arquitetura de Microserviços
 
 
-O nexte é uma aplicação android em que o backend é separado do frontend. Com o objetivo de criar um infraestrutura que melhor atende-se esse critérios, optou-se pelo uso do docker, e seus containters.
+No processo de desenvolvimento do Nexte foram utilizadas uma série de micro serviços com o objetivo de granularizar os componentes e delegar funções específicas para estes. Para gerenciar esses serviços foram utilizados *containers* do docker para o controle por meio de imagens, e assim garantindo maior qualidade da infraestrutura.
+foram adotados dois *containers* até o momento: 
 
-* Frontend: Para o frotend foi destinado um container que abrange algumas configuraões básicas de nosso ambiente android. No caso, neste container estão as configurações do *Grandle*, o SDK 22 e o Circle CI. O Grandle apresenta as configurações de ambiente e suas propriedades que serão utilizadas por nossa IDE(Android Studio). O SDK 22 foi escolhido por ser o kit de desenvolvimento que mais abrange em números absolutos dispositivos android. Por fim, Circle CI é responsável pela integração continua.
+* Container Android: Contém o projeto Android e os frameworks a serem utilizados no projeto(MPAndroidCharts, Realm e Fuel)
 
-* Backend: Em nosso Backend foi utilizado o NODE js como *web service* que será integrado com algum banco de dados, entretanto este ainda não foi decidido.
+* Container Servidor Principal: Contém que armazena o servidor principal(Node) e o Banco de Dados Remoto(Neo4J).
 
-## Arquitetura de Microserviços
 
-[![Architecture.png](https://s7.postimg.org/hbbrc60dn/Architecture.png)](https://postimg.org/image/r8ms587zb/)
+Além disso, foram adicionados muitos serviços externos, no qual cada é relacionado a uma feature específica. Desta forma, pode-se citar os seguintes serviços:
+
+* Firebase Cloud Messsaging: "*Real time server*" utilizado para notificações remotas, é possível utilizá-lo no Android e iOS.
+
+* *Image server *(Servidor de Imagens): Servidor que irá armazenar as imagens dos usuários do Nexte, a princípio não foi decidido qual será utilizado, entretanto alguns membros do time já possuem experiência com o Cloudinary.
+
+* Neo4j: Banco de dados não relacional, orientado a grafos, que possui boa adaptabilidade as regras de negócio da aplicação.
+
+* *Cinta Liga Server* (Servidor da Cinta Liga): Servidor de clube parceiros que será integrado ao servidor principal, está estruturado em em bancos de Dados relacional. 
+
+*  *Account Kit*: Serviço de autenticação provido pelo facebook que utiliza apenas do e-mail ou telefone para realizar essa terefa. Este serviço é adicionado diretamente ao *frontend*.
+
+A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utilizados.
+
+## Arquitetura de micro serviços
