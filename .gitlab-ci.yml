@@ -44,10 +44,15 @@ unit_test:
 
 build:
   stage: build
+  before_script:
+    - git clone $KEY_STORE_REPO ./app
   script:
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
     - ./build.sh
+  after_script:
+    - rm -Rf ./app/.git/
+    - rm ./app/$STORE_FILE
   artifacts:
     paths:
     - project/app/build/outputs/apk
@@ -73,4 +78,3 @@ cache:
   key: ${CI_PROJECT_ID}
   paths:
     - /root/.gradle/
-    
