@@ -1,22 +1,30 @@
 package com.nexte.nexte.LoginScene
 
 /**
- * Created by miguelpimentel on 24/03/18.
+ * Interface to define Presentation Logic to Login Class that
+ * will be used to call this Interactor on other class layer
  */
-
 interface LoginPresentationLogic {
 
+    /**
+     * Method responsible to format feed data and send for view
+     *
+     * @param response It's login model response containing unformatted data
+     * received [LoginModel]
+     */
     fun presentLogin(response: LoginModel.Response)
 }
 
-class LoginPresenter: LoginPresentationLogic {
+/**
+ * Class needed to format response for data can be displayed on activity
+ *
+ * @property viewController Reference to the activity where data will be displayed on View
+ */
+class LoginPresenter(var viewController: LoginDisplayLogic? = null): LoginPresentationLogic {
 
-    var viewControler: LoginDisplayLogic? = null // Reference to view
-
-    // Format data to expected
     override fun presentLogin(response: LoginModel.Response) {
 
-        var message: String
+        val message: String
         val tokenId: String = response.tokenId
 
         if(tokenId.equals("")) {
@@ -26,6 +34,6 @@ class LoginPresenter: LoginPresentationLogic {
         }
 
         val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
-        this.viewControler?.displayAuthenticateState(viewModel)
+            this.viewController?.displayAuthenticateState(viewModel)
     }
 }

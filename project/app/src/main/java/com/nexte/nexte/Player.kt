@@ -1,12 +1,23 @@
 package com.nexte.nexte
 
-
+/**
+ * Class responsible to hold player informations
+ *
+ * @property name Name of the logged user
+ * @property rankingPosition Ranking of the logged user
+ * @property pictureAddress Profile picture of the logged user
+ * @property email Email of the logged user
+ * @property gender Gender of the logged user
+ * @property club Club of the logged user
+ * @property age Age of the logged user
+ * @property password Password of the logged user
+ */
 class Player(
-        var name: String,// User name
-        var rankingPosition: Int,// Ranking position of user
-        var pictureAdress: String,// Picture profile
-        var email: String,// User email
-        var gender: String,// User gender
-        var club: String,// User club
-        var age: Int,// User age
-        var password: String)// User password
+        var name: String,
+        var rankingPosition: Int,
+        var pictureAddress: String,
+        var email: String,
+        var gender: String,
+        var club: String,
+        var age: Int,
+        var password: String)

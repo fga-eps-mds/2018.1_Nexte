@@ -16,7 +16,7 @@ class FeedPresenterTest {
     @Before
     fun setUp() {
         this.mock = MockFeedDisplayLogic()
-        this.presenter = FeedPresenter(viewScene = mock)
+        this.presenter = FeedPresenter(viewController = mock)
     }
 
     @Test
