@@ -26,6 +26,7 @@
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
@@ -38,6 +39,7 @@
         android:layout_marginTop="16dp"
         android:text="#N"
         android:textSize="30sp"
+        android:textColor="#ffffff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 
@@ -59,6 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Vitórias:"
+            android:textColor="#ffffff"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,6 +73,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Derrotas:"
+            android:textColor="#ffffff"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/victory" />
