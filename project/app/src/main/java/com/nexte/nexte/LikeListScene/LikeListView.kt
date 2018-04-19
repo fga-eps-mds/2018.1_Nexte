@@ -67,7 +67,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     * @param viewModel is received from presenter to show on screen
     */
     override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
-        likesListRecyclerView.adapter = LikesListAdapter(viewModel.PlayersFormatted, this)
+        likesListRecyclerView.adapter = LikesListAdapter(viewModel.playersFormatted, this)
     }
 
     /**
