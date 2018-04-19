@@ -24,9 +24,8 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
 
     override fun formatLikeList(response: LikeListModel.Response) {
 
-        val viewModel = LikeListModel.ViewModel(this.formatPlayers(response.Players))
+        val viewModel = LikeListModel.ViewModel(this.formatPlayers(response.players))
         viewList?.displayLikeList(viewModel)
-
     }
 
     /**
