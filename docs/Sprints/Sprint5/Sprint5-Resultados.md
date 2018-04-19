@@ -14,50 +14,56 @@
 **Tempo de Duração:** Sete dias
 
 ## Sumário
-[1. Fechamento da Sprint](#1-fechamento-da-sprint)
 
-[2. Entrega Contínua](#2-entrega-contínua)
+[1. Indicadores da equipe](#1-indicadores-da-equipe)
 
-[3. Produtividade](#3-produtividade)
+* [1.1 Fechamento da Sprint](#11-fechamento-da-sprint)
 
-[4. Quadro de Conhecimentos](#4-quadro-de-conhecimentos)
+* [1.2 Entrega Contínua](#12-entrega-contínua)
 
-[5. Gestão de Risco](#5-gestão-de-risco)
+* [1.3 Produtividade](#13-produtividade)
 
-[6. Retrospectiva](#6-retrospectiva)
+* [1.4 Quadro de Conhecimentos](#14-quadro-de-conhecimentos)
 
-[7. EVM](#7-evm)
+* [1.5 Gestão de Risco](#15-gestão-de-risco)
 
-[8. Análise de código](#8-análise-de-código)
+* [1.6 Retrospectiva](#16-retrospectiva)
 
-[9. Análise do Scrum Master](#9-análise-do-scrum-master)
+[2. EVM](#2-evm)
+
+[3. Análise de código](#3-análise-de-código)
+
+[4. Análise do Scrum Master](#4-análise-do-scrum-master)
 
 
-## **Resultados**
-### **1. Fechamento da Sprint**
+# **Resultados**
+
+## **1. Indicadores da Equipe**
+
+### **1.1. Fechamento da Sprint**
 ![Fechamento da Sprint](https://i.imgur.com/GDwv0k1.png)
 
 Além das histórias concluídas acima também formas concluídas as dívidas técnicas [#96](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/96) e [#191](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/191)
 
 Infelizmente duas histórias não foram concluídas a tempo, um delas é a de deploy contínuo que não foi finalizada principalmente por causa da da instabilidade do gitlab que ficou instável e fora do ar várias vezes longo dessa sprint, principalmente nos últimos dias. O lado bom é que ambas as histórias já estão bem encaminhadas e provavelmente serão finalizadas no início da próxima sprint.
 
-### **2. Entrega Contínua**
+### **1.2. Entrega Contínua**
 
-#### 2.1. Burndown
+#### 1.2.1. Burndown
 ![Burndown](https://i.imgur.com/S21exSA.png)
 
 
-### 2.2. Commits por dia
+### 1.2.2. Commits por dia
 ![Commits por dia](https://i.imgur.com/He5zkpm.png)
 
 
 Pode-se observar que a equipe teve um trabalho contínuo durante toda a sprint, pois desde os primeiros dias já houve um número de commits consideráveis. Entretanto, percebe-se que, em relação há commits o pico foi no penúltimo dia da sprint. Isso deve-se muito ao fato de que a quantidade de pontos planejadas nessa sprint foi consideravelmente maior nessa sprint, o que forçou a equipe a se dedicar mais no final da sprint para conseguir entregar as histórias restantes. Além disso, nos dois últimos dias de sprint foram quando a maior parte do pull requests foram avaliados, o que resulta em vários commits de alterações/melhoras.
 
-### **3. Produtividade**
+### **1.3. Produtividade**
 
 Para melhor entendimento sobre como a produtividade da equipe deve ser analisada/interpretada, veja o documento [definição de produtividade](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/docs/EPS/DefinicaoDeProdutividade.md).
 
-#### 3.1. Velocity
+#### 1.3.1. Velocity
 
 ![Velocity Sprint5](https://i.imgur.com/MXbPNb6.png)
 
@@ -68,14 +74,14 @@ Entretanto a equipe ainda precisa melhorar seu planejamento, de modo que consiga
 Outro problema que tem ocorrido é que em muitas histórias as equipes tem subestimado a pontuação referente as histórias, por não considerar refatorações, testes, ajustes na documentação e possíveis melhoras.
 
 
-#### 3.2. Planilha de horas
+#### 1.3.2. Planilha de horas
 ![Planilha de horas](https://i.imgur.com/5G98ZU3.png)
 
 Pode-se ver que praticamente todos os membros extrapolaram a quantidade de horas ideias nessa sprint. De certo modo isso é ruim, pois pode-se perceber que os membros da equipe ainda tem certas dificuldades com as tecnologias e ainda necessitam de mais que 14 horas para finalizar suas histórias.
 
 Entretanto, a equipe estava acostumada a realizar de 75-80 pontos por sprint, e nessa sprint foram planejados 99 pontos(incluindo as dívidas técnicas), então era de se esperar que a quantidade de horas semanais da equipe fosse consideravelmente maior.
 
-### **4. Quadro de conhecimentos**
+### **1.4. Quadro de conhecimentos**
 
 * **Sprint 4**
 ![Quadro de Conhecimento sprint 4](https://i.imgur.com/7XaE6gr.png)
@@ -88,17 +94,17 @@ Houveram algumas melhoras, principalmente dos integrantes de MDS em relação a 
 Também foi adicionado uma nova coluna "Arquitetura(VIP)", pois o scrum master percebeu a importância dessa "tecnologia" para o projeto e viu que poderia ser muito interessante monitorar o conhecimento dos membros em relação a isso. 
 
 
-### **5. Gestão de Risco**
+### **1.5. Gestão de Risco**
 
-#### 5.1 Riscos priorizados
+#### 1.5.1 Riscos priorizados
 
 ![Gestão de Risco](https://i.imgur.com/w7SOSKa.png)
 
-#### 5.2 _Burndown risk_
+#### 1.5.2 _Burndown risk_
 
 Visto o scrum master optou por fazer o gráfico de burndown de risco para cada risco individualmente e que 12 riscos estão sendo priorizados nessa _sprint_, é inviável colocar 12 imagens nesse arquivo, sendo assim, para ver os gráficos clique nesse [link](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Sprint5".
 
-#### 5.3 Diferenças da sprint anterior
+#### 1.5.3 Diferenças da sprint anterior
 
 | ID | Status | Por que mudou? |
 |---|---|---|
@@ -110,7 +116,7 @@ Visto o scrum master optou por fazer o gráfico de burndown de risco para cada r
 | RN23 | Novo | Novo risco que EPS considerou ser necessário monitorar para o projeto, pois até então MDS não realizou testes unitários/instrumentação e partir da sprint 7 apenas histórias testadas serão consideradas entregues |
 | RN24 | Novo | Novo risco que EPS considerou ser necessário monitorar para o projeto, pois até então MDS não teve obrigação de refatorar o código de modo a cumprir as metas de qualidade de código estabalecidas no proejeto |
 
-#### 5.4 Ações para riscos atuais
+#### 1.5.4 Ações para riscos atuais
 
 | ID | Como mitigar |
 |---|---|
@@ -119,7 +125,7 @@ Visto o scrum master optou por fazer o gráfico de burndown de risco para cada r
 | RN23 | Será dado ao final dessa sprint um treinamento de testes integração para MDS. Além disso, nas próximas sprint EPS tentará fornecer maior suporte para feedback em relação aos testes, visto que será os primeiros testes que MDS farão. |
 | RN24 | Na próxima reunião de sprint será dedicado um tempo específico para alinhar o conhecimento de MDS em relação as métricas coletadas e como refatorar o código de modo há atendê-las | 
 
-### **6. Retrospectiva**
+### **1.6. Retrospectiva**
 <h4> Pontos Positivos:</h4>
 
 * Muito aprendizado, tanto para MDS como para EPS
@@ -148,11 +154,11 @@ Visto o scrum master optou por fazer o gráfico de burndown de risco para cada r
 * Geovanni deixará de ser PO e passará a atuar como segundo devops da equipe
 * Na próxima sprint será criado um documento para centralizar os estudos referentes as tecnologias do projeto, em especial Kotlin. Dessa forma, ficará mais fácil que todos fiquem a par do desenvolvimento do projeto e ficará mais fácil encontrar material de estudo para auxiliar o desenvolvimento das histórias
 
-### **7. EVM**
+## **2. EVM**
 Nesta sprint, o resultado do valor agregado foi maior do que a sprint passada, dado que dois pontos a mais foram concluídos, e foi maior do que o planejado.
 ![EVM](https://i.imgur.com/wx4vDNP.png)
 
-### **8. Análise de código**
+## **3. Análise de código**
 A análise de código é feita com a ferramenta Detekt, ao executar seu diagnóstico ela gera um relatório de acordo com a configuração personalizada para os parâmetros aceitáveis de código para o projeto, o que está sendo analisado de acordo com o documento CONTRUBUTIN.md são as seguintes métricas:
 
 * Quantidade de linhas por método
@@ -168,7 +174,7 @@ Os valores aceitáveis para cada métrica estão também no arquivo CONTRUBUTING
 É possivel analisar que nenhuma das duas primeiras métricas foram apontadas no relatório, o que significa que elas estão dentro dos padrões desejáveis, existem algumas inconsistências com a folha de estilo, porém ao analisár, a ferramenta não consegue distinguir variáveis de constantes, e na folha de estilo cada uma está de uma maneira diferente, logo como não há distinção para constantes existem 2 notificações sobre nomes e constantes, e o total de Code Smells para o projeto foi de 7, sendo que o limite é 10.   
 O resultado da complexidade ciclomática do projeto teve o resultado de 161, dado que o padrão recomendável por método é de no máximo 10, 161 para o projeto por completo é um número aceitável, dado que existem bem mais que 16 métodos no projeto, o que acarretaria que cada um teria 10 de Complexidade Ciclomática, logo cada método tem um número bem abaixo do máximo recomendável. 
 
-### **9. Análise do Scrum Master**
+## **4. Análise do Scrum Master**
 
 Alguns pontos positivos são que a equipe está praticamente alinhada com o que era esperado no roadmap do projeto, tirando as duas dívidas técnicas dessa sprint, a comunicação entre as equipes tem funcionado bem desde o início do projeto, todos os membros tem mostrado compromisso com o projeto, tendo sempre trabalhado no projeto.
 
