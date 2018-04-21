@@ -13,6 +13,8 @@
 | 22/03/2018 | 0.8 | Correção do índice | Alexandre Miguel, Helena Goulart e Larissa Sales |
 | 22/03/2018 | 0.9 | Correção do índice e formatação de tabela de erros| Alexandre Miguel |
 | 24/03/2018 | 1.0 | Adição de conceitos de Flat Design e redefinição da suportabilidade de software| Alexandre Miguel |
+| 24/03/2018 | 1.0.1 | Corrigido formatação| Gabriel Albino |
+
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico

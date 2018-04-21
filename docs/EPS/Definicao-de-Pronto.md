@@ -2,6 +2,8 @@
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
 | 15/03/2018| 0.1 |Criação do documento | Geovanni Oliveira |
+| 15/03/2018| 0.2 |Corrigido formatação errada | Gabriel Albino |
+
 -------------------------------------------------------------------------------------------------
 
 ### Introdução

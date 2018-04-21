@@ -1,10 +1,12 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 10/03/2018| 0.1 |Criação do documento | Geovanni Oliveira |  
-| 13/03/2018| 0.2 |Criação do proposta inicial da política de branches| Geovanni Oliveira |  
+| 10/03/2018| 0.1 |Criação do documento | Geovanni Oliveira | 
+| 13/03/2018| 0.2 |Criação do proposta inicial da política de branches| Geovanni Oliveira | 
 | 14/03/2018| 0.3 |Adicionado gitflow e restruturado documento| Luis Gustavo|
 | 04/04/2018 | 0.4 | Adicionado versão 1.0 do giflow | Luis Gustavo|
+| 04/04/2018 | 0.5 | Corrigido erros de formatação | Gabriel Albino|
+
 -------------------------------------------------------------------------------------------------
 
 ## Versão 1.0
@@ -14,7 +16,7 @@
 * As demais branchs continuam funcionando da mesma forma a 0.1.
 
 
-![Gitflow](https://i.imgur.com/w7heu6M.png)  
+![Gitflow](https://i.imgur.com/w7heu6M.png) 
 _Figura 1 - Gitflow 1.0_
 
 ## Versão 0.1

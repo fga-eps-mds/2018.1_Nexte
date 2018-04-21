@@ -24,10 +24,4 @@ class LoginModel {
      * @param message message according with authentication result
      */
     class ViewModel(val message: String)
-
-    enum class AuhthenticationError(val statusCode: Int) {
-
-        unauthorized(401)
-
-    }
 }

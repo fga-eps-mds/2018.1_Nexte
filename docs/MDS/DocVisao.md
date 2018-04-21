@@ -15,6 +15,8 @@
 | 14/03/2018| 0.9.1 | Revisão de texto e formatação até o tópico 3.3 | ALexandre Miguel, Helena Goulart |
 | 15/03/2018| 1.0 | Correções ortográficas e de informações erradas | Gabriel Albino |
 | 15/03/2018| 1.0.1 | Corrigido indíce analítico | Gabriel Albino |
+| 15/03/2018| 1.0.2 | Corrigido formatação | Gabriel Albino |
+
 -------------------------------------------------------------------------------------------------
 
 ### Índice Analítico

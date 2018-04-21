@@ -24,7 +24,6 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
-    val requestCode: Int = 99
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +50,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         println("Data: $data")
         println("RequestCode: $requestCode ")
 
-        if (requestCode == 101) {
+        val authenticationCode = 101
+        if (requestCode == authenticationCode) {
 
             var loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
             var message = ""
