@@ -1,11 +1,17 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.content.Entity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CallLog
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
+import java.security.KeyStore
 
 /**
  * This interface will be responsible to define the methods that
@@ -45,6 +51,21 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
             startActivity(intent)
         }
+        val mChart = findViewById<LineChart>(R.id.mChart) as LineChart
+
+        var entries = ArrayList<Entry>()
+
+            entries.add(Entry(4f, 0f))
+            entries.add(Entry(8f, 1f))
+            entries.add(Entry(6f, 2f))
+            entries.add(Entry(2f, 3f))
+            entries.add(Entry(18f, 4f))
+            entries.add(Entry(9f, 5f))
+
+        var dataSet = LineDataSet(entries, )
+
+
+
     }
 
     /**
@@ -86,4 +107,5 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         age.text = viewModel.playerInfo.age
         email.text = viewModel.playerInfo.email
     }
+
 }
