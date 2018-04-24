@@ -18,7 +18,7 @@
 
 [1. Indicadores da equipe](#1-indicadores-da-equipe)
 
-* [1.1 Fechamento da Sprint](#11-fechamento-da-sprint)
+* [1.1 Resumo da Sprint](#11-resumo-da-sprint)
 
 * [1.2 Entrega Contínua](#12-entrega-contínua)
 
@@ -28,17 +28,19 @@
 
 * [1.5 Retrospectiva](#15-retrospectiva)
 
-[2. EVM](#2-evm)
+[2. Gestão de Risco](#2-gestão-de-risco)
 
-[3. Análise de código](#3-análise-de-código)
+[3. EVM](#2-evm)
 
-[4. Análise do Scrum Master](#4-análise-do-scrum-master)
+[4. Análise de código](#3-análise-de-código)
+
+[5. Análise do Scrum Master](#4-análise-do-scrum-master)
 
 # **Resultados**
 
 ## **1. Indicadores da Equipe**
 
-### **1.1. Fechamento da Sprint**
+### **1.1. Resumo da Sprint**
 ![Fechamento da Sprint](https://i.imgur.com/fkNzuEm.png)
 
 Além das histórias acima, também foi finalizada a dívida técnica [#108](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/108). Como pode-se observar a issue [#204](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/204) ficará como dívida técnica pois a equipe percebeu que não havia sentido em centralizar os dados mockados do aplicativo sem ter um banco de dados local integrado. Assim, ficará para a próxima sprint centralizar os dados mockados e também integrar o *Realm*, que será o banco de dados local.
@@ -100,11 +102,43 @@ Houveram melhoras mínimas no conhecimento das tecnologias gerais do projeto da 
 * Deixar claro no planejamento de sprint as datas finais de entrega da sprint;
 * Conferir previamente com "a banca" o conteúdo da Release 2;
 
-## **2. EVM**
+## **2. Gestão de Risco**
 
-## **3. Análise de código**
+#### 2.1. Riscos priorizados
 
-## **4. Análise do Scrum Master**
+![Gestão de Risco](https://i.imgur.com/vRT5YJn.png)
+
+
+#### 2.2. _Burndown risk_
+
+![Burndow Risk do Projeto](https://i.imgur.com/jnKUnlu.png  )
+
+Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Sprint 6"
+
+#### 1.5.3 Diferenças da sprint anterior
+
+| ID | Status | Por que mudou? |
+|---|---|---|
+| RN03 | Diminuiu | Esse risco abaixou pois os maiores gargalos da configuração de ambiente(CI, CI integrado com testes,  cobertura de testes e métricas de código, deploy contínuo, ambiente de desenvolvimento, testes e homologação) já foram feitos. Além disso, agora a equipe de EPS possui dois devops o que diminui ainda mais que haja problemas com configuração de ambiente. |
+| RN07 | Diminuiu | Esse risco diminuiu pois desde o início do projeto a comunicação entre as equipe tem sido um ponto positivo. Além de que a equipe de EPS está mais proativa no github. |
+| RN15 | Diminuiu | Esse risco diminuiu agora EPS tem dois devops atuando, o que diminiu o risco de que só um integrante da equipe saiba realizar esse papel. Além disso, o membros de MDS estão bem menos dependentes do Gabriel Albino e do Alexandre Miguel para realizar as histórias. |
+| RN22 | Diminuiu | Esse risco diminuiu pois após a reunião de retrospectiva MDS citou que estavam bem confiantes e com conhecimento sólido na arquitetura, além disso não houve mais problemas de histórias não realizadas(de MDS) por causa de dificuldades na arquitetura. |
+| RN05 | Novo | O Geovanni, membro de EPS, irá participar da WWDC 2018, o que resultará em quase 2 semanas em que ele não conseguirá trabalhar no projeto. |
+| RN 11 | Retirado | O Scrum Master não viu mais sentido em fazer a gestão desse risco, visto que ao longo de todo o semestre os membros da equipe ficarão atarefados com tarefas de todas as disciplinas. Além disso, já estão sendo geridos riscos de de baixa produtividade da equipe e membros não trabalhando no projeto. |
+
+#### 1.5.4 Ações para riscos atuais
+
+| ID | Como mitigar |
+|---|---|
+| RN05 | A equipe de EPS tentará mitigar esse risco por meio de que o  Geovanni terá a obrigação adiantar parte de suas tarefas antes da viagem, de modo que as poucas tarefas que ele teria nessas sprints a equipe de EPS consiga realizar sem que fiquem sobrecarregados. Além disso, quando ele voltar ele terá a obrigação de cumprir uma quantidade maior de tarefas para compensar o deficit que ele terá nessas semanas. |
+| RN04 | A Equipe de EPS agora está atuando na entrega desse servidor, e ele ficará pronto essa sprint. |
+| RN23/RN24 | Já foram realizados treinamentos sobre esses temas, agora EPS estará dando suporte ao máximo que MDS não deixe de entregar suas histórias por causa de testes ou métricas.|
+
+## **3. EVM**
+
+## **4. Análise de código**
+
+## **5. Análise do Scrum Master**
 
 Como dito acima, essa foi uma sprint diferenciada das demais do projeto, assim não faz muito sentido tirar conclusões diretamente dela. Mas, nessa sprint foi muito positivo ver o produto desenvolvido ganhar "vida" com a implementação do design, e também foi muito positivo ver a integração contínua e o deploy contínuo funcionando da maneira que a equipe planejou.
 
