@@ -1,47 +1,37 @@
 package com.nexte.nexte.ChallengeScene
+import com.nexte.nexte.Player
 
 /**
  * Class to define the Model of Challenge Scene to send informations between layers
  */
 class ChallengeModel{
-    /**
-     * Class responsible to pass data from View to Interactor and then to worker,
-     * so it can request data
-     *
-     * @property challenger
-     * @property challenged
-     * @property place
-     * @property hour
-     * @property date
-     */
-    class Request(var challenger: ChallengeModel.Player?,
-                  var challenged: ChallengeModel.Player?,
-                  var place: String?,
-                  var hour: String?,
-                  var date: String?)
 
-    /**
-     * Class responsible to store received informations from Worker and pass it to Presenter
-     *
-     * @property challengedAnswer
-     */
-    class Response(var challengedAnswer: Boolean?)
+    class showRankingPlayersRequest {
 
-    /**
-     * Class responsible to define how the list view will display the formatted data passed to view
-     *
-     * @property message Message that will be shown in the screen
-     */
-    class ViewModel(var message: String?)
+        class Request(var challengerRankPosition: rankingPosition.Player)
 
-    // --------- Aux class ---------
+        class Response(var fiveUsersAbove: Array<Player>)
 
-    /**
-     * Class responsible to hold player informations
-     */
-    class Player(var name: String?,
-                 var rankingPosition: Int?,
-                 var wins: Int?,
-                 var losses: Int?,
-                 var pictureAdress: String?)
+        class ViewModel(var formattedPlayer: formattedPlayer)
+
+    }
+
+    class selectPlayerForChallenge{
+
+        class Request(var challengedRankPosition: challengedRankingPosition)
+
+        class Response(var challengedPersonalDetails: Player)
+
+        class ViewModel(var challengedRankingDetails: formattedRankingDetails)
+
+    }
+
+    class formattedPlayer(var name: String,
+                          var rankingPosition: String,
+                          var pictureAddress: String)
+
+    class formattedRankingDetails(var name: String,
+                                  var wins: Int,
+                                  var losses: Int,
+                                  var rankingPosition: String)
 }
