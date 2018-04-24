@@ -1,10 +1,12 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.content.Context
 import android.content.Entity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CallLog
+import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
@@ -55,16 +57,22 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
         var entries = ArrayList<Entry>()
 
-            entries.add(Entry(4f, 0f))
+            entries.add(Entry(  4f, 0f))
             entries.add(Entry(8f, 1f))
             entries.add(Entry(6f, 2f))
             entries.add(Entry(2f, 3f))
             entries.add(Entry(18f, 4f))
             entries.add(Entry(9f, 5f))
 
-        var dataSet = LineDataSet(entries, )
+        var dataSet = LineDataSet(entries, "Vitórias")
 
+        var labels = ArrayList<String>()
+            labels.add("Set")
+            labels.add("Out")
+            labels.add("Nov")
+            labels.add("Dez")
 
+        
 
     }
 
