@@ -3,6 +3,7 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 23/04/2018| 0.1 | Criação do Documento| Luis Gustavo|
+| 24/04/2018| 0.2 | Preenchimento da EVM e da Análise de Código| Geovanni Oliveira|
 
 ----------------------------------------------------------------------
 
@@ -135,9 +136,16 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 | RN23/RN24 | Já foram realizados treinamentos sobre esses temas, agora EPS estará dando suporte ao máximo que MDS não deixe de entregar suas histórias por causa de testes ou métricas.|
 
 ## **3. EVM**
+Como a sprint foi mais em relação às outras, dado que a Release foi na quinta feira (19/04) e todo o escopo foi planejado para ser entregue até quarta feira, logo a quantidade de pontos entregues foi menor do que o ocorrido nas outras, e isso reflete na planilha de valor agregado, foi bem menor do que as outras sprints.
+Foi analisádo que o planejamento de pontos para a Release foi super estimado, o que foi concretisado na entrega da primeira Release, na quarta feira. A figura abaixo mostra como ficou a planilha de EVM para a primeira release.  
+![](https://i.imgur.com/FuCQQfn.png)  
 
 ## **4. Análise de código**
-
+A análise do código dada pela ferramenta escolhida pode ser analisada na imagem abaixo, onde relata as métricas de análise de código.
+Foi averiguado 7 code smells pois, dois deles foram recebidos dado à uma falha de configuração da ferramenta, para a padronização de atributos de classe e constantes, a ferramenta fica incapaz de diferenciar as duas, logo existem dois code smells que são referentes à nomeação de atributos, porém está seguindo a folha de estilo no ponto de nomeação de constantes no código, então essa questão vai ser analisada mais a fundo para solucionar esse problema.
+A complexidade ciclomática aumentou em 7 pontos, dado que na última análise estava em 161, e atualmente é representado na imagem que está em 168, existe somente um método que está fugindo do padrão adotado, que é de no máximo 30 linhas por método, e esse método possui 50 linhas, logo, devera ser refatorado.
+As outras métricas que não foram pontuadas nesta análise, não houveram diagnósticos negativos pela ferramenta Detekt.
+![](https://i.imgur.com/lcI8Enn.png)
 ## **5. Análise do Scrum Master**
 
 Como dito acima, essa foi uma sprint diferenciada das demais do projeto, assim não faz muito sentido tirar conclusões diretamente dela. Mas, nessa sprint foi muito positivo ver o produto desenvolvido ganhar "vida" com a implementação do design, e também foi muito positivo ver a integração contínua e o deploy contínuo funcionando da maneira que a equipe planejou.
