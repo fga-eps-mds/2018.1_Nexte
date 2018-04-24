@@ -6,17 +6,16 @@ import com.nexte.nexte.Player
  */
 class ChallengeModel{
 
-    class showRankingPlayersRequest {
+    class ShowRankingPlayersRequest {
 
         class Request(var challengerRankingPosition: Int)
 
-        class Response(var fiveUsersAbove: Array<Player>)
+        class Response(var fiveUsersAbove: List<Player>)
 
-        class ViewModel(var formattedPlayer: FormattedPlayer)
-
+        class ViewModel(var formattedPlayer: List<FormattedPlayer>)
     }
 
-    class selectPlayerForChallenge{
+    class SelectPlayerForChallenge{
 
         class Request(var challengedRankingPosition: Int)
 
