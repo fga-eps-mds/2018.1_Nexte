@@ -8,29 +8,29 @@ class ChallengeModel{
 
     class showRankingPlayersRequest {
 
-        class Request(var challengerRankPosition: rankingPosition.Player)
+        class Request(var challengerRankingPosition: Int)
 
         class Response(var fiveUsersAbove: Array<Player>)
 
-        class ViewModel(var formattedPlayer: formattedPlayer)
+        class ViewModel(var formattedPlayer: FormattedPlayer)
 
     }
 
     class selectPlayerForChallenge{
 
-        class Request(var challengedRankPosition: challengedRankingPosition)
+        class Request(var challengedRankingPosition: Int)
 
         class Response(var challengedPersonalDetails: Player)
 
-        class ViewModel(var challengedRankingDetails: formattedRankingDetails)
+        class ViewModel(var challengedRankingDetails: FormattedRankingDetails)
 
     }
 
-    class formattedPlayer(var name: String,
+    class FormattedPlayer(var name: String,
                           var rankingPosition: String,
                           var pictureAddress: String)
 
-    class formattedRankingDetails(var name: String,
+    class FormattedRankingDetails(var name: String,
                                   var wins: Int,
                                   var losses: Int,
                                   var rankingPosition: String)

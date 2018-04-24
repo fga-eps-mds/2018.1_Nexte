@@ -2,6 +2,7 @@ package com.nexte.nexte.ChallengeScene
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.nexte.nexte.R
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will

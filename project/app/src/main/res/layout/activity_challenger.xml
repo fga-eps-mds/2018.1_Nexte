@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.nexte.nexte.ChallengeScene.Challenger">
 
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/columns_challenged" />
 </android.support.constraint.ConstraintLayout>
+
+    <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager" -->

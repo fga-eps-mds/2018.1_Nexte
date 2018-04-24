@@ -16,4 +16,6 @@
     </string>
     <string name="title_activity_show_profile">ShowProfileActivity</string>
     <string name="title_activity_feed_view">FeedView</string>
+    <string name="user_picture">User picture</string>
+    <string name="nome">nome</string>
 </resources>
