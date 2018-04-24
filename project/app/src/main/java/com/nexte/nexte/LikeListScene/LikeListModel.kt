@@ -14,17 +14,17 @@ class LikeListModel {
     /**
      * Class responsible to store received information from Worker and pass to Presenter
      *
-     * @param Players MutableList that hold personal information of name, photo and time
+     * @param players MutableList that hold personal information of name, photo and time
      * about the players to show in screen
      */
-    class Response(var Players: MutableList<Players>)
+    class Response(var players: MutableList<Players>)
 
     /**
      * Class responsible to define how the list view will display the formatted data, passed to view
      *
-     * @param PlayersFormatted MutableList that hold information to show in screen
+     * @param playersFormatted MutableList that hold information to show in screen
      */
-    class ViewModel(var PlayersFormatted: MutableList<PlayersFormatted> )
+    class ViewModel(var playersFormatted: MutableList<PlayersFormatted> )
 
     /**
      * Class with information about users who will be displayed in the likes list

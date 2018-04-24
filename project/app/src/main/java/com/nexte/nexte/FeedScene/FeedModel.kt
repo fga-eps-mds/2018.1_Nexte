@@ -107,6 +107,7 @@ class FeedModel {
      * @property challengedPhoto Profile image of challenged
      * @property challengedSets String that have sets of challenger
      * @property feedDate String date of feed to show on screen
+     * @property numberOfLikes String with the number of likes in a game
      */
     class FeedActivityFormatted(var identifier: String,
                                 var challengerName: String,

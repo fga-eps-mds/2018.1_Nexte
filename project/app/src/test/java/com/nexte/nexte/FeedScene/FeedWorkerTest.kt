@@ -11,11 +11,12 @@ import java.util.*
 class FeedWorkerTest {
 
     var worker: FeedWorker? = null
+    var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
 
     @Before
     fun setUp() {
         this.worker = FeedWorker()
-        FeedMocker.createFeedList()
+        this.feedList = FeedMocker.createFeedList()
     }
 
     @Test
@@ -44,7 +45,6 @@ class FeedWorkerTest {
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
         val request = FeedModel.LikeAndUnlike.Request(identifier = identifier)
-        val expectedNumberOfLikes = 1
 
         //call
         this.worker?.manageLikes(request = request, completion = {response ->
@@ -55,7 +55,6 @@ class FeedWorkerTest {
             assertEquals(challenged1.name, response.likedActivity.challenge.challenged.name)
             assertEquals(challenged1.set, response.likedActivity.challenge.challenged.set)
             assertEquals(challenged1.photo, response.likedActivity.challenge.challenged.photo)
-            assertEquals(expectedNumberOfLikes, response.likedActivity.likes.size)
             assertEquals(identifier, response.likedActivity.identifier)
 
         })

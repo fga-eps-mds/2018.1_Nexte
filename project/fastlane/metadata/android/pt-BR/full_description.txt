@@ -1,0 +1,7 @@
+O Nexte tem objetivo em promover a integração entre tenistas a partir da realização de desafios entre os membros de um clube de tênis ou patota. 
+O Nexte também se preocupa com as estatísticas e motivação dos seus usuários, e para isso, utiliza de ferramentas como feed de atividades interativo, placares das partidas, uso de troféus e ranqueamento entre participantes.
+
+Obs: Aplicativo modelo. Para o uso efetivo e completo é necessário entrar em contato com seu clube de associação e requisitar contato com o Nexte para implantação interna.
+
+* Designer:  Jéssica Sá
+* Desenvolvedores: Eduardo Vital; Guilherme Baldissera;  Italo Queiroz; Miguel Pimentel

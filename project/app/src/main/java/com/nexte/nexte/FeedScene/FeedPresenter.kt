@@ -31,7 +31,8 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
 
     override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
 
-        val viewModel = FeedModel.GetFeedActivities.ViewModel(this.formatFeedActivities(response.feedActivities))
+        val viewModel = FeedModel.GetFeedActivities.ViewModel(
+                this.formatFeedActivities(response.feedActivities))
         viewController?.displayFeed(viewModel)
     }
 
@@ -51,6 +52,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
      */
     private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>):
             MutableList<FeedModel.FeedActivityFormatted> {
+
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
@@ -79,6 +81,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
      */
     private fun formatFeedActivity(activity: FeedModel.FeedActivity):
             FeedModel.FeedActivityFormatted {
+
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                 activity.identifier,
                 activity.challenge.challenger.name,

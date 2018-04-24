@@ -32,7 +32,7 @@ class ShowProfileModel {
      **/
     class ViewModel(var playerInfo: FormattedPlayer)
 
-    //------------------------------------- Aux Classes ------------------------------------------
+    //-------------- Aux Classes --------------
 
     /**
      * This class holds the formatted player information that will be defined on [ShowProfilePresenter]

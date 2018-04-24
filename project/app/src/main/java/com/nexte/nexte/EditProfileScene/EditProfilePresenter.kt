@@ -43,7 +43,7 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
     var viewToShowEditProfileError: EditProfileDisplayLogic? = null
 
     /**
-     * Format user information contained in [EditProfileModel.RecoverUserRequest.Response]
+     * Formats user information contained in [EditProfileModel.RecoverUserRequest.Response]
      * and sends it to [EditProfileView]
      *
      * @param response contains unformatted data received from [EditProfileModel]
