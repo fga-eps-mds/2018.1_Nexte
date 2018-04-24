@@ -23,21 +23,19 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url "https://jitpack.io" }
-
     }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-detekt {
-    version = "1.0.0.RC6"
-    profile("main") {
-        input = "$projectDir/app/src/main/java"
-        config = "$projectDir/default-detekt-config.yml"
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    task clean(type: Delete) {
+        delete rootProject.buildDir
     }
-}
 
+    detekt {
+        version = "1.0.0.RC6"
+        profile("main") {
+            input = "$projectDir/app/src/main/java"
+            config = "$projectDir/default-detekt-config.yml"
+            filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+        }
+    }
+
+}
