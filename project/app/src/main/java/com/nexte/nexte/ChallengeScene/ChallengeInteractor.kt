@@ -4,10 +4,11 @@ package com.nexte.nexte.ChallengeScene
  * Interface to define Business Logic to Challenge Class
  * that will used to call this Interactor on other class layer
  */
-interface requestPlayersToChallengeBusinessLogic {
+interface RequestPlayersToChallengeBusinessLogic {
 
     /**
-     * Method that pass the request to Worker and send the response to Presenter
+     * Method that pass the request to Worker and send the response to Presenter for the request
+     * responsible to get first list of players
      *
      * @param request variable equals to the server response due to the challenged response
      */
@@ -15,11 +16,11 @@ interface requestPlayersToChallengeBusinessLogic {
 }
 
 /**
- * Class that implements [ChallengeBusinessLogic] and is responsible for the communication*
+ * Class that implements [RequestPlayersToChallengeBusinessLogic] and is responsible for the communication*
  * @property worker Reference to worker [ChallengeWorker]
  * @property presenter Reference to presenter [ChallengePresenter]
  */
-class ChallengeInteractor : requestPlayersToChallengeBusinessLogic {
+class ChallengeInteractor : RequestPlayersToChallengeBusinessLogic {
 
     var worker = ChallengeWorker()
     var presenter: FormatPlayersPresentationLogic? = null

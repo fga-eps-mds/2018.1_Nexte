@@ -8,22 +8,26 @@ import com.nexte.nexte.Player
  */
 class ChallengeWorker {
 
+    companion object {
+
+        const val rankingGap = 5
+    }
+
     /**
-     * Function to set a match
+     * Function to get players 5 rank positions above the logged player
      *
      * @param request Challenge Model request that contains needed informations to send to server
      * @param completion Method to call on parent class
      */
-    fun fetchPlayersToChallenge (request: ChallengeModel.ShowRankingPlayersRequest.Request, completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
+    fun fetchPlayersToChallenge (request: ChallengeModel.ShowRankingPlayersRequest.Request,
+                                 completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
         val rankingPostion = request.challengerRankingPosition
-
-        val rankingGap = 5
 
         var selectedPlayers: List<Player> = listOf()
         val players = ChallengeMocker.createPlayers()
 
         for (player in players){
-            if((player.rankingPosition >= rankingPostion-rankingGap) && player.rankingPosition < rankingPostion){
+            if(player.rankingPosition >= rankingPostion-rankingGap && player.rankingPosition < rankingPostion){
                 selectedPlayers += player
             }
         }

@@ -14,19 +14,19 @@ interface FormatPlayersPresentationLogic {
 }
 
 /**
-* This class will be responsible to receive a [ChallengeModel.Response]
-* and generate a [ChallengeModel.ViewModel], sending it to View
+* This class will be responsible to receive a [ChallengeModel.ShowRankingPlayersRequest.Response]
+* and generate a [ChallengeModel.ShowRankingPlayersRequest.ViewModel], sending it to View
 *
 * @property viewChallenge Reference to display formatted data
 */
 
 class ChallengePresenter : FormatPlayersPresentationLogic {
 
-    var viewChallenge: showPlayersToChallengeDisplayLogic? = null
+    var viewChallenge: ShowPlayersToChallengeDisplayLogic? = null
 
     /**
      * This method is responsible for formatting data contained on
-     * [ChallengeModel.Response] and send it to View
+     * [ChallengeModel.ShowRankingPlayersRequest.Response] and send it to View
      *
      * @param response contains unformatted data received from [ChallengeModel]
      */
@@ -36,7 +36,8 @@ class ChallengePresenter : FormatPlayersPresentationLogic {
         var formattedPlayers: List<ChallengeModel.FormattedPlayer> = listOf()
 
         for(player in selectedPlayers){
-            val formattedPlayer = ChallengeModel.FormattedPlayer(player.name, String.format("#%d", player.rankingPosition), player.pictureAddress)
+            val formattedPlayer = ChallengeModel.FormattedPlayer(player.name,
+                    String.format("#%d", player.rankingPosition), player.pictureAddress)
 
             formattedPlayers += formattedPlayer
         }
