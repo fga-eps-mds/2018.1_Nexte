@@ -42,7 +42,7 @@
         <activity
             android:name=".EditProfileScene.EditProfileView"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChallengeScene.Challenger"></activity>
+        <activity android:name=".ChallengeScene.ChallengeView"></activity>
     </application>
 
 </manifest>

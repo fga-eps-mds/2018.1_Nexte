@@ -1,5 +1,7 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.Player
+
 /**
  * Class responsible to do request for anywhere, format Response and
  * call completion to send data for called class
@@ -12,17 +14,22 @@ class ChallengeWorker {
      * @param request Challenge Model request that contains needed informations to send to server
      * @param completion Method to call on parent class
      */
-    fun setMatch (request: ChallengeModel.Request, completion: (ChallengeModel.Response) -> Unit) {
+    fun fetchPlayersToChallenge (request: ChallengeModel.ShowRankingPlayersRequest.Request, completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
+        val rankingPostion = request.challengerRankingPosition
 
-        val challengedAnswer: Boolean?
-        val isValid: Boolean?
-        val place = request.place
+        val rankingGap = 5
 
-        isValid = place == "FGA"
+        var selectedPlayers: List<Player> = listOf()
+        val players = ChallengeMocker.createPlayers()
 
-        challengedAnswer = isValid
+        for (player in players){
+            if((player.rankingPosition >= rankingPostion-rankingGap) && player.rankingPosition < rankingPostion){
+                selectedPlayers += player
+            }
+        }
 
-        val response: ChallengeModel.Response = ChallengeModel.Response(challengedAnswer)
+        val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
+
         completion(response)
     }
 }

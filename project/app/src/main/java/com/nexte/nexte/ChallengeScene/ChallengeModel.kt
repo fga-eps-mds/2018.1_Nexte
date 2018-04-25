@@ -15,7 +15,7 @@ class ChallengeModel{
         class ViewModel(var formattedPlayer: List<FormattedPlayer>)
     }
 
-    class SelectPlayerForChallenge{
+    class SelectPlayerForChallengeRequest{
 
         class Request(var challengedRankingPosition: Int)
 

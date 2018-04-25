@@ -21,12 +21,14 @@
         android:id="@+id/userName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/nome"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/userPicture"
         app:layout_constraintStart_toStartOf="@id/userPicture"
-        app:layout_constraintTop_toBottomOf="@id/userPicture"
-        android:textAlignment="center" />
+        app:layout_constraintTop_toBottomOf="@id/userPicture" />
 
 </android.support.constraint.ConstraintLayout>
 
