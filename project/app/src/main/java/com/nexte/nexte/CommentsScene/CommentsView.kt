@@ -2,7 +2,6 @@ package com.nexte.nexte.CommentsScene
 
 import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,7 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
-import kotlinx.android.synthetic.main.activity_feed_view.*
+import kotlinx.android.synthetic.main.activity_comments.*
+import kotlinx.android.synthetic.main.row_comments.view.*
 
 /**
  * Interface to define Display Logic to CommentsView Class that will
@@ -24,8 +24,7 @@ interface CommentsDisplayLogic {
 class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
     var interactor: CommentsInteractor? = null
-    var commentsViewAdapter = CommentsAdapter? = null
-
+    var commentsViewAdapter: CommentsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -39,7 +38,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    fun setUpCommentsScene {
+    fun setUpCommentsScene() {
 
         val view = this
         val interactor = CommentsInteractor()
@@ -54,20 +53,20 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
     }
 
-    class CommentsAdapter(comments: MutableList<CommentsModel.CommentFormatted>,
-                          context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+    class CommentsAdapter(private val comments: MutableList<CommentsModel.CommentFormatted>,
+                          private val context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 CommentsView.CommentsAdapter.ViewHolder {
 
-            val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent,false)
+            val view = LayoutInflater.from(context).inflate(R.layout.row_comments, parent,false)
             return CommentsView.CommentsAdapter.ViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: CommentsView.CommentsAdapter.ViewHolder,
                                       position: Int) {
 
-            holder.bindView(comments[position], context)
+            holder.bindView(comments[position])
         }
 
         override fun getItemCount(): Int {
@@ -89,12 +88,6 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
 
             }
-
         }
-
     }
-
-
-
-
 }
