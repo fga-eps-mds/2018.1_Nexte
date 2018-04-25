@@ -3,17 +3,23 @@ package com.nexte.nexte.ShowProfileScene
 import android.content.Context
 import android.content.Entity
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CallLog
 import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 import java.security.KeyStore
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.data.BarDataSet
+
+
 
 /**
  * This interface will be responsible to define the methods that
@@ -55,16 +61,34 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         }
         val mChart = findViewById<LineChart>(R.id.mChart) as LineChart
 
-        var entries = ArrayList<Entry>()
+        var entriesvictories = ArrayList<Entry>()
 
-            entries.add(Entry(  4f, 0f))
-            entries.add(Entry(8f, 1f))
-            entries.add(Entry(6f, 2f))
-            entries.add(Entry(2f, 3f))
-            entries.add(Entry(18f, 4f))
-            entries.add(Entry(9f, 5f))
+            entriesvictories.add(Entry(4f, 0f))
+            entriesvictories.add(Entry(8f, 1f))
+            entriesvictories.add(Entry(6f, 2f))
+            entriesvictories.add(Entry(2f, 3f))
+            entriesvictories.add(Entry(18f, 4f))
+            entriesvictories.add(Entry(9f, 5f))
 
-        var dataSet = LineDataSet(entries, "Vitórias")
+
+        var entriesloss = ArrayList<Entry>()
+
+            entriesloss.add(Entry(15f, 0f))
+            entriesloss.add(Entry(9f, 1f))
+            entriesloss.add(Entry(12f, 2f))
+            entriesloss.add(Entry(6f, 3f))
+            entriesloss.add(Entry(20f, 4f))
+            entriesloss.add(Entry(8f, 5f))
+
+        var entriesmatch = ArrayList<Entry>()
+
+            entriesmatch.add(Entry(12f, 0f))
+            entriesmatch.add(Entry(10f, 1f))
+            entriesmatch.add(Entry(13f, 2f))
+            entriesmatch.add(Entry(9f, 3f))
+            entriesmatch.add(Entry(4f, 4f))
+            entriesmatch.add(Entry(7f, 5f))
+
 
         var labels = ArrayList<String>()
             labels.add("Set")
@@ -72,8 +96,18 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
             labels.add("Nov")
             labels.add("Dez")
 
-        
 
+        val dataSet1 = LineDataSet(entriesvictories, "Vitórias")
+        dataSet1.color = Color.BLUE
+        val dataSet2 = LineDataSet (entriesloss, "Derrotas")
+        dataSet2.color = Color.RED
+        val dataSet3 = LineDataSet (entriesmatch, "Partidas")
+        dataSet3.color = Color.GREEN
+
+        dataSet = ArrayList<Entry>
+        dataSet.addColor()
+        dataSet.
+        return dataSet
     }
 
     /**
