@@ -35,11 +35,15 @@ interface FeedDisplayLogic {
  * @property feedViewAdapter FeedAdapter instance for broad using on class
  */
 
+/**
+ * Test for the Realm Database
+ */
 open class Person: RealmObject() {
     @PrimaryKey
     var id: Long = 0
     var name: String? = null
 }
+
 class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
@@ -55,6 +59,9 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed_view)
 
+        /**
+         * Testing Realm Database
+         */
         Realm.init(this)
         val config = RealmConfiguration.Builder().name("realm.io").build()
         var realm = Realm.getInstance(config)
@@ -79,6 +86,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
             println("Config 2:")
             println(person.name + " " + person.id)
         }
+        /** ------------------------------------------------------------ */
 
         this.setupFeedScene()
 
