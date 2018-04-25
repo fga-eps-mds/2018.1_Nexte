@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
+import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
@@ -76,6 +77,13 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
     private fun goToLikesList() {
 
         val intent = Intent(this, LikeListView::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun goToCommentsList() {
+
+        val intent = Intent(this, CommentsView::class.java)
         startActivity(intent)
     }
 
@@ -197,6 +205,11 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.numberOfLikes.setOnClickListener {
 
                     (context as FeedView).goToLikesList()
+                }
+
+                itemView.comments.setOnClickListener {
+
+                    (context as FeedView).goToCommentsList()
                 }
             }
         }

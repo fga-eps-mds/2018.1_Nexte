@@ -15,7 +15,7 @@ class CommentsModel {
     * Class responsible to pass data from View to Interactor and then to worker,
     * so it can request data
     */
-    class Request(var request: String?)
+    class Request(var request: String)
 
     /**
      * Class responsible to store received information from Worker and pass it to Presenter

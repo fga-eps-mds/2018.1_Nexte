@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.row_likes.view.*
  * from Presenter
  */
 interface LikeListDisplayLogic {
+
     fun displayLikeList(viewModel: LikeListModel.ViewModel)
 }
 
@@ -110,7 +111,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
              */
             fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
                 itemView.PlayerName.text = printedPlayer.name
-                itemView.LikeDate.text = printedPlayer.time
+                itemView.commentDate.text = printedPlayer.time
             }
         }
     }

@@ -1,45 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/commentsActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#2E2E2E"
     android:paddingBottom="8dp">
 
     <ImageView
-        android:id="@+id/ProfilePicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/profilePicture"
+        android:layout_width="55dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/PlayerName"
+        android:id="@+id/playerName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="10dp"
         android:text="Nome"
         android:textColor="#ffffff"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
 
     <TextView
-        android:id="@+id/LikeDate"
+        android:id="@+id/commentDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="11dp"
         android:text="Data"
-        android:textSize="16sp"
         android:textColor="#ffffff"
-        app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:layout_width="241dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="16dp"
+        android:background="#504d4d"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/commentDate"
+        app:layout_constraintStart_toEndOf="@+id/profilePicture"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#504d4d"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="72dp">
+
+            <TextView
+                android:id="@+id/commentBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Commentary"
+                android:textColor="@android:color/background_light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="111dp"
+                tools:layout_editor_absoluteY="16dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

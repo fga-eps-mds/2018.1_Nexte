@@ -41,7 +41,9 @@
         <activity
             android:name=".EditProfileScene.EditProfileView"
             android:screenOrientation="portrait"/>
-        <activity android:name=".CommentsScene.CommentsView" />
+        <activity android:name=".CommentsScene.CommentsView"
+            android:label="CommentsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 

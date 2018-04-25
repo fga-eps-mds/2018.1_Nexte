@@ -24,18 +24,18 @@ interface CommentsDisplayLogic {
 class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
     var interactor: CommentsInteractor? = null
-    var commentsViewAdapter: CommentsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed_view)
+        setContentView(R.layout.activity_comments)
 
+        commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setUpCommentsScene()
 
-        this.commentsViewAdapter = CommentsView.CommentsAdapter(mutableListOf(), this)
-        commentsRecyclerView.adapter = this.commentsViewAdapter
-        commentsRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        val request = CommentsModel.Request("exampleString")
+        interactor?.recentComments(request)
     }
 
     fun setUpCommentsScene() {
@@ -51,7 +51,12 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
     override fun displayComments(viewModel: CommentsModel.ViewModel) {
 
+        commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
+                                                                    this)
+
     }
+
+
 
     class CommentsAdapter(private val comments: MutableList<CommentsModel.CommentFormatted>,
                           private val context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
@@ -76,16 +81,13 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
 
 
-
-
-
-
-
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun bindView(commentsFormatted: CommentsModel.CommentFormatted) {
 
-
+                itemView.commentBox.text = commentsFormatted.comment
+                itemView.commentDate.text = commentsFormatted.commentDate
+                itemView.playerName.text = commentsFormatted.username
 
             }
         }

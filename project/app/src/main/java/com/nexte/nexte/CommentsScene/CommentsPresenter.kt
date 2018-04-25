@@ -28,7 +28,6 @@ class CommentsPresenter : CommentsPresentationLogic {
     override fun presentComment(response: CommentsModel.Response) {
 
         val viewModel = CommentsModel.ViewModel(formatComment(response.comments))
-
         viewController?.displayComments(viewModel)
     }
 
