@@ -2,27 +2,29 @@ package com.nexte.nexte.ObjectModels
 
 import java.util.*
 
-data class Challenge(val id: String,
-                     val challengerId: String,
-                     val challengedId: String,
-                     val challengeDate: Date,
-                     val status: Status,
-                     val stage: Stage) {
-    val winner: String
+class Challenge(val id: String,
+                val challengerId: String,
+                val challengedId: String,
+                val challengeDate: Date,
+                val status: Status,
+                val stage: Stage) {
+    val winner: String?
         get() {
-            return ""
+            if (stage is Stage.Played) {
+                return if (stage.winner == UserType.CHALLENGER) challengerId else challengedId
+            }
+            return null
         }
 
     enum class Status { WAITING, CONFIRMED, PROCESSED }
     enum class UserType { CHALLENGER, CHALLENGED }
 
     sealed class Stage {
-        class Scheduled()
+        class Scheduled: Stage()
         class Canceled(val reason: String,
                        val user: UserType,
-                       val date: Date)
-        class Played(val winner: UserType,
-                     val setChallenger: Int,
+                       val date: Date): Stage()
+        class Played(val setChallenger: Int,
                      val setChallenged: Int,
                      val date: Date,
                      val firstGame: Game,
@@ -30,13 +32,18 @@ data class Challenge(val id: String,
                      val thirdGame: Game?,
                      val fourthGame: Game?,
                      val fifthGame: Game?,
-                     val detail: String?) {
+                     val detail: String?): Stage() {
+
+            val winner: UserType
+                get() {
+                    return if (setChallenger > setChallenged) UserType.CHALLENGER else UserType.CHALLENGED
+                }
 
             val setsPlayed: Int
                 get() = this.setChallenger + this.setChallenged
 
-            data class Game(val gameChallenger: Int,
-                            val gameChallenged: Int)
+            class Game(val gameChallenger: Int,
+                       val gameChallenged: Int)
         }
     }
 }

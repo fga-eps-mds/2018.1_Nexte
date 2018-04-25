@@ -1,8 +1,8 @@
 package com.nexte.nexte.ObjectModels
 
-data class ResponseError(val type: ResponseErrorType,
-                         val title: String,
-                         val detail: String) {
+class ResponseError(val type: ResponseErrorType,
+                    val title: String,
+                    val detail: String) {
 
-    enum class ResponseErrorType(val code: Int)
+    enum class ResponseErrorType { DATABASE_ERROR, REQUEST_ERROR, PARAMETER_ERROR, INSTANTIATE_ERROR }
 }
