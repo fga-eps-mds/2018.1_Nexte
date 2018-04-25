@@ -11,4 +11,8 @@ class Story(val id: String,
 
     class StoryPlayer(val id: String,
                       val setResult: Int)
+
+    enum class ServerRequest(val request: Map<String, String>) {
+        STORIES(hashMapOf("route" to "stories", "method" to "get"))
+    }
 }

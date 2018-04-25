@@ -12,6 +12,22 @@ class UserTest {
     fun setUp() {}
 
     @Test
+    fun successRequestsEnumTest() {
+
+        // Prepare
+        val userRequest = User.ServerRequest.USER.request
+        val usersRequest = User.ServerRequest.USERS.request
+        val updateUserRequest = User.ServerRequest.UPDATE_USER.request
+        val loginRequest = User.ServerRequest.LOGIN.request
+
+        // Asserts
+        Assert.assertEquals("User request is incorrect!", userRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Users request is incorrect!", usersRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Update user request is incorrect!", updateUserRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Login request is incorrect!", loginRequest.keys, setOf("route", "method"))
+    }
+
+    @Test
     fun successStatusEnumTest() {
 
         // Prepare

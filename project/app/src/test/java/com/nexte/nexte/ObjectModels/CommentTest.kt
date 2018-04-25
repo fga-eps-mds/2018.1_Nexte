@@ -11,6 +11,22 @@ class CommentTest {
     fun setUp() {}
 
     @Test
+    fun successRequestsEnumTest() {
+
+        // Prepare
+        val addCommentRequest = Comment.ServerRequest.ADD_COMMENT.request
+        val commentsRequest = Comment.ServerRequest.COMMENTS.request
+        val deleteCommentRequest = Comment.ServerRequest.DELETE_COMMENT.request
+        val reportCommentRequest = Comment.ServerRequest.REPORT_COMMENT.request
+
+        // Asserts
+        Assert.assertEquals("Add comment request is incorrect!", addCommentRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Comments request is incorrect!", commentsRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Delete comment request is incorrect!", deleteCommentRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Report comment request is incorrect!", reportCommentRequest.keys, setOf("route", "method"))
+    }
+
+    @Test
     fun successCommentConstructorTest() {
 
         // Prepare

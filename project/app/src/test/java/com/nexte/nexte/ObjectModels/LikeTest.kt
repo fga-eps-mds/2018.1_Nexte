@@ -12,6 +12,20 @@ class LikeTest {
     fun setUp() {}
 
     @Test
+    fun successRequestsEnumTest() {
+
+        // Prepare
+        val likeRequest = Like.ServerRequest.LIKE.request
+        val likesRequest = Like.ServerRequest.LIKES.request
+        val unlikeRequest = Like.ServerRequest.UNLIKE.request
+
+        // Asserts
+        Assert.assertEquals("Like request is incorrect!", likeRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Likes request is incorrect!", likesRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Unlike request is incorrect!", unlikeRequest.keys, setOf("route", "method"))
+    }
+
+    @Test
     fun successLikeConstructorTest() {
 
         // Prepare

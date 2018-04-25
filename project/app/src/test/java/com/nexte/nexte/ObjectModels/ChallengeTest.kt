@@ -11,6 +11,24 @@ class ChallengeTest {
     fun setUp() {}
 
     @Test
+    fun successRequestsEnumTest() {
+
+        // Prepare
+        val sendChallengeRequest = Challenge.ServerRequest.SEND_CHALLENGE.request
+        val cancelChallengeRequest = Challenge.ServerRequest.CANCEL_CHALLENGE.request
+        val challengesRequest = Challenge.ServerRequest.CHALLENGES.request
+        val sendResultChallengeRequest = Challenge.ServerRequest.SEND_RESULT_CHALLENGE.request
+        val updateChallengeRequest = Challenge.ServerRequest.UPDATE_CHALLENGE.request
+
+        // Asserts
+        Assert.assertEquals("Send challenge request is incorrect!", sendChallengeRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Cancel challenge request is incorrect!", cancelChallengeRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Challenges request is incorrect!", challengesRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Send challenge result request is incorrect!", sendResultChallengeRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Update challenge request is incorrect!", updateChallengeRequest.keys, setOf("route", "method"))
+    }
+
+    @Test
     fun successStatusEnumTest() {
 
         // Prepare

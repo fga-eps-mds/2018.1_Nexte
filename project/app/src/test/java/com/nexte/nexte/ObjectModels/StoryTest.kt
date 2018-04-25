@@ -25,6 +25,17 @@ class StoryTest {
         )
     }
 
+
+    @Test
+    fun successRequestsEnumTest() {
+
+        // Prepare
+        val storiesRequest = Story.ServerRequest.STORIES.request
+
+        // Asserts
+        Assert.assertEquals("Stories request is incorrect!", storiesRequest.keys, setOf("route", "method"))
+    }
+
     @Test
     fun successStoryConstructorTest() {
 

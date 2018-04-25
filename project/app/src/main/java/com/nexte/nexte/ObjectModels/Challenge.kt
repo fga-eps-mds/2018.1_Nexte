@@ -46,4 +46,12 @@ class Challenge(val id: String,
                        val gameChallenged: Int)
         }
     }
+
+    enum class ServerRequest(val request: Map<String, String>) {
+        CHALLENGES(hashMapOf("route" to "challenges", "method" to "get")),
+        SEND_CHALLENGE(hashMapOf("route" to "challenge", "method" to "post")),
+        SEND_RESULT_CHALLENGE(hashMapOf("route" to "challenge", "method" to "post")),
+        UPDATE_CHALLENGE(hashMapOf("route" to "edit-challenge", "method" to "update")),
+        CANCEL_CHALLENGE(hashMapOf("route" to "cancel-challenge", "method" to "post"))
+    }
 }
