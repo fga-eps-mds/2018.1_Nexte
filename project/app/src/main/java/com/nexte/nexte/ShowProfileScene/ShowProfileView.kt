@@ -9,15 +9,23 @@ import android.os.Bundle
 import android.provider.CallLog
 import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 import java.security.KeyStore
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.LineData
+import java.nio.file.Files.size
+import java.nio.file.Files.size
+
+
+
+
 
 
 
@@ -37,6 +45,10 @@ interface ShowProfileDisplayLogic {
  * @property showProfileInteractor responsible to receive request and send it to worker
  */
 class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
+
+    var xAxes = ArrayList<String>()
+    var yAxes = ArrayList<Entry>()
+    var lineDataSet = ArrayList<ILineDataSet>()
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
 
@@ -59,55 +71,22 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
             startActivity(intent)
         }
-        val mChart = findViewById<LineChart>(R.id.mChart) as LineChart
+        val lineChart = findViewById<LineChart>(R.id.lineChart) as LineChart
 
-        var entriesvictories = ArrayList<Entry>()
+            xAxes.add("Set")
+            xAxes.add("Out")
+            xAxes.add("Nov")
+            xAxes.add("Dez")
 
-            entriesvictories.add(Entry(4f, 0f))
-            entriesvictories.add(Entry(8f, 1f))
-            entriesvictories.add(Entry(6f, 2f))
-            entriesvictories.add(Entry(2f, 3f))
-            entriesvictories.add(Entry(18f, 4f))
-            entriesvictories.add(Entry(9f, 5f))
+            yAxes.add(Entry(10f, 0f))
+            yAxes.add(Entry(20f, 1f))
+            yAxes.add(Entry(30f, 2f))
+            yAxes.add(Entry(40f, 3f))
+            yAxes.add(Entry(50f, 4f))
+            yAxes.add(Entry(60f, 5f))
 
+        var xaxes = String ()
 
-        var entriesloss = ArrayList<Entry>()
-
-            entriesloss.add(Entry(15f, 0f))
-            entriesloss.add(Entry(9f, 1f))
-            entriesloss.add(Entry(12f, 2f))
-            entriesloss.add(Entry(6f, 3f))
-            entriesloss.add(Entry(20f, 4f))
-            entriesloss.add(Entry(8f, 5f))
-
-        var entriesmatch = ArrayList<Entry>()
-
-            entriesmatch.add(Entry(12f, 0f))
-            entriesmatch.add(Entry(10f, 1f))
-            entriesmatch.add(Entry(13f, 2f))
-            entriesmatch.add(Entry(9f, 3f))
-            entriesmatch.add(Entry(4f, 4f))
-            entriesmatch.add(Entry(7f, 5f))
-
-
-        var labels = ArrayList<String>()
-            labels.add("Set")
-            labels.add("Out")
-            labels.add("Nov")
-            labels.add("Dez")
-
-
-        val dataSet1 = LineDataSet(entriesvictories, "Vitórias")
-        dataSet1.color = Color.BLUE
-        val dataSet2 = LineDataSet (entriesloss, "Derrotas")
-        dataSet2.color = Color.RED
-        val dataSet3 = LineDataSet (entriesmatch, "Partidas")
-        dataSet3.color = Color.GREEN
-
-        dataSet = ArrayList<Entry>
-        dataSet.addColor()
-        dataSet.
-        return dataSet
     }
 
     /**
