@@ -21,7 +21,7 @@ class LikeListWorker {
     }
 
     /**
-     * Function to create fictions users to be use in fictional app mode
+     * Function to create fictional users to use in fictional app mode
      *
      * @return MutableList of addPLayers
      */

@@ -22,6 +22,11 @@ class CommentsWorker {
         completion(response)
     }
 
+    /**
+     * Function to create fictional comments to use in fictional app mode
+     *
+     * @return MutableList of addComments
+     */
     private fun generateCommentsList(): MutableList<CommentsModel.Comment> {
 
         val player1 = CommentsModel.Player("Lorrany", R.mipmap.ic_launcher)
@@ -38,7 +43,7 @@ class CommentsWorker {
         val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
                                                 Date(),
                                                 player3)
-        val comment4 = CommentsModel.Comment("Uhuuul, lindas!!",
+        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
                                                 Date(),
                                                 player4)
 
@@ -47,6 +52,7 @@ class CommentsWorker {
                 comment2,
                 comment3,
                 comment4)
+
         return addComments
     }
 }
