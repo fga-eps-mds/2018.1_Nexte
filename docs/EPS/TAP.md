@@ -72,8 +72,8 @@ Os principais riscos do projeto Nexte e as ações preventivas para os devidos r
 |Difícil adaptação de equipe de desenvolvimento com as tecnologias.| Realização de treinamentos sobre tecnologias.|
 |A equipe de desenvolvimento e a equipe de gerência tem horário muitos divergentes, tornando difícil a comunicação entre as equipes.| Os membros de ambas as equipes se reunirão presencialmente aos finais de semana, além disso será utilizado a ferramente slack intensamente para comunicação e feedback entre as equipes e será realizado reuniões via hangouts durante a semana.|
 |Membros da equipe de desenvolvimento não conseguirem instalar ou utilizar corretamente as ferramentas.| Disponibilização do ambiente de desenvolvimento padronizado com a ferramenta Docker.|
-|Membros das equipes fazendo estágio ou outras atividades complementares, o que pode gerar falta de comprometimento das equipes| Os membros das equipes serão comunicados que seu comprometimento e dedicação é essencial para que o projeto seja bem sucedido. Caso haja problemas recorrentes com um mesmo membro a situação será discutida com a professora Carla.|
-|Membros da equipe de gerência ter seus projetos selecionados para a WWDC2018.| Nesse caso a equipe irá conversar com a professora Carla para encontrar a melhor forma de resolver esse problema de forma a gerar o menor prejuizo ao projeto.|
+|Membros das equipes fazendo estágio ou outras atividades complementares, o que pode gerar falta de comprometimento das equipes| Os membros das equipes serão comunicados que seu comprometimento e dedicação é essencial para que o projeto seja bem sucedido.|
+|Membros da equipe de gerência ter seus projetos selecionados para a WWDC2018.| O membro da equipe terá a obrigação de adiantar as suas atividades antes da viagem, e também compensará o deficit de horas trabalhadas quando voltar. Além disso, a equipe de EPS terá de nivelar o conhecimento desse integrantes em relação aos demais do projeto, de modo que outro membro de EPS consiga realizar as atividades da pessoas que viajar.|
 |O servidor RestFull de requisições não estar pronto.|Requisição ao time externo do Nexte para que o MVP esteja pronto e em condições para uso pela equipe de desenvolvimento.|
 
 ## 7. Resumo do Cronograma de Marcos
@@ -81,21 +81,31 @@ O projeto possui 2 marcos principais, aos quais são: entrega parcial do softwar
 
 Em cada marco principal haverá 6 marcos menores chamados _sprints_, cada um terá o prazo de 1 semana para ser entregue dentro de cada macro prazo das _Releases_.
 
-## _Release 1_  - xx/ xx /xxxx
+## _Release 1_  - 19/04/2018
 
 | _Sprint_ | Data de entrega |
 | ---- | ---- | 
 | _Sprint 0_ | 10/03/2018 |
 | _Sprint 1_| 16/03/2018 |
 | _Sprint 2_| 23/03/2018 |
+| _Sprint 3_| 31/03/2018 |
+| _Sprint 4_| 07/04/2018 |
+| _Sprint 4_| 14/04/2018 |
+| _Sprint 6_| 21/04/2018 |
 
 ## _Release 2_  - xx/ xx /xxxx
 
 | _Sprint_ | Data |
 | ---- | ---- | 
-| _Sprint 0_ | xx/xx/xxxx |
-| _Sprint 1_ | xx/xx/xxxx |
-| _Sprint 2_ | xx/xx/xxxx |
+| _Sprint 7_ | 28/04/2018 |
+| _Sprint 8_ | 05/05/2018 |
+| _Sprint 8_ | 12/05/2018 |
+| _Sprint 9_ | 19/05/2018 |
+| _Sprint 10_ | 26/05/2018 |
+| _Sprint 11_ | 02/06/2018 |
+| _Sprint 12_ | 09/06/2018 |
+| _Sprint 13_ | 16/06/2018 |
+| _Sprint 14_ | 23/06/2018 |
 
 ## 8. Resumo do Orçamento
 
