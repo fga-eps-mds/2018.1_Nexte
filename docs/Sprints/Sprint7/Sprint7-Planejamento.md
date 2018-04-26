@@ -1,7 +1,7 @@
 ### Histórico da Revisão
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 17/04/2018| 0.1 |Criação do documento | Luis Gustavo |
+| 24/04/2018| 0.1 |Criação do documento | Luis Gustavo |
 -------------------------------------------------------------------------------------------------
 
 **Número da Sprint:** 7
