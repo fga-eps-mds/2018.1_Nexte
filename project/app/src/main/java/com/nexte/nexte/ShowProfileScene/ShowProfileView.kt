@@ -22,6 +22,12 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.data.LineData
 import java.nio.file.Files.size
 import java.nio.file.Files.size
+import java.nio.file.Files.size
+import java.nio.file.Files.size
+
+
+
+
 
 
 
@@ -48,7 +54,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     var xAxes = ArrayList<String>()
     var yAxes = ArrayList<Entry>()
-    var lineDataSet = ArrayList<ILineDataSet>()
+    var lineDataSets = ArrayList<ILineDataSet>()
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
 
@@ -85,7 +91,27 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
             yAxes.add(Entry(50f, 4f))
             yAxes.add(Entry(60f, 5f))
 
-        var xaxes = String ()
+        val xaxes = ArrayList<String>(xAxes.size)
+
+
+        for (i in 0 until xAxes.size) {
+            xaxes[i] = xAxes[i].toString()
+        }
+
+        val lineDataSet = LineDataSet(yAxes, "values")
+
+        lineDataSet.setDrawCircles(true)
+        lineDataSet.setColors(Color.BLUE)
+
+        lineDataSets.add(lineDataSet)
+
+        lineChart.data = LineData(lineDataSets)
+
+        lineChart.setVisibleXRangeMaximum(65f)
+        lineChart.setTouchEnabled(true)
+        lineChart.isDragEnabled
+
+        
 
     }
 

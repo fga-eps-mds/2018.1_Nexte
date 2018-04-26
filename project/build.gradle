@@ -25,9 +25,11 @@ allprojects {
         jcenter()
     }
 
+}
     task clean(type: Delete) {
         delete rootProject.buildDir
     }
+
 
     detekt {
         version = "1.0.0.RC6"
@@ -38,4 +40,3 @@ allprojects {
         }
     }
 
-}
