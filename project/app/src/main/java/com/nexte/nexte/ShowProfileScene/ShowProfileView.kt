@@ -52,12 +52,6 @@ interface ShowProfileDisplayLogic {
  */
 class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
-    var xAxes = ArrayList<String>()
-    var yAxes = ArrayList<Entry>()
-    var lineDataSets = ArrayList<ILineDataSet>()
-
-    private var mChart: LineChart? = null
-
     var showProfileInteractor : ShowProfileBusinessLogic? = null
 
     /**
@@ -79,77 +73,52 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
             startActivity(intent)
         }
+
+        this.CreateGraph()
+    }
+
+
+
+    fun setXAxisValues(): ArrayList<String> {
+
+        val xVals = ArrayList<String>()
+        xVals.add("jan")
+        xVals.add("fev")
+        xVals.add("mar")
+        xVals.add("abr")
+        xVals.add("mai")
+        xVals.add("jun")
+
+        return xVals
+    }
+
+    fun setYAxisValues(): ArrayList<Entry> {
+
+        val yVals = ArrayList<Entry>()
+        yVals.add(Entry(10f, 12f))
+        yVals.add(Entry(20f, 32f))
+        yVals.add(Entry(20f, 43f))
+        yVals.add(Entry(20f, 43f))
+
+        return yVals
+    }
+
+    fun CreateGraph()  {
+
         val lineChart = findViewById<LineChart>(R.id.lineChart) as LineChart
-        val mChart = LineChart(this)
 
-        lineChart.addView(mChart)
-        mChart.description
-        mChart.setNoDataText("graphic")
-        mChart.setTouchEnabled(true)
-        mChart.isDragEnabled =  true
-        mChart.setScaleEnabled(true)
-        mChart.setDrawGridBackground(false)
-        mChart.setPinchZoom(true)
-        mChart.setBackgroundColor(Color.BLACK)
+        var xAxes = setXAxisValues()
+        var yAxes = setYAxisValues()
 
+        val line = LineDataSet(yAxes, "Vitórias")
+        line.fillAlpha = 110
+        line.setColor(Color.BLACK)
 
-        var data = LineData()
-        data.setValueTextColor(Color.WHITE)
-        mChart.data = data
+        val dataSets = ArrayList<ILineDataSet>()
+        dataSets.add(line)
 
-        var x1 = mChart.xAxis
-
-        x1.textColor = Color.WHITE
-        x1.setDrawGridLines(false)
-        x1.setAvoidFirstLastClipping(true)
-
-        var y1 = mChart.axisLeft
-
-        y1.textColor = Color.WHITE
-        y1.setDrawGridLines(true)
-        y1.setAxisMaxValue(120f)
-
-        var y12 = mChart.axisRight
-        y12.isEnabled = false
-
-
-
-
-
-            xAxes.add("Set")
-            xAxes.add("Out")
-            xAxes.add("Nov")
-            xAxes.add("Dez")
-
-            yAxes.add(Entry(10f, 0f))
-            yAxes.add(Entry(20f, 1f))
-            yAxes.add(Entry(30f, 2f))
-            yAxes.add(Entry(40f, 3f))
-            yAxes.add(Entry(50f, 4f))
-            yAxes.add(Entry(60f, 5f))
-
-        val xaxes = ArrayList<String>(xAxes.size)
-
-
-        for (i in 0 until xAxes.size) {
-            xaxes[i] = xAxes[i].toString()
-        }
-
-        val lineDataSet = LineDataSet(yAxes, "values")
-
-        lineDataSet.setDrawCircles(true)
-        lineDataSet.setColors(Color.BLUE)
-
-        lineDataSets.add(lineDataSet)
-
-        lineChart.data = LineData(lineDataSets)
-
-        lineChart.setVisibleXRangeMaximum(65f)
-        lineChart.setTouchEnabled(true)
-        lineChart.isDragEnabled
-
-        
-
+        val lineData = LineData(dataSets)
+        lineChart.data = lineData
     }
 
     /**
