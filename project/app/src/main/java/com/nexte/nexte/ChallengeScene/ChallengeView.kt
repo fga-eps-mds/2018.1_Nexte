@@ -1,7 +1,13 @@
 package com.nexte.nexte.ChallengeScene
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.nexte.nexte.FeedScene.FeedModel
+import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.R
 
 /**
@@ -23,6 +29,9 @@ interface ShowPlayersToChallengeDisplayLogic {
  */
 class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
 
+    var challengeAdapter: ChallengeAdapter? = null
+    var interactor: ChallengeInteractor? = null
+
     /**
      * This object is used for avoid magic numbers
      */
@@ -42,6 +51,11 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_challenger)
         getPlayerToChallenge()
+
+        this.challengeAdapter = ChallengeAdapter(mutableListOf(), this)
+        challengeRecyclerView.adapter = this.challengeViewAdapter
+        challengeRecyclerView.layoutManager = LinearLayoutManager(this)
+
     }
 
     /**
@@ -57,10 +71,33 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
      * Function responsible to get the formatted player data and exhibit it in a recycler view.
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
-        TODO("DEVE CRIAR UM ADAPTER QUE VAI UTILIZAR OS DADOS DA VIEWMODEL " +
-                "DENTRO DO COLUMN_CHALLENGE XML E ADICIONAR AO RECYCLERVIEW")
 
-        // HOW TO CREATE RECYCLERVIEW WITH CUSTOM XML IN KOTLIN? R: Adapter.
+        challengeAdapter?.updateActivities(viewModel.formattedPlayer)
 
+        /**
+         * Adapter Class to control recycler view of users that can be challenged
+         *
+         * @property activities List of all feed activities
+         * @property context Context that will show this adapter
+         */
+        class ChallengeAdapter(private var challenged: MutableList<ChallengeModel.FormattedPlayer>,
+                          private val context: Context) :
+                            RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeView.ChallengeAdapter.ViewHolder {
+
+                val view = LayoutInflater.from(context).inflate(R.layout.columns_challenged, parent,false)
+                return ChallengeView.ChallengeAdapter.ViewHolder(view)
+            }
+
+            override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+
+                holder.bindView(challenged[position], context)
+            }
+
+            override fun getItemCount(): Int {
+
+                return this.challenged.size
+            }
     }
 }
