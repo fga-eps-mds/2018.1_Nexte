@@ -51,14 +51,11 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             var message = ""
 
             if (loginResult.error != null) {
-                println("1 $loginResult?.error")
             } else if (loginResult.wasCancelled()) {
                 message = "Login cancelled"
-                println("2 $message")
             } else {
                 if (loginResult.accessToken != null) {
                     message = "Sucess" + loginResult.accessToken
-                    println("1 $message")
                 } else {
                     println(loginResult.authorizationCode)
                 }

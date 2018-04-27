@@ -41,7 +41,6 @@ class LoginPresenter: LoginPresentationLogic {
 
         val message: String
         val tokenId: String = response.tokenId
-        println("TOKEN: ${response.tokenId}")
 
         if(tokenId.equals("")) {
             message = "Something is wrong. Try again"
@@ -54,6 +53,6 @@ class LoginPresenter: LoginPresentationLogic {
     }
 
     override fun presentError(response: LoginModel.Response) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 }

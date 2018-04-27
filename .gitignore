@@ -58,6 +58,7 @@ freeline_project_description.json
 
 
 project/.idea/*
+.idea/*
 
 
 # fastlane specific

@@ -9,13 +9,17 @@ import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic,
                      ChallengeDisplayLogic, CommentsDisplayLogic {
 
-    var loginInteractor: LoginBusinessLogic? = null
     var commentsInteractor: CommentsBusinessLogic? = null
     var challengeInteractor: ChallengeBusinessLogic? = null
 
@@ -23,7 +27,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.setupLoginScene() // Setup Login Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene
 
@@ -65,28 +68,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
         }
     }
 
-    /*
-     *  LOGIN SCENE
-     */
-
-    // Setup all modules for exchange of data
-    private fun setupLoginScene() {
-
-        val viewController = this
-        val interactor = LoginInteractor()
-        val presenter = LoginPresenter()
-
-        viewController.loginInteractor = interactor
-        interactor.presenter = presenter
-        presenter.view = viewController
-    }
-
     // Print a message according with received data
     override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
 
         // textView.text = viewModel.message
     }
-
 
     /*
     *  CHALLENGE SCENE
@@ -123,7 +109,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-
 
     override fun displayComments(viewModel: CommentsModel.ViewModel) {
         // textView.text = viewModel.message
