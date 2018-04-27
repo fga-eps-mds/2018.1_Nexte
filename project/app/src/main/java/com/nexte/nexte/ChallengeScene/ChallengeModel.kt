@@ -60,7 +60,7 @@ class ChallengeModel{
      * Class that holds the selected player formatted information.
      */
     class FormattedRankingDetails(var name: String,
-                                  var wins: Int,
-                                  var losses: Int,
+                                  var wins: String,
+                                  var losses: String,
                                   var rankingPosition: String)
 }
