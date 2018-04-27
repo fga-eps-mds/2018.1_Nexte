@@ -95,11 +95,12 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     fun setYAxisValues(): ArrayList<Entry> {
 
         val yVals = ArrayList<Entry>()
-        yVals.add(Entry(10f, 12f))
-        yVals.add(Entry(20f, 32f))
-        yVals.add(Entry(20f, 43f))
-        yVals.add(Entry(20f, 43f))
-
+        yVals.add(Entry(10f, 0f))
+        yVals.add(Entry(20f, 1f))
+        yVals.add(Entry(35f, 2f))
+        yVals.add(Entry(40f, 3f))
+        yVals.add(Entry(43f, 4f))
+        yVals.add(Entry(14f, 5f))
         return yVals
     }
 
