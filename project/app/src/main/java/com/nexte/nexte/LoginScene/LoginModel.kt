@@ -30,7 +30,8 @@ class LoginModel {
      * @param value status code provided from server
      */
     enum class AuthenticationStatus(val value: Int) {
-        unauthorized(401), authorized(200), unregistered(404)
+
+        Unauthorized(401), Authorized(200), Unregistered(404)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import android.util.Log
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
@@ -36,14 +35,14 @@ class LoginWorker {
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-                val status = LoginModel.AuthenticationStatus.authorized
+                val status = LoginModel.AuthenticationStatus.Authorized
                 val response = LoginModel.Response(token, status)
                 completion(response)
             }
 
             result.failure {
                 val token = ""
-                val status = LoginModel.AuthenticationStatus.unauthorized
+                val status = LoginModel.AuthenticationStatus.Unauthorized
                 val response = LoginModel.Response(token, status)
                 completion(response)
             }

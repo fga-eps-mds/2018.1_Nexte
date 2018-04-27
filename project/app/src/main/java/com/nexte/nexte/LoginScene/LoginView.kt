@@ -78,7 +78,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                         configurationBuilder.build())
 
-        this.startActivityForResult(intent, 101)
+        val phoneRequestCode = 101
+        this.startActivityForResult(intent, phoneRequestCode)
     }
 
     fun emailLogin(view: View) {
@@ -90,7 +91,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                 configurationBuilder.build())
 
-        this.startActivityForResult(intent, 101)
+        val emailRequestCode = 101
+        this.startActivityForResult(intent, emailRequestCode)
     }
 
     // Private Methods
