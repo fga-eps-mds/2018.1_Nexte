@@ -125,7 +125,7 @@
         android:layout_marginTop="22dp"
         android:text="Likes"
         android:textColor="#ffffff"
-        android:textSize="17sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/likesButton"
         app:layout_constraintTop_toBottomOf="@+id/challengedPhoto" />
 
@@ -150,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
-        android:text="Comentários"
+        android:text="4 comentários"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/challengerPhoto" />
