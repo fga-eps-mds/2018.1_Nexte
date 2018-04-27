@@ -41,9 +41,9 @@ class CommentsModel {
 
     /**
      * Class with formatted information about users and how they will be displayed in View
-     * @param: name
-     * @param:photo
-     * @param: time
+     * @param name
+     * @param photo
+     * @param  time
      */
 
     class Comment(var comment: String,

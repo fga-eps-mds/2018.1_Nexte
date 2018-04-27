@@ -47,6 +47,7 @@ class CommentsWorker {
                 comment2,
                 comment3,
                 comment4)
+
         return addComments
     }
 }

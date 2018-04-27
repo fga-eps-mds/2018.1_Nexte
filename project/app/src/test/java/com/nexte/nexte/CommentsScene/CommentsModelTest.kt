@@ -38,6 +38,7 @@ class CommentsModelTest {
                                             Date(),
                                             player2)
         val commentsList = mutableListOf<CommentsModel.Comment>(comment1, comment2)
+
         //call
 
         val response = CommentsModel.Response(commentsList)
