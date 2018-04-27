@@ -26,7 +26,7 @@ class CommentsWorkerTest {
         val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
                 Date(),
                 player1)
-        val comment4 = CommentsModel.Comment("Uhuuul, lindas!!",
+        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
                 Date(),
                 player4)
 

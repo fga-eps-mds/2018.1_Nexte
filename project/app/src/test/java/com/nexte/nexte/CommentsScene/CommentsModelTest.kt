@@ -37,20 +37,21 @@ class CommentsModelTest {
         val comment2 = CommentsModel.Comment("Nossa, foi top mesmo",
                                             Date(),
                                             player2)
-        val commentsList = mutableListOf<CommentsModel.Comment>(comment1, comment2)
+        val commentsList = mutableListOf(comment1, comment2)
 
         //call
 
         val response = CommentsModel.Response(commentsList)
 
         //assert
-        assertEquals(player1, response.comments[0].author)
-        assertEquals(player2, response.comments[1].author)
+        assertEquals(player1.name, response.comments[0].author.name)
+        assertEquals(player2.name, response.comments[1].author.name)
 
-        assertEquals(comment1, response.comments[0])
-        assertEquals(comment2, response.comments[1])
+        assertEquals(player1.photo, response.comments[0].author.photo)
+        assertEquals(player2.photo, response.comments[1].author.photo)
 
-        assertEquals(commentsList, response)
+        assertEquals(comment1.comment, response.comments[0].comment)
+        assertEquals(comment2.comment, response.comments[1].comment)
 
     }
 
@@ -100,7 +101,6 @@ class CommentsModelTest {
         assertEquals(commentFormatted1, viewModel.commentsFormatted[0])
         assertEquals(commentFormatted2, viewModel.commentsFormatted[1])
 
-        assertEquals(commentsFormated, viewModel)
 
     }
 
