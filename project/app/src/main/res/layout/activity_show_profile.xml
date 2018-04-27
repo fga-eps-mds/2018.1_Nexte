@@ -150,10 +150,14 @@
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        </com.github.mikephil.charting.charts.LineChart>
+            android:layout_width="340dp"
+            android:layout_height="159dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLabel"></com.github.mikephil.charting.charts.LineChart>
 
 
     </android.support.constraint.ConstraintLayout>
