@@ -32,7 +32,7 @@ class LoginInteractor : LoginBusinessLogic {
 
             val responseStatus = response.authenticateStatus
             when(responseStatus) {
-                LoginModel.AuthenticationStatus.Authorized -> {
+                LoginModel.AuthenticationStatus.AUTHORIZED -> {
                     this.presenter?.presentLogin(response)
                 } else -> {
                     this.presenter?.presentError(response)

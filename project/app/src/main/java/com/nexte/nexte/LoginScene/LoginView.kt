@@ -9,16 +9,14 @@ import com.facebook.accountkit.AccountKitLoginResult
 import com.facebook.accountkit.ui.AccountKitConfiguration
 import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.LoginType
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.httpGet
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_login_view.*
-import org.json.JSONObject
 
 interface LoginDisplayLogic {
 
     fun displayAuthenticateState(viewModel: LoginModel.ViewModel)
 }
+
 
 
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
@@ -46,8 +44,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val authenticationCode = 101
-        if (requestCode == authenticationCode) {
+
+        if (requestCode == LoginModel.AuthenticationStatus.FACEBOOK_REQUEST.value) {
 
             val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
             var message = ""
@@ -78,8 +76,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                         configurationBuilder.build())
 
-        val phoneRequestCode = 101
-        this.startActivityForResult(intent, phoneRequestCode)
+        this.startActivityForResult(intent, LoginModel.AuthenticationStatus.FACEBOOK_REQUEST.value)
     }
 
     fun emailLogin(view: View) {
@@ -91,8 +88,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                 configurationBuilder.build())
 
-        val emailRequestCode = 101
-        this.startActivityForResult(intent, emailRequestCode)
+        this.startActivityForResult(intent, LoginModel.AuthenticationStatus.FACEBOOK_REQUEST.value)
     }
 
     // Private Methods

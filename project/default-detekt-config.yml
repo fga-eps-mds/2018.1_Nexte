@@ -340,7 +340,7 @@ style:
     ignoreCompanionObjectPropertyDeclaration: true
     ignoreAnnotation: false
     ignoreNamedArgument: true
-    ignoreEnums: false
+    ignoreEnums: true
   ModifierOrder:
     active: true
   DataClassContainsFunctions:

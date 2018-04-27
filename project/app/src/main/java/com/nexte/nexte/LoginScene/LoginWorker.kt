@@ -35,14 +35,14 @@ class LoginWorker {
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-                val status = LoginModel.AuthenticationStatus.Authorized
+                val status = LoginModel.AuthenticationStatus.AUTHORIZED
                 val response = LoginModel.Response(token, status)
                 completion(response)
             }
 
             result.failure {
                 val token = ""
-                val status = LoginModel.AuthenticationStatus.Unauthorized
+                val status = LoginModel.AuthenticationStatus.UNAUTHORIZED
                 val response = LoginModel.Response(token, status)
                 completion(response)
             }

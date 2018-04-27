@@ -31,7 +31,7 @@ class LoginModel {
      */
     enum class AuthenticationStatus(val value: Int) {
 
-        Unauthorized(401), Authorized(200), Unregistered(404)
+        UNAUTHORIZED(401), AUTHORIZED(200), UNREGISTERED(404), FACEBOOK_REQUEST(101)
     }
 
 }
