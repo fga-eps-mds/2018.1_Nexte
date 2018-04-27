@@ -36,4 +36,6 @@ class ChallengeWorker {
 
         completion(response)
     }
+
+    TODO("CRIAR FUNÇÃO PARA RECEBER UMA REQUEST (SEGUNDA REQUEST) E RETORNAR O JOGADOR QUE SE ENCOTNRA NO RANKING N")
 }

@@ -11,6 +11,7 @@ interface FormatPlayersPresentationLogic {
      * @param response contains unformatted data received from [ChallengeModel]
      */
     fun formatPlayersToChallenge(response : ChallengeModel.ShowRankingPlayersRequest.Response)
+    TODO("CRIAR FUNÇÃO PARA FORMATAR OS DADOS DO JOGADOR EXPANDIDO")
 }
 
 /**
@@ -46,4 +47,6 @@ class ChallengePresenter : FormatPlayersPresentationLogic {
 
         viewChallenge?.displayPlayersToChallenge(viewModel)
     }
+
+    TODO("IMPLEMENTAR FUNÇÃO PARA FORMATAR OS DADOS DO JOGADOR EXPANDIDO")
 }

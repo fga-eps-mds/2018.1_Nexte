@@ -13,6 +13,7 @@ interface RequestPlayersToChallengeBusinessLogic {
      * @param request variable equals to the server response due to the challenged response
      */
     fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request)
+    TODO ("CRIAR FUNÇÃO PARA RECEBER O SEGUNDO REQUEST")
 }
 
 /**
@@ -31,4 +32,6 @@ class ChallengeInteractor : RequestPlayersToChallengeBusinessLogic {
             this.presenter?.formatPlayersToChallenge(response)
         }
     }
+
+    TODO("OVERRIDE NA SEGUNDA FUNÇÃO DA INTERFACE")
 }
