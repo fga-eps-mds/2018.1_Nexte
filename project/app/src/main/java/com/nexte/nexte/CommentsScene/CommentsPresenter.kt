@@ -1,11 +1,9 @@
 package com.nexte.nexte.CommentsScene
 
-import android.view.ContextMenu
-
 /**
-* Interface to define Presentation Logic to Comment Class that
-* will be used to call this Interactor on other class layer
-*/
+ * Interface to define Presentation Logic to Comment Class that
+ * will be used to call this Interactor on other class layer
+ */
 interface CommentsPresentationLogic {
 
     /**
@@ -23,6 +21,7 @@ interface CommentsPresentationLogic {
  * on view
  */
 class CommentsPresenter : CommentsPresentationLogic {
+
     var viewController: CommentsDisplayLogic? = null
 
     override fun presentComment(response: CommentsModel.Response) {
@@ -31,6 +30,13 @@ class CommentsPresenter : CommentsPresentationLogic {
         viewController?.displayComments(viewModel)
     }
 
+    /**
+     * Function that converts the MutableList Comment unformatted to
+     * MutableList CommentFormatted.
+     *
+     * @param gameComments MutableList of unformatted comments
+     * @return MutableList of formatted comments
+     */
     private fun formatComment(gameComments: MutableList<CommentsModel.Comment>) :
             MutableList<CommentsModel.CommentFormatted> {
 

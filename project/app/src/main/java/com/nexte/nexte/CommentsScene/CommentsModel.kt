@@ -1,11 +1,10 @@
 package com.nexte.nexte.CommentsScene
 
-import com.nexte.nexte.Player
 import java.util.*
 
 /**
  * Class to define Model of Comments Scene to enable the conversation between users.
- * It contains [Request],  * [Response] and [ViewModel] classes to be used on the flow
+ * It contains [Request], [Response] and [ViewModel] classes to be used on the flow
  * of getting the game to be commented and setting details of personal information from user
  * on the system and his actions on game
  * */
@@ -32,24 +31,29 @@ class CommentsModel {
 
     // ---------- Aux classes ----------
     /**
-     * Class with information about users who will be displayed in the comments list
+     * Class with information about the player who will be displayed in the comments list
      * @param name
      * @param photo
-     * @param time
      */
     class Player(var name: String, var photo: Int)
 
     /**
      * Class with formatted information about users and how they will be displayed in View
-     * @param name
-     * @param photo
-     * @param  time
+     * @param comment
+     * @param date
+     * @param author
      */
-
     class Comment(var comment: String,
                   var date: Date,
                   var author: Player)
 
+    /**
+     * Class with formatted information about users and how they will be displayed in View
+     * @param comment
+     * @param commentDate
+     * @param username
+     * @param profilePic
+     */
     class CommentFormatted(var comment: String,
                            var commentDate: String,
                            var username: String,
