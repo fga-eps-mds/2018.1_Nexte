@@ -26,27 +26,25 @@ class LoginWorker {
 
 
         val authentication = "http://192.168.100.2:3000/auth/login" // Works only with IP
-        var headers = mapOf("Content-Type" to "application/json", "Accept-Version" to "1.0.0")
-        var token: String = ""
+        val headers = mapOf("Content-Type" to "application/json", "Accept-Version" to "1.0.0")
+
         val json = JSONObject()
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
 
         Fuel.post(authentication).header(headers).body(json.toString()).responseString { request, response, result ->
 
-            Log.d("Request", request.toString())
-            Log.d("Response", response.toString())
-            Log.d("Result", result.toString())
-
             result.success {
-                token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-                val response = LoginModel.Response(token)
+                val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+                val status = LoginModel.AuthenticationStatus.authorized
+                val response = LoginModel.Response(token, status)
                 completion(response)
             }
 
             result.failure {
-                token = ""
-                val response = LoginModel.Response(token)
+                val token = ""
+                val status = LoginModel.AuthenticationStatus.unauthorized
+                val response = LoginModel.Response(token, status)
                 completion(response)
             }
         }

@@ -44,4 +44,8 @@ private class MockLoginPresentationLogic: LoginPresentationLogic{
         this.passedHere = true
         print(passedHere)
     }
+
+    override fun presentError(response: LoginModel.Response) {
+        TODO("not implemented")
+    }
 }

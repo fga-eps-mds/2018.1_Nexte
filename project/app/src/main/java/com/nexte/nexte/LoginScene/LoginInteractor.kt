@@ -29,7 +29,15 @@ class LoginInteractor : LoginBusinessLogic {
     override fun doAuthentication(request: LoginModel.Request) {
 
         worker.authenticateUser(request) { response ->
-            this.presenter?.presentLogin(response)
+
+            val responseStatus = response.authenticateStatus
+            when(responseStatus) {
+                LoginModel.AuthenticationStatus.authorized -> {
+                    this.presenter?.presentLogin(response)
+                } else -> {
+                    this.presenter?.presentError(response)
+                }
+            }
         }
     }
 }

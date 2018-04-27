@@ -46,14 +46,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        println("Result: $resultCode")
-        println("Data: $data")
-        println("RequestCode: $requestCode ")
-
         val authenticationCode = 101
         if (requestCode == authenticationCode) {
 
-            var loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+            val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
             var message = ""
 
             if (loginResult.error != null) {
@@ -64,7 +60,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             } else {
                 if (loginResult.accessToken != null) {
                     message = "Sucess" + loginResult.accessToken
-                    println("1 message")
+                    println("1 $message")
                 } else {
                     println(loginResult.authorizationCode)
                 }

@@ -21,7 +21,9 @@ class LoginPresenterTest {
     @Test
     fun successMessagePresentLogin() {
         //prepare
-        val response = LoginModel.Response(tokenId = "h1n3vv3u13ola")
+        val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+        val authorized = LoginModel.AuthenticationStatus.authorized
+        val response = LoginModel.Response(tokenId = token, authenticateStatus = authorized)
         val expectedMessage = "Congratz! U get it"
 
         //call
@@ -34,7 +36,8 @@ class LoginPresenterTest {
     @Test
     fun failMessagePresentLogin() {
         //prepare
-        val response = LoginModel.Response(tokenId =  "")
+        val unauthorized = LoginModel.AuthenticationStatus.unauthorized
+        val response = LoginModel.Response(tokenId = "", authenticateStatus = unauthorized)
         val expectedMessage = "Something is wrong. Try again"
 
         //call

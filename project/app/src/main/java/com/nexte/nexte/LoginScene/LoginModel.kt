@@ -17,11 +17,20 @@ class LoginModel {
      * Class responsible to store received information from worker to Presenter
      * @param tokenId authentication token
      */
-    class Response(val tokenId: String)
+    class Response(val tokenId: String, val authenticateStatus: AuthenticationStatus)
 
     /**
      * Class responsible to store received information from Presenter to View
      * @param message message according with authentication result
      */
     class ViewModel(val message: String)
+
+    /**
+     *  Enum class to handle with Error
+     * @param value status code provided from server
+     */
+    enum class AuthenticationStatus(val value: Int) {
+        unauthorized(401), authorized(200), unregistered(404)
+    }
+
 }

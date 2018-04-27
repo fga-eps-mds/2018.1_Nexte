@@ -30,12 +30,15 @@ class LoginModelTest {
     fun successLoginModelResponse(){
         //prepare
         val tokenId = "hq7lwk13nvv31"
+        val authenticationStatus = LoginModel.AuthenticationStatus.authorized
 
         //call
-        val response = LoginModel.Response(tokenId = "hq7lwk13nvv31")
+        val response = LoginModel.Response(tokenId = "hq7lwk13nvv31",
+                                           authenticateStatus = LoginModel.AuthenticationStatus.authorized)
 
         //assert
         assertEquals(tokenId, response.tokenId)
+        assertEquals(authenticationStatus, response.authenticateStatus)
     }
 
     @Test
@@ -48,6 +51,15 @@ class LoginModelTest {
 
         //assert
         assertEquals(message, viewModel.message)
+    }
+
+    @Test
+    fun sucessStatusToAuthentication() {
+        //prepare
+        val authorized = LoginModel.AuthenticationStatus.authorized.value
+
+        //assert
+        assertEquals(authorized, LoginModel.AuthenticationStatus.authorized.value)
     }
 
     @After

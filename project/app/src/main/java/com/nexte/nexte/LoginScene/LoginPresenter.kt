@@ -7,12 +7,20 @@ package com.nexte.nexte.LoginScene
 interface LoginPresentationLogic {
 
     /**
-     * Method responsible to format feed data and send for view
+     * Method responsible to format login data and send for view
      *
      * @param response It's login model response containing unformatted data
      * received [LoginModel]
      */
     fun presentLogin(response: LoginModel.Response)
+
+    /**
+     * Method responsible to handle with authentication not expected
+     *
+     * @param response It's login model response containing unformatted data
+     * received [LoginModel]
+     */
+    fun presentError(response: LoginModel.Response)
 }
 
 /**
@@ -33,7 +41,7 @@ class LoginPresenter: LoginPresentationLogic {
 
         val message: String
         val tokenId: String = response.tokenId
-        println("TOOKEN: ${response.tokenId}")
+        println("TOKEN: ${response.tokenId}")
 
         if(tokenId.equals("")) {
             message = "Something is wrong. Try again"
@@ -43,5 +51,9 @@ class LoginPresenter: LoginPresentationLogic {
 
         val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
         this.view?.displayAuthenticateState(viewModel)
+    }
+
+    override fun presentError(response: LoginModel.Response) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
