@@ -56,6 +56,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     var yAxes = ArrayList<Entry>()
     var lineDataSets = ArrayList<ILineDataSet>()
 
+    private var mChart: LineChart? = null
+
     var showProfileInteractor : ShowProfileBusinessLogic? = null
 
     /**
@@ -78,6 +80,41 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
             startActivity(intent)
         }
         val lineChart = findViewById<LineChart>(R.id.lineChart) as LineChart
+        val mChart = LineChart(this)
+
+        lineChart.addView(mChart)
+        mChart.description
+        mChart.setNoDataText("graphic")
+        mChart.setTouchEnabled(true)
+        mChart.isDragEnabled =  true
+        mChart.setScaleEnabled(true)
+        mChart.setDrawGridBackground(false)
+        mChart.setPinchZoom(true)
+        mChart.setBackgroundColor(Color.BLACK)
+
+
+        var data = LineData()
+        data.setValueTextColor(Color.WHITE)
+        mChart.data = data
+
+        var x1 = mChart.xAxis
+
+        x1.textColor = Color.WHITE
+        x1.setDrawGridLines(false)
+        x1.setAvoidFirstLastClipping(true)
+
+        var y1 = mChart.axisLeft
+
+        y1.textColor = Color.WHITE
+        y1.setDrawGridLines(true)
+        y1.setAxisMaxValue(120f)
+
+        var y12 = mChart.axisRight
+        y12.isEnabled = false
+
+
+
+
 
             xAxes.add("Set")
             xAxes.add("Out")
