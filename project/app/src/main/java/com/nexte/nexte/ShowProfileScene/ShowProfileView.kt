@@ -54,7 +54,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
             startActivity(intent)
         }
 
-        this.CreateGraph()
+        this.createGraph()
     }
 
     /**
@@ -102,7 +102,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
      * @property lineData Type: LineData, access the data defined, and xml LineChart have access to it
      */
 
-    fun CreateGraph() {
+    fun createGraph() {
 
         val xAxis = lineChart.xAxis
         val xAxes = setXAxisValues()
