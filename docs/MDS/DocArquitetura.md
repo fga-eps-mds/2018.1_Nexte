@@ -152,7 +152,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ![Diagrama de classes do feed](https://i.imgur.com/z6icAhU.jpg)
 
-![Diagrama de classes do challange](https://i.imgur.com/ChZoYuL.jpg)
+![Diagrama de classes do challange](https://i.imgur.com/Cj3v8cF.jpg)
 
 ![Diagrama de classes da likelist](https://i.imgur.com/HBW40Qv.jpg)
 

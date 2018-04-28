@@ -23,13 +23,13 @@
         </activity>
         <activity
             android:name=".RankingScene.RankingView"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- <activity android:name=".LoginActivity" android:label="@string/title_activity_login" /> -->
         <!-- <activity android:name=".LoginScene.LoginView" /> -->
         <activity
             android:name=".FeedScene.FeedView"
             android:label="@string/title_activity_feed_view"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ShowProfileScene.ShowProfileView"
             android:label="@string/title_activity_show_profile"
@@ -38,11 +38,12 @@
         <activity
             android:name=".LikeListScene.LikeListView"
             android:label="LikeListView"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditProfileScene.EditProfileView"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ChallengeScene.ChallengeView"></activity>
         <activity
             android:name=".CommentsScene.CommentsView"
             android:label="CommentsActivity"

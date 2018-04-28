@@ -1,48 +1,78 @@
 package com.nexte.nexte.ChallengeScene
 
+
 /**
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
  */
 interface ChallengePresentationLogic {
     /**
-     * Method responsible to present challenge data and send it to View
+     * Method responsible to format the user information about players above the logged user and send it to view
      *
      * @param response contains unformatted data received from [ChallengeModel]
      */
-    fun presentChallenge(response : ChallengeModel.Response)
+    fun formatPlayersToChallenge(response : ChallengeModel.ShowRankingPlayersRequest.Response)
+
+    /**
+     * Method responsible to format the user detailed information and send it to view
+     *
+     * @param response contains unformatted data received from [ChallengeModel]
+     */
+    fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
 }
 
 /**
-* This class will be responsible to receive a [ChallengeModel.Response]
-* and generate a [ChallengeModel.ViewModel], sending it to View
+* This class will be responsible to receive a [ChallengeModel.ShowRankingPlayersRequest.Response]
+* and generate a [ChallengeModel.ShowRankingPlayersRequest.ViewModel], sending it to View
 *
 * @property viewChallenge Reference to display formatted data
 */
 
 class ChallengePresenter : ChallengePresentationLogic {
 
-    var viewChallenge: ChallengeDisplayLogic? = null
+    var viewChallenge: ChallengeDisplayLogic? = null // reference of the view
 
     /**
      * This method is responsible for formatting data contained on
-     * [ChallengeModel.Response] and send it to View
+     * [ChallengeModel.ShowRankingPlayersRequest.Response] and send it to View
      *
-     * @param response contains unformatted data received from [ChallengeModel]
+     * @param response contains unformatted data received from [ChallengeWorker]
      */
-    override fun presentChallenge(response: ChallengeModel.Response) {
+    override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
+        val selectedPlayers = response.usersAbove
 
-        val message: String?
-        val matchStatus: Boolean? = response.challengedAnswer
+        var formattedPlayers: List<ChallengeModel.FormattedPlayer> = listOf()
 
-        message = when (matchStatus) {
+        for(player in selectedPlayers){
+            val formattedPlayer = ChallengeModel.FormattedPlayer(player.name,
+                    String.format("#%d", player.rankingPosition), player.pictureAddress)
 
-            true -> "The match is set! Let's play!!!"
-            false -> "Your opponent declined :/ Try again!"
-            null -> "Waiting for the opponent answer"
+            formattedPlayers += formattedPlayer
         }
 
-        val viewModel: ChallengeModel.ViewModel = ChallengeModel.ViewModel(message)
-        this.viewChallenge?.displayChallengeAnswer(viewModel)
+        val viewModel = ChallengeModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
+        viewChallenge?.displayPlayersToChallenge(viewModel)
     }
+
+    /**
+     * This method is responsible for formatting data contained on
+     * [ChallengeModel.SelectPlayerForChallengeRequest.Response] and send it to View
+     *
+     * @param response contains unformatted data received from [ChallengeWorker]
+     */
+    override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
+        val selectedChallenged = response.challengedPersonalDetails
+
+        val formattedPlayer = ChallengeModel.FormattedRankingDetails(
+                selectedChallenged.name,
+                String.format("VITÓRIAS: %d", selectedChallenged.wins),
+                String.format("DERROTAS: %d", selectedChallenged.loses),
+                String.format("#%d", selectedChallenged.rankingPosition)
+        )
+
+        val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
+
+        viewChallenge?.displayPlayerDetailedInfo(viewModel)
+    }
+
 }
