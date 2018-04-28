@@ -1,21 +1,34 @@
 ### Histórico de reivsão
 
-| Data | Versão | Descrição | Autor(es)|
+| Data | Versão | Descrição | Autor(es) |
 | -----|--------|-----------|-----------|
-| 16/04/2018| 0.1 | Criação do Documento e adição de testes unitários | Luis Gustavo|
-| 28/04/2018| 0.2 | Testes de Integração e  Alguns Frameworks | Miguel Pimentel |
-| 28/04/2018| 0.3 | Testes Assíncronos | Miguel Pimentel |
+| 16/04/2018 | 0.1 | Criação do Documento e adição de testes unitários | Luis Gustavo |
+| 28/04/2018 | 0.2 | Adição de boas práticas, realm, enum class e sealed class, e custom application class | Guilherme Baldissera |
+| 28/04/2018 | 0.3 | Testes de Integração e  Alguns Frameworks | Miguel Pimentel | 
+| 28/04/2018 | 0.4 | Testes Assíncronos | Miguel Pimentel |
 
 
 ## Sumário
 
-[1. Testes Unitários](#1-testes-unitários)
+[0. Boas Práticas para Kotlin](#0-boas-práticas-para-kotlin)  
+[1. Testes Unitários](#1-testes-unitários)  
+[2. Testes de Integração](#2-testes-de-integracao)  
+[3. Testes Assíncronos](#3-testes-assincronos)  
+[4. Custom Application Class](#4-custom-application-class)  
+[5. Enum Class com Sealed Class](#5-enum-class-com-sealed-class)  
+[6. Realm Database](#6-realm-database) 
 
-[2. Testes de Integração](#2-testes-de-integracao)
 
-[3. Testes Assíncronos](#3-testes-assincronos)
+## 0. Boas Práticas para Kotlin
+
+- [Clean Code](https://blog.philipphauer.de/clean-code-kotlin/)
+- [Kotlin e Melhores práticas](https://blog.philipphauer.de/idiomatic-kotlin-best-practices/)
+- [Boas práticas para Teste Unitário em Kotlin](https://blog.philipphauer.de/best-practices-unit-testing-kotlin/)
+
 
 ## 1. Testes Unitários
+
+- [Testes Unitário com Mockito](https://developer.android.com/training/testing/unit-testing/local-unit-tests?hl=pt-br)
 
 ### 1.1. Criando documento de testes
 
@@ -320,4 +333,17 @@ Para mais informações sobre testes e tarefas assíncronas:
 
 * [Android Couroutine - Unit Test](https://medium.com/@tonyowen/android-kotlin-coroutines-unit-test-16e984ba35b4)
 
+## 4. Custom Application Class
 
+- [Understanding the Android Application Class](https://github.com/codepath/android_guides/wiki/Understanding-the-Android-Application-Class)
+
+## 5. Enum Class com Sealed Class
+
+Artigo do medium usado para isso, usado na entidade Challenge.
+- [Medium Enum Class com Sealed Class](https://medium.com/@arturogdg/creating-enums-with-associated-data-in-kotlin-d9e2cdcf4a99)
+
+
+## 6. Realm Database
+
+Documentação do Realm Database utilizado para a adição da Database local esscolhida para o nosso app.
+- [Realm Database](https://realm.io/docs/java/latest)

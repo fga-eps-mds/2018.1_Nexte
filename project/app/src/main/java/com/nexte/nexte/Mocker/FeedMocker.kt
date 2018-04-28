@@ -1,5 +1,6 @@
-package com.nexte.nexte.FeedScene
+package com.nexte.nexte.Mocker
 
+import com.nexte.nexte.FeedScene.FeedModel
 import com.nexte.nexte.R
 import java.util.*
 
