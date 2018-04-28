@@ -37,5 +37,14 @@ class ChallengeWorker {
         completion(response)
     }
 
-    TODO("CRIAR FUNÇÃO PARA RECEBER UMA REQUEST (SEGUNDA REQUEST) E RETORNAR O JOGADOR QUE SE ENCOTNRA NO RANKING N")
+    fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
+                                completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
+        val challengedPosition = request.challengedRankingPosition
+
+        var expandedChallengedInfo: // de que tipo podemos declarar as informações aqui?
+        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(expandedChallengedInfo)
+
+        completion(response)
+
+    }
 }

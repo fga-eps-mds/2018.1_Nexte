@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
+import kotlinx.android.synthetic.main.columns_challenged.view.*
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -58,14 +59,15 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
             return this.challenged.size
         }
 
-        class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
 
             fun bindView(player: ChallengeModel.FormattedPlayer, context: Context) {
-                TODO("BINDAR INFORMAÇÕES DO PLAYETR NA VIEW")
-                // ex: view.nome.text = player.nome
-                //context as ChallangeView -> getPlayerInfo(request) -> quando o caboclo clicar na foto
-            }
+                view.userName.text = player.name
+                view.rankingTextView.text = player.rankingPosition
 
+                context as ChallengeView -> getPlayerInfo(request)
+
+              }
         }
     }
 
@@ -110,6 +112,8 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
      * Function responsible to receive the request from the recycler view item and send to the interactor
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
+        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request()
+
         TODO("ENVIAR A REQUEST DO PARÂMETRO PARA A INTERACTOR")
     }
 }

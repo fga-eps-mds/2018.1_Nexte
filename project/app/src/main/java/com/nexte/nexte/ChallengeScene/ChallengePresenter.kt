@@ -11,7 +11,9 @@ interface FormatPlayersPresentationLogic {
      * @param response contains unformatted data received from [ChallengeModel]
      */
     fun formatPlayersToChallenge(response : ChallengeModel.ShowRankingPlayersRequest.Response)
-    TODO("CRIAR FUNÇÃO PARA FORMATAR OS DADOS DO JOGADOR EXPANDIDO")
+
+    fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
+
 }
 
 /**
@@ -48,5 +50,19 @@ class ChallengePresenter : FormatPlayersPresentationLogic {
         viewChallenge?.displayPlayersToChallenge(viewModel)
     }
 
-    TODO("IMPLEMENTAR FUNÇÃO PARA FORMATAR OS DADOS DO JOGADOR EXPANDIDO")
+    override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
+        val selectedChallenged = response.challengedPersonalDetails
+
+        val formattedChallengedExpanded = ChallengeModel.FormattedRankingDetails(name = "",
+                                                                                wins = "%d %",
+                                                                                losses = "%d %",
+                                                                                rankingPosition = "# %d")
+
+        // tô lembrada que temos que fazer a transformação de string aqui, mas não lembro como faz
+
+
+        val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(ChallengeModel.FormattedRankingDetails())
+
+    }
+
 }

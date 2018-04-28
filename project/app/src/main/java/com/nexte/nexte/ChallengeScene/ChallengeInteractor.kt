@@ -13,7 +13,8 @@ interface RequestPlayersToChallengeBusinessLogic {
      * @param request variable equals to the server response due to the challenged response
      */
     fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request)
-    TODO ("CRIAR FUNÇÃO PARA RECEBER O SEGUNDO REQUEST")
+
+    fun requestChallengedUsers(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
 }
 
 /**
@@ -33,5 +34,14 @@ class ChallengeInteractor : RequestPlayersToChallengeBusinessLogic {
         }
     }
 
-    TODO("OVERRIDE NA SEGUNDA FUNÇÃO DA INTERFACE")
+    override fun requestChallengedUsers(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
+
+        worker.fetchChallengedDetails(request) { response ->
+            this.presenter?.
+        }
+
+        // DESENVOLVER O ROLÊ DO SEGUNDO REQUEST
+
+    }
+
 }
