@@ -9,10 +9,6 @@ import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
-import io.realm.Realm
-import io.realm.RealmConfiguration
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -26,11 +22,9 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic,
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         this.setupLoginScene() // Setup Login Scene
         this.setupCommentsScene() // Setup Comments Scene
         this.setupChallengeScene() // Setup Challenge Scene

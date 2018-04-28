@@ -1,4 +1,4 @@
-package com.nexte.nexte.ObjectModels
+package com.nexte.nexte.Entities
 
 import org.junit.After
 import org.junit.Assert
@@ -37,6 +37,28 @@ class LikeTest {
         val like = Like(id, userId, date)
 
         // Asserts
+        Assert.assertEquals(id, like.id)
+        Assert.assertEquals(userId, like.userId)
+        Assert.assertEquals(date, like.date)
+    }
+
+    @Test
+    fun successLikeSetMethodsTest() {
+
+        // Prepare
+        val id = "1234567890"
+        val userId = "1234567890"
+        val date = Date()
+
+        // Call
+        val like = Like().apply {
+            this.id = id
+            this.userId = userId
+            this.date = date
+        }
+
+        // Asserts
+        Assert.assertNotNull(like)
         Assert.assertEquals(id, like.id)
         Assert.assertEquals(userId, like.userId)
         Assert.assertEquals(date, like.date)

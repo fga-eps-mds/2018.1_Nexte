@@ -1,15 +1,29 @@
 ### Histórico de reivsão
 
-| Data | Versão | Descrição | Autor(es)|
+| Data | Versão | Descrição | Autor(es) |
 | -----|--------|-----------|-----------|
-| 16/04/2018| 0.1 | Criação do Documento e adição de testes unitários | Luis Gustavo|
+| 16/04/2018 | 0.1 | Criação do Documento e adição de testes unitários | Luis Gustavo |
+| 28/04/2018 | 0.2 | Adição de boas práticas, realm, enum class e sealed class, e custom application class | Guilherme Baldissera |
 
 
 ## Sumário
 
-[1. Testes Unitários](#1-testes-unitários)
+[0. Boas Práticas para Kotlin](#0-boas-práticas-para-kotlin)  
+[1. Testes Unitários](#1-testes-unitários)  
+[2. Custom Application Class](#2-custom-application-class)  
+[3. Enum Class com Sealed Class](#3-enum-class-com-sealed-class)  
+[4. Realm Database](#4-realm-database) 
+
+
+## 0. Boas Práticas para Kotlin
+
+- [Clean Code](https://blog.philipphauer.de/clean-code-kotlin/)
+- [Kotlin e Melhores práticas](https://blog.philipphauer.de/idiomatic-kotlin-best-practices/)
+- [Boas práticas para Teste Unitário em Kotlin](https://blog.philipphauer.de/best-practices-unit-testing-kotlin/)
 
 ## 1. Testes Unitários
+
+- [Testes Unitário com Mockito](https://developer.android.com/training/testing/unit-testing/local-unit-tests?hl=pt-br)
 
 ### 1.1. Criando documento de testes
 
@@ -140,3 +154,19 @@ class LoginPresenterTest {
     }
 }
 ```
+
+## 2. Custom Application Class
+
+- [Understanding the Android Application Class](https://github.com/codepath/android_guides/wiki/Understanding-the-Android-Application-Class)
+
+## 3. Enum Class com Sealed Class
+
+Artigo do medium usado para isso, usado na entidade Challenge.
+- [Medium Enum Class com Sealed Class](https://medium.com/@arturogdg/creating-enums-with-associated-data-in-kotlin-d9e2cdcf4a99)
+
+
+## 4. Realm Database
+
+Documentação do Realm Database utilizado para a adição da Database local esscolhida para o nosso app.
+- [Realm Database](https://realm.io/docs/java/latest)
+

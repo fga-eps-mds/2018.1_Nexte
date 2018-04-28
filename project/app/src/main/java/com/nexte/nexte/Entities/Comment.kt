@@ -1,11 +1,13 @@
-package com.nexte.nexte.ObjectModels
+package com.nexte.nexte.Entities
 
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import java.util.*
 
-class Comment(val id: String,
-              val userId: String,
-              val comment: String,
-              val date: Date) {
+open class Comment(@PrimaryKey var id: String? = null,
+                   var userId: String? = null,
+                   var comment: String? = null,
+                   var date: Date? = null): RealmObject() {
 
     enum class ServerRequest(val request: Map<String, String>) {
         COMMENTS(hashMapOf("route" to "comments", "method" to "get")),

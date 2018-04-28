@@ -1,4 +1,4 @@
-package com.nexte.nexte.ObjectModels
+package com.nexte.nexte.Entities
 
 import org.junit.After
 import org.junit.Assert

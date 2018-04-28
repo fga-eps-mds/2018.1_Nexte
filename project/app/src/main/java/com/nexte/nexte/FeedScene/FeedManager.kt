@@ -1,5 +1,7 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Mocker.FeedMocker
+
 /**
  * Object class for use static mode in other classes.
  * This Object is responsible to control data in memory of Feed.
