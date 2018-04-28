@@ -1,5 +1,7 @@
 package com.nexte.nexte.LoginScene
 
+import org.json.JSONObject
+
 /**
  * Class responsible to do request for anywhere, format response and
  * call completion to send data for called class
