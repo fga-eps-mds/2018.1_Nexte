@@ -14,7 +14,7 @@ object ChallengeMocker {
      *
      * @returns List<Player> containing the mocked data.
      */
-    fun git
+    fun createPlayers(): List<Player>{
 
         var list: List<Player> = listOf()
 
