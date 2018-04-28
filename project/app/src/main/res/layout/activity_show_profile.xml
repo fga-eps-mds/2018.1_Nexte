@@ -150,7 +150,7 @@
         <Button
             android:id="@+id/editProfileButton"
             android:layout_width="64dp"
-            android:layout_height="29dp"
+            android:layout_height="24dp"
             android:layout_marginEnd="20dp"
             android:background="@android:color/black"
             android:text="Editar"

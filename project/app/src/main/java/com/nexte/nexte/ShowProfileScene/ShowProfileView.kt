@@ -118,6 +118,10 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
         xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
         xAxis.granularity = 1f
+        xAxis.textColor = Color.WHITE
+
+        val points = LineData(dataSets)
+        points.setValueTextColor(Color.WHITE)
 
         val lineData = LineData(dataSets)
         lineChart.data = lineData
@@ -125,7 +129,9 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         lineChart.axisLeft.setAxisMinValue(0f)
         lineChart.axisRight.setAxisMaxValue(0f)
         lineChart.axisRight.setAxisMinValue(8f)
-
+        lineChart.axisLeft.setDrawGridLines(false)
+        lineChart.xAxis.setDrawGridLines(false)
+        lineChart.setScaleEnabled(false)
         lineChart.invalidate()
     }
 
