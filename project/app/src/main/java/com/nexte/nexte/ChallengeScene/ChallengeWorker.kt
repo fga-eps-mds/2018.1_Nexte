@@ -26,9 +26,9 @@ class ChallengeWorker {
         var selectedPlayers: List<Player> = listOf()
         val players = ChallengeMocker.createPlayers()
 
-        for (player in players){
-            if(player.rankingPosition >= rankingPostion-rankingGap && player.rankingPosition < rankingPostion){
-                selectedPlayers += player
+        players.forEach {
+            if (it.rankingPosition >= rankingPostion-rankingGap && it.rankingPosition < rankingPostion) {
+                selectedPlayers += it
             }
         }
 
