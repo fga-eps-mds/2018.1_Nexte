@@ -28,7 +28,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/r"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
@@ -39,7 +39,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/vitorias_x"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
         app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView" />
 
@@ -50,7 +50,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/derrotas_x"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
         app:layout_constraintStart_toEndOf="@+id/expandedWins" />
 
@@ -61,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/nome"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"
         app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" />
 

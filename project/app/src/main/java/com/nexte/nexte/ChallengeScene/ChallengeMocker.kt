@@ -26,6 +26,22 @@ object ChallengeMocker {
         return list
     }
 
+    fun createPlayerDetailedInfo(): List<ChallengeModel.PlayerRankingDatails>{
+
+        var list: List<ChallengeModel.PlayerRankingDatails> = listOf()
+
+        for(count in 0..numPlayers){
+            val player = ChallengeModel.PlayerRankingDatails(String.format("nome%d", count+1),
+                    10-count,
+                    count,
+                    count+1
+            )
+
+            list += player
+        }
+
+        return list
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+
 /**
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
@@ -45,27 +46,22 @@ class ChallengePresenter : FormatPlayersPresentationLogic {
         }
 
         val viewModel = ChallengeModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
-
         viewChallenge?.displayPlayersToChallenge(viewModel)
     }
 
     override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
         val selectedChallenged = response.challengedPersonalDetails
 
-        // precisamos colocar esses dados formatados em algum lugar, por isso criei essa list
-        val challengedExpanded: List<ChallengeModel.FormattedRankingDetails> = listOf()
+        val formattedPlayer = ChallengeModel.FormattedRankingDetails(
+                selectedChallenged.name,
+                String.format("VITÓRIAS: %d", selectedChallenged.wins),
+                String.format("DERROTAS: %d", selectedChallenged.losses),
+                String.format("#%d", selectedChallenged.rankingPosition)
+        )
 
-        for(selectedChallenged in challengedExpanded){
-            val expanded = ChallengeModel.FormattedRankingDetails(name = "Htona",
-                                                                    wins = "%d",
-                                                                    losses = "%d",
-                                                                    rankingPosition = "# %d")
-        }
-        // tô lembrada que temos que fazer a transformação de string aqui, mas não lembro como faz
+        val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
 
-
-        val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(ChallengeModel.FormattedRankingDetails())
-
+        viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
 }

@@ -34,17 +34,26 @@ class ChallengeWorker {
 
         val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
 
+
         completion(response)
     }
 
     fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
-                                completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
+                                completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
 
-        var expandedChallengedInfo: // de que tipo podemos declarar as informações aqui?
-        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(expandedChallengedInfo)
+        var selectedPlayer: ChallengeModel.PlayerRankingDatails?= null
+
+        val players = ChallengeMocker.createPlayerDetailedInfo()
+
+        for(player in players){
+            if(player.rankingPosition == challengedPosition){
+                selectedPlayer = player
+            }
+        }
+
+        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(selectedPlayer!!)
 
         completion(response)
-
     }
 }

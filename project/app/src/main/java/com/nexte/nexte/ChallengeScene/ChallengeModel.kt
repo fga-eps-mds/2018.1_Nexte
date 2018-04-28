@@ -40,7 +40,7 @@ class ChallengeModel{
         /**
          * Responsible with detailed information about player with the selected ID
          */
-        class Response(var challengedPersonalDetails: Player)
+        class Response(var challengedPersonalDetails: PlayerRankingDatails)
 
         /**
          * Class responsible to edit the player data that will be exhibited
@@ -63,4 +63,13 @@ class ChallengeModel{
                                   var wins: String,
                                   var losses: String,
                                   var rankingPosition: String)
+
+    /**
+     *  Class that contains the detailed information about player ranking
+     */
+    class PlayerRankingDatails(var name: String,
+                               var wins: Int,
+                               var losses: Int,
+                               var rankingPosition: Int
+    )
 }

@@ -1,5 +1,7 @@
 package com.nexte.nexte.ChallengeScene
 
+import android.util.Log
+
 /**
  * Interface to define Business Logic to Challenge Class
  * that will used to call this Interactor on other class layer
@@ -14,7 +16,7 @@ interface RequestPlayersToChallengeBusinessLogic {
      */
     fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request)
 
-    fun requestChallengedUsers(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
+    fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
 }
 
 /**
@@ -28,19 +30,16 @@ class ChallengeInteractor : RequestPlayersToChallengeBusinessLogic {
     var presenter: FormatPlayersPresentationLogic? = null
 
     override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
-
         worker.fetchPlayersToChallenge(request) { response ->
             this.presenter?.formatPlayersToChallenge(response)
         }
     }
 
-    override fun requestChallengedUsers(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
+    override fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
 
         worker.fetchChallengedDetails(request) { response ->
-            this.presenter?.
+            this.presenter?.formatExpandedChallengedInfo(response)
         }
-
-        // DESENVOLVER O ROLÊ DO SEGUNDO REQUEST
 
     }
 

@@ -22,4 +22,5 @@
     <string name="r">#R</string>
     <string name="vitorias_x">Vitorias: X</string>
     <string name="derrotas_x">Derrotas: X</string>
+    <string name="check">✓</string>
 </resources>

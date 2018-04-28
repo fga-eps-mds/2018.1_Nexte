@@ -11,6 +11,8 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 
+
+
 /**
  * Interface to define Display Logic to ChallengeView Class that will
  * receive information from Presenter
@@ -23,7 +25,7 @@ interface ShowPlayersToChallengeDisplayLogic {
      * @param viewModel contains information about the players to be shown formatted
      */
     fun displayPlayersToChallenge (viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel)
-    TODO("CRIAR FUNÇÃO PARA EXIBIR OS DADOS DO JOGADOR EXPANDIDO")
+    fun displayPlayerDetailedInfo (viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel)
 }
 
 /**
@@ -43,6 +45,8 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
                            private val context: Context) :
             RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
 
+        var expandedPlayer = -1
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeView.ChallengeAdapter.ViewHolder {
 
             val view = LayoutInflater.from(context).inflate(R.layout.columns_challenged, parent, false)
@@ -50,8 +54,32 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
         }
 
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+            holder.bindView(challenged[position])
+            holder.view.userPicture.setOnClickListener {
+                if(expandedPlayer >= 0) {
+                    notifyItemChanged(expandedPlayer)
+                }
 
-            holder.bindView(challenged[position], context)
+                val shouldDrawChild = expandedPlayer != holder.layoutPosition
+
+                if(shouldDrawChild) {
+                    expandedPlayer = holder.layoutPosition
+                } else {
+                    expandedPlayer = -1
+                }
+                notifyItemChanged(expandedPlayer)
+
+                val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(
+                        challenged[position].rankingPosition.removeRange(0, 1).toInt()
+                )
+                (context as ChallengeView).getPlayerInfo(request)
+            }
+
+            if(expandedPlayer == holder.layoutPosition) {
+                holder.view.checkTextView.visibility = View.VISIBLE
+            } else {
+                holder.view.checkTextView.visibility = View.INVISIBLE
+            }
         }
 
         override fun getItemCount(): Int {
@@ -61,13 +89,10 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
 
         class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
 
-            fun bindView(player: ChallengeModel.FormattedPlayer, context: Context) {
+            fun bindView(player: ChallengeModel.FormattedPlayer) {
                 view.userName.text = player.name
                 view.rankingTextView.text = player.rankingPosition
-
-                context as ChallengeView -> getPlayerInfo(request)
-
-              }
+            }
         }
     }
 
@@ -79,17 +104,13 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
     }
 
     /**
-     * This variable is responsible to call the interactor method to deal with the request
-     */
-    private var getPlayersInteractor: RequestPlayersToChallengeBusinessLogic?= null
-
-    /**
      * Method called whenever the view is created, responsible for create first request and set listeners.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_challenger)
-        getPlayerToChallenge()
+        this.setContentView(R.layout.activity_challenger)
+        this.setupChallengeScene()
+        this.getPlayerToChallenge()
     }
 
     /**
@@ -98,11 +119,13 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
      */
     private fun getPlayerToChallenge(){
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
-        getPlayersInteractor?.requestPlayersToChallenge(request)
+        interactor?.requestPlayersToChallenge(request)
+
     }
 
     /**
      * Function responsible to get the formatted player data and exhibit it in a recycler view between an adapter .
+     * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
         this.recyclerView.adapter = ChallengeAdapter(viewModel.formattedPlayer, this)
@@ -112,11 +135,30 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
      * Function responsible to receive the request from the recycler view item and send to the interactor
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
-        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request()
-
-
-        TODO("ENVIAR A REQUEST DO PARÂMETRO PARA A INTERACTOR")
-
-
+        this.interactor?.requestChallengedUser(request)
     }
+
+    override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
+        val currentPlayer = viewModel.challengedRankingDetails
+
+        this.expandedLosses.visibility = View.VISIBLE
+        this.expandedLosses.text = currentPlayer.losses
+        this.expandedName.visibility = View.VISIBLE
+        this.expandedName.text = currentPlayer.name
+        this.expandedRankingTextView.visibility = View.VISIBLE
+        this.expandedRankingTextView.text = currentPlayer.rankingPosition
+        this.expandedWins.visibility = View.VISIBLE
+        this.expandedWins.text = currentPlayer.wins
+    }
+
+    private fun setupChallengeScene(){
+        val interactor = ChallengeInteractor()
+        val presenter = ChallengePresenter()
+        val view = this
+
+        view.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewChallenge = view
+    }
+
 }
