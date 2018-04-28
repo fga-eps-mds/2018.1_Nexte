@@ -15,9 +15,9 @@ interface LikeListPresentationLogic {
 }
 
 /**
-* Class needed to format response for data can be displayed on activity
-*
-* @property viewList Reference to the activity where data will be displayed [LikeListView].
+ * Class needed to format response for data can be displayed on activity
+ *
+ * @property viewList Reference to the activity where data will be displayed [LikeListView].
  */
 class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
                         LikeListPresentationLogic {
@@ -29,7 +29,7 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
     }
 
     /**
-     * Function that converts the MutableList PLayers  unformatted to
+     * Function that converts the MutableList Players  unformatted to
      * MutableList PLayersformatted.
      *
      * @param likePlayers MutableList of unformatted players
