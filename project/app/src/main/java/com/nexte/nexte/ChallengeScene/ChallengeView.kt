@@ -133,6 +133,7 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
 
     /**
      * Function responsible to receive the request from the recycler view item and send to the interactor
+     * @param request contains the rank of the clicked user in the recycler view
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
         this.interactor?.requestChallengedUser(request)

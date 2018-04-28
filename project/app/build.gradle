@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'jacoco'
 
+apply plugin: 'realm-android'
+
+apply plugin: 'kotlin-kapt'
+
 // Create a variable called keystorePropertiesFile, and initialize it to your
 // keystore.properties file, in the rootProject folder.
 // def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -25,7 +29,11 @@ jacoco {
     reportsDir = file("$buildDir/reports")
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ["clean", "testDebugUnitTest"]) {
+realm {
+    syncEnabled = true
+}
+
+task jacocoTestReport(type:JacocoReport, dependsOn: ["clean", "testDebugUnitTest"]) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
 

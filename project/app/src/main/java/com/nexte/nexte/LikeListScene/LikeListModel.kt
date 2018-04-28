@@ -28,17 +28,17 @@ class LikeListModel {
 
     /**
      * Class with information about users who will be displayed in the likes list
-     * @param: name
-     * @param:photo
-     * @param: time
+     * @param name
+     * @param photo
+     * @param time
      */
     class Players(var name: String, var photo: Int, var time: String)
 
     /**
      * Class with formatted information about users and how they will be displayed in View
-     * @param: name
-     * @param:photo
-     * @param: time
+     * @param name
+     * @param photo
+     * @param time
      */
     class PlayersFormatted(var name: String,
                            var photo: Int,

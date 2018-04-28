@@ -33,7 +33,8 @@
         <activity
             android:name=".ShowProfileScene.ShowProfileView"
             android:label="@string/title_activity_show_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LikeListScene.LikeListView"
             android:label="LikeListView"
@@ -43,6 +44,9 @@
             android:name=".EditProfileScene.EditProfileView"
             android:screenOrientation="portrait" />
         <activity android:name=".ChallengeScene.ChallengeView"></activity>
+        <activity
+            android:name=".CommentsScene.CommentsView"
+            android:label="CommentsActivity"
+            android:screenOrientation="portrait"/>
     </application>
-
 </manifest>
