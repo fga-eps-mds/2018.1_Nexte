@@ -44,8 +44,8 @@ class ChallengeWorker {
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
-                                completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
+        fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
+                                    completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
 
         var selectedPlayer: ChallengeModel.PlayerRankingDatails?= null
