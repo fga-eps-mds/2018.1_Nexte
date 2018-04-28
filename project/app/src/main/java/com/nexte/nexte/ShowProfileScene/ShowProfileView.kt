@@ -15,20 +15,6 @@ import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * This interface will be responsible to define the methods that
  * will receive the formatted data from [ShowProfilePresenter]
@@ -71,9 +57,13 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         this.CreateGraph()
     }
 
+    /**
+     * Method responsable to define a param to X axis.
+     * @property xVals array responsable to store all values of X
+     * @property tam responsable to store the data of X axis.
+     */
 
-
-    fun setXAxisValues(): ArrayList<Entry> {
+ fun setXAxisValues(): ArrayList<Entry> {
 
         val xVals = ArrayList<Entry>()
 
@@ -84,15 +74,32 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         return xVals
     }
 
+    /**
+     * Method responsable to define the data of Y axis.
+     *  @property yVals array responsable to store all values of Y
+     */
+
     fun setYAxisValues(): ArrayList<Entry> {
 
         val yVals = ArrayList<Entry>()
 
-        yVals.add(Entry(10f, 12f))
-        yVals.add(Entry(20f, 32f))
+        yVals.add(Entry(0f, 10f))
+        yVals.add(Entry(6f, 14f))
 
         return yVals
     }
+
+    /**
+     * Method responsable to create the graph, using the function setXAxisValues and
+     * SetYAxisValues.
+     *  @property lineChart instance a view from xml.
+     * @property xAxis responsable to access the method setXAxisValues
+     * @property yAxes responsable to access the method setYAxisValues
+     * @property dataSet Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
+     * @property line Access the data of yAxes, introduce a legend and customize the graphic
+     * @property lastMonths Responsable to create an array that store the string about last months of matches of the user
+     * @property lineData Type: LineData, access the data defined, and xml LineChart have access to it
+     */
 
     fun CreateGraph() {
 
@@ -103,20 +110,16 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         var yAxes = setYAxisValues()
 
 
-        val component = LineDataSet(xAxes, "Teste")
-        component.axisDependency = YAxis.AxisDependency.LEFT
-
         val dataSets = ArrayList<ILineDataSet>()
 
         val line = LineDataSet(yAxes, "Vitórias")
         line.fillAlpha = 110
         line.setColor(Color.BLUE)
-
-        dataSets.add(component)
+        line.axisDependency =YAxis.AxisDependency.LEFT
         dataSets.add(line)
 
-        
-        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez")
+
+        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
 
         xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
         xAxis.granularity = 1f
