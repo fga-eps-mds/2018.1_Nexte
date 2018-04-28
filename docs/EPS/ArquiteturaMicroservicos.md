@@ -25,4 +25,12 @@ A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utili
 
 ## Arquitetura de micro serviços
 
+### Versão 0.2
+
+[![Group_5.png](https://s9.postimg.cc/ui64atben/Group_5.png)](https://postimg.cc/image/pwa02gpvf/)
+
+### Versão 0.1
+
 [![microservice2.png](https://s17.postimg.cc/i0gs7p1i7/microservice2.png)](https://postimg.cc/image/bzj3amevv/)
+
+
