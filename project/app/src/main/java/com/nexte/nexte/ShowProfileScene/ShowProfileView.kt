@@ -1,29 +1,23 @@
 package com.nexte.nexte.ShowProfileScene
 
-import android.content.Context
-import android.content.Entity
 import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.CallLog
-import com.github.mikephil.charting.charts.Chart
+import android.support.v7.app.AppCompatActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
-import java.security.KeyStore
-import com.github.mikephil.charting.utils.ColorTemplate
-import com.github.mikephil.charting.data.LineData
-import java.nio.file.Files.size
-import java.nio.file.Files.size
-import java.nio.file.Files.size
-import java.nio.file.Files.size
+
+
+
+
 
 
 
@@ -79,15 +73,13 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
 
 
-    fun setXAxisValues(): ArrayList<String> {
+    fun setXAxisValues(): ArrayList<Entry> {
 
-        val xVals = ArrayList<String>()
-        xVals.add("jan")
-        xVals.add("fev")
-        xVals.add("mar")
-        xVals.add("abr")
-        xVals.add("mai")
-        xVals.add("jun")
+        val xVals = ArrayList<Entry>()
+
+        val tam = Entry(0f, 10f)
+
+        xVals.add(tam)
 
         return xVals
     }
@@ -97,25 +89,36 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         val yVals = ArrayList<Entry>()
         yVals.add(Entry(10f, 12f))
         yVals.add(Entry(20f, 32f))
-        yVals.add(Entry(20f, 43f))
-        yVals.add(Entry(20f, 43f))
 
         return yVals
     }
 
-    fun CreateGraph()  {
+    fun CreateGraph() {
 
         val lineChart = findViewById<LineChart>(R.id.lineChart) as LineChart
+        val xAxis = lineChart.xAxis
 
         var xAxes = setXAxisValues()
         var yAxes = setYAxisValues()
 
-        val line = LineDataSet(yAxes, "Vitórias")
-        line.fillAlpha = 110
-        line.setColor(Color.BLACK)
+
+        val component = LineDataSet(xAxes, "Teste")
+        component.axisDependency = YAxis.AxisDependency.LEFT
 
         val dataSets = ArrayList<ILineDataSet>()
+
+        val line = LineDataSet(yAxes, "Vitórias")
+        line.fillAlpha = 110
+        line.setColor(Color.BLUE)
+
+        dataSets.add(component)
         dataSets.add(line)
+
+        
+        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez")
+
+        xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
+        xAxis.granularity = 1f
 
         val lineData = LineData(dataSets)
         lineChart.data = lineData
