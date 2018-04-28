@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -80,7 +79,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
         val yVals = ArrayList<Entry>()
 
-        yVals.add(Entry(0, 2f))
+        yVals.add(Entry(0f, 2f))
         yVals.add(Entry(1f, 3f))
         yVals.add(Entry(2f, 4f))
         yVals.add(Entry(3f, 2f))
