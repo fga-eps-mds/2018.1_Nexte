@@ -13,7 +13,6 @@ interface FormatPlayersPresentationLogic {
     fun formatPlayersToChallenge(response : ChallengeModel.ShowRankingPlayersRequest.Response)
 
     fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
-
 }
 
 /**
@@ -53,11 +52,15 @@ class ChallengePresenter : FormatPlayersPresentationLogic {
     override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
         val selectedChallenged = response.challengedPersonalDetails
 
-        val formattedChallengedExpanded = ChallengeModel.FormattedRankingDetails(name = "",
-                                                                                wins = "%d %",
-                                                                                losses = "%d %",
-                                                                                rankingPosition = "# %d")
+        // precisamos colocar esses dados formatados em algum lugar, por isso criei essa list
+        val challengedExpanded: List<ChallengeModel.FormattedRankingDetails> = listOf()
 
+        for(selectedChallenged in challengedExpanded){
+            val expanded = ChallengeModel.FormattedRankingDetails(name = "Htona",
+                                                                    wins = "%d",
+                                                                    losses = "%d",
+                                                                    rankingPosition = "# %d")
+        }
         // tô lembrada que temos que fazer a transformação de string aqui, mas não lembro como faz
 
 

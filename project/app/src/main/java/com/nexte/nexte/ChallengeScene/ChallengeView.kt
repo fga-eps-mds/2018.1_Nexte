@@ -114,6 +114,9 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
         val request = ChallengeModel.SelectPlayerForChallengeRequest.Request()
 
+
         TODO("ENVIAR A REQUEST DO PARÂMETRO PARA A INTERACTOR")
+
+
     }
 }
