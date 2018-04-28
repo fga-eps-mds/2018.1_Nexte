@@ -5,7 +5,9 @@
     android:id="@+id/feedActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="8dp">
+    android:paddingBottom="8dp"
+    android:background="#2E2E2E">
+
     <TextView
         android:id="@+id/challangerDescription"
         android:layout_width="wrap_content"
@@ -123,7 +125,7 @@
         android:layout_marginTop="22dp"
         android:text="Likes"
         android:textColor="#ffffff"
-        android:textSize="17sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/likesButton"
         app:layout_constraintTop_toBottomOf="@+id/challengedPhoto" />
 
@@ -141,5 +143,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/challengedPhoto"
         tools:text="👍" />
+
+    <TextView
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:text="4 comentários"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challengerPhoto" />
 
 </android.support.constraint.ConstraintLayout>
