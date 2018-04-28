@@ -91,14 +91,14 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsable to create the graph, using the function setXAxisValues and
+     * Method responsible to create the graph, using the function setXAxisValues and
      * SetYAxisValues.
      *  @property lineChart instance a view from xml.
-     * @property xAxis responsable to access the method setXAxisValues
-     * @property yAxes responsable to access the method setYAxisValues
+     * @property xAxis responsible to access the method setXAxisValues
+     * @property yAxes responsible to access the method setYAxisValues
      * @property dataSet Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
      * @property line Access the data of yAxes, introduce a legend and customize the graphic
-     * @property lastMonths Responsable to create an array that store the string about last months of matches of the user
+     * @property lastMonths Responsible to create an array that store the string about last months of matches of the user
      * @property lineData Type: LineData, access the data defined, and xml LineChart have access to it
      */
 
@@ -109,9 +109,9 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         val yAxes = setYAxisValues()
         val dataSets = ArrayList<ILineDataSet>()
 
-        val line = LineDataSet(yAxes, "Vitórias")
+        val line = LineDataSet(yAxes, "Vitoria")
         line.fillAlpha = 110
-        line.setColor(Color.BLUE)
+        line.color = Color.BLUE
         line.axisDependency =YAxis.AxisDependency.LEFT
         dataSets.add(line)
 
