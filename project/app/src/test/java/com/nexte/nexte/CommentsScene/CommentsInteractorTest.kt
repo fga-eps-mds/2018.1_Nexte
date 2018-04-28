@@ -2,7 +2,7 @@ package com.nexte.nexte.CommentsScene
 
 import org.junit.After
 import org.junit.Before
-
+import java.util.*
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -19,12 +19,12 @@ class CommentsInteractorTest {
     }
 
     @Test
-    fun successRecentComments(){
+    fun successRecentComments() {
         //prepare
-        val request = CommentsModel.Request(game = "Gandalf vs Saruman", user = "Frodo")
+        val request = CommentsModel.Request("identifier")
 
         //call
-        this.interactor?.recentComments(request = request)
+        this.interactor?.recentComments(request)
 
         //assert
         assertEquals(this.mock?.passedHere, true)
@@ -37,7 +37,7 @@ class CommentsInteractorTest {
     }
 }
 
-private class MockCommentsPresentationLogic : CommentsPresentationLogic{
+private class MockCommentsPresentationLogic : CommentsPresentationLogic {
     var passedHere = false
 
     override fun presentComment(response: CommentsModel.Response) {

@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.row_likes.view.*
  * from Presenter
  */
 interface LikeListDisplayLogic {
+
     fun displayLikeList(viewModel: LikeListModel.ViewModel)
 }
 
@@ -36,6 +37,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_like)
 
@@ -44,7 +46,6 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
 
         val request = LikeListModel.Request("exampleString")
         interactor?.fetchDataToList(request)
-
     }
 
     /**
@@ -67,13 +68,14 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     * @param viewModel is received from presenter to show on screen
     */
     override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
+
         likesListRecyclerView.adapter = LikesListAdapter(viewModel.playersFormatted, this)
     }
 
     /**
      * Adapter Class to control recycler view on ListLike
      *
-     * @property listOfPlayers it's a list of all players
+     * @property listOfPlayers It's a list of all players
      * @property context Context that will show this adapter
      */
     class LikesListAdapter(private val listOfPlayers: MutableList<LikeListModel.PlayersFormatted>,
@@ -88,13 +90,14 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
             holder.bindView(listOfPlayers[position])
         }
 
         override fun getItemCount(): Int {
+
             return this.listOfPlayers.size
         }
-
 
         /**
          * View Holder Class to control items that will show on Recycler view
@@ -110,7 +113,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
              */
             fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
                 itemView.PlayerName.text = printedPlayer.name
-                itemView.LikeDate.text = printedPlayer.time
+                itemView.commentDate.text = printedPlayer.time
             }
         }
     }

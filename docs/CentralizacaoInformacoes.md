@@ -4,15 +4,17 @@
 | -----|--------|-----------|-----------|
 | 16/04/2018 | 0.1 | Criação do Documento e adição de testes unitários | Luis Gustavo |
 | 28/04/2018 | 0.2 | Adição de boas práticas, realm, enum class e sealed class, e custom application class | Guilherme Baldissera |
+| 28/04/2018 | 0.3 | Testes de Integração e  Alguns Frameworks | Miguel Pimentel | 
 
 
 ## Sumário
 
 [0. Boas Práticas para Kotlin](#0-boas-práticas-para-kotlin)  
 [1. Testes Unitários](#1-testes-unitários)  
-[2. Custom Application Class](#2-custom-application-class)  
-[3. Enum Class com Sealed Class](#3-enum-class-com-sealed-class)  
-[4. Realm Database](#4-realm-database) 
+[2. Testes de Integração](#2-testes-de-integracao)  
+[3. Custom Application Class](#3-custom-application-class)  
+[4. Enum Class com Sealed Class](#4-enum-class-com-sealed-class)  
+[5. Realm Database](#5-realm-database) 
 
 
 ## 0. Boas Práticas para Kotlin
@@ -20,6 +22,8 @@
 - [Clean Code](https://blog.philipphauer.de/clean-code-kotlin/)
 - [Kotlin e Melhores práticas](https://blog.philipphauer.de/idiomatic-kotlin-best-practices/)
 - [Boas práticas para Teste Unitário em Kotlin](https://blog.philipphauer.de/best-practices-unit-testing-kotlin/)
+
+
 
 ## 1. Testes Unitários
 
@@ -155,18 +159,98 @@ class LoginPresenterTest {
 }
 ```
 
-## 2. Custom Application Class
+# 2. Testes de Integração
+
+### 2.1 Roboeletric
+
+O Roboeletric torna o processo de teste mais eficiente, visto que é capaz de rodar testes de tecnologias presentes na SDK na JVM, a partir de simulação de condições de um device na execução dos testes.
+
+Configuração em Kotlin:
+
+* **No gradle**
+
+```
+testCompile "org.robolectric:robolectric:3.8"
+```
+
+* **Nas classes de teste**
+
+```
+@RunWith(RobolectricTestRunner::class) //  Executa a ferramenta
+@Config(manifest= Config.NONE) // Carrega configurações específicas definidas pelo ambiente de desenvolvimento
+```
+
+### 2.2 Mockito e Mock
+
+Para simular condições necessárias para o testes, muitas vezes se faz necerrário a criação de  mocks e para isso pode se fazer o uso de dois frameworks:
+
+* [Mockito](http://site.mockito.org)
+* [Mockk](http://mockk.io)
+
+Dentre eles, destaca-se o mockk, pois ele é propriamente provido a Kotlin.
+
+### 2.3 Testing external frameworks
+
+* **Testing Fuel**
+
+Na documentação da framework, eles requerem o uso do Mockk, um framework para mock em kotlin. 
+
+```
+val client = mockk<Client>()
+
+val someJson = "{\"key\":\"value\"}"
+
+every { client.executeRequest(any()).statusCode } returns 200
+every { client.executeRequest(any()).responseMessage } returns "OK"
+every { client.executeRequest(any()).data } returns someJson.toByteArray()
+
+FuelManager.instance.client = client
+```
+Para mais informações, acesse esta [issue](https://github.com/kittinunf/Fuel/issues/186) presente no repositório oficial
+
+* **Testing Realm**
+
+O teste do realm pode ser feito a partir de ferramentas já providas pelo *framework*. Este processo consiste em  simular uma instancia e garantir a manipulação destes valores.
+
+```
+// Configuring Test
+
+RealmConfiguration testConfig = 
+   new RealmConfiguration.Builder().
+      inMemory().
+      name("test-realm").build();
+Realm testRealm = Realm.getInstance(testConfig);
+
+// Execute Tests
+
+//0. inject the prepared Realm
+MyBusinessLogic interactor = new MyBusinessLogic(testRealm);
+//1.1 write expected data
+testRealm.executeTransaction(copyExpectedData);
+//1.2 assert that business logic loads correct data
+MyBusinessEntity actualData = interactor.loadBusinessStuff();
+assertThat(actualData, equalTo(expectedData));
+//2.1 write actual data
+interactor.saveBusinessStuff(actualData);
+//2.2 assert that business logic writes correct data
+actualData = testRealm.where(MyBusinessEntity.class).findAll();
+assertThat(actualData, equalTo(expectedData));
+```
+
+Para mais informações: [Android testing Realm](https://medium.com/@q2ad/android-testing-realm-2dc1e1c94ee1)
+
+
+## 3. Custom Application Class
 
 - [Understanding the Android Application Class](https://github.com/codepath/android_guides/wiki/Understanding-the-Android-Application-Class)
 
-## 3. Enum Class com Sealed Class
+## 4. Enum Class com Sealed Class
 
 Artigo do medium usado para isso, usado na entidade Challenge.
 - [Medium Enum Class com Sealed Class](https://medium.com/@arturogdg/creating-enums-with-associated-data-in-kotlin-d9e2cdcf4a99)
 
 
-## 4. Realm Database
+## 5. Realm Database
 
 Documentação do Realm Database utilizado para a adição da Database local esscolhida para o nosso app.
 - [Realm Database](https://realm.io/docs/java/latest)
-

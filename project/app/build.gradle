@@ -36,18 +36,18 @@ realm {
 task jacocoTestReport(type:JacocoReport, dependsOn: ["clean", "testDebugUnitTest"]) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
-    
+
     reports {
         xml.enabled = true
         html.enabled = true
     }
-    
+
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
                        '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
-    
+
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
@@ -64,13 +64,13 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
 
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
-    
+
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
                        '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
-    
+
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
@@ -118,6 +118,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:26.1.0'
     testImplementation 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:3.8"
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.1"
