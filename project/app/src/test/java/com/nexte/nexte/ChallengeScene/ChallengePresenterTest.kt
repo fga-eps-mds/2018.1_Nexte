@@ -45,9 +45,9 @@ class ChallengePresenterTest {
         this.presenter?.formatPlayersToChallenge(response)
 
         //assert
-        assertEquals(playerFormatted.name, this.mock?.formatedPlayer?.get(0)?.name)
-        assertEquals(playerFormatted.pictureAddress, this.mock?.formatedPlayer?.get(0)?.pictureAddress)
-        assertEquals(playerFormatted.rankingPosition, this.mock?.formatedPlayer?.get(0)?.rankingPosition)
+        assertEquals(playerFormatted.name, this.mock?.formattedPlayersToShow?.get(0)?.name)
+        assertEquals(playerFormatted.pictureAddress, this.mock?.formattedPlayersToShow?.get(0)?.pictureAddress)
+        assertEquals(playerFormatted.rankingPosition, this.mock?.formattedPlayersToShow?.get(0)?.rankingPosition)
     }
 
     @After
@@ -59,9 +59,14 @@ class ChallengePresenterTest {
 
 
 private class MockShowPlayersToChallengeDisplayLogic: ShowPlayersToChallengeDisplayLogic{
-    var formatedPlayer: List<ChallengeModel.FormattedPlayer>? = null
+    var formattedPlayersToShow: List<ChallengeModel.FormattedPlayer>? = null
+    var formattedPlayerToChallenge: ChallengeModel.FormattedRankingDetails?= null
 
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
-         this.formatedPlayer = viewModel.formattedPlayer
+         this.formattedPlayersToShow = viewModel.formattedPlayer
+    }
+
+    override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
+        this.formattedPlayerToChallenge = viewModel.challengedRankingDetails
     }
 }

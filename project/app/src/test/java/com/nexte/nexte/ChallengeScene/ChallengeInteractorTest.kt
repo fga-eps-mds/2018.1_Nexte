@@ -46,4 +46,8 @@ private class MockChallengePresentationLogic: FormatPlayersPresentationLogic{
     override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
         this.passedHere = true
     }
+
+    override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
+        this.passedHere = true
+    }
 }

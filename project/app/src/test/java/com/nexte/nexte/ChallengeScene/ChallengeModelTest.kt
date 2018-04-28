@@ -104,28 +104,22 @@ class ChallengeModelTest{
     fun successSecondResponse(){
         //prepare
         val name = "Gabriel"
-        val rankingPosition = 5
-        val pictureAddress = "https://www.algumsite.com.br/algumaimagem.png"
-        val email = "enggabrielalbino@gmail.com"
-        val gender = "masculino"
-        val club = "clubTop"
-        val age = 19
-        val password = "adoroPicole"
+        val wins = 3
+        val losses = 6
+        val rankingPosition = 1
 
-        val player = Player(name, rankingPosition, pictureAddress, email, gender, club, age, password)
+        val player = ChallengeModel.PlayerRankingDatails(
+                name, wins, losses, rankingPosition
+        )
 
         //call
         val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(player)
 
         //assert
-        assertEquals(response.challengedPersonalDetails.password, password)
+        assertEquals(response.challengedPersonalDetails.losses, losses)
         assertEquals(response.challengedPersonalDetails.name, name)
         assertEquals(response.challengedPersonalDetails.rankingPosition, rankingPosition)
-        assertEquals(response.challengedPersonalDetails.pictureAddress, pictureAddress)
-        assertEquals(response.challengedPersonalDetails.email, email)
-        assertEquals(response.challengedPersonalDetails.gender, gender)
-        assertEquals(response.challengedPersonalDetails.club, club)
-        assertEquals(response.challengedPersonalDetails.age, age)
+        assertEquals(response.challengedPersonalDetails.wins, wins)
     }
 
     @Test

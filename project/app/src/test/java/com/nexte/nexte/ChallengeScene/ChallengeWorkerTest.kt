@@ -8,7 +8,7 @@ import org.junit.Before
 
 class ChallengeWorkerTest {
 
-    var worker: ChallengeWorker? = null
+    private var worker: ChallengeWorker? = null
 
     @Before
     fun setUp() {

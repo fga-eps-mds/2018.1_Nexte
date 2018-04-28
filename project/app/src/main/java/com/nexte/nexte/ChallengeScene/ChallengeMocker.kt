@@ -7,7 +7,7 @@ import com.nexte.nexte.Player
  */
 object ChallengeMocker {
 
-    private const val numPlayers = 10 // Constant to define number of mocked players
+    private const val numPlayers = 9 // Constant to define number of mocked players
 
     /**
      * Method responsible for generating players.

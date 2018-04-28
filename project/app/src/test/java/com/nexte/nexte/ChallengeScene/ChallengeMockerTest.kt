@@ -25,7 +25,8 @@ class ChallengeMockerTest {
         val players = ChallengeMocker.createPlayers()
 
         //assert
-        assertEquals(player, players[0])
+        assertEquals(player.name, players[0].name)
+        assertEquals(player.rankingPosition, players[0].rankingPosition)
         assertEquals(players.size, 10)
     }
 }
