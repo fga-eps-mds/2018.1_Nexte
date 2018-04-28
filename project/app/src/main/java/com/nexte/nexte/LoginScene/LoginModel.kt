@@ -1,34 +1,37 @@
 package com.nexte.nexte.LoginScene
 
+
 /**
- * Class to define Model of Login Scene to enable the acess to users. It contains [Request],
- * [Response] and [ViewModel] classes to be used on the flow of getting the login data and
- * setting the token that contains personal information from user on the system
+ * Class to define Model of Login Scene to send informations between layers
  */
 class LoginModel {
 
     /**
-     * Class responsible to pass data of View to Interactor and after to worker can do
-     * request data
-     *
-     * @property userName variable that hold the name chosen by the user on the app
-     * @property password variable that hold the secret keyword of the user
+     * Class responsible to store received information from View to Interactor      *
+     * @param userName username registered by user
+     * @param password password registered by user
      */
-    class Request(var userName: String, var password: String)
+    class Request(val userName: String,  val password: String)
 
     /**
-     * Class responsible to store received information of worker to pass for Presenter
-     *
-     * @property tokenId variable that contains the user's personal data in the system and
-     * validates them in the application
+     * Class responsible to store received information from worker to Presenter
+     * @param tokenId authentication token
      */
-    class Response(var tokenId: String)
+    class Response(val tokenId: String, val authenticateStatus: AuthenticationStatus)
 
     /**
-     * Class responsible to define how the list view will display the formatted data,
-     * passed to view
-     *
-     * @property message hold information to show in screen if login was successful or not
+     * Class responsible to store received information from Presenter to View
+     * @param message message according with authentication result
      */
-    class ViewModel(var message: String)
+    class ViewModel(val message: String)
+
+    /**
+     *  Enum class to handle with Error
+     * @param value status code provided from server
+     */
+    enum class AuthenticationStatus(val value: Int) {
+
+        UNAUTHORIZED(401), AUTHORIZED(200), UNREGISTERED(404), FACEBOOK_REQUEST(101)
+    }
+
 }

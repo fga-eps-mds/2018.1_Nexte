@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.setupLoginScene() // Setup Login Scene
         // Setting up feed button listener
         feedButton.setOnClickListener {
             val intent = Intent(this, FeedView::class.java)
@@ -47,33 +46,13 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
             startActivity(intent)
         }
 
-        // Testing if works the architecture
-        val loginRequest: LoginModel.Request = LoginModel.Request("miguelpimentel", "123456")
-        this.loginInteractor?.doAuthentication(loginRequest)
-
-
-    }
-
-    /*
-     *  LOGIN SCENE
-     */
-
-    // Setup all modules for exchange of data
-    private fun setupLoginScene() {
-
-        val viewController = this
-        val interactor = LoginInteractor()
-        val presenter = LoginPresenter()
-
-        viewController.loginInteractor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = viewController
+        loginButton.setOnClickListener {
+            val intent = Intent(this, LoginView::class.java)
+            startActivity(intent)
+        }
     }
 
     // Print a message according with received data
-    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
-
-        // textView.text = viewModel.message
-    }
+    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) { }
 
 }

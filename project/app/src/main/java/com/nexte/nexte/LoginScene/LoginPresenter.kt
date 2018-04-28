@@ -1,27 +1,42 @@
 package com.nexte.nexte.LoginScene
 
 /**
- * Interface to define Presentation Logic to Login Class that
- * will be used to call this Interactor on other class layer
+ * Interface resposible to format request provided in Interactor to data as
+ * it should be presented at view as viewModel
  */
 interface LoginPresentationLogic {
 
     /**
-     * Method responsible to format feed data and send for view
+     * Method responsible to format login data and send for view
      *
      * @param response It's login model response containing unformatted data
      * received [LoginModel]
      */
     fun presentLogin(response: LoginModel.Response)
+
+    /**
+     * Method responsible to handle with authentication not expected
+     *
+     * @param response It's login model response containing unformatted data
+     * received [LoginModel]
+     */
+    fun presentError(response: LoginModel.Response)
 }
 
 /**
- * Class needed to format response for data can be displayed on activity
+ * Class that formats data from LoginInteractor(request) to LoginView(viewModel)
  *
- * @property viewController Reference to the activity where data will be displayed on View
+ * @property view reference to view
  */
-class LoginPresenter(var viewController: LoginDisplayLogic? = null): LoginPresentationLogic {
+class LoginPresenter: LoginPresentationLogic {
 
+    var view: LoginDisplayLogic? = null
+
+    /**
+     * Method that formats data from response to viewModel
+     *
+     * @property view reference to view
+     */
     override fun presentLogin(response: LoginModel.Response) {
 
         val message: String
@@ -34,6 +49,10 @@ class LoginPresenter(var viewController: LoginDisplayLogic? = null): LoginPresen
         }
 
         val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
-            this.viewController?.displayAuthenticateState(viewModel)
+        this.view?.displayAuthenticateState(viewModel)
+    }
+
+    override fun presentError(response: LoginModel.Response) {
+        TODO("not implemented")
     }
 }

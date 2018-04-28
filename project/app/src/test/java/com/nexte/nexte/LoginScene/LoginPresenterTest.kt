@@ -15,13 +15,15 @@ class LoginPresenterTest {
     fun setUp() {
         this.mock = MockLoginDisplayLogic()
         this.presenter = LoginPresenter()
-        this.presenter?.viewController = mock
+        this.presenter?.view = mock
     }
 
     @Test
     fun successMessagePresentLogin() {
         //prepare
-        val response = LoginModel.Response(tokenId = "h1n3vv3u13ola")
+        val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+        val authorized = LoginModel.AuthenticationStatus.AUTHORIZED
+        val response = LoginModel.Response(tokenId = token, authenticateStatus = authorized)
         val expectedMessage = "Congratz! U get it"
 
         //call
@@ -34,7 +36,8 @@ class LoginPresenterTest {
     @Test
     fun failMessagePresentLogin() {
         //prepare
-        val response = LoginModel.Response(tokenId =  "")
+        val unauthorized = LoginModel.AuthenticationStatus.UNAUTHORIZED
+        val response = LoginModel.Response(tokenId = "", authenticateStatus = unauthorized)
         val expectedMessage = "Something is wrong. Try again"
 
         //call

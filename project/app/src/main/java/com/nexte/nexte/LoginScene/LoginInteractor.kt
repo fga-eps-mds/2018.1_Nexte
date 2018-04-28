@@ -1,34 +1,43 @@
 package com.nexte.nexte.LoginScene
 
+
 /**
- * Interface to define Business Logic to Login Class that will be used to call this
- * Interactor on other class layer
+ * Interface that defines Business Login to Interactor and defines comunication
+ * with worker and presenter
  */
 interface LoginBusinessLogic {
-
-    /**
-     * Method that authenticate the user through getting pass request for the Worker
-     * and send response to the Presenter
-     *
-     * @param request Request model of login that contains data to pass for Worker
-     */
     fun doAuthentication(request: LoginModel.Request)
 }
 
 /**
- * Class that implements [LoginBusinessLogic] and is responsible for the communication
+ * Class that defines a response from a request provided using comunication
  * between worker and presenter
  *
- * @property worker Reference to worker [LoginWorker]
- * @property presenter Reference to presenter [LoginPresenter]
+ * @property worker Request model of feed that contains data to pass for Worker
+ * @property presenter
  */
-class LoginInteractor (var presenter : LoginPresentationLogic? = null) : LoginBusinessLogic {
+class LoginInteractor : LoginBusinessLogic {
 
-    val worker: LoginWorker = LoginWorker()
+    var worker = LoginWorker()
+    var presenter: LoginPresentationLogic? =  null
 
+    /**
+     * Method that will send request provided by worker to presenter as response
+     *
+     * @param request Request model of feed that contains data to pass for Worker
+     */
     override fun doAuthentication(request: LoginModel.Request) {
+
         worker.authenticateUser(request) { response ->
-            this.presenter?.presentLogin(response)
+
+            val responseStatus = response.authenticateStatus
+            when(responseStatus) {
+                LoginModel.AuthenticationStatus.AUTHORIZED -> {
+                    this.presenter?.presentLogin(response)
+                } else -> {
+                    this.presenter?.presentError(response)
+                }
+            }
         }
     }
 }

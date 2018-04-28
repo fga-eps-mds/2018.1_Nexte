@@ -110,9 +110,12 @@ android {
         }
     }
 }
+
 repositories {
+    jcenter()
     maven { url "https://jitpack.io" }
 }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -136,4 +139,24 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
 
+}
+
+// Account Kit
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.facebook.android:account-kit-sdk:4.+'
+}
+
+dependencies {
+    implementation 'com.github.kittinunf.fuel:fuel:1.12.1' //for JVM
+    implementation 'com.github.kittinunf.fuel:fuel-android:1.12.1' //for Android
+    implementation 'com.github.kittinunf.fuel:fuel-livedata:1.12.1' //for LiveData support
+    implementation 'com.github.kittinunf.fuel:fuel-rxjava:1.12.1' //for RxJava support
+    implementation 'com.github.kittinunf.fuel:fuel-gson:1.12.1' //for Gson support
+    implementation 'com.github.kittinunf.fuel:fuel-jackson:1.12.1' //for Jackson support
+    implementation 'com.github.kittinunf.fuel:fuel-moshi:1.12.1' //for Moshi support
 }
