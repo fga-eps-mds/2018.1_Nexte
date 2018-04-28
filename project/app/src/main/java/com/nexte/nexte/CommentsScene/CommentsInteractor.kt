@@ -22,10 +22,9 @@ interface CommentsBusinessLogic {
 * @property worker Reference to Worker [CommentsWorker]
 * @property presenter Reference to Presenter [CommentsPresenter]
 */
-class CommentsInteractor : CommentsBusinessLogic {
+class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : CommentsBusinessLogic {
 
     var worker = CommentsWorker()
-    var presenter : CommentsPresentationLogic? = null
 
     override fun recentComments(request: CommentsModel.Request) {
         worker.getCommentsData(request) { response ->

@@ -2,9 +2,9 @@ package com.nexte.nexte.CommentsScene
 
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class CommentsPresenterTest {
 
@@ -19,42 +19,34 @@ class CommentsPresenterTest {
     }
 
     @Test
-    fun successPresentComment(){
+    fun successPresentComment() {
         //prepare
-        val response = CommentsModel.Response(comment = "Muito bom", userName = "luis", linkUserProfilePicture = "", commentTime = "14:20", like = true)
-        val expectedMessage = "Um comentário existente"
+        val player1 = CommentsModel.Player("Larissa", 1)
+        val player2 = CommentsModel.Player("Alexandre", 2)
+        val comment1 = CommentsModel.Comment("Muito bom galera", Date(), player1)
+        val comment2 = CommentsModel.Comment("Nossa, foi top mesmo", Date(), player2)
+        val commentsList = mutableListOf(comment1, comment2)
+        val response = CommentsModel.Response(commentsList)
 
         //call
-        this.presenter?.presentComment(response = response)
+        this.presenter?.presentComment(response)
 
         //assert
-        assertEquals(expectedMessage, this.mock?.message)
-    }
-
-    @Test
-    fun failPresentComment(){
-        //prepare
-        val response = CommentsModel.Response(comment = "", userName = "luis", linkUserProfilePicture = "", commentTime = "14:20", like = true)
-        val expectedMessage = "Não há comentário"
-
-        //call
-        this.presenter?.presentComment(response = response)
-
-        //assert
-        assertEquals(expectedMessage, this.mock?.message)
+        assertEquals(this.mock?.passedHere, true)
     }
 
     @After
     fun tearDown() {
+
         this.mock = null
         this.presenter = null
     }
 }
 
-private class MockCommentsDisplayLogic: CommentsDisplayLogic{
-    var message: String = "123"
+private class MockCommentsDisplayLogic: CommentsDisplayLogic {
+    var passedHere = false
 
     override fun displayComments(viewModel: CommentsModel.ViewModel){
-        this.message = viewModel.message!!
+        this.passedHere = true
     }
 }

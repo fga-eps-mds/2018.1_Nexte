@@ -20,4 +20,11 @@
     <string name="FACEBOOK_APP_ID">1649151788738895</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">c776fc2fa28197d69bda7826df30567c</string>
 
+    <string name="user_picture">User picture</string>
+    <string name="nome">nome</string>
+    <string name="_2">#2</string>
+    <string name="r">#R</string>
+    <string name="vitorias_x">Vitorias: X</string>
+    <string name="derrotas_x">Derrotas: X</string>
+    <string name="check">✓</string>
 </resources>

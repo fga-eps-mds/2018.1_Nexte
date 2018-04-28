@@ -10,7 +10,7 @@ class EditProfileWorker {
 
     companion object {
 
-        const val MINPASSWORDLENGTH = 6
+        const val minPasswordLenght = 6
     }
 
     /**
@@ -66,7 +66,7 @@ class EditProfileWorker {
 
         if(!user.email.contains('@')) {
             errorID = 1
-        } else if(user.password.isNotEmpty() && user.password.length < MINPASSWORDLENGTH) {
+        } else if(user.password.isNotEmpty() && user.password.length < minPasswordLenght) {
             errorID = 2
         } else {
             newUser = user

@@ -3,11 +3,17 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 16/04/2018| 0.1 | Criação do Documento e adição de testes unitários | Luis Gustavo|
+| 28/04/2018| 0.2 | Testes de Integração e  Alguns Frameworks | Miguel Pimentel |
+| 28/04/2018| 0.3 | Testes Assíncronos | Miguel Pimentel |
 
 
 ## Sumário
 
 [1. Testes Unitários](#1-testes-unitários)
+
+[2. Testes de Integração](#2-testes-de-integracao)
+
+[3. Testes Assíncronos](#3-testes-assincronos)
 
 ## 1. Testes Unitários
 
@@ -140,3 +146,178 @@ class LoginPresenterTest {
     }
 }
 ```
+
+# 2. Testes de Integração
+
+### 2.1 Roboeletric
+
+O Roboeletric torna o processo de teste mais eficiente, visto que é capaz de rodar testes de tecnologias presentes na SDK na JVM, a partir de simulação de condições de um device na execução dos testes.
+
+Configuração em Kotlin:
+
+* **No gradle**
+
+```
+testCompile "org.robolectric:robolectric:3.8"
+```
+
+* **Nas classes de teste**
+
+```
+@RunWith(RobolectricTestRunner::class) //  Executa a ferramenta
+@Config(manifest= Config.NONE) // Carrega configurações específicas definidas pelo ambiente de desenvolvimento
+```
+
+### 2.2 Mockito e Mock
+
+Para simular condições necessárias para o testes, muitas vezes se faz necerrário a criação de  mocks e para isso pode se fazer o uso de dois frameworks:
+
+* [Mockito](http://site.mockito.org)
+* [Mockk](http://mockk.io)
+
+Dentre eles, destaca-se o mockk, pois ele é propriamente provido a Kotlin.
+
+### 2.3 Testing external frameworks
+
+* **Testing Fuel**
+
+Na documentação da framework, eles requerem o uso do Mockk, um framework para mock em kotlin. 
+
+```
+val client = mockk<Client>()
+
+val someJson = "{\"key\":\"value\"}"
+
+every { client.executeRequest(any()).statusCode } returns 200
+every { client.executeRequest(any()).responseMessage } returns "OK"
+every { client.executeRequest(any()).data } returns someJson.toByteArray()
+
+FuelManager.instance.client = client
+```
+Para mais informações, acesse esta [issue](https://github.com/kittinunf/Fuel/issues/186) presente no repositório oficial
+
+* **Testing Realm**
+
+O teste do realm pode ser feito a partir de ferramentas já providas pelo *framework*. Este processo consiste em  simular uma instancia e garantir a manipulação destes valores.
+
+```
+// Configuring Test
+
+RealmConfiguration testConfig = 
+   new RealmConfiguration.Builder().
+      inMemory().
+      name("test-realm").build();
+Realm testRealm = Realm.getInstance(testConfig);
+
+// Execute Tests
+
+//0. inject the prepared Realm
+MyBusinessLogic interactor = new MyBusinessLogic(testRealm);
+//1.1 write expected data
+testRealm.executeTransaction(copyExpectedData);
+//1.2 assert that business logic loads correct data
+MyBusinessEntity actualData = interactor.loadBusinessStuff();
+assertThat(actualData, equalTo(expectedData));
+//2.1 write actual data
+interactor.saveBusinessStuff(actualData);
+//2.2 assert that business logic writes correct data
+actualData = testRealm.where(MyBusinessEntity.class).findAll();
+assertThat(actualData, equalTo(expectedData));
+```
+
+Para mais informações: [Android testing Realm](https://medium.com/@q2ad/android-testing-realm-2dc1e1c94ee1)
+
+
+# 3. Testes Assíncronos
+
+## 3.1 *Couroutines* e Tarefas Assíncronas
+
+No desenvolvimento de software é bastante usual a utilização de Courotines, isto é a capacidade de suspender e continuar sua própria execução. Esta prática se torna bastante comum quando utilizada em paralelo com tarefas assíncronas.
+
+Pseudo-código para *couroutine*:
+
+```
+    start courotine 
+    var dataFromServer = fetchDataFromServer().await()
+    var data = parserData(dataFromServer).await()
+    displayInList(data)
+```
+
+Entretanto, alguns frameworks disponibilizam métodos assync
+
+##  3.2 Tarefas Assíncronas em Kotlin
+
+Em Android com Kotlin, podemos fazer uso de tarefas assynchronas da seguinte forma:
+
+```
+suspend fun getListOfThings() {
+    asyncTask { storageHelper.getListFromDb() }
+        .let { list -> 
+            view.useTheResult(list)
+    }
+}
+```
+
+```
+suspend fun <T> asyncTask(function: () -> T): T {
+    return run(CommonPool) { function() }
+}
+```
+
+Vale ressaltar, que muitos frameworks de terceiros disponibilizam métodos assíncronos que não necessita do uso de funções auxiliares como *asyncTask*
+
+## 3.3 **Teste Unitários**
+
+
+Para realizar testes unitários, com o uso do Mockito podemos realizar os testes da seguinte forma:
+
+```
+// TEST
+
+@Test
+fun getPackageFiltersForWidget() {
+    val list: ArrayList<PackageFilter> = ArrayList()
+    `when`(storageHelper.getListFromDb()).thenReturn(list)
+    presenter.getListOfThings()
+    Mockito.verify(view).useTheResult(ArgumentMatchers.eq(list))
+}
+
+// PRESENTER
+
+fun getListOfThings() {
+    launch(Android) {
+        asyncTask { storageHelper.getListFromDb() }.await()
+        .let { list -> 
+            view.useTheResult(list)
+        }
+    }
+}
+
+fun <T> asyncTask(function: () -> T): Deferred<T> {
+    return async(CommonPool) { function() }
+}
+
+// ACTIVITY
+
+fun getList() {
+    presenter.getListOfThings()
+}
+```
+
+## Observações
+
+* Para utilizar tarefas assíncronas em kotlin é necessário importar o módulo de cotoutines:
+
+```
+compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.11-rc"
+```
+
+### **Referências**
+
+Para mais informações sobre testes e tarefas assíncronas:
+
+*  [Android Coroutines](https://medium.com/@macastiblancot/android-coroutines-getting-rid-of-runonuithread-and-callbacks-cleaner-thread-handling-and-more-234c0a9bd8eb)
+
+* [Android Couroutine - Unit Test](https://medium.com/@tonyowen/android-kotlin-coroutines-unit-test-16e984ba35b4)
+
+
