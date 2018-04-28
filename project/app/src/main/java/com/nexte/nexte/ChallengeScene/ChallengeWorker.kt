@@ -16,7 +16,7 @@ class ChallengeWorker {
     /**
      * Function to get players 5 rank positions above the logged player
      *
-     * @param request Challenge Model request that contains needed informations to send to server
+     * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
     fun fetchPlayersToChallenge (request: ChallengeModel.ShowRankingPlayersRequest.Request,
@@ -38,6 +38,12 @@ class ChallengeWorker {
         completion(response)
     }
 
+    /**
+     * Function to get the clicked player detailed info
+     *
+     * @param request Challenge Model request that contains needed information to send to server
+     * @param completion Method to call on parent class
+     */
     fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
                                 completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
@@ -46,9 +52,9 @@ class ChallengeWorker {
 
         val players = ChallengeMocker.createPlayerDetailedInfo()
 
-        for(player in players){
-            if(player.rankingPosition == challengedPosition){
-                selectedPlayer = player
+        players.forEach {
+            if (it.rankingPosition == challengedPosition){
+                selectedPlayer = it
             }
         }
 

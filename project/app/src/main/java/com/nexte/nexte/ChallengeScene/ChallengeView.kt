@@ -17,84 +17,29 @@ import kotlinx.android.synthetic.main.columns_challenged.view.*
  * Interface to define Display Logic to ChallengeView Class that will
  * receive information from Presenter
  */
-interface ShowPlayersToChallengeDisplayLogic {
+interface ChallengeDisplayLogic {
 
     /**
-     * Method that defines how the player formatted data will be displayed
+     * Method that defines how the players above the logged user formatted data will be displayed
      *
      * @param viewModel contains information about the players to be shown formatted
      */
     fun displayPlayersToChallenge (viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel)
+    /**
+     * Method that defines how the player clicked by the user formatted data will be displayed
+     *
+     * @param viewModel contains information about the player to be shown formatted
+     */
+
     fun displayPlayerDetailedInfo (viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel)
 }
 
 /**
  * This class is responsible for treating user actions and also showing user needed information.
  */
-class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
+class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
-    var interactor: ChallengeInteractor? = null
-
-    /**
-     * Adapter Class to control recycler view of users that can be challenged
-     *
-     * @property challenged List of the 5 players above the logged one
-     * @property context Context that will show this adapter
-     */
-    private class ChallengeAdapter(private var challenged: List<ChallengeModel.FormattedPlayer>,
-                           private val context: Context) :
-            RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
-
-        var expandedPlayer = -1
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeView.ChallengeAdapter.ViewHolder {
-
-            val view = LayoutInflater.from(context).inflate(R.layout.columns_challenged, parent, false)
-            return ChallengeView.ChallengeAdapter.ViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
-            holder.bindView(challenged[position])
-            holder.view.userPicture.setOnClickListener {
-                if(expandedPlayer >= 0) {
-                    notifyItemChanged(expandedPlayer)
-                }
-
-                val shouldDrawChild = expandedPlayer != holder.layoutPosition
-
-                if(shouldDrawChild) {
-                    expandedPlayer = holder.layoutPosition
-                } else {
-                    expandedPlayer = -1
-                }
-                notifyItemChanged(expandedPlayer)
-
-                val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(
-                        challenged[position].rankingPosition.removeRange(0, 1).toInt()
-                )
-                (context as ChallengeView).getPlayerInfo(request)
-            }
-
-            if(expandedPlayer == holder.layoutPosition) {
-                holder.view.checkTextView.visibility = View.VISIBLE
-            } else {
-                holder.view.checkTextView.visibility = View.INVISIBLE
-            }
-        }
-
-        override fun getItemCount(): Int {
-
-            return this.challenged.size
-        }
-
-        class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-
-            fun bindView(player: ChallengeModel.FormattedPlayer) {
-                view.userName.text = player.name
-                view.rankingTextView.text = player.rankingPosition
-            }
-        }
-    }
+    var interactor: ChallengeBusinessLogic? = null
 
     /**
      * This object is used for avoid magic numbers
@@ -117,7 +62,7 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
      * This method is responsible for calling the request for the
      * 5 players above the ranking defined in the logged player
      */
-    private fun getPlayerToChallenge(){
+    fun getPlayerToChallenge(){
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
 
@@ -139,11 +84,16 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
         this.interactor?.requestChallengedUser(request)
     }
 
+    /**
+     * Method responsible for showing the clicked player detailed info
+     *
+     * @param viewModel contains the player data already formatted by [ChallengePresenter]
+     */
     override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
         val currentPlayer = viewModel.challengedRankingDetails
 
         this.expandedLosses.visibility = View.VISIBLE
-        this.expandedLosses.text = currentPlayer.losses
+        this.expandedLosses.text = currentPlayer.loses
         this.expandedName.visibility = View.VISIBLE
         this.expandedName.text = currentPlayer.name
         this.expandedRankingTextView.visibility = View.VISIBLE
@@ -152,6 +102,9 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
         this.expandedWins.text = currentPlayer.wins
     }
 
+    /**
+     * Method responsible to populate the references of the scene
+     */
     private fun setupChallengeScene(){
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
@@ -161,5 +114,67 @@ class ChallengeView : AppCompatActivity(), ShowPlayersToChallengeDisplayLogic {
         interactor.presenter = presenter
         presenter.viewChallenge = view
     }
+
+    /**
+     * Adapter Class to control recycler view of users that can be challenged
+     *
+     * @property challenged List of the 5 players above the logged one
+     * @property context Context that will show this adapter
+     */
+    private class ChallengeAdapter(private var challenged: List<ChallengeModel.FormattedPlayer>,
+                                   private val context: Context) :
+            RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
+
+        var expandedPlayer = -1
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeView.ChallengeAdapter.ViewHolder {
+
+            val view = LayoutInflater.from(context).inflate(R.layout.columns_challenged, parent, false)
+            return ChallengeView.ChallengeAdapter.ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+            holder.bindView(challenged[position])
+            holder.view.userPicture.setOnClickListener {
+                if (expandedPlayer >= 0) {
+                    notifyItemChanged(expandedPlayer)
+                }
+
+                val shouldDrawChild = expandedPlayer != holder.layoutPosition
+
+                expandedPlayer = if (shouldDrawChild) {
+                    holder.layoutPosition
+                } else {
+                    -1
+                }
+                notifyItemChanged(expandedPlayer)
+
+                val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(
+                        challenged[position].rankingPosition.removeRange(0, 1).toInt()
+                )
+                (context as ChallengeView).getPlayerInfo(request)
+            }
+
+            if (expandedPlayer == holder.layoutPosition) {
+                holder.view.checkTextView.visibility = View.VISIBLE
+            } else {
+                holder.view.checkTextView.visibility = View.INVISIBLE
+            }
+        }
+
+        override fun getItemCount(): Int {
+
+            return this.challenged.size
+        }
+
+        class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
+
+            fun bindView(player: ChallengeModel.FormattedPlayer) {
+                view.userName.text = player.name
+                view.rankingTextView.text = player.rankingPosition
+            }
+        }
+    }
+
 
 }

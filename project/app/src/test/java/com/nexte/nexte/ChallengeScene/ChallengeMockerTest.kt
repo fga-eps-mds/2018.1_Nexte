@@ -8,7 +8,7 @@ import org.junit.Assert.*
 class ChallengeMockerTest {
 
     @Test
-    fun createPlayers() {
+    fun successCreatePlayers() {
         //prepare
         val player = Player(
                 "nome1",
@@ -29,4 +29,29 @@ class ChallengeMockerTest {
         assertEquals(player.rankingPosition, players[0].rankingPosition)
         assertEquals(players.size, 10)
     }
+
+    @Test
+    fun successCreatedDetailedPlayer(){
+        //prepare
+        val name = String.format("nome%d", 1)
+        val wins = 10
+        val loses = 0
+        val rankPosition = 1
+        val player = ChallengeModel.PlayerRankingDatails(name,
+                wins,
+                loses,
+                rankPosition
+        )
+
+        //call
+        val players = ChallengeMocker.createPlayerDetailedInfo()
+
+        //assert
+        assertEquals(player.name, players[0].name)
+        assertEquals(player.loses, players[0].loses)
+        assertEquals(player.wins, players[0].wins)
+        assertEquals(player.rankingPosition, players[0].rankingPosition)
+        assertEquals(players.size, 10)
+    }
+
 }

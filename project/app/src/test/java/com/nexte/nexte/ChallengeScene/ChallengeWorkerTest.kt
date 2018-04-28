@@ -23,14 +23,14 @@ class ChallengeWorkerTest {
 
         //call
         worker?.fetchPlayersToChallenge(request){ response->
-            val players = response.fiveUsersAbove
+            val players = response.usersAbove
             //assert
             assertEquals(players.size, 5)
         }
 
         //call
         worker?.fetchPlayersToChallenge(request2){ response->
-            val players = response.fiveUsersAbove
+            val players = response.usersAbove
             //assert
             assertEquals(players.size, 1)
         }

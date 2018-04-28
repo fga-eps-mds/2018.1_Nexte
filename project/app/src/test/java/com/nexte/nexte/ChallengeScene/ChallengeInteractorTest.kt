@@ -30,6 +30,18 @@ class ChallengeInteractorTest {
         assertEquals(expectedResult, this.mock?.passedHere)
     }
 
+    @Test
+    fun successRequestChallengedUser(){
+        //prepare
+        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(6)
+        val expectedResult = true
+
+        //test
+        interactor?.requestChallengedUser(request)
+
+        //assert
+        assertEquals(expectedResult, this.mock?.passedHere)
+    }
 
     @After
     fun tearDown() {
@@ -39,7 +51,7 @@ class ChallengeInteractorTest {
 
 }
 
-private class MockChallengePresentationLogic: FormatPlayersPresentationLogic{
+private class MockChallengePresentationLogic: ChallengePresentationLogic{
 
     var passedHere = false
 

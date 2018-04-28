@@ -17,14 +17,14 @@ class ChallengeModelTest{
         //prepare
         val name = "Gabriel"
         val wins = "3"
-        val losses = "6"
+        val loses = "6"
         val rankingPosition = "#1"
 
         //call
-        val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, losses, rankingPosition)
+        val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
 
         //assert
-        assertEquals(playerFormatted.losses, losses)
+        assertEquals(playerFormatted.loses, loses)
         assertEquals(playerFormatted.name, name)
         assertEquals(playerFormatted.rankingPosition, rankingPosition)
         assertEquals(playerFormatted.wins, wins)
@@ -90,14 +90,14 @@ class ChallengeModelTest{
         val response = ChallengeModel.ShowRankingPlayersRequest.Response(players)
 
         //assert
-        assertEquals(response.fiveUsersAbove[0].rankingPosition, rankingPosition)
-        assertEquals(response.fiveUsersAbove[0].name, name)
-        assertEquals(response.fiveUsersAbove[0].pictureAddress, pictureAddress)
-        assertEquals(response.fiveUsersAbove[0].email, email)
-        assertEquals(response.fiveUsersAbove[0].gender, gender)
-        assertEquals(response.fiveUsersAbove[0].club, club)
-        assertEquals(response.fiveUsersAbove[0].age, age)
-        assertEquals(response.fiveUsersAbove[0].password, password)
+        assertEquals(response.usersAbove[0].rankingPosition, rankingPosition)
+        assertEquals(response.usersAbove[0].name, name)
+        assertEquals(response.usersAbove[0].pictureAddress, pictureAddress)
+        assertEquals(response.usersAbove[0].email, email)
+        assertEquals(response.usersAbove[0].gender, gender)
+        assertEquals(response.usersAbove[0].club, club)
+        assertEquals(response.usersAbove[0].age, age)
+        assertEquals(response.usersAbove[0].password, password)
     }
 
     @Test
@@ -105,18 +105,18 @@ class ChallengeModelTest{
         //prepare
         val name = "Gabriel"
         val wins = 3
-        val losses = 6
+        val loses = 6
         val rankingPosition = 1
 
         val player = ChallengeModel.PlayerRankingDatails(
-                name, wins, losses, rankingPosition
+                name, wins, loses, rankingPosition
         )
 
         //call
         val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(player)
 
         //assert
-        assertEquals(response.challengedPersonalDetails.losses, losses)
+        assertEquals(response.challengedPersonalDetails.loses, loses)
         assertEquals(response.challengedPersonalDetails.name, name)
         assertEquals(response.challengedPersonalDetails.rankingPosition, rankingPosition)
         assertEquals(response.challengedPersonalDetails.wins, wins)
@@ -147,16 +147,16 @@ class ChallengeModelTest{
         //prepare
         val name = "Gabriel"
         val wins = "3"
-        val losses = "6"
+        val loses = "6"
         val rankingPosition = "#1"
-        val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, losses, rankingPosition)
+        val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
 
         //call
         val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(playerFormatted)
 
         //assert
         assertEquals(viewModel.challengedRankingDetails.wins, wins)
-        assertEquals(viewModel.challengedRankingDetails.losses, losses)
+        assertEquals(viewModel.challengedRankingDetails.loses, loses)
         assertEquals(viewModel.challengedRankingDetails.rankingPosition, rankingPosition)
         assertEquals(viewModel.challengedRankingDetails.name, name)
     }

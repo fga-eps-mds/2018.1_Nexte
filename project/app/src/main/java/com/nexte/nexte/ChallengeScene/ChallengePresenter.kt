@@ -5,14 +5,19 @@ package com.nexte.nexte.ChallengeScene
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
  */
-interface FormatPlayersPresentationLogic {
+interface ChallengePresentationLogic {
     /**
-     * Method responsible to present challenge data and send it to View
+     * Method responsible to format the user information about players above the logged user and send it to view
      *
      * @param response contains unformatted data received from [ChallengeModel]
      */
     fun formatPlayersToChallenge(response : ChallengeModel.ShowRankingPlayersRequest.Response)
 
+    /**
+     * Method responsible to format the user detailed information and send it to view
+     *
+     * @param response contains unformatted data received from [ChallengeModel]
+     */
     fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
 }
 
@@ -23,18 +28,18 @@ interface FormatPlayersPresentationLogic {
 * @property viewChallenge Reference to display formatted data
 */
 
-class ChallengePresenter : FormatPlayersPresentationLogic {
+class ChallengePresenter : ChallengePresentationLogic {
 
-    var viewChallenge: ShowPlayersToChallengeDisplayLogic? = null
+    var viewChallenge: ChallengeDisplayLogic? = null // reference of the view
 
     /**
      * This method is responsible for formatting data contained on
      * [ChallengeModel.ShowRankingPlayersRequest.Response] and send it to View
      *
-     * @param response contains unformatted data received from [ChallengeModel]
+     * @param response contains unformatted data received from [ChallengeWorker]
      */
     override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
-        val selectedPlayers = response.fiveUsersAbove
+        val selectedPlayers = response.usersAbove
 
         var formattedPlayers: List<ChallengeModel.FormattedPlayer> = listOf()
 
@@ -49,13 +54,19 @@ class ChallengePresenter : FormatPlayersPresentationLogic {
         viewChallenge?.displayPlayersToChallenge(viewModel)
     }
 
+    /**
+     * This method is responsible for formatting data contained on
+     * [ChallengeModel.SelectPlayerForChallengeRequest.Response] and send it to View
+     *
+     * @param response contains unformatted data received from [ChallengeWorker]
+     */
     override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
         val selectedChallenged = response.challengedPersonalDetails
 
         val formattedPlayer = ChallengeModel.FormattedRankingDetails(
                 selectedChallenged.name,
                 String.format("VITÓRIAS: %d", selectedChallenged.wins),
-                String.format("DERROTAS: %d", selectedChallenged.losses),
+                String.format("DERROTAS: %d", selectedChallenged.loses),
                 String.format("#%d", selectedChallenged.rankingPosition)
         )
 

@@ -11,6 +11,8 @@ object ChallengeMocker {
 
     /**
      * Method responsible for generating players.
+     *
+     * @returns List<Player> containing the mocked data.
      */
     fun createPlayers(): List<Player>{
 

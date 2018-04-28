@@ -9,12 +9,12 @@ import org.junit.Before
 
 class ChallengePresenterTest {
 
-    private var mock: MockShowPlayersToChallengeDisplayLogic? = null
+    private var mock: MockChallengeDisplayLogic? = null
     private var presenter: ChallengePresenter? = null
 
     @Before
     fun setUp(){
-        this.mock = MockShowPlayersToChallengeDisplayLogic()
+        this.mock = MockChallengeDisplayLogic()
         this.presenter = ChallengePresenter()
         this.presenter?.viewChallenge = mock
     }
@@ -58,7 +58,7 @@ class ChallengePresenterTest {
 }
 
 
-private class MockShowPlayersToChallengeDisplayLogic: ShowPlayersToChallengeDisplayLogic{
+private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
     var formattedPlayersToShow: List<ChallengeModel.FormattedPlayer>? = null
     var formattedPlayerToChallenge: ChallengeModel.FormattedRankingDetails?= null
 
