@@ -24,6 +24,7 @@ interface ShowProfileDisplayLogic {
     fun displayProfile(viewModel : ShowProfileModel.ViewModel)
 }
 
+@Suppress("DEPRECATION")
 /**
  * This class implements ShowProfileDisplayLogic, and it is responsible to
  * display information about the user
@@ -105,11 +106,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
         val lineChart = findViewById<LineChart>(R.id.lineChart) as LineChart
         val xAxis = lineChart.xAxis
-
-        var xAxes = setXAxisValues()
-        var yAxes = setYAxisValues()
-
-
+        val xAxes = setXAxisValues()
+        val yAxes = setYAxisValues()
         val dataSets = ArrayList<ILineDataSet>()
 
         val line = LineDataSet(yAxes, "Vitórias")
@@ -118,18 +116,16 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         line.axisDependency =YAxis.AxisDependency.LEFT
         dataSets.add(line)
 
-
         val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
-
         xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
         xAxis.granularity = 1f
 
         val lineData = LineData(dataSets)
         lineChart.data = lineData
-        lineChart.axisLeft.setAxisMaxValue(10f)
+        lineChart.axisLeft.setAxisMaxValue(8f)
         lineChart.axisLeft.setAxisMinValue(0f)
-        lineChart.invalidate()
 
+        lineChart.invalidate()
     }
 
     /**
