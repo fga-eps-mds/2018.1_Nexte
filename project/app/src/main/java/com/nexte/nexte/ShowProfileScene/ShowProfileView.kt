@@ -68,10 +68,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
         val xVals = ArrayList<Entry>()
 
-        val tam = Entry(0f, 4f)
-
-        xVals.add(tam)
-
         return xVals
     }
 
@@ -84,8 +80,13 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
         val yVals = ArrayList<Entry>()
 
-        yVals.add(Entry(0f, 2f))
-        yVals.add(Entry(4f, 6f))
+        yVals.add(Entry(0, 2f))
+        yVals.add(Entry(1f, 3f))
+        yVals.add(Entry(2f, 4f))
+        yVals.add(Entry(3f, 2f))
+        yVals.add(Entry(4f, 1f))
+        yVals.add(Entry(5f, 5f))
+
 
         return yVals
     }
@@ -104,7 +105,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     fun CreateGraph() {
 
-        val lineChart = findViewById<LineChart>(R.id.lineChart) as LineChart
         val xAxis = lineChart.xAxis
         val xAxes = setXAxisValues()
         val yAxes = setYAxisValues()
@@ -124,6 +124,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         lineChart.data = lineData
         lineChart.axisLeft.setAxisMaxValue(8f)
         lineChart.axisLeft.setAxisMinValue(0f)
+        lineChart.axisRight.setAxisMaxValue(0f)
+        lineChart.axisRight.setAxisMinValue(8f)
 
         lineChart.invalidate()
     }

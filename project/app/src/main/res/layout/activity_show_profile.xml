@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:scrollbars="vertical"
+    android:background="#2E2E2E"
     android:fillViewport="true"
-    android:background="#2E2E2E">
+    android:scrollbars="vertical">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -101,8 +100,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="60dp"
             android:text="clubName"
-            android:textSize="18sp"
             android:textColor="#aaaaaa"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/clubLabel"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -130,34 +129,34 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:text="age"
-            android:textSize="18sp"
             android:textColor="#aaaaaa"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ageLabel"
             app:layout_constraintTop_toBottomOf="@+id/clubLabel" />
 
-        <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Editar"
-            android:textColor="#ffffff"
-            android:background="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
-            android:layout_width="398dp"
-            android:layout_height="168dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="340dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailLabel"></com.github.mikephil.charting.charts.LineChart>
+
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="64dp"
+            android:layout_height="29dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/black"
+            android:text="Editar"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>
