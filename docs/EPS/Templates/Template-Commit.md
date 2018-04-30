@@ -19,5 +19,5 @@ Ex.:
              ...
       * subitem feito n
 
-      Co-authored-by: nome \<nome@exemplo.com\>
-      Co-authored-by: nome2 \<nome2@exemplo.com\> "
+      Co-authored-by: nome  <nome@exemplo.com>
+      Co-authored-by: nome2 <nome2@exemplo.com> "
