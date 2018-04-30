@@ -7,7 +7,7 @@
 
 ### Padrão dos Commits
 
-Os commits devem ter mensagem significativas sobre o que ele muda na funcionalidade do projeto e nos arquivos alterados em repositórios, ou seja, deve haver um commit referente a cada nova funcionalidade adicionada no projeto.
+Os commits devem ter mensagem significativas sobre o que ele muda na funcionalidade do projeto e nos arquivos alterados em repositórios, ou seja, deve haver um commit referente a cada nova funcionalidade adicionada no projeto. 
 
 Ex.:  
 
