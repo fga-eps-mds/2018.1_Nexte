@@ -1,6 +1,11 @@
 package com.nexte.nexte.MatchScene
 
 import com.nexte.nexte.Player
+import java.text.DateFormat
+import java.time.DayOfWeek
+import java.time.Month
+import java.time.MonthDay
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -11,14 +16,50 @@ class MatchModel {
 
     class Request (var matchID: String)
 
-    class Response (var match: MatchData)
+    class Response (var match: MatchData,
+                    var set: MatchSet,
+                    var time: MatchTime)
 
-    class ViewModel (var matchFormatted: FormattedMatchData)
+    class ViewModel (var matchFormatted: FormattedMatchData,
+                     var setFormatted: FormattedMatchSet,
+                     var timeFormatted: FormattedMatchTime)
 
-    class MatchData (var player1: Player, var player2: Player, var betterThan: Enum<1, 3, 5, "WO">,
-                     var sets: Int, var matchDate: Date)
-                             
+    // --------- Aux classes ---------
 
-    class FormattedMatchData (var player1: String, var player2: String, var games: String,
-                              var sets: String, var day: String, var hour: String)
+    class MatchData (var challenged: Player,
+                     var challenger: Player,
+                     var numberOfSets: SetsNumber)
+
+    class MatchSet (var label: String,
+                    var setsChallenged: Int,
+                    var setsChallenger: Int)
+
+    class MatchTime (var matchDay: MatchDay,
+                     var matchHour: DateTimeFormatter)
+
+
+    class FormattedMatchData (var challengedName: String,
+                              var challengedPhoto: Int,
+                              var challengerName: String,
+                              var challengerPhoto: Int)
+
+    class FormattedMatchSet (var label: String,
+                             var setsChallenged: String,
+                             var setsChallenger: String)
+
+    class FormattedMatchTime (var matchDay: String,
+                              var matchHour: String)
+
+
+    class MatchDay (var dayOfWeek: DayOfWeek,
+                    var dayOfMonth: MonthDay,
+                    var month: Month)
+
+
+    enum class SetsNumber (val number: Int) {
+        One(1),
+        Three(3),
+        Five(5),
+        WO(0)
+    }
 }
