@@ -1,12 +1,10 @@
 package com.nexte.nexte.MatchScene
 
 import com.nexte.nexte.Player
-import java.text.DateFormat
 import java.time.DayOfWeek
 import java.time.Month
 import java.time.MonthDay
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 /**
  * Created by leticia on 30/04/18.
@@ -14,16 +12,19 @@ import java.util.*
 
 class MatchModel {
 
-    class Request (var matchID: String)
+  class InitScene {
 
-    class Response (var match: MatchData,
-                    var set: MatchSet,
-                    var time: MatchTime)
+      class Request (var matchID: String)
 
-    class ViewModel (var matchFormatted: FormattedMatchData,
-                     var setFormatted: FormattedMatchSet,
-                     var timeFormatted: FormattedMatchTime)
+      class Response (var match: MatchData,
+                      var set: MatchSet,
+                      var time: MatchTime)
 
+      class ViewModel (var matchFormatted: FormattedMatchData,
+                       var setFormatted: FormattedMatchSet,
+                       var timeFormatted: FormattedMatchTime)
+
+  }
     // --------- Aux classes ---------
 
     class MatchData (var challenged: Player,
