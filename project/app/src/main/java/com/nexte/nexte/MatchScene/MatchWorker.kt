@@ -12,7 +12,7 @@ class MatchWorker {
         completion(response)
     }
 
-    private fun generateMatchData() {
-        
+     fun generateMatchData() {
+
     }
 }
