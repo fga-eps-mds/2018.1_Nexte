@@ -8,8 +8,16 @@ import com.nexte.nexte.R
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
+import android.content.ReceiverCallNotAllowedException
 import android.view.LayoutInflater
+import com.nexte.nexte.FeedScene.FeedView
 import java.util.zip.Inflater
+import kotlinx.android.synthetic.main.activity_match.*
+import kotlinx.android.synthetic.main.row_match_info.*
+import kotlinx.android.synthetic.main.row_match_sets.*
+import kotlinx.android.synthetic.main.row_match_time.*
+
+
 
 
 interface MatchDisplayLogic {
@@ -21,12 +29,12 @@ interface MatchDisplayLogic {
 class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     var interactor: MatchInteractor? = null
-    var matchViewAdapter: ViewAdapter? = null
+    var matchViewAdapter: MatchDataAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_match_view)
+        setContentView(R.layout.activity_match)
 
         this.setUpMatchScene()
 
@@ -52,20 +60,106 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                             private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun getItemViewType(position: Int): Int {
-            if (position == 0) {
-                return R.layout.row_match_info
+            when(matchInfo.setsNumber.number){
+                1 -> when(position) {
+                    0 -> return R.layout.row_match_info
+                    1 -> return R.layout.row_match_sets
+                    2 -> return R.layout.row_match_time
+                }
+
+                3 -> when(position) {
+                    0 -> return R.layout.row_match_info
+                    1 -> return R.layout.row_match_sets
+                    2 -> return R.layout.row_match_sets
+                    3 -> return R.layout.row_match_sets
+                    4 -> return R.layout.row_match_time
             }
-            else if (position == 1) {
-                return R.layout.row_match_sets
+                5 -> when(position) {
+                    0 -> return R.layout.row_match_info
+                    1 -> return R.layout.row_match_sets
+                    2 -> return R.layout.row_match_sets
+                    3 -> return R.layout.row_match_sets
+                    4 -> return R.layout.row_match_sets
+                    5 -> return R.layout.row_match_sets
+                    6 -> return R.layout.row_match_time
+                }
+                0 -> when(position) {
+                    0 -> return R.layout.row_match_info
+                }
+
+
             }
-            else
-                return R.layout.row_match_time
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-            val holder = RecyclerView.ViewHolder
+            if(viewType == R.layout.row_match_info) {
+                val view = LayoutInflater.from(context).inflate(R.layout.row_match_info, parent,false)
+                return MatchView.MatchDataAdapter.InfoViewHolder(view)
+            }
+            else if(viewType == R.layout.row_match_sets) {
+                val view = LayoutInflater.from(context).inflate(R.layout.row_match_sets, parent,false)
+                return MatchView.MatchDataAdapter.SetsViewHolder(view)
+            }
+            else if(viewType == R.layout.row_match_time) {
+                val view = LayoutInflater.from(context).inflate(R.layout.row_match_time, parent,false)
+                return MatchView.MatchDataAdapter.TimeViewHolder(view)
+            }
+
          }
+
+        override fun getItemCount(): Int {
+
+            when(matchInfo.setsNumber.number){
+            1 -> return 3
+            3 -> return 5
+            5 -> return 7
+            0 -> return 1
+        }
+    }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+            if(holder is InfoViewHolder) {
+
+                holder.infoBindView(matchInfo)
+
+            }
+
+            if(holder is SetsViewHolder) {
+
+                holder.setsBindView()
+            }
+
+            if(holder is TimeViewHolder) {
+
+                holder.timeBindView()
+            }
+        }
+
+        class InfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            fun infoBindView(matchInfo: MatchModel.FormattedMatchData) {
+
+            }
+
+        }
+
+        class SetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            fun setsBindView() {
+
+            }
+        }
+
+        class TimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            fun timeBindView() {
+
+            }
+        }
+
+
     }
 
 
