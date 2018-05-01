@@ -45,6 +45,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * This object is used for avoid magic numbers
      */
     companion object {
+
         const val playerRanking = 8 //simulates the logged player ranking
     }
 
@@ -52,6 +53,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Method called whenever the view is created, responsible for create first request and set listeners.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
@@ -63,24 +65,28 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * 5 players above the ranking defined in the logged player
      */
     fun getPlayerToChallenge(){
+
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
-
     }
 
     /**
-     * Function responsible to get the formatted player data and exhibit it in a recycler view between an adapter .
+     * Function responsible to get the formatted player data and exhibit it
+     * in a recycler view between an adapter
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
+
         this.recyclerView.adapter = ChallengeAdapter(viewModel.formattedPlayer, this)
     }
 
     /**
-     * Function responsible to receive the request from the recycler view item and send to the interactor
-     * @param request contains the rank of the clicked user in the recycler view
+     * Function responsible to receive the request from the recycler view
+     * item and send to the interactor
+     * @param request contains the ranking of the clicked user in the recycler view
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
+
         this.interactor?.requestChallengedUser(request)
     }
 
@@ -90,6 +96,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel contains the player data already formatted by [ChallengePresenter]
      */
     override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
+
         val currentPlayer = viewModel.challengedRankingDetails
 
         this.expandedLosses.visibility = View.VISIBLE
@@ -106,6 +113,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Method responsible to populate the references of the scene
      */
     private fun setupChallengeScene(){
+
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
         val view = this
@@ -134,6 +142,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
 
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
@@ -147,11 +156,11 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 } else {
                     -1
                 }
+
                 notifyItemChanged(expandedPlayer)
 
                 val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(
-                        challenged[position].rankingPosition.removeRange(0, 1).toInt()
-                )
+                        challenged[position].rankingPosition.removeRange(0, 1).toInt())
                 (context as ChallengeView).getPlayerInfo(request)
             }
 
