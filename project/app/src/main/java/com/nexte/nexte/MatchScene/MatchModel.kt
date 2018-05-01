@@ -15,13 +15,9 @@ class MatchModel {
 
       class Request (var matchID: String)
 
-      class Response (var match: MatchData,
-                      var set: MatchSet,
-                      var time: MatchTime)
+      class Response (var match: MatchData)
 
-      class ViewModel (var matchFormatted: FormattedMatchData,
-                       var setFormatted: FormattedMatchSet,
-                       var timeFormatted: FormattedMatchTime)
+      class ViewModel (var matchFormatted: FormattedMatchData)
 
   }
     // --------- Aux classes ---------
