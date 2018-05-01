@@ -39,11 +39,11 @@ interface FeedDisplayLogic {
 /**
  * Test for the Realm Database
  */
-open class Person: RealmObject() {
-    @PrimaryKey
-    var id: Long = 0
-    var name: String? = null
-}
+//open class Person: RealmObject() {
+//    @PrimaryKey
+//    var id: Long = 0
+//    var name: String? = null
+//}
 
 class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
@@ -63,30 +63,30 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         /**
          * Testing Realm Database
          */
-        Realm.init(this)
-        val config = RealmConfiguration.Builder().name("realm.io").build()
-        var realm = Realm.getInstance(config)
-//        realm.beginTransaction()
-//        val person = realm.createObject(Person::class.java, 1)
-//        person.name = "Luis"
-//        realm.commitTransaction()
-        val allPersons = realm.where(Person::class.java).findAll()
-        allPersons.forEach{ person ->
-            println("Config 1:")
-            println(person.name + " " + person.id)
-        }
-
-        val config2 = RealmConfiguration.Builder().name("realm2.io").build()
-        var realm2 = Realm.getInstance(config2)
-        //realm2.beginTransaction()
-        //val person2 = realm2.createObject(Person::class.java, 2)
-        //person2.name = "Luisoppp"
-        //realm2.commitTransaction()
-        val allperson2 = realm2.where(Person::class.java).findAll()
-        allperson2.forEach{person ->
-            println("Config 2:")
-            println(person.name + " " + person.id)
-        }
+//        Realm.init(this)
+//        val config = RealmConfiguration.Builder().name("realm.io").build()
+//        var realm = Realm.getInstance(config)
+////        realm.beginTransaction()
+////        val person = realm.createObject(Person::class.java, 1)
+////        person.name = "Luis"
+////        realm.commitTransaction()
+//        val allPersons = realm.where(Person::class.java).findAll()
+//        allPersons.forEach{ person ->
+//            println("Config 1:")
+//            println(person.name + " " + person.id)
+//        }
+//
+//        val config2 = RealmConfiguration.Builder().name("realm2.io").build()
+//        var realm2 = Realm.getInstance(config2)
+//        //realm2.beginTransaction()
+//        //val person2 = realm2.createObject(Person::class.java, 2)
+//        //person2.name = "Luisoppp"
+//        //realm2.commitTransaction()
+//        val allperson2 = realm2.where(Person::class.java).findAll()
+//        allperson2.forEach{person ->
+//            println("Config 2:")
+//            println(person.name + " " + person.id)
+//        }
         /** ------------------------------------------------------------ */
 
         this.setupFeedScene()

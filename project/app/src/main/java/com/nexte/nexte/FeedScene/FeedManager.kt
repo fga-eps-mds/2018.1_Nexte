@@ -1,5 +1,7 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Mocker.FeedMocker
+
 /**
  * Object class for use static mode in other classes.
  * This Object is responsible to control data in memory of Feed.
@@ -39,7 +41,7 @@ object FeedManager {
      */
     fun updateFeedActivity(identifier: String?, activity: FeedModel.FeedActivity?): FeedModel.FeedActivity {
         val activityOfFeed = feedList.find { it.identifier == identifier }
-        (activity as FeedModel.FeedActivity)
+        activity as FeedModel.FeedActivity
 
         if (activityOfFeed == null) {
             this.feedListMutable.add(activity)
@@ -70,7 +72,7 @@ object FeedManager {
         val matchingUser = activity?.likes?.find { it.name.equals("UserName") }
         val indexToChange = activity?.likes?.indexOf(matchingUser)
 
-        (indexToChange as Int)
+        indexToChange as Int
 
         if(matchingUser == null) {
             activity.likes.add(randomUser)
