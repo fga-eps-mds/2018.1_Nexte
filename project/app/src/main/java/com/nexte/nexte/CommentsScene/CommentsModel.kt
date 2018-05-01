@@ -45,14 +45,14 @@ class CommentsModel {
          * Class responsible to store received information from Worker and pass it to Presenter
          * @param comments
          */
-        class Response(var updatedCommentsList: List<Comment>)
+        class Response(var updatedCommentsList: MutableList<Comment>)
 
         /**
          * Class responsible to define how message will display the formatted data passed to view
          *
          * @param commentsFormatted MutableList that hold information to show in screen
          */
-        class ViewModel(var updatedCommentsFormatted: List<CommentFormatted>)
+        class ViewModel(var updatedCommentsFormatted: MutableList<CommentFormatted>)
 
     }
     // ---------- Aux classes ----------

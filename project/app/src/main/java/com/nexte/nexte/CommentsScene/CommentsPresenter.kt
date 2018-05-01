@@ -33,6 +33,9 @@ class CommentsPresenter : CommentsPresentationLogic {
 
     override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
 
+        var newComment : MutableList<CommentsModel.CommentFormatted> = formatComment()
+
+
     }
 
     /**
