@@ -13,7 +13,7 @@ interface MatchPresentationLogic {
 class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPresentationLogic {
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
-        
+
         var viewModel = MatchModel.InitScene.ViewModel(formatMatch(response.match))
 
         viewController?.displayMatch(viewModel)
