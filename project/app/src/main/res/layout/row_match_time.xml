@@ -26,12 +26,12 @@
         android:id="@+id/hourLabel"
         android:layout_width="49dp"
         android:layout_height="24dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="76dp"
         android:layout_marginTop="22dp"
         android:text="Hora"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -61,10 +61,11 @@
         android:id="@+id/imageView7"
         android:layout_width="48dp"
         android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/hourLabel"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/clock_logo_round"
-        tools:layout_editor_absoluteX="230dp" />
+        app:srcCompat="@mipmap/clock_logo_round" />
 
     <EditText
         android:id="@+id/timeText"

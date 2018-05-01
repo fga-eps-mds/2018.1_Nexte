@@ -88,45 +88,6 @@
         app:layout_constraintStart_toStartOf="@+id/imageChallenger"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <co.ceryle.segmentedbutton.SegmentedButtonGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:sbg_animateSelector="bounce"
-        app:sbg_animateSelectorDuration="1000"
-        app:sbg_backgroundColor="#ffffff"
-        app:sbg_dividerColor="#ffffff"
-        app:sbg_dividerPadding="10dp"
-        app:sbg_dividerRadius="10dp"
-        app:sbg_dividerSize="1dp"
-        app:sbg_position="1"
-        app:sbg_radius="2dp"
-        app:sbg_ripple="true"
-        app:sbg_rippleColor="#ffffff"
-        app:sbg_selectorColor="#ffffff">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp"
-            android:text="Button 1"
-            android:textAllCaps="false" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp"
-            android:text="Button 2"
-            android:textAllCaps="false" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp"
-            android:text="Button 3"
-            android:textAllCaps="false" />
-
-    </co.ceryle.segmentedbutton.SegmentedButtonGroup>
 
 
 
