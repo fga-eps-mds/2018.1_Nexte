@@ -8,6 +8,7 @@ import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.ChallengeScene.ChallengeView
+import com.nexte.nexte.MatchScene.MatchView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic {
@@ -48,6 +49,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
+            startActivity(intent)
+        }
+
+        naoaguentomais.setOnClickListener {
+            val intent = Intent(this, MatchView::class.java)
             startActivity(intent)
         }
     }
