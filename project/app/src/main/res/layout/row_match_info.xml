@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
         app:layout_constraintStart_toStartOf="@+id/imageChallenger"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
     <co.ceryle.segmentedbutton.SegmentedButtonGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,11 +103,7 @@
         app:sbg_radius="2dp"
         app:sbg_ripple="true"
         app:sbg_rippleColor="#ffffff"
-        app:sbg_selectorColor="#ffffff"
-        app:sbg_selectorTextColor="@color/white"
-        app:sbg_shadow="true"
-        app:sbg_shadowElevation="3dp"
-        app:sbg_shadowMargin="4dp">
+        app:sbg_selectorColor="#ffffff">
 
         <Button
             android:layout_width="wrap_content"
