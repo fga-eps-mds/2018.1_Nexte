@@ -10,16 +10,65 @@
     android:background="#2E2E2E">
 
 
-    <TextView
-        android:id="@+id/info"
+    <ImageView
+        android:id="@+id/imageChallenged"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="8dp"
-        android:text="INFO"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="36sp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="116dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/imageChallenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="116dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="125dp"
+        android:text="X"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageChallenged"
+        app:layout_constraintStart_toEndOf="@+id/imageChallenger"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/challengerName"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Challenger"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageChallenger"
+        app:layout_constraintStart_toStartOf="@+id/imageChallenger"
+        app:layout_constraintTop_toBottomOf="@+id/imageChallenger" />
+
+    <TextView
+        android:id="@+id/challengedName"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Challenged"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
+        app:layout_constraintStart_toStartOf="@+id/imageChallenged"
+        app:layout_constraintTop_toBottomOf="@+id/imageChallenged" />
 </android.support.constraint.ConstraintLayout>
