@@ -1,6 +1,5 @@
 package com.nexte.nexte.MatchScene
 
-import com.nexte.nexte.Player
 import java.time.DayOfWeek
 import java.time.Month
 import java.time.MonthDay
@@ -27,8 +26,8 @@ class MatchModel {
   }
     // --------- Aux classes ---------
 
-    class MatchData (var challenged: Player,
-                     var challenger: Player,
+    class MatchData (var challenged: MatchPlayer,
+                     var challenger: MatchPlayer,
                      var numberOfSets: SetsNumber)
 
     class MatchSet (var label: String,
@@ -63,4 +62,6 @@ class MatchModel {
         Five(5),
         WO(0)
     }
+
+    class MatchPlayer (var name: String, var photo: Int)
 }
