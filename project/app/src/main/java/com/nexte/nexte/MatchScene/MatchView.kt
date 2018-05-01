@@ -1,24 +1,16 @@
 package com.nexte.nexte.MatchScene
 
-import android.support.v7.app.AppCompatActivity
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.nexte.nexte.R
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.content.ReceiverCallNotAllowedException
-import android.view.LayoutInflater
-import com.nexte.nexte.FeedScene.FeedView
-import java.util.zip.Inflater
+import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_match.*
-import kotlinx.android.synthetic.main.row_match_info.*
-import kotlinx.android.synthetic.main.row_match_sets.*
-import kotlinx.android.synthetic.main.row_match_time.*
-
-
+import kotlinx.android.synthetic.main.row_match_info.view.*
 
 
 interface MatchDisplayLogic {
@@ -183,6 +175,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         class InfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun infoBindView(matchInfo: MatchModel.FormattedMatchData) {
+                itemView.challengedName.text
+                itemView.challengerName.text
+                itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
+                itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
+
 
             }
 
