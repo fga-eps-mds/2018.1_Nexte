@@ -37,7 +37,8 @@ class MatchModel {
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
-                              var challengerPhoto: Int)
+                              var challengerPhoto: Int,
+                              var setsNumber: SetsNumber)
 
     class FormattedMatchSet (var label: String,
                              var setsChallenged: String,
