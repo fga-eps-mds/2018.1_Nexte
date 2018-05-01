@@ -12,7 +12,7 @@ interface MatchBusinessLogic {
      *
      * @param request Request model of feed that contains data to pass for Worker
      */
-    fun getInfoMatches(request: MatchModel.Request)
+    fun getInfoMatches(request: MatchModel.InitScene.Request)
 }
 
 /**
@@ -31,7 +31,7 @@ class MatchInteractor : MatchBusinessLogic {
     private var worker = MatchWorker()
     var presenter : MatchPresentationLogic? = null
 
-    override fun getInfoMatches(request: MatchModel.Request) {
+    override fun getInfoMatches(request: MatchModel.InitScene.Request) {
 
         worker.fetchMatchData(request) { response ->
             this.presenter?.presentMatch(response)

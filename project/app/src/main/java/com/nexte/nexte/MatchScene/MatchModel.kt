@@ -60,4 +60,10 @@ class MatchModel {
     }
 
     class MatchPlayer (var name: String, var photo: Int)
+
+    /*
+    * var formattedFirstSet: String,
+                              var formattedThirdSet: String,
+                              var formattedFifthSet: String,
+                              var formattedWOSet: String*/
 }

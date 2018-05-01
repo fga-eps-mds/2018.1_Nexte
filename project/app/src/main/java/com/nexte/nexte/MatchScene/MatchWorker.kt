@@ -16,7 +16,7 @@ class MatchWorker {
 
      fun generateMatchData() : MatchModel.MatchData{
 
-        var challenger = MatchModel.MatchPlayer("Letícia",  R.mipmap.ic_launcher )                         
+        var challenger = MatchModel.MatchPlayer("Letícia",  R.mipmap.ic_launcher )
 
         var challenged = MatchModel.MatchPlayer("Alexandre Miguel", R.mipmap.ic_launcher )
 
