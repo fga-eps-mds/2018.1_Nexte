@@ -50,6 +50,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         val request = MatchModel.InitScene.Request("identifier")
         interactor?.getInfoMatches(request)
 
+        sendButton.isEnabled = false
 
 
 
