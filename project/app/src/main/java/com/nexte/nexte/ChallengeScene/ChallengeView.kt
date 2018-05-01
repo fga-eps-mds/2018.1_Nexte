@@ -73,7 +73,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
-        this.recyclerView.adapter = ChallengeAdapter(viewModel.formattedPlayer, this)
+        this.recyclerView.adapter = ChallengeAdapter(viewModel.formattedPlayer, this, this)
     }
 
     /**
@@ -122,7 +122,8 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @property context Context that will show this adapter
      */
     private class ChallengeAdapter(private var challenged: List<ChallengeModel.FormattedPlayer>,
-                                   private val context: Context) :
+                                   private val context: Context,
+                                   var view: ChallengeView) :
             RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
 
         var expandedPlayer = -1
@@ -157,8 +158,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
             if (expandedPlayer == holder.layoutPosition) {
                 holder.view.checkTextView.visibility = View.VISIBLE
+                view.sendChallengeButton.isEnabled = true
             } else {
                 holder.view.checkTextView.visibility = View.INVISIBLE
+                view.sendChallengeButton.isEnabled = false
             }
         }
 
