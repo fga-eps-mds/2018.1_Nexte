@@ -12,10 +12,10 @@ import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
-import io.realm.Realm
-import io.realm.RealmConfiguration
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
+//import io.realm.Realm
+//import io.realm.RealmConfiguration
+//import io.realm.RealmObject
+//import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 

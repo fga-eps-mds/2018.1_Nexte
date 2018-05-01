@@ -71,7 +71,7 @@ Por isso, o velocity da equipe não levará em consideração essa sprint.
 
 
 #### 1.3.2. Planilha de horas
-![Planilha de horas](https://i.imgur.com/M8HMl3Z.png)
+![Planilha de horas](https://i.imgur.com/7JIxwkt.png)
 
 Pode-se observar que nessa sprint os integrantes diveram carga horária bem menor que nas sprints anteriores, devido as particularidades dessa sprint. Mesmo assim, a maior parte dos integrantes obteve uma boa quantidade de horas dedicadas, seguindo a definição de produtividade da equipe.
 
