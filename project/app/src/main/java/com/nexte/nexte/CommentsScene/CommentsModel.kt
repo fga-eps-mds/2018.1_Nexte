@@ -11,24 +11,50 @@ import java.util.*
 class CommentsModel {
 
     /**
-    * Class responsible to pass data from View to Interactor and then to worker,
-    * so it can request data
-    */
-    class Request(var request: String)
-
-    /**
-     * Class responsible to store received information from Worker and pass it to Presenter
-     * @param comments
+     * This class is responsible to get the comments when user opens the scene
      */
-    class Response(var comments: MutableList<Comment>)
+    class GetCommentsRequest {
+        /**
+         * Class responsible to pass data from View to Interactor and then to worker,
+         * so it can request data
+         */
+        class Request(var request: String)
 
-    /**
-     * Class responsible to define how message will display the formatted data passed to view
-     *
-     * @param commentsFormatted MutableList that hold information to show in screen
-     */
-    class ViewModel(var commentsFormatted: MutableList<CommentFormatted>)
+        /**
+         * Class responsible to store received information from Worker and pass it to Presenter
+         * @param comments
+         */
+        class Response(var comments: MutableList<Comment>)
 
+        /**
+         * Class responsible to define how message will display the formatted data passed to view
+         *
+         * @param commentsFormatted MutableList that hold information to show in screen
+         */
+        class ViewModel(var commentsFormatted: MutableList<CommentFormatted>)
+    }
+
+    class PublishCommentRequest {
+        /**
+         * Class responsible to pass data from View to Interactor and then to worker,
+         * so it can request data
+         */
+        class Request(var commentToPost: String)
+
+        /**
+         * Class responsible to store received information from Worker and pass it to Presenter
+         * @param comments
+         */
+        class Response(var updatedCommentsList: List<Comment>)
+
+        /**
+         * Class responsible to define how message will display the formatted data passed to view
+         *
+         * @param commentsFormatted MutableList that hold information to show in screen
+         */
+        class ViewModel(var updatedCommentsFormatted: List<CommentFormatted>)
+
+    }
     // ---------- Aux classes ----------
     /**
      * Class with information about the player who will be displayed in the comments list

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.row_comments.view.*
  */
 interface CommentsDisplayLogic {
 
-    fun displayComments(viewModel: CommentsModel.ViewModel)
+    fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel)
 }
 
 /**
@@ -45,7 +45,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         this.setUpCommentsScene()
 
 
-        val request = CommentsModel.Request("exampleString")
+        val request = CommentsModel.GetCommentsRequest.Request("exampleString")
         interactor?.recentComments(request)
     }
 
@@ -68,10 +68,16 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      *
      * @param viewModel is received from presenter to show on screen
      */
-    override fun displayComments(viewModel: CommentsModel.ViewModel) {
+    override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
         commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
                                                        this)
+    }
+
+    fun sendCommentAction(){
+        if(commentEditText.text.isNotEmpty()){
+
+        }
     }
 
     /**

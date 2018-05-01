@@ -11,7 +11,8 @@ interface CommentsPresentationLogic {
      *
      * @param response contains unformatted data received from [CommentsModel]
      */
-    fun presentComment(response: CommentsModel.Response)
+    fun presentComment(response: CommentsModel.GetCommentsRequest.Response)
+    fun presentNewComment (response: CommentsModel.PublishCommentRequest.Response)
 }
 
 /**
@@ -24,10 +25,14 @@ class CommentsPresenter : CommentsPresentationLogic {
 
     var viewController: CommentsDisplayLogic? = null
 
-    override fun presentComment(response: CommentsModel.Response) {
+    override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
 
-        val viewModel = CommentsModel.ViewModel(formatComment(response.comments))
+        val viewModel = CommentsModel.GetCommentsRequest.ViewModel(formatComment(response.comments))
         viewController?.displayComments(viewModel)
+    }
+
+    override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+
     }
 
     /**

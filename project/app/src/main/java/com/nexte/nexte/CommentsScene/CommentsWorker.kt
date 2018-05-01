@@ -15,10 +15,10 @@ class CommentsWorker {
      * @param request Comments model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun getCommentsData (request: CommentsModel.Request,
-                         completion: (CommentsModel.Response) -> Unit) {
+    fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request,
+                         completion: (CommentsModel.GetCommentsRequest.Response) -> Unit) {
 
-        val response = CommentsModel.Response(this.generateCommentsList())
+        val response = CommentsModel.GetCommentsRequest.Response(this.generateCommentsList())
         completion(response)
     }
 

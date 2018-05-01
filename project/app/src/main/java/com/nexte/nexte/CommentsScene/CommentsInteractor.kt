@@ -12,7 +12,7 @@ interface CommentsBusinessLogic {
      *
      * @param request Request model of comments that contains data to pass for Worker
      */
-    fun recentComments (request: CommentsModel.Request)
+    fun recentComments (request: CommentsModel.GetCommentsRequest.Request)
 }
 
 /**
@@ -26,7 +26,7 @@ class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : Co
 
     var worker = CommentsWorker()
 
-    override fun recentComments(request: CommentsModel.Request) {
+    override fun recentComments(request: CommentsModel.GetCommentsRequest.Request) {
         worker.getCommentsData(request) { response ->
             this.presenter?.presentComment(response)
         }
