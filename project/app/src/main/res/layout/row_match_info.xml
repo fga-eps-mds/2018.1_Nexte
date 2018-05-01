@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
@@ -73,4 +73,65 @@
         app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
         app:layout_constraintStart_toStartOf="@+id/imageChallenged"
         app:layout_constraintTop_toBottomOf="@+id/imageChallenged" />
+
+    <TextView
+        android:id="@+id/fixMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Você já jogou? Informe o resultado!"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
+        app:layout_constraintStart_toStartOf="@+id/imageChallenger"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    <co.ceryle.segmentedbutton.SegmentedButtonGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:sbg_animateSelector="bounce"
+        app:sbg_animateSelectorDuration="1000"
+        app:sbg_backgroundColor="#ffffff"
+        app:sbg_dividerColor="#ffffff"
+        app:sbg_dividerPadding="10dp"
+        app:sbg_dividerRadius="10dp"
+        app:sbg_dividerSize="1dp"
+        app:sbg_position="1"
+        app:sbg_radius="2dp"
+        app:sbg_ripple="true"
+        app:sbg_rippleColor="#ffffff"
+        app:sbg_selectorColor="#ffffff"
+        app:sbg_selectorTextColor="@color/white"
+        app:sbg_shadow="true"
+        app:sbg_shadowElevation="3dp"
+        app:sbg_shadowMargin="4dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="10dp"
+            android:text="Button 1"
+            android:textAllCaps="false" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="10dp"
+            android:text="Button 2"
+            android:textAllCaps="false" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="10dp"
+            android:text="Button 3"
+            android:textAllCaps="false" />
+
+    </co.ceryle.segmentedbutton.SegmentedButtonGroup>
+
+
+
 </android.support.constraint.ConstraintLayout>

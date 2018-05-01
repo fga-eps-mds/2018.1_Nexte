@@ -164,3 +164,6 @@ dependencies {
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
 }
+dependencies {
+    compile 'com.github.ceryle:SegmentedButton:v2.0.2'
+}
