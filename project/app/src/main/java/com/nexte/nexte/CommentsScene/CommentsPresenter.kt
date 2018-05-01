@@ -33,9 +33,18 @@ class CommentsPresenter : CommentsPresentationLogic {
 
     override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
 
-        var newComment : MutableList<CommentsModel.CommentFormatted> = formatComment()
+        val newComment = response.newComment
 
+        val formatted = CommentsModel.CommentFormatted(
+                newComment.comment,
+                newComment.date.toString(),
+                newComment.author.name,
+                newComment.author.photo
+        )
 
+        val viewModel = CommentsModel.PublishCommentRequest.ViewModel(formatted)
+
+        viewController?.displayPublishedComment(viewModel)
     }
 
     /**

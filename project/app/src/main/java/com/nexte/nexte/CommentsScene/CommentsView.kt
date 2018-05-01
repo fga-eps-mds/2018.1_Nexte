@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.row_comments.view.*
 interface CommentsDisplayLogic {
 
     fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel)
+    fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel)
 }
 
 /**
@@ -72,6 +73,10 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
         commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
                                                        this)
+    }
+
+    override fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel) {
+
     }
 
     fun sendCommentAction(){

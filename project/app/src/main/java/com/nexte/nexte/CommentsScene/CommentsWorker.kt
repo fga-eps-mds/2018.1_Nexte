@@ -29,10 +29,9 @@ class CommentsWorker {
 
         val message = request.commentToPost
         val today = Date()
-        val response = CommentsModel.PublishCommentRequest.Response(this.generateCommentsList())
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
         val newComment = CommentsModel.Comment(message, today, author)
-        response.updatedCommentsList.add(newComment)
+        val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         completion (response)
     }
