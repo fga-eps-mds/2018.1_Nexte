@@ -12,6 +12,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.row_comments.view.*
 
+
 /**
  * Interface to define Display Logic to CommentsView Class that will
  * receive information from Presenter
@@ -48,6 +49,8 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
         val request = CommentsModel.GetCommentsRequest.Request("exampleString")
         interactor?.recentComments(request)
+
+        sendButton.setOnClickListener(sendCommentAction)
     }
 
     /**
@@ -76,11 +79,16 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
     }
 
     override fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel) {
-
+        (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
     }
 
-    fun sendCommentAction(){
+    private val sendCommentAction = View.OnClickListener {
         if(commentEditText.text.isNotEmpty()){
+            val request = CommentsModel.PublishCommentRequest.Request(
+                    commentEditText.text.toString()
+            )
+            interactor?.publishNewComment(request)
+            commentEditText.text.clear()
 
         }
     }
@@ -91,7 +99,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      * @property comments It's a list of all comments
      * @property context Context that will show this adapter
      */
-    class CommentsAdapter(private val comments: MutableList<CommentsModel.CommentFormatted>,
+    class CommentsAdapter(val comments: MutableList<CommentsModel.CommentFormatted>,
                           private val context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -112,6 +120,15 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         override fun getItemCount(): Int {
 
             return this.comments.size
+        }
+
+        /**
+         * Adds item on List and notify RecycleView that have a new item.
+         */
+
+        fun addItem(comment: CommentsModel.CommentFormatted) {
+            comments.add(comment)
+            this.notifyItemInserted(comments.size -1)
         }
 
         /**
