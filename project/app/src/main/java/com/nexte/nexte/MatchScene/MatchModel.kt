@@ -20,6 +20,18 @@ class MatchModel {
       class ViewModel (var matchFormatted: FormattedMatchData)
 
   }
+
+  class ChangeSet{
+
+        class Request (var sets: SetsNumber)
+
+        class Response (var match: MatchData)
+
+        class ViewModel (var matchFormatted: FormattedMatchData)
+
+  }
+
+
     // --------- Aux classes ---------
 
     class MatchData (var challenged: MatchPlayer,
