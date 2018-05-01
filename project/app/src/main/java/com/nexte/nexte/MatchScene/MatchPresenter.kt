@@ -10,10 +10,13 @@ interface MatchPresentationLogic {
 
 }
 
-class MatchPresenter : MatchPresentationLogic {
+class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPresentationLogic {
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
+        
         var viewModel = MatchModel.InitScene.ViewModel(formatMatch(response.match))
+
+        viewController?.displayMatch(viewModel)
     }
 
     private fun formatMatch(toFormat : MatchModel.MatchData) : MatchModel.FormattedMatchData {
