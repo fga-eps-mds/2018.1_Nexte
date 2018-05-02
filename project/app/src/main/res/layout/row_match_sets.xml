@@ -14,12 +14,11 @@
         android:id="@+id/view"
         android:layout_width="1dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="42dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@+id/editText2"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +38,9 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="66dp"
-        android:layout_height="47dp"
+        android:layout_width="64dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="25dp"
@@ -49,10 +49,11 @@
         android:text="GP"
         android:textAlignment="center"
         android:textColor="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/setLabel"
-        app:layout_constraintTop_toBottomOf="@+id/setLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/setLabel"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/setLabel"
