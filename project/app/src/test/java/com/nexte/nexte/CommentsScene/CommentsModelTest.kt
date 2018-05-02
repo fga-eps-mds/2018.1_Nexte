@@ -25,6 +25,19 @@ class CommentsModelTest {
     }
 
     @Test
+    fun successFirstRequestSet(){
+        //prepare
+        val newTestRequest = "identifier"
+
+        //call
+        val request = CommentsModel.GetCommentsRequest.Request("test")
+        request.request = newTestRequest
+
+        //assert
+        assertEquals(request.request, newTestRequest)
+    }
+
+    @Test
     fun successSecondRequest(){
         //prepare
         val testRequest = "identifier"
@@ -34,6 +47,19 @@ class CommentsModelTest {
 
         //assert
         assertEquals(testRequest, request.commentToPost)
+    }
+
+    @Test
+    fun successSecondRequestSet(){
+        //prepare
+        val newTestRequest = "newComment"
+
+        //call
+        val request = CommentsModel.PublishCommentRequest.Request("comment")
+        request.commentToPost = newTestRequest
+
+        //assert
+        assertEquals(request.commentToPost, newTestRequest)
     }
 
 
@@ -69,6 +95,25 @@ class CommentsModelTest {
     }
 
     @Test
+    fun successFirstResponseSet(){
+        //prepare
+        val player = CommentsModel.Player("Larissa", 1)
+        val comment = mutableListOf(CommentsModel.Comment("Muito bom galera",
+                Date(),
+                player))
+        val newComment = mutableListOf(CommentsModel.Comment("Boa galera",
+                Date(),
+                player))
+
+        //call
+        val response = CommentsModel.GetCommentsRequest.Response(comment)
+        response.comments = newComment
+
+        //assert
+        assertEquals(response.comments, newComment)
+    }
+
+    @Test
     fun successSecondResponse(){
         //prepare
         val player = CommentsModel.Player("Larissa", 1)
@@ -83,6 +128,25 @@ class CommentsModelTest {
         assertEquals(player.name, response.newComment.author.name)
         assertEquals(player.photo, response.newComment.author.photo)
         assertEquals(comment.comment, response.newComment.comment)
+    }
+
+    @Test
+    fun successSecondResponseSet(){
+        //prepare
+        val player = CommentsModel.Player("Larissa", 1)
+        val comment = CommentsModel.Comment("Muito bom galera",
+                Date(),
+                player)
+        val newComment = CommentsModel.Comment("Boa galera",
+                Date(),
+                player)
+
+        //call
+        val response = CommentsModel.PublishCommentRequest.Response(comment)
+        response.newComment = newComment
+
+        //assert
+        assertEquals(response.newComment, newComment)
     }
 
     @Test
@@ -106,6 +170,28 @@ class CommentsModelTest {
         assertEquals(dateComment, viewModel.newCommentFormatted.commentDate)
         assertEquals(profilePic, viewModel.newCommentFormatted.profilePic)
     }
+
+    @Test
+    fun successSecondViewModelSet(){
+        //prepare
+        val newComments = CommentsModel.CommentFormatted("Test",
+                "28/10/1998",
+                "gabriel",
+                1)
+
+        //call
+        val viewModel = CommentsModel.PublishCommentRequest.ViewModel(
+                CommentsModel.CommentFormatted("comment",
+                        "11/01/1990",
+                        "teste",
+                        1)
+        )
+        viewModel.newCommentFormatted = newComments
+
+        //assert
+        assertEquals(viewModel.newCommentFormatted, newComments)
+    }
+
 
     @Test
     fun successFirstViewModel(){
@@ -152,10 +238,28 @@ class CommentsModelTest {
 
         assertEquals(commentFormatted1, viewModel.commentsFormatted[0])
         assertEquals(commentFormatted2, viewModel.commentsFormatted[1])
-
-
     }
 
+    @Test
+    fun successFirstViewModelSet(){
+        //prepare
+        val newComments = mutableListOf(CommentsModel.CommentFormatted("Test",
+        "28/10/1998",
+        "gabriel",
+        1))
+
+        //call
+        val viewModel = CommentsModel.GetCommentsRequest.ViewModel(
+                mutableListOf(CommentsModel.CommentFormatted("comment",
+                        "11/01/1990",
+                        "teste",
+                        1))
+        )
+        viewModel.commentsFormatted = newComments
+
+        //assert
+        assertEquals(viewModel.commentsFormatted, newComments)
+    }
 
     @Test
     fun successPlayer() {
