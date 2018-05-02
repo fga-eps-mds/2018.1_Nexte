@@ -1,6 +1,5 @@
 package com.nexte.nexte.CommentsScene
 
-import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before

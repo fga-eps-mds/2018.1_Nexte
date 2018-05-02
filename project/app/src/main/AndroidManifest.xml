@@ -65,7 +65,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditProfileScene.EditProfileView"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ChallengeScene.ChallengeView"></activity>
         <activity
             android:name=".CommentsScene.CommentsView"
