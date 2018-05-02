@@ -21,7 +21,7 @@ class CommentsInteractorTest {
     @Test
     fun successRecentComments() {
         //prepare
-        val request = CommentsModel.Request("identifier")
+        val request = CommentsModel.GetCommentsRequest.Request("identifier")
 
         //call
         this.interactor?.recentComments(request)
@@ -29,7 +29,19 @@ class CommentsInteractorTest {
         //assert
         assertEquals(this.mock?.passedHere, true)
     }
+    @Test
+    fun successPublishNewComment() {
+        //prepare
+        val request = CommentsModel.PublishCommentRequest.Request(commentToPost = "Jogo Sensacional!")
 
+        //call
+        this.interactor?.publishNewComment(request)
+
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+
+
+    }
     @After
     fun tearDown() {
         this.mock = null
@@ -40,7 +52,11 @@ class CommentsInteractorTest {
 private class MockCommentsPresentationLogic : CommentsPresentationLogic {
     var passedHere = false
 
-    override fun presentComment(response: CommentsModel.Response) {
+    override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
         this.passedHere = true
     }
 }
