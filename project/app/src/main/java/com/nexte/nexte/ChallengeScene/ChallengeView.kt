@@ -2,6 +2,9 @@ package com.nexte.nexte.ChallengeScene
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -185,5 +188,22 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
     }
 
+    class TabPagerAdapter(fm: FragmentManager, private var tabCount: Int) :
+            FragmentPagerAdapter(fm) {
 
+        override fun getItem(position: Int): Fragment? {
+
+            return when (position) {
+
+                0 -> Tab1Fragment()
+                1 -> Tab2Fragment()
+                else -> null
+            }
+        }
+
+        override fun getCount(): Int {
+
+            return tabCount
+        }
+    }
 }
