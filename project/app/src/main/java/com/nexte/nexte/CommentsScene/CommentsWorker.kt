@@ -24,6 +24,14 @@ class CommentsWorker {
         completion(response)
     }
 
+    /**
+     * Function responsible to set new comment that contains a message, updated date and an author
+     * and passed the new comment to response
+     * @param request Comments model from PublishCommentRequest that contains need information to
+     * send to server
+     * @param completion Method to call on parent class
+     */
+
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request,
                        completion: (CommentsModel.PublishCommentRequest.Response) -> Unit) {
 

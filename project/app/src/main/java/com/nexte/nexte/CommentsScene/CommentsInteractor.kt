@@ -10,9 +10,16 @@ interface CommentsBusinessLogic {
      * Method that defines recent comments information that will be responsible to
      * pass the request to Worker and send the response to Presenter
      *
-     * @param request Request model of comments that contains data to pass for Worker
+     * @param request Request model from getCommentsRequest that contains data to pass for Worker
      */
     fun recentComments (request: CommentsModel.GetCommentsRequest.Request)
+
+    /**
+     * Method that defines the comments information published that will be responsable to
+     * pass the request to Worker and send the response to Presenter
+     * @param request Resquest model from publishCommentsRequest that contains data to pass
+     * for Worker.
+     */
     fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request)
 }
 

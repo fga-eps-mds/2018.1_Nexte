@@ -34,6 +34,10 @@ class CommentsModel {
         class ViewModel(var commentsFormatted: MutableList<CommentFormatted>)
     }
 
+    /**
+     * This class is responsable to publish the comments when the user wrote.
+     */
+
     class PublishCommentRequest {
         /**
          * Class responsible to pass data from View to Interactor and then to worker,
@@ -43,14 +47,14 @@ class CommentsModel {
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
-         * @param comments
+         * @param newComment
          */
         class Response(var newComment: Comment)
 
         /**
          * Class responsible to define how message will display the formatted data passed to view
          *
-         * @param commentsFormatted MutableList that hold information to show in screen
+         * @param newCommentsFormatted
          */
         class ViewModel(var newCommentFormatted: CommentFormatted)
 

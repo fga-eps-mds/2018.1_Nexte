@@ -78,6 +78,12 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                                                        this)
     }
 
+    /**
+     * Method responsible to receive the ViewModel from Presenter and show the new comments
+     * to the user.
+     * @param viewModel is received from presenter to show on screen.
+     */
+
     override fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel) {
         (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
     }
