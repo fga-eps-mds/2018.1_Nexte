@@ -40,10 +40,6 @@ class CommentsWorkerTest {
 
             assertEquals(player1.name, response.comments[0].author.name)
             assertEquals(player4.name, response.comments[3].author.name)
-
-            assertEquals(player1.photo, response.comments[0].author.photo)
-            assertEquals(player4.photo, response.comments[3].author.photo)
-
         })
     }
 
