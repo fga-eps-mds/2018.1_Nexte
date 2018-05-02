@@ -59,7 +59,6 @@ class CommentsWorkerTest {
         })
     }
 
-
     @After
     fun tearDown() {
         this.worker = null

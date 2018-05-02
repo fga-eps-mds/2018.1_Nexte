@@ -188,6 +188,32 @@ class CommentsModelTest {
         assertEquals(text, comment.comment)
         assertEquals(date, comment.date)
         assertEquals(player, comment.author)
+        assertEquals(player.name, comment.author.name)
+        assertEquals(player.photo, comment.author.photo)
+    }
+
+    @Test
+    fun testSetOnComments(){
+        //prepare
+        val text = "Jogo top!!!!"
+        val date = Date()
+        val name = "userName"
+        val photo = 1
+        val player = CommentsModel.Player(name, photo)
+
+        //call
+        val comment = CommentsModel.Comment("Oloko meu", Date(), CommentsModel.Player(
+                "gabs", 2
+        ))
+        comment.author = player
+        comment.comment = text
+        comment.date = date
+
+        //assert
+        assertEquals(comment.comment, text)
+        assertEquals(comment.author.photo, player.photo)
+        assertEquals(comment.author.name, player.name)
+        assertEquals(comment.date, date)
     }
 
     @Test
@@ -202,11 +228,77 @@ class CommentsModelTest {
         val commentFormatted = CommentsModel.CommentFormatted(comment, commentDate, name, pic)
 
         //assert
+        assertNotNull(commentFormatted)
         assertEquals(name, commentFormatted.username)
         assertEquals(comment, commentFormatted.comment)
         assertEquals(commentDate, commentFormatted.commentDate)
         assertEquals(pic, commentFormatted.profilePic)
     }
+
+    @Test
+    fun setComment(){
+        //prepare
+        val name = "userName"
+        val comment = "Muito Bom!!"
+        val commentDate = "25/04/2018"
+        val pic = 1
+        val newComment = "comment"
+        //call
+        val commentFormatted = CommentsModel.CommentFormatted(comment, commentDate, name, pic)
+        commentFormatted.comment = newComment
+
+        //assert
+        assertEquals(newComment, commentFormatted.comment)
+    }
+
+    @Test
+    fun setCommentDate(){
+        //prepare
+        val name = "userName"
+        val comment = "Muito Bom!!"
+        val commentDate = "25/04/2018"
+        val pic = 1
+        val newDate = "22/02/2009"
+        //call
+        val commentFormatted = CommentsModel.CommentFormatted(comment, commentDate, name, pic)
+        commentFormatted.commentDate = newDate
+
+        //assert
+        assertEquals(newDate, commentFormatted.commentDate)
+    }
+
+    @Test
+    fun setCommentUsername(){
+        //prepare
+        val name = "userName"
+        val comment = "Muito Bom!!"
+        val commentDate = "25/04/2018"
+        val pic = 1
+        val newUsername = "gabrielalbino"
+        //call
+        val commentFormatted = CommentsModel.CommentFormatted(comment, commentDate, name, pic)
+        commentFormatted.username = newUsername
+
+        //assert
+        assertEquals(newUsername, commentFormatted.username)
+    }
+
+    @Test
+    fun setCommentProfilePic(){
+        //prepare
+        val name = "userName"
+        val comment = "Muito Bom!!"
+        val commentDate = "25/04/2018"
+        val pic = 1
+        val newPic = 2
+        //call
+        val commentFormatted = CommentsModel.CommentFormatted(comment, commentDate, name, pic)
+        commentFormatted.profilePic = newPic
+
+        //assert
+        assertEquals(newPic, commentFormatted.profilePic)
+    }
+
 
     @After
     fun tearDown() {

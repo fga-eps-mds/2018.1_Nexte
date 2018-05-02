@@ -39,9 +39,29 @@ class CommentsInteractorTest {
 
         //assert
         assertEquals(this.mock?.passedHere, true)
-
-
     }
+
+    @Test
+    fun successGetWorkerTest(){
+        //prepare and call
+        val expectedWorker = this.interactor?.worker
+        
+        //assert
+        assertEquals(expectedWorker, this.interactor?.worker)
+    }
+    
+    @Test
+    fun successSetWorkerTest(){
+        //prepare
+        val newWorker = CommentsWorker()
+
+        //call
+        this.interactor?.worker = newWorker
+
+        //assert
+        assertEquals(newWorker, interactor?.worker)
+    }
+    
     @After
     fun tearDown() {
         this.mock = null
