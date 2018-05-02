@@ -61,11 +61,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LikeListScene.LikeListView"
-            android:label="LikeListView"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".EditProfileScene.EditProfileView"
             android:screenOrientation="portrait" />
         <activity android:name=".ChallengeScene.ChallengeView" />
