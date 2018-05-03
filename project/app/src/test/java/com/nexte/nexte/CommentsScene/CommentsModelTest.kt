@@ -435,7 +435,7 @@ class CommentsModelTest {
     }
 
     @Test
-    private fun successComplaintRequest(){
+    fun successComplaintRequest(){
         //prepare
         val comment = CommentsModel.CommentFormatted(
                 "Gabriel", "27/10/2009", "Horrivel!", 1
@@ -449,7 +449,7 @@ class CommentsModelTest {
     }
 
     @Test
-    private fun successComplaintResponse(){
+    fun successComplaintResponse(){
         //prepare
         val errorValue = 2
 
@@ -462,7 +462,7 @@ class CommentsModelTest {
     }
 
     @Test
-    private fun successComplaintViewModel(){
+    fun successComplaintViewModel(){
         //prepare
         val message = "Sucesso!"
 
@@ -474,7 +474,7 @@ class CommentsModelTest {
     }
 
     @Test
-    private fun successComplaintSetters(){
+    fun successComplaintSetters(){
         val message = "Sucesso!"
         val commentsModel = CommentsModel.ComplaintRequest.ViewModel("")
         val errorValue = 2
