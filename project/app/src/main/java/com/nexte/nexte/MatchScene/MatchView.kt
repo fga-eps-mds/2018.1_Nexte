@@ -1,6 +1,7 @@
 package com.nexte.nexte.MatchScene
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -39,11 +40,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         matchRecyclerView.layoutManager = LinearLayoutManager(this)
 
 
-        val request = MatchModel.InitScene.Request("identifier")
+        val prevIntent = intent.getStringExtra("identifier")
+        val request = MatchModel.InitScene.Request(prevIntent)
         interactor?.getInfoMatches(request)
 
         sendButton.isEnabled = false
-
 
 
     }

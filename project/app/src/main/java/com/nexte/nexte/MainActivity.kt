@@ -52,8 +52,11 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
             startActivity(intent)
         }
 
-        naoaguentomais.setOnClickListener {
+
+        //Button to display Match scene
+        matchButton.setOnClickListener {
             val intent = Intent(this, MatchView::class.java)
+            intent.putExtra("identifier", "matchName")
             startActivity(intent)
         }
     }
