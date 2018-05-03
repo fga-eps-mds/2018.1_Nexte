@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+import android.test.AndroidTestCase
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -58,5 +59,4 @@ class ChallengeViewTest {
             hasBeenCalled = true
         }
     }
-
 }
