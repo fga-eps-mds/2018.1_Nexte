@@ -8,9 +8,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.row_comments.view.*
+import android.app.Activity
+import android.widget.EditText
+
+
+
+
+
 
 /**
  * Interface to define Display Logic to CommentsView Class that will
@@ -18,7 +26,8 @@ import kotlinx.android.synthetic.main.row_comments.view.*
  */
 interface CommentsDisplayLogic {
 
-    fun displayComments(viewModel: CommentsModel.ViewModel)
+    fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel)
+    fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel)
 }
 
 /**
@@ -29,7 +38,7 @@ interface CommentsDisplayLogic {
  */
 class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
-    var interactor: CommentsInteractor? = null
+    var interactor: CommentsBusinessLogic? = null
 
     /**
      * On Create method that will setup this scene and call first Request for Interactor
@@ -44,15 +53,15 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setUpCommentsScene()
 
-        this.createRequest()
-    }
+        this.setActionToCloseKeyboard(mainLayout)
 
-    /**
-     * Method responsible for creating the initial request and passing it to the interactor
-     */
-    fun createRequest(){
-        val request = CommentsModel.Request("exampleString")
+        val request = CommentsModel.GetCommentsRequest.Request("exampleString")
         interactor?.recentComments(request)
+
+        sendButton.setOnClickListener(sendCommentAction)
+        commentEditText.setOnClickListener {
+            rollToEndOfList()
+        }
     }
 
     /**
@@ -74,10 +83,63 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      *
      * @param viewModel is received from presenter to show on screen
      */
-    override fun displayComments(viewModel: CommentsModel.ViewModel) {
+    override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
         commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
-                                                       this)
+                this)
+    }
+
+    /**
+     * Method responsible to receive the ViewModel from Presenter and show the new comments
+     * to the user.
+     * @param viewModel is received from presenter to show on screen.
+     */
+
+    override fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel) {
+        (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
+    }
+
+    private fun setActionToCloseKeyboard(view: View) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (view !is EditText) {
+            view.setOnTouchListener { _, _ -> //This '_' replaces the unused arguments
+                hideSoftKeyboard()
+                false
+            }
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val innerView = view.getChildAt(i)
+                setActionToCloseKeyboard(innerView)
+            }
+        }
+    }
+
+    private fun hideSoftKeyboard() {
+        val inputMethodManager = this.getSystemService(
+                Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+                this.currentFocus!!.windowToken, 0)
+    }
+
+    private fun rollToEndOfList(){
+        commentsRecyclerView.smoothScrollToPosition(
+                commentsRecyclerView.adapter.itemCount-1
+        )
+    }
+
+    private val sendCommentAction = View.OnClickListener {
+        if(commentEditText.text.isNotEmpty()){
+            val request = CommentsModel.PublishCommentRequest.Request(
+                    commentEditText.text.toString()
+            )
+            interactor?.publishNewComment(request)
+            commentEditText.text.clear()
+            rollToEndOfList()
+        }
     }
 
     /**
@@ -86,15 +148,18 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      * @property comments It's a list of all comments
      * @property context Context that will show this adapter
      */
-    class CommentsAdapter(private val comments: MutableList<CommentsModel.CommentFormatted>,
+    class CommentsAdapter(val comments: MutableList<CommentsModel.CommentFormatted>,
                           private val context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 CommentsView.CommentsAdapter.ViewHolder {
 
             val view = LayoutInflater.from(context).inflate(R.layout.row_comments,
-                                                            parent,
-                                                            false)
+                    parent,
+                    false)
+            view.setOnClickListener {
+                (context as CommentsView).hideSoftKeyboard()
+            }
             return CommentsView.CommentsAdapter.ViewHolder(view)
         }
 
@@ -107,6 +172,15 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         override fun getItemCount(): Int {
 
             return this.comments.size
+        }
+
+        /**
+         * Adds item on List and notify RecycleView that have a new item.
+         */
+
+        fun addItem(comment: CommentsModel.CommentFormatted) {
+            comments.add(comment)
+            this.notifyItemInserted(comments.size -1)
         }
 
         /**

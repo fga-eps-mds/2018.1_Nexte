@@ -1,6 +1,8 @@
 package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
+import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -15,11 +17,31 @@ class CommentsWorker {
      * @param request Comments model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun getCommentsData (request: CommentsModel.Request,
-                         completion: (CommentsModel.Response) -> Unit) {
+    fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request,
+                         completion: (CommentsModel.GetCommentsRequest.Response) -> Unit) {
 
-        val response = CommentsModel.Response(this.generateCommentsList())
+        val response = CommentsModel.GetCommentsRequest.Response(this.generateCommentsList())
         completion(response)
+    }
+
+    /**
+     * Function responsible to set new comment that contains a message, updated date and an author
+     * and passed the new comment to response
+     * @param request Comments model from PublishCommentRequest that contains need information to
+     * send to server
+     * @param completion Method to call on parent class
+     */
+
+    fun setNewComment (request: CommentsModel.PublishCommentRequest.Request,
+                       completion: (CommentsModel.PublishCommentRequest.Response) -> Unit) {
+
+        val message = request.commentToPost
+        val today = Date()
+        val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
+        val newComment = CommentsModel.Comment(message, today, author)
+        val response = CommentsModel.PublishCommentRequest.Response(newComment)
+
+        completion (response)
     }
 
     /**

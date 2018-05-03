@@ -1,67 +1,77 @@
 package com.nexte.nexte.CommentsScene
 
 import android.content.Context
-import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
+import org.junit.Test
 
 import org.junit.Assert.*
-import org.junit.Test
 
 class CommentsViewTest {
 
-    private var view: CommentsView? = null
-    private var mock: MockCommentPresentationLogic? = null
-
+    private var view: CommentsView?= null
+    private var mock: CommentsInteractorMock?= null
     @Before
     fun setUp() {
-        this.view = CommentsView()
-        this.mock = MockCommentPresentationLogic()
-    }
-
-    @Test
-    fun testView(){
-        //prepare
-        val viewComments = CommentsView()
-        //call
-
-        //assert
-        assertNotNull(viewComments)
-    }
-
-
-    @Test
-    fun testSetUpCommentsScene(){
-        //prepare //call
-        this.view?.setUpCommentsScene()
-
-        //assert
-        assertNotNull(this.view?.interactor)
-        assertNotNull(this.view?.interactor?.presenter)
-    }
-
-    @Test
-    fun testCreateRequest(){
-        //prepare
-        this.view?.setUpCommentsScene()
-        this.view?.interactor?.presenter = mock
-
-        //call
-        this.view?.createRequest()
-
-        //assert
-        assertEquals(this.mock?.passedHere, true)
+        view = CommentsView()
+        mock = CommentsInteractorMock(123)
+        view?.interactor = mock
     }
 
     @After
     fun tearDown() {
+        view = null
+        mock = null
     }
-}
 
-private class MockCommentPresentationLogic : CommentsPresentationLogic {
-    var passedHere = false
+    @Test
+    fun getInteractor() {
+        //prepare
 
-    override fun presentComment(response: CommentsModel.Response) {
-        this.passedHere = true
+        //call
+
+        //assert
+        assertEquals((view?.interactor as CommentsInteractorMock).id, mock?.id)
+    }
+
+    @Test
+    fun setInteractor() {
+        //prepare
+        val newMock = CommentsInteractorMock(321)
+        //call
+        view?.interactor = newMock
+        //assert
+        assertEquals((view?.interactor as CommentsInteractorMock).id, newMock.id)
+    }
+
+    @Test
+    fun setUpCommentsScene() {
+        //prepare
+        //call
+        view?.setUpCommentsScene()
+        //assert
+        assertNotNull(view?.interactor)
+        assertNotNull((view?.interactor as CommentsInteractor).presenter)
+        assertNotNull(((view?.interactor as CommentsInteractor)
+                .presenter as CommentsPresenter).viewController)
+    }
+
+    private class CommentsInteractorMock(var id: Int = 0) : CommentsBusinessLogic{
+        var passedHere: Boolean = false
+
+        override fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request) {
+            passedHere = true
+        }
+
+        override fun recentComments(request: CommentsModel.GetCommentsRequest.Request) {
+            passedHere = true
+        }
+    }
+
+    private fun LayoutInflater.inflate(row_comments: Int, parent: Context, b: Boolean): View {
+        return View(parent)
     }
 }
