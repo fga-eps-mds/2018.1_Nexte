@@ -21,6 +21,8 @@ interface CommentsBusinessLogic {
      * for Worker.
      */
     fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request)
+
+    fun sendComplaint (request: CommentsModel.ComplaintRequest.Request)
 }
 
 /**
@@ -43,6 +45,12 @@ class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : Co
     override fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request) {
         worker.setNewComment(request) { response ->
             this.presenter?.presentNewComment(response)
+        }
+    }
+
+    override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
+        worker.sendComplaint(request) { response ->
+            this.presenter?.presentComplaint(response)
         }
     }
 }

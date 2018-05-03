@@ -13,6 +13,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.row_comments.view.*
 import android.app.Activity
+import android.app.AlertDialog
 import android.widget.EditText
 
 
@@ -28,6 +29,7 @@ interface CommentsDisplayLogic {
 
     fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel)
     fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel)
+    fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel)
 }
 
 /**
@@ -99,6 +101,17 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
     }
 
+    override fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel) {
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(true)
+        builder.setMessage(viewModel.alertMessage)
+        builder.setNeutralButton("Ok", { dialogInterface, _ ->
+            dialogInterface.cancel()
+        })
+        val alert = builder.create()
+        alert.show()
+    }
+
     private fun setActionToCloseKeyboard(view: View) {
 
         // Set up touch listener for non-text box views to hide keyboard.
@@ -167,6 +180,22 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                                       position: Int) {
 
             holder.bindView(comments[position])
+            val message = String.format("Tem certeza que deseja denunciar o usuário" +
+                    "%s pela mensagem \"%s\"?", comments[position].username, comments[position].comment)
+            holder.itemView.reportButton.setOnClickListener {
+                val builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setMessage(message)
+                builder.setPositiveButton("Sim", { dialogInterface, _ ->
+                    val request = CommentsModel.ComplaintRequest.Request(comments[position])
+                    (context as CommentsView).interactor?.sendComplaint(request)
+                    dialogInterface.dismiss()
+                })
+                builder.setNegativeButton("Não", { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                })
+                val alert = builder.create()
+                alert.show() }
         }
 
         override fun getItemCount(): Int {

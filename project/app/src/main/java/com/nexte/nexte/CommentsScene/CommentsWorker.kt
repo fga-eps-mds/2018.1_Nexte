@@ -2,7 +2,6 @@ package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
-import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -43,6 +42,22 @@ class CommentsWorker {
 
         completion (response)
     }
+
+    fun sendComplaint (request: CommentsModel.ComplaintRequest.Request,
+                       completion: (CommentsModel.ComplaintRequest.Response) -> Unit) {
+
+        val serverCode: Int
+
+        if (request.comment.comment.isNotEmpty()) {
+            serverCode = 200
+        } else {
+            serverCode = 404
+        }
+        val response = CommentsModel.ComplaintRequest.Response(serverCode)
+
+        completion(response)
+    }
+
 
     /**
      * Function to create fictional comments to use in fictional app mode

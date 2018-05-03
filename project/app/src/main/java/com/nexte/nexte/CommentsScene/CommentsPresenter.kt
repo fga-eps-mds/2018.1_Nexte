@@ -13,6 +13,7 @@ interface CommentsPresentationLogic {
      */
     fun presentComment(response: CommentsModel.GetCommentsRequest.Response)
     fun presentNewComment (response: CommentsModel.PublishCommentRequest.Response)
+    fun presentComplaint (response: CommentsModel.ComplaintRequest.Response)
 }
 
 /**
@@ -47,6 +48,19 @@ class CommentsPresenter : CommentsPresentationLogic {
         viewController?.displayPublishedComment(viewModel)
     }
 
+    override fun presentComplaint(response: CommentsModel.ComplaintRequest.Response) {
+        val message: String
+
+        if (response.serverResponse == 200) {
+            message = "Denúncia efetuada com sucesso"
+        }
+        else {
+            message = "Erro ao conectar com o servidor"
+        }
+        val viewModel = CommentsModel.ComplaintRequest.ViewModel(message)
+
+        viewController?.displayComplaintMessage(viewModel)
+    }
     /**
      * Function that converts the MutableList Comment unformatted to
      * MutableList CommentFormatted.

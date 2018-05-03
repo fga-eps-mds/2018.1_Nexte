@@ -34,6 +34,16 @@ class CommentsModel {
         class ViewModel(var commentsFormatted: MutableList<CommentFormatted>)
     }
 
+    class ComplaintRequest {
+
+        class Request(var comment: CommentFormatted)
+
+        class Response(var serverResponse: Int)
+
+        class ViewModel(var alertMessage: String)
+
+    }
+
     /**
      * This class is responsable to publish the comments when the user wrote.
      */
