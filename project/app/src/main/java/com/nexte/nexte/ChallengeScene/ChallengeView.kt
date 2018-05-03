@@ -112,6 +112,18 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.expandedWins.text = currentPlayer.wins
     }
 
+    fun removePlayerDetailedInfo() {
+
+        this.expandedLosses.visibility = View.INVISIBLE
+        this.expandedLosses.text = ""
+        this.expandedName.visibility = View.INVISIBLE
+        this.expandedName.text = ""
+        this.expandedRankingTextView.visibility = View.INVISIBLE
+        this.expandedRankingTextView.text = ""
+        this.expandedWins.visibility = View.INVISIBLE
+        this.expandedWins.text = ""
+    }
+
     /**
      * Method responsible to populate the references of the scene
      */
@@ -174,6 +186,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             } else {
                 holder.view.checkTextView.visibility = View.INVISIBLE
                 view.sendChallengeButton.isEnabled = false
+            }
+
+            if(expandedPlayer == -1) {
+                (context as ChallengeView).removePlayerDetailedInfo()
             }
         }
 
