@@ -120,11 +120,12 @@ class CommentsModelTest {
         val model = CommentsModel()
         val firstRequest = CommentsModel.GetCommentsRequest()
         val secondRequest = CommentsModel.PublishCommentRequest()
-
+        val thirdRequest = CommentsModel.ComplaintRequest()
         //assert
         assertNotNull(model)
         assertNotNull(firstRequest)
         assertNotNull(secondRequest)
+        assertNotNull(thirdRequest)
     }
 
     @Test
@@ -433,6 +434,70 @@ class CommentsModelTest {
         assertEquals(newPic, commentFormatted.profilePic)
     }
 
+    @Test
+    private fun successComplaintRequest(){
+        //prepare
+        val comment = CommentsModel.CommentFormatted(
+                "Gabriel", "27/10/2009", "Horrivel!", 1
+        )
+
+        //call
+        val request = CommentsModel.ComplaintRequest.Request(comment)
+
+        //assert
+        assertEquals(request.comment, comment)
+    }
+
+    @Test
+    private fun successComplaintResponse(){
+        //prepare
+        val errorValue = 2
+
+        //call
+        val response = CommentsModel.ComplaintRequest.Response(errorValue)
+
+        //assert
+        assertEquals(response.serverResponse, errorValue)
+
+    }
+
+    @Test
+    private fun successComplaintViewModel(){
+        //prepare
+        val message = "Sucesso!"
+
+        //call
+        val commentsModel = CommentsModel.ComplaintRequest.ViewModel(message)
+
+        //assert
+        assertEquals(commentsModel.alertMessage, message)
+    }
+
+    @Test
+    private fun successComplaintSetters(){
+        val message = "Sucesso!"
+        val commentsModel = CommentsModel.ComplaintRequest.ViewModel("")
+        val errorValue = 2
+        val response = CommentsModel.ComplaintRequest.Response(0)
+        val comment = CommentsModel.CommentFormatted(
+                "Gabriel", "27/10/2009", "Horrivel!", 1
+        )
+        val request = CommentsModel.ComplaintRequest.Request(
+                CommentsModel.CommentFormatted(
+                        "", "", "", 0
+                )
+        )
+
+        //call
+        response.serverResponse = errorValue
+        request.comment = comment
+        commentsModel.alertMessage = message
+
+        //assert
+        assertEquals(response.serverResponse, errorValue)
+        assertEquals(request.comment, comment)
+        assertEquals(commentsModel.alertMessage, message)
+    }
 
     @After
     fun tearDown() {

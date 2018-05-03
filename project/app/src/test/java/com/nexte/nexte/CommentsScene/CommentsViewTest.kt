@@ -69,9 +69,10 @@ class CommentsViewTest {
         override fun recentComments(request: CommentsModel.GetCommentsRequest.Request) {
             passedHere = true
         }
+
+        override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
+            this.passedHere = true
+        }
     }
 
-    private fun LayoutInflater.inflate(row_comments: Int, parent: Context, b: Boolean): View {
-        return View(parent)
-    }
 }

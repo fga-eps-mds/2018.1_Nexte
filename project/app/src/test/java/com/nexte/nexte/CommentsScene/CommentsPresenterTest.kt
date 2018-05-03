@@ -48,6 +48,17 @@ class CommentsPresenterTest {
         assertEquals(this.mock?.passedHere,true)
     }
 
+    @Test
+    fun testNewComplaint(){
+        val response = CommentsModel.ComplaintRequest.Response(0)
+
+        //call
+        this.presenter?.presentComplaint(response)
+
+        //assert
+        assertEquals(this.mock?.passedHere,true)
+    }
+
     @After
     fun tearDown() {
 
@@ -67,5 +78,8 @@ private class MockCommentsDisplayLogic: CommentsDisplayLogic {
         this.passedHere = true
     }
 
+    override fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel) {
+        this.passedHere = true
+    }
 
 }
