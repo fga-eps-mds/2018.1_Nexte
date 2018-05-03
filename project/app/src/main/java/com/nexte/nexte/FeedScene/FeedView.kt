@@ -36,15 +36,6 @@ interface FeedDisplayLogic {
  * @property feedViewAdapter FeedAdapter instance for broad using on class
  */
 
-/**
- * Test for the Realm Database
- */
-//open class Person: RealmObject() {
-//    @PrimaryKey
-//    var id: Long = 0
-//    var name: String? = null
-//}
-
 class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
@@ -60,50 +51,19 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed_view)
 
-        /**
-         * Testing Realm Database
-         */
-//        Realm.init(this)
-//        val config = RealmConfiguration.Builder().name("realm.io").build()
-//        var realm = Realm.getInstance(config)
-////        realm.beginTransaction()
-////        val person = realm.createObject(Person::class.java, 1)
-////        person.name = "Luis"
-////        realm.commitTransaction()
-//        val allPersons = realm.where(Person::class.java).findAll()
-//        allPersons.forEach{ person ->
-//            println("Config 1:")
-//            println(person.name + " " + person.id)
-//        }
-//
-//        val config2 = RealmConfiguration.Builder().name("realm2.io").build()
-//        var realm2 = Realm.getInstance(config2)
-//        //realm2.beginTransaction()
-//        //val person2 = realm2.createObject(Person::class.java, 2)
-//        //person2.name = "Luisoppp"
-//        //realm2.commitTransaction()
-//        val allperson2 = realm2.where(Person::class.java).findAll()
-//        allperson2.forEach{person ->
-//            println("Config 2:")
-//            println(person.name + " " + person.id)
-//        }
-        /** ------------------------------------------------------------ */
-
         this.setupFeedScene()
 
         this.feedViewAdapter = FeedAdapter(mutableListOf(), this)
         feedRecyclerView.adapter = this.feedViewAdapter
         feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
-
-        val request = FeedModel.GetFeedActivities.Request()
-        interactor?.fetchFeed(request)
+        this.createGetActivitiesRequest()
     }
 
     /**
      * Method responsible to setup all the references of this scene
      */
-    private fun setupFeedScene() {
+    fun setupFeedScene() {
 
         val view = this
         val presenter = FeedPresenter()
@@ -112,6 +72,14 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view
+    }
+
+    /**
+     * Method responsible for creating the get activities request and passing it to the interactor
+     */
+    fun createGetActivitiesRequest(){
+        val request = FeedModel.GetFeedActivities.Request()
+        interactor?.fetchFeed(request)
     }
 
     /**
@@ -146,7 +114,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param identifier parameter to identify activity
      */
-    private fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
+    fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
 
         interactor?.fetchLikes(identifier)
     }

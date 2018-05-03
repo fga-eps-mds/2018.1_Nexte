@@ -30,7 +30,7 @@ class FeedWorker {
                     completion: (FeedModel.LikeAndUnlike.Response) -> Unit) {
 
         var activity = FeedManager.getFeedActivity(request.identifier)
-        activity = FeedManager.addAndRemoveUser(activity)
+         activity = FeedManager.addAndRemoveUser(activity)
 
         val updatedActivity = FeedModel.LikeAndUnlike.Response(
                 FeedManager.updateFeedActivity(request.identifier, activity))

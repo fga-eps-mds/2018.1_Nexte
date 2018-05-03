@@ -105,7 +105,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     /**
      * Method responsible to populate the references of the scene
      */
-    private fun setupChallengeScene(){
+    fun setupChallengeScene(){
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
         val view = this
