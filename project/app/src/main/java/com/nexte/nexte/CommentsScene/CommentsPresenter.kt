@@ -32,6 +32,11 @@ class CommentsPresenter : CommentsPresentationLogic {
         viewController?.displayComments(viewModel)
     }
 
+    /**
+     * Function that formatted the new comment wrote by user to send to View
+     * @param response
+     */
+
     override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
 
         val newComment = response.newComment
@@ -48,6 +53,11 @@ class CommentsPresenter : CommentsPresentationLogic {
         viewController?.displayPublishedComment(viewModel)
     }
 
+    /**
+     * Function that formatted the alert message to send to View and define the message in case
+     * of success ou error.
+     * @param response
+     */
     override fun presentComplaint(response: CommentsModel.ComplaintRequest.Response) {
         val message: String
 

@@ -34,11 +34,27 @@ class CommentsModel {
         class ViewModel(var commentsFormatted: MutableList<CommentFormatted>)
     }
 
+    /**
+     * This class is responsible to show an alert message when the user click on report button
+     */
+
     class ComplaintRequest {
 
+        /**
+         * Class responsible to pass data from View to Interactor and then to worker,
+         * so it can request data
+         */
         class Request(var comment: CommentFormatted)
-
+        /**
+         * Class responsible to store received information from Worker and pass it to Presenter
+         * @param serverResponse
+         */
         class Response(var serverResponse: Int)
+        /**
+         * Class responsible to define how message will display the formatted data passed to view
+         *
+         * @param AlertMessage
+         */
 
         class ViewModel(var alertMessage: String)
 

@@ -43,6 +43,14 @@ class CommentsWorker {
         completion (response)
     }
 
+    /**
+     * Function responsible to submit an alert message when the user wants to report a comment
+     * and passed the message to response.
+     * @param request Comments model from ComplaintRequest that contains need information to
+     * send to server
+     * @param completion Method to call on parent class
+     */
+
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request,
                        completion: (CommentsModel.ComplaintRequest.Response) -> Unit) {
 

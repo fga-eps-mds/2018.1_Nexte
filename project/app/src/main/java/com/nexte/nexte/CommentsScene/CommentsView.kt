@@ -101,6 +101,11 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
     }
 
+    /**
+     * Method responsible to receive the ViewModel from presenter and show the alert message. The
+     user can cancel and confirm the report.
+     * @param viewModel is received from presenter to show on screen
+     */
     override fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel) {
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(true)
