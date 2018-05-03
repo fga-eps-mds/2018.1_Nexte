@@ -32,13 +32,20 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         requestAuthentication.setOnClickListener {
 
-            val account = accountField.text.toString()
-            val password = passwordField.text.toString()
-
-            val request: LoginModel.Request = LoginModel.Request(account, password)
-            this.interactor?.doAuthentication(request)
+            this.createAuthenticationRequest()
         }
 
+    }
+
+    /**
+     * Method responsible for creating the authetication request an passing it to the interactor
+     */
+    fun createAuthenticationRequest(){
+        val account = accountField.text.toString()
+        val password = passwordField.text.toString()
+
+        val request: LoginModel.Request = LoginModel.Request(account, password)
+        this.interactor?.doAuthentication(request)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -88,9 +95,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         this.startActivityForResult(intent, LoginModel.AuthenticationStatus.FACEBOOK_REQUEST.value)
     }
 
-    // Private Methods
-
-    private fun setup() {
+    fun setup() {
 
         val view = this
         val interactor = LoginInteractor()

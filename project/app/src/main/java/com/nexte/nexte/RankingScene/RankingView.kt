@@ -43,16 +43,21 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
 
+        this.createGetPlayersRequest()
+    }
 
+    /**
+     * Method responsible for creating get players request and passing it to the interactor
+     */
+    fun createGetPlayersRequest(){
         val request = RankingModel.Request()
-
         interactor?.getPlayersRanksForScene(request)
     }
 
     /**
      * Method responsible to set the ranking information on screen
      */
-    private fun setupRankingScene(){
+    fun setupRankingScene(){
 
         val view = this
         val interactor = RankingInteractor()
