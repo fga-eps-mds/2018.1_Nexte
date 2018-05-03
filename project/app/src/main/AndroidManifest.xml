@@ -69,6 +69,7 @@
         <activity
             android:name=".ChallengeScene.SendChallengeConfirmationPopUp"
             android:label="SendChallengeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ChallengePopUp"/>
     </application>
 </manifest>
