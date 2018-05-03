@@ -62,4 +62,16 @@ class ChallengeWorker {
 
         completion(response)
     }
+
+    fun fetchMessageForChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
+                                 completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
+
+        val user = request.userChallenged
+
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user!!)
+
+        completion(response)
+
+    }
+
 }

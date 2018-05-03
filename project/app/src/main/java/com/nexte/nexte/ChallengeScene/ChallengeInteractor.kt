@@ -23,6 +23,10 @@ interface ChallengeBusinessLogic {
     fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
 }
 
+    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest) {
+
+    }
+
 /**
  * Class that implements [ChallengeBusinessLogic] and is responsible for the communication*
  * @property worker Reference to worker [ChallengeWorker]
@@ -57,6 +61,13 @@ class ChallengeInteractor : ChallengeBusinessLogic {
             this.presenter?.formatExpandedChallengedInfo(response)
         }
 
+    }
+
+    override fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+
+        worker.fetchMessageForChallenge(request) { response ->
+            this.presenter?.formatMessage(response)
+        }
     }
 
 }

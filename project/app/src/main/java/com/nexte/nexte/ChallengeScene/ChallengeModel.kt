@@ -63,11 +63,11 @@ class ChallengeModel{
 
     }
 
-    class SendChallengeButton {
+    class ChallengeButtonRequest {
 
         class Request(var userChallenged: String)
 
-        class Response(var message: String)
+        class Response(var user: String)
 
         class ViewModel(var messageForChallenger: String)
 

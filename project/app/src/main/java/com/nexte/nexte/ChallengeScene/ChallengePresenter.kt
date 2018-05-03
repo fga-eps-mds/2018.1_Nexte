@@ -19,7 +19,11 @@ interface ChallengePresentationLogic {
      * @param response contains unformatted data received from [ChallengeModel]
      */
     fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
+
+    fun formatMessage(response : ChallengeModel.ChallengeButtonRequest.Response)
+
 }
+
 
 /**
 * This class will be responsible to receive a [ChallengeModel.ShowRankingPlayersRequest.Response]
