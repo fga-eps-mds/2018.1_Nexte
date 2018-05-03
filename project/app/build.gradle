@@ -165,5 +165,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
 }
 dependencies {
-    compile 'com.github.ceryle:SegmentedButton:v2.0.2'
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
 }
