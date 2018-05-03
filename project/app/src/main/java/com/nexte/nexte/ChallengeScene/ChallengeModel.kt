@@ -63,6 +63,16 @@ class ChallengeModel{
 
     }
 
+    class SendChallengeButton {
+
+        class Request(var userChallenged: String)
+
+        class Response(var message: String)
+
+        class ViewModel(var messageForChallenger: String)
+
+    }
+
     /**
      * Class that holds the formatted player data of the 5 users above player
      */
