@@ -46,13 +46,8 @@ class CommentsWorker {
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request,
                        completion: (CommentsModel.ComplaintRequest.Response) -> Unit) {
 
-        val serverCode: Int
+        val serverCode = 200
 
-        if (request.comment.comment.isNotEmpty()) {
-            serverCode = 200
-        } else {
-            serverCode = 404
-        }
         val response = CommentsModel.ComplaintRequest.Response(serverCode)
 
         completion(response)

@@ -74,22 +74,6 @@ class CommentsWorkerTest {
         })
     }
 
-
-    @Test
-    fun failSetComplaint() {
-        val request = CommentsModel.ComplaintRequest.Request(
-                CommentsModel.CommentFormatted(
-                        "gabriel", "27/10/2323", "", 0
-                )
-        )
-
-        //call
-        worker?.sendComplaint(request, {response ->
-            //assert
-            assertEquals(response.serverResponse,404)
-        })
-    }
-
     @After
     fun tearDown() {
         this.worker = null
