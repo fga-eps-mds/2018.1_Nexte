@@ -44,7 +44,13 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setUpCommentsScene()
 
+        this.createRequest()
+    }
 
+    /**
+     * Method responsible for creating the initial request and passing it to the interactor
+     */
+    fun createRequest(){
         val request = CommentsModel.Request("exampleString")
         interactor?.recentComments(request)
     }
@@ -52,7 +58,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
     /**
      * Method responsible to setup all the references of this scene
      */
-    private fun setUpCommentsScene() {
+    fun setUpCommentsScene() {
 
         val view = this
         val interactor = CommentsInteractor()
