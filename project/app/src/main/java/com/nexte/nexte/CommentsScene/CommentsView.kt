@@ -105,7 +105,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(true)
         builder.setMessage(viewModel.alertMessage)
-        builder.setNeutralButton("Ok", { dialogInterface, _ ->
+        builder.setPositiveButton("Ok", { dialogInterface, _ ->
             dialogInterface.cancel()
         })
         val alert = builder.create()
@@ -180,7 +180,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                                       position: Int) {
 
             holder.bindView(comments[position])
-            val message = String.format("Tem certeza que deseja denunciar o usuário" +
+            val message = String.format("Tem certeza que deseja denunciar o usuário " +
                     "%s pela mensagem \"%s\"?", comments[position].username, comments[position].comment)
             holder.itemView.reportButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
