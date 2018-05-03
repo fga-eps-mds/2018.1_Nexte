@@ -10,7 +10,7 @@
                     <corners android:topLeftRadius="12dp" android:bottomLeftRadius="12dp"/>
                 </shape>
             </item>
-            <item android:top="1dp" android:bottom="1dp" android:letf="1dp">
+            <item android:top="1dp" android:bottom="1dp" android:left="1dp">
                 <shape android:shape="rectangle">
                     <solid android:color="@color/colorPrimary" />
                     <corners android:topLeftRadius="12dp" android:bottomLeftRadius="12dp"/>
@@ -29,7 +29,7 @@
                     <corners android:topLeftRadius="12dp" android:bottomLeftRadius="12dp"/>
                 </shape>
             </item>
-            <item android:top="1dp" android:bottom="1dp" android:letf="1dp">
+            <item android:top="1dp" android:bottom="1dp" android:left="1dp">
                 <shape android:shape="rectangle">
                     <solid android:color="@android:color/white" />
                     <corners android:topLeftRadius="12dp" android:bottomLeftRadius="12dp"/>
