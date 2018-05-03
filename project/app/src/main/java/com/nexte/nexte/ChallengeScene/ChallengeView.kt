@@ -1,6 +1,7 @@
 package com.nexte.nexte.ChallengeScene
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -10,8 +11,6 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
-
-
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -45,6 +44,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * This object is used for avoid magic numbers
      */
     companion object {
+
         const val playerRanking = 8 //simulates the logged player ranking
     }
 
@@ -52,10 +52,17 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Method called whenever the view is created, responsible for create first request and set listeners.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
         this.getPlayerToChallenge()
+
+        sendChallengeButton.setOnClickListener {
+
+            val intent = Intent(this, SendChallengeConfirmationPopUp::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
@@ -63,9 +70,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * 5 players above the ranking defined in the logged player
      */
     fun getPlayerToChallenge(){
+
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
-
     }
 
     /**
@@ -73,6 +80,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
+
         this.recyclerView.adapter = ChallengeAdapter(viewModel.formattedPlayer, this, this)
     }
 
@@ -81,6 +89,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param request contains the rank of the clicked user in the recycler view
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
+
         this.interactor?.requestChallengedUser(request)
     }
 
@@ -90,6 +99,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel contains the player data already formatted by [ChallengePresenter]
      */
     override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
+
         val currentPlayer = viewModel.challengedRankingDetails
 
         this.expandedLosses.visibility = View.VISIBLE
@@ -106,6 +116,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Method responsible to populate the references of the scene
      */
     private fun setupChallengeScene(){
+
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
         val view = this
@@ -135,6 +146,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
 
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
@@ -178,6 +190,4 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             }
         }
     }
-
-
 }
