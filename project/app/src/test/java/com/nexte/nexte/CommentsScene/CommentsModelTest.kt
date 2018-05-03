@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.ChallengeScene.ChallengeModel
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -114,6 +115,19 @@ class CommentsModelTest {
     }
 
     @Test
+    fun successTestConstructor(){
+        //prepare and call
+        val model = CommentsModel()
+        val firstRequest = CommentsModel.GetCommentsRequest()
+        val secondRequest = CommentsModel.PublishCommentRequest()
+
+        //assert
+        assertNotNull(model)
+        assertNotNull(firstRequest)
+        assertNotNull(secondRequest)
+    }
+
+    @Test
     fun successSecondResponse(){
         //prepare
         val player = CommentsModel.Player("Larissa", 1)
@@ -128,6 +142,22 @@ class CommentsModelTest {
         assertEquals(player.name, response.newComment.author.name)
         assertEquals(player.photo, response.newComment.author.photo)
         assertEquals(comment.comment, response.newComment.comment)
+    }
+
+    @Test
+    fun successTestPlayerSetter(){
+        //prepare
+        val player = CommentsModel.Player("Larissa", 1)
+        val newName = "gabriel"
+        val newPhoto = 2
+
+        //call
+        player.name = newName
+        player.photo = newPhoto
+
+        //assert
+        assertEquals(player.name, newName)
+        assertEquals(player.photo, newPhoto)
     }
 
     @Test

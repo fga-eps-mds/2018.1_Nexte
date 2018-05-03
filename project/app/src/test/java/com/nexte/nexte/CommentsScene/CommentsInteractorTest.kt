@@ -2,7 +2,6 @@ package com.nexte.nexte.CommentsScene
 
 import org.junit.After
 import org.junit.Before
-import java.util.*
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -49,7 +48,16 @@ class CommentsInteractorTest {
         //assert
         assertEquals(expectedWorker, this.interactor?.worker)
     }
-    
+
+    @Test
+    fun successTestConstructor(){
+        //prepare and call
+        val interactor = CommentsInteractor()
+
+        //assert
+        assertNotNull(interactor)
+    }
+
     @Test
     fun successSetWorkerTest(){
         //prepare

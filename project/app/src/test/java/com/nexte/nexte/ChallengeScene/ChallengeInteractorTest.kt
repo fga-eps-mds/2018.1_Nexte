@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.CommentsScene.CommentsInteractor
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -15,6 +16,15 @@ class ChallengeInteractorTest {
         this.mock = MockChallengePresentationLogic()
         this.interactor = ChallengeInteractor()
         this.interactor?.presenter = mock
+    }
+
+    @Test
+    fun successTestConstructor(){
+        //prepare and call
+        val interactor = ChallengeInteractor()
+
+        //assert
+        assertNotNull(interactor)
     }
 
     @Test
