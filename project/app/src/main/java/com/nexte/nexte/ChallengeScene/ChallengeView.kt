@@ -11,6 +11,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import kotlinx.android.synthetic.main.columns_challenged.*
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -63,20 +64,14 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         sendChallengeButton.setOnClickListener {
 
-            //val intent = Intent(this, SendChallengeConfirmationPopUp::class.java)
-            //startActivity(intent)
-
-            val message = String.format("Desafio enviado com sucesso para " +
-                    "%s ?", response.userClicked)
-
-            holder.itemView.reportButton.setOnClickListener {
+            savedInstanceState.reportButton.setOnClickListener {
 
                 val builder = AlertDialog.Builder(context)
                 builder.setCancelable(true)
-                builder.setMessage(message)
+                builder.setMessage("Desafio enviado com sucesso!")
                 builder.setPositiveButton("Ok", { dialogInterface, _ ->
-                    val request = ChallengeModel.ChallengeButtonRequest.Request(TODO())
-                    (context as ChallengeView).interactor?.sendComplaint(request)
+                    val request = ChallengeModel.ChallengeButtonRequest.Request()
+                    (context as ChallengeView).interactor?.sendComplaint()
                     dialogInterface.dismiss()
                 })
 
