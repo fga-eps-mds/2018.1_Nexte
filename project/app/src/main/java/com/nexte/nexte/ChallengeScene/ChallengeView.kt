@@ -70,8 +70,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             builder.setCancelable(true)
             builder.setMessage(message)
             builder.setPositiveButton("Ok", { dialogInterface, _ ->
-                val request = ChallengeModel.ChallengeButtonRequest.Request("")
-                (context as ChallengeView).interactor?.requestMessageForChallenger(request)
                 dialogInterface.dismiss()
             })
 
