@@ -150,7 +150,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ![Diagrama de classes da showProfile](https://i.imgur.com/OCn6Gh3.jpg)
 
-![Diagrama de classes da comments](https://i.imgur.com/wXlln8C.jpg)
+![Diagrama de classes da comments](https://i.imgur.com/YiVslho.jpg)
 
 ![Diagrama de classes do feed](https://i.imgur.com/z6icAhU.jpg)
 
