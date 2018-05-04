@@ -12,6 +12,13 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
+import kotlinx.android.synthetic.main.row_match_time.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDate.now
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 interface MatchDisplayLogic {
@@ -66,6 +73,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
     private fun updateSetsNumber (setsNumber: MatchModel.SetsNumber) {
         numberOfSets = setsNumber
         matchViewAdapter?.notifyDataSetChanged()
+
     }
 
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
@@ -150,8 +158,8 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             1 -> return 3
             3 -> return 5
             5 -> return 7
-            0 -> return 1
-            else -> return 1
+            0 -> return 2
+            else -> return 2
         }
     }
 
@@ -193,10 +201,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                 itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
+
                 itemView.buttonOne.setOnClickListener {
                     (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.One)
                 }
-
                 itemView.buttonThree.setOnClickListener {
                     (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.Three)
                 }
@@ -222,7 +230,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         class TimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun timeBindView() {
+                val dateToShow = SimpleDateFormat("ccc, dd 'of' LLL")
+                val time = dateToShow.format(Date())
 
+                itemView.dateText.setText(time)
             }
         }
 

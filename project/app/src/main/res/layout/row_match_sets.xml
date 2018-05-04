@@ -30,10 +30,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="11dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintBottom_toTopOf="@+id/setLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
@@ -49,10 +49,9 @@
         android:textAlignment="center"
         android:textColor="@color/com_accountkit_default_skin_background"
         android:textColorHint="@color/hint_color_pattern"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setLabel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/setLabel" />
 
     <TextView
         android:id="@+id/setLabel"
