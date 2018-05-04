@@ -88,7 +88,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
     override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
         commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
-                                                       this)
+                this)
     }
 
     /**
@@ -168,8 +168,8 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                 CommentsView.CommentsAdapter.ViewHolder {
 
             val view = LayoutInflater.from(context).inflate(R.layout.row_comments,
-                                                            parent,
-                                                            false)
+                    parent,
+                    false)
             view.setOnClickListener {
                 (context as CommentsView).hideSoftKeyboard()
             }

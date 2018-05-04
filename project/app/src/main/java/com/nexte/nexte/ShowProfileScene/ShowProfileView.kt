@@ -43,9 +43,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         setContentView(R.layout.activity_show_profile)
         setupShowProfileScene()
 
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                "AUFDSASFSA321IEUNFDI23FIQ2F")
-        this.showProfileInteractor?.showProfile(showUserProfileRequest)
+        this.createShowProfileRequest()
 
         editProfileButton.setOnClickListener {
 
@@ -58,12 +56,21 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
+     * Method responsible for creating the show profile request and passing it to the interactor
+     */
+    fun createShowProfileRequest(){
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
+                "AUFDSASFSA321IEUNFDI23FIQ2F")
+        this.showProfileInteractor?.showProfile(showUserProfileRequest)
+    }
+
+    /**
      * Method responsable to define a param to X axis.
      * @property xVals array responsable to store all values of X
      * @property tam responsable to store the data of X axis.
      */
 
- fun setXAxisValues(): ArrayList<Entry> {
+    fun setXAxisValues(): ArrayList<Entry> {
 
         val xVals = ArrayList<Entry>()
 
@@ -142,15 +149,13 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
         super.onResume()
 
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                "AUFDSASFSA321IEUNFDI23FIQ2F")
-        this.showProfileInteractor?.showProfile(showUserProfileRequest)
+        this.createShowProfileRequest()
     }
 
     /**
      * Method responsible to set all the references on this scene
      */
-    private fun setupShowProfileScene() {
+    fun setupShowProfileScene() {
 
         val viewScene = this
         val interactor = ShowProfileInteractor()
