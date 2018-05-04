@@ -16,12 +16,17 @@ interface CommentsBusinessLogic {
 
     /**
      * Method that defines the comments information published that will be responsable to
-     * pass the request to Worker and send the response to Presenter
+     * pass the request to Worker and send the response to Presenter.
      * @param request Resquest model from publishCommentsRequest that contains data to pass
      * for Worker.
      */
     fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request)
 
+    /**
+     * Method that defines the alert message when the user wants to report a comment and will pass
+     * the request to Worker and send the response to Presenter.
+     * @param request Request model from ComplaintRequest that contains data to pass for Worker.
+     */
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request)
 }
 
