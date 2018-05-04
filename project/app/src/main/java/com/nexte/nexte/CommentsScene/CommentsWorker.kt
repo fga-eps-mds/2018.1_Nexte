@@ -33,11 +33,10 @@ class CommentsWorker {
 
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request,
                        completion: (CommentsModel.PublishCommentRequest.Response) -> Unit) {
-
         val message = request.commentToPost
         val today = Date()
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
-        val newComment = CommentsModel.Comment(message, today, author)
+        val newComment = CommentsModel.Comment(message, today, author, 5)
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         completion (response)
@@ -76,16 +75,16 @@ class CommentsWorker {
 
         val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
                                                 Date(),
-                                                player1)
+                                                player1, 1)
         val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
                                                 Date(),
-                                                player2)
+                                                player2, 2)
         val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
                                                 Date(),
-                                                player3)
+                                                player3, 3)
         val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
                                                 Date(),
-                                                player4)
+                                                player4, 4)
 
         val addComments: MutableList<CommentsModel.Comment> = mutableListOf(
                 comment1,

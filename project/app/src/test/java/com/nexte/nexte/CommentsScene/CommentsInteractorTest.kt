@@ -20,7 +20,7 @@ class CommentsInteractorTest {
     @Test
     fun successRecentComments() {
         //prepare
-        val request = CommentsModel.GetCommentsRequest.Request("identifier")
+        val request = CommentsModel.GetCommentsRequest.Request()
 
         //call
         this.interactor?.recentComments(request)
@@ -74,9 +74,7 @@ class CommentsInteractorTest {
     fun successSendComplaint(){
         //prepare
         val request = CommentsModel.ComplaintRequest.Request(
-                CommentsModel.CommentFormatted(
-                        "Boa!", "27/12/1239", "gabriel", 2
-                )
+                3
         )
 
         //call

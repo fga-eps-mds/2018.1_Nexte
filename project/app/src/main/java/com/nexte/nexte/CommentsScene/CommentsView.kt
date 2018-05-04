@@ -57,7 +57,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
         this.setActionToCloseKeyboard(mainLayout)
 
-        val request = CommentsModel.GetCommentsRequest.Request("exampleString")
+        val request = CommentsModel.GetCommentsRequest.Request()
         interactor?.recentComments(request)
 
         sendButton.setOnClickListener(sendCommentAction)
@@ -192,7 +192,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                 builder.setCancelable(true)
                 builder.setMessage(message)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
-                    val request = CommentsModel.ComplaintRequest.Request(comments[position])
+                    val request = CommentsModel.ComplaintRequest.Request(position)
                     (context as CommentsView).interactor?.sendComplaint(request)
                     dialogInterface.dismiss()
                 })

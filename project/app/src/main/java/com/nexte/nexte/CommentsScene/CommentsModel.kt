@@ -4,7 +4,7 @@ import java.util.*
 
 /**
  * Class to define Model of Comments Scene to enable the conversation between users.
- * It contains [Request], [Response] and [ViewModel] classes to be used on the flow
+ * It contains Request, Response and ViewModel classes to be used on the flow
  * of getting the game to be commented and setting details of personal information from user
  * on the system and his actions on game
  * */
@@ -18,11 +18,11 @@ class CommentsModel {
          * Class responsible to pass data from View to Interactor and then to worker,
          * so it can request data
          */
-        class Request(var request: String)
+        class Request
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
-         * @param comments
+         * @param comments contains all the comments that already exists on a game
          */
         class Response(var comments: MutableList<Comment>)
 
@@ -43,17 +43,19 @@ class CommentsModel {
         /**
          * Class responsible to pass data from View to Interactor and then to worker,
          * so it can request data
+         *
+         * @param commentID contains the identifier of the reported comment
          */
-        class Request(var comment: CommentFormatted)
+        class Request(var commentID: Int)
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
-         * @param serverResponse
+         * @param serverResponse contains the server response to the user
          */
         class Response(var serverResponse: Int)
         /**
          * Class responsible to define how message will display the formatted data passed to view
          *
-         * @param AlertMessage
+         * @param alertMessage contains the formatted error or success message that will be displayed to the user
          */
 
         class ViewModel(var alertMessage: String)
@@ -68,19 +70,20 @@ class CommentsModel {
         /**
          * Class responsible to pass data from View to Interactor and then to worker,
          * so it can request data
+         * @param commentToPost contains the message of the comment that will be posted
          */
         class Request(var commentToPost: String)
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
-         * @param newComment
+         * @param newComment contains the comment with user and id data
          */
         class Response(var newComment: Comment)
 
         /**
          * Class responsible to define how message will display the formatted data passed to view
          *
-         * @param newCommentsFormatted
+         * @param newCommentFormatted contains the formatted comment, ready to be displayed
          */
         class ViewModel(var newCommentFormatted: CommentFormatted)
 
@@ -88,27 +91,29 @@ class CommentsModel {
     // ---------- Aux classes ----------
     /**
      * Class with information about the player who will be displayed in the comments list
-     * @param name
-     * @param photo
+     * @param name contains the player name
+     * @param photo cointains the player picture
      */
     class Player(var name: String, var photo: Int)
 
     /**
      * Class with formatted information about users and how they will be displayed in View
-     * @param comment
-     * @param date
-     * @param author
+     * @param comment contains the comment message
+     * @param date contains the date when the comment was posted
+     * @param author contains the player that posted the comment
+     * @param commentId contains the comment identifier
      */
     class Comment(var comment: String,
                   var date: Date,
-                  var author: Player)
+                  var author: Player,
+                  var commentId: Int)
 
     /**
      * Class with formatted information about users and how they will be displayed in View
-     * @param comment
-     * @param commentDate
-     * @param username
-     * @param profilePic
+     * @param comment contains the comment message
+     * @param commentDate contains the formatted date to be displayed
+     * @param username contains the comment's owner name
+     * @param profilePic  contains the comment's owner picture
      */
     class CommentFormatted(var comment: String,
                            var commentDate: String,
