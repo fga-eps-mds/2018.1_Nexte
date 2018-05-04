@@ -11,7 +11,6 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import kotlinx.android.synthetic.main.columns_challenged.*
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -67,6 +66,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.getPlayerToChallenge()
 
         sendChallengeButton.setOnClickListener {
+
             val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
             interactor?.requestMessageForChallenger(request)
         }

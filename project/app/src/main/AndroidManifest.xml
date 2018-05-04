@@ -66,10 +66,6 @@
             android:name=".CommentsScene.CommentsView"
             android:label="CommentsActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ChallengeScene.SendChallengeConfirmationPopUp"
-            android:label="SendChallengeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.ChallengePopUp"/>
+
     </application>
 </manifest>
