@@ -64,8 +64,10 @@
         android:layout_width="48dp"
         android:layout_height="33dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="58dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toStartOf="@+id/hourLabel"
+        app:layout_constraintStart_toEndOf="@+id/dateLabel"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/clock_logo_round" />
 
@@ -80,6 +82,8 @@
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hourLabel"
-        tools:text="00:00" />
+        android:hint="12:00"
+        android:textColorHint="@color/hint_color_pattern"
+        />
 
 </android.support.constraint.ConstraintLayout>

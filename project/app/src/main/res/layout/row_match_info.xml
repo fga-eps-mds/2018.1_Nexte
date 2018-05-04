@@ -99,6 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/challengerName"
+        app:rrbg_backgroundColor="#2E2E2E"
         app:rrbg_animate="true"
         app:rrbg_animateSelector="2"
         app:rrbg_animateSelector_duration="100"
@@ -113,35 +114,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/actionModeSplitBackground"
+            android:backgroundTint="@color/colorPrimary"
             android:foreground="@color/background"
-            app:rrb_ripple="true"
-            app:rrb_rippleColor="#2E2E2E"
-
+            android:foregroundTint="@android:color/transparent"
             app:rrb_text="1"
-            app:rrb_textColor="#2E2E2E" />
+            app:rrb_textColor="#FFFFFF" />
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rrb_ripple="true"
-            app:rrb_rippleColor="#FFFFFF"
             app:rrb_text="3"
-            app:rrb_textColor="#2E2E2E" />
+            app:rrb_textColor="#FFFFFF" />
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rrb_ripple="true"
-            app:rrb_rippleColor="#FFFFFF"
             app:rrb_text="5"
-            app:rrb_textColor="#2E2E2E" />
+            app:rrb_textColor="#FFFFFF" />
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rrb_ripple="true"
-            app:rrb_rippleColor="#ffffff"
             app:rrb_text="WO"
-            app:rrb_textColor="#2E2E2E" />
+            app:rrb_textColor="#FFFFFF" />
     </co.ceryle.radiorealbutton.RadioRealButtonGroup>
 </android.support.constraint.ConstraintLayout>
