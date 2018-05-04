@@ -22,7 +22,7 @@ interface ChallengeBusinessLogic {
      */
     fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
 
-    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest)
+    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request)
 }
 
 

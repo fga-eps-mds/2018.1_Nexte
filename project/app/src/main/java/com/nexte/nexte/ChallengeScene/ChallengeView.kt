@@ -62,21 +62,21 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.setupChallengeScene()
         this.getPlayerToChallenge()
 
+        val message = String.format("Desafio enviado com sucesso para " + "%s", userName)
+
         sendChallengeButton.setOnClickListener {
 
-            savedInstanceState.reportButton.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            builder.setMessage(message)
+            builder.setPositiveButton("Ok", { dialogInterface, _ ->
+                val request = ChallengeModel.ChallengeButtonRequest.Request("")
+                (context as ChallengeView).interactor?.requestMessageForChallenger(request)
+                dialogInterface.dismiss()
+            })
 
-                val builder = AlertDialog.Builder(context)
-                builder.setCancelable(true)
-                builder.setMessage("Desafio enviado com sucesso!")
-                builder.setPositiveButton("Ok", { dialogInterface, _ ->
-                    val request = ChallengeModel.ChallengeButtonRequest.Request()
-                    (context as ChallengeView).interactor?.sendComplaint()
-                    dialogInterface.dismiss()
-                })
-
-                val alert = builder.create()
-                alert.show() }
+            val alert = builder.create()
+            alert.show()
         }
     }
 
