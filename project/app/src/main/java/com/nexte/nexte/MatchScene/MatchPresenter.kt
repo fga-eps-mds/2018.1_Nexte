@@ -29,8 +29,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
         val matchFormatted = MatchModel.FormattedMatchData(challengedName,
                                                            challengedPhoto,
                                                            challengerName,
-                                                           challengerPhoto,
-                                                           toFormat.numberOfSets)
+                                                           challengerPhoto)
         return matchFormatted
     }
 

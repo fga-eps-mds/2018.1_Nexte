@@ -20,9 +20,7 @@ class MatchWorker {
 
         var challenged = MatchModel.MatchPlayer("Alexandre Miguel", R.mipmap.ic_launcher )
 
-        val numberOfSets = MatchModel.SetsNumber.One
-
-        val match = MatchModel.MatchData(challenger, challenged, numberOfSets)
+        val match = MatchModel.MatchData(challenger, challenged)
 
          return match
     }

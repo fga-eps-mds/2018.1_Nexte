@@ -54,6 +54,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Challenger"
+        android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/imageChallenger"
@@ -68,6 +69,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Challenged"
+        android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
@@ -90,6 +92,7 @@
 
 
     <co.ceryle.radiorealbutton.RadioRealButtonGroup
+        android:id="@+id/buttonGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -111,6 +114,7 @@
         app:rrbg_selectorSize="4dp">
 
         <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/actionModeSplitBackground"
@@ -118,21 +122,24 @@
             android:foreground="@color/background"
             android:foregroundTint="@android:color/transparent"
             app:rrb_text="1"
-            app:rrb_textColor="#FFFFFF" />
+            app:rrb_textColor="#FFFFFF"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:rrb_text="3"
             app:rrb_textColor="#FFFFFF" />
 
         <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonFive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:rrb_text="5"
             app:rrb_textColor="#FFFFFF" />
 
         <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonWO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:rrb_text="WO"
