@@ -66,7 +66,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         sendChallengeButton.setOnClickListener {
 
-            val builder = AlertDialog.Builder(context)
+            val builder = AlertDialog.Builder(this)
             builder.setCancelable(true)
             builder.setMessage(message)
             builder.setPositiveButton("Ok", { dialogInterface, _ ->
