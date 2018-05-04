@@ -43,6 +43,7 @@
     * [5.1.2 <em>Diagrama de Sequência</em>](#512-diagrama-de-sequência)
 * [6. DIMENSIONAMENTO](#6-dimensionamento)
 * [7. QUALIDADE](#7-qualidade)
+* [8. Apêndice](#8-apendice)
 
 ## Nexte
 
@@ -75,7 +76,7 @@ Este Documento de Arquitetura de Software se aplica ao Nexte, auxiliando os dese
 
 A arquitetura do frontend da aplicação faz uso de modernos conceitos arquiteturais para *mobiles* como os propostos por [Uncle Bob]() com o *clean architecture*. Entretanto,  devido a alguns requisitos do projeto, como a sincronização dos dados entre banco de dados local e outro remoto, houve a necessidade de adaptar esse modelo arquitetural. Não obstante, foram utilizados padrões de projeto GoF como o adapter com o objetivo de manter o projeto desaclopado e manutenível.
 
-Nesta arquitetura, pode-se compreender duas representações:
+Na arquitetura do frontend do Nexte Android, pode-se compreender duas representações:
 
 * Representação Arquitetural das Cenas: Consiste no fluxo de dados e funcionalidades de uma feature, de modo que cada cena tenha controle restrito apenas as camadas pertencentes a ela. 
 
@@ -98,6 +99,13 @@ Imagem 1: Relação entre os modulos da arquitetura clean
 ![EsquemaDaCleanArchitecture](https://i.imgur.com/Pdhg9vp.jpg)
 
 ### 2.2 Representação Arquitetural das Entidades Globais
+
+- Entity: 
+- EntityAdapter: 
+- EntityManager: 
+- EntityMocker: 
+- EntityRealm: 
+- EntityRealmAdapter:
 
 
 
