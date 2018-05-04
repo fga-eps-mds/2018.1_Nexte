@@ -31,6 +31,8 @@ interface ChallengeDisplayLogic {
      */
 
     fun displayPlayerDetailedInfo (viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel)
+
+    fun displayMessage (viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel)
 }
 
 /**

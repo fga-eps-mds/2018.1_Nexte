@@ -79,4 +79,19 @@ class ChallengePresenter : ChallengePresentationLogic {
         viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
+    override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
+        val message: String
+
+        if(response.userClicked == true) {
+            message = "Desafio enviado com sucesso!"
+        }
+        else {
+            message = "Erro ao enviar desafio"
+        }
+
+        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
+
+        viewChallenge?.displayMessage(viewModel)
+
+    }
 }

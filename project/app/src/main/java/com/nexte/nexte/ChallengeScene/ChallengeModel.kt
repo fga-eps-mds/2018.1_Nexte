@@ -67,7 +67,7 @@ class ChallengeModel{
 
         class Request(var userChallenged: String)
 
-        class Response(var user: String)
+        class Response(var userClicked: Boolean)
 
         class ViewModel(var messageForChallenger: String)
 
