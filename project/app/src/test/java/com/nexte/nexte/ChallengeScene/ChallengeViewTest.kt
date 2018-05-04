@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+import android.test.AndroidTestCase
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -42,6 +43,15 @@ class ChallengeViewTest {
         assertEquals(mock?.hasBeenCalled, expectedResult)
     }
 
+    @Test
+    fun testSetupChallengeScene(){
+        //prepare //call
+        this.view?.setupChallengeScene()
+
+        //assert
+        assertNotNull(this.view?.interactor)
+    }
+
     @After
     fun tearDown(){
         mock = null
@@ -58,5 +68,4 @@ class ChallengeViewTest {
             hasBeenCalled = true
         }
     }
-
 }
