@@ -2,7 +2,6 @@ package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
-import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -34,15 +33,33 @@ class CommentsWorker {
 
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request,
                        completion: (CommentsModel.PublishCommentRequest.Response) -> Unit) {
-
         val message = request.commentToPost
         val today = Date()
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
-        val newComment = CommentsModel.Comment(message, today, author)
+        val newComment = CommentsModel.Comment(message, today, author, 5)
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         completion (response)
     }
+
+    /**
+     * Function responsible to submit an alert message when the user wants to report a comment
+     * and passed the message to response.
+     * @param request Comments model from ComplaintRequest that contains need information to
+     * send to server
+     * @param completion Method to call on parent class
+     */
+
+    fun sendComplaint (request: CommentsModel.ComplaintRequest.Request,
+                       completion: (CommentsModel.ComplaintRequest.Response) -> Unit) {
+
+        val serverCode = 200
+
+        val response = CommentsModel.ComplaintRequest.Response(serverCode)
+
+        completion(response)
+    }
+
 
     /**
      * Function to create fictional comments to use in fictional app mode
@@ -58,16 +75,16 @@ class CommentsWorker {
 
         val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
                                                 Date(),
-                                                player1)
+                                                player1, 1)
         val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
                                                 Date(),
-                                                player2)
+                                                player2, 2)
         val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
                                                 Date(),
-                                                player3)
+                                                player3, 3)
         val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
                                                 Date(),
-                                                player4)
+                                                player4, 4)
 
         val addComments: MutableList<CommentsModel.Comment> = mutableListOf(
                 comment1,

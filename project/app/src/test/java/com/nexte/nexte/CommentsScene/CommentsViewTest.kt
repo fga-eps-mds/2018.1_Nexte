@@ -1,9 +1,5 @@
 package com.nexte.nexte.CommentsScene
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -69,9 +65,9 @@ class CommentsViewTest {
         override fun recentComments(request: CommentsModel.GetCommentsRequest.Request) {
             passedHere = true
         }
-    }
 
-    private fun LayoutInflater.inflate(row_comments: Int, parent: Context, b: Boolean): View {
-        return View(parent)
+        override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
+            this.passedHere = true
+        }
     }
 }

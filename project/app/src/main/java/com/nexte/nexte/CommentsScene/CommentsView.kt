@@ -13,6 +13,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.row_comments.view.*
 import android.app.Activity
+import android.app.AlertDialog
 import android.widget.EditText
 
 
@@ -28,6 +29,7 @@ interface CommentsDisplayLogic {
 
     fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel)
     fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel)
+    fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel)
 }
 
 /**
@@ -55,7 +57,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
         this.setActionToCloseKeyboard(mainLayout)
 
-        val request = CommentsModel.GetCommentsRequest.Request("exampleString")
+        val request = CommentsModel.GetCommentsRequest.Request()
         interactor?.recentComments(request)
 
         sendButton.setOnClickListener(sendCommentAction)
@@ -97,6 +99,22 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
     override fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel) {
         (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
+    }
+
+    /**
+     * Method responsible to receive the ViewModel from presenter and show the alert message. The
+     user can cancel and confirm the report.
+     * @param viewModel is received from presenter to show on screen
+     */
+    override fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel) {
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(true)
+        builder.setMessage(viewModel.alertMessage)
+        builder.setPositiveButton("Ok", { dialogInterface, _ ->
+            dialogInterface.cancel()
+        })
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun setActionToCloseKeyboard(view: View) {
@@ -167,6 +185,22 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                                       position: Int) {
 
             holder.bindView(comments[position])
+            val message = String.format("Tem certeza que deseja denunciar o usuário " +
+                    "%s pela mensagem \"%s\"?", comments[position].username, comments[position].comment)
+            holder.itemView.reportButton.setOnClickListener {
+                val builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setMessage(message)
+                builder.setPositiveButton("Sim", { dialogInterface, _ ->
+                    val request = CommentsModel.ComplaintRequest.Request(position)
+                    (context as CommentsView).interactor?.sendComplaint(request)
+                    dialogInterface.dismiss()
+                })
+                builder.setNegativeButton("Não", { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                })
+                val alert = builder.create()
+                alert.show() }
         }
 
         override fun getItemCount(): Int {
