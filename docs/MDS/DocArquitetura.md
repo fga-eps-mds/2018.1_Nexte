@@ -73,6 +73,16 @@ Este Documento de Arquitetura de Software se aplica ao Nexte, auxiliando os dese
 
 ## 2. REPRESENTAÇÃO ARQUITETURAL
 
+A arquitetura do frontend da aplicação faz uso de modernos conceitos arquiteturais para *mobiles* como os propostos por [Uncle Bob]() com o *clean architecture*. Entretanto,  devido a alguns requisitos do projeto, como a sincronização dos dados entre banco de dados local e outro remoto, houve a necessidade de adaptar esse modelo arquitetural. Não obstante, foram utilizados padrões de projeto GoF como o adapter com o objetivo de manter o projeto desaclopado e manutenível.
+
+Nesta arquitetura, pode-se compreender duas representações:
+
+* Representação Arquitetural das Cenas: Consiste no fluxo de dados e funcionalidades de uma feature, de modo que cada cena tenha controle restrito apenas as camadas pertencentes a ela. 
+
+*  Representação Arquitetural das Entidades Globais:  Consiste em modelos de dados que serão utilizados pela cenas, esta parte da representação arquitetural está relacionada com a persistência local dos dados, assim como a sincronização com os dados proveninentes do servidor.
+
+### 2.1 Representação Arquitetural das Cenas
+
 Para a arquitetura será utilizado a "clean architecture", que se baseia em seis módulos:
 - Model: Responsável pelas regras de definição de dados e pode possuir modelos globais ou modelos locais de cada cena;
 - Worker: É responsável por controlar as requisições de dados ao local em que esses dados estão armazenados, isto é, faz requisições ao servidor ou ao banco de dados local;
@@ -86,6 +96,10 @@ As relações entre os módulos estão representadas no esquema a seguir.
 Imagem 1: Relação entre os modulos da arquitetura clean
 
 ![EsquemaDaCleanArchitecture](https://i.imgur.com/Pdhg9vp.jpg)
+
+### 2.2 Representação Arquitetural das Entidades Globais
+
+
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
