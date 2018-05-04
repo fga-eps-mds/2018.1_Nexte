@@ -21,11 +21,11 @@ interface ChallengeBusinessLogic {
      * @param request variable equals the rank position of the clicked player
      */
     fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
+
+    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest)
 }
 
-    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest) {
 
-    }
 
 /**
  * Class that implements [ChallengeBusinessLogic] and is responsible for the communication*
@@ -69,5 +69,4 @@ class ChallengeInteractor : ChallengeBusinessLogic {
             this.presenter?.formatMessage(response)
         }
     }
-
 }

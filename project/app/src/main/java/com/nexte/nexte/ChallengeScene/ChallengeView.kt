@@ -1,7 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -11,6 +10,7 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
+import android.app.AlertDialog
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -41,6 +41,7 @@ interface ChallengeDisplayLogic {
 class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
     var interactor: ChallengeBusinessLogic? = null
+    private val context: Context? = null
 
     /**
      * This object is used for avoid magic numbers
@@ -62,8 +63,25 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         sendChallengeButton.setOnClickListener {
 
-            val intent = Intent(this, SendChallengeConfirmationPopUp::class.java)
-            startActivity(intent)
+            //val intent = Intent(this, SendChallengeConfirmationPopUp::class.java)
+            //startActivity(intent)
+
+            val message = String.format("Desafio enviado com sucesso para " +
+                    "%s ?", response.userClicked)
+
+            holder.itemView.reportButton.setOnClickListener {
+
+                val builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setMessage(message)
+                builder.setPositiveButton("Ok", { dialogInterface, _ ->
+                    val request = ChallengeModel.ChallengeButtonRequest.Request(TODO())
+                    (context as ChallengeView).interactor?.sendComplaint(request)
+                    dialogInterface.dismiss()
+                })
+
+                val alert = builder.create()
+                alert.show() }
         }
     }
 
@@ -71,7 +89,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * This method is responsible for calling the request for the
      * 5 players above the ranking defined in the logged player
      */
-    fun getPlayerToChallenge(){
+    fun getPlayerToChallenge() {
 
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
