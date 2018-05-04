@@ -108,7 +108,7 @@ class ChallengeModelTest{
         val loses = 6
         val rankingPosition = 1
 
-        val player = ChallengeModel.PlayerRankingDatails(
+        val player = ChallengeModel.PlayerRankingDetails(
                 name, wins, loses, rankingPosition
         )
 

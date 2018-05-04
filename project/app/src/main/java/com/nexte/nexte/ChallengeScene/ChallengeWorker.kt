@@ -48,7 +48,7 @@ class ChallengeWorker {
                                     completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
 
-        var selectedPlayer: ChallengeModel.PlayerRankingDatails?= null
+        var selectedPlayer: ChallengeModel.PlayerRankingDetails?= null
 
         val players = ChallengeMocker.createPlayerDetailedInfo()
 

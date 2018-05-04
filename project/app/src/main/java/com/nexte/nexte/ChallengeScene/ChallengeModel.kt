@@ -4,7 +4,7 @@ import com.nexte.nexte.Player
 /**
  * Class to define the Model of Challenge Scene to send informations between layers
  */
-class ChallengeModel{
+class ChallengeModel {
 
     /**
      * Information that will be passed between layers when user first open the activity
@@ -12,57 +12,60 @@ class ChallengeModel{
     class ShowRankingPlayersRequest {
 
         /**
-         * Request with needed information for getting the users above player rank
+         * Request with needed information for getting the users above player ranking
+         *
+         * @param challengerRankingPosition Ranking position of the logged user
          */
-        class Request(
-                var challengerRankingPosition: Int // Rank position of the logged user
-        )
+        class Request(var challengerRankingPosition: Int)
 
         /**
          * Response responsible for holding the selected players information
+         *
+         * @param usersAbove The players above our logged user in ranking
          */
-        class Response(
-                var usersAbove: List<Player> //The players above our logged user in ranking
-        )
+        class Response(var usersAbove: List<Player>)
 
         /**
          * ViewModel responsible for format the selected players information
+         *
+         * @param formattedPlayer Information about the players above our user
+         * already ready for display
          */
-        class ViewModel(
-                var formattedPlayer: List<FormattedPlayer> /* Information about the
-                players above our user already ready for display */
-        )
+        class ViewModel(var formattedPlayer: List<FormattedPlayer>)
     }
 
     /**
-     * This class is responsible for define what will be passed between layers for expand selected recyclerview user.
+     * This class is responsible for define what will be passed between layers for
+     * expand selected recyclerview user.
      */
-    class SelectPlayerForChallengeRequest{
+    class SelectPlayerForChallengeRequest {
 
         /**
-         * Request containing an uniqui information about the clicked player.
+         * Request containing an unique information about the clicked player.
+         *
+         * @param challengedRankingPosition the ranking of the clicked user (rank is
+        unique for each player, allowing us to recover the information)
          */
-        class Request(
-                var challengedRankingPosition: Int /*the rank of the clicked user (rank is
-            unique for each player, allowing us to recover the information)*/
-        )
+        class Request(var challengedRankingPosition: Int)
 
         /**
          * Responsible with detailed information about player with the selected ID
+         *
+         * @param challengedPersonalDetails detailed info about clicked player
          */
-        class Response(
-                var challengedPersonalDetails: PlayerRankingDatails //detailed info about clicked player
-        )
+        class Response(var challengedPersonalDetails: PlayerRankingDetails)
 
         /**
          * Class responsible to edit the player data that will be exhibited
+         *
+         * @param challengedRankingDetails formatted detailed info about clicked player
          */
-        class ViewModel(
-                var challengedRankingDetails: FormattedRankingDetails // formatted detailed info about clicked player
-        )
-
+        class ViewModel(var challengedRankingDetails: FormattedRankingDetails)
     }
 
+    /**
+     * This class is responsible for
+     */
     class ChallengeButtonRequest {
 
         class Request(var userChallenged: String)
@@ -70,9 +73,9 @@ class ChallengeModel{
         class Response(var userClicked: Boolean)
 
         class ViewModel(var messageForChallenger: String)
-
     }
 
+    // ---------- Aux classes ----------
     /**
      * Class that holds the formatted player data of the 5 users above player
      */
@@ -90,10 +93,14 @@ class ChallengeModel{
 
     /**
      *  Class that contains the detailed information about player ranking
+     *
+     *  @param name player name
+     *  @param wins player raw wins
+     *  @param loses player raw loses
+     *  @param rankingPosition player raw position in ranking
      */
-    class PlayerRankingDatails(var name: String, //player name
-                               var wins: Int, //player raw wins
-                               var loses: Int, //player raw loses
-                               var rankingPosition: Int //player raw position in ranking
-    )
+    class PlayerRankingDetails(var name: String,
+                               var wins: Int,
+                               var loses: Int,
+                               var rankingPosition: Int)
 }

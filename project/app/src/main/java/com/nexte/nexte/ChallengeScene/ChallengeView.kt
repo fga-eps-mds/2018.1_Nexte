@@ -38,6 +38,9 @@ interface ChallengeDisplayLogic {
 
 /**
  * This class is responsible for treating user actions and also showing user needed information.
+ *
+ * @property interactor
+ * @property context
  */
 class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
@@ -53,7 +56,8 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Method called whenever the view is created, responsible for create first request and set listeners.
+     * Method called whenever the view is created, responsible for create first
+     * request and set listeners
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -89,7 +93,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Function responsible to get the formatted player data and exhibit it in a recycler view between an adapter .
+     * Function responsible to get the formatted player data and exhibit it in a recycler view
+     * between an adapter
+     *
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
@@ -98,7 +104,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Function responsible to receive the request from the recycler view item and send to the interactor
+     * Function responsible to receive the request from the recycler view item and send
+     * to the interactor
+     *
      * @param request contains the rank of the clicked user in the recycler view
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
@@ -126,17 +134,22 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+
         val builder = AlertDialog.Builder(this)
+
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
             dialogInterface.cancel()
         })
+
         val alert = builder.create()
         alert.show()
-
     }
 
+    /**
+     * Method responsible to remove the user informations
+     */
     fun removePlayerDetailedInfo() {
 
         this.expandedLosses.visibility = View.INVISIBLE
@@ -152,7 +165,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     /**
      * Method responsible to populate the references of the scene
      */
-    private fun setupChallengeScene(){
+    private fun setupChallengeScene() {
 
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
