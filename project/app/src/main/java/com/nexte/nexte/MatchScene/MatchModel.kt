@@ -13,57 +13,24 @@ class MatchModel {
 
   class InitScene {
 
-      class Request (var matchID: String)
+      class Request(var matchID: String)
 
-      class Response (var match: MatchData)
+      class Response(var match: MatchData)
 
-      class ViewModel (var matchFormatted: FormattedMatchData)
-
-  }
-
-  class ChangeSet{
-
-        class Request (var sets: SetsNumber)
-
-        class Response (var match: MatchData)
-
-        class ViewModel (var matchFormatted: FormattedMatchData)
+      class ViewModel(var matchFormatted: FormattedMatchData)
 
   }
-
-
     // --------- Aux classes ---------
 
     class MatchData (var challenged: MatchPlayer,
                      var challenger: MatchPlayer,
                      var numberOfSets: SetsNumber)
 
-    class MatchSet (var label: String,
-                    var setsChallenged: Int,
-                    var setsChallenger: Int)
-
-    class MatchTime (var matchDay: MatchDay,
-                     var matchHour: DateTimeFormatter)
-
-
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
                               var challengerPhoto: Int,
                               var setsNumber: SetsNumber)
-
-    class FormattedMatchSet (var label: String,
-                             var setsChallenged: String,
-                             var setsChallenger: String)
-
-    class FormattedMatchTime (var matchDay: String,
-                              var matchHour: String)
-
-
-    class MatchDay (var dayOfWeek: DayOfWeek,
-                    var dayOfMonth: MonthDay,
-                    var month: Month)
-
 
     enum class SetsNumber (val number: Int) {
         One(1),
@@ -74,9 +41,4 @@ class MatchModel {
 
     class MatchPlayer (var name: String, var photo: Int)
 
-    /*
-    * var formattedFirstSet: String,
-                              var formattedThirdSet: String,
-                              var formattedFifthSet: String,
-                              var formattedWOSet: String*/
 }

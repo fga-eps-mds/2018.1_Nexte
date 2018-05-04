@@ -26,10 +26,9 @@ interface MatchBusinessLogic {
  * @property presenter it's a reference for presenter that will receive the response and
  * create a viewModel
  */
-class MatchInteractor : MatchBusinessLogic {
+class MatchInteractor(var presenter : MatchPresentationLogic? = null) : MatchBusinessLogic {
 
     private var worker = MatchWorker()
-    var presenter : MatchPresentationLogic? = null
 
     override fun getInfoMatches(request: MatchModel.InitScene.Request) {
 
