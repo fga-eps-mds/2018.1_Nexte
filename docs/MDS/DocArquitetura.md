@@ -56,7 +56,7 @@ desenvolvimento e os critérios considerados durante a tomada destas decisões. 
 
 ### 1.1 Finalidade
 É apresentada uma visão arquitetural abrangente do sistema Nexte, usando diversas modelos de arquitetura para representar diferentes aspectos do sistema. O objetivo deste documento é capturar e comunicar as decisões arquiteturais significativas que foram tomadas
-em relação ao sistema.
+em relação ao sistema. Vale-se ressaltar que este documento de arquitetura é referente ao *frontend* desenvolvido em Android.
 
 ### 1.2 Escopo
 Este Documento de Arquitetura de Software se aplica ao Nexte, auxiliando os desenvolvedores na construção do projeto.
@@ -85,6 +85,7 @@ Na arquitetura do frontend do Nexte Android, pode-se compreender duas representa
 ### 2.1 Representação Arquitetural das Cenas
 
 Para a arquitetura será utilizado a "clean architecture", que se baseia em seis módulos:
+
 - Model: Responsável pelas regras de definição de dados e pode possuir modelos globais ou modelos locais de cada cena;
 - Worker: É responsável por controlar as requisições de dados ao local em que esses dados estão armazenados, isto é, faz requisições ao servidor ou ao banco de dados local;
 - View: Apresenta os elementos na interface gráfica;
@@ -94,20 +95,22 @@ Para a arquitetura será utilizado a "clean architecture", que se baseia em seis
 
 As relações entre os módulos estão representadas no esquema a seguir.
 
-Imagem 1: Relação entre os modulos da arquitetura clean
+Imagem 1: Relação entre os módulos das cenas da arquitetura clean
 
 ![EsquemaDaCleanArchitecture](https://i.imgur.com/Pdhg9vp.jpg)
 
 ### 2.2 Representação Arquitetural das Entidades Globais
 
-- Entity: 
-- EntityAdapter: 
-- EntityManager: 
-- EntityMocker: 
-- EntityRealm: 
-- EntityRealmAdapter:
+- Entity: Modelo de dados referentes aos objetos da aplicação, em outras palavras seriam as models globais que seria utilizadas dentro das diferentes cenas.
+- EntityAdapter: Permite que uma entidade possa assumir diferentes valores de acordo com as cenas e o modelo de armazenamento proposto pelo Realm.
+- EntityManager: Módulo central que decide de acordo com a requisição proveniente da *worker* qual será o *response*, se será necessário trabalhar com o armazenamento de dados remoto ou local, entre outras operações relacionadas com armazenamento de dados.
+- EntityMocker: Módulo responsável por carregar na memória instância dos dados mocados pela aplicação.
+- EntityRealm: Modelo de dados que a model global será armazenado pelo real.
+- EntityRealmAdapter: Permite que os dados sejam adaptados para o formato aceito pelo Realm, de forma que também facilite migrações para outros serviços de persistência local.
 
+Imagem 2:  Relação entre os módulos das entidades globais
 
+![Imagem2](https://i.imgur.com/Pdhg9vp.jpg)
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
@@ -121,10 +124,9 @@ Esta seção decreve os requisitos de software e restrições que têm um impact
 
 ### 3.2 Restrições de arquitetura
 
-A persistência e o servidor web são restrições da arquitetura utilizada, pois podem influenciar diretamente nela.
+A persistência e o servidor web são restrições da arquitetura utilizada, pois podem influenciar diretamente nela. Neste caso, foram realizadas alterações ao estabelecer camadas e padrões para realizar a sincronização entre dados remotos e locais.
 
 ## 4. VISÃO LÓGICA
-
 
 |Nome da classe|Atributos|Descrição|
 |:----:|:----:|:-----:|
@@ -135,16 +137,16 @@ A persistência e o servidor web são restrições da arquitetura utilizada, poi
 |Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torná-los visíveis, exbindo-os na página inicial do aplicativo.|
 
 
-### 4.1 Visão Geral – pacotes e camada
+### 4.1 Visão Geral para as Cenas – pacotes e camada
 
 A _Clean Architecture_ é organizada de modo em que as camadas mais externas passam as informações para as camadas mais internas, facilitando o armazenamento e obtenção de dados.
 
 ![](https://i.imgur.com/NLLi7Kr.jpg)
 
-#### 4.1.1 Diagrama de pacotes
+#### 4.1.1 Divisão dos módulos por responsabilidades
 ![ Exemplo de Diagrama de Pacotes da Aplicação](https://i.imgur.com/hVXTV2M.jpg)
 
-No diagrama de pacotes temos que a arquitetura é composta de 3 pacotes, sendo eles:
+No diagrama de pacotes temos que a arquitetura é composta de 3 partes distintas, sendo elas:
 - _Presentation_ : Responsável pela interface gráfica e controle da entrada e saída de dados;
 - _Domain_ : Responsável pelo processamento de eventos, funcionando como intermediador entre a presentation e a infrastructure;
 - _Infrastructure_ : Responsável pelo armazenamento e fornecimento de dados para a domain ou presentation.
@@ -161,6 +163,20 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 - _View_ : Responsável pela interface gráfica e entrada de dados.
 - _Router_ : Responsável por controlar o fluxo entre as telas
 
+### 4.2 Visão Geral para as Entidade Globais – pacotes e camada
+
+
+-_EntityRealm_ : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
+- _EntityAdapterRealm_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
+- _EntityAdapter_ : Responsável por controlar o fluxo entre o view, worker e presenter;
+- _Entity_ : Formata os dados que serão exibidos na view;
+- _EntityManager_ : Responsável pela interface gráfica e entrada de dados.
+- _EntityMocker_ : Responsável por controlar o fluxo entre as telas
+- _worker_ : Módulo que está presente na cenas, enviar o request que será manipulado pela EntityManager
+
+### 4.3 Observações
+
+ 
 ## 5. VISÃO DE IMPLEMENTAÇÃO
 
 ### 5.1 Caso de Uso
