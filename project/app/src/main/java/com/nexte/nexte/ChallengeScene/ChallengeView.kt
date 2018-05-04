@@ -127,6 +127,18 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.expandedWins.text = currentPlayer.wins
     }
 
+    override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(true)
+        builder.setMessage(viewModel.messageForChallenger)
+        builder.setPositiveButton("Ok", { dialogInterface, _ ->
+            dialogInterface.cancel()
+        })
+        val alert = builder.create()
+        alert.show()
+
+    }
+
     fun removePlayerDetailedInfo() {
 
         this.expandedLosses.visibility = View.INVISIBLE
