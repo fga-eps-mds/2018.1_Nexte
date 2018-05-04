@@ -82,12 +82,7 @@ class ChallengePresenter : ChallengePresentationLogic {
     override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
         val message: String
 
-        if(response.userClicked == true) {
-            message = "Desafio enviado com sucesso!"
-        }
-        else {
-            message = "Erro ao enviar desafio"
-        }
+        message = String.format("Desafio enviado com sucesso para o jogador %s", response.username)
 
         val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
 

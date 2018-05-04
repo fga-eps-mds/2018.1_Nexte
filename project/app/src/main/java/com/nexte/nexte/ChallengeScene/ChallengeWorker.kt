@@ -68,7 +68,7 @@ class ChallengeWorker {
 
         val user = request.userChallenged
 
-        val response = ChallengeModel.ChallengeButtonRequest.Response(true)
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user)
 
         completion(response)
 
