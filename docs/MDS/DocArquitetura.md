@@ -21,6 +21,7 @@
 | 24/03/2018| 1.0.1| Correção do tópico 3.2 (Restrições de arquitetura). | Gabriel Albino, Letícia Meneses, Lorrany Freire |
 | 19/04/2018| 1.1| Adição dos novos diagramas de classe. | Gabriel Albino, Alexandre Miguel |
 | 27/04/2018| 1.1.1| Adição do novo diagrama de classe da Comments. | Alexandre Miguel |
+| 27/04/2018| 2.0| Atualização da Arquitetura((Frontend) | Miguel Pimentel|
 
 ### Índice Analítico
 
@@ -30,6 +31,8 @@
     * [1.3 Definições, Acrônimos e Abreviações](#13-definições-acrônimos-e-abreviações)
     * [1.4 Referências](#14-referências)
 * [2. REPRESENTAÇÃO ARQUITETURAL](#2-representação-arquitetural)
+    * [2.1 Representação Arquitetural das Cenas](#21-Representação Arquitetural das Cenas)
+    * [2.2 Representação Arquitetural das Entidades Globais](#22-escopo)
 * [3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA](#3-requisitos-e-restrições-de-arquitetura)
     * [3.1 Requisitos gerais](#31-requisitos-gerais)
     * [3.2 Restrições de arquitetura](#32-restrições-de-arquitetura)
@@ -95,9 +98,10 @@ Para a arquitetura será utilizado a "clean architecture", que se baseia em seis
 
 As relações entre os módulos estão representadas no esquema a seguir.
 
-Imagem 1: Relação entre os módulos das cenas da arquitetura clean
+Imagem 1: Relação entre os módulos de cada cena
 
-![EsquemaDaCleanArchitecture](https://i.imgur.com/Pdhg9vp.jpg)
+[![VIP.png](https://s9.postimg.cc/b4tq4jly7/VIP.png)](https://postimg.cc/image/umodkhivv/)
+
 
 ### 2.2 Representação Arquitetural das Entidades Globais
 
@@ -110,7 +114,7 @@ Imagem 1: Relação entre os módulos das cenas da arquitetura clean
 
 Imagem 2:  Relação entre os módulos das entidades globais
 
-![Imagem2](https://i.imgur.com/Pdhg9vp.jpg)
+[![Global_Entity.png](https://s9.postimg.cc/9ps5fvxqn/Global_Entity.png)](https://postimg.cc/image/fdyg6s22z/)
 
 ## 3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA
 
@@ -152,7 +156,8 @@ No diagrama de pacotes temos que a arquitetura é composta de 3 partes distintas
 - _Infrastructure_ : Responsável pelo armazenamento e fornecimento de dados para a domain ou presentation.
 
 #### 4.1.2 Diagrama de camadas
-![ Exemplo de Diagrama de Camadas da Aplicação](https://i.imgur.com/roHKLJ1.jpg)
+
+[![VIP.png](https://s9.postimg.cc/b4tq4jly7/VIP.png)](https://postimg.cc/image/umodkhivv/)
 
 No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:
 
@@ -160,11 +165,14 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 - _Worker_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
 - _Iteractor_ : Responsável por controlar o fluxo entre o view, worker e presenter;
 - _Presenter_ : Formata os dados que serão exibidos na view;
-- _View_ : Responsável pela interface gráfica e entrada de dados.
-- _Router_ : Responsável por controlar o fluxo entre as telas
+- _View_ : Responsável pela interface gráfica e entrada de dados;
+- _Router_ : Responsável por controlar o fluxo entre as telas;
 
 ### 4.2 Visão Geral para as Entidade Globais – pacotes e camada
 
+[![Global_Entity.png](https://s9.postimg.cc/9ps5fvxqn/Global_Entity.png)](https://postimg.cc/image/fdyg6s22z/)
+
+No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:
 
 -_EntityRealm_ : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
 - _EntityAdapterRealm_ : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
@@ -176,12 +184,18 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ### 4.3 Observações
 
+Algumas cenas podem necessitar do uso das entidades globais. Dessa forma, para estas cenas poderíamos ter o seguinte diagrama de pacotes: 
+
+[![Architecture.png](https://s9.postimg.cc/qdjnigd3j/Architecture.png)](https://postimg.cc/image/wehcfizpn/)
  
 ## 5. VISÃO DE IMPLEMENTAÇÃO
 
 ### 5.1 Caso de Uso
 
 #### 5.1.1 *Diagrama de Classes*
+
+* **Diagrama de classe - Cenas**
+
 ![Diagrama de classes da editProfile](https://i.imgur.com/tXgt9oo.jpg)
 
 ![Diagrama de classes da showProfile](https://i.imgur.com/OCn6Gh3.jpg)
@@ -198,11 +212,15 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ![Diagrama de classes da ranking](https://i.imgur.com/MHfir5I.jpg)
 
+*  **Diagrama de classe - Entidade Global**
+
+[![Diagrama_Classe_Novo.png](https://s9.postimg.cc/hiit84ynj/Diagrama_Classe_Novo.png)](https://postimg.cc/image/xtix4gb57/)
 
 #### 5.1.2 *Diagrama de Sequência*
-No aprimoramento do aplicativo Nexte garantindo uma fácil manutenção e flexibilidade para se adaptar a transformações, utiliza-se a Clean Architecture para garantir esses quesitos.
 
-![Diagrama de Sequẽncia](https://i.imgur.com/eS0lMJk.png)
+No aprimoramento do aplicativo Nexte garantindo uma fácil manutenção e flexibilidade para se adaptar a transformações, utiliza-se a Clean Architecture para garantir esses quesitos, assim como padrões de projeto GRASP e GoF
+
+[![Diagrama_Sequencia_Novo.png](https://s9.postimg.cc/qdjniknf3/Diagrama_Sequencia_Novo.png)](https://postimg.cc/image/5tetk37nv/)
 
 
 ## 6. DIMENSIONAMENTO
