@@ -49,25 +49,37 @@ class ChallengeModelTest{
     @Test
     fun successFirstRequest(){
         //prepare
-        val rank = 5
+        val ranking = 5
 
         //call
-        val request = ChallengeModel.ShowRankingPlayersRequest.Request(rank)
+        val request = ChallengeModel.ShowRankingPlayersRequest.Request(ranking)
 
         //assert
-        assertEquals(request.challengerRankingPosition, rank)
+        assertEquals(request.challengerRankingPosition, ranking)
     }
 
     @Test
     fun successSecondRequest(){
         //prepare
-        val rank = 5
+        val ranking = 5
 
         //call
-        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(rank)
+        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(ranking)
 
         //assert
-        assertEquals(request.challengedRankingPosition, rank)
+        assertEquals(request.challengedRankingPosition, ranking)
+    }
+
+    @Test
+    fun successThirdRequest(){
+        //prepare
+        val user = "larissa"
+
+        //call
+        val request = ChallengeModel.ChallengeButtonRequest.Request(user)
+
+        //assert
+        assertEquals(request.userChallenged, user)
     }
 
     @Test
@@ -123,6 +135,18 @@ class ChallengeModelTest{
     }
 
     @Test
+    fun successThirdResponse(){
+        //prepare
+        val user = "larissa"
+
+        //call
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user)
+
+        //assert
+        assertEquals(response.username, user)
+    }
+
+    @Test
     fun successFirstViewModel(){
         //prepare
         val name = "Gabriel"
@@ -161,6 +185,17 @@ class ChallengeModelTest{
         assertEquals(viewModel.challengedRankingDetails.name, name)
     }
 
+    @Test
+    fun successThirdViewModel(){
+        //prepare
+        val message = "Sucesso"
+
+        //call
+        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
+
+        //assert
+        assertEquals(viewModel.messageForChallenger, message)
+    }
 
     @After
     fun tearDown(){

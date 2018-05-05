@@ -76,17 +76,17 @@ class ChallengeModel {
         class Request(var userChallenged: String)
 
         /**
-         * Responsible for the user of the challenged
+         * Responsible for the user of the challenge
          *
-         * @param username is the user of the challenged on the app
+         * @param username is the challenged user
          */
         class Response(var username: String)
 
         /**
-         * Class responsible to show a confirm message informing that a challenged
-         * has been sended
+         * Class responsible to show a confirmation message informing that a challenged
+         * has been sent
          *
-         * @param challengedRankingDetails formatted detailed info about clicked player
+         * @param messageForChallenger message with the confirmation of the challenge sent
          */
         class ViewModel(var messageForChallenger: String)
     }

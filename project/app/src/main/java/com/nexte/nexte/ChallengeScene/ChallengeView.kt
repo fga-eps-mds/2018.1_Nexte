@@ -21,17 +21,22 @@ interface ChallengeDisplayLogic {
     /**
      * Method that defines how the players above the logged user formatted data will be displayed
      *
-     * @param viewModel contains information about the players to be shown formatted
+     * @param viewModel contains information about the players to be shown
      */
     fun displayPlayersToChallenge (viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel)
+
     /**
      * Method that defines how the player clicked by the user formatted data will be displayed
      *
-     * @param viewModel contains information about the player to be shown formatted
+     * @param viewModel contains information about the player to be shown
      */
-
     fun displayPlayerDetailedInfo (viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel)
 
+    /**
+     * Method that defines how the message to the user will be displayed
+     *
+     * @param viewModel contains information about the message to be shown
+     */
     fun displayMessage (viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel)
 }
 
@@ -161,7 +166,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     /**
      * Method responsible to populate the references of the scene
      */
-    private fun setupChallengeScene() {
+    fun setupChallengeScene() {
 
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
