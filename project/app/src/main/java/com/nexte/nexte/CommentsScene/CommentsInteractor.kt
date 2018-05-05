@@ -10,9 +10,24 @@ interface CommentsBusinessLogic {
      * Method that defines recent comments information that will be responsible to
      * pass the request to Worker and send the response to Presenter
      *
-     * @param request Request model of comments that contains data to pass for Worker
+     * @param request Request model from getCommentsRequest that contains data to pass for Worker
      */
-    fun recentComments (request: CommentsModel.Request)
+    fun recentComments (request: CommentsModel.GetCommentsRequest.Request)
+
+    /**
+     * Method that defines the comments information published that will be responsable to
+     * pass the request to Worker and send the response to Presenter.
+     * @param request Resquest model from publishCommentsRequest that contains data to pass
+     * for Worker.
+     */
+    fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request)
+
+    /**
+     * Method that defines the alert message when the user wants to report a comment and will pass
+     * the request to Worker and send the response to Presenter.
+     * @param request Request model from ComplaintRequest that contains data to pass for Worker.
+     */
+    fun sendComplaint (request: CommentsModel.ComplaintRequest.Request)
 }
 
 /**
@@ -26,9 +41,21 @@ class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : Co
 
     var worker = CommentsWorker()
 
-    override fun recentComments(request: CommentsModel.Request) {
+    override fun recentComments(request: CommentsModel.GetCommentsRequest.Request) {
         worker.getCommentsData(request) { response ->
             this.presenter?.presentComment(response)
+        }
+    }
+
+    override fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request) {
+        worker.setNewComment(request) { response ->
+            this.presenter?.presentNewComment(response)
+        }
+    }
+
+    override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
+        worker.sendComplaint(request) { response ->
+            this.presenter?.presentComplaint(response)
         }
     }
 }

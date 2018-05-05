@@ -37,7 +37,7 @@ class ChallengeMockerTest {
         val wins = 10
         val loses = 0
         val rankPosition = 1
-        val player = ChallengeModel.PlayerRankingDatails(name,
+        val player = ChallengeModel.PlayerRankingDetails(name,
                 wins,
                 loses,
                 rankPosition

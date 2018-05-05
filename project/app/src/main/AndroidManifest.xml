@@ -59,17 +59,14 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".LikeListScene.LikeListView"
-            android:label="LikeListView"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".EditProfileScene.EditProfileView"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ChallengeScene.ChallengeView"></activity>
         <activity
             android:name=".CommentsScene.CommentsView"
             android:label="CommentsActivity"
             android:screenOrientation="portrait"/>
+
     </application>
 </manifest>

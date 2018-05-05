@@ -13,8 +13,7 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
-
-
+import android.app.AlertDialog
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -25,24 +24,35 @@ interface ChallengeDisplayLogic {
     /**
      * Method that defines how the players above the logged user formatted data will be displayed
      *
-     * @param viewModel contains information about the players to be shown formatted
+     * @param viewModel contains information about the players to be shown
      */
     fun displayPlayersToChallenge (viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel)
+
     /**
      * Method that defines how the player clicked by the user formatted data will be displayed
      *
-     * @param viewModel contains information about the player to be shown formatted
+     * @param viewModel contains information about the player to be shown
      */
-
     fun displayPlayerDetailedInfo (viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel)
+
+    /**
+     * Method that defines how the message to the user will be displayed
+     *
+     * @param viewModel contains information about the message to be shown
+     */
+    fun displayMessage (viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel)
 }
 
 /**
  * This class is responsible for treating user actions and also showing user needed information.
+ *
+ * @property interactor
+ * @property context
  */
 class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
     var interactor: ChallengeBusinessLogic? = null
+    private val context: Context? = null
 
     /**
      * This object is used for avoid magic numbers
@@ -53,7 +63,8 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Method called whenever the view is created, responsible for create first request and set listeners.
+     * Method called whenever the view is created, responsible for create first
+     * request and set listeners
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -61,6 +72,12 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
         this.getPlayerToChallenge()
+
+        sendChallengeButton.setOnClickListener {
+
+            val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
+            interactor?.requestMessageForChallenger(request)
+        }
     }
 
     /**
@@ -74,8 +91,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Function responsible to get the formatted player data and exhibit it
-     * in a recycler view between an adapter
+     * Function responsible to get the formatted player data and exhibit it in a recycler view
+     * between an adapter
+     *
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
@@ -84,11 +102,12 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Function responsible to receive the request from the recycler view
-     * item and send to the interactor
-     * @param request contains the ranking of the clicked user in the recycler view
+     * Function responsible to receive the request from the recycler view item and send
+     * to the interactor
+     *
+     * @param request contains the rank of the clicked user in the recycler view
      */
-    fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
+    fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
 
         this.interactor?.requestChallengedUser(request)
     }
@@ -113,9 +132,44 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
+     * Method responsible for showing the a alert button with a message about the
+     * challenge sended
+     *
+     * @param viewModel contains the player data already formatted by [ChallengePresenter]
+     */
+    override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+
+        val builder = AlertDialog.Builder(this)
+
+        builder.setCancelable(true)
+        builder.setMessage(viewModel.messageForChallenger)
+        builder.setPositiveButton("Ok", { dialogInterface, _ ->
+            dialogInterface.cancel()
+        })
+
+        val alert = builder.create()
+        alert.show()
+    }
+
+    /**
+     * Method responsible to remove the user informations
+     */
+    fun removePlayerDetailedInfo() {
+
+        this.expandedLosses.visibility = View.INVISIBLE
+        this.expandedLosses.text = ""
+        this.expandedName.visibility = View.INVISIBLE
+        this.expandedName.text = ""
+        this.expandedRankingTextView.visibility = View.INVISIBLE
+        this.expandedRankingTextView.text = ""
+        this.expandedWins.visibility = View.INVISIBLE
+        this.expandedWins.text = ""
+    }
+
+    /**
      * Method responsible to populate the references of the scene
      */
-    private fun setupChallengeScene() {
+    fun setupChallengeScene() {
 
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
@@ -125,6 +179,23 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         interactor.presenter = presenter
         presenter.viewChallenge = view
     }
+
+    class viewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+        private val pageTitles = listOf("Enviados", "Recebidos")
+
+        override fun getCount(): Int {
+            return pageTitles.size
+        }
+
+        override fun getItem(position: Int): Fragment {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun getPageTitle(position: Int): CharSequence {
+            return pageTitles.elementAt(position)
+        }
+    }
+
 
     /**
      * Adapter Class to control recycler view of users that can be challenged
@@ -144,24 +215,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             return ChallengeView.ChallengeAdapter.ViewHolder(view)
         }
 
-        class viewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
-            val pageTitles = listOf("Enviados", "Recebidos")
-
-            override fun getCount(): Int {
-                return pageTitles.size
-            }
-
-            override fun getItem(position: Int): Fragment {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun getPageTitle(position: Int): CharSequence {
-                return pageTitles.elementAt(position)
-            }
-
-        }
-
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+
+            (context as ChallengeView).sendChallengeButton.isEnabled = true
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
@@ -180,13 +236,18 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
                 val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(
                         challenged[position].rankingPosition.removeRange(0, 1).toInt())
-                (context as ChallengeView).getPlayerInfo(request)
+                context.getPlayerInfo(request)
             }
 
             if (expandedPlayer == holder.layoutPosition) {
                 holder.view.checkTextView.visibility = View.VISIBLE
             } else {
                 holder.view.checkTextView.visibility = View.INVISIBLE
+            }
+
+            if(expandedPlayer == -1) {
+                context.removePlayerDetailedInfo()
+                context.sendChallengeButton.isEnabled = false
             }
         }
 
@@ -204,5 +265,3 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
     }
 }
-
-
