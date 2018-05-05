@@ -65,6 +65,18 @@
         app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"
         app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" />
 
+    <Button
+        android:id="@+id/sendChallengeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="201dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginStart="127dp"
+        android:text="Enviar Desafio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
 
     <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager" -->
