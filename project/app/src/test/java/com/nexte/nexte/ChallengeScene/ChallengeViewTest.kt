@@ -1,6 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-import android.test.AndroidTestCase
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -21,8 +20,8 @@ class ChallengeViewTest {
     @Test
     fun successGetPlayerInfo(){
         //prepare
-        val playerRank = 3
-        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(playerRank)
+        val playerRanking = 3
+        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(playerRanking)
         val expectedResult = true
 
         //call
@@ -32,7 +31,7 @@ class ChallengeViewTest {
         assertEquals(mock?.hasBeenCalled, expectedResult)
     }
 
-    @Test fun sucessGetPlayerToChallenge(){
+    @Test fun successGetPlayerToChallenge(){
         //prepare
         val expectedResult = true
 
@@ -59,7 +58,9 @@ class ChallengeViewTest {
 
 
     private class MockChallengeViewBusinessLogic : ChallengeBusinessLogic {
+
         var hasBeenCalled = false
+
         override fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
            hasBeenCalled = true
         }
@@ -67,5 +68,10 @@ class ChallengeViewTest {
         override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
             hasBeenCalled = true
         }
+
+        override fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+            hasBeenCalled = true
+        }
+
     }
 }

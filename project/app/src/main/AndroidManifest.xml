@@ -67,5 +67,6 @@
             android:name=".CommentsScene.CommentsView"
             android:label="CommentsActivity"
             android:screenOrientation="portrait"/>
+
     </application>
 </manifest>

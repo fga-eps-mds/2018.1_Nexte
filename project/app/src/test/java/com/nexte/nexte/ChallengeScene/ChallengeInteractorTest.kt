@@ -72,4 +72,8 @@ private class MockChallengePresentationLogic: ChallengePresentationLogic{
     override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
         this.passedHere = true
     }
+
+    override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
+        this.passedHere
+    }
 }

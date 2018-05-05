@@ -19,6 +19,15 @@ interface ChallengePresentationLogic {
      * @param response contains unformatted data received from [ChallengeModel]
      */
     fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
+
+
+    /**
+     * Method responsible to format the message of the button and send it to view
+     *
+     * @param response contains unformatted data received from [ChallengeModel]
+     */
+    fun formatMessage(response : ChallengeModel.ChallengeButtonRequest.Response)
+
 }
 
 /**
@@ -75,4 +84,20 @@ class ChallengePresenter : ChallengePresentationLogic {
         viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
+    /**
+     * This method is responsible for formatting data contained on
+     * [ChallengeModel.ChallengeButtonRequest.Response] and send it to View
+     *
+     * @param response contains unformatted data received from [ChallengeWorker]
+     */
+    override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
+        val message: String
+
+        message = String.format("Desafio enviado com sucesso para o jogador %s", response.username)
+
+        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
+
+        viewChallenge?.displayMessage(viewModel)
+
+    }
 }
