@@ -133,14 +133,14 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             var layoutMatch : Int
 
             when((context as MatchView).numberOfSets.number){
-                1 -> when(position) {
+                fifthP -> when(position) {
                     zeroP -> layoutMatch = R.layout.row_match_info
                     firstP -> layoutMatch = R.layout.row_match_sets
                     secondP -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
 
-                3 -> when(position) {
+                thirdP -> when(position) {
                     zeroP -> layoutMatch = R.layout.row_match_info
                     firstP -> layoutMatch = R.layout.row_match_sets
                     secondP -> layoutMatch = R.layout.row_match_sets
@@ -148,7 +148,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                     fourthP -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
-                5 -> when(position) {
+                fourthP -> when(position) {
                     zeroP -> layoutMatch = R.layout.row_match_info
                     firstP -> layoutMatch = R.layout.row_match_sets
                     secondP -> layoutMatch = R.layout.row_match_sets
@@ -158,7 +158,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                     sixthP -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
-                0 -> when(position) {
+                zeroP -> when(position) {
                     zeroP -> layoutMatch = R.layout.row_match_info
                     firstP -> layoutMatch = R.layout.row_match_wo
                     else -> layoutMatch = R.layout.row_match_wo
@@ -209,10 +209,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         override fun getItemCount(): Int {
 
             when((context as MatchView).numberOfSets.number){
-            1 -> return 3
-            3 -> return 5
-            5 -> return 7
-            0 -> return 2
+            firstP -> return 3
+            thirdP -> return 5
+            fifthP -> return 7
+            zeroP -> return 2
             else -> return 2
         }
     }
@@ -333,5 +333,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
 
     }
+
 }
 
