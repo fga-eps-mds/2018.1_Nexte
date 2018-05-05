@@ -8,12 +8,12 @@ import org.junit.Test
 
 class MatchInteractorTest {
 
-    private var mock: MockMatchPresentationLogic? = null
+    private var mock: MMockMatchPresentationLogic? = null
     private var interactor: MatchBusinessLogic? = null
 
     @Before
     fun setUp() {
-        this.mock = MockMatchPresentationLogic()
+        this.mock = MMockMatchPresentationLogic()
         this.interactor = MatchInteractor(presenter = mock)
     }
 
@@ -38,7 +38,7 @@ class MatchInteractorTest {
 
 }
 
-private class MockMatchPresentationLogic: MatchPresentationLogic{
+private class MMockMatchPresentationLogic: MatchPresentationLogic{
 
     var passedHere = false
 
