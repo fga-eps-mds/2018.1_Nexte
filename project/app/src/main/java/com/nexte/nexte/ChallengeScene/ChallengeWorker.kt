@@ -48,7 +48,7 @@ class ChallengeWorker {
                                     completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
 
-        var selectedPlayer: ChallengeModel.PlayerRankingDatails?= null
+        var selectedPlayer: ChallengeModel.PlayerRankingDetails?= null
 
         val players = ChallengeMocker.createPlayerDetailedInfo()
 
@@ -62,4 +62,22 @@ class ChallengeWorker {
 
         completion(response)
     }
+
+    /**
+     * Function to get a user that's going to be challenged
+     *
+     * @param request Challenge Model request that contains needed information to send to server
+     * @param completion Method to call on parent class
+     */
+    fun fetchMessageForChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
+                                 completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
+
+        val user = request.userChallenged
+
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user)
+
+        completion(response)
+
+    }
+
 }

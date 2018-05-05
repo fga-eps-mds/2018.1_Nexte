@@ -59,8 +59,10 @@ class ChallengePresenterTest {
 
 
 private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
+
     var formattedPlayersToShow: List<ChallengeModel.FormattedPlayer>? = null
     var formattedPlayerToChallenge: ChallengeModel.FormattedRankingDetails?= null
+    var formattedMessageToShow: String?= null
 
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
          this.formattedPlayersToShow = viewModel.formattedPlayer
@@ -68,5 +70,9 @@ private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
 
     override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
         this.formattedPlayerToChallenge = viewModel.challengedRankingDetails
+    }
+
+    override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+        this.formattedMessageToShow = viewModel.messageForChallenger
     }
 }

@@ -19,7 +19,12 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - nexteNet
+      nexteNet:
+                ipv4_address: 172.28.1.1
 
 networks:
-  nexteNet:
+    nexteNet:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16

@@ -55,7 +55,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/reportButton"
         android:layout_width="0dp"
         android:layout_height="51dp"
         android:layout_marginBottom="12dp"
