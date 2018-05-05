@@ -67,7 +67,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * This method is responsible for calling the request for the
      * 5 players above the ranking defined in the logged player
      */
-    fun getPlayerToChallenge(){
+    fun getPlayerToChallenge() {
 
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
@@ -88,7 +88,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * item and send to the interactor
      * @param request contains the ranking of the clicked user in the recycler view
      */
-    fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
+    fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
 
         this.interactor?.requestChallengedUser(request)
     }
@@ -115,7 +115,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     /**
      * Method responsible to populate the references of the scene
      */
-    private fun setupChallengeScene(){
+    private fun setupChallengeScene() {
 
         val interactor = ChallengeInteractor()
         val presenter = ChallengePresenter()
@@ -144,8 +144,24 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             return ChallengeView.ChallengeAdapter.ViewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+        class viewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+            val pageTitles = listOf("Enviados", "Recebidos")
 
+            override fun getCount(): Int {
+                return pageTitles.size
+            }
+
+            override fun getItem(position: Int): Fragment {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun getPageTitle(position: Int): CharSequence {
+                return pageTitles.elementAt(position)
+            }
+
+        }
+
+        override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
@@ -187,53 +203,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             }
         }
     }
-//
-//    class TabPagerAdapter(fm: FragmentManager, private var tabCount: Int) :
-//            FragmentPagerAdapter(fm) {
-//
-//        override fun getItem(position: Int): Fragment? {
-//
-//            return when (position) {
-//
-//                0 -> Tab1Fragment()
-// z               1 -> Tab2Fragment()
-//                else -> null
-//            }
-//        }
-//
-//        override fun getCount(): Int {
-//
-//            return tabCount
-//        }
-//    }
-
-    class FragmentMain : Fragment {
-        class onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.main_fragment, container, false);
-        }
-    }
-
-// Pega o FragmentManager
-    FragmentManager fm = getSupportFragmentManager();
-
-// Abre uma transação e adiciona
-    FragmentTransaction ft = fm.beginTransaction();
-    ft.add(R.id.fragment_content, new MainFragment());
-    ft.commit();
-
-// Substitui um Fragment
-    FragmentTransaction ft = fm.beginTransaction();
-    ft.replace(R.id.fragment_content, new MainFragment());
-    ft.commit();
-
-// Remove um Fragment
-    Fragment fragment = fm.findFragmentById(R.id.fragment_content);
-    FragmentTransaction ft = fm.beginTransaction();
-    ft.remove(fragment);
-    ft.commit();
-
-
-
 }
 
 
