@@ -180,7 +180,17 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         presenter.viewChallenge = view
     }
 
-    class viewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    class TabFragment : Fragment() {
+        fun getInstance(position: Int) : TabFragment {
+            val bundle = Bundle()
+            val tabFragment = TabFragment()
+            bundle.putInt("position", position)
+            tabFragment.arguments = bundle
+            return tabFragment
+        }
+    }
+
+    class ViewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
         private val pageTitles = listOf("Enviados", "Recebidos")
 
         override fun getCount(): Int {
