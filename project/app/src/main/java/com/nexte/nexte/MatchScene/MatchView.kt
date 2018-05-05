@@ -12,6 +12,13 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
+import kotlinx.android.synthetic.main.row_match_time.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDate.now
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 interface MatchDisplayLogic {
@@ -24,6 +31,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     var interactor: MatchInteractor? = null
     var matchViewAdapter: MatchDataAdapter? = null
+    var numberOfSets = MatchModel.SetsNumber.One
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -33,7 +41,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         this.setUpMatchScene()
 
         val empty = MatchModel.FormattedMatchData("", 1,
-                                                  "", 1, MatchModel.SetsNumber.WO)
+                                                  "", 1)
 
         this.matchViewAdapter = MatchDataAdapter(empty,this)
         matchRecyclerView.adapter = this.matchViewAdapter
@@ -45,7 +53,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         interactor?.getInfoMatches(request)
 
         sendButton.isEnabled = false
-
 
     }
 
@@ -63,6 +70,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     }
 
+    private fun updateSetsNumber (setsNumber: MatchModel.SetsNumber) {
+        numberOfSets = setsNumber
+        matchViewAdapter?.notifyDataSetChanged()
+
+    }
 
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
 
@@ -77,12 +89,12 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             var layoutMatch : Int
 
-            when(matchInfo.setsNumber.number){
+            when((context as MatchView).numberOfSets.number){
                 1 -> when(position) {
                     0 -> layoutMatch = R.layout.row_match_info
                     1 -> layoutMatch = R.layout.row_match_sets
                     2 -> layoutMatch = R.layout.row_match_time
-                    else -> layoutMatch = R.layout.row_match_info
+                    else -> layoutMatch = R.layout.row_match_wo
                 }
 
                 3 -> when(position) {
@@ -91,7 +103,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                     2 -> layoutMatch = R.layout.row_match_sets
                     3 -> layoutMatch = R.layout.row_match_sets
                     4 -> layoutMatch = R.layout.row_match_time
-                    else -> layoutMatch = R.layout.row_match_info
+                    else -> layoutMatch = R.layout.row_match_wo
                 }
                 5 -> when(position) {
                     0 -> layoutMatch = R.layout.row_match_info
@@ -101,19 +113,17 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                     4 -> layoutMatch = R.layout.row_match_sets
                     5 -> layoutMatch = R.layout.row_match_sets
                     6 -> layoutMatch = R.layout.row_match_time
-                    else -> layoutMatch = R.layout.row_match_info
+                    else -> layoutMatch = R.layout.row_match_wo
                 }
                 0 -> when(position) {
                     0 -> layoutMatch = R.layout.row_match_info
-                    else -> layoutMatch = R.layout.row_match_info
+                    1 -> layoutMatch = R.layout.row_match_wo
+                    else -> layoutMatch = R.layout.row_match_wo
                 }
 
-                else -> layoutMatch = R.layout.row_match_info
+                else -> layoutMatch = R.layout.row_match_wo
 
             }
-
-
-
 
             return layoutMatch
         }
@@ -130,9 +140,13 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                 val view = LayoutInflater.from(context).inflate(R.layout.row_match_sets, parent,false)
                 holder = MatchView.MatchDataAdapter.SetsViewHolder(view)
             }
-            else  { //viewType == R.layout.row_match_time
+            else if(viewType == R.layout.row_match_time) {
                 val view = LayoutInflater.from(context).inflate(R.layout.row_match_time, parent,false)
                 holder = MatchView.MatchDataAdapter.TimeViewHolder(view)
+            }
+            else  { //viewType == R.layout.row_match_wo
+                val view = LayoutInflater.from(context).inflate(R.layout.row_match_wo, parent,false)
+                holder = MatchView.MatchDataAdapter.WOViewHolder(view)
             }
 
             return holder
@@ -140,12 +154,12 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
         override fun getItemCount(): Int {
 
-            when(matchInfo.setsNumber.number){
+            when((context as MatchView).numberOfSets.number){
             1 -> return 3
             3 -> return 5
             5 -> return 7
-            0 -> return 1
-            else -> return 1
+            0 -> return 2
+            else -> return 2
         }
     }
 
@@ -159,7 +173,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             if(holder is InfoViewHolder) {
 
-                holder.infoBindView(matchInfo)
+                holder.infoBindView(matchInfo, context)
 
             }
 
@@ -172,17 +186,36 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
                 holder.timeBindView()
             }
+
+            if(holder is WOViewHolder) {
+                holder.WOBindView()
+            }
         }
 
         class InfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun infoBindView(matchInfo: MatchModel.FormattedMatchData) {
-                itemView.challengedName.text
-                itemView.challengerName.text
+            fun infoBindView(matchInfo: MatchModel.FormattedMatchData, context: Context) {
+
+                itemView.challengedName.text = matchInfo.challengedName
+                itemView.challengerName.text = matchInfo.challengerName
                 itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
 
+                itemView.buttonOne.setOnClickListener {
+                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.One)
+                }
+                itemView.buttonThree.setOnClickListener {
+                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.Three)
+                }
+
+                itemView.buttonFive.setOnClickListener {
+                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.Five)
+                }
+
+                itemView.buttonWO.setOnClickListener {
+                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.WO)
+                }
             }
 
         }
@@ -197,6 +230,16 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         class TimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun timeBindView() {
+                val dateToShow = SimpleDateFormat("ccc, dd 'of' LLL")
+                val time = dateToShow.format(Date())
+
+                itemView.dateText.setText(time)
+            }
+        }
+
+        class WOViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            fun WOBindView() {
 
             }
         }

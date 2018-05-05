@@ -23,14 +23,12 @@ class MatchModel {
     // --------- Aux classes ---------
 
     class MatchData (var challenged: MatchPlayer,
-                     var challenger: MatchPlayer,
-                     var numberOfSets: SetsNumber)
+                     var challenger: MatchPlayer)
 
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
-                              var challengerPhoto: Int,
-                              var setsNumber: SetsNumber)
+                              var challengerPhoto: Int)
 
     enum class SetsNumber (val number: Int) {
         One(1),
