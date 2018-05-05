@@ -210,10 +210,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             var choice: Int
 
             when((context as MatchView).numberOfSets.number){
-            firstP -> choice = 3
-            thirdP -> choice = 5
-            fifthP -> choice = 5
-            zeroP -> choice = 2
+            1 -> choice = 3
+            3 -> choice = 5
+            5 -> choice = 5
+            0 -> choice = 2
             else -> choice = 2
         }
             return choice
