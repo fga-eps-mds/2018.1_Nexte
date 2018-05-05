@@ -130,37 +130,37 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         override fun getItemViewType(position: Int): Int {
 
-            val layoutMatch : Int
+            var layoutMatch : Int
 
             when((context as MatchView).numberOfSets.number){
                 1 -> when(position) {
-                    0 -> layoutMatch = R.layout.row_match_info
-                    1 -> layoutMatch = R.layout.row_match_sets
-                    2 -> layoutMatch = R.layout.row_match_time
+                    zeroP -> layoutMatch = R.layout.row_match_info
+                    firstP -> layoutMatch = R.layout.row_match_sets
+                    secondP -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
 
                 3 -> when(position) {
-                    0 -> layoutMatch = R.layout.row_match_info
-                    1 -> layoutMatch = R.layout.row_match_sets
-                    2 -> layoutMatch = R.layout.row_match_sets
-                    3 -> layoutMatch = R.layout.row_match_sets
-                    4 -> layoutMatch = R.layout.row_match_time
+                    zeroP -> layoutMatch = R.layout.row_match_info
+                    firstP -> layoutMatch = R.layout.row_match_sets
+                    secondP -> layoutMatch = R.layout.row_match_sets
+                    thirdP -> layoutMatch = R.layout.row_match_sets
+                    fourthP -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
                 5 -> when(position) {
-                    0 -> layoutMatch = R.layout.row_match_info
-                    1 -> layoutMatch = R.layout.row_match_sets
-                    2 -> layoutMatch = R.layout.row_match_sets
-                    3 -> layoutMatch = R.layout.row_match_sets
-                    4 -> layoutMatch = R.layout.row_match_sets
-                    5 -> layoutMatch = R.layout.row_match_sets
-                    6 -> layoutMatch = R.layout.row_match_time
+                    zeroP -> layoutMatch = R.layout.row_match_info
+                    firstP -> layoutMatch = R.layout.row_match_sets
+                    secondP -> layoutMatch = R.layout.row_match_sets
+                    thirdP -> layoutMatch = R.layout.row_match_sets
+                    fourthP -> layoutMatch = R.layout.row_match_sets
+                    fifthP -> layoutMatch = R.layout.row_match_sets
+                    sixthP -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
                 0 -> when(position) {
-                    0 -> layoutMatch = R.layout.row_match_info
-                    1 -> layoutMatch = R.layout.row_match_wo
+                    zeroP -> layoutMatch = R.layout.row_match_info
+                    firstP -> layoutMatch = R.layout.row_match_wo
                     else -> layoutMatch = R.layout.row_match_wo
                 }
 
@@ -321,4 +321,17 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
         }
     }
+    companion object{
+
+        const val zeroP = 0
+        const val firstP = 1
+        const val secondP = 2
+        const val thirdP = 3
+        const val fourthP = 4
+        const val fifthP = 5
+        const val sixthP = 6
+
+
+    }
 }
+
