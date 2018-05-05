@@ -123,6 +123,12 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.expandedWins.text = currentPlayer.wins
     }
 
+    /**
+     * Method responsible for showing the a alert button with a message about the
+     * challenge sended
+     *
+     * @param viewModel contains the player data already formatted by [ChallengePresenter]
+     */
     override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
 
         val builder = AlertDialog.Builder(this)

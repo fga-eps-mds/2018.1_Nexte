@@ -84,7 +84,6 @@ class ChallengePresenter : ChallengePresentationLogic {
         viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
-
     /**
      * This method is responsible for formatting data contained on
      * [ChallengeModel.ChallengeButtonRequest.Response] and send it to View
