@@ -44,6 +44,13 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         likesListRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setUpLikeListScene()
 
+        this.createFetchDataRequest()
+    }
+
+    /**
+     * Method responsible for creating the fetch data to list request and passing it to the interactor
+     */
+    fun createFetchDataRequest(){
         val request = LikeListModel.Request("exampleString")
         interactor?.fetchDataToList(request)
     }
@@ -51,7 +58,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     /**
      * Method responsible to setup all the references of this scene
      */
-    private fun setUpLikeListScene() {
+    fun setUpLikeListScene() {
 
         val view = this
         val interactor = LikeListInteractor()

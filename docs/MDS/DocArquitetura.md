@@ -21,6 +21,8 @@
 | 24/03/2018| 1.0.1| Correção do tópico 3.2 (Restrições de arquitetura). | Gabriel Albino, Letícia Meneses, Lorrany Freire |
 | 19/04/2018| 1.1| Adição dos novos diagramas de classe. | Gabriel Albino, Alexandre Miguel |
 | 27/04/2018| 1.1.1| Adição do novo diagrama de classe da Comments. | Alexandre Miguel |
+| 01/05/2018| 1.1.2| Adição do novo diagrama de classe da Comments. | Gabriel Albino |
+
 
 ### Índice Analítico
 
@@ -148,7 +150,7 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ![Diagrama de classes da showProfile](https://i.imgur.com/OCn6Gh3.jpg)
 
-![Diagrama de classes da comments](https://i.imgur.com/xaFEtDC.jpg)
+![Diagrama de classes da comments](https://i.imgur.com/YiVslho.jpg)
 
 ![Diagrama de classes do feed](https://i.imgur.com/z6icAhU.jpg)
 

@@ -11,7 +11,9 @@ interface CommentsPresentationLogic {
      *
      * @param response contains unformatted data received from [CommentsModel]
      */
-    fun presentComment(response: CommentsModel.Response)
+    fun presentComment(response: CommentsModel.GetCommentsRequest.Response)
+    fun presentNewComment (response: CommentsModel.PublishCommentRequest.Response)
+    fun presentComplaint (response: CommentsModel.ComplaintRequest.Response)
 }
 
 /**
@@ -24,12 +26,51 @@ class CommentsPresenter : CommentsPresentationLogic {
 
     var viewController: CommentsDisplayLogic? = null
 
-    override fun presentComment(response: CommentsModel.Response) {
+    override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
 
-        val viewModel = CommentsModel.ViewModel(formatComment(response.comments))
+        val viewModel = CommentsModel.GetCommentsRequest.ViewModel(formatComment(response.comments))
         viewController?.displayComments(viewModel)
     }
 
+    /**
+     * Function that formatted the new comment wrote by user to send to View
+     * @param response
+     */
+
+    override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+
+        val newComment = response.newComment
+
+        val formatted = CommentsModel.CommentFormatted(
+                newComment.comment,
+                newComment.date.toString(),
+                newComment.author.name,
+                newComment.author.photo
+        )
+
+        val viewModel = CommentsModel.PublishCommentRequest.ViewModel(formatted)
+
+        viewController?.displayPublishedComment(viewModel)
+    }
+
+    /**
+     * Function that formatted the alert message to send to View and define the message in case
+     * of success ou error.
+     * @param response
+     */
+    override fun presentComplaint(response: CommentsModel.ComplaintRequest.Response) {
+        val message: String
+
+        if (response.serverResponse == 200) {
+            message = "Denúncia efetuada com sucesso"
+        }
+        else {
+            message = "Erro ao conectar com o servidor"
+        }
+        val viewModel = CommentsModel.ComplaintRequest.ViewModel(message)
+
+        viewController?.displayComplaintMessage(viewModel)
+    }
     /**
      * Function that converts the MutableList Comment unformatted to
      * MutableList CommentFormatted.
