@@ -25,8 +25,6 @@ class MatchWorkerTest {
         //asserts
             assertEquals("Letícia", response.match.challenged.name)
             assertEquals("Alexandre Miguel", response.match.challenger.name)
-            assertEquals( MatchModel.SetsNumber.One, response.match.numberOfSets )
-
         })
 
     }

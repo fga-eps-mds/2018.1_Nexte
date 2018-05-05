@@ -31,8 +31,7 @@ class MatchModelTest {
         //prepare
         var challengerResponse = MatchModel.MatchPlayer("Fiona", R.mipmap.ic_launcher)
         var challengedResponse = MatchModel.MatchPlayer("Marquinhos", R.mipmap.ic_launcher)
-        var setsResponse = MatchModel.SetsNumber.One
-        var matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse, setsResponse)
+        var matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse)
         //call
         var matchTest = MatchModel.InitScene.Response(matchDataResponse)
 
@@ -41,7 +40,6 @@ class MatchModelTest {
         assertEquals(challengedResponse.photo, matchTest.match.challenged.photo)
         assertEquals(challengerResponse.name, matchTest.match.challenger.name)
         assertEquals(challengerResponse.photo, matchTest.match.challenger.photo)
-        assertEquals(setsResponse.number, matchTest.match.numberOfSets.number)
     }
 
     @Test
@@ -52,13 +50,13 @@ class MatchModelTest {
         var enumSet = MatchModel.SetsNumber.Three
 
         //call
-        var matchData = MatchModel.MatchData(challenger = challenger, challenged = challenged, numberOfSets = enumSet)
+        var matchData = MatchModel.MatchData(challenger = challenger, challenged = challenged)
 
         //asserts
 
         assertEquals(challenger, matchData.challenger)
         assertEquals(challenged, matchData.challenged)
-        assertEquals(enumSet, matchData.numberOfSets)
+
     }
 
     @Test
@@ -72,8 +70,7 @@ class MatchModelTest {
 
         //call
         val formattedMatchData = MatchModel.FormattedMatchData(challengerName = challengerName, challengerPhoto = challengerPhoto,
-                                                                challengedName = challengedName, challengedPhoto = challengedPhoto,
-                                                                setsNumber = numberSet)
+                                                                challengedName = challengedName, challengedPhoto = challengedPhoto)
 
         //asserts
         assertEquals(challengerName,formattedMatchData.challengerName)

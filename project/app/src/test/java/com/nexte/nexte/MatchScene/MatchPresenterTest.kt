@@ -21,9 +21,9 @@ class MatchPresenterTest {
     @Test
     fun testPresentMatch() {
         //prepare
-        val testFormattedMatchData = MatchModel.FormattedMatchData("Lele", 1, "Ale", 2, MatchModel.SetsNumber.One)
+        val testFormattedMatchData = MatchModel.FormattedMatchData("Lele", 1, "Ale", 2)
         val response = MatchModel.InitScene.Response(match = MatchModel.MatchData(challenged = MatchModel.MatchPlayer("Lele", 1),
-                                                     challenger = MatchModel.MatchPlayer("Ale", 2), numberOfSets = MatchModel.SetsNumber.One ))
+                                                     challenger = MatchModel.MatchPlayer("Ale", 2)))
 
         //call
         this.presenter?.presentMatch(response = response)
