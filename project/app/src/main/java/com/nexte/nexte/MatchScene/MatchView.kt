@@ -1,7 +1,6 @@
 package com.nexte.nexte.MatchScene
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -14,10 +13,6 @@ import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDate.now
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -86,17 +81,15 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
      */
     private fun setUpMatchScene() {
 
-        var interactor = MatchInteractor()
-        var presenter = MatchPresenter()
-        var view = this
+        val interactor = MatchInteractor()
+        val presenter = MatchPresenter()
+        val view = this
 
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view
 
-
     }
-
 
     /**
      * Function to update the list shown on activity
@@ -166,7 +159,9 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                     else -> layoutMatch = R.layout.row_match_wo
                 }
                 0 -> when(position) {
-                    0 -> layoutMatch = R.layout.row_match_info
+                    0 -> {
+                        layoutMatch = R.layout.row_match_info
+                    }
                     1 -> layoutMatch = R.layout.row_match_wo
                     else -> layoutMatch = R.layout.row_match_wo
                 }
@@ -187,7 +182,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-            var holder: RecyclerView.ViewHolder
+            val holder: RecyclerView.ViewHolder
 
             if(viewType == R.layout.row_match_info) {
                 val view = LayoutInflater.from(context).inflate(R.layout.row_match_info, parent,false)
@@ -252,7 +247,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
 
             if(holder is WOViewHolder) {
-                holder.WOBindView()
+                holder.wOBindView()
             }
         }
 
@@ -323,14 +318,9 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         class WOViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun WOBindView() {
+            fun wOBindView() {
 
             }
         }
-
-
     }
-
-
-
 }
