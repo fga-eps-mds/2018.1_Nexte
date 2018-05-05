@@ -49,7 +49,9 @@ class ChallengeViewTest {
 
 
     private class MockChallengeViewBusinessLogic : ChallengeBusinessLogic {
+
         var hasBeenCalled = false
+
         override fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
            hasBeenCalled = true
         }
@@ -57,6 +59,11 @@ class ChallengeViewTest {
         override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
             hasBeenCalled = true
         }
+
+        override fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+            hasBeenCalled = true
+        }
+
     }
 
 }
