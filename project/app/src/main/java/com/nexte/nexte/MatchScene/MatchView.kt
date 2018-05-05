@@ -54,7 +54,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         this.setUpMatchScene()
 
         val empty = MatchModel.FormattedMatchData("", 1,
-                                                  "", 1)
+                "", 1)
 
         this.matchViewAdapter = MatchDataAdapter(empty,this)
         matchRecyclerView.adapter = this.matchViewAdapter
@@ -81,15 +81,17 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
      */
     private fun setUpMatchScene() {
 
-        val interactor = MatchInteractor()
-        val presenter = MatchPresenter()
-        val view = this
+        var interactor = MatchInteractor()
+        var presenter = MatchPresenter()
+        var view = this
 
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view
 
+
     }
+
 
     /**
      * Function to update the list shown on activity
@@ -133,34 +135,34 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             var layoutMatch : Int
 
             when((context as MatchView).numberOfSets.number){
-                fifthP -> when(position) {
-                    zeroP -> layoutMatch = R.layout.row_match_info
-                    firstP -> layoutMatch = R.layout.row_match_sets
-                    secondP -> layoutMatch = R.layout.row_match_time
+                firstPosition -> when(position) {
+                    zeroPosition -> layoutMatch = R.layout.row_match_info
+                    firstPosition -> layoutMatch = R.layout.row_match_sets
+                    secondPosition -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
 
-                thirdP -> when(position) {
-                    zeroP -> layoutMatch = R.layout.row_match_info
-                    firstP -> layoutMatch = R.layout.row_match_sets
-                    secondP -> layoutMatch = R.layout.row_match_sets
-                    thirdP -> layoutMatch = R.layout.row_match_sets
-                    fourthP -> layoutMatch = R.layout.row_match_time
+                thirdPosition -> when(position) {
+                    zeroPosition -> layoutMatch = R.layout.row_match_info
+                    firstPosition -> layoutMatch = R.layout.row_match_sets
+                    secondPosition -> layoutMatch = R.layout.row_match_sets
+                    thirdPosition -> layoutMatch = R.layout.row_match_sets
+                    fourthPosition -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
-                fourthP -> when(position) {
-                    zeroP -> layoutMatch = R.layout.row_match_info
-                    firstP -> layoutMatch = R.layout.row_match_sets
-                    secondP -> layoutMatch = R.layout.row_match_sets
-                    thirdP -> layoutMatch = R.layout.row_match_sets
-                    fourthP -> layoutMatch = R.layout.row_match_sets
-                    fifthP -> layoutMatch = R.layout.row_match_sets
-                    sixthP -> layoutMatch = R.layout.row_match_time
+                fifthPosition -> when(position) {
+                    zeroPosition -> layoutMatch = R.layout.row_match_info
+                    firstPosition -> layoutMatch = R.layout.row_match_sets
+                    secondPosition -> layoutMatch = R.layout.row_match_sets
+                    thirdPosition -> layoutMatch = R.layout.row_match_sets
+                    fourthPosition -> layoutMatch = R.layout.row_match_sets
+                    fifthPosition -> layoutMatch = R.layout.row_match_sets
+                    sixthPosition -> layoutMatch = R.layout.row_match_time
                     else -> layoutMatch = R.layout.row_match_wo
                 }
-                zeroP -> when(position) {
-                    zeroP -> layoutMatch = R.layout.row_match_info
-                    firstP -> layoutMatch = R.layout.row_match_wo
+                zeroPosition -> when(position) {
+                    zeroPosition -> layoutMatch = R.layout.row_match_info
+                    firstPosition -> layoutMatch = R.layout.row_match_wo
                     else -> layoutMatch = R.layout.row_match_wo
                 }
 
@@ -180,7 +182,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-            val holder: RecyclerView.ViewHolder
+            var holder: RecyclerView.ViewHolder
 
             if(viewType == R.layout.row_match_info) {
                 val view = LayoutInflater.from(context).inflate(R.layout.row_match_info, parent,false)
@@ -200,24 +202,27 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
 
             return holder
-         }
+        }
 
         /**
          * Function that defines the size of the recycler view following the [numberOfSets]
          * on [MatchView]
          */
         override fun getItemCount(): Int {
-            var choice: Int
+
+            var itemCount = 0
 
             when((context as MatchView).numberOfSets.number){
-            1 -> choice = 3
-            3 -> choice = 5
-            5 -> choice = 5
-            0 -> choice = 2
-            else -> choice = 2
+                firstPosition -> itemCount = thirdPosition
+                thirdPosition -> itemCount = fifthPosition
+                fifthPosition -> itemCount = seventhPosition
+                zeroPosition -> itemCount = secondPosition
+                else -> itemCount = secondPosition
+            }
+
+            return itemCount
+
         }
-            return choice
-    }
 
         /**
          * Function that refresh entire RecyclerView as the information of the [matchInfo] changes
@@ -322,18 +327,21 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             }
         }
-    }
-    companion object{
-
-        const val zeroP = 0
-        const val firstP = 1
-        const val secondP = 2
-        const val thirdP = 3
-        const val fourthP = 4
-        const val fifthP = 5
-        const val sixthP = 6
 
 
     }
+
+    companion object {
+        const val zeroPosition = 0
+        const val firstPosition = 1
+        const val secondPosition = 2
+        const val thirdPosition = 3
+        const val fourthPosition = 4
+        const val fifthPosition = 5
+        const val sixthPosition = 6
+        const val seventhPosition = 7
+    }
+
+
 
 }
