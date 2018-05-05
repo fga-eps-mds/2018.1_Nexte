@@ -14,6 +14,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_challenger.*
 
 /**
  * Interface to define Display Logic to ChallengeView Class that will
@@ -72,6 +73,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
         this.getPlayerToChallenge()
+
+        viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
+
+        tabs.setupWithViewPager(viewpager)
 
         sendChallengeButton.setOnClickListener {
 
@@ -181,16 +186,37 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     class TabFragment : Fragment() {
+
+        var position = 0
+
         fun getInstance(position: Int) : TabFragment {
+
             val bundle = Bundle()
             val tabFragment = TabFragment()
+
             bundle.putInt("position", position)
             tabFragment.arguments = bundle
             return tabFragment
         }
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+
+            super.onCreate(savedInstanceState)
+            position = arguments.getInt("position")
+        }
+
+        override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+            return if(position == 0) {
+                inflater?.inflate(R.layout.activity_challenger_sent, container, false)
+            } else {
+                inflater?.inflate(R.layout.activity_challenger_received, container,  false)
+            }
+        }
     }
 
     class ViewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+
         private val pageTitles = listOf("Enviados", "Recebidos")
 
         override fun getCount(): Int {
@@ -198,7 +224,8 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
 
         override fun getItem(position: Int): Fragment {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            val tabFragment = TabFragment()
+            return tabFragment.getInstance(position)
         }
 
         override fun getPageTitle(position: Int): CharSequence {
