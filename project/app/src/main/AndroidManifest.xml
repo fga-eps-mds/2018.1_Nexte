@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nexte.nexte">
-    
+
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--android:networkSecurityConfig=”@xml/network_security_config”>-->
+
+        <!-- android:networkSecurityConfig=”@xml/network_security_config”> -->
 
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
@@ -41,7 +42,7 @@
             android:label="Login" />
         <activity
             android:name=".RankingScene.RankingView"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FeedScene.FeedView"
             android:label="@string/title_activity_feed_view"
@@ -54,19 +55,25 @@
             android:name="com.facebook.accountkit.ui.AccountKitActivity"
             android:theme="@style/AppLoginTheme"
             tools:replace="android:theme" />
-        <activity android:name=".LikeListScene.LikeListView"
+        <activity
+            android:name=".LikeListScene.LikeListView"
             android:label="LikeListView"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditProfileScene.EditProfileView"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ChallengeScene.ChallengeView"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChallengeScene.ChallengeView"></activity>
         <activity
             android:name=".CommentsScene.CommentsView"
             android:label="CommentsActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MatchScene.MatchView"
+            android:label="MatchActivity"
+            android:screenOrientation="portrait" />
     </application>
+
 </manifest>
