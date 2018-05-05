@@ -207,14 +207,16 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          * on [MatchView]
          */
         override fun getItemCount(): Int {
+            var choice: Int
 
             when((context as MatchView).numberOfSets.number){
-            firstP -> return 3
-            thirdP -> return 5
-            fifthP -> return 7
-            zeroP -> return 2
-            else -> return 2
+            firstP -> choice = 3
+            thirdP -> choice = 5
+            fifthP -> choice = 5
+            zeroP -> choice = 2
+            else -> choice = 2
         }
+            return choice
     }
 
         /**
@@ -335,4 +337,3 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
     }
 
 }
-
