@@ -63,6 +63,12 @@ class ChallengeWorker {
         completion(response)
     }
 
+    /**
+     * Function to get a user that's going to be challenged
+     *
+     * @param request Challenge Model request that contains needed information to send to server
+     * @param completion Method to call on parent class
+     */
     fun fetchMessageForChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
                                  completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
 

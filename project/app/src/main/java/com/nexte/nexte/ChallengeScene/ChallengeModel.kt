@@ -64,14 +64,30 @@ class ChallengeModel {
     }
 
     /**
-     * This class is responsible for
+     * This class is responsible for the button of sending a challenge
      */
     class ChallengeButtonRequest {
 
+        /**
+         * Request containing the user that's going to be challenged
+         *
+         * @param userChallenged is the name of the user that's going to be challenged
+         */
         class Request(var userChallenged: String)
 
+        /**
+         * Responsible for the user of the challenged
+         *
+         * @param username is the user of the challenged on the app
+         */
         class Response(var username: String)
 
+        /**
+         * Class responsible to show a confirm message informing that a challenged
+         * has been sended
+         *
+         * @param challengedRankingDetails formatted detailed info about clicked player
+         */
         class ViewModel(var messageForChallenger: String)
     }
 

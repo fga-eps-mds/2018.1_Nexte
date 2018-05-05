@@ -20,10 +20,15 @@ interface ChallengePresentationLogic {
      */
     fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
 
+
+    /**
+     * Method responsible to format the message of the button and send it to view
+     *
+     * @param response contains unformatted data received from [ChallengeModel]
+     */
     fun formatMessage(response : ChallengeModel.ChallengeButtonRequest.Response)
 
 }
-
 
 /**
 * This class will be responsible to receive a [ChallengeModel.ShowRankingPlayersRequest.Response]
@@ -79,6 +84,12 @@ class ChallengePresenter : ChallengePresentationLogic {
         viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
+    /**
+     * This method is responsible for formatting data contained on
+     * [ChallengeModel.ChallengeButtonRequest.Response] and send it to View
+     *
+     * @param response contains unformatted data received from [ChallengeWorker]
+     */
     override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
         val message: String
 
