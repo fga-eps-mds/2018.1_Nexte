@@ -18,7 +18,7 @@ interface MatchBusinessLogic {
 /**
  * This class defines how the communication between worker and presenter will happen
  *
- * Class that implements [ShowProfileModel] and is responsible for the communication
+ * Class that implements [MatchModel] and is responsible for the communication
  * between Worker and Presenter
  *
  * @property worker it's a reference for worker that will receives the request and

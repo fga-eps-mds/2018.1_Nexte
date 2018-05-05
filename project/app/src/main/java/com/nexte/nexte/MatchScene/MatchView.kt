@@ -21,11 +21,24 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
+/**
+ * Interface to define Display Logic to MatchView Class that will receive information
+ * from Presenter
+ */
 interface MatchDisplayLogic {
 
     fun displayMatch(viewModel: MatchModel.InitScene.ViewModel)
 
 }
+
+/**
+ * Class that implements [MatchID] and is responsible to control feed screen
+ *
+ * @property interactor Interactor layer for send requests, reference to [MatchInteractor]
+ * @property matchViewAdapter FeedAdapter instance for broad using on class
+ * @property numberOfSets enum class to define the number of sets, which define the presentation
+ * of recycler view
+ */
 
 class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
@@ -33,6 +46,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
     var matchViewAdapter: MatchDataAdapter? = null
     var numberOfSets = MatchModel.SetsNumber.One
 
+    /**
+     * On Create is a method that will setup this scene and call first Request for Interactor
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -47,7 +65,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         matchRecyclerView.adapter = this.matchViewAdapter
         matchRecyclerView.layoutManager = LinearLayoutManager(this)
 
-
+        /**
+         * Passing string through intent, once the label of the string to be
+         * used in this scene is a string thrown by main activity
+         */
         val prevIntent = intent.getStringExtra("identifier")
         val request = MatchModel.InitScene.Request(prevIntent)
         interactor?.getInfoMatches(request)
@@ -56,7 +77,13 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     }
 
-
+    /**
+     * Method responsible to setup all the references of this scene
+     *
+     * @param view used to define that local interactor refers to [MatchInteractor]
+     * @param presenter used to define this view as the parameter view on [MatchPresenter]
+     * @param interactor used to send requests through local interactor instance
+     */
     private fun setUpMatchScene() {
 
         var interactor = MatchInteractor()
@@ -70,21 +97,44 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     }
 
+
+    /**
+     * Function to update the list shown on activity
+     *
+     * @param setsNumber get the actual number of sets being used as reference
+     */
     private fun updateSetsNumber (setsNumber: MatchModel.SetsNumber) {
         numberOfSets = setsNumber
         matchViewAdapter?.notifyDataSetChanged()
 
     }
 
+    /**
+     * Function to get the recycle view started throuhr the object [matchViewAdapter]
+     *
+     * @param viewModel information to be displayed on activity
+     */
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
 
         matchViewAdapter?.updateMatchInfo(viewModel.matchFormatted)
     }
 
-
+    /**
+     * Class ta extends RecyclerView.Adapter, to get functionality of the entire RecyclerView
+     * implemented, and do the management of the rows displays
+     *
+     * @param matchInfo information of Data obtained as formatted classes
+     * @param context activity to display defined elements
+     */
     class MatchDataAdapter (private var matchInfo: MatchModel.FormattedMatchData,
                             private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+        /**
+         * Function to get the type of the row to be displayed
+         * on different positions of the RecyclerView
+         *
+         * @param position row position of the recycler view
+         */
         override fun getItemViewType(position: Int): Int {
 
             var layoutMatch : Int
@@ -128,6 +178,13 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             return layoutMatch
         }
 
+        /**
+         * Following the viewType obtained, defines the row to be inflated and the holder
+         * inner class to be used on defining the attributes of the view
+         *
+         * @param parent
+         * @param viewType Type of the layout to be displayed
+         */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
             var holder: RecyclerView.ViewHolder
@@ -152,6 +209,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             return holder
          }
 
+        /**
+         * Function that defines the size of the recycler view following the [numberOfSets]
+         * on [MatchView]
+         */
         override fun getItemCount(): Int {
 
             when((context as MatchView).numberOfSets.number){
@@ -163,6 +224,9 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         }
     }
 
+        /**
+         * Function that refresh entire RecyclerView as the information of the [matchInfo] changes
+         */
         fun updateMatchInfo(newMatchInfo: MatchModel.FormattedMatchData) {
 
             this.matchInfo = newMatchInfo
@@ -192,6 +256,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Class that implements the elements of the Info row
+         *
+         * @param itemView view that contains elements of the row to be altered
+         */
         class InfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun infoBindView(matchInfo: MatchModel.FormattedMatchData, context: Context) {
@@ -220,6 +289,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
         }
 
+        /**
+         * Class that implements the elements of the sets row
+         *
+         * @param itemView view that contains elements of the row to be altered
+         */
         class SetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun setsBindView() {
@@ -227,6 +301,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Class that implements the elements of the time row
+         *
+         * @param itemView view that contains elements of the row to be altered
+         */
         class TimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun timeBindView() {
@@ -237,6 +316,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Class that implements the elements of the WO row
+         *
+         * @param itemView view that contains elements of the row to be altered
+         */
         class WOViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun WOBindView() {
