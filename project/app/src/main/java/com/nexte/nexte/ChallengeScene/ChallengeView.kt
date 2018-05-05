@@ -198,6 +198,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
 
+            view.sendChallengeButton.isEnabled = true
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
@@ -221,14 +222,13 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
             if (expandedPlayer == holder.layoutPosition) {
                 holder.view.checkTextView.visibility = View.VISIBLE
-                view.sendChallengeButton.isEnabled = true
             } else {
                 holder.view.checkTextView.visibility = View.INVISIBLE
-                view.sendChallengeButton.isEnabled = false
             }
 
             if(expandedPlayer == -1) {
                 (context as ChallengeView).removePlayerDetailedInfo()
+                view.sendChallengeButton.isEnabled = false
             }
         }
 

@@ -1,11 +1,11 @@
 package com.nexte.nexte.Entities
 
+import java.util.*
 import io.realm.RealmList
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import org.junit.Assert
 
 class StoryTest {
 
@@ -14,6 +14,7 @@ class StoryTest {
 
     @Before
     fun setUp() {
+
         likes = RealmList(
                 Like("1", "1", Date()),
                 Like("2", "2", Date()),
@@ -87,51 +88,7 @@ class StoryTest {
         Assert.assertEquals("Like list isn't the same!", this.likes, story.likes)
     }
 
-    @Test
-    fun successStoryPlayerConstructorTest() {
 
-        // Prepare
-        val id = ""
-        val setResult = 1
-
-        // Call
-        val storyPlayer = StoryPlayer(id, setResult)
-
-        // Asserts
-        Assert.assertEquals("Id of player is incorrect!", id, storyPlayer.id)
-        Assert.assertEquals("Result Set is incorrect!", setResult, storyPlayer.setResult)
-    }
-
-    @Test
-    fun successStoryPlayerEmptyConstructorTest() {
-
-        // Call
-        val storyPlayer = StoryPlayer()
-
-        // Asserts
-        Assert.assertNotNull(storyPlayer)
-//        Assert.assertNull("Id of player is incorrect!", storyPlayer.id)
-//        Assert.assertNull("Result Set is incorrect!", storyPlayer.setResult)
-    }
-
-    @Test
-    fun successStoryPlayerSetMethodsTest() {
-
-        // Prepare
-        val id = "123"
-        val setResult = 1
-
-        // Call
-        val storyPlayer = StoryPlayer().apply {
-            this.id = id
-            this.setResult = setResult
-        }
-
-        // Asserts
-        Assert.assertNotNull(storyPlayer)
-        Assert.assertEquals("Id of player is incorrect!", id, storyPlayer.id)
-        Assert.assertEquals("Result Set is incorrect!", setResult, storyPlayer.setResult)
-    }
 
     @After
     fun tearDown() {
