@@ -187,23 +187,53 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             }
         }
     }
+//
+//    class TabPagerAdapter(fm: FragmentManager, private var tabCount: Int) :
+//            FragmentPagerAdapter(fm) {
+//
+//        override fun getItem(position: Int): Fragment? {
+//
+//            return when (position) {
+//
+//                0 -> Tab1Fragment()
+// z               1 -> Tab2Fragment()
+//                else -> null
+//            }
+//        }
+//
+//        override fun getCount(): Int {
+//
+//            return tabCount
+//        }
+//    }
 
-    class TabPagerAdapter(fm: FragmentManager, private var tabCount: Int) :
-            FragmentPagerAdapter(fm) {
-
-        override fun getItem(position: Int): Fragment? {
-
-            return when (position) {
-
-                0 -> Tab1Fragment()
-                1 -> Tab2Fragment()
-                else -> null
-            }
-        }
-
-        override fun getCount(): Int {
-
-            return tabCount
+    class FragmentMain : Fragment {
+        class onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.main_fragment, container, false);
         }
     }
+
+// Pega o FragmentManager
+    FragmentManager fm = getSupportFragmentManager();
+
+// Abre uma transação e adiciona
+    FragmentTransaction ft = fm.beginTransaction();
+    ft.add(R.id.fragment_content, new MainFragment());
+    ft.commit();
+
+// Substitui um Fragment
+    FragmentTransaction ft = fm.beginTransaction();
+    ft.replace(R.id.fragment_content, new MainFragment());
+    ft.commit();
+
+// Remove um Fragment
+    Fragment fragment = fm.findFragmentById(R.id.fragment_content);
+    FragmentTransaction ft = fm.beginTransaction();
+    ft.remove(fragment);
+    ft.commit();
+
+
+
 }
+
+
