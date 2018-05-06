@@ -160,3 +160,10 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+dependencies {
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
+}
