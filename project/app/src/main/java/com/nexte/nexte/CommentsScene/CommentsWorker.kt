@@ -60,6 +60,10 @@ class CommentsWorker {
         completion(response)
     }
 
+    fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request,
+                            completion: (CommentsModel.DeleteCommentRequest.Response) -> Unit){
+
+    }
 
     /**
      * Function to create fictional comments to use in fictional app mode

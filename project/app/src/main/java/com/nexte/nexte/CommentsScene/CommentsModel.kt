@@ -88,6 +88,15 @@ class CommentsModel {
         class ViewModel(var newCommentFormatted: CommentFormatted)
 
     }
+
+    class DeleteCommentRequest {
+
+        class Request (var deleteCommentID: String)
+
+        class Response (var positionComment: Int)
+
+        class ViewModel (var positionComment: Int)
+    }
     // ---------- Aux classes ----------
     /**
      * Class with information about the player who will be displayed in the comments list

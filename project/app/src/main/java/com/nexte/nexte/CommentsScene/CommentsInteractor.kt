@@ -1,5 +1,7 @@
 package com.nexte.nexte.CommentsScene
 
+import com.github.kittinunf.fuel.core.interceptors.loggingResponseInterceptor
+
 /**
  * Interface to define Business Logic to Comments Class
  * that will used to call this Interactor on other class layer
@@ -28,6 +30,8 @@ interface CommentsBusinessLogic {
      * @param request Request model from ComplaintRequest that contains data to pass for Worker.
      */
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request)
+
+    fun deleteComment (request: CommentsModel.DeleteCommentRequest.Request)
 }
 
 /**
@@ -56,6 +60,12 @@ class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : Co
     override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
         worker.sendComplaint(request) { response ->
             this.presenter?.presentComplaint(response)
+        }
+    }
+
+    override fun deleteComment(request: CommentsModel.DeleteCommentRequest.Request) {
+        worker.getToDeleteComment(request) { response ->
+            this.presenter?.presentPositionToDelete(response)
         }
     }
 }
