@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
+import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger.*
 
 /**
@@ -54,6 +56,15 @@ interface ChallengeDisplayLogic {
  */
 class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
+    var recyclerView: RecyclerView?= null
+    var sendChallengeButton: Button?= null
+    var expandedLosses: TextView?= null
+    var expandedWins: TextView?= null
+    var expandedRankingTextView: TextView?= null
+    var expandedName: TextView?= null
+
+
+
     var interactor: ChallengeBusinessLogic? = null
     private val context: Context? = null
 
@@ -76,8 +87,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.setupChallengeScene()
         viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
         tabs.setupWithViewPager(viewpager)
-
-        this.getPlayerToChallenge()
     }
 
     /**
@@ -85,7 +94,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * 5 players above the ranking defined in the logged player
      */
     fun getPlayerToChallenge() {
-
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
     }
@@ -97,9 +105,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
-
-        ((this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0) as TabFragment?)?.setRecyclerViewAdapter(ChallengeAdapter(viewModel.formattedPlayer, this))
-
+        this.recyclerView?.adapter = ChallengeAdapter(viewModel.formattedPlayer, this)
        }
 
     /**
@@ -122,14 +128,14 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         val currentPlayer = viewModel.challengedRankingDetails
 
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedLosses?.visibility = View.VISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedLosses?.text = currentPlayer.loses
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedName?.visibility = View.VISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedName?.text = currentPlayer.name
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedRankingTextView?.visibility = View.VISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedRankingTextView?.text = currentPlayer.rankingPosition
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedWins?.visibility = View.VISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedWins?.text = currentPlayer.wins
+        this.expandedLosses?.visibility = View.VISIBLE
+        this.expandedLosses?.text = currentPlayer.loses
+        this.expandedName?.visibility = View.VISIBLE
+        this.expandedName?.text = currentPlayer.name
+        this.expandedRankingTextView?.visibility = View.VISIBLE
+        this.expandedRankingTextView?.text = currentPlayer.rankingPosition
+        this.expandedWins?.visibility = View.VISIBLE
+        this.expandedWins?.text = currentPlayer.wins
     }
 
     /**
@@ -157,14 +163,14 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      */
     fun removePlayerDetailedInfo() {
 
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedLosses?.visibility = View.INVISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedLosses?.text = ""
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedName?.visibility = View.INVISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedName?.text = ""
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedRankingTextView?.visibility = View.INVISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedRankingTextView?.text = ""
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedWins?.visibility = View.INVISIBLE
-        (this.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)?.expandedWins?.text = ""
+        this.expandedLosses?.visibility = View.INVISIBLE
+        this.expandedLosses?.text = ""
+        this.expandedName?.visibility = View.INVISIBLE
+        this.expandedName?.text = ""
+        this.expandedRankingTextView?.visibility = View.INVISIBLE
+        this.expandedRankingTextView?.text = ""
+        this.expandedWins?.visibility = View.INVISIBLE
+        this.expandedWins?.text = ""
     }
 
     /**
@@ -184,7 +190,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     class TabFragment : Fragment() {
 
         var position = 0
-        var recyclerView: RecyclerView?= null
+        private var recyclerView: RecyclerView?= null
         var sendChallengeButton: Button?= null
 
         fun getInstance(position: Int) : TabFragment {
@@ -208,8 +214,14 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             val view: View?
             if(position == 0) {
                 view = inflater?.inflate(R.layout.activity_challenger_sent, container, false)
-                recyclerView = view?.findViewById(R.id.recyclerView)
-                sendChallengeButton = view?.findViewById(R.id.sendChallengeButton)
+                recyclerView = view?.findViewById(R.id.challengeRecyclerView)
+                (context as ChallengeView).recyclerView = view?.findViewById(R.id.challengeRecyclerView)
+                this.sendChallengeButton = view?.findViewById(R.id.sendChallengeButton)
+                (context as ChallengeView).sendChallengeButton = this.sendChallengeButton
+                (context as ChallengeView).expandedLosses = view?.findViewById(R.id.expandedLosses)
+                (context as ChallengeView).expandedName = view?.findViewById(R.id.expandedName)
+                (context as ChallengeView).expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
+                (context as ChallengeView).expandedWins = view?.findViewById(R.id.expandedWins)
             } else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
             }
@@ -222,12 +234,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
                 (context as ChallengeView).interactor?.requestMessageForChallenger(request)
             }
+            val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
+            (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
         }
 
-        fun setRecyclerViewAdapter(adapter: ChallengeAdapter) {
-            Log.d("adapterset", "to na adapterset")
-            recyclerView?.adapter = adapter
-        }
     }
 
     class ViewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
@@ -259,7 +269,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                                    private val context: Context) :
             RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
 
-        var expandedPlayer = -1
+        private var expandedPlayer = -1
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeView.ChallengeAdapter.ViewHolder {
 
@@ -269,8 +279,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
 
-            ((context as ChallengeView).viewpager.adapter as ViewPagerAdapter?)?.getItem(0)
-                    ?.sendChallengeButton?.isEnabled = true
+            (context as ChallengeView).sendChallengeButton?.isEnabled = true
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
@@ -300,8 +309,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
             if(expandedPlayer == -1) {
                 context.removePlayerDetailedInfo()
-                (context.viewpager.adapter as ViewPagerAdapter?)?.getItem(0)
-                        ?.sendChallengeButton?.isEnabled = false
+                context.sendChallengeButton?.isEnabled = false
             }
         }
 
