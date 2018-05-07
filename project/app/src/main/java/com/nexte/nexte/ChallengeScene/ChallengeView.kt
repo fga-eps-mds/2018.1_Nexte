@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_challenger.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
 
+
 /**
  * Interface to define Display Logic to ChallengeView Class that will
  * receive information from Presenter
@@ -38,6 +39,13 @@ interface ChallengeDisplayLogic {
      * @param viewModel contains information about the message to be shown
      */
     fun displayMessage (viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel)
+
+    /**
+     * Method to display message saying that there are no players avaliable
+     *
+     * @param messageText contains message informing that there are no players avaliable
+     */
+    fun displayNoPlayersMessage(messageText: String)
 }
 
 /**
@@ -146,6 +154,21 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         val alert = builder.create()
         alert.show()
+    }
+
+    /**
+     * Method to display message informing that there are no players avaliable to set a match
+     */
+    override fun displayNoPlayersMessage(messageText: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(true)
+        builder.setMessage(messageText)
+        
+        builder.setPositiveButton("ok", { dialogInterface, i ->
+            dialogInterface.cancel()
+        })
+        val noPlayersMessage = builder.create()
+        noPlayersMessage.show()
     }
 
     /**

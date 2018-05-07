@@ -51,7 +51,13 @@ class ChallengeInteractor : ChallengeBusinessLogic {
     override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
 
         worker.fetchPlayersToChallenge(request) { response ->
-            this.presenter?.formatPlayersToChallenge(response)
+            if(response.usersAbove.isNotEmpty()) {
+                this.presenter?.formatPlayersToChallenge(response)
+            }
+            else {
+                this.presenter?.formatNoPlayersMessage()
+            }
+
         }
     }
 
