@@ -59,9 +59,9 @@ class ShowProfileViewTest {
         assertNotNull(yVals)
         assertEquals(6, yVals?.size)
         assertEquals(yVals?.get(0)!!.x, 0f)
-        assertEquals(yVals?.get(0)!!.y, 2f)
-        assertEquals(yVals?.get(5)!!.x, 5f)
-        assertEquals(yVals?.get(5)!!.y, 5f)
+        assertEquals(yVals.get(0).y, 2f)
+        assertEquals(yVals.get(5).x, 5f)
+        assertEquals(yVals.get(5).y, 5f)
 
     }
 
