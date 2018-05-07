@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="com.nexte.nexte.ChallengeScene.ChallengeView">
 
 
@@ -27,6 +28,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="@string/r"
+        android:textColor="@android:color/background_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
@@ -38,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/vitorias_x"
+        android:textColor="@android:color/background_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
@@ -49,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/derrotas_x"
+        android:textColor="@android:color/background_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
@@ -60,6 +64,7 @@
         android:layout_height="21dp"
         android:layout_marginStart="8dp"
         android:text="@string/nome"
+        android:textColor="@android:color/background_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"
@@ -75,6 +80,22 @@
         android:text="Enviar Desafio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/noPlayersText"
+        android:layout_width="233dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="192dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginStart="164dp"
+        android:text="Sem Jogadores Disponíveis."
+        android:textColor="@color/hint_color_pattern"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/sendChallengeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

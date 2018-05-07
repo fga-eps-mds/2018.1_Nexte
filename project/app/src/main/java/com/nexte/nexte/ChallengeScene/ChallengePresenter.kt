@@ -111,7 +111,7 @@ class ChallengePresenter : ChallengePresentationLogic {
      * This method is responsible for setting the message
      */
     override fun formatNoPlayersMessage() {
-        val message = "Sem jogadores disponíveis no momento.\n Tente novamente mais tarde."
+        val message = "Sem jogadores disponíveis.\nTente novamente mais tarde."
 
         viewChallenge?.displayNoPlayersMessage(message)
     }
