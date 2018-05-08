@@ -98,6 +98,27 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         return yVals
     }
 
+    fun setXAxisValuesRanking(): ArrayList<Entry> {
+
+        val xValsRanking = ArrayList<Entry>()
+
+        return xValsRanking
+    }
+
+    fun setYAxisValuesRanking(): ArrayList<Entry> {
+
+        val yValsRanking = ArrayList<Entry>()
+
+        yValsRanking.add(Entry(0f, 3f))
+        yValsRanking.add(Entry(1f, 2f))
+        yValsRanking.add(Entry(2f, 5f))
+        yValsRanking.add(Entry(3f, 2f))
+        yValsRanking.add(Entry(4f, 1f))
+        yValsRanking.add(Entry(5f, 4f))
+
+        return yValsRanking
+    }
+
     /**
      * Method responsible to create the graph, using the function setXAxisValues and
      * SetYAxisValues.
@@ -145,21 +166,21 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     fun createRankingGraph() {
 
-        val xAxis = rankingChart.xAxis
-        val xAxes = setXAxisValues()
-        val yAxes = setYAxisValues()
+        val xAxisRanking = rankingChart.xAxis
+        val xAxesRanking = setXAxisValuesRanking()
+        val yAxesRanking = setYAxisValuesRanking()
         val dataSetsRanking = ArrayList<ILineDataSet>()
 
-        val line = LineDataSet(yAxes, "Vitoria")
-        line.fillAlpha = houndredLine
-        line.color = Color.BLUE
-        line.axisDependency =YAxis.AxisDependency.LEFT
-        dataSetsRanking.add(line)
+        val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking")
+        lineRanking.fillAlpha = houndredLine
+        lineRanking.color = Color.RED
+        lineRanking.axisDependency =YAxis.AxisDependency.LEFT
+        dataSetsRanking.add(lineRanking)
 
         val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
-        xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
-        xAxis.granularity = 1f
-        xAxis.textColor = Color.WHITE
+        xAxisRanking.valueFormatter = IndexAxisValueFormatter(lastMonths)
+        xAxisRanking.granularity = 1f
+        xAxisRanking.textColor = Color.WHITE
 
         val points = LineData(dataSetsRanking)
         points.setValueTextColor(Color.WHITE)
