@@ -1,6 +1,6 @@
 package com.nexte.nexte.Entities
 
-import com.nexte.nexte.Entities.User.UserCategory
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before

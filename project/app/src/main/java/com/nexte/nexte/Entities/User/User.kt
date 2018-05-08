@@ -1,41 +1,41 @@
 package com.nexte.nexte.Entities.User
 
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
+import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import java.util.*
 
 // ChallengeSended and ChallengeReceived have Challenge ID if are done or nil if don't
-open class User(@PrimaryKey var id: String = "",
-                var name: String = "",
-                var profilePicture: String? = null,
-                var nickname: String = "",
-                var birthDate: Date? = null,
-                var rankingPosition: Int = 0,
-                var email: String = "",
-                var phone: String = "",
-                var wins: Int = 0,
-                var loses: Int = 0,
-                var gender: String = Gender.MALE.value,
-                var category: UserCategory? = null,
-                var status: String = Status.AVAILABLE.value,
-                var challengeSended: String? = null,
-                var challengeReceived: String? = null): RealmObject() {
-//    var latestGames: RealmList<Challenge> = RealmList()
+class User(val id: String,
+           val name: String,
+           val profilePicture: String?,
+           val nickname: String,
+           val birthDate: Date?,
+           val rankingPosition: Int,
+           val email: String,
+           val phone: String,
+           val wins: Int,
+           val loses: Int,
+           val gender: Gender,
+           val category: UserCategory?,
+           val status: Status,
+           val challengeSended: Challenge?,
+           val challengeReceived: Challenge?,
+           var latestGames: List<Challenge>?) {
 
     val matches: Int
         get() = this.wins + this.loses
 
 
     // Enums
-    enum class Gender(val value: String) {
-        MALE("Male"),
-        FEMALE("Female")
+    enum class Gender(val identifier: Int, val value: String) {
+        MALE(0, "Male"),
+        FEMALE(1,"Female")
     }
 
-    enum class Status(val value: String) {
-        AVAILABLE("Available"),
-        INJURED("Injured"),
-        UNAVAILABLE("Unavailable")
+    enum class Status(val identifier: Int, val value: String) {
+        AVAILABLE(0, "Available"),
+        INJURED(1, "Injured"),
+        UNAVAILABLE(2, "Unavailable")
     }
 
     enum class ServerRequest(val request: Map<String, String>) {

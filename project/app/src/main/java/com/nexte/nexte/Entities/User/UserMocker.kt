@@ -2,7 +2,7 @@ package com.nexte.nexte.Entities.User
 
 import java.util.*
 
-class UserMocker {
+object UserMocker {
 
     fun generateUsers(): List<User> {
         val users: MutableList<User> = mutableListOf()
@@ -18,11 +18,12 @@ class UserMocker {
                         "130",
                         162,
                         69,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -37,11 +38,12 @@ class UserMocker {
                         "130",
                         165,
                         63,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -56,11 +58,12 @@ class UserMocker {
                         "130",
                         65,
                         119,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -75,11 +78,12 @@ class UserMocker {
                         "130",
                         143,
                         194,
-                        User.Gender.FEMALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.FEMALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -94,11 +98,12 @@ class UserMocker {
                         "130",
                         151,
                         103,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -113,11 +118,12 @@ class UserMocker {
                         "130",
                         233,
                         191,
-                        User.Gender.FEMALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.FEMALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -132,11 +138,12 @@ class UserMocker {
                         "130",
                         164,
                         195,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -151,11 +158,12 @@ class UserMocker {
                         "130",
                         255,
                         177,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -171,11 +179,12 @@ class UserMocker {
                         "130",
                         30,
                         23,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -190,11 +199,12 @@ class UserMocker {
                         "130",
                         57,
                         57,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -209,11 +219,12 @@ class UserMocker {
                         "130",
                         222,
                         183,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -229,11 +240,12 @@ class UserMocker {
                         "130",
                         61,
                         35,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -248,11 +260,12 @@ class UserMocker {
                         "130",
                         68,
                         96,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -267,11 +280,12 @@ class UserMocker {
                         "130",
                         194,
                         154,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -286,11 +300,12 @@ class UserMocker {
                         "130",
                         48,
                         112,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -305,11 +320,12 @@ class UserMocker {
                         "130",
                         75,
                         121,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -324,11 +340,12 @@ class UserMocker {
                         "130",
                         71,
                         70,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -343,11 +360,12 @@ class UserMocker {
                         "130",
                         11,
                         15,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -362,11 +380,12 @@ class UserMocker {
                         "130",
                         61,
                         31,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.AVAILABLE.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.AVAILABLE,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
 
@@ -381,11 +400,12 @@ class UserMocker {
                         "130",
                         62,
                         142,
-                        User.Gender.MALE.value,
-                        UserCategory(),
-                        User.Status.INJURED.value,
+                        User.Gender.MALE,
                         null,
-                        null
+                        User.Status.INJURED,
+                        null,
+                        null,
+                        emptyList()
                 )
         )
         return users.toList()
