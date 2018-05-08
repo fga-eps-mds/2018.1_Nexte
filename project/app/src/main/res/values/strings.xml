@@ -17,8 +17,14 @@
     <string name="title_activity_show_profile">ShowProfileActivity</string>
     <string name="title_activity_feed_view">FeedView</string>
 
-    <string name="FACEBOOK_APP_ID">1649151788738895</string>
-    <string name="ACCOUNT_KIT_CLIENT_TOKEN">c776fc2fa28197d69bda7826df30567c</string>
+    <!--Account Kit-->
+
+    <string name="FACEBOOK_APP_ID">165708047598044</string>
+    <string name="ak_login_protocol_scheme">ak165708047598044</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">19cbea5f56f6e79143670c57d334e290</string>
+
+    <!--<string name="FACEBOOK_APP_ID">1649151788738895</string>-->
+    <!--<string name="ACCOUNT_KIT_CLIENT_TOKEN">c776fc2fa28197d69bda7826df30567c</string>-->
 
     <string name="user_picture">User picture</string>
     <string name="nome">nome</string>
