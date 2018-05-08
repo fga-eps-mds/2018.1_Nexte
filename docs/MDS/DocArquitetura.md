@@ -82,7 +82,7 @@ A arquitetura do frontend da aplicação faz uso de modernos conceitos arquitetu
 
 Na arquitetura do frontend do Nexte Android, pode-se compreender duas representações:
 
-* Representação Arquitetural das Cenas: Consiste no fluxo de dados e funcionalidades de uma feature, de modo que cada cena tenha controle restrito apenas as camadas pertencentes a ela. 
+* Representação Arquitetural das Cenas: Consiste no fluxo de dados e funcionalidades de uma feature, de modo que cada cena tenha controle restrito apenas as camadas pertencentes a ela.
 
 *  Representação Arquitetural das Entidades Globais:  Consiste em modelos de dados que serão utilizados pela cenas, esta parte da representação arquitetural está relacionada com a persistência local dos dados, assim como a sincronização com os dados proveninentes do servidor.
 
@@ -140,6 +140,7 @@ A persistência e o servidor web são restrições da arquitetura utilizada, poi
 |Ranking|Jogadores|Controla, a partir das regras da CLT, a colocação dos jogadores em relação aos demais membros do clube.|
 |Jogos|Data, horário, jogadores, resultado, tempo de partida, local|Responsável pelo gerenciamento de jogos, desde sua marcação por meio de um desafio até a coleta de resultados.|
 |Feed|Jogadores, jogos|Gerencia os jogos mais recentes a modo de torná-los visíveis, exbindo-os na página inicial do aplicativo.|
+|Match|Número de Sets, Data e Hora do jogo, valor obtido em cada set | Permite ao usuário a definição, no aplicativo, do horário em que um jogo ocorreru, bem como o resultado final (placar, sets e eventual WO) da partida.|
 
 
 ### 4.1 Visão Geral para as Cenas – pacotes e camada
@@ -185,10 +186,10 @@ No diagrama de camadas é mostrado a interação entre os módulos, que são def
 
 ### 4.3 Observações
 
-Algumas cenas podem necessitar do uso das entidades globais. Dessa forma, para estas cenas poderíamos ter o seguinte diagrama de pacotes: 
+Algumas cenas podem necessitar do uso das entidades globais. Dessa forma, para estas cenas poderíamos ter o seguinte diagrama de pacotes:
 
 [![Architecture.png](https://s9.postimg.cc/qdjnigd3j/Architecture.png)](https://postimg.cc/image/wehcfizpn/)
- 
+
 ## 5. VISÃO DE IMPLEMENTAÇÃO
 
 ### 5.1 Caso de Uso
@@ -212,6 +213,8 @@ Algumas cenas podem necessitar do uso das entidades globais. Dessa forma, para e
 ![Diagrama de classes do login](https://i.imgur.com/JXGEqyj.jpg)
 
 ![Diagrama de classes da ranking](https://i.imgur.com/MHfir5I.jpg)
+
+![Diagrama de classes da Match](https://i.imgur.com/EuwfGjt.jpg)
 
 *  **Diagrama de classe - Entidade Global**
 

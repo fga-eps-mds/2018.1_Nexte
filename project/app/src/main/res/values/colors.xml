@@ -3,5 +3,8 @@
     <color name="colorPrimary">#FA3F42</color>
     <color name="colorPrimaryDark">#002cbd</color>
     <color name="colorAccent">#E6AD3C</color>
-
+    <color name="colorDecline">#bf3b42</color>
+    <color name="background">#2e2e2e</color>
+    <color name="colorSend">#3d875e</color>
+    <color name="hint_color_pattern">#535151</color>
 </resources>

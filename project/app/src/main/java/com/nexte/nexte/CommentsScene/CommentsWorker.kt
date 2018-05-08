@@ -53,7 +53,7 @@ class CommentsWorker {
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request,
                        completion: (CommentsModel.ComplaintRequest.Response) -> Unit) {
 
-        val serverCode = 200
+        val serverCode = okMessage
 
         val response = CommentsModel.ComplaintRequest.Response(serverCode)
 
@@ -93,5 +93,9 @@ class CommentsWorker {
                 comment4)
 
         return addComments
+    }
+
+    companion object {
+        const val okMessage = 200
     }
 }

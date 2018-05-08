@@ -14,7 +14,6 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.UserSingleton
@@ -62,9 +61,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     var expandedWins: TextView?= null
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
-
-
-
     var interactor: ChallengeBusinessLogic? = null
     private val context: Context? = null
 
@@ -94,6 +90,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * 5 players above the ranking defined in the logged player
      */
     fun getPlayerToChallenge() {
+
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
         interactor?.requestPlayersToChallenge(request)
     }
@@ -105,8 +102,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel Contains the formatted player info to be displayed in the recycler view
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
+
         this.recyclerView?.adapter = ChallengeAdapter(viewModel.formattedPlayer, this)
-       }
+    }
 
     /**
      * Function responsible to receive the request from the recycler view item and send
@@ -187,12 +185,18 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         presenter.viewChallenge = view
     }
 
+    /**
+     * Class that sets the tab fragment on the screen with the 'sent' and 'received' tabs
+     */
     class TabFragment : Fragment() {
 
         var position = 0
         private var recyclerView: RecyclerView?= null
         var sendChallengeButton: Button?= null
 
+        /**
+         * Method that gets which tab is selected by the user
+         */
         fun getInstance(position: Int) : TabFragment {
 
             val bundle = Bundle()
@@ -203,15 +207,22 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             return tabFragment
         }
 
+        /**
+         * Method that saves a position in a variable [position]
+         */
         override fun onCreate(savedInstanceState: Bundle?) {
 
             super.onCreate(savedInstanceState)
             position = arguments.getInt("position")
         }
 
+        /**
+         * Method that set the correct fragment layout according to the selected tab
+         */
         override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
             val view: View?
+
             if(position == 0) {
                 view = inflater?.inflate(R.layout.activity_challenger_sent, container, false)
                 recyclerView = view?.findViewById(R.id.challengeRecyclerView)
@@ -229,35 +240,43 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
 
         override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+
             super.onViewCreated(view, savedInstanceState)
+
             sendChallengeButton?.setOnClickListener {
                 val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
                 (context as ChallengeView).interactor?.requestMessageForChallenger(request)
             }
+
             val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
             (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
         }
-
     }
 
+    /**
+     * Adapter Class that populates the fragment
+     */
     class ViewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
         private val pageTitles = listOf("Enviados", "Recebidos")
 
         override fun getCount(): Int {
+
             return pageTitles.size
         }
 
         override fun getItem(position: Int): Fragment {
+
             val tabFragment = TabFragment()
+
             return tabFragment.getInstance(position)
         }
 
         override fun getPageTitle(position: Int): CharSequence {
+
             return pageTitles.elementAt(position)
         }
     }
-
 
     /**
      * Adapter Class to control recycler view of users that can be challenged
@@ -266,7 +285,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @property context Context that will show this adapter
      */
     class ChallengeAdapter(private var challenged: List<ChallengeModel.FormattedPlayer>,
-                                   private val context: Context) :
+                           private val context: Context) :
             RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
 
         private var expandedPlayer = -1
@@ -277,10 +296,16 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             return ChallengeView.ChallengeAdapter.ViewHolder(view)
         }
 
+        /**
+         * Method that sets expanded player information on the screen when a player is selected
+         * and enables a button to send a challenge to this  selected player
+         */
         override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
 
             (context as ChallengeView).sendChallengeButton?.isEnabled = true
+
             holder.bindView(challenged[position])
+
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
                     notifyItemChanged(expandedPlayer)

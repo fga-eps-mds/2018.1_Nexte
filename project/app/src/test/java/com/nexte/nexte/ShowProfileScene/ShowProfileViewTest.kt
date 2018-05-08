@@ -62,7 +62,6 @@ class ShowProfileViewTest {
         assertEquals(yVals[0].y, 2f)
         assertEquals(yVals[5].x, 5f)
         assertEquals(yVals[5].y, 5f)
-
     }
 
     @After
