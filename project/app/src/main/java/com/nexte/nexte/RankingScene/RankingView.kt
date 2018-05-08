@@ -3,6 +3,7 @@ package com.nexte.nexte.RankingScene
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 
@@ -46,25 +48,33 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         this.createGetPlayersRequest()
 
-        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView())
+        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView(UserSingleton.getUserInformations().rankingPosition))
     }
 
-    private class OnScrollRankingRecyclerView : RecyclerView.OnScrollListener() {
+    class fixed_row_ranking : Fragment() {
+
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                                  savedInstanceState: Bundle?): View? {
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment_fixed_row_ranking, container, false)
+        }
+    }
+
+    private class OnScrollRankingRecyclerView(val playerRanking: Int) : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+
             val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
 
-            TODO("IMPLEMENTAR O IF PARA CHECAR SE O USUÁRIO ESTÁ VISIVEL NA TELA, ABAIXO OU ACIMA DELA" +
-                    "UTILIZANDO layoutManager.findLastVisibleItemPosition() E layoutManager.findFirstVisibleItemPosition()")
-            if(TODO("VERIFICAR SE O PLAYER ESTA VISIVEL")){
+            if(layoutManager.findFirstVisibleItemPosition() < (playerRanking - 1) && (playerRanking - 1) < layoutManager.findLastVisibleItemPosition()) {
                 TODO("ESCONDER O CAMPO FIXO")
             }
-            else if (TODO("VERIFICAR SE O JOGADOR ESTÁ PRA BAIXO")) {
-                TODO("EXBIR O CAMPO FIXO")
+            else if ((playerRanking - 1) > layoutManager.findLastVisibleItemPosition()) {
+                TODO("EXIBIR O CAMPO FIXO")
                 TODO("MOVER O CAMPO FIXO PRA PARTE DE BAIXO")
             }
             else {
-                TODO("EXBIR O CAMPO FIXO")
+                TODO("EXIBIR O CAMPO FIXO")
                 TODO("MOVER O CAMPO FIXO PRA PARTE DE CIMA")
             }
         }
