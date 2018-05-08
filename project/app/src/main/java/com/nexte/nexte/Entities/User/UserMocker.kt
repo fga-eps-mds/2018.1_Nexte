@@ -1,7 +1,5 @@
-package com.nexte.nexte.Mocker
+package com.nexte.nexte.Entities.User
 
-import com.nexte.nexte.Entities.User
-import com.nexte.nexte.Entities.UserCategory
 import java.util.*
 
 class UserMocker {

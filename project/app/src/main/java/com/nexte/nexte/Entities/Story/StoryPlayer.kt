@@ -1,4 +1,4 @@
-package com.nexte.nexte.Entities
+package com.nexte.nexte.Entities.Story
 
 import io.realm.RealmObject
 

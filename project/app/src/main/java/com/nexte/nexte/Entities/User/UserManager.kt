@@ -1,4 +1,4 @@
-package com.nexte.nexte.Manager
+package com.nexte.nexte.Entities.User
 
 class UserManager {
     fun createInitialMocker() {

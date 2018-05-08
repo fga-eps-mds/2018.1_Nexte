@@ -1,6 +1,6 @@
 package com.nexte.nexte.Entities
 
-import io.realm.RealmList
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before

@@ -1,5 +1,6 @@
 package com.nexte.nexte.Entities
 
+import com.nexte.nexte.Entities.Comment.Comment
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
