@@ -57,6 +57,7 @@ build:
     paths:
     - project/app/build/outputs/apk
   only:
+    - tags
     - dev
     - master
 

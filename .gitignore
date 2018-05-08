@@ -58,7 +58,8 @@ freeline_project_description.json
 
 
 project/.idea/*
-
+.idea/*
+project/projectFilesBackup
 
 # fastlane specific
 fastlane/report.xml

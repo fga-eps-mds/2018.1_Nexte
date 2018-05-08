@@ -10,7 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
+import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
+//import io.realm.Realm
+//import io.realm.RealmConfiguration
+//import io.realm.RealmObject
+//import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 
@@ -30,6 +35,7 @@ interface FeedDisplayLogic {
  * @property interactor Interactor layer for send requests [FeedInteractor]
  * @property feedViewAdapter FeedAdapter instance for broad using on class
  */
+
 class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
@@ -51,15 +57,13 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
         feedRecyclerView.adapter = this.feedViewAdapter
         feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
-
-        val request = FeedModel.GetFeedActivities.Request()
-        interactor?.fetchFeed(request)
+        this.createGetActivitiesRequest()
     }
 
     /**
      * Method responsible to setup all the references of this scene
      */
-    private fun setupFeedScene() {
+    fun setupFeedScene() {
 
         val view = this
         val presenter = FeedPresenter()
@@ -71,11 +75,26 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
     }
 
     /**
+     * Method responsible for creating the get activities request and passing it to the interactor
+     */
+    fun createGetActivitiesRequest(){
+        val request = FeedModel.GetFeedActivities.Request()
+        interactor?.fetchFeed(request)
+    }
+
+    /**
      * Method to open LikesList scene
      */
     private fun goToLikesList() {
 
         val intent = Intent(this, LikeListView::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun goToCommentsList() {
+
+        val intent = Intent(this, CommentsView::class.java)
         startActivity(intent)
     }
 
@@ -95,7 +114,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      *
      * @param identifier parameter to identify activity
      */
-    private fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
+    fun sendLike(identifier: FeedModel.LikeAndUnlike.Request) {
 
         interactor?.fetchLikes(identifier)
     }
@@ -197,6 +216,11 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.numberOfLikes.setOnClickListener {
 
                     (context as FeedView).goToLikesList()
+                }
+
+                itemView.comments.setOnClickListener {
+
+                    (context as FeedView).goToCommentsList()
                 }
             }
         }

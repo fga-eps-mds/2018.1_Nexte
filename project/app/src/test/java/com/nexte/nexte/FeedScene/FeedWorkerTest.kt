@@ -1,12 +1,12 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Mocker.FeedMocker
 import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
-import java.util.*
 
 class FeedWorkerTest {
 

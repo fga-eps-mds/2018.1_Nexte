@@ -1,5 +1,7 @@
 package com.nexte.nexte.ChallengeScene
 
+import android.util.Log
+
 /**
  * Interface to define Business Logic to Challenge Class
  * that will used to call this Interactor on other class layer
@@ -7,16 +9,32 @@ package com.nexte.nexte.ChallengeScene
 interface ChallengeBusinessLogic {
 
     /**
-     * Method that pass the request to Worker and send the response to Presenter
+     * Method that pass the request to Worker and send the response to Presenter for the request
+     * responsible to get first list of players
      *
      * @param request variable equals to the server response due to the challenged response
      */
-    fun sendChallenge(request: ChallengeModel.Request)
+    fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request)
+
+    /**
+     * Method that pass the request to worker and send the response to the presenter for the request
+     * responsible to get the player clicked by the user
+     *
+     * @param request variable equals the ranking position of the clicked player
+     */
+    fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request)
+
+    /**
+     * Method that pass the request to worker and send the response to the presenter for the request
+     * responsible to get the message that  will be shown
+     *
+     * @param request variable that gets the request from the 'send challenge' button
+     */
+    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request)
 }
 
 /**
  * Class that implements [ChallengeBusinessLogic] and is responsible for the communication
- * between worker and presenter
  *
  * @property worker Reference to worker [ChallengeWorker]
  * @property presenter Reference to presenter [ChallengePresenter]
@@ -26,10 +44,42 @@ class ChallengeInteractor : ChallengeBusinessLogic {
     var worker = ChallengeWorker()
     var presenter: ChallengePresentationLogic? = null
 
-    override fun sendChallenge(request: ChallengeModel.Request) {
+    /**
+     * Method that pass the request to Worker and send the response to Presenter for the request
+     * responsible to get first list of players
+     *
+     * @param request variable equals to the server response due to the challenged response
+     */
+    override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
 
-        worker.setMatch(request) { response ->
-            this.presenter?.presentChallenge(response)
+        worker.fetchPlayersToChallenge(request) { response ->
+            this.presenter?.formatPlayersToChallenge(response)
+        }
+    }
+
+    /**
+     * Method that pass the request to worker and send the response to the presenter for the request
+     * responsible to get the player clicked by the user
+     *
+     * @param request variable equals the ranking position of the clicked player
+     */
+    override fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
+
+        worker.fetchChallengedDetails(request) { response ->
+            this.presenter?.formatExpandedChallengedInfo(response)
+        }
+    }
+
+    /**
+     * Method that pass the request to worker and send the response to the presenter for the request
+     * responsible to get the message
+     *
+     * @param request
+     */
+    override fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+
+        worker.fetchMessageForChallenge(request) { response ->
+            this.presenter?.formatMessage(response)
         }
     }
 }

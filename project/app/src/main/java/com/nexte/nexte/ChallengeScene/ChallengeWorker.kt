@@ -1,28 +1,83 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.Player
+
 /**
  * Class responsible to do request for anywhere, format Response and
  * call completion to send data for called class
  */
 class ChallengeWorker {
 
+    companion object {
+
+        const val rankingGap = 5
+    }
+
     /**
-     * Function to set a match
+     * Function to get players 5 rank positions above the logged player
      *
-     * @param request Challenge Model request that contains needed informations to send to server
+     * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun setMatch (request: ChallengeModel.Request, completion: (ChallengeModel.Response) -> Unit) {
+    fun fetchPlayersToChallenge (request: ChallengeModel.ShowRankingPlayersRequest.Request,
+                                 completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
+        val rankingPostion = request.challengerRankingPosition
 
-        val challengedAnswer: Boolean?
-        val isValid: Boolean?
-        val place = request.place
+        var selectedPlayers: List<Player> = listOf()
+        val players = ChallengeMocker.createPlayers()
 
-        isValid = place == "FGA"
+        players.forEach {
+            if (it.rankingPosition >= rankingPostion-rankingGap && it.rankingPosition < rankingPostion) {
+                selectedPlayers += it
+            }
+        }
 
-        challengedAnswer = isValid
+        val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
 
-        val response: ChallengeModel.Response = ChallengeModel.Response(challengedAnswer)
+
         completion(response)
     }
+
+    /**
+     * Function to get the clicked player detailed info
+     *
+     * @param request Challenge Model request that contains needed information to send to server
+     * @param completion Method to call on parent class
+     */
+        fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
+                                    completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
+        val challengedPosition = request.challengedRankingPosition
+
+        var selectedPlayer: ChallengeModel.PlayerRankingDetails?= null
+
+        val players = ChallengeMocker.createPlayerDetailedInfo()
+
+        players.forEach {
+            if (it.rankingPosition == challengedPosition){
+                selectedPlayer = it
+            }
+        }
+
+        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(selectedPlayer!!)
+
+        completion(response)
+    }
+
+    /**
+     * Function to get a user that's going to be challenged
+     *
+     * @param request Challenge Model request that contains needed information to send to server
+     * @param completion Method to call on parent class
+     */
+    fun fetchMessageForChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
+                                 completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
+
+        val user = request.userChallenged
+
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user)
+
+        completion(response)
+
+    }
+
 }
