@@ -66,9 +66,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsable to define a param to X axis.
-     * @property xVals array responsable to store all values of X
-     * @property tam responsable to store the data of X axis.
+     * Method responsible to define a param to X axis.
+     * @property xVals array responsible to store all values of X
      */
 
     fun setXAxisValues(): ArrayList<Entry> {
@@ -79,8 +78,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsable to define the data of Y axis.
-     *  @property yVals array responsable to store all values of Y
+     * Method responsible to define the data of Y axis.
+     *  @property yVals array responsible to store all values of Y
      */
 
     fun setYAxisValues(): ArrayList<Entry> {
@@ -98,12 +97,22 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         return yVals
     }
 
+    /**
+     * Method responsible to define a param to X axis.
+     * @property xValsRanking array responsible to store all values of X
+     */
+
     fun setXAxisValuesRanking(): ArrayList<Entry> {
 
         val xValsRanking = ArrayList<Entry>()
 
         return xValsRanking
     }
+
+    /**
+     * Method responsible to define the data of Y axis.
+     *  @property yValsRanking array responsible to store all values of Y
+     */
 
     fun setYAxisValuesRanking(): ArrayList<Entry> {
 
@@ -163,6 +172,17 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         lineChart.setScaleEnabled(false)
         lineChart.invalidate()
     }
+    /**
+    * Method responsible to create the graph, using the function setXAxisValuesRanking and
+    * SetYAxisValuesRanking.
+    *  @property rankingChart instance a view from xml.
+    * @property xAxisRanking responsible to access the method setXAxisValuesRanking
+    * @property yAxesRanking responsible to access the method setYAxisValuesRanking
+    * @property dataSetsRanking Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
+    * @property lineRanking Access the data of yAxes, introduce a legend and customize the graphic
+    * @property lastMonths Responsible to create an array that store the string about last months of matches of the user
+    * @property RankingData Type: LineData, access the data defined, and xml LineChart have access to it
+    */
 
     fun createRankingGraph() {
 
