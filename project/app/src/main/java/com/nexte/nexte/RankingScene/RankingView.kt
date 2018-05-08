@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,29 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         this.setupRankingScene()
 
         this.createGetPlayersRequest()
+
+        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView())
+    }
+
+    private class OnScrollRankingRecyclerView : RecyclerView.OnScrollListener() {
+
+        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
+
+            TODO("IMPLEMENTAR O IF PARA CHECAR SE O USUÁRIO ESTÁ VISIVEL NA TELA, ABAIXO OU ACIMA DELA" +
+                    "UTILIZANDO layoutManager.findLastVisibleItemPosition() E layoutManager.findFirstVisibleItemPosition()")
+            if(TODO("VERIFICAR SE O PLAYER ESTA VISIVEL")){
+                TODO("ESCONDER O CAMPO FIXO")
+            }
+            else if (TODO("VERIFICAR SE O JOGADOR ESTÁ PRA BAIXO")) {
+                TODO("EXBIR O CAMPO FIXO")
+                TODO("MOVER O CAMPO FIXO PRA PARTE DE BAIXO")
+            }
+            else {
+                TODO("EXBIR O CAMPO FIXO")
+                TODO("MOVER O CAMPO FIXO PRA PARTE DE CIMA")
+            }
+        }
     }
 
     /**
