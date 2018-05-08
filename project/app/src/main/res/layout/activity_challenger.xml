@@ -12,7 +12,9 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?android:attr/colorForegroundInverse"
         app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabMode="fixed"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 

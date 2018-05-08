@@ -48,7 +48,7 @@ class ShowProfileWorkerTest {
         //prepare
         val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "kjbdjh213")
         val player = Player("gabrielalbino",
-                2,
+                8,
                 "imgur.com/nudh486d4",
                 "enggabriel@gmail.com",
                 "masculino",
