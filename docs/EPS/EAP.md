@@ -6,9 +6,6 @@
 | 22/03/2018 | 0.3 | Arrumado legenda versão 1.0 | Luis Gustavo |
 | 05/04/2018 | 0.4 | EAP versão 1.1 | Geovanni Oliveira |
 
-## Versão 1.1
-![EAP1.1](https://i.imgur.com/fcKrGqJ.jpg)
-
 ## Versão 1.0
 ![EAP 1.0](https://i.imgur.com/eWuH8s7.png)
 _Figura 2 - Versão 1.0 da EAP_
