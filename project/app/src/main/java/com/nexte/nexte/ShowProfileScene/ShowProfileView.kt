@@ -53,6 +53,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         }
 
         this.createGraph()
+        this.createRankingGraph()
     }
 
     /**
@@ -140,6 +141,39 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         lineChart.xAxis.setDrawGridLines(false)
         lineChart.setScaleEnabled(false)
         lineChart.invalidate()
+    }
+
+    fun createRankingGraph() {
+
+        val xAxis = rankingChart.xAxis
+        val xAxes = setXAxisValues()
+        val yAxes = setYAxisValues()
+        val dataSetsRanking = ArrayList<ILineDataSet>()
+
+        val line = LineDataSet(yAxes, "Vitoria")
+        line.fillAlpha = houndredLine
+        line.color = Color.BLUE
+        line.axisDependency =YAxis.AxisDependency.LEFT
+        dataSetsRanking.add(line)
+
+        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
+        xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
+        xAxis.granularity = 1f
+        xAxis.textColor = Color.WHITE
+
+        val points = LineData(dataSetsRanking)
+        points.setValueTextColor(Color.WHITE)
+
+        val rankingData = LineData(dataSetsRanking)
+        rankingChart.data = rankingData
+        rankingChart.axisLeft.setAxisMaxValue(8f)
+        rankingChart.axisLeft.setAxisMinValue(0f)
+        rankingChart.axisRight.setAxisMaxValue(0f)
+        rankingChart.axisRight.setAxisMinValue(8f)
+        rankingChart.axisLeft.setDrawGridLines(false)
+        rankingChart.xAxis.setDrawGridLines(false)
+        rankingChart.setScaleEnabled(false)
+        rankingChart.invalidate()
     }
 
     /**
