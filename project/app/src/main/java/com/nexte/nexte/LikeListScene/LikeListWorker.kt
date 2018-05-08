@@ -7,17 +7,16 @@ import com.nexte.nexte.R
  */
 class LikeListWorker {
 
+    var responseLogic: UpdateResponseLogic? = null
+
     /**
      * Function to fetch like list data of server
      *
      * @param request
-     * @param completion
      */
-    fun getListLikesPlayers(request: LikeListModel.Request, completion:
-    (LikeListModel.Response) -> Unit) {
-
+    fun getListLikesPlayers(request: LikeListModel.Request){
         val response = LikeListModel.Response(this.generateLikeList())
-        completion(response)
+        this.responseLogic?.getUsers(response = response)
     }
 
     /**
