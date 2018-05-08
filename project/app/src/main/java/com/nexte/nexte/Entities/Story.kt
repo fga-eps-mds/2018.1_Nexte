@@ -16,6 +16,3 @@ open class Story(@PrimaryKey var id: String? = null,
         STORIES(hashMapOf("route" to "stories", "method" to "get"))
     }
 }
-
-open class StoryPlayer(var id: String = "",
-                       var setResult: Int = 1): RealmObject()
