@@ -8,8 +8,8 @@ import android.util.Log
  * with worker and presenter
  */
 interface LoginBusinessLogic {
-    fun doAuthentication(request: LoginModel.Request)
-    fun accountKitAuthentication(request: LoginM.Request)
+    fun doAuthentication(request: LoginModel.Authentication.Request)
+    fun accountKitAuthentication(request: LoginModel.AccountKit.Request)
 }
 
 /**
@@ -29,13 +29,13 @@ class LoginInteractor : LoginBusinessLogic {
      *
      * @param request Request model of feed that contains data to pass for Worker
      */
-    override fun doAuthentication(request: LoginModel.Request) {
+    override fun doAuthentication(request: LoginModel.Authentication.Request) {
 
         worker.authenticateUser(request) { response ->
 
-            val responseStatus = response.authenticateStatus
+            val responseStatus = response.authenticateStatusCode
             when(responseStatus) {
-                LoginModel.AuthenticationStatus.AUTHORIZED -> {
+                LoginModel.Authentication.StatusCode.AUTHORIZED -> {
                     this.presenter?.presentLogin(response)
                 } else -> {
                     this.presenter?.presentError(response)
@@ -44,7 +44,7 @@ class LoginInteractor : LoginBusinessLogic {
         }
     }
 
-    override fun accountKitAuthentication(request: LoginM.Request) {
+    override fun accountKitAuthentication(request: LoginModel.AccountKit.Request) {
 
         worker.requestForAuth(request) { response ->
             this.presenter?.presentAccountKit(response)

@@ -12,7 +12,7 @@ interface LoginPresentationLogic {
      * @param response It's login model response containing unformatted data
      * received [LoginModel]
      */
-    fun presentLogin(response: LoginModel.Response)
+    fun presentLogin(response: LoginModel.Authentication.Response)
 
     /**
      * Method responsible to handle with authentication not expected
@@ -20,9 +20,9 @@ interface LoginPresentationLogic {
      * @param response It's login model response containing unformatted data
      * received [LoginModel]
      */
-    fun presentError(response: LoginModel.Response)
+    fun presentError(response: LoginModel.Authentication.Response)
 
-    fun presentAccountKit(response: LoginM.Response)
+    fun presentAccountKit(response: LoginModel.AccountKit.Response)
 
 }
 
@@ -35,7 +35,7 @@ class LoginPresenter: LoginPresentationLogic {
 
     var view: LoginDisplayLogic? = null
 
-    override fun presentLogin(response: LoginModel.Response) {
+    override fun presentLogin(response: LoginModel.Authentication.Response) {
 
         val message: String
         val tokenId: String = response.tokenId
@@ -46,15 +46,25 @@ class LoginPresenter: LoginPresentationLogic {
             message = "Congratz! U get it"
         }
 
-        val viewModel: LoginModel.ViewModel = LoginModel.ViewModel(message)
+        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(message)
         this.view?.displayAuthenticateState(viewModel)
     }
 
-    override fun presentError(response: LoginModel.Response) { }
+    override fun presentError(response: LoginModel.Authentication.Response) { }
 
-    override fun presentAccountKit(response: LoginM.Response) {
+    override fun presentAccountKit(response: LoginModel.AccountKit.Response) {
 
-        val viewModel = LoginM.ViewModel("WOW")
+        val statusCode = response.statusCode
+        var message: String = ""
+
+        when(statusCode) {
+
+            LoginModel.AccountKit.StatusCode.SUCESSED -> { message = "Autenticação realizada com sucesso" }
+            LoginModel.AccountKit.StatusCode.CANCELLED -> { message = "Ops, a autenticação foi cancelada" }
+            LoginModel.AccountKit.StatusCode.ERROR -> { message = "Ops, houve um erro, tente novamente"}
+        }
+
+        val viewModel = LoginModel.AccountKit.ViewModel(message)
         this.view?.displayAccountKit(viewModel)
     }
 }

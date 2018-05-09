@@ -11,8 +11,7 @@ import org.json.JSONObject
  */
 
 class LoginWorker {
-
-
+    
     /**
      * Method that realize request for user authentication
      * pass request for the Worker and send response to the Presenter
@@ -20,7 +19,8 @@ class LoginWorker {
      * @param request request provided from Interactor
      * @completion task to be completed at Interactor
      */
-    fun authenticateUser(request: LoginModel.Request, completion: (LoginModel.Response) -> Unit) {
+    fun authenticateUser(request: LoginModel.Authentication.Request,
+                         completion: (LoginModel.Authentication.Response) -> Unit) {
 
         val authentication = "http://192.168.100.2:3000/auth/login" // Works only with IP
         val headers = mapOf("Content-Type" to "application/json",
@@ -33,32 +33,33 @@ class LoginWorker {
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-                val status = LoginModel.AuthenticationStatus.AUTHORIZED
-                val response = LoginModel.Response(token, status)
+                val status = LoginModel.Authentication.StatusCode.AUTHORIZED
+                val response = LoginModel.Authentication.Response(token, status)
                 completion(response)
             }
 
             result.failure {
                 val token = ""
-                val status = LoginModel.AuthenticationStatus.UNAUTHORIZED
-                val response = LoginModel.Response(token, status)
+                val status = LoginModel.Authentication.StatusCode.UNAUTHORIZED
+                val response = LoginModel.Authentication.Response(token, status)
                 completion(response)
             }
         }
     }
 
 
-     fun requestForAuth(request: LoginM.Request, completion: (LoginM.Response) -> Unit) {
+     fun requestForAuth(request: LoginModel.AccountKit.Request,
+                        completion: (LoginModel.AccountKit.Response) -> Unit) {
 
          val loginResult = request.loginResult
-         var response: LoginM.Response? = null
+         var response: LoginModel.AccountKit.Response? = null
 
          if (loginResult.wasCancelled()) {
-             response = LoginM.Response(LoginM.StatusCode.CANCELLED)
+             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.CANCELLED)
          } else if (loginResult.error != null) {
-             response = LoginM.Response(LoginM.StatusCode.ERROR)
+             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.ERROR)
          } else {
-             response = LoginM.Response(LoginM.StatusCode.SUCESSED)
+             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
          }
 
         completion(response)
