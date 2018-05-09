@@ -40,14 +40,13 @@ class LoginModel {
 
 class LoginM {
 
-    class Request(loginResult: AccountKitLoginResult)
+    class Request(val loginResult: AccountKitLoginResult)
 
-    class Response(statusCode: StatusCode)
+    class Response(val statusCode: StatusCode)
 
-    class ViewModel(message: String)
+    class ViewModel(val message: String)
 
-    enum class StatusCode(val value: Int) {
-        OK(200), AUTHORIZED(204)
+    enum class StatusCode {
+        SUCESSED, CANCELLED, ERROR
     }
-
 }

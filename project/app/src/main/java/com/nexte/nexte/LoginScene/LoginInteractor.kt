@@ -1,5 +1,7 @@
 package com.nexte.nexte.LoginScene
 
+import android.util.Log
+
 
 /**
  * Interface that defines Business Login to Interactor and defines comunication
@@ -7,7 +9,7 @@ package com.nexte.nexte.LoginScene
  */
 interface LoginBusinessLogic {
     fun doAuthentication(request: LoginModel.Request)
-    fun accountKitAuthentication(request: LoginModel.Request)
+    fun accountKitAuthentication(request: LoginM.Request)
 }
 
 /**
@@ -42,12 +44,10 @@ class LoginInteractor : LoginBusinessLogic {
         }
     }
 
-    /**
-     * Method that will send request provided by worker to presenter as response
-     *
-     * @param request
-     */
-    override fun accountKitAuthentication(request: LoginModel.Request) {
+    override fun accountKitAuthentication(request: LoginM.Request) {
 
+        worker.requestForAuth(request) { response ->
+            this.presenter?.presentAccountKit(response)
+        }
     }
 }

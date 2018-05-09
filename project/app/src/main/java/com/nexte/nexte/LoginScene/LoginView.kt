@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_login_view.*
 interface LoginDisplayLogic {
 
     fun displayAuthenticateState(viewModel: LoginModel.ViewModel)
+    fun displayAccountKit(viewModel: LoginM.ViewModel)
 }
 
 
@@ -40,15 +41,17 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        Log.d("debug", "requestCodeefwfwefewf")
+
         when (requestCode) {
             RC_PHONE_NUMBER -> {
+
                 Log.d("debug", "user request phone number")
-
-                // Interactor
-
                 val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-
-                this.interactor
+                val request: LoginM.Request =  LoginM.Request(loginResult!!)
+                this.interactor?.accountKitAuthentication(request)
+            }
 
 //                var toastMsg: String?
 //
@@ -60,14 +63,20 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 //                }
 //
 //                showMessage(toastMsg)
-
-            }
-            RC_FACEBOOK_ACCOUNT -> {  }
+//
+//            }
+//            RC_FACEBOOK_ACCOUNT -> {  }
         }
     }
-    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
 
+    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
         val message: String = viewModel.message
+        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
+    override fun displayAccountKit(viewModel: LoginM.ViewModel) {
+        val message: String  = viewModel.message
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
     }
@@ -83,7 +92,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 //        this.interactor?.doAuthentication(request)
 //    }
 
-
     fun setup() {
         val view = this
         val interactor = LoginInteractor()
@@ -94,12 +102,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         presenter.view = view
     }
 
-
     // Account Kit
 
     companion object {
         val RC_PHONE_NUMBER = 1
-        val RC_FACEBOOK_ACCOUNT = 2
     }
 
     fun loginPhoneNumber() {
@@ -121,10 +127,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
 
-    // Interactor ->  Worker
-
     private fun handleLoginResult(loginResult: AccountKitLoginResult): String? {
         var msg: String? = null
+
+
 
         if (loginResult.error != null) {
             Log.e("debug", "login error")
@@ -150,12 +156,4 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         return msg
     }
 
-    // Presenter// View Controller
-
-    private fun showMessage(msg: String?) {
-        if (msg != null) {
-            Log.d("debug", "message $msg")
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        }
-    }
 }

@@ -20,14 +20,11 @@ class LoginWorker {
      * @param request request provided from Interactor
      * @completion task to be completed at Interactor
      */
-    fun authenticateUser(request: LoginModel.Request,
-                         completion: (LoginModel.Response) -> Unit) {
-
+    fun authenticateUser(request: LoginModel.Request, completion: (LoginModel.Response) -> Unit) {
 
         val authentication = "http://192.168.100.2:3000/auth/login" // Works only with IP
         val headers = mapOf("Content-Type" to "application/json",
                                     "Accept-Version" to "1.0.0")
-
         val json = JSONObject()
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
@@ -50,12 +47,21 @@ class LoginWorker {
         }
     }
 
-    fun accountKitAuthentication(request: LoginModel.Request),
-                                 completion: (LoginModel.Response) -> Unit) {
 
-        val response = LoginModel.Response("weewewr335", LoginModel.AuthenticationStatus.AUTHORIZED)
+     fun requestForAuth(request: LoginM.Request, completion: (LoginM.Response) -> Unit) {
 
+         val loginResult = request.loginResult
+         var response: LoginM.Response? = null
 
+         if (loginResult.wasCancelled()) {
+             response = LoginM.Response(LoginM.StatusCode.CANCELLED)
+         } else if (loginResult.error != null) {
+             response = LoginM.Response(LoginM.StatusCode.ERROR)
+         } else {
+             response = LoginM.Response(LoginM.StatusCode.SUCESSED)
+         }
+
+        completion(response)
     }
 }
 

@@ -21,6 +21,9 @@ interface LoginPresentationLogic {
      * received [LoginModel]
      */
     fun presentError(response: LoginModel.Response)
+
+    fun presentAccountKit(response: LoginM.Response)
+
 }
 
 /**
@@ -32,11 +35,6 @@ class LoginPresenter: LoginPresentationLogic {
 
     var view: LoginDisplayLogic? = null
 
-    /**
-     * Method that formats data from response to viewModel
-     *
-     * @property view reference to view
-     */
     override fun presentLogin(response: LoginModel.Response) {
 
         val message: String
@@ -52,7 +50,12 @@ class LoginPresenter: LoginPresentationLogic {
         this.view?.displayAuthenticateState(viewModel)
     }
 
-    override fun presentError(response: LoginModel.Response) {
-        TODO("not implemented")
+    override fun presentError(response: LoginModel.Response) { }
+
+    override fun presentAccountKit(response: LoginM.Response) {
+
+        val viewModel = LoginM.ViewModel("WOW")
+        this.view?.displayAccountKit(viewModel)
     }
 }
+
