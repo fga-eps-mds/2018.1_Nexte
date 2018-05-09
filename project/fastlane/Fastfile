@@ -11,32 +11,43 @@
 default_platform(:android)
 
 platform :android do
-  desc "Submit a new Beta Build to Play Store"
+  
+  desc "Update version of build gradle"
+  lane :update_build_number do
 
-  lane :increment_build_number do
-    # increment_build_number(build_number: ENV['CI_BUILD_ID'])
+    # Increment version of build gradle
     increment_version_code(gradle_file_path: "app/build.gradle")
-
-    #Commit the version bump to git, and tag the commit with the release version and push
+    
+    # Commit with new build gradle version
     git_commit(
       path: File.dirname("app/build.gradle"),
       message: "Upgrated version code"
     )
-    push_to_git_remote
+
+    # Push this commit to branch new_version
+    push_to_git_remote(
+      remote_branch: "new_version",
+      force: true,
+      tags: false
+    )
+
+    # Create pull request of new_version to dev to update code with new version
+    create_pull_request(
+      api_token: ENV["API_TOKEN"],
+      repo: "fga-gpp-mds/2018.1_Nexte",
+      title: "Updated version of project",
+      head: "new_version",
+      base: "dev"
+    )
   end
 
+  desc "Submit a new Beta Build to Play Store"
   lane :beta do
-    # changelog_from_git_commits
-    # gradle(task: "clean assembleRelease")
+    # Upload to Play Store
     upload_to_play_store(
       track: 'beta',
       apk: 'app/build/outputs/apk/release/app-release.apk'
     )
   end
 
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
-  end
 end
