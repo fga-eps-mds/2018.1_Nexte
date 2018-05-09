@@ -76,6 +76,9 @@ dependencies {
     // MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    // Bottom Navigation
+    implementation 'com.android.support:design:26.1.0'
+
     // Account Kit
     implementation 'com.facebook.android:account-kit-sdk:4.+'
 

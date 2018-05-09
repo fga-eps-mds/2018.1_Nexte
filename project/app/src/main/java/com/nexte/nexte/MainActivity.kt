@@ -21,20 +21,20 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_main)
 
         // Setting up feed button listener
-        feedButton.setOnClickListener {
+        /*feedButton.setOnClickListener {
             val intent = Intent(this, FeedView::class.java)
             startActivity(intent)
-        }
+        }*/
 
         showProfileButton.setOnClickListener {
             val intent = Intent(this, ShowProfileView::class.java)
             startActivity(intent)
         }
 
-        rankingButton.setOnClickListener {
+        /*rankingButton.setOnClickListener {
             val intent = Intent(this, RankingView::class.java)
             startActivity(intent)
-        }
+        }*/
 
         challangeButton.setOnClickListener {
             val intent = Intent(this, ChallengeView::class.java)
@@ -42,10 +42,10 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
         }
 
         // Ranking button
-        rankingButton.setOnClickListener {
+       /* rankingButton.setOnClickListener {
             val intent = Intent(this, RankingView::class.java)
             startActivity(intent)
-        }
+        }*/
 
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
