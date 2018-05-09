@@ -3,6 +3,7 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 07/05/2018| 0.1 | Criação do Documento| Luis Gustavo|
+| 09/05/2018| 0.2 | Criação do Documento| Geovanni Oliveira |
 
 ----------------------------------------------------------------------
 
@@ -144,22 +145,33 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 
 ## **3. EVM**
 
-![]()  
+![](https://i.imgur.com/TWeASnk.png)    
 
+Os pontos realizados nesta sprint foram os mesmos da sprint passada(7), logo não houve mudança alguma em relação ao valor agregado, foi abaixado a estimativa de pontos para serem concluídos na Release, dado que as histórias a serem feitas não aparentam ter uma dificuldade muito grande, pois o time de desenvolvimento já possui afinidade com a tecnologia proposta e a pontuação fica relativamente mais baixa do que era anteriormente.  
+A agregação de valor foi acima do que foi planejado, com a diferença de R$ 4.718,48.  
 ## **4. Análise de código**
 
-![]()
+![](https://i.imgur.com/cjBnfMW.png)
 
 **Quantidade de linhas por método**
+Somente um método está longo, ele vêm de 2 sprints, o máximo são 30 linhas e ele tem 50, em uma sprint que haverá refatoração de código ele será alocado para adequar à métrica proposta.  
 
 **Quantidade de métodos por classe**
+Não houve classes que ferissem esta métrica, todas estão dentro do parâmetro aceitável.
+Complexidade Ciclomática
 
 **Complexidade ciclomática**
-
+Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 325 e temos 217 métodos, o que dá uma média de 1,49 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite acertado pela ferramente por complexidade individual é 10.
 **Quantidade de code smells**
-
+6 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, está bem próximo do limiar não aceitável.
+Alguns deles são:
+ - Imports não utilizados em classes: 2
+ - Um método está com a complexidade ciclomática acima de 10, o que não é recomendado nem aceitável, loco a análise estática relatou esta ocorrência.
+ - um bloco de if vazio 
+ - um construtor de classe vazio
+ - um método longo
 **Adequação à folha de estilo**
-
+Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão de código definido pela equipe, logo está métrica não foi ferida ao finalizar a sprint.
 ## **5. Análise do Scrum Master**
 
 Essa sprint foi a sprint do projeto que teve o pior resultado. É inaceitável que quatro histórias fiquem como dívida técnica, incluindo uma história que era meramente de documentação. Também é inaceitável que durante uma sprint inteira um integrante, Miguel de EPS, faça apenas uma história de documentação e nem sequer seja ativos nas issues e pull requests. Faltou muito compromisso e tranparência dos membros de EPS, Geovanni, Miguel e Baldissera, que não citaram impedimentos, não finalizaram as histórias e deixaram a sprint por isso mesmo.
