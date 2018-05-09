@@ -67,7 +67,7 @@ class LoginPresenter: LoginPresentationLogic {
 
             LoginModel.AccountKit.StatusCode.SUCESSED -> { message = "Autenticação realizada com sucesso" }
             LoginModel.AccountKit.StatusCode.CANCELLED -> { message = "Ops, a autenticação foi cancelada" }
-            LoginModel.AccountKit.StatusCode.ERROR -> { message = "Ops, houve um erro, tente novamente"}
+            LoginModel.AccountKit.StatusCode.ERROR -> { message = "Ops, houve um erro, tente novamente" }
         }
 
         val viewModel = LoginModel.AccountKit.ViewModel(message)

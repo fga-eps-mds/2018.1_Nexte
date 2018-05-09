@@ -47,9 +47,13 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         btnLoginFacebook.setOnClickListener {
             this.loginByEmail()
         }
+
+        login.setOnClickListener {
+            createAuthenticationRequest()
+        }
     }
     /**
-     * On Acitvity Results is a method manager request and results provided 
+     * On Acitvity Results is a method manager request and results provided
      *
      * @param savedInstanceState
      */   /**
@@ -84,13 +88,13 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Method responsible for creating the authetication request an passing it to the interactor
      */
-//    fun createAuthenticationRequest(){
-//        val account = accountField.text.toString()
-//        val password = passwordField.text.toString()
-//
-//        val request: LoginModel.Request = LoginModel.Request(account, password)
-//        this.interactor?.doAuthentication(request)
-//    }
+    fun createAuthenticationRequest(){
+        val account = userField.text.toString()
+        val password = passwordField.text.toString()
+
+        val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
+        this.interactor?.doAuthentication(request)
+    }
 
     fun setup() {
         val view = this
@@ -117,5 +121,4 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
         startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
     }
-
 }

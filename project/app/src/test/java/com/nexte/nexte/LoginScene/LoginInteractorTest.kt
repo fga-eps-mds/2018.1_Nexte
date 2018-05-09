@@ -17,6 +17,18 @@ class LoginInteractorTest {
         this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
     }
+//
+//    @Test
+//    fun successAccountKitAuthentication() {
+//        //prepare
+//        val request = LoginModel.AccountKit.Request(userName = "luis-gustavo", password = "123456")
+//
+//        //call
+//        this.interactor?.doAuthentication(request = request)
+//
+//        //assert
+//        assertEquals(this.mock?.passedHere, true)
+//    }
 
 //    @Test
 //    fun successDoAuthentication(){
@@ -40,12 +52,18 @@ class LoginInteractorTest {
 private class MockLoginPresentationLogic: LoginPresentationLogic{
     var passedHere = false
 
-    override fun presentLogin(response: LoginModel.Response){
+    override fun presentLogin(response: LoginModel.Authentication.Response){
         this.passedHere = true
         print(passedHere)
     }
 
-    override fun presentError(response: LoginModel.Response) {
-        TODO("not implemented")
+    override fun presentError(response: LoginModel.Authentication.Response) {
+        this.passedHere = true
+        print(passedHere)
+    }
+
+    override fun presentAccountKit(response: LoginModel.AccountKit.Response) {
+        this.passedHere = true
+        print(passedHere)
     }
 }
