@@ -2,10 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rankingConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RankingScene.RankingView"
-    android:background="#2E2E2E">
+    android:background="#2E2E2E"
+    tools:context=".RankingScene.RankingView">
 
 
     <android.support.v7.widget.RecyclerView
@@ -20,7 +21,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_ranking" />
 
-    <fragment
+    <android.support.v7.widget.ContentFrameLayout
+        android:id="@+id/fixedFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

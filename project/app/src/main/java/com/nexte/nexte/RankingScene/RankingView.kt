@@ -1,12 +1,14 @@
 package com.nexte.nexte.RankingScene
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintSet
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,37 +48,65 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
 
+
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fixedFragment, FixedRowRankingFragment())
+        fragmentTransaction.commit()
+
         this.createGetPlayersRequest()
 
-        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView(UserSingleton.getUserInformations().rankingPosition))
+        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView(
+                UserSingleton.getUserInformations().rankingPosition, this))
+
+        setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
     }
 
-    class fixed_row_ranking : Fragment() {
+    class FixedRowRankingFragment : Fragment() {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
             // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_fixed_row_ranking, container, false)
+            return inflater.inflate(R.layout.row_ranking, container, false)
+        }
+
+        override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+            view?.position?.text = String.format("#%d", UserSingleton.getUserInformations().rankingPosition)
+            view?.name?.text = UserSingleton.getUserInformations().name
+            view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
+
         }
     }
 
-    private class OnScrollRankingRecyclerView(val playerRanking: Int) : RecyclerView.OnScrollListener() {
+    private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int){
+        val constraintSet = ConstraintSet()
+        val rankingView = (context as RankingView)
+        val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
+
+        if(layoutManager.findFirstCompletelyVisibleItemPosition() <= (playerRanking - 1) && (playerRanking - 1) <= layoutManager.findLastCompletelyVisibleItemPosition()) {
+            rankingView.fixedFragment.visibility = View.INVISIBLE
+        }
+        else if ((playerRanking - 1) > layoutManager.findLastVisibleItemPosition()) {
+            rankingView.fixedFragment.visibility = View.VISIBLE
+            constraintSet.clone(rankingView.rankingConstraintLayout)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.TOP)
+            constraintSet.connect(R.id.fixedFragment, ConstraintSet.BOTTOM, R.id.rankingConstraintLayout, ConstraintSet.BOTTOM)
+            constraintSet.applyTo(rankingView.rankingConstraintLayout)
+        }
+        else if ((playerRanking-1 < layoutManager.findFirstVisibleItemPosition())){
+            rankingView.fixedFragment.visibility = View.VISIBLE
+            constraintSet.clone(rankingView.rankingConstraintLayout)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.TOP)
+            constraintSet.connect(R.id.fixedFragment, ConstraintSet.TOP, R.id.rankingConstraintLayout, ConstraintSet.TOP)
+            constraintSet.applyTo(rankingView.rankingConstraintLayout)
+        }
+    }
+
+    private class OnScrollRankingRecyclerView(val playerRanking: Int, val context: Context) : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-
-            val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
-
-            if(layoutManager.findFirstVisibleItemPosition() < (playerRanking - 1) && (playerRanking - 1) < layoutManager.findLastVisibleItemPosition()) {
-                TODO("ESCONDER O CAMPO FIXO")
-            }
-            else if ((playerRanking - 1) > layoutManager.findLastVisibleItemPosition()) {
-                TODO("EXIBIR O CAMPO FIXO")
-                TODO("MOVER O CAMPO FIXO PRA PARTE DE BAIXO")
-            }
-            else {
-                TODO("EXIBIR O CAMPO FIXO")
-                TODO("MOVER O CAMPO FIXO PRA PARTE DE CIMA")
-            }
+            (context as RankingView).setFixedRanking(context, recyclerView, playerRanking)
         }
     }
 
@@ -121,7 +151,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     class RankingAdapter(private val playerInformation: List<RankingModel.FormattedPlayerInfo>,
                          private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        var expandedId = -1
+        private var expandedId = -1
 
         /**
          * Method called on view holder creation
@@ -157,14 +187,16 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
                 item.shouldDrawChild = expandedId != itemHolder.layoutPosition
 
-                if(item.shouldDrawChild) {
-                    expandedId = itemHolder.layoutPosition
+                expandedId = if(item.shouldDrawChild) {
+                    itemHolder.layoutPosition
                 } else {
-                    expandedId = -1
+                    -1
                 }
                 notifyItemChanged(expandedId)
             }
-
+            if(item.player.userRankPosition.removeRange(0, 1).toInt() == UserSingleton.getUserInformations().rankingPosition){
+                itemHolder?.itemView?.background = ColorDrawable(Color.GRAY)
+            }
             itemHolder?.nameText?.text = item.player.userName
             itemHolder?.rankingText?.text = item.player.userRankPosition
             itemHolder?.victory?.text = item.player.userWins
