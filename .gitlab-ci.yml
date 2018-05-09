@@ -49,6 +49,7 @@ build:
   script:
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
+    - fastlane increment_build_number
     - ./build.sh
   after_script:
     - rm -Rf ./app/.git/
