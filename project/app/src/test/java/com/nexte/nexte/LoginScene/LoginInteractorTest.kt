@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import com.facebook.accountkit.AccountKitLoginResult
 import org.junit.After
 import org.junit.Before
 
@@ -17,11 +18,15 @@ class LoginInteractorTest {
         this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
     }
-//
-//    @Test
+
+
+
+    @Test
 //    fun successAccountKitAuthentication() {
 //        //prepare
-//        val request = LoginModel.AccountKit.Request(userName = "luis-gustavo", password = "123456")
+//
+//        val loginResult =  data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+//        val request = LoginModel.AccountKit.Request(loginResult = )
 //
 //        //call
 //        this.interactor?.doAuthentication(request = request)

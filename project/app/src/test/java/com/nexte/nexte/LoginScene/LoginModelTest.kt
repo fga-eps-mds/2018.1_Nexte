@@ -105,6 +105,33 @@ class LoginModelTest {
         assertEquals(accountKitCode, 13)
     }
 
+    @Test
+    fun testAuthenticationModel() {
+        //prepare
+        val authenticationModel = LoginModel.Authentication()
+
+        //assert
+        assertNotNull(authenticationModel)
+    }
+
+    @Test
+    fun testAccountKitModel() {
+        //prepare
+        val accountKitModel = LoginModel.AccountKit()
+
+        //assert
+        assertNotNull(accountKitModel)
+    }
+
+    @Test
+    fun testLoginModel() {
+        //prepare
+        val loginModel = LoginModel()
+
+        //assert
+        assertNotNull(loginModel)
+    }
+
     @After
     fun tearDown() { }
 }
