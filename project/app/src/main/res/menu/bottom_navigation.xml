@@ -6,16 +6,16 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_uefa"
+            android:id="@+id/feed"
             android:checked="true"
 
-            android:title="UEFA" />
+            android:title="FEED" />
         <item
-            android:id="@+id/nav_libertadores"
+            android:id="@+id/challenge"
 
-            android:title="Libertadores" />
+            android:title="CHALLENGE" />
         <item
-            android:id="@+id/nav_afc"
-            android:title="AFC" />
+            android:id="@+id/ranking"
+            android:title="RANKING" />
     </group>
 </menu>
