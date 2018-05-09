@@ -22,6 +22,12 @@ interface LoginPresentationLogic {
      */
     fun presentError(response: LoginModel.Authentication.Response)
 
+    /**
+     * Method responsible to handle with authentication provided from Facebook API
+     *
+     * @param response It's login model response containing unformatted data
+     * received [LoginModel]
+     */
     fun presentAccountKit(response: LoginModel.AccountKit.Response)
 
 }

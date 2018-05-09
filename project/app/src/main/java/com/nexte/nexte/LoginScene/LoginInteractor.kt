@@ -8,7 +8,19 @@ import android.util.Log
  * with worker and presenter
  */
 interface LoginBusinessLogic {
+
+    /**
+     * Method that will send request provided by worker to presenter as response
+     *
+     * @param request Request model of feed that contains data to pass for Worker associated with Authentication Process
+     */
     fun doAuthentication(request: LoginModel.Authentication.Request)
+
+    /**
+     * Method that will send request provided by worker to presenter as response
+     *
+     * @param request Request model of feed that contains data to pass for Worker associated with AccountKit
+     */
     fun accountKitAuthentication(request: LoginModel.AccountKit.Request)
 }
 
@@ -24,11 +36,7 @@ class LoginInteractor : LoginBusinessLogic {
     var worker = LoginWorker()
     var presenter: LoginPresentationLogic? =  null
 
-    /**
-     * Method that will send request provided by worker to presenter as response
-     *
-     * @param request Request model of feed that contains data to pass for Worker
-     */
+
     override fun doAuthentication(request: LoginModel.Authentication.Request) {
 
         worker.authenticateUser(request) { response ->

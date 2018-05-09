@@ -11,7 +11,7 @@ import org.json.JSONObject
  */
 
 class LoginWorker {
-    
+
     /**
      * Method that realize request for user authentication
      * pass request for the Worker and send response to the Presenter
@@ -47,8 +47,14 @@ class LoginWorker {
         }
     }
 
-
-     fun requestForAuth(request: LoginModel.AccountKit.Request,
+    /**
+     * Method that realize request for user authentication
+     * pass request for the Worker and send response to the Presenter
+     *
+     * @param request request provided from Interactor
+     * @completion task to be completed at Interactor
+     */
+    fun requestForAuth(request: LoginModel.AccountKit.Request,
                         completion: (LoginModel.AccountKit.Response) -> Unit) {
 
          val loginResult = request.loginResult

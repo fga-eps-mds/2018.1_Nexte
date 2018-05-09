@@ -3,26 +3,38 @@ package com.nexte.nexte.LoginScene
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.facebook.accountkit.AccountKit
 import com.facebook.accountkit.AccountKitLoginResult
 import com.facebook.accountkit.ui.AccountKitConfiguration
 import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.R
-import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login_view.*
 
+/**
+ * Interface to define Display Logic to LoginView Class that will receive information
+ * from Presenter
+ */
 interface LoginDisplayLogic {
 
     fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel)
     fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel)
 }
 
+/**
+ * Class that implements [LoginDisplayLogic] and its responsible to control feed screen
+ *
+ * @property interactor Interactor layer for send requests [FeedInteractor]
+ */
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
 
+    /**
+     * On Create is a method that will setup this scene and call first Request and actions from UI
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
@@ -36,7 +48,15 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             this.loginByEmail()
         }
     }
-
+    /**
+     * On Acitvity Results is a method manager request and results provided 
+     *
+     * @param savedInstanceState
+     */   /**
+     * On Create is a method that will setup this scene and call first Request and actions from UI
+     *
+     * @param savedInstanceState
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
