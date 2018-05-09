@@ -19,27 +19,27 @@ platform :android do
     increment_version_code(gradle_file_path: "app/build.gradle")
     
     # Commit with new build gradle version
-    git_commit(
-      path: File.dirname("app/build.gradle"),
-      message: "Upgrated version code"
-    )
+    #git_commit(
+    #  path: File.dirname("app/build.gradle"),
+    #  message: "Upgrated version code"
+    #)
 
     # Push this commit to branch new_version
-    push_to_git_remote(
-      remote: ENV["REMOTE_GITHUB"],
-      remote_branch: "new_version",
-      force: true,
-      tags: false
-    )
+    #push_to_git_remote(
+    #  remote: "git@github.com:fga-gpp-mds/2018.1_Nexte.git",
+    #  remote_branch: "new_version",
+    #  force: true,
+    #  tags: false
+    #)
 
     # Create pull request of new_version to dev to update code with new version
-    create_pull_request(
-      api_token: ENV["API_TOKEN"],
-      repo: "fga-gpp-mds/2018.1_Nexte",
-      title: "Updated version of project",
-      head: "new_version",
-      base: "dev"
-    )
+    #create_pull_request(
+    #  api_token: ENV["API_TOKEN"],
+    #  repo: "fga-gpp-mds/2018.1_Nexte",
+    #  title: "Updated version of project",
+    #  head: "new_version",
+    #  base: "dev"
+    #)
   end
 
   desc "Submit a new Beta Build to Play Store"

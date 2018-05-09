@@ -42,17 +42,28 @@ build:
   stage: build
   before_script:
     - export ANDROID_HOME="/usr/local/android-sdk"
-    - export $API_KEY
-    - export $REMOTE_GITHUB
+    # - export $API_KEY
+    
     - cd project
+    
+    # - eval $(ssh-agent -s)
+    # - mkdir -p ~/.ssh
+    # - echo -n "$DEPLOY_SERVER_PRIVATE_KEY" | ssh-add - >/dev/null
+
+    # - eval "$(ssh-agent -s)"
+    # - echo -n "$DEPLOY_SERVER_PRIVATE_KEY" | tr -d '\r' | base64 --decode | ssh-add - > /dev/null
+    # - mkdir -p ~/.ssh
+    # - chmod 700 ~/.ssh
+    
+    # - git config --global user.email "fastlane@nexte.com"
+    # - git config --global user.name "fastlane"
+    
     - git clone $KEY_STORE_REPO ./key
     - mv ./key/$STORE_FILE ./app/
-    - rm -Rf ./key
-    - git config --global user.email "fastlane@nexte.com"
-    - git config --global user.name "fastlane"
-  script:
+
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
+  script:
     - fastlane update_build_number
     - ./build.sh
   after_script:
