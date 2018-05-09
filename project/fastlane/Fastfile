@@ -26,6 +26,7 @@ platform :android do
 
     # Push this commit to branch new_version
     push_to_git_remote(
+      remote: ENV["REMOTE_GITHUB"],
       remote_branch: "new_version",
       force: true,
       tags: false

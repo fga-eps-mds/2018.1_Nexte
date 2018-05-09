@@ -43,12 +43,13 @@ build:
   before_script:
     - export ANDROID_HOME="/usr/local/android-sdk"
     - export $API_KEY
+    - export $REMOTE_GITHUB
     - cd project
     - git clone $KEY_STORE_REPO ./key
     - mv ./key/$STORE_FILE ./app/
     - rm -Rf ./key
-    - git config --global user.email "guilhermebaldissera@hotmail.com"
-    - git config --global user.name "Baldissera"
+    - git config --global user.email "fastlane@nexte.com"
+    - git config --global user.name "fastlane"
   script:
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
