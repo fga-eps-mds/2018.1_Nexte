@@ -61,6 +61,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
     }
 
+    /**
+     * Class responsible for generate the fragment of the fixed row ranking
+     */
     class FixedRowRankingFragment : Fragment() {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -77,6 +80,13 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         }
     }
 
+    /**
+     * Function responsible for define when or where the fixed ranking row should appear
+     *
+     * @param context indicates the context that the fragment is contained in
+     * @param recyclerView indicates the recycler view that will be used to control how the fixed row will be displayed
+     * @param playerRanking Indicates the player position that will be shown on screen, and it is used for comparision.
+     */
     private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int){
         val constraintSet = ConstraintSet()
         val rankingView = (context as RankingView)
@@ -103,6 +113,12 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         }
     }
 
+    /**
+     * Class responsible for controll recycler view scrolling
+     *
+     * @param playerRanking indicates the position of the logged user
+     * @param context indicates the context that the recycler view is inserted in
+     */
     private class OnScrollRankingRecyclerView(val playerRanking: Int, val context: Context) : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -196,7 +212,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             }
 
             if(itemHolder?.layoutPosition == UserSingleton.getUserInformations().rankingPosition-1){
-                itemHolder?.itemView?.background = ColorDrawable(Color.GRAY)
+                itemHolder.itemView?.background = ColorDrawable(Color.GRAY)
             }
 
             itemHolder?.nameText?.text = item.player.userName
