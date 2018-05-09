@@ -29,7 +29,7 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode 4
+        versionCode 5
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
