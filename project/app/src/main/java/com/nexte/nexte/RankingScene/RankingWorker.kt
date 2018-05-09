@@ -58,7 +58,6 @@ class RankingWorker {
         val userRanking27 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher, 4, 6, 27)
         val userRanking28 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher, 3, 7, 28)
         val userRanking29 = RankingModel.Player("Miguel", R.mipmap.ic_launcher, 2, 6, 29)
-        val userRanking30 = RankingModel.Player("Larissa", R.mipmap.ic_launcher, 1, 5, 30)
 
          return arrayOf(userRanking1,
                  userRanking2,
@@ -88,7 +87,6 @@ class RankingWorker {
                  userRanking26,
                  userRanking27,
                  userRanking28,
-                 userRanking29,
-                 userRanking30)
+                 userRanking29)
     }
 }

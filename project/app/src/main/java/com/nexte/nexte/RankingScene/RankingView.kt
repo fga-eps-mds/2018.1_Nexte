@@ -194,9 +194,11 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                 }
                 notifyItemChanged(expandedId)
             }
-            if(item.player.userRankPosition.removeRange(0, 1).toInt() == UserSingleton.getUserInformations().rankingPosition){
+
+            if(itemHolder?.layoutPosition == UserSingleton.getUserInformations().rankingPosition-1){
                 itemHolder?.itemView?.background = ColorDrawable(Color.GRAY)
             }
+
             itemHolder?.nameText?.text = item.player.userName
             itemHolder?.rankingText?.text = item.player.userRankPosition
             itemHolder?.victory?.text = item.player.userWins
