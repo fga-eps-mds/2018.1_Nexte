@@ -48,7 +48,6 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
 
-
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fixedFragment, FixedRowRankingFragment())
         fragmentTransaction.commit()
@@ -68,26 +67,27 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
-            // Inflate the layout for this fragment
+
             return inflater.inflate(R.layout.row_ranking, container, false)
         }
 
         override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+
             view?.position?.text = String.format("#%d", UserSingleton.getUserInformations().rankingPosition)
             view?.name?.text = UserSingleton.getUserInformations().name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
-
         }
     }
 
     /**
-     * Function responsible for define when or where the fixed ranking row should appear
+     * Function responsible to define when or where the fixed ranking row should appear
      *
      * @param context indicates the context that the fragment is contained in
      * @param recyclerView indicates the recycler view that will be used to control how the fixed row will be displayed
      * @param playerRanking Indicates the player position that will be shown on screen, and it is used for comparision.
      */
-    private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int){
+    private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int) {
+
         val constraintSet = ConstraintSet()
         val rankingView = (context as RankingView)
         val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
@@ -114,7 +114,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     }
 
     /**
-     * Class responsible for controll recycler view scrolling
+     * Class responsible to control recycler view scrolling
      *
      * @param playerRanking indicates the position of the logged user
      * @param context indicates the context that the recycler view is inserted in
@@ -130,6 +130,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      * Method responsible for creating get players request and passing it to the interactor
      */
     fun createGetPlayersRequest(){
+
         val request = RankingModel.Request()
         interactor?.getPlayersRanksForScene(request)
     }
