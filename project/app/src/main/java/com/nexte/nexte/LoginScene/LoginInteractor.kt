@@ -7,6 +7,7 @@ package com.nexte.nexte.LoginScene
  */
 interface LoginBusinessLogic {
     fun doAuthentication(request: LoginModel.Request)
+    fun accountKitAuthentication(request: LoginModel.Request)
 }
 
 /**
@@ -39,5 +40,14 @@ class LoginInteractor : LoginBusinessLogic {
                 }
             }
         }
+    }
+
+    /**
+     * Method that will send request provided by worker to presenter as response
+     *
+     * @param request
+     */
+    override fun accountKitAuthentication(request: LoginModel.Request) {
+
     }
 }

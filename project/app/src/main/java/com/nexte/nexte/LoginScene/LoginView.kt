@@ -38,7 +38,39 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         }
     }
 
-    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) { }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            RC_PHONE_NUMBER -> {
+                Log.d("debug", "user request phone number")
+
+                // Interactor
+
+                val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+
+                this.interactor
+
+//                var toastMsg: String?
+//
+//                if (loginResult != null) {
+//                    Log.d("debug", "login result ${loginResult.accessToken}")
+//                    toastMsg = handleLoginResult(loginResult)
+//                } else {
+//                    toastMsg = "Something gets wrong"
+//                }
+//
+//                showMessage(toastMsg)
+
+            }
+            RC_FACEBOOK_ACCOUNT -> {  }
+        }
+    }
+    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
+
+        val message: String = viewModel.message
+        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        toast.show()
+    }
 
     /**
      * Method responsible for creating the authetication request an passing it to the interactor
@@ -61,6 +93,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         interactor.presenter = presenter
         presenter.view = view
     }
+
 
     // Account Kit
 
@@ -87,28 +120,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         startActivityForResult(intent, RC_PHONE_NUMBER)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            RC_PHONE_NUMBER -> {
-                Log.d("debug", "user request phone number")
 
-                val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-                var toastMsg: String?
-
-                if (loginResult != null) {
-                    Log.d("debug", "login result ${loginResult.accessToken}")
-                    toastMsg = handleLoginResult(loginResult)
-                } else {
-                    toastMsg = "login gagal"
-                }
-
-                showMessage(toastMsg)
-
-            }
-            RC_FACEBOOK_ACCOUNT -> {  }
-        }
-    }
+    // Interactor ->  Worker
 
     private fun handleLoginResult(loginResult: AccountKitLoginResult): String? {
         var msg: String? = null
@@ -136,6 +149,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         return msg
     }
+
+    // Presenter// View Controller
 
     private fun showMessage(msg: String?) {
         if (msg != null) {

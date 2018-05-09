@@ -1,5 +1,7 @@
 package com.nexte.nexte.LoginScene
 
+import com.facebook.accountkit.AccountKitLoginResult
+
 
 /**
  * Class to define Model of Login Scene to send informations between layers
@@ -32,6 +34,20 @@ class LoginModel {
     enum class AuthenticationStatus(val value: Int) {
 
         UNAUTHORIZED(401), AUTHORIZED(200), UNREGISTERED(404), FACEBOOK_REQUEST(101)
+    }
+}
+
+
+class LoginM {
+
+    class Request(loginResult: AccountKitLoginResult)
+
+    class Response(statusCode: StatusCode)
+
+    class ViewModel(message: String)
+
+    enum class StatusCode(val value: Int) {
+        OK(200), AUTHORIZED(204)
     }
 
 }

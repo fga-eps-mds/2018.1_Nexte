@@ -25,7 +25,8 @@ class LoginWorker {
 
 
         val authentication = "http://192.168.100.2:3000/auth/login" // Works only with IP
-        val headers = mapOf("Content-Type" to "application/json", "Accept-Version" to "1.0.0")
+        val headers = mapOf("Content-Type" to "application/json",
+                                    "Accept-Version" to "1.0.0")
 
         val json = JSONObject()
         json.put("username",  request.userName) // Expected ramires
@@ -47,6 +48,14 @@ class LoginWorker {
                 completion(response)
             }
         }
+    }
+
+    fun accountKitAuthentication(request: LoginModel.Request),
+                                 completion: (LoginModel.Response) -> Unit) {
+
+        val response = LoginModel.Response("weewewr335", LoginModel.AuthenticationStatus.AUTHORIZED)
+
+
     }
 }
 
