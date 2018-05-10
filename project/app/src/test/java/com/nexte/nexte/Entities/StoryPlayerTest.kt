@@ -1,5 +1,6 @@
 package com.nexte.nexte.Entities
 
+import com.nexte.nexte.Entities.Story.StoryPlayer
 import org.junit.Assert
 import org.junit.Test
 

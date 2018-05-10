@@ -176,7 +176,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(true)
         builder.setMessage(messageText)
-        builder.setPositiveButton("ok", { dialogInterface, i ->
+        builder.setPositiveButton("ok", { dialogInterface, _ ->
             dialogInterface.cancel()
         })
         val noPlayersMessage = builder.create()
