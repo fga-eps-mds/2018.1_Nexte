@@ -20,7 +20,7 @@ class ChallengePresenterTest {
     }
 
     @Test
-    fun formatPlayersToChallenge() {
+    fun successFormatPlayersToChallenge() {
         //prepare
         val name = "Gabriel"
         val rankingPosition = 1
@@ -48,6 +48,35 @@ class ChallengePresenterTest {
         assertEquals(playerFormatted.name, this.mock?.formattedPlayersToShow?.get(0)?.name)
         assertEquals(playerFormatted.pictureAddress, this.mock?.formattedPlayersToShow?.get(0)?.pictureAddress)
         assertEquals(playerFormatted.rankingPosition, this.mock?.formattedPlayersToShow?.get(0)?.rankingPosition)
+    }
+
+    @Test
+    fun successFormatExpandedChallengedInfo() {
+        //prepare
+        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(
+                ChallengeModel.PlayerRankingDetails("larissa", 0,  0, 5)
+        )
+
+        //call
+        this.presenter?.formatExpandedChallengedInfo(response)
+
+        //assert
+        assertEquals(mock?.formattedPlayerToChallenge?.name, "larissa")
+        assertEquals(mock?.formattedPlayerToChallenge?.wins, 0)
+        assertEquals(mock?.formattedPlayerToChallenge?.loses, 0)
+        assertEquals(mock?.formattedPlayerToChallenge?.rankingPosition, 5)
+    }
+
+    @Test
+    fun successFormatMessage() {
+        //prepare
+        val response = ChallengeModel.ChallengeButtonRequest.Response("larissa")
+
+        //call
+        this.presenter?.formatMessage(response)
+
+        //assert
+        assertNotNull(this.mock?.formattedMessageToShow)
     }
 
     @After
