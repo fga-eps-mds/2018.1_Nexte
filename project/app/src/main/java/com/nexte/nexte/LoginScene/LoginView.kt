@@ -9,6 +9,7 @@ import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.R
 import android.widget.Toast
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_login_view.*
 
 /**
@@ -17,7 +18,18 @@ import kotlinx.android.synthetic.main.activity_login_view.*
  */
 interface LoginDisplayLogic {
 
+    /**
+     * Display and acting from data provided from presenter
+     *
+     * @param viewModel data model provided from presenter
+     */
     fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel)
+
+    /**
+     * Display and acting from data provided from presenter
+     *
+     * @param viewModel data model provided from presenter
+     */
     fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel)
 }
 
@@ -75,6 +87,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         val message: String = viewModel.message
+        Log.i("wed", "dssdsd")
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
     }
@@ -96,6 +109,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         this.interactor?.doAuthentication(request)
     }
 
+    /**
+     * Method responsible for setup protocol between scenes
+     */
     fun setup() {
         val view = this
         val interactor = LoginInteractor()
@@ -106,6 +122,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         presenter.view = view
     }
 
+    /**
+     * Request login by phone - AccountKit
+     */
     fun loginPhoneNumber() {
         val intent = Intent(this, AccountKitActivity::class.java)
         val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
@@ -114,6 +133,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
     }
 
+    /**
+     * Request login by email - AccountKit
+     */
     fun loginByEmail() {
         val intent  = Intent(this, AccountKitActivity::class.java)
         val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
