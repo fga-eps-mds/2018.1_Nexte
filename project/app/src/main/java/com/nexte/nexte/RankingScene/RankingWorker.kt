@@ -10,7 +10,7 @@ import com.nexte.nexte.UserSingleton
 class RankingWorker {
 
     /**
-     * Function to get users in rank
+     * Function to get users in ranking
      *
      * @param request Ranking Model Request that contains need information to send for server
      * @param completion Method to call on parent class

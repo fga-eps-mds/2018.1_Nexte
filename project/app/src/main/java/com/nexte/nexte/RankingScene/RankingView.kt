@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.row_ranking.view.*
  */
 interface RankingDisplayLogic {
 
-    fun displayRankInScreen(viewModel: RankingModel.ViewModel)
+    fun displayRankingInScreen(viewModel: RankingModel.ViewModel)
 }
 
 /**
@@ -155,7 +155,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      *
      * @param viewModel contains formatted player data
      */
-    override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
+    override fun displayRankingInScreen(viewModel: RankingModel.ViewModel) {
 
         rankingRecyclerView.adapter = RankingAdapter(viewModel.formattedPlayers, this)
     }
@@ -218,7 +218,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             }
 
             itemHolder?.nameText?.text = item.player.userName
-            itemHolder?.rankingText?.text = item.player.userRankPosition
+            itemHolder?.rankingText?.text = item.player.userRankingPosition
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.losses?.text = item.player.userLosses
 
