@@ -69,6 +69,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     var expandedWins: TextView?= null
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
+    var noPlayersText: TextView?= null
     var interactor: ChallengeBusinessLogic? = null
     private val context: Context? = null
 
@@ -168,10 +169,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Method to display message informing that there are no players avaliable to set a match
      */
     override fun displayNoPlayersMessage(messageText: String) {
-        recyclerView.visibility = View.INVISIBLE
-        noPlayersText.visibility = View.VISIBLE
-        sendChallengeButton.isEnabled = false
-        sendChallengeButton.visibility = View.INVISIBLE
+        recyclerView?.visibility = View.INVISIBLE
+        noPlayersText?.visibility = View.VISIBLE
+        sendChallengeButton?.isEnabled = false
+        sendChallengeButton?.visibility = View.INVISIBLE
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(true)
         builder.setMessage(messageText)
@@ -259,6 +260,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 (context as ChallengeView).expandedName = view?.findViewById(R.id.expandedName)
                 (context as ChallengeView).expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
                 (context as ChallengeView).expandedWins = view?.findViewById(R.id.expandedWins)
+                (context as ChallengeView).noPlayersText = view?.findViewById(R.id.noPlayersText)
             } else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
             }
