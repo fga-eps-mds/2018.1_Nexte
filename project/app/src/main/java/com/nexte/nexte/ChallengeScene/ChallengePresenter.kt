@@ -1,5 +1,7 @@
 package com.nexte.nexte.ChallengeScene
 
+import android.util.Log
+
 
 /**
  * Interface to define Presentation Logic to Challenge Class that

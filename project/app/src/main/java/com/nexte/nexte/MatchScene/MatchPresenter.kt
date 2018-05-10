@@ -16,7 +16,6 @@ interface MatchPresentationLogic {
      * @param response contains unformatted data received from [MatchModel]
      */
     fun presentMatch (response: MatchModel.InitScene.Response)
-
 }
 
 /**
@@ -28,7 +27,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
 
-        var viewModel = MatchModel.InitScene.ViewModel(formatMatch(response.match))
+        val viewModel = MatchModel.InitScene.ViewModel(formatMatch(response.match))
 
         viewController?.displayMatch(viewModel)
     }
@@ -39,10 +38,10 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
      * @param toFormat Data at unformatted stage that needs to be formatted
      */
     private fun formatMatch(toFormat : MatchModel.MatchData) : MatchModel.FormattedMatchData {
-        var challengedName = toFormat.challenged.name
-        var challengedPhoto = toFormat.challenged.photo
-        var challengerName = toFormat.challenger.name
-        var challengerPhoto = toFormat.challenger.photo
+        val challengedName = toFormat.challenged.name
+        val challengedPhoto = toFormat.challenged.photo
+        val challengerName = toFormat.challenger.name
+        val challengerPhoto = toFormat.challenger.photo
 
 
         val matchFormatted = MatchModel.FormattedMatchData(challengedName,
@@ -51,5 +50,4 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
                                                            challengerPhoto)
         return matchFormatted
     }
-
 }

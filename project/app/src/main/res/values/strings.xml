@@ -27,5 +27,11 @@
     <string name="vitorias_x">Vitorias: X</string>
     <string name="derrotas_x">Derrotas: X</string>
     <string name="check">✓</string>
+    <string name="enviados">Enviados</string>
+    <string name="recebidos">Recebidos</string>
     <string name="enviar">Enviar</string>
+    <string name="enviar_desafio">Enviar Desafio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

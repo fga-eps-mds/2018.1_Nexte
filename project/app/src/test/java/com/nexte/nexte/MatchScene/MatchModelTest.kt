@@ -5,14 +5,11 @@ import com.nexte.nexte.R
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.Request
-
 
 class MatchModelTest {
 
     @Before
     fun setUp(){
-
     }
 
     @Test
@@ -38,10 +35,10 @@ class MatchModelTest {
     @Test
     fun testRequest() {
         //prepare
-        var identifierMatch = "abcd1234"
+        val identifierMatch = "abcd1234"
 
         //call
-        var request = MatchModel.InitScene.Request(identifierMatch)
+        val request = MatchModel.InitScene.Request(identifierMatch)
 
         //assert
         assertEquals(request.matchID, identifierMatch)
@@ -50,11 +47,11 @@ class MatchModelTest {
     @Test
     fun testResponse() {
         //prepare
-        var challengerResponse = MatchModel.MatchPlayer("Fiona", R.mipmap.ic_launcher)
-        var challengedResponse = MatchModel.MatchPlayer("Marquinhos", R.mipmap.ic_launcher)
-        var matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse)
+        val challengerResponse = MatchModel.MatchPlayer("Fiona", R.mipmap.ic_launcher)
+        val challengedResponse = MatchModel.MatchPlayer("Marquinhos", R.mipmap.ic_launcher)
+        val matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse)
         //call
-        var matchTest = MatchModel.InitScene.Response(matchDataResponse)
+        val matchTest = MatchModel.InitScene.Response(matchDataResponse)
 
         //assert
         assertEquals(challengedResponse.name, matchTest.match.challenged.name )
@@ -66,28 +63,25 @@ class MatchModelTest {
     @Test
     fun sucessMatchData() {
         //prepare
-        var challenger = MatchModel.MatchPlayer(name = "Letícia", photo = R.mipmap.ic_launcher)
-        var challenged = MatchModel.MatchPlayer(name = "Alexandre", photo = R.mipmap.ic_launcher)
-        var enumSet = MatchModel.SetsNumber.Three
+        val challenger = MatchModel.MatchPlayer(name = "Letícia", photo = R.mipmap.ic_launcher)
+        val challenged = MatchModel.MatchPlayer(name = "Alexandre", photo = R.mipmap.ic_launcher)
 
         //call
-        var matchData = MatchModel.MatchData(challenger = challenger, challenged = challenged)
+        val matchData = MatchModel.MatchData(challenger = challenger, challenged = challenged)
 
         //asserts
 
         assertEquals(challenger, matchData.challenger)
         assertEquals(challenged, matchData.challenged)
-
     }
 
     @Test
     fun formattedMatchData() {
         //prepare
-        var challengerName = "Anduin"
-        var challengerPhoto = 1
-        var challengedName = "Jaina"
-        var challengedPhoto = 2
-        var numberSet = MatchModel.SetsNumber.One
+        val challengerName = "Anduin"
+        val challengerPhoto = 1
+        val challengedName = "Jaina"
+        val challengedPhoto = 2
 
         //call
         val formattedMatchData = MatchModel.FormattedMatchData(challengerName = challengerName, challengerPhoto = challengerPhoto,
@@ -113,10 +107,4 @@ class MatchModelTest {
         assertEquals(name, testMatchPlayer.name)
         assertEquals(photo, testMatchPlayer.photo)
     }
-
-
-
-
-
-
 }
