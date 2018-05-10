@@ -24,6 +24,7 @@ interface ShowProfileDisplayLogic {
 }
 
 @Suppress("DEPRECATION")
+
 /**
  * This class implements ShowProfileDisplayLogic, and it is responsible to
  * display information about the user
@@ -66,18 +67,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsible to define a param to X axis.
-     * @property xVals array responsible to store all values of X
-     */
-
-    fun setXAxisValues(): ArrayList<Entry> {
-
-        val xVals = ArrayList<Entry>()
-
-        return xVals
-    }
-
-    /**
      * Method responsible to define the data of Y axis.
      *  @property yVals array responsible to store all values of Y
      */
@@ -95,18 +84,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
 
         return yVals
-    }
-
-    /**
-     * Method responsible to define a param to X axis.
-     * @property xValsRanking array responsible to store all values of X
-     */
-
-    fun setXAxisValuesRanking(): ArrayList<Entry> {
-
-        val xValsRanking = ArrayList<Entry>()
-
-        return xValsRanking
     }
 
     /**
@@ -143,7 +120,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     fun createGraph() {
 
         val xAxis = lineChart.xAxis
-        val xAxes = setXAxisValues()
         val yAxes = setYAxisValues()
         val dataSets = ArrayList<ILineDataSet>()
 
@@ -187,7 +163,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     fun createRankingGraph() {
 
         val xAxisRanking = rankingChart.xAxis
-        val xAxesRanking = setXAxisValuesRanking()
         val yAxesRanking = setYAxisValuesRanking()
         val dataSetsRanking = ArrayList<ILineDataSet>()
 
