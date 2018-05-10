@@ -30,6 +30,7 @@ class UserAdapterRealm: UserAdapter {
             realm.beginTransaction()
             realm.insertOrUpdate(it)
             realm.commitTransaction()
+            return user
         }
         return null
     }
@@ -50,24 +51,24 @@ class UserAdapterRealm: UserAdapter {
 
         user?.let {
             userRealm = UserRealm().apply {
-                this.id = user.id
-                this.name = user.name
-                this.profilePicture = user.profilePicture
-                this.nickname = user.nickname
-                this.birthDate = user.birthDate
-                this.rankingPosition = user.rankingPosition
-                this.email = user.email
-                this.phone = user.phone
-                this.wins = user.wins
-                this.loses = user.loses
-                this.gender = user.gender.name
+                this.id = it.id
+                this.name = it.name
+                this.profilePicture = it.profilePicture
+                this.nickname = it.nickname
+                this.birthDate = it.birthDate
+                this.rankingPosition = it.rankingPosition
+                this.email = it.email
+                this.phone = it.phone
+                this.wins = it.wins
+                this.loses = it.loses
+                this.gender = it.gender.name
                 this.category = null
-                user.category?.let {
+                it.category?.let {
                     this.category = UserCategoryRealm(it.id, it.name)
                 }
-                this.status = user.status.name
-                this.challengeSended = user.challengeSended?.id
-                this.challengeReceived = user.challengeSended?.id
+                this.status = it.status.name
+                this.challengeSended = it.challengeSended?.id
+                this.challengeReceived = it.challengeSended?.id
             }
         }
 
@@ -80,24 +81,24 @@ class UserAdapterRealm: UserAdapter {
         var user: User? = null
         userRealm?.let {
             var category: UserCategory? = null
-            userRealm.category?.let {
+            it.category?.let {
                 category = UserCategoryManager().get(it.id)
             }
 
             // TODO: Update Challenge Sended e Challenge Received after do ChallengeManager
-            user = User(userRealm.id,
-                        userRealm.name,
-                        userRealm.profilePicture,
-                        userRealm.nickname,
-                        userRealm.birthDate,
-                        userRealm.rankingPosition,
-                        userRealm.email,
-                        userRealm.phone,
-                        userRealm.wins,
-                        userRealm.loses,
-                        User.Gender.valueOf(userRealm.gender),
+            user = User(it.id,
+                    it.name,
+                    it.profilePicture,
+                    it.nickname,
+                    it.birthDate,
+                    it.rankingPosition,
+                    it.email,
+                    it.phone,
+                    it.wins,
+                    it.loses,
+                        User.Gender.valueOf(it.gender),
                         category,
-                        User.Status.valueOf(userRealm.status),
+                        User.Status.valueOf(it.status),
                         null,
                         null,
                         emptyList()
