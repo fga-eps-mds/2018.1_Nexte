@@ -90,9 +90,9 @@ class LikeListModelTest {
 
         //call
         val viewModel = LikeListModel.ViewModel(playersFormatted = mutableListOf(playersFormatted))
-        playersFormatted.time
-        playersFormatted.photo
-        playersFormatted.name
+        playersFormatted.time = time
+        playersFormatted.photo = photo
+        playersFormatted.name = name
 
         //assert
         assertEquals(viewModel.playersFormatted.size, 1)
