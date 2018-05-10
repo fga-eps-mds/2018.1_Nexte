@@ -14,6 +14,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.UserSingleton
@@ -92,16 +93,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         this.setupChallengeScene()
         viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
         tabs.setupWithViewPager(viewpager)
-    }
-
-    /**
-     * This method is responsible for calling the request for the
-     * 5 players above the ranking defined in the logged player
-     */
-    fun getPlayerToChallenge() {
-
-        val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
-        interactor?.requestPlayersToChallenge(request)
     }
 
     /**
@@ -252,15 +243,19 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
             if(position == 0) {
                 view = inflater?.inflate(R.layout.activity_challenger_sent, container, false)
-                recyclerView = view?.findViewById(R.id.challengeRecyclerView)
-                (context as ChallengeView).recyclerView = view?.findViewById(R.id.challengeRecyclerView)
+
+                val viewContext = context as ChallengeView
+
                 this.sendChallengeButton = view?.findViewById(R.id.sendChallengeButton)
-                (context as ChallengeView).sendChallengeButton = this.sendChallengeButton
-                (context as ChallengeView).expandedLosses = view?.findViewById(R.id.expandedLosses)
-                (context as ChallengeView).expandedName = view?.findViewById(R.id.expandedName)
-                (context as ChallengeView).expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
-                (context as ChallengeView).expandedWins = view?.findViewById(R.id.expandedWins)
-                (context as ChallengeView).noPlayersText = view?.findViewById(R.id.noPlayersText)
+                this.recyclerView = view?.findViewById(R.id.challengeRecyclerView)
+
+                viewContext.recyclerView = view?.findViewById(R.id.challengeRecyclerView)
+                viewContext.sendChallengeButton = this.sendChallengeButton
+                viewContext.expandedLosses = view?.findViewById(R.id.expandedLosses)
+                viewContext.expandedName = view?.findViewById(R.id.expandedName)
+                viewContext.expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
+                viewContext.expandedWins = view?.findViewById(R.id.expandedWins)
+                viewContext.noPlayersText = view?.findViewById(R.id.noPlayersText)
             } else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
             }
@@ -271,13 +266,17 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
             super.onViewCreated(view, savedInstanceState)
 
-            sendChallengeButton?.setOnClickListener {
-                val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
-                (context as ChallengeView).interactor?.requestMessageForChallenger(request)
+            if(position == 0) {
+
+                sendChallengeButton?.setOnClickListener {
+                    val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
+                    (context as ChallengeView).interactor?.requestMessageForChallenger(request)
+                }
+
+                val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
+                (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
             }
 
-            val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
-            (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
         }
     }
 

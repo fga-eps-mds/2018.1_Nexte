@@ -29,10 +29,10 @@ class ChallengeWorker {
             }
         }
 
-        //val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
+        val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
 
        //Variable that allows the "No Players" message
-        val response = ChallengeModel.ShowRankingPlayersRequest.Response(mutableListOf())
+       // val response = ChallengeModel.ShowRankingPlayersRequest.Response(mutableListOf())
         completion(response)
     }
 
