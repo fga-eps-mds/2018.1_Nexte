@@ -20,6 +20,8 @@ class LoginModelTest {
 
         //call
         val request = LoginModel.Request(userName = "luis-gustavo", password = "123456")
+        request.password
+        request.userName
 
         //assert
         assertEquals(userName, request.userName)
@@ -36,6 +38,9 @@ class LoginModelTest {
         val response = LoginModel.Response(tokenId = "hq7lwk13nvv31",
                                            authenticateStatus = LoginModel.AuthenticationStatus.AUTHORIZED)
 
+        response.authenticateStatus
+        response.tokenId
+
         //assert
         assertEquals(tokenId, response.tokenId)
         assertEquals(authenticationStatus, response.authenticateStatus)
@@ -48,13 +53,14 @@ class LoginModelTest {
 
         //call
         val viewModel = LoginModel.ViewModel(message = "teste funcionando")
+        viewModel.message
 
         //assert
         assertEquals(message, viewModel.message)
     }
 
     @Test
-    fun sucessStatusToAuthentication() {
+    fun successStatusToAuthentication() {
         //prepare
         val authorized = LoginModel.AuthenticationStatus.AUTHORIZED.value
 
@@ -62,6 +68,16 @@ class LoginModelTest {
         assertEquals(authorized, LoginModel.AuthenticationStatus.AUTHORIZED.value)
     }
 
+    @Test
+    fun successLoginModel(){
+        //prepare
+
+        //call
+        val model = LoginModel()
+
+        //assert
+        assertNotNull(model)
+    }
     @After
     fun tearDown() {
     }
