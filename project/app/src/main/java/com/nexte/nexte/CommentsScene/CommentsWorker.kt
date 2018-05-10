@@ -63,6 +63,7 @@ class CommentsWorker {
     fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request,
                             completion: (CommentsModel.DeleteCommentRequest.Response) -> Unit){
 
+
     }
 
     /**

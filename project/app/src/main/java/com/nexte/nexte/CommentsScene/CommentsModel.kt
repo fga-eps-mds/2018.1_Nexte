@@ -91,11 +91,11 @@ class CommentsModel {
 
     class DeleteCommentRequest {
 
-        class Request (var deleteCommentID: String)
+        class Request (var commentPosition: Int)
 
-        class Response (var positionComment: Int)
+        class Response (var delComments: MutableList<Comment>)
 
-        class ViewModel (var positionComment: Int)
+        class ViewModel (var delCommentsFormatted: MutableList<CommentFormatted>)
     }
     // ---------- Aux classes ----------
     /**
