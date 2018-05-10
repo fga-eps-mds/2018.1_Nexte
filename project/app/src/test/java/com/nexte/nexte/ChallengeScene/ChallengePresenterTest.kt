@@ -62,9 +62,9 @@ class ChallengePresenterTest {
 
         //assert
         assertEquals(mock?.formattedPlayerToChallenge?.name, "larissa")
-        assertEquals(mock?.formattedPlayerToChallenge?.wins, 0)
-        assertEquals(mock?.formattedPlayerToChallenge?.loses, 0)
-        assertEquals(mock?.formattedPlayerToChallenge?.rankingPosition, 5)
+        assertEquals(mock?.formattedPlayerToChallenge?.wins, "VITÓRIAS: 0")
+        assertEquals(mock?.formattedPlayerToChallenge?.loses, "DERROTAS: 0")
+        assertEquals(mock?.formattedPlayerToChallenge?.rankingPosition, "#5")
     }
 
     @Test
