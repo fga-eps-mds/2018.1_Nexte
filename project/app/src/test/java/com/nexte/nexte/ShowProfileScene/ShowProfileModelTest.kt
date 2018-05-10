@@ -98,6 +98,16 @@ class ShowProfileModelTest {
         assertEquals(age, formattedPlayer.age)
     }
 
+    @Test
+    fun successShowProfileModel() {
+        //prepare
+
+        //call
+        val model = ShowProfileModel()
+
+        //assert
+        assertNotNull(model)
+    }
 
     @After
     fun tearDown() {
