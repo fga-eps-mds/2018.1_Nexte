@@ -60,12 +60,12 @@ class UserAdapterRealm: UserAdapter {
                 this.phone = user.phone
                 this.wins = user.wins
                 this.loses = user.loses
-                this.gender = user.gender.identifier
+                this.gender = user.gender.name
                 this.category = null
                 user.category?.let {
                     this.category = UserCategoryRealm(it.id, it.name)
                 }
-                this.status = user.status.identifier
+                this.status = user.status.name
                 this.challengeSended = user.challengeSended?.id
                 this.challengeReceived = user.challengeSended?.id
             }
@@ -95,9 +95,9 @@ class UserAdapterRealm: UserAdapter {
                         userRealm.phone,
                         userRealm.wins,
                         userRealm.loses,
-                        User.Gender.valueOf(userRealm.gender.toString()),
+                        User.Gender.valueOf(userRealm.gender),
                         category,
-                        User.Status.valueOf(userRealm.status.toString()),
+                        User.Status.valueOf(userRealm.status),
                         null,
                         null,
                         emptyList()

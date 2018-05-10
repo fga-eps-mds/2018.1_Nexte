@@ -11,13 +11,13 @@ class UserManager(val userAdapter: UserAdapter = UserAdapterRealm()) {
     }
 
     fun update(user: User): User? {
-        return userAdapter.update(user)
+        return userAdapter.updateOrInsert(user)
     }
 
     fun updateMany(users: List<User>): List<User> {
         val newUsers: MutableList<User> = mutableListOf()
         for (user in users) {
-            val updatedUser = userAdapter.update(user)
+            val updatedUser = userAdapter.updateOrInsert(user)
             updatedUser?.let {
                 newUsers.add(it)
             }
@@ -35,7 +35,7 @@ class UserManager(val userAdapter: UserAdapter = UserAdapterRealm()) {
 
         for (user in usersInMocker) {
 
-            val insertedUser = userAdapter.update(user)
+            val insertedUser = userAdapter.updateOrInsert(user)
             insertedUser?.let {
                 insertedUsers.add(it)
             }
