@@ -1,5 +1,8 @@
 package com.nexte.nexte.CommentsScene
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 /**
  * Interface to define Presentation Logic to Comment Class that
  * will be used to call this Interactor on other class layer
@@ -93,9 +96,12 @@ class CommentsPresenter : CommentsPresentationLogic {
 
         for (gameComment in gameComments) {
 
+            val dateToShow = SimpleDateFormat("ccc, dd 'of' LLL")
+            val time = dateToShow.format(gameComment.date)
+
             val commentFormatted = CommentsModel.CommentFormatted(
                     gameComment.comment,
-                    gameComment.date.toString(),
+                    time,
                     gameComment.author.name,
                     gameComment.author.photo)
 

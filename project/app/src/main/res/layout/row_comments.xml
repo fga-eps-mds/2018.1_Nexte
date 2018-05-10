@@ -21,17 +21,17 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
+        android:layout_height="164dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="#504d4d"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/commentDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/profilePicture"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/playerName">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,10 +58,9 @@
         android:id="@+id/reportButton"
         android:layout_width="0dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="12dp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="62dp"
         android:backgroundTint="@android:color/black"
         android:text="Denunciar"
         android:textAllCaps="false"
@@ -69,27 +68,27 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scrollView2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerName" />
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
 
     <TextView
         android:id="@+id/playerName"
-        android:layout_width="81dp"
-        android:layout_height="68dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="9dp"
+        android:layout_width="227dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Nome"
         android:textColor="#ffffff"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/profilePicture"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/commentDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
         android:layout_marginEnd="16dp"
         android:text="Data"
         android:textColor="#ffffff"
@@ -107,5 +106,6 @@
         android:textColor="#50E3C2"
         app:layout_constraintBottom_toTopOf="@+id/reportButton"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

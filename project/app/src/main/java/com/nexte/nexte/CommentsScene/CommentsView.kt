@@ -207,7 +207,21 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
 
             val messageDel = "Tem certeza que deseja excluir esse comentário?"
-            holder
+            holder.itemView.deleteButton.setOnClickListener {
+                val builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setMessage(messageDel)
+                builder.setPositiveButton("Sim", { dialogInterface, _ ->
+                    val request = CommentsModel.DeleteCommentRequest.Request(position)
+                    (context as CommentsView).interactor?.deleteComment(request)
+                    dialogInterface.dismiss()
+                })
+                builder.setNegativeButton("Não", { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                })
+                val alert = builder.create()
+                alert.show()
+            }
 
         }
 
