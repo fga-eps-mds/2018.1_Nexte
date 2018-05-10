@@ -24,6 +24,7 @@ class LikeListInteractorTest {
 
         //call
         this.interactor?.fetchDataToList(request = request)
+        request.request
 
         //assert
         assertEquals(this.mock?.passedHere, true)
