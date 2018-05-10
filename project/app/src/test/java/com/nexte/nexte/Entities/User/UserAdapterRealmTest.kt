@@ -1,6 +1,5 @@
 package com.nexte.nexte.Entities.User
 
-import junit.framework.Assert
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
