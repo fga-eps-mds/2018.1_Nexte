@@ -41,16 +41,6 @@ class ShowProfileViewTest {
     }
 
     @Test
-    fun testSetXAxisValues(){
-        //prepare //call
-        val xVals = this.view?.setXAxisValues()
-
-        //assert
-        assertNotNull(xVals)
-        assertEquals(0, xVals?.size)
-    }
-
-    @Test
     fun testSetYAxisValues(){
         //prepare //call
         val yVals = this.view?.setYAxisValues()

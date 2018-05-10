@@ -106,10 +106,9 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsible to create the graph, using the function setXAxisValues and
+     * Method responsible to create the graph, using the function and
      * SetYAxisValues.
      *  @property lineChart instance a view from xml.
-     * @property xAxis responsible to access the method setXAxisValues
      * @property yAxes responsible to access the method setYAxisValues
      * @property dataSet Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
      * @property line Access the data of yAxes, introduce a legend and customize the graphic
@@ -149,10 +148,9 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         lineChart.invalidate()
     }
     /**
-    * Method responsible to create the graph, using the function setXAxisValuesRanking and
+    * Method responsible to create the graph, using the function
     * SetYAxisValuesRanking.
     *  @property rankingChart instance a view from xml.
-    * @property xAxisRanking responsible to access the method setXAxisValuesRanking
     * @property yAxesRanking responsible to access the method setYAxisValuesRanking
     * @property dataSetsRanking Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
     * @property lineRanking Access the data of yAxes, introduce a legend and customize the graphic
