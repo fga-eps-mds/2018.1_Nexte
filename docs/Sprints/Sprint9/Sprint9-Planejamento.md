@@ -53,14 +53,12 @@ A priorização essa sprint foi seguindo o roadmap e fechando as dívidas técni
 
 #### 4.1 **Dívida Técnicas**
 
-Não há dívidas técnicas nessa sprint.
-| Issue | Descrição | Pontos|   
+| Issue | Descrição | Pontos|
 |-------|-----------|-------------|
-|[#244](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/244) |Eu, como desenvolvedor, desejo adicionar duas abas na tela de desafios. (Enviado e Recebido)  | 5 |
-|[#246](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/246) |Eu, como DevOps, desejo adicionar integração contínua para o GitHub Pages (Enviado e Recebido)  | 5 |
-|[#248](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/248) |Eu, como desenvolvedor, desejo criar a camada de Manager de User para controlar as entidades em conjunto com o Realm.  | 8 |
-|[#250](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/250) |Eu, como desenvolvedor, desejo atualizar a EAP/Roadmap do projeto  | 3 |
-
+|[#244](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/244) |Eu, como desenvolvedor, desejo adicionar duas abas na tela de desafios. (Enviado e Recebido).|5|
+|[#246](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/246) |Eu, como DevOps, desejo adicionar integração contínua para o GitHub Pages|5|
+|[#248](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/248) |Eu, como desenvolvedor, desejo criar a camada de Manager de User para controlar as entidades em conjunto com o Realm.|8|
+|[#250](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/250) |Eu, como desenvolvedor, desejo atualizar a EAP/Roadmap do projeto.|3|
 
 **Total de pontos: 21**
 
