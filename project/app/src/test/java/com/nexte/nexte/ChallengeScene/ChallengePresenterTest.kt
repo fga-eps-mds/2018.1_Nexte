@@ -79,6 +79,15 @@ class ChallengePresenterTest {
         assertNotNull(this.mock?.formattedMessageToShow)
     }
 
+    @Test
+    fun successGetViewChallenge(){
+        //prepare and call
+        val viewChallenge = ChallengePresenter().viewChallenge
+
+        //assert
+        assertNull(viewChallenge)
+    }
+
     @After
     fun tearDown(){
         this.mock = null

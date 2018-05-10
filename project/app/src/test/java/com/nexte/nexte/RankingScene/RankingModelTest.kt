@@ -24,11 +24,11 @@ class RankingModelTest {
         //call
         val player = RankingModel.Player(name = name, pictureURL = pictureURL, wins = wins, losses =
             losses, rankingPosition = rankingPosition)
-        player.losses
-        player.name
-        player.pictureURL
-        player.wins
-        player.rankingPosition
+        player.losses = losses
+        player.name = name
+        player.pictureURL = pictureURL
+        player.wins = wins
+        player.rankingPosition = rankingPosition
 
         //assert
         assertEquals(name, player.name)
@@ -57,7 +57,7 @@ class RankingModelTest {
 
         //call
         val response = RankingModel.Response(players = arrayOf(player1, player2))
-        response.players
+        response.players = arrayOf(player1, player2)
 
         //assert
         assertEquals(response.players.size, 2)
@@ -83,10 +83,11 @@ class RankingModelTest {
 
         //call
         val formattedPlayer = RankingModel.FormattedPlayer(userName = userName, userPictureURL = userPictureURL, userWins = userWins, userLosses = userLosses, userRankingPosition = userRankingPosition)
-        formattedPlayer.userLosses
-        formattedPlayer.userName
-        formattedPlayer.userPictureURL
-        formattedPlayer.userRankingPosition
+        formattedPlayer.userLosses = userLosses
+        formattedPlayer.userName = userName
+        formattedPlayer.userPictureURL = userPictureURL
+        formattedPlayer.userRankingPosition = userRankingPosition
+        formattedPlayer.userWins  = userWins
 
         //assert
         assertEquals(userName, formattedPlayer.userName)
@@ -109,8 +110,8 @@ class RankingModelTest {
 
         //call
         val formattedPlayerInfo = RankingModel.FormattedPlayerInfo(player = formattedPlayer, shouldDrawChild = shouldDrawChild)
-        formattedPlayerInfo.player
-        formattedPlayerInfo.shouldDrawChild
+        formattedPlayerInfo.player = formattedPlayer
+        formattedPlayerInfo.shouldDrawChild = shouldDrawChild
 
         //assert
         assertEquals(formattedPlayer, formattedPlayerInfo.player)
@@ -128,7 +129,7 @@ class RankingModelTest {
 
         //call
         val viewModel = RankingModel.ViewModel(formattedPlayers = listOf(formattedPlayerInfo1, formattedPlayerInfo2))
-        viewModel.formattedPlayers
+        viewModel.formattedPlayers = listOf(formattedPlayerInfo1, formattedPlayerInfo2)
 
         //assert
         assertEquals(viewModel.formattedPlayers.size, 2)

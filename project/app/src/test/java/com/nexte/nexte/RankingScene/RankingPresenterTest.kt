@@ -41,6 +41,29 @@ class RankingPresenterTest {
         assertEquals(this.mock?.players!![1].player.userLosses,"Derrotas: " + player2.losses.toString())
     }
 
+    @Test
+    fun successRankingPresenter(){
+        //prepare and call
+        val presenter = RankingPresenter()
+        val newViewScene = RankingView()
+        presenter.viewScene = newViewScene
+        val testViewScene = presenter.viewScene
+
+        //assert
+        assertNotNull(presenter)
+        assertNotNull(testViewScene)
+        assertEquals(testViewScene, newViewScene)
+    }
+
+    @Test
+    fun successPresenter(){
+        //prepare and call
+        val presenter = RankingPresenter()
+
+        //assert
+        assertNotNull(presenter)
+    }
+
     @After
     fun tearDown() {
         this.mock = null

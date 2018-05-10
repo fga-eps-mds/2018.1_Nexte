@@ -22,10 +22,10 @@ class ChallengeModelTest{
 
         //call
         val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
-        playerFormatted.rankingPosition
-        playerFormatted.wins
-        playerFormatted.loses
-        playerFormatted.name
+        playerFormatted.rankingPosition = rankingPosition
+        playerFormatted.wins = wins
+        playerFormatted.loses = loses
+        playerFormatted.name = name
 
         //assert
         assertEquals(playerFormatted.loses, loses)
@@ -43,9 +43,9 @@ class ChallengeModelTest{
 
         //call
         val playerFormatted = ChallengeModel.FormattedPlayer(name, rankingPosition, pictureAddress)
-        playerFormatted.pictureAddress
-        playerFormatted.name
-        playerFormatted.rankingPosition
+        playerFormatted.pictureAddress = pictureAddress
+        playerFormatted.name = name
+        playerFormatted.rankingPosition = rankingPosition
 
         //assert
         assertEquals(playerFormatted.rankingPosition, rankingPosition)
@@ -136,6 +136,11 @@ class ChallengeModelTest{
         )
 
         //call
+        player.loses = loses
+        player.name = name
+        player.rankingPosition = rankingPosition
+        player.wins
+
         val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(player)
         response.challengedPersonalDetails = player
 
