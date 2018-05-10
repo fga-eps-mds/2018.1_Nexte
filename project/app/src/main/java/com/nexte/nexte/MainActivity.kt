@@ -106,12 +106,16 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
             if(position == 0) {
                 view = inflater?.inflate(R.layout.activity_feed_view, container, false)
                 recyclerView = view?.findViewById(R.id.feedRecyclerView)
-                (context as FeedView).(/*Aqui tem um recycler view que é declarado no início da challenge
-                e não sei como encaixa-lo ja que não temos um na nossa main*/) = view?.findViewById(R.id.feedRecyclerView)
 
             } else if(position == 1){
                 view = inflater?.inflate(R.layout.activity_challenger, container, false)
                 recyclerView = view?.findViewById(R.id.challengeRecyclerView)
+                this.sendChallengeButton = view?.findViewById(R.id.sendChallengeButton)
+                (context as ChallengeView).sendChallengeButton = this.sendChallengeButton
+                (context as ChallengeView).expandedLosses = view?.findViewById(R.id.expandedLosses)
+                (context as ChallengeView).expandedName = view?.findViewById(R.id.expandedName)
+                (context as ChallengeView).expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
+                (context as ChallengeView).expandedWins = view?.findViewById(R.id.expandedWins)
             } else {
                 view = inflater?.inflate(R.layout.activity_ranking, container,  false)
             }
