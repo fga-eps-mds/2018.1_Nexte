@@ -61,7 +61,7 @@ class CommentsPresenter : CommentsPresentationLogic {
     override fun presentComplaint(response: CommentsModel.ComplaintRequest.Response) {
         val message: String
 
-        if (response.serverResponse == 200) {
+        if (response.serverResponse == okMessage) {
             message = "Denúncia efetuada com sucesso"
         }
         else {
@@ -95,5 +95,9 @@ class CommentsPresenter : CommentsPresentationLogic {
         }
 
         return commentsFormatted
+    }
+
+    companion object {
+        const val okMessage = 200
     }
 }

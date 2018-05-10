@@ -117,7 +117,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         val dataSets = ArrayList<ILineDataSet>()
 
         val line = LineDataSet(yAxes, "Vitoria")
-        line.fillAlpha = 110
+        line.fillAlpha = houndredLine
         line.color = Color.BLUE
         line.axisDependency =YAxis.AxisDependency.LEFT
         dataSets.add(line)
@@ -178,6 +178,10 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         club.text = viewModel.playerInfo.club
         age.text = viewModel.playerInfo.age
         email.text = viewModel.playerInfo.email
+    }
+
+    companion object {
+        const val houndredLine = 110
     }
 
 }

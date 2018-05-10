@@ -89,6 +89,7 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel-moshi:1.12.1' //for Moshi support
 
     // Tests
+    implementation 'com.android.support:support-v4:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -117,7 +118,7 @@ dependencies {
 }
 
 
-task jacocoTestReport(type:JacocoReport, dependsOn: ["clean", "testDebugUnitTest"]) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ["clean", "testDebugUnitTest"]) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
 
@@ -158,4 +159,11 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+dependencies {
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
 }
