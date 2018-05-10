@@ -1,5 +1,6 @@
 package com.nexte.nexte.MatchScene
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -15,7 +16,6 @@ import kotlinx.android.synthetic.main.row_match_time.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 /**
  * Interface to define Display Logic to MatchView Class that will receive information
  * from Presenter
@@ -23,18 +23,16 @@ import java.util.*
 interface MatchDisplayLogic {
 
     fun displayMatch(viewModel: MatchModel.InitScene.ViewModel)
-
 }
 
 /**
- * Class that implements [MatchID] and is responsible to control feed screen
+ * Class that implements [MatchDisplayLogic] and is responsible to control feed screen
  *
  * @property interactor Interactor layer for send requests, reference to [MatchInteractor]
  * @property matchViewAdapter FeedAdapter instance for broad using on class
  * @property numberOfSets enum class to define the number of sets, which define the presentation
  * of recycler view
  */
-
 class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     var interactor: MatchInteractor? = null
@@ -74,16 +72,12 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
     /**
      * Method responsible to setup all the references of this scene
-     *
-     * @param view used to define that local interactor refers to [MatchInteractor]
-     * @param presenter used to define this view as the parameter view on [MatchPresenter]
-     * @param interactor used to send requests through local interactor instance
      */
     private fun setUpMatchScene() {
 
-        var interactor = MatchInteractor()
-        var presenter = MatchPresenter()
-        var view = this
+        val interactor = MatchInteractor()
+        val presenter = MatchPresenter()
+        val view = this
 
         view.interactor = interactor
         interactor.presenter = presenter
@@ -132,38 +126,38 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         override fun getItemViewType(position: Int): Int {
 
-            var layoutMatch : Int
+            val layoutMatch : Int
 
             when((context as MatchView).numberOfSets.number){
-                firstPosition -> when(position) {
-                    zeroPosition -> layoutMatch = R.layout.row_match_info
-                    firstPosition -> layoutMatch = R.layout.row_match_sets
-                    secondPosition -> layoutMatch = R.layout.row_match_time
-                    else -> layoutMatch = R.layout.row_match_wo
+                firstPosition -> layoutMatch = when(position) {
+                    zeroPosition -> R.layout.row_match_info
+                    firstPosition -> R.layout.row_match_sets
+                    secondPosition -> R.layout.row_match_time
+                    else -> R.layout.row_match_wo
                 }
 
-                thirdPosition -> when(position) {
-                    zeroPosition -> layoutMatch = R.layout.row_match_info
-                    firstPosition -> layoutMatch = R.layout.row_match_sets
-                    secondPosition -> layoutMatch = R.layout.row_match_sets
-                    thirdPosition -> layoutMatch = R.layout.row_match_sets
-                    fourthPosition -> layoutMatch = R.layout.row_match_time
-                    else -> layoutMatch = R.layout.row_match_wo
+                thirdPosition -> layoutMatch = when(position) {
+                    zeroPosition -> R.layout.row_match_info
+                    firstPosition -> R.layout.row_match_sets
+                    secondPosition -> R.layout.row_match_sets
+                    thirdPosition -> R.layout.row_match_sets
+                    fourthPosition -> R.layout.row_match_time
+                    else -> R.layout.row_match_wo
                 }
-                fifthPosition -> when(position) {
-                    zeroPosition -> layoutMatch = R.layout.row_match_info
-                    firstPosition -> layoutMatch = R.layout.row_match_sets
-                    secondPosition -> layoutMatch = R.layout.row_match_sets
-                    thirdPosition -> layoutMatch = R.layout.row_match_sets
-                    fourthPosition -> layoutMatch = R.layout.row_match_sets
-                    fifthPosition -> layoutMatch = R.layout.row_match_sets
-                    sixthPosition -> layoutMatch = R.layout.row_match_time
-                    else -> layoutMatch = R.layout.row_match_wo
+                fifthPosition -> layoutMatch = when(position) {
+                    zeroPosition -> R.layout.row_match_info
+                    firstPosition -> R.layout.row_match_sets
+                    secondPosition -> R.layout.row_match_sets
+                    thirdPosition -> R.layout.row_match_sets
+                    fourthPosition -> R.layout.row_match_sets
+                    fifthPosition -> R.layout.row_match_sets
+                    sixthPosition -> R.layout.row_match_time
+                    else -> R.layout.row_match_wo
                 }
-                zeroPosition -> when(position) {
-                    zeroPosition -> layoutMatch = R.layout.row_match_info
-                    firstPosition -> layoutMatch = R.layout.row_match_wo
-                    else -> layoutMatch = R.layout.row_match_wo
+                zeroPosition -> layoutMatch = when(position) {
+                    zeroPosition -> R.layout.row_match_info
+                    firstPosition -> R.layout.row_match_wo
+                    else -> R.layout.row_match_wo
                 }
 
                 else -> layoutMatch = R.layout.row_match_wo
@@ -182,23 +176,25 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-            var holder: RecyclerView.ViewHolder
+            val holder: RecyclerView.ViewHolder
 
-            if(viewType == R.layout.row_match_info) {
-                val view = LayoutInflater.from(context).inflate(R.layout.row_match_info, parent,false)
-                holder = MatchView.MatchDataAdapter.InfoViewHolder(view)
-            }
-            else if(viewType == R.layout.row_match_sets) {
-                val view = LayoutInflater.from(context).inflate(R.layout.row_match_sets, parent,false)
-                holder = MatchView.MatchDataAdapter.SetsViewHolder(view)
-            }
-            else if(viewType == R.layout.row_match_time) {
-                val view = LayoutInflater.from(context).inflate(R.layout.row_match_time, parent,false)
-                holder = MatchView.MatchDataAdapter.TimeViewHolder(view)
-            }
-            else  { //viewType == R.layout.row_match_wo
-                val view = LayoutInflater.from(context).inflate(R.layout.row_match_wo, parent,false)
-                holder = MatchView.MatchDataAdapter.WOViewHolder(view)
+            when (viewType) {
+                R.layout.row_match_info -> {
+                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_info, parent,false)
+                    holder = MatchView.MatchDataAdapter.InfoViewHolder(view)
+                }
+                R.layout.row_match_sets -> {
+                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_sets, parent,false)
+                    holder = MatchView.MatchDataAdapter.SetsViewHolder(view)
+                }
+                R.layout.row_match_time -> {
+                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_time, parent,false)
+                    holder = MatchView.MatchDataAdapter.TimeViewHolder(view)
+                }
+                else -> { //viewType == R.layout.row_match_wo
+                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_wo, parent,false)
+                    holder = MatchView.MatchDataAdapter.WOViewHolder(view)
+                }
             }
 
             return holder
@@ -210,18 +206,13 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         override fun getItemCount(): Int {
 
-            var itemCount = 0
-
-            when((context as MatchView).numberOfSets.number){
-                firstPosition -> itemCount = thirdPosition
-                thirdPosition -> itemCount = fifthPosition
-                fifthPosition -> itemCount = seventhPosition
-                zeroPosition -> itemCount = secondPosition
-                else -> itemCount = secondPosition
+            return when((context as MatchView).numberOfSets.number) {
+                firstPosition -> thirdPosition
+                thirdPosition -> fifthPosition
+                fifthPosition -> seventhPosition
+                zeroPosition -> secondPosition
+                else -> secondPosition
             }
-
-            return itemCount
-
         }
 
         /**
@@ -238,7 +229,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             if(holder is InfoViewHolder) {
 
                 holder.infoBindView(matchInfo, context)
-
             }
 
             if(holder is SetsViewHolder) {
@@ -252,6 +242,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
             }
 
             if(holder is WOViewHolder) {
+
                 holder.wOBindView()
             }
         }
@@ -270,7 +261,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                 itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
-
                 itemView.buttonOne.setOnClickListener {
                     (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.One)
                 }
@@ -286,7 +276,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                     (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.WO)
                 }
             }
-
         }
 
         /**
@@ -297,7 +286,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         class SetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun setsBindView() {
-
             }
         }
 
@@ -308,6 +296,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         class TimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+            @SuppressLint("SimpleDateFormat")
             fun timeBindView() {
                 val dateToShow = SimpleDateFormat("ccc, dd 'of' LLL")
                 val time = dateToShow.format(Date())
@@ -327,8 +316,6 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             }
         }
-
-
     }
 
     companion object {
@@ -341,7 +328,4 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
         const val sixthPosition = 6
         const val seventhPosition = 7
     }
-
-
-
 }

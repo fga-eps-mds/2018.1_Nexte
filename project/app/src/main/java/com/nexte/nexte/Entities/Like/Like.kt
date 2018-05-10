@@ -1,4 +1,4 @@
-package com.nexte.nexte.Entities
+package com.nexte.nexte.Entities.Like
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

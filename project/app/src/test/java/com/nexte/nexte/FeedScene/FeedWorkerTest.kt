@@ -1,6 +1,6 @@
 package com.nexte.nexte.FeedScene
 
-import com.nexte.nexte.Mocker.FeedMocker
+import com.nexte.nexte.Entities.FeedMocker
 import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before

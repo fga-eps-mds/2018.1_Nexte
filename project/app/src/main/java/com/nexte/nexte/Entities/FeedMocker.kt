@@ -1,4 +1,4 @@
-package com.nexte.nexte.Mocker
+package com.nexte.nexte.Entities
 
 import com.nexte.nexte.FeedScene.FeedModel
 import com.nexte.nexte.R

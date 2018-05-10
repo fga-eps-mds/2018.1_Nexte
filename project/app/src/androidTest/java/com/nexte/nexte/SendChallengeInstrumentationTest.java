@@ -59,7 +59,7 @@ public class SendChallengeInstrumentationTest {
                 allOf(withId(R.id.userPicture), withContentDescription("User picture"),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.recyclerView),
+                                        withId(R.id.challengeRecyclerView),
                                         1),
                                 0),
                         isDisplayed()));

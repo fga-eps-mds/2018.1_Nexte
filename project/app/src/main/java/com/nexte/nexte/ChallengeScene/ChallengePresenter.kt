@@ -1,6 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-
 /**
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
