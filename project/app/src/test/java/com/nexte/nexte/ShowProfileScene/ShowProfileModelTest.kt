@@ -22,8 +22,7 @@ class ShowProfileModelTest {
 
         //call
         val request = ShowProfileModel.Request(username = "luis-gustavo", tokenID = "akjbd2130as")
-        request.username = userName
-        request.tokenID = tokenId
+
         //assert
         assertEquals(userName, request.username)
         assertEquals(tokenId, request.tokenID)
@@ -77,11 +76,7 @@ class ShowProfileModelTest {
 
         //call
         val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", club = "AASCD", email = "luis@email.com", age = "21")
-        formattedPlayer.age = age
-        formattedPlayer.club = club
-        formattedPlayer.email = email
-        formattedPlayer.name = name
-        formattedPlayer.rank = rank
+
         //assert
         assertEquals(name, formattedPlayer.name)
         assertEquals(rank, formattedPlayer.rank)
