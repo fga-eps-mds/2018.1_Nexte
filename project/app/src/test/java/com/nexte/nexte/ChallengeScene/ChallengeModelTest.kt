@@ -53,6 +53,7 @@ class ChallengeModelTest{
 
         //call
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(ranking)
+        request.challengerRankingPosition = ranking
 
         //assert
         assertEquals(request.challengerRankingPosition, ranking)
@@ -65,6 +66,7 @@ class ChallengeModelTest{
 
         //call
         val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(ranking)
+        request.challengedRankingPosition = ranking
 
         //assert
         assertEquals(request.challengedRankingPosition, ranking)
@@ -77,6 +79,7 @@ class ChallengeModelTest{
 
         //call
         val request = ChallengeModel.ChallengeButtonRequest.Request(user)
+        request.userChallenged = user
 
         //assert
         assertEquals(request.userChallenged, user)
@@ -100,6 +103,7 @@ class ChallengeModelTest{
 
         //call
         val response = ChallengeModel.ShowRankingPlayersRequest.Response(players)
+        response.usersAbove = players
 
         //assert
         assertEquals(response.usersAbove[0].rankingPosition, rankingPosition)
@@ -126,6 +130,7 @@ class ChallengeModelTest{
 
         //call
         val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(player)
+        response.challengedPersonalDetails = player
 
         //assert
         assertEquals(response.challengedPersonalDetails.loses, loses)
@@ -141,6 +146,7 @@ class ChallengeModelTest{
 
         //call
         val response = ChallengeModel.ChallengeButtonRequest.Response(user)
+        response.username = user
 
         //assert
         assertEquals(response.username, user)
@@ -155,8 +161,10 @@ class ChallengeModelTest{
         val playerFormatted = ChallengeModel.FormattedPlayer(name, rankingPosition, pictureAddress)
 
         val playersFormatted = listOf(playerFormatted)
+
         //call
         val viewModel = ChallengeModel.ShowRankingPlayersRequest.ViewModel(playersFormatted)
+        viewModel.formattedPlayer = playersFormatted
 
         //assert
         assertEquals(viewModel.formattedPlayer.size, playersFormatted.size)
@@ -177,6 +185,7 @@ class ChallengeModelTest{
 
         //call
         val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(playerFormatted)
+        viewModel.challengedRankingDetails = playerFormatted
 
         //assert
         assertEquals(viewModel.challengedRankingDetails.wins, wins)
@@ -192,9 +201,62 @@ class ChallengeModelTest{
 
         //call
         val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
+        viewModel.messageForChallenger = message
 
         //assert
         assertEquals(viewModel.messageForChallenger, message)
+    }
+
+    @Test
+    fun successChallengeModel() {
+        //prepare
+
+        //call
+        val model = ChallengeModel()
+
+        //assert
+        assertNotNull(model)
+    }
+
+    @Test
+    fun successSetFormattedPlayer() {
+        //prepare
+        val name = "larissa"
+        val rankingPosition = "5"
+        val pictureAddress = ""
+        val formattedPlayer = ChallengeModel.FormattedPlayer("albino", "6", "a")
+
+        //call
+        formattedPlayer.name = name
+        formattedPlayer.rankingPosition = rankingPosition
+        formattedPlayer.pictureAddress = pictureAddress
+
+        //assert
+        assertEquals(formattedPlayer.name, name)
+        assertEquals(formattedPlayer.rankingPosition, rankingPosition)
+        assertEquals(formattedPlayer.pictureAddress, pictureAddress)
+    }
+
+    @Test
+    fun successChallengeButtonRequest() {
+        //prepare
+
+        //call
+        val model = ChallengeModel.ChallengeButtonRequest()
+
+        //assert
+        assertNotNull(model)
+    }
+
+    @Test
+    fun successShowRankingPlayersRequest() {
+        //prepare
+
+        //call
+        val model = ChallengeModel.ShowRankingPlayersRequest()
+
+        //assert
+        assertNotNull(model)
     }
 
     @After
