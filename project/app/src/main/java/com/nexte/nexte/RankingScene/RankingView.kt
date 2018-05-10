@@ -89,13 +89,14 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int) {
 
         val constraintSet = ConstraintSet()
-        val rankingView = (context as RankingView)
+        val rankingView = context as RankingView
         val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
 
-        if(layoutManager.findFirstCompletelyVisibleItemPosition() <= (playerRanking - 1) && (playerRanking - 1) <= layoutManager.findLastCompletelyVisibleItemPosition()) {
+        if(layoutManager.findFirstCompletelyVisibleItemPosition() <= playerRanking - 1
+                && playerRanking - 1 <= layoutManager.findLastCompletelyVisibleItemPosition()) {
             rankingView.fixedFragment.visibility = View.INVISIBLE
         }
-        else if ((playerRanking - 1) > layoutManager.findLastVisibleItemPosition()) {
+        else if (playerRanking - 1 > layoutManager.findLastVisibleItemPosition()) {
             rankingView.fixedFragment.visibility = View.VISIBLE
             constraintSet.clone(rankingView.rankingConstraintLayout)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
@@ -103,7 +104,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             constraintSet.connect(R.id.fixedFragment, ConstraintSet.BOTTOM, R.id.rankingConstraintLayout, ConstraintSet.BOTTOM)
             constraintSet.applyTo(rankingView.rankingConstraintLayout)
         }
-        else if ((playerRanking-1 < layoutManager.findFirstVisibleItemPosition())){
+        else if (playerRanking-1 < layoutManager.findFirstVisibleItemPosition()){
             rankingView.fixedFragment.visibility = View.VISIBLE
             constraintSet.clone(rankingView.rankingConstraintLayout)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)

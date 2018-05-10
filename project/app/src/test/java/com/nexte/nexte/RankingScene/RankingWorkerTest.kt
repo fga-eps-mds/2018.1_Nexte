@@ -23,7 +23,7 @@ class RankingWorkerTest {
         //call
         this.worker?.getUsersInRanking(request = request, completion = { response ->
             //assert
-            assertEquals(response.players.size, 10)
+            assertEquals(response.players.size, 29)
             assertEquals(response.players[0].name, "Helena")
             assertEquals(response.players[3].wins, 7)
             assertEquals(response.players[1].rankPosition, 2)
