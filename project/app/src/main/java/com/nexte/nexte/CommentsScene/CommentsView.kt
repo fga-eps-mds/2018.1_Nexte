@@ -15,10 +15,7 @@ import kotlinx.android.synthetic.main.row_comments.view.*
 import android.app.Activity
 import android.app.AlertDialog
 import android.widget.EditText
-
-
-
-
+import com.nexte.nexte.UserSingleton
 
 
 /**
@@ -30,6 +27,7 @@ interface CommentsDisplayLogic {
     fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel)
     fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel)
     fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel)
+    fun displayCommentsAfterDel(viewModel: CommentsModel.DeleteCommentRequest.ViewModel)
 }
 
 /**
@@ -117,6 +115,10 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         alert.show()
     }
 
+    override fun displayCommentsAfterDel(viewModel: CommentsModel.DeleteCommentRequest.ViewModel) {
+        (commentsRecyclerView.adapter as CommentsAdapter).deleteComment(viewModel.delCommentsFormatted)
+    }
+
     private fun setActionToCloseKeyboard(view: View) {
 
         // Set up touch listener for non-text box views to hide keyboard.
@@ -166,7 +168,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      * @property comments It's a list of all comments
      * @property context Context that will show this adapter
      */
-    class CommentsAdapter(val comments: MutableList<CommentsModel.CommentFormatted>,
+    class CommentsAdapter(var comments: MutableList<CommentsModel.CommentFormatted>,
                           private val context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -201,6 +203,12 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                 })
                 val alert = builder.create()
                 alert.show() }
+
+
+
+            val messageDel = "Tem certeza que deseja excluir esse comentário?"
+            holder
+
         }
 
         override fun getItemCount(): Int {
@@ -215,6 +223,11 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         fun addItem(comment: CommentsModel.CommentFormatted) {
             comments.add(comment)
             this.notifyItemInserted(comments.size -1)
+        }
+
+        fun deleteComment(delComments: MutableList<CommentsModel.CommentFormatted>) {
+            this.comments = delComments
+            this.notifyDataSetChanged()
         }
 
         /**
@@ -234,6 +247,13 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                 itemView.commentBox.text = commentsFormatted.comment
                 itemView.commentDate.text = commentsFormatted.commentDate
                 itemView.playerName.text = commentsFormatted.username
+                itemView.deleteButton.visibility = View.INVISIBLE
+
+                if(itemView.playerName.text == UserSingleton.getUserInformations().name) {
+                    itemView.deleteButton.visibility = View.VISIBLE
+                }
+
+
             }
         }
     }

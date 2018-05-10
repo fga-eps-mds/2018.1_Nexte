@@ -91,7 +91,7 @@ class CommentsModel {
 
     class DeleteCommentRequest {
 
-        class Request (var commentPosition: Int)
+        class Request (var commentIdentifier: Int)
 
         class Response (var delComments: MutableList<Comment>)
 

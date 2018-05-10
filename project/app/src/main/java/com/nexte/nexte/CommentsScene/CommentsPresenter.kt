@@ -14,6 +14,7 @@ interface CommentsPresentationLogic {
     fun presentComment(response: CommentsModel.GetCommentsRequest.Response)
     fun presentNewComment (response: CommentsModel.PublishCommentRequest.Response)
     fun presentComplaint (response: CommentsModel.ComplaintRequest.Response)
+    fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response)
 }
 
 /**
@@ -71,6 +72,13 @@ class CommentsPresenter : CommentsPresentationLogic {
 
         viewController?.displayComplaintMessage(viewModel)
     }
+
+    override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
+
+        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(response.delComments))
+        viewController?.displayCommentsAfterDel(viewModel)
+    }
+
     /**
      * Function that converts the MutableList Comment unformatted to
      * MutableList CommentFormatted.
@@ -96,6 +104,7 @@ class CommentsPresenter : CommentsPresentationLogic {
 
         return commentsFormatted
     }
+
 
     companion object {
         const val okMessage = 200

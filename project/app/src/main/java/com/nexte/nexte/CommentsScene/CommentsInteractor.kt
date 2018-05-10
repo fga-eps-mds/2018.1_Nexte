@@ -31,6 +31,11 @@ interface CommentsBusinessLogic {
      */
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request)
 
+    /**
+     * Method that sends the position of the comment to be deleted as a request to worker
+     * where the comment is removed from the original list that is sent to be formatted
+     * on presenter
+     */
     fun deleteComment (request: CommentsModel.DeleteCommentRequest.Request)
 }
 
