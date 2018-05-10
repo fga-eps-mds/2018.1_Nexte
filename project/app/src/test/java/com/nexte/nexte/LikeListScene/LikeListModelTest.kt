@@ -99,6 +99,17 @@ class LikeListModelTest {
         assertEquals(viewModel.playersFormatted[0], playersFormatted)
     }
 
+    @Test
+    fun successLikeListModel() {
+        //prepare
+
+        //call
+        val model = LikeListModel()
+
+        //assert
+        assertNotNull(model)
+    }
+
     @After
     fun tearDown() {
     }
