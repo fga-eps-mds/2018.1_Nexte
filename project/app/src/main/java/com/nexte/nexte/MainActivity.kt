@@ -3,14 +3,11 @@ package com.nexte.nexte
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.ChallengeScene.ChallengeView
-import com.nexte.nexte.Entities.User.UserManager
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 

@@ -1,6 +1,5 @@
-package com.nexte.nexte.Entities
+package com.nexte.nexte.Entities.User
 
-import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -92,7 +91,6 @@ class UserTest {
                 challengeSended,
                 challengeReceived,
                 emptyList())
-//                RealmList())
 
         // Asserts
         Assert.assertEquals("User ID is invalid!", id, user.id)
@@ -110,63 +108,7 @@ class UserTest {
         Assert.assertNull("Category isn't null!", user.category)
         Assert.assertNull("Challenge Sended isn't null!", user.challengeSended)
         Assert.assertNull("Challenge Received isn't null!", user.challengeReceived)
-//        Assert.assertEquals("Latest games aren't null!", 0, user.latestGames.count())
-    }
-
-    @Test
-    fun successUserSetMethodsTest() {
-        // Prepate
-        val id = "123"
-        val name = "User test"
-        val profilePicture = null
-        val nickname = "uset"
-        val birthdate = Date()
-        val rankingPosition = 1
-        val email = "uset@uset.com"
-        val phone = "123"
-        val wins = 0
-        val loses = 0
-        val gender = User.Gender.MALE.value
-        val category = null
-        val status = User.Status.AVAILABLE.value
-        val challengeSended = null
-        val challengeReceived = null
-
-        // Call
-//        val user = User().apply {
-//            this.id = id
-//            this.name = name
-//            this.profilePicture = profilePicture
-//            this.nickname = nickname
-//            this.birthDate = birthdate
-//            this.rankingPosition = rankingPosition
-//            this.email = email
-//            this.phone = phone
-//            this.wins = wins
-//            this.loses = loses
-//            this.gender = gender
-//            this.category = category
-//            this.status = status
-//            this.challengeSended = challengeSended
-//            this.challengeReceived = challengeReceived
-//        }
-
-        // Asserts
-//        Assert.assertEquals("User ID is invalid!", id, user.id)
-//        Assert.assertEquals("User name is different!", name, user.name)
-//        Assert.assertEquals("Nickname is invalid!", nickname, user.nickname)
-//        Assert.assertEquals("Birthdate is incorrect!", birthdate, user.birthDate)
-//        Assert.assertEquals("Ranking position is different!", rankingPosition, user.rankingPosition)
-//        Assert.assertEquals("Email is incorrect!", email, user.email)
-//        Assert.assertEquals("Phone is different!", phone, user.phone)
-//        Assert.assertEquals("Wins are different!", wins, user.wins)
-//        Assert.assertEquals("Loses are different!", loses, user.loses)
-//        Assert.assertEquals("Gender is incorrect!", gender, user.gender)
-//        Assert.assertEquals("Status is incorrect!", status, user.status)
-//        Assert.assertNull("Profile Picture isn't null!", user.profilePicture)
-//        Assert.assertNull("Category isn't null!", user.category)
-//        Assert.assertNull("Challenge Sended isn't null!", user.challengeSended)
-//        Assert.assertNull("Challenge Received isn't null!", user.challengeReceived)
+        Assert.assertEquals("Latest games aren't null!", 0, user.latestGames?.count())
     }
 
     @Test

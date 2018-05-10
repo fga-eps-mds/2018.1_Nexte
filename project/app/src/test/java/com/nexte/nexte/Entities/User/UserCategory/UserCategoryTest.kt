@@ -1,4 +1,4 @@
-package com.nexte.nexte.Entities
+package com.nexte.nexte.Entities.User.UserCategory
 
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import org.junit.After
