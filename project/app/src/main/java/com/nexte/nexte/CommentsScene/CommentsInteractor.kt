@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+
 /**
  * Interface to define Business Logic to Comments Class
  * that will used to call this Interactor on other class layer
@@ -28,6 +29,13 @@ interface CommentsBusinessLogic {
      * @param request Request model from ComplaintRequest that contains data to pass for Worker.
      */
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request)
+
+    /**
+     * Method that sends the position of the comment to be deleted as a request to worker
+     * where the comment is removed from the original list that is sent to be formatted
+     * on presenter
+     */
+    fun deleteComment (request: CommentsModel.DeleteCommentRequest.Request)
 }
 
 /**
@@ -56,6 +64,12 @@ class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : Co
     override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
         worker.sendComplaint(request) { response ->
             this.presenter?.presentComplaint(response)
+        }
+    }
+
+    override fun deleteComment(request: CommentsModel.DeleteCommentRequest.Request) {
+        worker.getToDeleteComment(request) { response ->
+            this.presenter?.presentPositionToDelete(response)
         }
     }
 }
