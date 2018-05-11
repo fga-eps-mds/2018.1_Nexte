@@ -18,35 +18,7 @@ class LoginInteractorTest {
         this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
     }
-
-
-
-    @Test
-//    fun successAccountKitAuthentication() {
-//        //prepare
-//
-//        val loginResult =  data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-//        val request = LoginModel.AccountKit.Request(loginResult = )
-//
-//        //call
-//        this.interactor?.doAuthentication(request = request)
-//
-//        //assert
-//        assertEquals(this.mock?.passedHere, true)
-//    }
-
-//    @Test
-//    fun successDoAuthentication(){
-//        //prepare
-//        val request = LoginModel.Request(userName = "luis-gustavo", password = "123456")
-//
-//        //call
-//        this.interactor?.doAuthentication(request = request)
-//
-//        //assert
-//        assertEquals(this.mock?.passedHere, true)
-//    }
-
+    
     @After
     fun tearDown() {
         this.mock = null
