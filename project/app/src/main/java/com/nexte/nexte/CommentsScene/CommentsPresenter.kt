@@ -13,11 +13,29 @@ interface CommentsPresentationLogic {
     /**
      * Method responsible to format comments data and send to view
      *
-     * @param response contains unformatted data received from [CommentsModel]
+     * @param response contains unformatted data of a list of comments received from [CommentsModel]
      */
     fun presentComment(response: CommentsModel.GetCommentsRequest.Response)
+
+    /**
+     * Method responsible to format the new comment to be displayed on view
+     *
+     * @param response contains unformatted data of a comment received from [CommentsModel]
+     */
     fun presentNewComment (response: CommentsModel.PublishCommentRequest.Response)
+
+    /**
+     * Method responsible to format the server answer to be displayed
+     *
+     * @param response contains integer that represents the server message
+     */
     fun presentComplaint (response: CommentsModel.ComplaintRequest.Response)
+
+    /**
+     * Method responsible to format the new list of comments, without the excluded comment
+     *
+     * @param response contains unformatted data of list of comments
+     */
     fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response)
 }
 
@@ -80,6 +98,11 @@ class CommentsPresenter : CommentsPresentationLogic {
         viewController?.displayComplaintMessage(viewModel)
     }
 
+    /**
+     * Function that format the list of comments after the deletion of the comment indicated.
+     *
+     * @param response unformatted list of comments after deletion
+     */
     override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
 
         val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(response.delComments))

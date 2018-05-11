@@ -261,12 +261,15 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
                 itemView.commentBox.text = commentsFormatted.comment
                 itemView.commentDate.text = commentsFormatted.commentDate
                 itemView.playerName.text = commentsFormatted.username
-                itemView.deleteButton.visibility = View.INVISIBLE
-                itemView.deleteButton.isEnabled = false
+
 
                 if(itemView.playerName.text == UserSingleton.getUserInformations().name) {
                     itemView.deleteButton.visibility = View.VISIBLE
                     itemView.deleteButton.isEnabled = true
+                }
+                else {
+                    itemView.deleteButton.visibility = View.INVISIBLE
+                    itemView.deleteButton.isEnabled = false
                 }
 
 

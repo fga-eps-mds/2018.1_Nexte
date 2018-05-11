@@ -117,9 +117,6 @@ class CommentsWorkerTest {
             assertEquals(originalList[0].author.photo, response.delComments[0].author.photo )
             assertEquals(originalList[2].author.photo, response.delComments[1].author.photo )
 
-            assertEquals(originalList[0].date, response.delComments[0].date )
-            assertEquals(originalList[2].date, response.delComments[1].date )
-
             assertEquals(originalList[0].comment, response.delComments[0].comment )
             assertEquals(originalList[2].comment, response.delComments[1].comment )
 
