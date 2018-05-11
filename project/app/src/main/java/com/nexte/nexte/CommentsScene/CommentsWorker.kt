@@ -2,6 +2,9 @@ package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
+import java.time.Instant
+import java.time.temporal.Temporal
+import java.time.temporal.TemporalAccessor
 import java.util.*
 
 /**
@@ -66,6 +69,13 @@ class CommentsWorker {
         completion(response)
     }
 
+    /**
+     * Function responsible to delete the comment at the position set by request
+     * and to send the list [CommentsMockedData] after deletion as the response to interactor
+     *
+     * @param request Position of the comment to be deleted
+     * @param completion List of unformatted list of comments after deletion
+     */
     fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request,
                             completion: (CommentsModel.DeleteCommentRequest.Response) -> Unit){
 

@@ -1,5 +1,7 @@
 package com.nexte.nexte.CommentsScene
 
+import java.text.DateFormat.getAvailableLocales
+import java.text.DateFormat.getTimeInstance
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,10 +46,13 @@ class CommentsPresenter : CommentsPresentationLogic {
     override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
 
         val newComment = response.newComment
+        val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
+        val time = dateToShow.format(newComment.date)
 
         val formatted = CommentsModel.CommentFormatted(
+
                 newComment.comment,
-                newComment.date.toString(),
+                time,
                 newComment.author.name,
                 newComment.author.photo
         )
@@ -96,7 +101,7 @@ class CommentsPresenter : CommentsPresentationLogic {
 
         for (gameComment in gameComments) {
 
-            val dateToShow = SimpleDateFormat("ccc, dd 'of' LLL")
+            val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
             val time = dateToShow.format(gameComment.date)
 
             val commentFormatted = CommentsModel.CommentFormatted(

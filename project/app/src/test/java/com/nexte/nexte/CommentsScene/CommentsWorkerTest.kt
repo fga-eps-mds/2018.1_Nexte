@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
@@ -74,6 +75,59 @@ class CommentsWorkerTest {
             //assert
             assertEquals(response.serverResponse,200)
         })
+    }
+
+    @Test
+    fun successGetToDeletComment() {
+        //prepare
+        val player1 = CommentsModel.Player("Lorrany", R.mipmap.ic_launcher)
+        val player2 = CommentsModel.Player("Alexandre", R.mipmap.ic_launcher)
+        val player3 = CommentsModel.Player("Larissa", R.mipmap.ic_launcher)
+        val player4 = CommentsModel.Player("Letícia", R.mipmap.ic_launcher)
+
+        val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
+                Date(),
+                player1, 1)
+        val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
+                Date(),
+                player2, 2)
+        val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
+                Date(),
+                player3, 3)
+        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
+                Date(),
+                player4, 4)
+
+        val originalList: MutableList<CommentsModel.Comment> = mutableListOf(
+                comment1,
+                comment2,
+                comment3,
+                comment4)
+
+        val position = 1
+
+        val requestToDel = CommentsModel.DeleteCommentRequest.Request(position)
+
+        //call
+        worker?.getToDeleteComment(requestToDel) {response ->
+            //assert
+            assertEquals(originalList[0].author.name, response.delComments[0].author.name )
+            assertEquals(originalList[2].author.name, response.delComments[1].author.name )
+
+            assertEquals(originalList[0].author.photo, response.delComments[0].author.photo )
+            assertEquals(originalList[2].author.photo, response.delComments[1].author.photo )
+
+            assertEquals(originalList[0].date, response.delComments[0].date )
+            assertEquals(originalList[2].date, response.delComments[1].date )
+
+            assertEquals(originalList[0].comment, response.delComments[0].comment )
+            assertEquals(originalList[2].comment, response.delComments[1].comment )
+
+            assertEquals(originalList[0].commentId, response.delComments[0].commentId )
+            assertEquals(originalList[2].commentId, response.delComments[1].commentId )
+        }
+
+
     }
 
     @After
