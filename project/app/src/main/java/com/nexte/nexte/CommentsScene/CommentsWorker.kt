@@ -2,9 +2,6 @@ package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
-import java.time.Instant
-import java.time.temporal.Temporal
-import java.time.temporal.TemporalAccessor
 import java.util.*
 
 /**

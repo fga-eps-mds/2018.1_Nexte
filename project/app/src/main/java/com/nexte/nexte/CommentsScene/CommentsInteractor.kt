@@ -1,6 +1,5 @@
 package com.nexte.nexte.CommentsScene
 
-import com.github.kittinunf.fuel.core.interceptors.loggingResponseInterceptor
 
 /**
  * Interface to define Business Logic to Comments Class

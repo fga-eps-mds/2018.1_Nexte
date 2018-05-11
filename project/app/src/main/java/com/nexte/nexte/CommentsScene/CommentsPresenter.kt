@@ -1,9 +1,8 @@
 package com.nexte.nexte.CommentsScene
 
-import java.text.DateFormat.getAvailableLocales
-import java.text.DateFormat.getTimeInstance
+
 import java.text.SimpleDateFormat
-import java.util.*
+
 
 /**
  * Interface to define Presentation Logic to Comment Class that
