@@ -32,9 +32,13 @@ class LoginViewTest {
 }
 
 private class MockLoginBusinessLogic: LoginBusinessLogic{
-    var request: LoginModel.Request? = null
+    var request: LoginModel.Authentication.Request? = null
 
-    override fun doAuthentication(request: LoginModel.Request) {
+    override fun doAuthentication(request: LoginModel.Authentication.Request) {
         this.request = request
+    }
+
+    override fun accountKitAuthentication(request: LoginModel.AccountKit.Request) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

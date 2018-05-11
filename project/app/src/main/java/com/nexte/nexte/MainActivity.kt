@@ -11,11 +11,9 @@ import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.MatchScene.MatchView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), LoginDisplayLogic {
+class MainActivity : AppCompatActivity() {
 
-    private var loginInteractor: LoginBusinessLogic? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,8 +58,4 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
             startActivity(intent)
         }
     }
-
-    // Print a message according with received data
-    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) { }
-
 }

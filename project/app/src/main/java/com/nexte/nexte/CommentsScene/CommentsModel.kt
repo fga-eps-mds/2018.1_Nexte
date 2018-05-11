@@ -88,6 +88,40 @@ class CommentsModel {
         class ViewModel(var newCommentFormatted: CommentFormatted)
 
     }
+
+    /**
+     * This class is responsible to remove an especific comment from the list of comments,
+     * once the button to access this activity flow is only able to the author of the comment
+     */
+
+    class DeleteCommentRequest {
+
+        /**
+         * Class responsible to store the position of the comment that will be
+         * removed from the list
+         *
+         * @param commentIdentifier position of the comment to be removed
+         */
+        class Request (var commentIdentifier: Int)
+
+        /**
+         * Class responsible to get the new list of comments, without the comment
+         * that was ment to be removed
+         *
+         * @param delComments list of unformatted comments without deleted comment
+         */
+        class Response (var delComments: MutableList<Comment>)
+
+        /**
+         * Class responsible to define the standar format of the information that will
+         * be displayed on view
+         *
+         * @param delCommentsFormatted list of formatted comments that will be shown on view
+         */
+        class ViewModel (var delCommentsFormatted: MutableList<CommentFormatted>)
+    }
+
+
     // ---------- Aux classes ----------
     /**
      * Class with information about the player who will be displayed in the comments list
