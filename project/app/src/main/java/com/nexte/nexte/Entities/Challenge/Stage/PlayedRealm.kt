@@ -4,4 +4,4 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 
-open class PlayedRealm(@PrimaryKey var id: String = ""):RealmObject
+open class PlayedRealm(@PrimaryKey var id: String = ""): RealmObject()
