@@ -8,14 +8,15 @@
         <item
             android:id="@+id/feed"
             android:checked="true"
-
-            android:title="FEED" />
+            android:icon="@drawable/ic_feed"
+            android:title="Feed" />
         <item
             android:id="@+id/challenge"
-
+            android:icon="@drawable/ic_challenge"
             android:title="CHALLENGE" />
         <item
             android:id="@+id/ranking"
+            android:icon="@drawable/ic_ranking"
             android:title="RANKING" />
     </group>
 </menu>
