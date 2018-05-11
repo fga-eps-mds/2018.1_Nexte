@@ -10,15 +10,15 @@ class LikeListInteractorTest {
 
     private var mock: MockLikeListPresentationLogic? = null
     private var interactor: LikeListInteractor? = null
-    private var mockUpdateResponseLogic: MockUpdatesResponseLogic? = null
+    private var mockUpdateResponseLogic: MockWorkerUpdateLogic? = null
 
     @Before
     fun setUp() {
         this.mock = MockLikeListPresentationLogic()
-        this.mockUpdateResponseLogic = MockUpdatesResponseLogic()
+        this.mockUpdateResponseLogic = MockWorkerUpdateLogic()
         this.interactor = LikeListInteractor(presenter = mock)
         this.mockUpdateResponseLogic?.mock = mock
-        this.interactor?.worker?.responseLogic = this.mockUpdateResponseLogic
+        this.interactor?.worker?.updateLogic = this.mockUpdateResponseLogic
     }
 
     @Test
@@ -44,7 +44,7 @@ class LikeListInteractorTest {
         val response = LikeListModel.Response(players = mutableListOf(player))
 
         //call
-        this.interactor?.getUsers(response = response)
+        this.interactor?.updateUsers(response = response)
 
         //assert
         assertEquals(this.mock?.passedHere, true)
@@ -67,10 +67,10 @@ private class MockLikeListPresentationLogic: LikeListPresentationLogic{
     }
 }
 
-private class MockUpdatesResponseLogic : UpdateResponseLogic{
+private class MockWorkerUpdateLogic : WorkerUpdateLogic{
     var mock: MockLikeListPresentationLogic? = null
 
-    override fun getUsers(response: LikeListModel.Response) {
+    override fun updateUsers(response: LikeListModel.Response) {
         this.mock?.formatLikeList(response = response)
     }
 }

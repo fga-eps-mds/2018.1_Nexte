@@ -16,27 +16,13 @@ interface LikeListBusinessLogic {
 }
 
 /**
- * Interface to define Response Logic of Like List Class
- * that will be used to make the communication between worker and presenter
- */
-interface UpdateResponseLogic {
-
-    /**
-     * * Method that will be used to pass response data for the presenter
-     *
-     * @param response Response model of list that contains data to pass for Presenter
-     */
-    fun getUsers(response: LikeListModel.Response)
-}
-
-/**
  *  * Class that implements [LikeListBusinessLogic] and is responsible for the communication
  *  between worker and presenter
  *
  * @property worker Reference to worker [LikeListWorker]
  * @property presenter Reference to presenter [LikeListPresenter]
  */
-class LikeListInteractor(var presenter: LikeListPresentationLogic? = null ) : LikeListBusinessLogic, UpdateResponseLogic {
+class LikeListInteractor(var presenter: LikeListPresentationLogic? = null ) : LikeListBusinessLogic, WorkerUpdateLogic {
 
     var worker: LikeListWorker = LikeListWorker()
 
@@ -44,7 +30,7 @@ class LikeListInteractor(var presenter: LikeListPresentationLogic? = null ) : Li
         this.worker.getListLikesPlayers(request = request)
     }
 
-    override fun getUsers(response: LikeListModel.Response) {
+    override fun updateUsers(response: LikeListModel.Response) {
         this.presenter?.formatLikeList(response)
     }
 }

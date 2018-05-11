@@ -66,7 +66,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
-        interactor.worker.responseLogic = interactor
+        interactor.worker.updateLogic = interactor
         presenter.viewList = view
     }
 

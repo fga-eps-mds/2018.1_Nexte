@@ -11,13 +11,13 @@ import org.junit.Test
 class LikeListWorkerTest {
 
     var worker: LikeListWorker? = null
-    var mock: MockUpdateResponseLogic? = null
+    var mock: MockWorkersUpdateLogic? = null
 
     @Before
     fun setUp() {
         this.worker = LikeListWorker()
-        this.mock = MockUpdateResponseLogic()
-        this.worker?.responseLogic = mock
+        this.mock = MockWorkersUpdateLogic()
+        this.worker?.updateLogic = mock
     }
 
     // TODO: Need to mock Realm.init() to can't call convertUserToUserRealm method
@@ -42,11 +42,11 @@ class LikeListWorkerTest {
     }
 }
 
-class MockUpdateResponseLogic: UpdateResponseLogic {
+class MockWorkersUpdateLogic: WorkerUpdateLogic {
 
     var response: LikeListModel.Response? = null
 
-    override fun getUsers(response: LikeListModel.Response) {
+    override fun updateUsers(response: LikeListModel.Response) {
         this.response = response
     }
 }
