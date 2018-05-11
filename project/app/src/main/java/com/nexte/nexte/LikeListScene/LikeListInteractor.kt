@@ -15,9 +15,17 @@ interface LikeListBusinessLogic {
     fun fetchDataToList(request: LikeListModel.Request)
 }
 
+/**
+ * Interface to define Response Logic of Like List Class
+ * that will be used to make the communication between worker and presenter
+ */
 interface UpdateResponseLogic {
 
-
+    /**
+     * * Method that will be used to pass response data for the presenter
+     *
+     * @param response Response model of list that contains data to pass for Presenter
+     */
     fun getUsers(response: LikeListModel.Response)
 }
 
