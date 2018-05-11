@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
         <item
             android:id="@+id/feed"
-            android:checked="true"
+            android:enabled="true"
             android:icon="@drawable/ic_feed"
-            android:title="Feed" />
+            android:title="Feed"
+            app:showAsAction="ifRoom" />
         <item
             android:id="@+id/challenge"
+            android:enabled="true"
             android:icon="@drawable/ic_challenge"
-            android:title="CHALLENGE" />
+            android:title="Challenge"
+            app:showAsAction="ifRoom" />
+
         <item
             android:id="@+id/ranking"
+            android:enabled="true"
             android:icon="@drawable/ic_ranking"
-            android:title="RANKING" />
-    </group>
+            android:title="Ranking"
+            app:showAsAction="ifRoom" />
 </menu>
