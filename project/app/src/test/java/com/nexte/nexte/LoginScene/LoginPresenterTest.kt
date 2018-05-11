@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import android.util.Log
 import org.junit.After
 import org.junit.Before
 
@@ -22,8 +23,8 @@ class LoginPresenterTest {
     fun successMessagePresentLogin() {
         //prepare
         val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-        val authorized = LoginModel.AuthenticationStatus.AUTHORIZED
-        val response = LoginModel.Response(tokenId = token, authenticateStatus = authorized)
+        val authorized = LoginModel.Authentication.StatusCode.AUTHORIZED
+        val response = LoginModel.Authentication.Response(tokenId = token, authenticateStatusCode = authorized)
         val expectedMessage = "Congratz! U get it"
 
         //call
@@ -34,10 +35,52 @@ class LoginPresenterTest {
     }
 
     @Test
+    fun sucessMessagePresentAccountKit() {
+        //prepare
+        val sucessed = LoginModel.AccountKit.StatusCode.SUCESSED
+        val response = LoginModel.AccountKit.Response(statusCode = sucessed)
+        val expectedMessage = "Autenticação realizada com sucesso"
+
+        //call
+        this.presenter?.presentAccountKit(response = response)
+
+        //assert
+        assertEquals(this.mock?.message, expectedMessage)
+    }
+
+    @Test
+    fun cancelMessagePresentAccountKit() {
+        //prepare
+        val cancel = LoginModel.AccountKit.StatusCode.CANCELLED
+        val response = LoginModel.AccountKit.Response(statusCode = cancel)
+        val expectedMessage = "Ops, a autenticação foi cancelada"
+
+        //call
+        this.presenter?.presentAccountKit(response = response)
+
+        //assert
+        assertEquals(this.mock?.message, expectedMessage)
+    }
+
+    @Test
+    fun errorMessagePresentAccountKit() {
+        //prepare
+        val error = LoginModel.AccountKit.StatusCode.ERROR
+        val response = LoginModel.AccountKit.Response(statusCode = error)
+        val expectedMessage = "Ops, houve um erro, tente novamente"
+
+        //call
+        this.presenter?.presentAccountKit(response = response)
+
+        //assert
+        assertEquals(this.mock?.message, expectedMessage)
+    }
+
+    @Test
     fun failMessagePresentLogin() {
         //prepare
-        val unauthorized = LoginModel.AuthenticationStatus.UNAUTHORIZED
-        val response = LoginModel.Response(tokenId = "", authenticateStatus = unauthorized)
+        val unauthorized = LoginModel.Authentication.StatusCode.UNAUTHORIZED
+        val response = LoginModel.Authentication.Response(tokenId = "", authenticateStatusCode = unauthorized)
         val expectedMessage = "Something is wrong. Try again"
 
         //call
@@ -57,8 +100,14 @@ class LoginPresenterTest {
 private class MockLoginDisplayLogic: LoginDisplayLogic {
 
     var message: String? = null
+    var passedHere: Boolean = false
 
-    override fun displayAuthenticateState(viewModel: LoginModel.ViewModel) {
+    override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
+        this.message = viewModel.message
+        print(this.message)
+    }
+
+    override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
         this.message = viewModel.message
         print(this.message)
     }
