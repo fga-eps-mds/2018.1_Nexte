@@ -1,4 +1,5 @@
 package com.nexte.nexte.LikeListScene
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 
 /**
@@ -15,7 +16,7 @@ class LikeListWorker {
      * @param request
      */
     fun getListLikesPlayers(request: LikeListModel.Request){
-        val response = LikeListModel.Response(this.generateLikeList())
+        val response = LikeListModel.Response(this.generateLikeList(request = request))
         this.responseLogic?.getUsers(response = response)
     }
 
@@ -24,18 +25,9 @@ class LikeListWorker {
      *
      * @return MutableList of addPLayers
      */
-    private fun generateLikeList(): MutableList<LikeListModel.Players> {
-
-        val player1 = LikeListModel.Players("Alexandre", R.mipmap.ic_launcher, String())
-        val player2 = LikeListModel.Players("Lorrany", R.mipmap.ic_launcher, String())
-        val player3 = LikeListModel.Players("Letícia", R.mipmap.ic_launcher, String())
-        val player4 = LikeListModel.Players("Larissa", R.mipmap.ic_launcher, String())
-
-        val addPlayers: MutableList<LikeListModel.Players> = mutableListOf(
-                player1,
-                player2,
-                player3,
-                player4)
-        return addPlayers
+    private fun generateLikeList(request: LikeListModel.Request): MutableList<LikeListModel.Players> {
+        val player = UserManager().get(identifier = request.request)
+        val likeListModelPlayer = LikeListModel.Players(name = player!!.name, time = "", photo = R.mipmap.ic_launcher)
+        return mutableListOf(likeListModelPlayer)
     }
 }

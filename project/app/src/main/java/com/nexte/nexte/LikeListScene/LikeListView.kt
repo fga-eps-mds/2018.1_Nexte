@@ -51,7 +51,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
      * Method responsible for creating the fetch data to list request and passing it to the interactor
      */
     fun createFetchDataRequest(){
-        val request = LikeListModel.Request("exampleString")
+        val request = LikeListModel.Request("1")
         interactor?.fetchDataToList(request)
     }
 
