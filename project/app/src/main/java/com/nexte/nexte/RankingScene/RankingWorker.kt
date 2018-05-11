@@ -1,6 +1,7 @@
 package com.nexte.nexte.RankingScene
 
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -9,7 +10,7 @@ import com.nexte.nexte.R
 class RankingWorker {
 
     /**
-     * Function to get users in rank
+     * Function to get users in ranking
      *
      * @param request Ranking Model Request that contains need information to send for server
      * @param completion Method to call on parent class
@@ -37,17 +38,55 @@ class RankingWorker {
         val userRanking7 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher, 4, 6, 7)
         val userRanking8 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher, 3, 7, 8)
         val userRanking9 = RankingModel.Player("Miguel", R.mipmap.ic_launcher, 2, 6, 9)
-        val userRanking10 = RankingModel.Player("Larissa", R.mipmap.ic_launcher, 1, 5, 10)
+        val userRanking10 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher, 1, 5, 10)
+        val userRanking11 = RankingModel.Player("Helena", R.mipmap.ic_launcher, 10, 0, 11)
+        val userRanking12 = RankingModel.Player("Leticia", R.mipmap.ic_launcher, 9, 1, 12)
+        val userRanking13 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher, 8, 2, 13)
+        val userRanking14 = RankingModel.Player("Lorrany", R.mipmap.ic_launcher, 7, 3, 14)
+        val userRanking15 = RankingModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher, 6, 4, 15)
+        val userRanking16 = RankingModel.Player("Luis Gustavo", R.mipmap.ic_launcher, 5, 5, 16)
+        val userRanking17 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher, 4, 6, 17)
+        val userRanking18 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher, 3, 7, 18)
+        val userRanking19 = RankingModel.Player("Miguel", R.mipmap.ic_launcher, 2, 6, 19)
+        val userRanking20 = RankingModel.Player("Larissa", R.mipmap.ic_launcher, 1, 5, 20)
+        val userRanking21 = RankingModel.Player("Helena", R.mipmap.ic_launcher, 10, 0, 21)
+        val userRanking22 = RankingModel.Player("Leticia", R.mipmap.ic_launcher, 9, 1, 22)
+        val userRanking23 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher, 8, 2, 23)
+        val userRanking24 = RankingModel.Player("Lorrany", R.mipmap.ic_launcher, 7, 3, 24)
+        val userRanking25 = RankingModel.Player("Leticia", R.mipmap.ic_launcher, 6, 4, 25)
+        val userRanking26 = RankingModel.Player("Luis Gustavo", R.mipmap.ic_launcher, 5, 5, 26)
+        val userRanking27 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher, 4, 6, 27)
+        val userRanking28 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher, 3, 7, 28)
+        val userRanking29 = RankingModel.Player("Miguel", R.mipmap.ic_launcher, 2, 6, 29)
 
          return arrayOf(userRanking1,
-                        userRanking2,
-                        userRanking3,
-                        userRanking4,
-                        userRanking5,
-                        userRanking6,
-                        userRanking7,
-                        userRanking8,
-                        userRanking9,
-                        userRanking10)
+                 userRanking2,
+                 userRanking3,
+                 userRanking4,
+                 userRanking5,
+                 userRanking6,
+                 userRanking7,
+                 userRanking8,
+                 userRanking9,
+                 userRanking10,
+                 userRanking11,
+                 userRanking12,
+                 userRanking13,
+                 userRanking14,
+                 userRanking15,
+                 userRanking16,
+                 userRanking17,
+                 userRanking18,
+                 userRanking19,
+                 userRanking20,
+                 userRanking21,
+                 userRanking22,
+                 userRanking23,
+                 userRanking24,
+                 userRanking25,
+                 userRanking26,
+                 userRanking27,
+                 userRanking28,
+                 userRanking29)
     }
 }
