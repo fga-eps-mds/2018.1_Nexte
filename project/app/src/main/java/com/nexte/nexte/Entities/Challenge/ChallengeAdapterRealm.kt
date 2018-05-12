@@ -10,8 +10,12 @@ class ChallengeAdapterRealm: ChallengeAdapter {
 
     override fun delete(identifier: String): Challenge? {
 
-        val challengeRealm = realm.where<ChallengeRealm>().equalTo("id", identifier).findFirst()
-        return convertChallengeRealmToChallenge(challengeRealm!!)
+        val challengeRealm = realm.where<ChallengeRealm>().equalTo("id", identifier).findAll()
+        realm.beginTransaction()
+        val user = convertChallengeRealmToChallenge(challengeRealm.first())
+        challengeRealm.deleteAllFromRealm()
+        realm.commitTransaction()
+        return user
     }
 
     override fun getAll(): List<Challenge> {
@@ -20,13 +24,21 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return convertListChallengeRealmToChallengeList(challengeRealmResults)
     }
 
+
     override fun updateOrInsert(challenge: Challenge): Challenge? {
 
-        val challenge: Challenge? = null
+        convertChallengeToChallengeRealm(challenge)?.let {
+            realm.beginTransaction()
+            realm.insertOrUpdate(it)
+            realm.commitTransaction()
+            return challenge
+        }
+
         return challenge
     }
 
     override fun get(identifier: String): Challenge? {
+
         val challenge: Challenge? = null
         return challenge
     }
@@ -36,15 +48,19 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         var challengeRealm: ChallengeRealm? = null
 
         challenge.let {
+
             challengeRealm = ChallengeRealm().apply {
                     this.id = it.id
                     this.challengerId = it.challengerId
                     this.challengedId = it.challengedId
                     this.challegeDate = it.challengeDate
+                    this.stageScheduledRealm = if (it.stage == Challenge.Stage.Scheduled) it.stage else null
+                    this.stageCancelledRealm = if (it.stage == Challenge.Stage.Canceled) it.stage else null
+                    this.stagePlayedRealm = if (it.stage == Challenge.Stage.Played) it.stage else null
             }
         }
 
-        return challengeRealm!!
+        return challengeRealm
     }
 
     private fun convertChallengeRealmToChallenge(challengeRealm: ChallengeRealm): Challenge? {
@@ -53,7 +69,6 @@ class ChallengeAdapterRealm: ChallengeAdapter {
 
         challengeRealm?.let {
 
-            var status: Challenge.Status? = null
             var stage: Challenge.Stage? = null
 
             if (challengeRealm.stagePlayedRealm != null) {
@@ -93,13 +108,11 @@ class ChallengeAdapterRealm: ChallengeAdapter {
     private fun convertListChallengeRealmToChallengeList(challengeRealmResults: RealmResults<ChallengeRealm>): List<Challenge> {
 
         val challenges: MutableList<Challenge> = mutableListOf()
-
         for(challengeRealm in challengeRealmResults) {
             convertChallengeRealmToChallenge(challengeRealm)?.let {
 
             }
         }
-
         return challenges
     }
 

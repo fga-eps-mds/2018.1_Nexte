@@ -702,9 +702,7 @@ object ChallengeMocker {
                         Challenge.Stage.Scheduled()
                 )
         )
-        
-        
-        
+
 
         return challenges
     }
