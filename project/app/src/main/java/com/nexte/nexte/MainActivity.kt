@@ -34,17 +34,9 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        bottom_nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.feed -> {} // aqui teria que vir algo do tipo findViewId(R.id.feed_activity)               // include activity
-                break
-                R.id.ranking ->
-                // include activity
-                break
-            }
-            return true
-        }
+
 
         // Setting up feed button listener
         /*feedButton.setOnClickListener {
@@ -85,6 +77,29 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
             intent.putExtra("identifier", "matchName")
             startActivity(intent)
         }
+    }
+
+    val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
+        when (item.itemId) {
+            R.id.feed -> {val intent = Intent(this, FeedView::class.java)
+                startActivity(intent)
+
+            }           // include activity
+
+            R.id.challenge -> {val intent = Intent(this, ChallengeView::class.java)
+                startActivity(intent)
+
+            }
+
+            R.id.ranking -> {val intent = Intent(this, RankingView::class.java)
+                startActivity(intent)
+
+            }
+
+        // include activity
+        }
+        true
+
     }
 
     // Print a message according with received data

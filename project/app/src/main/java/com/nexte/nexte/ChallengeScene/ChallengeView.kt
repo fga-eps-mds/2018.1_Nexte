@@ -92,7 +92,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     fun getPlayerToChallenge() {
 
         val request = ChallengeModel.ShowRankingPlayersRequest.Request(playerRanking)
-        interactor?.req-==- uestPlayersToChallenge(request)
+        interactor?.requestPlayersToChallenge(request)
     }
 
     /**
