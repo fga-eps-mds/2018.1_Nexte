@@ -1,7 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-import android.util.Log
-
 /**
  * Interface to define Business Logic to Challenge Class
  * that will used to call this Interactor on other class layer

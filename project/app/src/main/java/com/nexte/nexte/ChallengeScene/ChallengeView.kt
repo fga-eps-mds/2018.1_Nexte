@@ -14,7 +14,6 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.UserSingleton
