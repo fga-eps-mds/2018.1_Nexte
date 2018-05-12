@@ -58,10 +58,16 @@ class ChallengeAdapterRealm: ChallengeAdapter {
 
             if (challengeRealm.stagePlayedRealm != null) {
                 challengeRealm.stagePlayedRealm?.let {
+
                     stage = Challenge.Stage.Played(it.setChallenger,
                             it.setChallenged,
                             it.date!!,
-                            Challenge.Stage.Played.Game()
+                            Challenge.Stage.Played.Game(it.firstGame!!.gameChallenger, it.firstGame!!.gameChallenged),
+                            Challenge.Stage.Played.Game(it.secondGame!!.gameChallenger, it.secondGame!!.gameChallenged),
+                            Challenge.Stage.Played.Game(it.thirdGame!!.gameChallenger, it.thirdGame!!.gameChallenged),
+                            Challenge.Stage.Played.Game(it.fourthGame!!.gameChallenger, it.fourthGame!!.gameChallenged),
+                            Challenge.Stage.Played.Game(it.fifthGame!!.gameChallenger, it.fifthGame!!.gameChallenged),
+                            it.detail)
                 }
             } else if (challengeRealm.stageCancelledRealm != null) {
                 challengeRealm.stageCancelledRealm?.let {
