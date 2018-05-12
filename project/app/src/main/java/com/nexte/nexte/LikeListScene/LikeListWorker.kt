@@ -23,6 +23,7 @@ interface WorkerUpdateLogic {
 class LikeListWorker {
 
     var updateLogic: WorkerUpdateLogic? = null
+    var manager: UserManager? = null
 
     /**
      * Function to fetch like list data of server
@@ -40,7 +41,7 @@ class LikeListWorker {
      * @return MutableList of addPLayers
      */
     private fun convertUserToLikeListPlayer(request: LikeListModel.Request): MutableList<LikeListModel.Players> {
-        val player = UserManager().get(identifier = request.request)
+        var player = manager?.get(identifier = request.request)
         val likeListModelPlayer = LikeListModel.Players(name = player!!.name, time = "", photo = R.mipmap.ic_launcher)
         return mutableListOf(likeListModelPlayer)
     }

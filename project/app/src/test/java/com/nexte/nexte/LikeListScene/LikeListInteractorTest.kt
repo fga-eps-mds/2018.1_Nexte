@@ -1,5 +1,7 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 
@@ -19,19 +21,19 @@ class LikeListInteractorTest {
         this.interactor = LikeListInteractor(presenter = mock)
         this.mockUpdateResponseLogic?.mock = mock
         this.interactor?.worker?.updateLogic = this.mockUpdateResponseLogic
+        this.interactor?.worker?.manager = UserManager(userAdapter = UserAdapterSpy())
     }
 
     @Test
-    // TODO: Need to mock Realm.init() to can't call convertUserToUserRealm method
     fun testFetchDataToList(){
-//        //prepare
-//        val request = LikeListModel.Request(request = "akjsbdask")
-//
-//        //call
-//        this.interactor?.fetchDataToList(request = request)
-//
-//        //assert
-//        assertEquals(this.mock?.passedHere, true)
+        //prepare
+        val request = LikeListModel.Request(request = "1")
+
+        //call
+        this.interactor?.fetchDataToList(request = request)
+
+        //assert
+        assertEquals(this.mock?.passedHere, true)
     }
 
     @Test

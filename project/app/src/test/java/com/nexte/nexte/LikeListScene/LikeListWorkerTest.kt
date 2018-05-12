@@ -1,5 +1,7 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import org.junit.After
@@ -18,22 +20,21 @@ class LikeListWorkerTest {
         this.worker = LikeListWorker()
         this.mock = MockWorkersUpdateLogic()
         this.worker?.updateLogic = mock
+        this.worker?.manager = UserManager(userAdapter = UserAdapterSpy())
     }
 
-    // TODO: Need to mock Realm.init() to can't call convertUserToUserRealm method
     @Test
     fun testGetListLikesPlayers(){
-//        //prepare
-//        val requestMessage = "123"
-//        val request = LikeListModel.Request(request = requestMessage)
-//
-//        //call
-//        this.worker?.getListLikesPlayers(request = request)
-//        //assert
-//
-//        assertEquals(this.mock?.response?.players?.size, 4)
-//        assertEquals(this.mock?.response?.players!![0].name, "Alexandre")
-//        assertEquals(this.mock?.response?.players!![1].time, String())
+        //prepare
+        val requestMessage = "1"
+        val request = LikeListModel.Request(request = requestMessage)
+
+        //call
+        this.worker?.getListLikesPlayers(request = request)
+        //assert
+
+        assertEquals(this.mock?.response?.players?.size, 1)
+        assertEquals(this.mock?.response?.players!![0].name, "User test")
     }
 
     @After
