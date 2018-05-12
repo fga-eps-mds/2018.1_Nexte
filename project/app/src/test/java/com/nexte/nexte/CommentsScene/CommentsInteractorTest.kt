@@ -83,6 +83,20 @@ class CommentsInteractorTest {
         //assert
         assertEquals(true, mock?.passedHere)
     }
+
+    @Test
+    fun successDeleteComment(){
+        //prepare
+        val request = CommentsModel.DeleteCommentRequest.Request(
+                3
+        )
+
+        //call
+        this.interactor?.deleteComment(request)
+
+        //assert
+        assertEquals(true, mock?.passedHere)
+    }
     
     @After
     fun tearDown() {
@@ -103,6 +117,10 @@ private class MockCommentsPresentationLogic : CommentsPresentationLogic {
     }
 
     override fun presentComplaint(response: CommentsModel.ComplaintRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
         this.passedHere = true
     }
 }

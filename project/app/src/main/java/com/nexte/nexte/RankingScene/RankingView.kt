@@ -1,14 +1,19 @@
 package com.nexte.nexte.RankingScene
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintSet
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 
@@ -18,7 +23,7 @@ import kotlinx.android.synthetic.main.row_ranking.view.*
  */
 interface RankingDisplayLogic {
 
-    fun displayRankInScreen(viewModel: RankingModel.ViewModel)
+    fun displayRankingInScreen(viewModel: RankingModel.ViewModel)
 }
 
 /**
@@ -43,13 +48,90 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
 
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fixedFragment, FixedRowRankingFragment())
+        fragmentTransaction.commit()
+
         this.createGetPlayersRequest()
+
+        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView(
+                UserSingleton.getUserInformations().rankingPosition, this))
+
+        setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
+    }
+
+    /**
+     * Class responsible for generate the fragment of the fixed row ranking
+     */
+    class FixedRowRankingFragment : Fragment() {
+
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                                  savedInstanceState: Bundle?): View? {
+
+            return inflater.inflate(R.layout.row_ranking, container, false)
+        }
+
+        override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+
+            view?.position?.text = String.format("#%d", UserSingleton.getUserInformations().rankingPosition)
+            view?.name?.text = UserSingleton.getUserInformations().name
+            view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
+        }
+    }
+
+    /**
+     * Function responsible to define when or where the fixed ranking row should appear
+     *
+     * @param context indicates the context that the fragment is contained in
+     * @param recyclerView indicates the recycler view that will be used to control how the fixed row will be displayed
+     * @param playerRanking Indicates the player position that will be shown on screen, and it is used for comparision.
+     */
+    private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int) {
+
+        val constraintSet = ConstraintSet()
+        val rankingView = context as RankingView
+        val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
+
+        if(layoutManager.findFirstCompletelyVisibleItemPosition() <= playerRanking - 1
+                && playerRanking - 1 <= layoutManager.findLastCompletelyVisibleItemPosition()) {
+            rankingView.fixedFragment.visibility = View.INVISIBLE
+        }
+        else if (playerRanking - 1 > layoutManager.findLastVisibleItemPosition()) {
+            rankingView.fixedFragment.visibility = View.VISIBLE
+            constraintSet.clone(rankingView.rankingConstraintLayout)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.TOP)
+            constraintSet.connect(R.id.fixedFragment, ConstraintSet.BOTTOM, R.id.rankingConstraintLayout, ConstraintSet.BOTTOM)
+            constraintSet.applyTo(rankingView.rankingConstraintLayout)
+        }
+        else if (playerRanking-1 < layoutManager.findFirstVisibleItemPosition()){
+            rankingView.fixedFragment.visibility = View.VISIBLE
+            constraintSet.clone(rankingView.rankingConstraintLayout)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
+            constraintSet.clear(R.id.fixedFragment, ConstraintSet.TOP)
+            constraintSet.connect(R.id.fixedFragment, ConstraintSet.TOP, R.id.rankingConstraintLayout, ConstraintSet.TOP)
+            constraintSet.applyTo(rankingView.rankingConstraintLayout)
+        }
+    }
+
+    /**
+     * Class responsible to control recycler view scrolling
+     *
+     * @param playerRanking indicates the position of the logged user
+     * @param context indicates the context that the recycler view is inserted in
+     */
+    private class OnScrollRankingRecyclerView(val playerRanking: Int, val context: Context) : RecyclerView.OnScrollListener() {
+
+        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            (context as RankingView).setFixedRanking(context, recyclerView, playerRanking)
+        }
     }
 
     /**
      * Method responsible for creating get players request and passing it to the interactor
      */
     fun createGetPlayersRequest(){
+
         val request = RankingModel.Request()
         interactor?.getPlayersRanksForScene(request)
     }
@@ -73,7 +155,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      *
      * @param viewModel contains formatted player data
      */
-    override fun displayRankInScreen(viewModel: RankingModel.ViewModel) {
+    override fun displayRankingInScreen(viewModel: RankingModel.ViewModel) {
 
         rankingRecyclerView.adapter = RankingAdapter(viewModel.formattedPlayers, this)
     }
@@ -87,7 +169,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     class RankingAdapter(private val playerInformation: List<RankingModel.FormattedPlayerInfo>,
                          private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        var expandedId = -1
+        private var expandedId = -1
 
         /**
          * Method called on view holder creation
@@ -123,16 +205,20 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
                 item.shouldDrawChild = expandedId != itemHolder.layoutPosition
 
-                if(item.shouldDrawChild) {
-                    expandedId = itemHolder.layoutPosition
+                expandedId = if(item.shouldDrawChild) {
+                    itemHolder.layoutPosition
                 } else {
-                    expandedId = -1
+                    -1
                 }
                 notifyItemChanged(expandedId)
             }
 
+            if(itemHolder?.layoutPosition == UserSingleton.getUserInformations().rankingPosition-1){
+                itemHolder.itemView?.background = ColorDrawable(Color.GRAY)
+            }
+
             itemHolder?.nameText?.text = item.player.userName
-            itemHolder?.rankingText?.text = item.player.userRankPosition
+            itemHolder?.rankingText?.text = item.player.userRankingPosition
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.losses?.text = item.player.userLosses
 

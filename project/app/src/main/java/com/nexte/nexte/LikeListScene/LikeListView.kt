@@ -9,6 +9,7 @@ import com.nexte.nexte.R
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.nexte.nexte.Entities.User.UserManager
 import kotlinx.android.synthetic.main.activity_list_like.*
 import kotlinx.android.synthetic.main.row_likes.view.*
 
@@ -51,14 +52,14 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
      * Method responsible for creating the fetch data to list request and passing it to the interactor
      */
     fun createFetchDataRequest(){
-        val request = LikeListModel.Request("exampleString")
+        val request = LikeListModel.Request("1")
         interactor?.fetchDataToList(request)
     }
 
     /**
      * Method responsible to setup all the references of this scene
      */
-    fun setUpLikeListScene() {
+    fun setUpLikeListScene(manager: UserManager = UserManager()) {
 
         val view = this
         val interactor = LikeListInteractor()
@@ -66,6 +67,8 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker.updateLogic = interactor
+        interactor.worker.manager = manager
         presenter.viewList = view
     }
 
@@ -75,7 +78,6 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     * @param viewModel is received from presenter to show on screen
     */
     override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
-
         likesListRecyclerView.adapter = LikesListAdapter(viewModel.playersFormatted, this)
     }
 

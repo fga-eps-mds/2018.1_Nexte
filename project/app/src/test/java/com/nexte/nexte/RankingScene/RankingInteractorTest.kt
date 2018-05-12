@@ -18,6 +18,22 @@ class RankingInteractorTest {
     }
 
     @Test
+    fun successRankingInteractor(){
+        //prepare
+        val newWorker = RankingWorker()
+
+        // call
+        val interactor = RankingInteractor()
+        val oldWorker = interactor.worker
+        interactor.worker = newWorker
+
+        //assert
+        assertNotNull(interactor)
+        assertNotNull(oldWorker)
+        assertEquals(interactor.worker, newWorker)
+    }
+
+    @Test
     fun testGetPlayersRanksForScene(){
         //prepare
         val request = RankingModel.Request()
@@ -27,6 +43,15 @@ class RankingInteractorTest {
 
         //assert
         assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
+    fun successInteractor(){
+        //prepare and call
+        val interactor = RankingInteractor()
+
+        //assert
+        assertNotNull(interactor)
     }
 
     @After
