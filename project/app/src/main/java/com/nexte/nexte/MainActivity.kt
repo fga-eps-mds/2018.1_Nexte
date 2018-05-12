@@ -24,7 +24,6 @@ import com.nexte.nexte.R.id.feedRecyclerView
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.row_feed.*
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic {
 
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottom_nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
 
 
         // Setting up feed button listener
