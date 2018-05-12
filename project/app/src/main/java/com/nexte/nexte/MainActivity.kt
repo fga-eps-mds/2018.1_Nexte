@@ -35,12 +35,14 @@ class MainActivity : AppCompatActivity(), LoginDisplayLogic {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.feed -> {} // aqui teria que vir algo do tipo findViewId(R.id.feed_activity)               // include activity
+                R.id.feed -> {
+                } // aqui teria que vir algo do tipo findViewId(R.id.feed_activity)
                 break
-                R.id.ranking ->
-                // include activity
+                R.id.challenge -> {}
+                break
+                R.id.ranking -> {}
                 break
             }
             return true
