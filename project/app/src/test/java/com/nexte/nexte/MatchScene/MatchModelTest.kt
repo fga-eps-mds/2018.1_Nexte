@@ -1,5 +1,6 @@
 package com.nexte.nexte.MatchScene
 
+import com.fasterxml.jackson.databind.deser.DataFormatReaders
 import com.nexte.nexte.R
 import org.junit.Assert.*
 import org.junit.Before
@@ -9,6 +10,26 @@ class MatchModelTest {
 
     @Before
     fun setUp(){
+    }
+
+    @Test
+    fun testMatchModel() {
+        //prepare
+        //call
+        var testClass = MatchModel()
+
+        //assert
+        assertNotNull(testClass)
+    }
+
+    @Test
+    fun testInitScene() {
+        //prepare
+        //call
+        var testInit = MatchModel.InitScene()
+
+        //assert
+        assertNotNull(testInit)
     }
 
     @Test

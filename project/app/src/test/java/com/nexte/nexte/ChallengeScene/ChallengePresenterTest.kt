@@ -113,4 +113,8 @@ private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
     override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
         this.formattedMessageToShow = viewModel.messageForChallenger
     }
+
+    override fun displayNoPlayersMessage(messageText: String) {
+        this.formattedMessageToShow = messageText
+    }
 }

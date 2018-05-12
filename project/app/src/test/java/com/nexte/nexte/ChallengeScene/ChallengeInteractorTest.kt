@@ -100,14 +100,18 @@ private class MockChallengePresentationLogic: ChallengePresentationLogic{
     var passedHere = false
 
     override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
-        this.passedHere = true
+        passedHere = true
     }
 
     override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
-        this.passedHere = true
+        passedHere = true
     }
 
     override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
-        this.passedHere = true
+        passedHere = true
+    }
+
+    override fun formatNoPlayersMessage() {
+        passedHere = true
     }
 }

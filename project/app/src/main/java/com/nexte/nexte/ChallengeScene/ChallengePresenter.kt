@@ -27,6 +27,12 @@ interface ChallengePresentationLogic {
      */
     fun formatMessage(response : ChallengeModel.ChallengeButtonRequest.Response)
 
+    /**
+     * Method responsible to format the message tho inform that there are no
+     * players to be challenged
+     */
+    fun formatNoPlayersMessage()
+
 }
 
 /**
@@ -98,5 +104,14 @@ class ChallengePresenter : ChallengePresentationLogic {
 
         viewChallenge?.displayMessage(viewModel)
 
+    }
+
+    /**
+     * This method is responsible for setting the message
+     */
+    override fun formatNoPlayersMessage() {
+        val message = "Sem jogadores disponíveis.\nTente novamente mais tarde."
+
+        viewChallenge?.displayNoPlayersMessage(message)
     }
 }
