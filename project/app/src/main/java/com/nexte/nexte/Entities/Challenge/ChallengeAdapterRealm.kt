@@ -41,8 +41,6 @@ class ChallengeAdapterRealm: ChallengeAdapter {
                     this.challengerId = it.challengerId
                     this.challengedId = it.challengedId
                     this.challegeDate = it.challengeDate
-                    this.status = it.status.name
-                    this.stage =  it.stage.toString()
             }
         }
 
@@ -53,19 +51,38 @@ class ChallengeAdapterRealm: ChallengeAdapter {
 
         var challenge: Challenge? = null
 
-//        challengeRealm.let {
-//            challenge = Challenge(it.id,
-//                                  it.challengerId,
-//                                  it.challengedId,
-//                                  it.challegeDate,
-//                                  Challenge.Status.CONFIRMED,
-//                                  Challenge.Stage.Scheduled()
-//            )
-//        }
+        challengeRealm?.let {
+
+            var status: Challenge.Status? = null
+            var stage: Challenge.Stage? = null
+
+            if (challengeRealm.stagePlayedRealm != null) {
+                challengeRealm.stagePlayedRealm?.let {
+                    stage = Challenge.Stage.Played(it.setChallenger,
+                            it.setChallenged,
+                            it.date!!,
+                            Challenge.Stage.Played.Game()
+                }
+            } else if (challengeRealm.stageCancelledRealm != null) {
+                challengeRealm.stageCancelledRealm?.let {
+                    stage = Challenge.Stage.Canceled(it.reason,
+                            Challenge.UserType.valueOf(it.userType),
+                            it.date!!)
+                }
+            } else {
+                  stage = Challenge.Stage.Scheduled()
+            }
+
+            challenge = Challenge(it.id,
+                    it.challengerId,
+                    it.challengedId,
+                    it.challegeDate,
+                    Challenge.Status.valueOf(it.status),
+                    stage!!)
+        }
 
         return challenge
     }
-
 
     private fun convertListChallengeRealmToChallengeList(challengeRealmResults: RealmResults<ChallengeRealm>): List<Challenge> {
 
@@ -79,4 +96,5 @@ class ChallengeAdapterRealm: ChallengeAdapter {
 
         return challenges
     }
+
 }
