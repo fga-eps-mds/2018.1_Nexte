@@ -173,6 +173,3 @@ dependencies {
 dependencies {
     implementation 'com.android.support:support-v4:26.+'
 }
-dependencies {
-    implementation 'com.android.support:support-v4:26.+'
-}

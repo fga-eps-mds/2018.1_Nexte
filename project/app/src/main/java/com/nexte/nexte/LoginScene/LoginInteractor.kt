@@ -1,12 +1,27 @@
 package com.nexte.nexte.LoginScene
 
+import android.util.Log
+
 
 /**
  * Interface that defines Business Login to Interactor and defines comunication
  * with worker and presenter
  */
 interface LoginBusinessLogic {
-    fun doAuthentication(request: LoginModel.Request)
+
+    /**
+     * Method that will send request provided by worker to presenter as response
+     *
+     * @param request Request model of feed that contains data to pass for Worker associated with Authentication Process
+     */
+    fun doAuthentication(request: LoginModel.Authentication.Request)
+
+    /**
+     * Method that will send request provided by worker to presenter as response
+     *
+     * @param request Request model of feed that contains data to pass for Worker associated with AccountKit
+     */
+    fun accountKitAuthentication(request: LoginModel.AccountKit.Request)
 }
 
 /**
@@ -21,23 +36,26 @@ class LoginInteractor : LoginBusinessLogic {
     var worker = LoginWorker()
     var presenter: LoginPresentationLogic? =  null
 
-    /**
-     * Method that will send request provided by worker to presenter as response
-     *
-     * @param request Request model of feed that contains data to pass for Worker
-     */
-    override fun doAuthentication(request: LoginModel.Request) {
+
+    override fun doAuthentication(request: LoginModel.Authentication.Request) {
 
         worker.authenticateUser(request) { response ->
 
-            val responseStatus = response.authenticateStatus
+            val responseStatus = response.authenticateStatusCode
             when(responseStatus) {
-                LoginModel.AuthenticationStatus.AUTHORIZED -> {
+                LoginModel.Authentication.StatusCode.AUTHORIZED -> {
                     this.presenter?.presentLogin(response)
                 } else -> {
                     this.presenter?.presentError(response)
                 }
             }
+        }
+    }
+
+    override fun accountKitAuthentication(request: LoginModel.AccountKit.Request) {
+
+        worker.requestForAuth(request) { response ->
+            this.presenter?.presentAccountKit(response)
         }
     }
 }
