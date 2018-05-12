@@ -1,28 +1,15 @@
 package com.nexte.nexte
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import com.nexte.nexte.ChallengeScene.ChallengeModel
 import com.nexte.nexte.FeedScene.FeedView
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.MatchScene.MatchView
-import com.nexte.nexte.R.id.feedRecyclerView
-import kotlinx.android.synthetic.main.activity_challenger_sent.*
-import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), LoginDisplayLogic {
