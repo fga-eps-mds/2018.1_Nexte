@@ -18,12 +18,14 @@ class NexteApplication: Application() {
 
         val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
         if (sharedPreference.getBoolean("FirstRun", true)) {
-            // TODO: Call other mocker methods of other Managers
-            // Call order of createInitialMocker is important!!!
             UserCategoryManager().createInitialMocker()
             UserManager().createInitialMocker()
-            ChallengeManager().createInitialMocker()
             sharedPreference.edit().putBoolean("FirstRun", false).apply()
+        }
+
+        if (sharedPreference.getBoolean("FirstRun_v2", true)) {
+            ChallengeManager().createInitialMocker()
+            sharedPreference.edit().putBoolean("FirstRun_v2", false).apply()
         }
     }
 }

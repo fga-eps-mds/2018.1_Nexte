@@ -2,7 +2,6 @@ package com.nexte.nexte.Entities.Challenge.Helper
 
 import com.nexte.nexte.Entities.Challenge.Challenge
 import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 import java.util.*
 
 open class CancelledRealm(var reason: String = "",
