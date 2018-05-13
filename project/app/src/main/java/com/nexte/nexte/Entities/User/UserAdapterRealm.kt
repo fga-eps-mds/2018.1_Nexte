@@ -7,7 +7,6 @@ import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where
 
-
 class UserAdapterRealm: UserAdapter {
 
     var realm: Realm = Realm.getDefaultInstance()
@@ -96,12 +95,12 @@ class UserAdapterRealm: UserAdapter {
                     it.phone,
                     it.wins,
                     it.loses,
-                        User.Gender.valueOf(it.gender),
-                        category,
-                        User.Status.valueOf(it.status),
-                        null,
-                        null,
-                        emptyList()
+                    User.Gender.valueOf(it.gender),
+                    category,
+                    User.Status.valueOf(it.status),
+                    null,
+                    null,
+                    emptyList()
             )
         }
 

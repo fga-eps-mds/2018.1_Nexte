@@ -1,6 +1,6 @@
 package com.nexte.nexte.Entities.Challenge
 
-class ChallengeManager(val challengeAdapter: ChallengeAdapter) {
+class ChallengeManager(val challengeAdapter: ChallengeAdapter = ChallengeAdapterRealm()) {
 
         fun get(identifier: String): Challenge? {
             return challengeAdapter.get(identifier)

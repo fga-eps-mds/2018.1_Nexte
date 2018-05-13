@@ -1,5 +1,7 @@
 package com.nexte.nexte.Entities.Challenge
 
+import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
+import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.kotlin.where
@@ -8,14 +10,10 @@ class ChallengeAdapterRealm: ChallengeAdapter {
 
     var realm: Realm = Realm.getDefaultInstance()
 
-    override fun delete(identifier: String): Challenge? {
+    override fun get(identifier: String): Challenge? {
 
-        val challengeRealm = realm.where<ChallengeRealm>().equalTo("id", identifier).findAll()
-        realm.beginTransaction()
-        val user = convertChallengeRealmToChallenge(challengeRealm.first())
-        challengeRealm.deleteAllFromRealm()
-        realm.commitTransaction()
-        return user
+        val challengeRealm = realm.where<ChallengeRealm>().equalTo("id", identifier).findFirst()
+        return convertChallengeRealmToChallenge(challengeRealm)
     }
 
     override fun getAll(): List<Challenge> {
@@ -23,7 +21,6 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         val challengeRealmResults = realm.where<ChallengeRealm>().findAll()
         return convertListChallengeRealmToChallengeList(challengeRealmResults)
     }
-
 
     override fun updateOrInsert(challenge: Challenge): Challenge? {
 
@@ -33,37 +30,46 @@ class ChallengeAdapterRealm: ChallengeAdapter {
             realm.commitTransaction()
             return challenge
         }
+        return null
+    }
 
+    override fun delete(identifier: String): Challenge? {
+
+        val challengeRealm = realm.where<ChallengeRealm>().equalTo("id", identifier).findAll()
+        realm.beginTransaction()
+        val challenge = convertChallengeRealmToChallenge(challengeRealm.first())
+        challengeRealm.deleteAllFromRealm()
+        realm.commitTransaction()
         return challenge
     }
 
-    override fun get(identifier: String): Challenge? {
-
-        val challenge: Challenge? = null
-        return challenge
-    }
-
-    private fun convertChallengeToChallengeRealm(challenge: Challenge): ChallengeRealm? {
+    private fun convertChallengeToChallengeRealm(challenge: Challenge?): ChallengeRealm? {
 
         var challengeRealm: ChallengeRealm? = null
 
-        challenge.let {
-
+        challenge?.let {
             challengeRealm = ChallengeRealm().apply {
-                    this.id = it.id
-                    this.challengerId = it.challengerId
-                    this.challengedId = it.challengedId
-                    this.challegeDate = it.challengeDate
-                    this.stageScheduledRealm = if (it.stage == Challenge.Stage.Scheduled) it.stage else null
-                    this.stageCancelledRealm = if (it.stage == Challenge.Stage.Canceled) it.stage else null
-                    this.stagePlayedRealm = if (it.stage == Challenge.Stage.Played) it.stage else null
+                this.id = it.id
+                this.challengerId = it.challengerId
+                this.challengedId = it.challengedId
+                this.challegeDate = it.challengeDate
+                when (it.stage) {
+                    is Challenge.Stage.Played -> {
+                        this.stagePlayedRealm = PlayedRealm(it.stage)
+                    }
+                    is Challenge.Stage.Canceled -> {
+                        this.stageCancelledRealm = CancelledRealm(it.stage)
+                    }
+                    is Challenge.Stage.Scheduled -> {
+                        // Do Nothing
+                    }
+                }
             }
         }
-
         return challengeRealm
     }
 
-    private fun convertChallengeRealmToChallenge(challengeRealm: ChallengeRealm): Challenge? {
+    private fun convertChallengeRealmToChallenge(challengeRealm: ChallengeRealm?): Challenge? {
 
         var challenge: Challenge? = null
 
@@ -110,10 +116,10 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         val challenges: MutableList<Challenge> = mutableListOf()
         for(challengeRealm in challengeRealmResults) {
             convertChallengeRealmToChallenge(challengeRealm)?.let {
-
+                challenges.add(it)
             }
         }
-        return challenges
+        return challenges.toList()
     }
 
 }
