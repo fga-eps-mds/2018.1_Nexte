@@ -1,6 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-import com.nexte.nexte.CommentsScene.CommentsInteractor
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -46,11 +45,47 @@ class ChallengeInteractorTest {
         val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(6)
         val expectedResult = true
 
-        //test
+        //call
         interactor?.requestChallengedUser(request)
 
         //assert
         assertEquals(expectedResult, this.mock?.passedHere)
+    }
+
+    @Test
+    fun successRequestMessageForChallenger() {
+        //prepare
+        val request = ChallengeModel.ChallengeButtonRequest.Request("larissa")
+        val expectedResult = true
+
+        //call
+        interactor?.requestMessageForChallenger(request)
+
+        //assert
+        assertEquals(expectedResult, this.mock?.passedHere)
+    }
+
+    @Test
+    fun successGetWorker() {
+        //prepare
+
+        //call
+        val worker = this.interactor?.worker
+
+        //assert
+        assertNotNull(worker)
+    }
+
+    @Test
+    fun successSetWorker() {
+        //prepare
+        val worker = ChallengeWorker()
+
+        //call
+        this.interactor?.worker = worker
+
+        //assert
+        assertEquals(worker, this.interactor?.worker)
     }
 
     @After
@@ -58,7 +93,6 @@ class ChallengeInteractorTest {
         this.mock = null
         this.interactor = null
     }
-
 }
 
 private class MockChallengePresentationLogic: ChallengePresentationLogic{
@@ -66,14 +100,18 @@ private class MockChallengePresentationLogic: ChallengePresentationLogic{
     var passedHere = false
 
     override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
-        this.passedHere = true
+        passedHere = true
     }
 
     override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
-        this.passedHere = true
+        passedHere = true
     }
 
     override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
-        this.passedHere
+        passedHere = true
+    }
+
+    override fun formatNoPlayersMessage() {
+        passedHere = true
     }
 }

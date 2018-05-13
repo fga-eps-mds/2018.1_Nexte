@@ -12,7 +12,6 @@ import org.json.JSONObject
 
 class LoginWorker {
 
-
     /**
      * Method that realize request for user authentication
      * pass request for the Worker and send response to the Presenter
@@ -20,13 +19,12 @@ class LoginWorker {
      * @param request request provided from Interactor
      * @completion task to be completed at Interactor
      */
-    fun authenticateUser(request: LoginModel.Request,
-                         completion: (LoginModel.Response) -> Unit) {
-
+    fun authenticateUser(request: LoginModel.Authentication.Request,
+                         completion: (LoginModel.Authentication.Response) -> Unit) {
 
         val authentication = "http://192.168.100.2:3000/auth/login" // Works only with IP
-        val headers = mapOf("Content-Type" to "application/json", "Accept-Version" to "1.0.0")
-
+        val headers = mapOf("Content-Type" to "application/json",
+                                    "Accept-Version" to "1.0.0")
         val json = JSONObject()
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
@@ -35,18 +33,42 @@ class LoginWorker {
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-                val status = LoginModel.AuthenticationStatus.AUTHORIZED
-                val response = LoginModel.Response(token, status)
+                val status = LoginModel.Authentication.StatusCode.AUTHORIZED
+                val response = LoginModel.Authentication.Response(token, status)
                 completion(response)
             }
 
             result.failure {
                 val token = ""
-                val status = LoginModel.AuthenticationStatus.UNAUTHORIZED
-                val response = LoginModel.Response(token, status)
+                val status = LoginModel.Authentication.StatusCode.UNAUTHORIZED
+                val response = LoginModel.Authentication.Response(token, status)
                 completion(response)
             }
         }
+    }
+
+    /**
+     * Method that realize request for user authentication
+     * pass request for the Worker and send response to the Presenter
+     *
+     * @param request request provided from Interactor
+     * @completion task to be completed at Interactor
+     */
+    fun requestForAuth(request: LoginModel.AccountKit.Request,
+                        completion: (LoginModel.AccountKit.Response) -> Unit) {
+
+         val loginResult = request.loginResult
+         var response: LoginModel.AccountKit.Response? = null
+
+         if (loginResult.wasCancelled()) {
+             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.CANCELLED)
+         } else if (loginResult.error != null) {
+             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.ERROR)
+         } else {
+             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
+         }
+
+        completion(response)
     }
 }
 

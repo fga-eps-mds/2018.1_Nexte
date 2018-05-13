@@ -16,7 +16,7 @@ object FeedMocker {
      * @return Mutable List with mocker feed data
      */
     fun createFeedList(): MutableList<FeedModel.FeedActivity> {
-        var list: MutableList<FeedModel.FeedActivity> = mutableListOf()
+        val list: MutableList<FeedModel.FeedActivity> = mutableListOf()
 
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)

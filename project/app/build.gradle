@@ -76,6 +76,9 @@ dependencies {
     // MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    // Bottom Navigation
+    implementation 'com.android.support:design:26.1.0'
+
     // Account Kit
     implementation 'com.facebook.android:account-kit-sdk:4.+'
 
@@ -94,7 +97,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.1"
-    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    androidTestImplementation 'com.android.support:support-annotations:26.1.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test:rules:1.0.1'
 
@@ -166,4 +169,7 @@ dependencies {
 }
 dependencies {
     implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
+}
+dependencies {
+    implementation 'com.android.support:support-v4:26.+'
 }

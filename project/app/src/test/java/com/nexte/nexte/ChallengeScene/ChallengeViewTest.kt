@@ -31,16 +31,6 @@ class ChallengeViewTest {
         assertEquals(mock?.hasBeenCalled, expectedResult)
     }
 
-    @Test fun successGetPlayerToChallenge(){
-        //prepare
-        val expectedResult = true
-
-        //call
-        view?.getPlayerToChallenge()
-
-        //assert
-        assertEquals(mock?.hasBeenCalled, expectedResult)
-    }
 
     @Test
     fun testSetupChallengeScene(){
