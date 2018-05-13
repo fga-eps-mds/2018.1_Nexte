@@ -1,6 +1,5 @@
-package com.nexte.nexte.Entities
+package com.nexte.nexte.Entities.Challenge
 
-import com.nexte.nexte.Entities.Challenge.Challenge
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
