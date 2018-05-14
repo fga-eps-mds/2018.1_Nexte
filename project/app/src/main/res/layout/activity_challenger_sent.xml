@@ -27,12 +27,13 @@
         android:layout_width="49dp"
         android:layout_height="48dp"
         android:layout_marginBottom="65dp"
+        android:layout_marginTop="22dp"
         android:text="@string/r"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/background_light"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/sendChallengeButton"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />
 
     <TextView
         android:id="@+id/expandedWins"

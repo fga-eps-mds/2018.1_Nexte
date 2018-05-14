@@ -8,32 +8,35 @@ variables:
 
 before_script:
   - export ANDROID_HOME="/usr/local/android-sdk"
-  - cd project
 
 stages:
   - test
   - build
   - deploy
 
-# static_analysis:
-#   stage: test
-#   script:
-#     - mv ../docker/static_analysis.sh ./static_analysis.sh
-#     - chmod +x ./static_analysis.sh
-#     - ./static_analysis.sh
+static_analysis:
+  stage: test
+  before_script:
+    - cd project/
+    - mv ../docker/static_analysis.sh ./static_analysis.sh
+    - chmod +x ./static_analysis.sh
+  script:
+    - ./static_analysis.sh
 
-# unit_test:
-#   stage: test
-#   script:
-#     - mv ../docker/test.sh ./test.sh
-#     - chmod +x ./test.sh
-#     - ./test.sh
-#   artifacts:
-#     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
-#     when: always
-#     expire_in: 2 days
-#     paths:
-#       - project/app/build/reports/jacocoTestReport/html
+unit_test:
+  stage: test
+  before_script:
+    - cd project/
+    - mv ../docker/test.sh ./test.sh
+    - chmod +x ./test.sh
+  script:
+    - ./test.sh
+  artifacts:
+    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
+    when: always
+    expire_in: 2 days
+    paths:
+      - project/app/build/reports/jacocoTestReport/html
 
 # instrumentation_tests:
 #   stage: test
@@ -41,26 +44,9 @@ stages:
 build:
   stage: build
   before_script:
-    - export ANDROID_HOME="/usr/local/android-sdk"
-    # - export $API_KEY
-    
-    - cd project
-    
-    # - eval $(ssh-agent -s)
-    # - mkdir -p ~/.ssh
-    # - echo -n "$DEPLOY_SERVER_PRIVATE_KEY" | ssh-add - >/dev/null
-
-    # - eval "$(ssh-agent -s)"
-    # - echo -n "$DEPLOY_SERVER_PRIVATE_KEY" | tr -d '\r' | base64 --decode | ssh-add - > /dev/null
-    # - mkdir -p ~/.ssh
-    # - chmod 700 ~/.ssh
-    
-    # - git config --global user.email "fastlane@nexte.com"
-    # - git config --global user.name "fastlane"
-    
+    - cd project/
     - git clone $KEY_STORE_REPO ./key
     - mv ./key/$STORE_FILE ./app/
-
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
   script:
@@ -72,15 +58,15 @@ build:
   artifacts:
     paths:
     - project/app/build/outputs/apk
-  # only:
-    # - tags
-    # - dev
+  only:
+    - tags
+    - dev
     # - master
 
 deploy_beta:
   stage: deploy
   before_script:
-    - cd project
+    - cd project/
     - echo $DEPLOY_KEY_FILE >> key.json
   script:
     - fastlane beta
@@ -91,8 +77,8 @@ deploy_beta:
   artifacts:
     paths:
       - fastlane/logs
-  # only:
-    # - tags
+  only:
+    - tags
 
 cache:
   key: ${CI_PROJECT_ID}
