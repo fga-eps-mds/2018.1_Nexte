@@ -1,7 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-import android.util.Log
-
 /**
  * Interface to define Business Logic to Challenge Class
  * that will used to call this Interactor on other class layer
@@ -51,9 +49,14 @@ class ChallengeInteractor : ChallengeBusinessLogic {
      * @param request variable equals to the server response due to the challenged response
      */
     override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
-
         worker.fetchPlayersToChallenge(request) { response ->
-            this.presenter?.formatPlayersToChallenge(response)
+            if(response.usersAbove.isNotEmpty()) {
+                this.presenter?.formatPlayersToChallenge(response)
+            }
+            else {
+                this.presenter?.formatNoPlayersMessage()
+            }
+
         }
     }
 

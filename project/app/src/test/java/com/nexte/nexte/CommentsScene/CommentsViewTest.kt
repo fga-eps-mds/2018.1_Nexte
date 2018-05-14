@@ -67,7 +67,11 @@ class CommentsViewTest {
         }
 
         override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
-            this.passedHere = true
+            passedHere = true
+        }
+
+        override fun deleteComment(request: CommentsModel.DeleteCommentRequest.Request) {
+            passedHere = true
         }
     }
 }

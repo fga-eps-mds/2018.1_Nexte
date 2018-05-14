@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowRankingLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -22,12 +23,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/picture_img_view"
+        android:layout_marginBottom="12dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
         android:textColor="#ffffff"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 
@@ -35,11 +38,13 @@
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="#N"
-        android:textSize="30sp"
         android:textColor="#ffffff"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 

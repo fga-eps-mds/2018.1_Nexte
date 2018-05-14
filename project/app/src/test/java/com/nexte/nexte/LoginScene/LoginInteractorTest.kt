@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import com.facebook.accountkit.AccountKitLoginResult
 import org.junit.After
 import org.junit.Before
 
@@ -17,19 +18,7 @@ class LoginInteractorTest {
         this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
     }
-
-//    @Test
-//    fun successDoAuthentication(){
-//        //prepare
-//        val request = LoginModel.Request(userName = "luis-gustavo", password = "123456")
-//
-//        //call
-//        this.interactor?.doAuthentication(request = request)
-//
-//        //assert
-//        assertEquals(this.mock?.passedHere, true)
-//    }
-
+    
     @After
     fun tearDown() {
         this.mock = null
@@ -40,12 +29,18 @@ class LoginInteractorTest {
 private class MockLoginPresentationLogic: LoginPresentationLogic{
     var passedHere = false
 
-    override fun presentLogin(response: LoginModel.Response){
+    override fun presentLogin(response: LoginModel.Authentication.Response){
         this.passedHere = true
         print(passedHere)
     }
 
-    override fun presentError(response: LoginModel.Response) {
-        TODO("not implemented")
+    override fun presentError(response: LoginModel.Authentication.Response) {
+        this.passedHere = true
+        print(passedHere)
+    }
+
+    override fun presentAccountKit(response: LoginModel.AccountKit.Response) {
+        this.passedHere = true
+        print(passedHere)
     }
 }

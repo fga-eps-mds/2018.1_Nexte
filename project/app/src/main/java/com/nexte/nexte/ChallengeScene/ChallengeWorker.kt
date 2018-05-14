@@ -8,10 +8,7 @@ import com.nexte.nexte.Player
  */
 class ChallengeWorker {
 
-    companion object {
 
-        const val rankingGap = 5
-    }
 
     /**
      * Function to get players 5 rank positions above the logged player
@@ -34,7 +31,8 @@ class ChallengeWorker {
 
         val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
 
-
+       //Variable that allows the "No Players" message
+       // val response = ChallengeModel.ShowRankingPlayersRequest.Response(mutableListOf())
         completion(response)
     }
 
@@ -78,6 +76,11 @@ class ChallengeWorker {
 
         completion(response)
 
+    }
+
+    companion object {
+
+        const val rankingGap = 5
     }
 
 }

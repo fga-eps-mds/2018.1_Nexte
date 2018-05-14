@@ -7,44 +7,22 @@
     tools:context="com.nexte.nexte.MainActivity"
     android:background="#2E2E2E">
 
-    <Button
-        android:id="@+id/rankingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:background="@android:color/black"
-        android:text="Ver Ranking"
-        android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/showProfileButton" />
 
     <Button
         android:id="@+id/showProfileButton"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/black"
         android:elevation="0dp"
         android:text="Perfil"
         android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
-    <Button
-        android:id="@+id/feedButton"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:background="@android:color/black"
-        android:text="Feed de Atividades"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="@+id/showProfileButton"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -62,13 +40,13 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_marginEnd="148dp"
         android:layout_marginStart="148dp"
+        android:layout_marginTop="16dp"
         android:text="LOGIN"
-        app:layout_constraintBottom_toTopOf="@+id/showProfileButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
         
     <Button
         android:id="@+id/challangeButton"
@@ -89,5 +67,15 @@
         android:text="Match"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation" />
 
 </android.support.constraint.ConstraintLayout>
