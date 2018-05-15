@@ -13,22 +13,24 @@ import org.junit.Assert
 
 class StoryTest {
 
-    var likes: RealmList<Like> = RealmList()
-    var comments: RealmList<Comment> = RealmList()
+    var likes: List<String> = RealmList()
+    var comments: List<String> = RealmList()
 
     @Before
     fun setUp() {
 
-        likes = RealmList(
-                Like("1", "1", Date()),
-                Like("2", "2", Date()),
-                Like("3", "3", Date())
-        )
-        comments = RealmList(
-                Comment("1", "1", "First Comment", Date()),
-                Comment("2", "2", "Second Comment", Date()),
-                Comment("3", "3", "Third Comment", Date())
-        )
+        likes = listOf("1", "2", "3")
+        comments = listOf("1", "2", "3")
+//        likes = RealmList(
+//                Like("1", "1", Date()),
+//                Like("2", "2", Date()),
+//                Like("3", "3", Date())
+//        )
+//        comments = RealmList(
+//                Comment("1", "1", "First Comment", Date()),
+//                Comment("2", "2", "Second Comment", Date()),
+//                Comment("3", "3", "Third Comment", Date())
+//        )
     }
 
 
@@ -59,8 +61,8 @@ class StoryTest {
         Assert.assertEquals("Winner isn't the same!", winner, story.winner)
         Assert.assertEquals("Loser isn't the same!", loser, story.loser)
         Assert.assertEquals("Date is incorrect!", date, story.date)
-        Assert.assertEquals("Commet list isn't the same!", comments, story.comments)
-        Assert.assertEquals("Like list isn't the same!", likes, story.likes)
+        Assert.assertEquals("Commet list isn't the same!", comments, story.commentsId)
+        Assert.assertEquals("Like list isn't the same!", likes, story.likesId)
     }
 
     @Test
@@ -78,8 +80,8 @@ class StoryTest {
         story.winner = winner
         story.loser = loser
         story.date = date
-        story.likes = this.likes
-        story.comments = this.comments
+        story.likesId = this.likes
+        story.commentsId = this.comments
 
 
         // Asserts
@@ -88,8 +90,8 @@ class StoryTest {
         Assert.assertEquals("Winner isn't the same!", winner, story.winner)
         Assert.assertEquals("Loser isn't the same!", loser, story.loser)
         Assert.assertEquals("Date is incorrect!", date, story.date)
-        Assert.assertEquals("Commet list isn't the same!", this.comments, story.comments)
-        Assert.assertEquals("Like list isn't the same!", this.likes, story.likes)
+        Assert.assertEquals("Commet list isn't the same!", this.comments, story.commentsId)
+        Assert.assertEquals("Like list isn't the same!", this.likes, story.likesId)
     }
 
 

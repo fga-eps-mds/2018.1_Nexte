@@ -1,6 +1,7 @@
 package com.nexte.nexte.LikeListScene
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 
@@ -25,7 +26,7 @@ interface WorkerUpdateLogic {
 class LikeListWorker {
 
     var updateLogic: WorkerUpdateLogic? = null
-    var manager: UserManager? = null
+    var userManager: UserManager? = null
 
     /**
      * Function to fetch like list data of server
@@ -33,7 +34,8 @@ class LikeListWorker {
      * @param request
      */
     fun getListLikesPlayers(request: LikeListModel.Request){
-        val response = LikeListModel.Response(this.convertUserToLikeListPlayer(request = request))
+        val player = userManager?.get(request.request)
+        val response = LikeListModel.Response(this.convertUserToLikeListPlayer(user = player))
         this.updateLogic?.updateUsers(response = response)
     }
 
@@ -42,33 +44,32 @@ class LikeListWorker {
      *
      * @return MutableList of addPLayers
      */
-    private fun convertUserToLikeListPlayer(request: LikeListModel.Request): MutableList<LikeListModel.Players> {
-        var player = manager?.get(identifier = request.request)
-        val likeListModelPlayer = LikeListModel.Players(name = player!!.name, time = "", photo = R.mipmap.ic_launcher)
+    private fun convertUserToLikeListPlayer(user: User?): MutableList<LikeListModel.Players> {
+        val likeListModelPlayer = LikeListModel.Players(name = user!!.name, time = "", photo = R.mipmap.ic_launcher)
 
-        var allStories = StoryManager().getAll()
-        println("Stories Amount: " + allStories.size)
-        for (story in allStories){
-            println("New Story")
-            println("Story Id: " + story.id)
-            println("Winner User Id: " + story.winner?.userId)
-            println("Winner Set Result: " + story.winner?.setResult)
-            println("Loser User Id: " + story.loser?.userId)
-            println("Loser Set Result: " + story.loser?.setResult)
-            println("Date: " + story.date)
-
-            println("Comments amount: " + story.commentsId.size)
-            for(commentId in story.commentsId){
-                println("New Comment")
-                println("Comment Ids: " + commentId)
-            }
-
-            println("Likes amount: " + story.likesId.size)
-            for(likeId in story.likesId){
-                println("New Like")
-                println("Like Ids: " + likeId)
-            }
-        }
+//        var allStories = StoryManager().getAll()
+//        println("Stories Amount: " + allStories.size)
+//        for (story in allStories){
+//            println("New Story")
+//            println("Story Id: " + story.id)
+//            println("Winner User Id: " + story.winner?.userId)
+//            println("Winner Set Result: " + story.winner?.setResult)
+//            println("Loser User Id: " + story.loser?.userId)
+//            println("Loser Set Result: " + story.loser?.setResult)
+//            println("Date: " + story.date)
+//
+//            println("Comments amount: " + story.commentsId.size)
+//            for(commentId in story.commentsId){
+//                println("New Comment")
+//                println("Comment Ids: " + commentId)
+//            }
+//
+//            println("Likes amount: " + story.likesId.size)
+//            for(likeId in story.likesId){
+//                println("New Like")
+//                println("Like Ids: " + likeId)
+//            }
+//        }
 
         return mutableListOf(likeListModelPlayer)
     }
