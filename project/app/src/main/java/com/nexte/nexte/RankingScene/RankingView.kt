@@ -75,7 +75,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
             view?.position?.text = String.format("#%d", UserSingleton.getUserInformations().rankingPosition)
             view?.name?.text = UserSingleton.getUserInformations().name
-            view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
+            view?.rowRankingLayout?.background = ColorDrawable(Color.WHITE)
         }
     }
 
