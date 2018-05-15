@@ -3,6 +3,7 @@ package com.nexte.nexte
 import android.app.Application
 import android.content.Context
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import io.realm.Realm
@@ -20,6 +21,7 @@ class NexteApplication: Application() {
         if (sharedPreference.getBoolean("FirstRun", true)) {
             UserCategoryManager().createInitialMocker()
             UserManager().createInitialMocker()
+            StoryManager().createInitialMocker()
             sharedPreference.edit().putBoolean("FirstRun", false).apply()
         }
 
