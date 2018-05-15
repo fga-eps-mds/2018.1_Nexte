@@ -1,9 +1,13 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.app.Fragment
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -30,7 +34,7 @@ interface ShowProfileDisplayLogic {
  *
  * @property showProfileInteractor responsible to receive request and send it to worker
  */
-class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
+class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
 
@@ -40,19 +44,24 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_show_profile)
+//        setContentView(R.layout.activity_show_profile)
         setupShowProfileScene()
 
         this.createShowProfileRequest()
 
         editProfileButton.setOnClickListener {
 
-            val intent = Intent(this, EditProfileView::class.java)
+//            val intent = Intent(thxis, EditProfileView::class.java)
 
-            startActivity(intent)
+//            startActivity(intent)
         }
 
         this.createGraph()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        return inflater?.inflate(R.layout.activity_show_profile, container, false);
     }
 
     /**
@@ -182,6 +191,10 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     companion object {
         const val houndredLine = 110
+
+        fun newInstance(): ShowProfileView {
+            return ShowProfileView()
+            }
+        }
     }
 
-}

@@ -78,6 +78,7 @@ dependencies {
 
     // Bottom Navigation
     implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:support-v4:25.1.0'
 
     // Account Kit
     implementation 'com.facebook.android:account-kit-sdk:4.+'
@@ -173,3 +174,5 @@ dependencies {
 dependencies {
     implementation 'com.android.support:support-v4:26.+'
 }
+
+
