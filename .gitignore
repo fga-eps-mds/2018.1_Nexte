@@ -62,13 +62,16 @@ project/.idea/*
 project/projectFilesBackup
 
 # fastlane specific
-fastlane/report.xml
+project/fastlane/report.xml
 
 # deliver temporary files
-fastlane/Preview.html
+project/fastlane/Preview.html
+
+# deliver temporary files
+project/fastlane/README.md
 
 # snapshot generated screenshots
-fastlane/screenshots
+project/fastlane/screenshots
 
 # scan temporary files
-fastlane/test_output
+project/fastlane/test_output

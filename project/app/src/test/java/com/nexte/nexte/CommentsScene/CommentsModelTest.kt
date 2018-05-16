@@ -485,6 +485,114 @@ class CommentsModelTest {
         assertEquals(commentsModel.alertMessage, message)
     }
 
+    @Test
+    fun successDeleteComment() {
+        //prepare
+        //call
+
+        val testDeleteComment = CommentsModel.DeleteCommentRequest()
+
+        //assert
+
+        assertNotNull(testDeleteComment)
+    }
+
+    @Test
+    fun DeleteCommentRequest() {
+        //prepare
+        val position = 5
+
+        //call
+        val testRequest = CommentsModel.DeleteCommentRequest.Request(position)
+
+        //assert
+        assertEquals(position, testRequest.commentIdentifier)
+    }
+
+    @Test
+    fun DeleteCommentResponse() {
+        //prepare
+        val player1 = CommentsModel.Player("Larissa", 1)
+        val player2 = CommentsModel.Player("Alexandre", 2)
+
+
+        val comment1 = CommentsModel.Comment("Muito bom galera",
+                Date(),
+                player1, 1)
+        val comment2 = CommentsModel.Comment("Nossa, foi top mesmo",
+                Date(),
+                player2, 2)
+        val commentsList = mutableListOf(comment1, comment2)
+
+        //call
+
+        val response = CommentsModel.DeleteCommentRequest.Response(commentsList)
+
+        //assert
+        assertEquals(player1.name, response.delComments[0].author.name)
+        assertEquals(player2.name, response.delComments[1].author.name)
+
+        assertEquals(player1.photo, response.delComments[0].author.photo)
+        assertEquals(player2.photo, response.delComments[1].author.photo)
+
+        assertEquals(comment1.comment, response.delComments[0].comment)
+        assertEquals(comment2.comment, response.delComments[1].comment)
+
+        assertEquals(comment1.commentId, response.delComments[0].commentId)
+        assertEquals(comment2.commentId, response.delComments[1].commentId)
+
+
+    }
+
+    @Test
+    fun DeleteCommentViewModel() {
+        //prepare
+        val namePlayer1 = "Larissa"
+        val namePlayer2 = "Alexandre"
+
+        val comment1 = "Muito bom galera"
+        val comment2 = "Nossa, foi top mesmo"
+
+        val dateComment1 = "11/04/1999"
+        val dateComment2 = "12/15/1998"
+
+        val profilePic1 = 1
+        val profilePic2 = 2
+
+        val commentFormatted1 = CommentsModel.CommentFormatted(comment1,
+                dateComment1,
+                namePlayer1,
+                profilePic1)
+        val commentFormatted2 = CommentsModel.CommentFormatted(comment2,
+                dateComment2,
+                namePlayer2,
+                profilePic2)
+
+        val commentsFormatted = mutableListOf(commentFormatted1,
+                commentFormatted2)
+
+        //call
+        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(commentsFormatted)
+
+        //assert
+        assertEquals(namePlayer1, viewModel.delCommentsFormatted[0].username)
+        assertEquals(namePlayer2, viewModel.delCommentsFormatted[1].username)
+
+        assertEquals(comment1, viewModel.delCommentsFormatted[0].comment)
+        assertEquals(comment2, viewModel.delCommentsFormatted[1].comment)
+
+        assertEquals(dateComment1, viewModel.delCommentsFormatted[0].commentDate)
+        assertEquals(dateComment2, viewModel.delCommentsFormatted[1].commentDate)
+
+        assertEquals(profilePic1, viewModel.delCommentsFormatted[0].profilePic)
+        assertEquals(profilePic2, viewModel.delCommentsFormatted[1].profilePic)
+
+        assertEquals(commentFormatted1, viewModel.delCommentsFormatted[0])
+        assertEquals(commentFormatted2, viewModel.delCommentsFormatted[1])
+    }
+
+
+
     @After
     fun tearDown() {
     }

@@ -1,13 +1,16 @@
-package com.nexte.nexte;
-
+package com.nexte.nexte.ChallengeScene;
 
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import com.nexte.nexte.MainActivity;
+import com.nexte.nexte.R;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -37,7 +40,7 @@ public class SendChallengeInstrumentationTest {
     @Test
     public void sendChallengeInstrumentationTest() {
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.challangeButton), withText("Desafios"),
+                allOf(ViewMatchers.withId(R.id.challangeButton), withText("Desafios"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

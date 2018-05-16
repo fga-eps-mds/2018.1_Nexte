@@ -1,5 +1,5 @@
 # Baldissera image of android container.
-image: baldissera/android-container:1.0
+image: baldissera/android-container:2.0
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -8,25 +8,31 @@ variables:
 
 before_script:
   - export ANDROID_HOME="/usr/local/android-sdk"
-  - cd project
 
+# GitLab CI Stages executed in this CI
 stages:
   - test
   - build
   - deploy
 
+# Static Analysis for avaliate code smells
 static_analysis:
   stage: test
-  script:
+  before_script:
+    - cd project/
     - mv ../docker/static_analysis.sh ./static_analysis.sh
     - chmod +x ./static_analysis.sh
+  script:
     - ./static_analysis.sh
 
+# Run Unit Tests, verifying the code coverage
 unit_test:
   stage: test
-  script:
+  before_script:
+    - cd project/
     - mv ../docker/test.sh ./test.sh
     - chmod +x ./test.sh
+  script:
     - ./test.sh
   artifacts:
     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
@@ -35,20 +41,17 @@ unit_test:
     paths:
       - project/app/build/reports/jacocoTestReport/html
 
-# instrumentation_tests:
-#   stage: test
-
+# Build script for generate new .APK
 build:
   stage: build
   before_script:
-    - export ANDROID_HOME="/usr/local/android-sdk"
-    - cd project
+    - cd project/
     - git clone $KEY_STORE_REPO ./key
     - mv ./key/$STORE_FILE ./app/
-    - rm -Rf ./key
-  script:
     - mv ../docker/build.sh ./build.sh
     - chmod +x ./build.sh
+  script:
+    - fastlane update_build_number
     - ./build.sh
   after_script:
     - rm -Rf ./app/.git/
@@ -59,12 +62,13 @@ build:
   only:
     - tags
     - dev
-    - master
+    # - master
 
+# Deploy to PlayStore in Beta Version
 deploy_beta:
   stage: deploy
   before_script:
-    - cd project
+    - cd project/
     - echo $DEPLOY_KEY_FILE >> key.json
   script:
     - fastlane beta
@@ -78,6 +82,15 @@ deploy_beta:
   only:
     - tags
 
+# Build of GitHub Pages
+# pages:
+#   stage: build
+#   script:
+#     - mkdocs gh-deploy
+#   only:
+#     - dev
+
+# Cache for use on next executions
 cache:
   key: ${CI_PROJECT_ID}
   paths:

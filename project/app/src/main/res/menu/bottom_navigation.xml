@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item
+            android:id="@+id/feed"
+            android:enabled="true"
+            android:icon="@drawable/ic_feed"
+            android:title="Feed"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/challenge"
+            android:enabled="true"
+            android:icon="@drawable/ic_challenge"
+            android:title="Challenge"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/ranking"
+            android:enabled="true"
+            android:icon="@drawable/ic_ranking"
+            android:title="Ranking"
+            app:showAsAction="ifRoom" />
+</menu>

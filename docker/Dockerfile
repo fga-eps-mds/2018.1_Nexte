@@ -1,6 +1,5 @@
 # Image of JDK and Ruby
 FROM openjdk:8
-FROM ruby:2
 
 # Setup environments to android sdk
 ENV SDK_URL="https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip"
@@ -12,7 +11,13 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 # Run update and install need library
 RUN apt-get update \
-    && apt-get install --yes lib32stdc++6 lib32z1
+    && apt-get install --yes lib32stdc++6 lib32z1 ruby ruby-dev rubygems build-essential
+
+# Install Fastlane to Deploy and MkDocs to GitHubPages
+RUN gem install fastlane -NV \
+    && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+    && python get-pip.py \
+    && pip install mkdocs
 
 # Download Android SDK
 RUN mkdir "$ANDROID_HOME" .android \
@@ -37,10 +42,6 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --update \
 
 # Create an emulator
 # RUN echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n nexteavd -k "system-images;android-26;google_apis_playstore;x86"
-
-# Install gems of Fastlane to Deploy
-RUN gem install fastlane -NV
-
 
 # Create workspace
 RUN mkdir /application

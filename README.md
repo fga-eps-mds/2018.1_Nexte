@@ -28,7 +28,7 @@ Assim, o *CI* pode ser dividido em 4 etapas:
 Caso deseje executar apenas a análise estática:
 
 ```bash
-  docker run -v $(pwd)/project:/application baldissera/android-container /bin/bash "/static_analysis.sh"
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container:2.0 /bin/bash "/static_analysis.sh"
 ```
     
 2. Testes: Fase que o CI executa os testes unitários. Utiliza-se do Docker para realizar essa tarefa.
@@ -36,7 +36,7 @@ Caso deseje executar apenas a análise estática:
 Caso deseje executar apenas os testes:
 
 ```bash
-  docker run -v $(pwd)/project:/application baldissera/android-container /bin/bash "/test.sh"
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container:2.0 /bin/bash "/test.sh"
 ```
 
 3. Build: Fase em que é criado uma build, .apk. Utiliza-se do Docker para realizar essa tarefa.
@@ -44,7 +44,7 @@ Caso deseje executar apenas os testes:
 Caso deseje executar uma build:
 
 ```bash
-  docker run -v $(pwd)/project:/application baldissera/android-container /bin/bash "/build.sh"
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container:2.0 /bin/bash "/build.sh"
 ```
 
 4. *Deploy*: Cria uma *build* pronta para ser disponibilizada como *beta* na *Google Play*. Esta interação do CI apenas ocorre nas branches master e dev. GitlabCI faz uso do *Fastlane*.
