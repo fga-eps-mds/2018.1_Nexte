@@ -70,9 +70,8 @@ Como pode-se observar a equipe fechou bem menos pontos que na sprint anterior, p
 
 Apesar do esforço dos membros, a equipe não conseguiu atingir 100% da sua capacidade de produção.
 
-#### 1.3.2. Planilha de horas
+O velocity ficou em **75.67** 
 
-Assim como mencionado no relatório passado, essa métrica foi abandonada pois já não estava fazendo muito sentido para a equipe.
 
 ### **1.4. Quadro de conhecimentos**
 
@@ -125,7 +124,7 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 
 ![Burndow Risk do Projeto](https://i.imgur.com/E7zJVDH.png)
 
-Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Sprint 9"
+Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
 #### 1.5.3 Diferenças da sprint anterior
 
