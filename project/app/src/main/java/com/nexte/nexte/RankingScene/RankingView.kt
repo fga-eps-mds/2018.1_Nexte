@@ -73,9 +73,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 
-            view?.position?.text = String.format("#%d", UserSingleton.getUserInformations().rankingPosition)
+            view?.position?.text = String.format("%d", UserSingleton.getUserInformations().rankingPosition)
             view?.name?.text = UserSingleton.getUserInformations().name
-            view?.rowRankingLayout?.background = ColorDrawable(Color.WHITE)
+            view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
     }
 
@@ -94,9 +94,12 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         if(layoutManager.findFirstCompletelyVisibleItemPosition() <= playerRanking - 1
                 && playerRanking - 1 <= layoutManager.findLastCompletelyVisibleItemPosition()) {
+
             rankingView.fixedFragment.visibility = View.INVISIBLE
         }
-        else if (playerRanking - 1 > layoutManager.findLastVisibleItemPosition()) {
+
+        else if (playerRanking - 1 > layoutManager.findLastCompletelyVisibleItemPosition()) {
+
             rankingView.fixedFragment.visibility = View.VISIBLE
             constraintSet.clone(rankingView.rankingConstraintLayout)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
@@ -104,7 +107,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             constraintSet.connect(R.id.fixedFragment, ConstraintSet.BOTTOM, R.id.rankingConstraintLayout, ConstraintSet.BOTTOM)
             constraintSet.applyTo(rankingView.rankingConstraintLayout)
         }
-        else if (playerRanking-1 < layoutManager.findFirstVisibleItemPosition()){
+
+        else if (playerRanking - 1 < layoutManager.findFirstCompletelyVisibleItemPosition()){
+
             rankingView.fixedFragment.visibility = View.VISIBLE
             constraintSet.clone(rankingView.rankingConstraintLayout)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
@@ -123,6 +128,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     private class OnScrollRankingRecyclerView(val playerRanking: Int, val context: Context) : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+
             (context as RankingView).setFixedRanking(context, recyclerView, playerRanking)
         }
     }
@@ -220,7 +226,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             itemHolder?.nameText?.text = item.player.userName
             itemHolder?.rankingText?.text = item.player.userRankingPosition
             itemHolder?.victory?.text = item.player.userWins
-            itemHolder?.losses?.text = item.player.userLosses
+            itemHolder?.lastGame?.text = item.player.userLastGame
 
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
@@ -245,7 +251,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var nameText = v.name
             var rankingText = v.position
             var victory = v.victory
-            var losses = v.losses
+            var lastGame = v.lastGame
             var expandedView = v.expandedView
         }
     }

@@ -39,12 +39,14 @@ class RankingModel {
      * @property wins are all the games won by the player
      * @property losses are all the games lost by the player
      * @property rankingPosition it's the position of the player on the ranking
+     * @property lastGame it's when the user player the last
      */
     class Player(var name: String,
                  var pictureURL: Int,
                  var wins: Int,
                  var losses: Int,
-                 var rankingPosition: Int)
+                 var rankingPosition: Int,
+                 var lastGame: String)
 
     /**
      * Class responsible to define format players information
@@ -61,13 +63,13 @@ class RankingModel {
      * @property userName it's the name of the player presented as a String
      * @property userPictureURL it's the photo of the player presented as an Int
      * @property userWins are all the games won by the player presented as a String
-     * @property userLosses are all the games lost by the player presented as a String
      * @property userRankingPosition it's the position of the player on the ranking presented as a String
+     * @property userLastGame it's the user last game presented as a String
      */
     class FormattedPlayer(var userName: String,
                           var userPictureURL: Int,
                           var userWins: String,
-                          var userLosses: String,
-                          var userRankingPosition: String)
+                          var userRankingPosition: String,
+                          var userLastGame: String)
 }
 
