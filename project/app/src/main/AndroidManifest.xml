@@ -72,7 +72,7 @@
             android:label="CommentsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MatchScene.MatchView"
+            android:name=".MatchScene.MatchFragment"
             android:label="MatchActivity"
             android:screenOrientation="portrait" />
     </application>

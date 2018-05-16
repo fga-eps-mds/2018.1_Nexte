@@ -19,7 +19,7 @@ interface MatchPresentationLogic {
 }
 
 /**
- * Class needed to format response so the data can be displayed on activity at [MatchView]
+ * Class needed to format response so the data can be displayed on activity at [MatchFragment]
  *
  * @property viewController Reference to the activity where data will be displayed on view
  */
@@ -33,7 +33,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
     }
 
     /**
-     * Function that formats data of players to be displayed on [MatchView]
+     * Function that formats data of players to be displayed on [MatchFragment]
      *
      * @param toFormat Data at unformatted stage that needs to be formatted
      */

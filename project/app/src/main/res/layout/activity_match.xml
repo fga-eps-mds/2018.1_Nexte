@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2E2E2E"
-    tools:context=".MatchScene.MatchView">
+    tools:context=".MatchScene.MatchFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/matchRecyclerView"

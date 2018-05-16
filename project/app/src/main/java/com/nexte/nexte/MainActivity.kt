@@ -8,7 +8,7 @@ import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.ChallengeScene.ChallengeView
-import com.nexte.nexte.MatchScene.MatchView
+import com.nexte.nexte.MatchScene.MatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         //Button to display Match scene
         matchButton.setOnClickListener {
-            val intent = Intent(this, MatchView::class.java)
+            val intent = Intent(this, MatchFragment::class.java)
             intent.putExtra("identifier", "matchName")
             startActivity(intent)
         }

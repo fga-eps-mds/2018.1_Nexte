@@ -1,9 +1,8 @@
 package com.nexte.nexte.MatchScene
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.app.Fragment
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Interface to define Display Logic to MatchView Class that will receive information
+ * Interface to define Display Logic to MatchFragment Class that will receive information
  * from Presenter
  */
 interface MatchDisplayLogic {
@@ -33,22 +32,15 @@ interface MatchDisplayLogic {
  * @property numberOfSets enum class to define the number of sets, which define the presentation
  * of recycler view
  */
-class MatchView : AppCompatActivity(), MatchDisplayLogic {
+class MatchFragment : Fragment(), MatchDisplayLogic {
 
     var interactor: MatchInteractor? = null
-    var matchViewAdapter: MatchDataAdapter? = null
+    private var matchViewAdapter: MatchDataAdapter? = null
     var numberOfSets = MatchModel.SetsNumber.One
 
-    /**
-     * On Create is a method that will setup this scene and call first Request for Interactor
-     *
-     * @param savedInstanceState
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_match)
-
+        val view = inflater?.inflate(R.layout.activity_match, container, false)
         this.setUpMatchScene()
 
         val empty = MatchModel.FormattedMatchData("", 1,
@@ -56,18 +48,19 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
         this.matchViewAdapter = MatchDataAdapter(empty,this)
         matchRecyclerView.adapter = this.matchViewAdapter
-        matchRecyclerView.layoutManager = LinearLayoutManager(this)
+        matchRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         /**
          * Passing string through intent, once the label of the string to be
          * used in this scene is a string thrown by main activity
          */
-        val prevIntent = intent.getStringExtra("identifier")
+        val prevIntent = activity.intent.getStringExtra("identifier")
         val request = MatchModel.InitScene.Request(prevIntent)
         interactor?.getInfoMatches(request)
 
         sendButton.isEnabled = false
 
+        return view!!
     }
 
     /**
@@ -113,10 +106,10 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
      * implemented, and do the management of the rows displays
      *
      * @param matchInfo information of Data obtained as formatted classes
-     * @param context activity to display defined elements
+     * @param fragment fragment to display defined elements
      */
     class MatchDataAdapter (private var matchInfo: MatchModel.FormattedMatchData,
-                            private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                            private val fragment: Fragment): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         /**
          * Function to get the type of the row to be displayed
@@ -128,7 +121,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             val layoutMatch : Int
 
-            when((context as MatchView).numberOfSets.number){
+            when((fragment as MatchFragment).numberOfSets.number){
                 firstPosition -> layoutMatch = when(position) {
                     zeroPosition -> R.layout.row_match_info
                     firstPosition -> R.layout.row_match_sets
@@ -180,20 +173,20 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             when (viewType) {
                 R.layout.row_match_info -> {
-                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_info, parent,false)
-                    holder = MatchView.MatchDataAdapter.InfoViewHolder(view)
+                    val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_info, parent,false)
+                    holder = MatchFragment.MatchDataAdapter.InfoViewHolder(view)
                 }
                 R.layout.row_match_sets -> {
-                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_sets, parent,false)
-                    holder = MatchView.MatchDataAdapter.SetsViewHolder(view)
+                    val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_sets, parent,false)
+                    holder = MatchFragment.MatchDataAdapter.SetsViewHolder(view)
                 }
                 R.layout.row_match_time -> {
-                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_time, parent,false)
-                    holder = MatchView.MatchDataAdapter.TimeViewHolder(view)
+                    val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_time, parent,false)
+                    holder = MatchFragment.MatchDataAdapter.TimeViewHolder(view)
                 }
                 else -> { //viewType == R.layout.row_match_wo
-                    val view = LayoutInflater.from(context).inflate(R.layout.row_match_wo, parent,false)
-                    holder = MatchView.MatchDataAdapter.WOViewHolder(view)
+                    val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_wo, parent,false)
+                    holder = MatchFragment.MatchDataAdapter.WOViewHolder(view)
                 }
             }
 
@@ -202,11 +195,11 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
         /**
          * Function that defines the size of the recycler view following the [numberOfSets]
-         * on [MatchView]
+         * on [MatchFragment]
          */
         override fun getItemCount(): Int {
 
-            return when((context as MatchView).numberOfSets.number) {
+            return when((fragment as MatchFragment).numberOfSets.number) {
                 firstPosition -> thirdPosition
                 thirdPosition -> fifthPosition
                 fifthPosition -> seventhPosition
@@ -228,7 +221,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
 
             if(holder is InfoViewHolder) {
 
-                holder.infoBindView(matchInfo, context)
+                holder.infoBindView(matchInfo,fragment)
             }
 
             if(holder is SetsViewHolder) {
@@ -254,7 +247,7 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
          */
         class InfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun infoBindView(matchInfo: MatchModel.FormattedMatchData, context: Context) {
+            fun infoBindView(matchInfo: MatchModel.FormattedMatchData, fragment: Fragment) {
 
                 itemView.challengedName.text = matchInfo.challengedName
                 itemView.challengerName.text = matchInfo.challengerName
@@ -262,18 +255,18 @@ class MatchView : AppCompatActivity(), MatchDisplayLogic {
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
                 itemView.buttonOne.setOnClickListener {
-                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.One)
+                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.One)
                 }
                 itemView.buttonThree.setOnClickListener {
-                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.Three)
+                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Three)
                 }
 
                 itemView.buttonFive.setOnClickListener {
-                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.Five)
+                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Five)
                 }
 
                 itemView.buttonWO.setOnClickListener {
-                    (context as MatchView).updateSetsNumber(MatchModel.SetsNumber.WO)
+                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.WO)
                 }
             }
         }

@@ -48,6 +48,9 @@ class EditProfileModelTest {
         val firstRequest = EditProfileModel.RecoverUserRequest.Request(username, tokenID)
         val secondRequest = EditProfileModel.EditProfileRequest.Request(player)
 
+        firstRequest.tokenID = tokenID
+        firstRequest.username = username
+        secondRequest.user = player
         //assert
         assertEquals(username, firstRequest.username)
         assertEquals(tokenID, firstRequest.tokenID)
@@ -99,6 +102,10 @@ class EditProfileModelTest {
         val firstResponse = EditProfileModel.EditProfileRequest.Response(errorID, newPlayer)
         val secondResponse = EditProfileModel.RecoverUserRequest.Response(newPlayer)
 
+        firstResponse.errorID = errorID
+        firstResponse.newUser = newPlayer
+        secondResponse.user = newPlayer
+
         //assert
         assertEquals(firstResponse.errorID, errorID)
         assertEquals(firstResponse.newUser, newPlayer)
@@ -147,6 +154,12 @@ class EditProfileModelTest {
         val formattedPlayer = EditProfileModel.RecoverUserRequest.FormattedPlayer(
                 username, ranking, club, age, email
         )
+
+        formattedPlayer.age = age
+        formattedPlayer.club = club
+        formattedPlayer.email = email
+        formattedPlayer.ranking = ranking
+        formattedPlayer.username = username
 
         //assert
         assertEquals(formattedPlayer.age, age)
@@ -199,6 +212,8 @@ class EditProfileModelTest {
         val firstViewModel = EditProfileModel.RecoverUserRequest.ViewModel(formattedPlayer)
         val secondViewModel = EditProfileModel.EditProfileRequest.ViewModel(message)
 
+        firstViewModel.playerToEdit = formattedPlayer
+        secondViewModel.errorMessage = message
         //assert
         assertEquals(firstViewModel.playerToEdit, formattedPlayer)
         assertEquals(secondViewModel.errorMessage, message)
@@ -229,5 +244,15 @@ class EditProfileModelTest {
         //assert
         assertEquals(firstViewModel.playerToEdit, formattedPlayer)
         assertEquals(secondViewModel.errorMessage, message)
+    }
+
+    @Test
+    fun successEditProfileModel(){
+        //prepare
+        //call
+        val model = EditProfileModel()
+
+        //assert
+        assertNotNull(model)
     }
 }
