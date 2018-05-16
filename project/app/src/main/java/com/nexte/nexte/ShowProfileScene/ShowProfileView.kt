@@ -47,29 +47,29 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
         this.createShowProfileRequest()
 
-        editProfileButton.setOnClickListener {
+//        editProfileButton.setOnClickListener {
+//
+////            val intent = Intent(thxis, EditProfileView::class.java)
+//
+////            startActivity(intent)
+//        }
 
-//            val intent = Intent(thxis, EditProfileView::class.java)
-
-//            startActivity(intent)
-        }
-
-        this.createGraph()
+        //this.createGraph()
     }
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return inflater?.inflate(R.layout.activity_show_profile, container, false)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
-
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
      */
-    fun createShowProfileRequest(){
+    fun createShowProfileRequest() {
         Log.d("Chocolate", "Com Granulado")
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
                 "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
+        print()
     }
 
     /**
@@ -181,11 +181,11 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
      */
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
 
-        username.text = viewModel.playerInfo.name
-        RankingID.text = viewModel.playerInfo.rank
-        club.text = viewModel.playerInfo.club
-        age.text = viewModel.playerInfo.age
-        email.text = viewModel.playerInfo.email
+        username?.text = viewModel.playerInfo.name
+        RankingID?.text = viewModel.playerInfo.rank
+        club?.text = viewModel.playerInfo.club
+        age?.text = viewModel.playerInfo.age
+        email?.text = viewModel.playerInfo.email
     }
 
     companion object {

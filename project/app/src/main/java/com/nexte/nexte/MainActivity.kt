@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.profile -> {
-                selectedFragment = ShowProfileView.newInstance()
+                selectedFragment = ShowProfileView()
 
             }
 
