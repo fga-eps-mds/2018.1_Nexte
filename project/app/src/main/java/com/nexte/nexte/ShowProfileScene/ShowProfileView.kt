@@ -1,10 +1,9 @@
 package com.nexte.nexte.ShowProfileScene
 
-import android.app.Fragment
-import android.content.Intent
+import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
@@ -61,13 +59,14 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return inflater?.inflate(R.layout.activity_show_profile, container, false);
+        return inflater?.inflate(R.layout.activity_show_profile, container, false)
     }
 
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest(){
+        Log.d("Chocolate", "Com Granulado")
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
                 "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)

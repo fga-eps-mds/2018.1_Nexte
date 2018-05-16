@@ -25,7 +25,7 @@
             android:id="@+id/profile"
             android:enabled="true"
             android:icon="@drawable/ic_ranking"
-            android:title="Ranking"
+            android:title="Profile"
             app:showAsAction="ifRoom" />
 
 </menu>

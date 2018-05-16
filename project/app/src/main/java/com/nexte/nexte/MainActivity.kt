@@ -1,5 +1,6 @@
 package com.nexte.nexte
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,9 @@ import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.MatchScene.MatchView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.util.Log
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
+        var selectedFragment : Fragment? = null
         when (item.itemId) {
             R.id.feed -> {val intent = Intent(this, FeedView::class.java)
                 startActivity(intent)
@@ -66,7 +71,17 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            R.id.profile -> {
+                selectedFragment = ShowProfileView.newInstance()
+
+            }
+
+
+
         }
+        var transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_layout, selectedFragment)
+        transaction.commit()
         true
 
     }
