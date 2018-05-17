@@ -1,5 +1,5 @@
 # Baldissera image of android container.
-image: baldissera/android-container
+image: baldissera/android-container:2.1
 
 variables:
   DOCKER_DRIVER: overlay2
