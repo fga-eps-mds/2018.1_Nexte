@@ -38,6 +38,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+         test.setOnClickListener {
+             val intent = Intent(this, RankingView::class.java)
+             startActivity(intent)
+         }
+
+
         //Button to display Match scene
         matchButton.setOnClickListener {
             val intent = Intent(this, MatchView::class.java)
