@@ -14,14 +14,11 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.MatchScene.MatchFragment
-import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger.*
-import kotlinx.android.synthetic.main.activity_match.*
 
 
 /**
@@ -252,29 +249,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 viewContext.expandedWins = view?.findViewById(R.id.expandedWins)
                 viewContext.noPlayersText = view?.findViewById(R.id.noPlayersText)
             }
-            else if(position == 1) {
-                val view = inflater?.inflate(R.layout.activity_match, container, false)
-                this.setUpMatchScene()
-
-                val empty = MatchModel.FormattedMatchData("", 1,
-                        "", 1)
-
-                this.matchViewAdapter = MatchFragment.MatchDataAdapter(empty, this)
-                matchRecyclerView.adapter = this.matchViewAdapter
-                matchRecyclerView.layoutManager = LinearLayoutManager(activity)
-
-                /**
-                 * Passing string through intent, once the label of the string to be
-                 * used in this scene is a string thrown by main activity
-                 */
-                val prevIntent = activity.intent.getStringExtra("identifier")
-                val request = MatchModel.InitScene.Request(prevIntent)
-                interactor?.getInfoMatches(request)
-
-                sendButton.isEnabled = false
-
-                return view!!
-            }
             else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
             }
@@ -312,10 +286,11 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
 
         override fun getItem(position: Int): Fragment {
-
-            val tabFragment = TabFragment()
-
-            return tabFragment.getInstance(position)
+            return if(position == 1){
+                MatchFragment().getInstance()
+            } else{
+                TabFragment().getInstance(position)
+            }
         }
 
         override fun getPageTitle(position: Int): CharSequence {

@@ -1,7 +1,7 @@
 package com.nexte.nexte.MatchScene
 
 import android.annotation.SuppressLint
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -37,6 +37,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     var interactor: MatchInteractor? = null
     private var matchViewAdapter: MatchDataAdapter? = null
     var numberOfSets = MatchModel.SetsNumber.One
+
+    //method created because in the future maybe this class will receive arguments.
+    fun getInstance(): MatchFragment {
+        val fragmentFirst = MatchFragment()
+        return fragmentFirst
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 

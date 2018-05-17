@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottom_nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-
         // Setting up feed button listener
 
         showProfileButton.setOnClickListener {
@@ -37,14 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
-            startActivity(intent)
-        }
-
-
-        //Button to display Match scene
-        matchButton.setOnClickListener {
-            val intent = Intent(this, MatchFragment::class.java)
-            intent.putExtra("identifier", "matchName")
             startActivity(intent)
         }
     }
