@@ -1,7 +1,5 @@
 package com.nexte.nexte.Entities.Story
 
-import com.nexte.nexte.Entities.Comment.Comment
-import com.nexte.nexte.Entities.Like.Like
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

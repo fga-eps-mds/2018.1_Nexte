@@ -76,7 +76,7 @@ class UserAdapterRealm: UserAdapter {
     }
 
 
-    private fun convertUserRealmToUser(userRealm: UserRealm?): User? {
+    fun convertUserRealmToUser(userRealm: UserRealm?): User? {
 
         var user: User? = null
         userRealm?.let {
@@ -108,7 +108,7 @@ class UserAdapterRealm: UserAdapter {
         return user
     }
 
-    private fun convertUserRealmListToUserList(userRealmResults: RealmResults<UserRealm>): List<User> {
+    fun convertUserRealmListToUserList(userRealmResults: RealmResults<UserRealm>): List<User> {
 
         val users: MutableList<User> = mutableListOf()
 

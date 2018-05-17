@@ -1,7 +1,5 @@
 package com.nexte.nexte.Entities.Story
 
-import com.nexte.nexte.Entities.Comment.Comment
-import com.nexte.nexte.Entities.Like.Like
 import io.realm.Realm
 import io.realm.RealmList
 import io.realm.kotlin.where
@@ -40,7 +38,7 @@ class StoryAdapterRealm: StoryAdapter{
         return null
     }
 
-    private fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
+     fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
         //Id
         val storyId = storyRealm.id
 
@@ -64,7 +62,7 @@ class StoryAdapterRealm: StoryAdapter{
         return story
     }
 
-    private fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
+     fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
         val storiesRealmMutable = storiesRealm.toMutableList()
         val storiesMutable = mutableListOf<Story>()
 
@@ -77,7 +75,7 @@ class StoryAdapterRealm: StoryAdapter{
         return stories
     }
 
-    private fun convertStoryToStoryRealm(story: Story): StoryRealm{
+     fun convertStoryToStoryRealm(story: Story): StoryRealm{
         //Id
         val id = story.id
 
@@ -92,24 +90,12 @@ class StoryAdapterRealm: StoryAdapter{
         //Date
         val date = story.date
 
-        //Comments
-//        val commentsRealmList = RealmList<Comment>()
-//        val comments = story.comments.toList()
-//        for (comment in comments){
-//            commentsRealmList.add(comment)
-//        }
         val commentsIdRealmList = RealmList<String>()
         val comments = story.commentsId.toList()
         for (comment in comments){
             commentsIdRealmList.add(comment)
         }
 
-        //Likes
-//        val likesRealmList = RealmList<Like>()
-//        val likes = story.likes
-//        for (like in likes){
-//            likesRealmList.add(like)
-//        }
         val likesIdRealmList = RealmList<String>()
         val likes = story.likesId.toList()
         for (like in likes){
