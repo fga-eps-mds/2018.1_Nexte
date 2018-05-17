@@ -88,15 +88,14 @@ pages:
   before_script:
     - git config user.email "<guilhermebaldissera@gmail.com>"
     - git config --global user.name "Baldissera"
-    - python --version
-    - mkdocs --version
+    # - git checkout -b gh-pages
   script:
     - mkdocs build
     - git add site/
     - git commit -m"Build new Pages with $CI_PIPELINE_ID"
-    - git push https://${GITHUB_USERNAME}:${GITHUB_CREDENTIALS}@github.com/fga-gpp-mds/2018.1_Nexte.git gh-pages -f
-  # only:
-    # - dev
+    - git push https://$GITHUB_USERNAME:$GITHUB_CREDENTIALS@github.com/fga-gpp-mds/2018.1_Nexte.git `git subtree split --prefix site/`:gh-pages --force
+  only:
+    - dev
 
 # Cache for use on next executions
 cache:
