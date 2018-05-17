@@ -53,37 +53,44 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
-        var selectedFragment : Fragment? = null
-        when (item.itemId) {
-            R.id.feed -> {val intent = Intent(this, FeedView::class.java)
-                startActivity(intent)
+   private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
 
+        when (item.itemId) {
+            R.id.feed -> {
+//                val intent = Intent(this, FeedView::class.java)
+               // startActivity(intent)
+                return@OnNavigationItemSelectedListener true
             }           // include activity
 
-            R.id.challenge -> {val intent = Intent(this, ChallengeView::class.java)
-                startActivity(intent)
-
+            R.id.challenge -> {
+//                val intent = Intent(this, ChallengeView::class.java)
+//                startActivity(intent)
+                return@OnNavigationItemSelectedListener true
             }
 
-            R.id.ranking -> {val intent = Intent(this, RankingView::class.java)
-                startActivity(intent)
-
+            R.id.ranking -> {
+//                val intent = Intent(this, RankingView::class.java)
+//                startActivity(intent)
+                return@OnNavigationItemSelectedListener true
             }
 
             R.id.profile -> {
-                selectedFragment = ShowProfileView()
+                val showProfileFragment = ShowProfileView.newInstance()
+                openFragment(showProfileFragment)
+                return@OnNavigationItemSelectedListener true
 
+            } else -> {
+                return@OnNavigationItemSelectedListener true
             }
-
-
-
         }
-        var transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame_layout, selectedFragment)
-        transaction.commit()
-        true
 
+
+    }
+    private fun openFragment(fragment: Fragment) {
+        var transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }

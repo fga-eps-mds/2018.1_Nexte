@@ -42,7 +42,6 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_show_profile)
         setupShowProfileScene()
 
         this.createShowProfileRequest()
@@ -59,7 +58,7 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater?.inflate(R.layout.activity_show_profile, container, false)
     }
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
@@ -69,7 +68,7 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
                 "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
-        print()
+
     }
 
     /**
@@ -191,9 +190,8 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
     companion object {
         const val houndredLine = 110
 
-        fun newInstance(): ShowProfileView {
-            return ShowProfileView()
-            }
+        fun newInstance(): ShowProfileView = ShowProfileView()
+
         }
     }
 
