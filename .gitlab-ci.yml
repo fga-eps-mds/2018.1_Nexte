@@ -1,45 +1,45 @@
 # Baldissera image of android container.
-image: baldissera/android-container:2.0
+image: baldissera/android-container
 
 variables:
   DOCKER_DRIVER: overlay2
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
 
-before_script:
-  - export ANDROID_HOME="/usr/local/android-sdk"
+# before_script:
+  # - export ANDROID_HOME="/usr/local/android-sdk"
 
 # GitLab CI Stages executed in this CI
 stages:
   - build
   - deploy
-  - test
+  # - test
 
 # Static Analysis for avaliate code smells
-static_analysis:
-  stage: test
-  before_script:
-    - cd project/
-    - mv ../docker/static_analysis.sh ./static_analysis.sh
-    - chmod +x ./static_analysis.sh
-  script:
-    - ./static_analysis.sh
+# static_analysis:
+#   stage: test
+#   before_script:
+#     - cd project/
+#     - mv ../docker/static_analysis.sh ./static_analysis.sh
+#     - chmod +x ./static_analysis.sh
+#   script:
+#     - ./static_analysis.sh
 
 # Run Unit Tests, verifying the code coverage
-unit_test:
-  stage: test
-  before_script:
-    - cd project/
-    - mv ../docker/test.sh ./test.sh
-    - chmod +x ./test.sh
-  script:
-    - ./test.sh
-  artifacts:
-    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
-    when: always
-    expire_in: 2 days
-    paths:
-      - project/app/build/reports/jacocoTestReport/html
+# unit_test:
+#   stage: test
+#   before_script:
+#     - cd project/
+#     - mv ../docker/test.sh ./test.sh
+#     - chmod +x ./test.sh
+#   script:
+#     - ./test.sh
+#   artifacts:
+#     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
+#     when: always
+#     expire_in: 2 days
+#     paths:
+#       - project/app/build/reports/jacocoTestReport/html
 
 # Build script for generate new .APK
 build:
@@ -88,16 +88,18 @@ pages:
   before_script:
     - git config user.email "<guilhermebaldissera@gmail.com>"
     - git config --global user.name "Baldissera"
+    - python --version
+    - mkdocs --version
   script:
     - mkdocs build
     - git add site/
     - git commit -m"Build new Pages with $CI_PIPELINE_ID"
-    - git push https://$GITHUB_USERNAME:$GITHUB_CREDENTIALS@github.com/fga-gpp-mds/2018.1_Nexte.git gh-pages -f
+    - git push https://${GITHUB_USERNAME}:${GITHUB_CREDENTIALS}@github.com/fga-gpp-mds/2018.1_Nexte.git gh-pages -f
   # only:
     # - dev
 
 # Cache for use on next executions
 cache:
-  key: ${CI_PROJECT_ID}
+  key: ${CI_PROJECT_ID}2
   paths:
     - .gradle/
