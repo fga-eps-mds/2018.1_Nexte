@@ -46,7 +46,8 @@ class RankingModel {
                  var wins: Int,
                  var losses: Int,
                  var rankingPosition: Int,
-                 var lastGame: String)
+                 var lastGame: String,
+                 var efficiency: String)
 
     /**
      * Class responsible to define format players information
@@ -70,6 +71,7 @@ class RankingModel {
                           var userPictureURL: Int,
                           var userWins: String,
                           var userRankingPosition: String,
-                          var userLastGame: String)
+                          var userLastGame: String,
+                          var userEfficiency: String  )
 }
 

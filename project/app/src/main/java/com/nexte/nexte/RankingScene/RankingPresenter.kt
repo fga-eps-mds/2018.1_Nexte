@@ -49,7 +49,9 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
                     player.pictureURL,
                     String.format("Vitórias: %d", player.wins),
                     String.format("%d", player.rankingPosition),
-                    String.format("Último Jogo: %s", player.lastGame))
+                    String.format("Último Jogo: %s", player.lastGame),
+                    player.efficiency)
+
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
             rankingPlayerFormatted.add(playerFormattedInfo)
         }

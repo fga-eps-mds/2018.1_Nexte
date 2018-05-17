@@ -1,6 +1,7 @@
 package com.nexte.nexte.RankingScene
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
@@ -13,8 +14,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
+import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
+import kotlinx.android.synthetic.main.row_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 
 /**
@@ -58,6 +61,11 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                 UserSingleton.getUserInformations().rankingPosition, this))
 
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
+
+        profileButton.setOnClickListener{
+            val intent = Intent(this, ShowProfileView::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
@@ -227,6 +235,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             itemHolder?.rankingText?.text = item.player.userRankingPosition
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
+            itemHolder?.efficiency?.text = item.player.userEfficiency
 
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
@@ -253,6 +262,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var victory = v.victory
             var lastGame = v.lastGame
             var expandedView = v.expandedView
+            var efficiency = v.efficiency
         }
     }
 }
