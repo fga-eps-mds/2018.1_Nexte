@@ -8,6 +8,8 @@ import com.nexte.nexte.Entities.Like.Like
 object StoryMocker{
 
     private val commentIds = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9")
+    private var likeId: Int = 0
+    private var storiesId: Int = 0
     private val commentTextMocks = listOf("Que jogo sensacional! Muita coisa ruim aconteceu mas eu sei que muita coisa ainda vai acontecer e por isso torço muito para que muita coisa continue acontecendo porque no final é tudo o que importa, não é mesmo? Eu sei meu amigo. As coisas mudam e tudo tem que mudar. A vida é assim!!!",
             "Tá na hora da revanche! As coisas mudam e tudo tem que mudar. A vida é assim!!!",
             "Você é muito pato",
@@ -17,8 +19,6 @@ object StoryMocker{
             "Mais seriedade",
             "Não vou mais jogar contigo.",
             "Cala a boca!")
-    private var likeId: Int = 0
-    private var storiesId: Int = 0
 
     fun generateRandomStories(): List<Story>{
         val storiesAmount = randomNumber(0, 20)

@@ -7,8 +7,8 @@ class CommentAdapterRealm : CommentAdapter {
     var realm: Realm = Realm.getDefaultInstance()
 
     override fun get(identifier: String): Comment? {
-        val commentRealm = realm.where<CommentRealm>().equalTo("id", identifier).findAll()
-        return convertCommentRealmToComment(commentRealm)
+        val commentRealm = realm.where<CommentRealm>().equalTo("id", identifier).findFirst()
+        return convertCommentRealmToComment(commentRealm!!)
     }
 
     override fun getAll(): List<Comment> {

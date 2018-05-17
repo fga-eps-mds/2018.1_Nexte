@@ -1,4 +1,5 @@
 package com.nexte.nexte.LikeListScene
+import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.User
@@ -69,6 +70,19 @@ class LikeListWorker {
 //                println("New Like")
 //                println("Like Ids: " + likeId)
 //            }
+//        }
+
+
+        //HELENA DEIXEI COMENTADO ISSO AQUI SÓ PARA NÃO QUEBRAR OS TESTE UNITÁRIOS
+        //PARA TESTAR SE A COMMENT MANAGER ESTÁ FUNCIONANDO É SÓ DESCOMENTAR O CÓDIGO ABAIXO
+//        var allComments = CommentManager().getAll()
+//        println("Comments amout: " + allComments.size)
+//        for (comment in allComments){
+//            println("New Comment")
+//            println("Comment id: " + comment.id)
+//            println("Comment date: " + comment.date)
+//            println("Comment userId: " + comment.userId)
+//            println("Comment text: " + comment.comment)
 //        }
 
         return mutableListOf(likeListModelPlayer)

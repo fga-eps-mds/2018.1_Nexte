@@ -31,18 +31,20 @@ class CommentManager(val commentAdapter: CommentAdapter = CommentAdapterRealm())
     }
 
     fun createInitialMocker(): List<Comment> {
-        val commentsInMocker = CommentsMocker.generateCommentsList() // nao achei a mocker dele
-        val insertedComment: MutableList<Comment> = mutableListOf()
+
+        val commentsInMocker = CommentMocker().generateComments()//CommentsMocker.generateComments() // nao achei a mocker dele
+        val insertedComments: MutableList<Comment> = mutableListOf()
 
         for (comment in commentsInMocker) {
 
-            val insertedComments = commentAdapter.updateOrInsert(comment)
-            insertedComments?.let {
+            val insertedComment = commentAdapter.updateOrInsert(comment)
+            insertedComment?.let {
                 insertedComments.add(it)
             }
         }
 
-        return insertedComment.toList()
+        return insertedComments.toList()
+
     }
 
 
