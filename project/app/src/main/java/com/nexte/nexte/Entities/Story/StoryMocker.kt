@@ -2,8 +2,8 @@ package com.nexte.nexte.Entities.Story
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import java.util.*
-import com.nexte.nexte.Entities.Comment.Comment
-import com.nexte.nexte.Entities.Like.Like
+import com.nexte.nexte.Entities.User.UserAdapter
+import com.nexte.nexte.Entities.User.UserAdapterRealm
 
 object StoryMocker{
 
@@ -19,6 +19,7 @@ object StoryMocker{
             "Mais seriedade",
             "Não vou mais jogar contigo.",
             "Cala a boca!")
+    var userAdapter: UserAdapter? = null
 
     fun generateRandomStories(): List<Story>{
         val storiesAmount = randomNumber(0, 20)
@@ -52,8 +53,15 @@ object StoryMocker{
         return date
     }
 
-    fun generateRandomWinnerAndLoser(): List<User>{
-        val users = UserManager().getAll()
+    private fun generateRandomWinnerAndLoser(): List<User>{
+        //val users = if (userAdapter == null) UserManager().getAll() else UserManager(userAdapter = userAdapter)
+
+        var users = listOf<User>()
+        if (userAdapter == null){
+            users = UserManager().getAll()
+        }else{
+            users = UserManager(userAdapter = userAdapter!!).getAll()
+        }
 
         val winnerIndex = randomNumber(0, users.size - 1)
         var loserIndex = randomNumber(0, users.size - 1)
@@ -68,46 +76,18 @@ object StoryMocker{
         return winnerAndLoser
     }
 
-//    fun generateRandomComment(): Comment{
-//        val commentIndex = randomNumber(0, commentTextMocks.size - 1)
-//        val commentText = commentTextMocks[commentIndex]
-//
-//        val users = UserManager().getAll()
-//        val userIndex = randomNumber(0, users.size - 1)
-//        val userId = users[userIndex].id
-//
-//        val commentId = commentIds[commentIndex]
-//
-//        val date = generateRandomDate()
-//
-//        val comment = Comment(comment = commentText, id = commentId, userId = userId, date = date)
-//        return comment
-//    }
-    fun generateRandomCommentId(): String{
+    private fun generateRandomCommentId(): String{
         val commentIndex = randomNumber(0, commentTextMocks.size - 1)
         val commentId = commentIds[commentIndex]
         return commentId
     }
 
-//    fun generateRandomLike(): Like{
-//        val date = generateRandomDate()
-//
-//        val users = UserManager().getAll()
-//        val userIndex = randomNumber(0, users.size - 1)
-//        val userId = users[userIndex].id
-//
-//        val likeId = likeId++
-//
-//        val like = Like(date = date, id = likeId.toString(), userId = userId)
-//
-//        return like
-//    }
-    fun generateRandomLikeId(): String{
+    private fun generateRandomLikeId(): String{
         val likeId = likeId++
         return likeId.toString()
     }
 
-    fun generateRandomStory(): Story{
+    private fun generateRandomStory(): Story{
         //Id
         val storyId = storiesId++
 
@@ -126,13 +106,6 @@ object StoryMocker{
         val date = generateRandomDate()
 
         //Comments
-//        val commentsAmount = randomNumber(0, 9)
-//        val commentsMutable = mutableListOf<Comment>()
-//        for (counter in 0..commentsAmount){
-//            val comment = generateRandomComment()
-//            commentsMutable.add(comment)
-//        }
-//        val comments = commentsMutable.toList()
         val commentsAmount = randomNumber(0, 9)
         val commentsMutable = mutableListOf<String>()
         for (counter in 0..commentsAmount){
@@ -141,14 +114,6 @@ object StoryMocker{
         }
         val commentsId = commentsMutable.toList()
 
-        //Likes
-//        val likesAmount = randomNumber(0, 6)
-//        val likesMutable = mutableListOf<Like>()
-//        for (counter in 0..likesAmount){
-//            val like = generateRandomLike()
-//            likesMutable.add(like)
-//        }
-//        val likes = likesMutable.toList()
         //Likes
         val likesAmount = randomNumber(0, 6)
         val likesMutable = mutableListOf<String>()
