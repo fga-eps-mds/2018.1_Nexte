@@ -32,10 +32,15 @@ class StoryRealmTest {
 
         // Prepare
         val likeRealmRequest = LikeRealm.ServerRequest.LIKE.request
+        val likesRealmRequest = LikeRealm.ServerRequest.LIKES.request
+        val unlikesRealmRequest = LikeRealm.ServerRequest.UNLIKE.request
 
         // Asserts
         Assert.assertEquals("Like request is incorrect!", likeRealmRequest.keys, setOf("route", "method"))
-        }
+        Assert.assertEquals("Likes request is incorrect!", likesRealmRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Unlikes request is incorrect!", unlikesRealmRequest.keys, setOf("route", "method"))
+
+    }
 
     @Test
     fun testStoryRealmSet(){

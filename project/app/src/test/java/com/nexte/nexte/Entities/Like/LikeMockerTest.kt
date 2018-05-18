@@ -1,4 +1,5 @@
 package com.nexte.nexte.Entities.Like
+import com.nexte.nexte.Entities.User.UserAdapterSpy
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -8,19 +9,18 @@ class LikeMockerTest {
 
     @Before
     fun setUp() {
+        val likeAdapterSpy = LikeAdapterSpy()
+        LikeMocker.likeAdapter = likeAdapterSpy
+        LikeMocker.userAdapter = UserAdapterSpy()
     }
 
     @Test
     fun testGenerateLikes(){
-        val likeAdapterSpy = LikeAdapterSpy()
-        LikeMocker.likeAdapter = likeAdapterSpy
-        val randomLikes = LikeMocker.generateLikes()
-        Assert.assertTrue("This game have between 0 and 20 likes", randomLikes.size >= 0 && randomLikes?.size <= 20)
 
-        for (like in randomLikes){
+        val randomLikes = LikeMocker.generateLikes(1)
 
-            Assert.assertTrue("Each game has between 0 and 6 likes", like.likes.size >= 0 && like.likes.size <= 6)
-        }
+        Assert.assertEquals(1, randomLikes.size)
+        Assert.assertEquals("1", randomLikes[0])
     }
 
     @After

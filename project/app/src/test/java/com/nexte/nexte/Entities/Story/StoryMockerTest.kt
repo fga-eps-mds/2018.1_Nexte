@@ -1,5 +1,6 @@
 package com.nexte.nexte.Entities.Story
 
+import com.nexte.nexte.Entities.Like.LikeAdapterSpy
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import org.junit.After
 import org.junit.Before
@@ -11,6 +12,9 @@ class StoryMockerTest {
 
     @Before
     fun setUp() {
+        StoryMocker.likeAdapter = LikeAdapterSpy()
+        StoryMocker.userAdapter = UserAdapterSpy()
+        StoryMocker.commentAdapter = CommentAdapterSpy()
     }
 
     @Test

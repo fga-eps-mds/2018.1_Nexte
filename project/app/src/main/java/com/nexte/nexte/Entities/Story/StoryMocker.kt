@@ -1,4 +1,8 @@
 package com.nexte.nexte.Entities.Story
+import com.nexte.nexte.Entities.Comment.CommentAdapter
+import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Like.LikeAdapter
+import com.nexte.nexte.Entities.Like.LikeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import java.util.*
@@ -20,6 +24,8 @@ object StoryMocker{
             "Não vou mais jogar contigo.",
             "Cala a boca!")
     var userAdapter: UserAdapter? = null
+    var likeAdapter: LikeAdapter? = null
+    var commentAdapter: CommentAdapter? = null
 
     fun generateRandomStories(): List<Story>{
         val storiesAmount = randomNumber(0, 20)
@@ -107,21 +113,24 @@ object StoryMocker{
 
         //Comments
         val commentsAmount = randomNumber(0, 9)
-        val commentsMutable = mutableListOf<String>()
-        for (counter in 0..commentsAmount){
-            val comment = generateRandomCommentId()
-            commentsMutable.add(comment)
+        var commentsId = listOf<String>()
+
+        if(commentAdapter == null){
+            commentsId = CommentManager().createCommentsIds(commentsAmount)
+        }else{
+            commentsId = CommentManager(commentAdapter = commentAdapter!!).createCommentsIds(commentsAmount)
         }
-        val commentsId = commentsMutable.toList()
 
         //Likes
         val likesAmount = randomNumber(0, 6)
-        val likesMutable = mutableListOf<String>()
-        for (counter in 0..likesAmount){
-            val like = generateRandomLikeId()
-            likesMutable.add(like)
+        var likesId = listOf<String>()
+
+        if(likeAdapter == null){
+            likesId = LikeManager().createLikesIds(likesAmount)
+        }else{
+            likesId = LikeManager(likeAdapter = likeAdapter!!).createLikesIds(likesAmount)
         }
-        val likesId = likesMutable.toList()
+
 
         val story = Story(id = storyId.toString(), winner = winner, loser = loser, date = date, commentsId = commentsId, likesId = likesId)
         return story

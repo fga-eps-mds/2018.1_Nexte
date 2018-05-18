@@ -20,9 +20,13 @@ class LikeTest {
 
         // Prepare
         val likeRequest = Like.ServerRequest.LIKE.request
+        val likesRequest =  Like.ServerRequest.LIKES.request
+        val unlikesRequest = Like.ServerRequest.UNLIKE.request
 
         // Asserts
         Assert.assertEquals("Like request is incorrect!", likeRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Likes request is incorrect!", likesRequest.keys, setOf("route", "method"))
+        Assert.assertEquals("Unlikes request is incorrect!", unlikesRequest.keys, setOf("route", "method"))
     }
 
     @Test
@@ -37,7 +41,7 @@ class LikeTest {
         val like = Like(id, userId, date)
 
         // Asserts
-        Assert.assertEquals("Id of like is incorrect!", id, like.id)
+        Assert.assertEquals(id, like.id)
         Assert.assertEquals("Id of user is incorrect!", userId, like.userId)
         Assert.assertEquals("Date is incorrect!", date, like.date)
     }

@@ -1,5 +1,7 @@
 package com.nexte.nexte.Entities.Like
 
+import com.nexte.nexte.Entities.Story.StoryMocker
+
 class LikeManager (private val likeAdapter: LikeAdapter = LikeAdapterRealm()) {
 
     fun get(identifier: String): Like? {
@@ -31,7 +33,7 @@ class LikeManager (private val likeAdapter: LikeAdapter = LikeAdapterRealm()) {
 
     fun createInitialMocker(): List<Like> {
 
-        val likesInMocker = LikeMocker.generateLikes()
+        val likesInMocker = LikeMocker.likesMocks//LikeMocker.generateLikes()
         val insertedLikes: MutableList<Like> = mutableListOf()
 
         for (like in likesInMocker) {
@@ -44,5 +46,9 @@ class LikeManager (private val likeAdapter: LikeAdapter = LikeAdapterRealm()) {
 
         return insertedLikes.toList()
 
+    }
+
+    fun createLikesIds(amount: Int): List<String>{
+        return LikeMocker.generateLikes(amount)
     }
 }

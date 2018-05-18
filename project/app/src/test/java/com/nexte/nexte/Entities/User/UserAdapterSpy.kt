@@ -5,7 +5,7 @@ import java.util.*
 class UserAdapterSpy: UserAdapter {
 
     override fun getAll(): List<User> {
-        val userList: MutableList<User> = mutableListOf(mockUser(), mockUser(), mockUser(), mockUser())
+        val userList: MutableList<User> = mutableListOf(mockUser(), mockUser(), mockUser(), mockUser(), mockUser())
         return userList.toList()
     }
 
