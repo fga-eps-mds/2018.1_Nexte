@@ -15,7 +15,7 @@ class LikeManagerTest {
     @Before
     fun setUp() {
         LikeMocker.likeAdapter = UserAdapterSpy()
-        storyManager = StoryManager(storyAdapter = StoryAdapterSpy())
+        likeManager = LikeManager(likeAdapter = LikeAdapterSpy())
     }
 
     @Test
