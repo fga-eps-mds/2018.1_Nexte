@@ -61,11 +61,12 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                 UserSingleton.getUserInformations().rankingPosition, this))
 
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
-
-        profileButton.setOnClickListener{
-            val intent = Intent(this, ShowProfileView::class.java)
-            startActivity(intent)
-        }
+////ERRO
+//        profileButton.setOnClickListener{
+//            val intent = Intent(this, ShowProfileView::class.java)
+//            startActivity(intent)
+//            TODO()
+//        }
     }
 
     /**
