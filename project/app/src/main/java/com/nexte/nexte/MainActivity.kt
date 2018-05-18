@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun openFragment(fragment: Fragment) {
         var transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
+        transaction.replace(R.id.frame_layout,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
