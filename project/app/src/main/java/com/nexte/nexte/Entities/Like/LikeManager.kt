@@ -31,7 +31,7 @@ class LikeManager (private val likeAdapter: LikeAdapter = LikeAdapterRealm()) {
 
     fun createInitialMocker(): List<Like> {
 
-        val likesInMocker = LikeMocker().generateLikes()
+        val likesInMocker = LikeMocker.generateLikes()
         val insertedLikes: MutableList<Like> = mutableListOf()
 
         for (like in likesInMocker) {
@@ -45,8 +45,4 @@ class LikeManager (private val likeAdapter: LikeAdapter = LikeAdapterRealm()) {
         return insertedLikes.toList()
 
     }
-
-
-
-
 }
