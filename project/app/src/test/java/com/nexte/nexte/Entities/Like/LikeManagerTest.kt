@@ -1,6 +1,4 @@
 package com.nexte.nexte.Entities.Like
-import com.nexte.nexte.Entities.Story.*
-import com.nexte.nexte.Entities.User.UserAdapterSpy
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -14,94 +12,83 @@ class LikeManagerTest {
 
     @Before
     fun setUp() {
-        LikeMocker.likeAdapter = UserAdapterSpy()
+        LikeMocker.likeAdapter = LikeAdapterSpy()
         likeManager = LikeManager(likeAdapter = LikeAdapterSpy())
     }
 
     @Test
     fun testCreateInitialMocker(){
-        val stories = storyManager?.createInitialMocker()
+        val likes = likeManager?.createInitialMocker()
 
-        Assert.assertEquals(stories is List<Story>, true)
-        Assert.assertTrue("User manager have size between 0 and 20", stories!!.size >= 0 && stories!!.size <= 20)
+        Assert.assertEquals(likes is List<Like>, true)
+        Assert.assertTrue("User have size between 0 and 20", likes!!.size >= 0 && likes.size <= 20)
     }
 
     @Test
     fun testGetSucess(){
         val identifier = "1"
 
-        val story = storyManager?.get(identifier)
+        val like = likeManager?.get(identifier)
 
-        Assert.assertEquals(story?.id, "1")
-        Assert.assertEquals(story?.winner?.userId, "1")
-        Assert.assertEquals(story?.winner?.setResult, 5)
-        Assert.assertEquals(story?.loser?.userId, "2")
-        Assert.assertEquals(story?.loser?.setResult, 4)
+        Assert.assertEquals(like?.id, "1")
+        Assert.assertEquals(like?.userId, "2")
     }
 
     @Test
     fun testGetNull(){
         val identifier = "2"
 
-        val story = storyManager?.get(identifier)
+        val like = likeManager?.get(identifier)
 
-        Assert.assertNull(story)
+        Assert.assertNull(like)
     }
 
     @Test
     fun testGetAll(){
-        val stories = storyManager?.getAll()
+        val likes = likeManager?.getAll()
 
-        Assert.assertTrue("Stories has the lenght of 4", stories!!.size == 4)
+        Assert.assertTrue("List of likes has the lenght of 4", likes!!.size == 4)
     }
 
     @Test
     fun testUpdate(){
         val identifier = "1"
-        val story = Story(id = "1", date = Date(), likesId = listOf(), loser = StoryPlayer(), winner = StoryPlayer(), commentsId = listOf())
+        val likes = Like(id = "1", userId = "2", date = Date())
 
-        val storyUpdated = storyManager?.update(story = story)
+        val likeUpdated = likeManager?.update(like = likes)
 
-        Assert.assertEquals(storyUpdated?.id, "1")
-        Assert.assertEquals(storyUpdated?.winner?.userId, "1")
-        Assert.assertEquals(storyUpdated?.winner?.setResult, 5)
-        Assert.assertEquals(storyUpdated?.loser?.userId, "2")
-        Assert.assertEquals(storyUpdated?.loser?.setResult, 4)
+        Assert.assertEquals(likeUpdated?.id, "1")
+        Assert.assertEquals(likeUpdated?.userId, "2")
     }
 
     @Test
     fun testUpdateNull(){
-        val story = Story(id = "2", date = Date(), likesId = listOf(), loser = StoryPlayer(), winner = StoryPlayer(), commentsId = listOf())
+        val like = Like(id = "2", userId = "3", date = Date())
 
-        val storyUpdated = storyManager?.update(story = story)
+        val likesUpdated = likeManager?.update(like = like)
 
-        Assert.assertNull(storyUpdated)
+        Assert.assertNull(likesUpdated)
     }
 
     @Test
     fun testUpdateMany(){
         val identifier = "1"
-        val stories = listOf(Story(id = "1", date = Date(), likesId = listOf(), loser = StoryPlayer(), winner = StoryPlayer(), commentsId = listOf()))
+        val likes = listOf(Like(id = "1", userId = "2", date = Date()))
 
-        val storyList = storyManager?.updateMany(stories = stories)
+        val likeList = likeManager?.updateMany(likes = likes)
 
-        Assert.assertEquals(storyList!![0].id, "1")
-        Assert.assertEquals(storyList!![0].winner?.userId, "1")
-        Assert.assertEquals(storyList!![0].winner?.setResult, 5)
-        Assert.assertEquals(storyList!![0].loser?.userId, "2")
-        Assert.assertEquals(storyList!![0].loser?.setResult, 4)
+        Assert.assertEquals(likeList!![0].id, "1")
+        Assert.assertEquals(likeList!![0].userId, "2")
     }
 
     @Test
     fun testUpdateManyNull(){
-        val stories = listOf(Story(id = "2", date = Date(), likesId = listOf(), loser = StoryPlayer(), winner = StoryPlayer(), commentsId = listOf()))
+        val likes = listOf(Like(id = "2", userId = "3", date = Date()))
 
-        val storyList = storyManager?.updateMany(stories = stories)
+        val likeList = likeManager?.updateMany(likes = likes)
 
-        Assert.assertEquals(storyList?.size, 0)
+        Assert.assertEquals(likeList?.size, 0)
     }
-
-
 
     @After
     fun tearDown() {
