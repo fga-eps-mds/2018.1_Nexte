@@ -31,7 +31,6 @@ class CommentAdapterRealm : CommentAdapter {
     override fun delete(identifier: String): Comment? {
 
         return null
-
     }
 
     private fun convertCommentRealmToComment(commentRealm: CommentRealm) : Comment {

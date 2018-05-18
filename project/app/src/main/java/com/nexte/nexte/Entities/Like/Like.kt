@@ -1,10 +1,8 @@
 package com.nexte.nexte.Entities.Like
-
 import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 import java.util.*
 
-open class Like(@PrimaryKey var id: String? = null,
+open class Like(var id: String? = null,
                 var userId: String? = null,
                 var date: Date? = null): RealmObject() {
 

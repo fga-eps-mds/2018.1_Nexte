@@ -1,7 +1,4 @@
 package com.nexte.nexte.Entities.Comment
-
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 import java.util.*
 
 open class Comment(var id: String? = null,

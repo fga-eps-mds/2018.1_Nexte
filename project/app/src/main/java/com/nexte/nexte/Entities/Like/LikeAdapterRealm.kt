@@ -1,7 +1,4 @@
 package com.nexte.nexte.Entities.Like
-
-import com.nexte.nexte.Entities.Challenge.Challenge
-import com.nexte.nexte.Entities.Challenge.ChallengeRealm
 import io.realm.Realm
 import io.realm.kotlin.where
 
@@ -12,17 +9,63 @@ class LikeAdapterRealm : LikeAdapter {
     override fun get(identifier: String): Like? {
 
         val likeRealm = realm.where<LikeRealm>().equalTo("id", identifier).findFirst()
-        return convertLikeRealmToLike(LikeRealm)
+        return convertLikeRealmToLike(likeRealm!!)
     }
 
     override fun getAll(): List<Like> {
 
-        val challengeRealmResults = realm.where<LikeRealm>().findAll()
+        val likeRealmResults = realm.where<LikeRealm>().findAll()
         return convertListLikeRealmToLikeList(likeRealmResults)
     }
 
-    private fun convertLikeRealmToLike(likeRealm: LikeRealm) : Like {
-
+    override fun updateOrInsert(like: Like): Like? {
+        convertLikeToLikeRealm(like)?.let {
+            realm.beginTransaction()
+            realm.insertOrUpdate(it)
+            realm.commitTransaction()
+            return like
+        }
+        return null
     }
 
+
+    override fun delete(identifier: String): Like? {
+
+        return null
+    }
+
+
+    private fun convertLikeRealmToLike(likeRealm: LikeRealm) : Like {
+
+        val id = likeRealm.id
+
+        val userId = likeRealm.userId
+
+        val date = likeRealm.date
+
+        val likes = Like(id = id, userId = userId, date = date)
+        return likes
+    }
+
+    private fun convertListLikeRealmToLikeList(likeRealm: List<LikeRealm>) : List<Like> {
+        val likes: MutableList<Like> = mutableListOf()
+        for(likeRealm in likeRealm) {
+            convertLikeRealmToLike(likeRealm)?.let {
+                likes.add(it)
+            }
+        }
+        return likes.toList()
+    }
+
+    private fun convertLikeToLikeRealm(like: Like) : LikeRealm {
+
+        val id = like.id
+
+        val userId = like.id
+
+        val date = like.date
+
+        val likeRealm = LikeRealm(id = id, userId = userId, date = date)
+        return likeRealm
+    }
 }
