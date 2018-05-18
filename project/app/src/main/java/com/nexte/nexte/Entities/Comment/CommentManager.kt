@@ -1,8 +1,6 @@
 package com.nexte.nexte.Entities.Comment
 
-import com.nexte.nexte.Mocker.CommentsMocker
-
-class CommentManager(val commentAdapter: CommentAdapter = CommentAdapterRealm()) {
+class CommentManager(private val commentAdapter: CommentAdapter = CommentAdapterRealm()) {
     fun get(identifier: String): Comment? {
         return commentAdapter.get(identifier)
     }
@@ -42,9 +40,7 @@ class CommentManager(val commentAdapter: CommentAdapter = CommentAdapterRealm())
                 insertedComments.add(it)
             }
         }
-
         return insertedComments.toList()
-
     }
 
 
