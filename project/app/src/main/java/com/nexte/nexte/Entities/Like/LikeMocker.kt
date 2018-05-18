@@ -5,6 +5,8 @@ object LikeMocker{
 
     private val likesMocks = listOf<Like>()
     private var likeId = 0
+    var likeAdapter: LikeAdapter? = null
+
 
     private fun randomNumber(from: Int, to: Int): Int{
         val random = Random()
