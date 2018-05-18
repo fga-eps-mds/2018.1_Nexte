@@ -38,6 +38,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     private var matchViewAdapter: MatchDataAdapter? = null
     var numberOfSets = MatchModel.SetsNumber.One
 
+    var recyclerView: RecyclerView?= null
+
     //method created because in the future maybe this class will receive arguments.
     fun getInstance(): MatchFragment {
         val fragmentFirst = MatchFragment()
@@ -48,13 +50,14 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
         val view = inflater?.inflate(R.layout.activity_match, container, false)
         this.setUpMatchScene()
+        this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
 
         val empty = MatchModel.FormattedMatchData("", 1,
                 "", 1)
 
         this.matchViewAdapter = MatchDataAdapter(empty,this)
-        matchRecyclerView.adapter = this.matchViewAdapter
-        matchRecyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView?.adapter = this.matchViewAdapter
+        recyclerView?.layoutManager = LinearLayoutManager(activity)
 
         /**
          * Passing string through intent, once the label of the string to be
