@@ -62,12 +62,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         recyclerView?.adapter = this.matchViewAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
 
-        /**
-         * Passing string through intent, once the label of the string to be
-         * used in this scene is a string thrown by main activity
-         */
-        val prevIntent = activity.intent.getStringExtra("identifier")
-        val request = MatchModel.InitScene.Request(prevIntent)
+        val request = MatchModel.InitScene.Request("identifier")
         interactor?.getInfoMatches(request)
 
         sendButton?.isEnabled = false
