@@ -30,7 +30,7 @@ class CommentManager(private val commentAdapter: CommentAdapter = CommentAdapter
 
     fun createInitialMocker(): List<Comment> {
 
-        val commentsInMocker = CommentMocker().generateComments()//CommentsMocker.generateComments() // nao achei a mocker dele
+        val commentsInMocker = CommentMocker.allComments
         val insertedComments: MutableList<Comment> = mutableListOf()
 
         for (comment in commentsInMocker) {
@@ -41,6 +41,10 @@ class CommentManager(private val commentAdapter: CommentAdapter = CommentAdapter
             }
         }
         return insertedComments.toList()
+    }
+
+    fun createCommentsIds(amount: Int): List<String>{
+        return CommentMocker.generateComments(amount = amount)
     }
 
 
