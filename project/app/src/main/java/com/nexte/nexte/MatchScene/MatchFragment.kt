@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
@@ -38,6 +39,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     private var matchViewAdapter: MatchDataAdapter? = null
     var numberOfSets = MatchModel.SetsNumber.One
 
+    var sendButton: Button?= null
     var recyclerView: RecyclerView?= null
 
     //method created because in the future maybe this class will receive arguments.
@@ -51,6 +53,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         val view = inflater?.inflate(R.layout.activity_match, container, false)
         this.setUpMatchScene()
         this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
+        this.sendButton = view?.findViewById(R.id.sendButton)
 
         val empty = MatchModel.FormattedMatchData("", 1,
                 "", 1)
@@ -67,7 +70,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         val request = MatchModel.InitScene.Request(prevIntent)
         interactor?.getInfoMatches(request)
 
-        sendButton.isEnabled = false
+        sendButton?.isEnabled = false
 
         return view!!
     }
