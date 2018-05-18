@@ -150,12 +150,15 @@
             android:id="@+id/editProfileButton"
             android:layout_width="64dp"
             android:layout_height="24dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="90dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="60dp"
             android:background="@android:color/black"
             android:text="Editar"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -8,11 +8,11 @@ import org.junit.Test
 
 class FeedViewTest {
 
-    var view: FeedView? = null
+    var view: FeedFragment? = null
 
     @Before
     fun setUp() {
-        this.view = FeedView()
+        this.view = FeedFragment()
     }
 
     @Test
