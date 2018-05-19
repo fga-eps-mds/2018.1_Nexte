@@ -17,6 +17,7 @@ import android.app.AlertDialog
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.MatchScene.MatchFragment
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger.*
 
@@ -64,6 +65,7 @@ interface ChallengeDisplayLogic {
  */
 class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
+    var match: MatchModel.MatchData?= null
     var recyclerView: RecyclerView?= null
     var sendChallengeButton: Button?= null
     var expandedLosses: TextView?= null
@@ -71,6 +73,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
     var noPlayersText: TextView?= null
+    var message: TextView?= null
     var interactor: ChallengeBusinessLogic? = null
     private val context: Context? = null
 
@@ -135,6 +138,13 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * @param viewModel contains the player data already formatted by [ChallengePresenter]
      */
     override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+
+        if(viewModel.matchMessage != ""){
+            this.match = viewModel.matchData
+            this.message?.text = viewModel.matchMessage
+            this.sendChallengeButton?.isEnabled = false
+        }
+
 
         val builder = AlertDialog.Builder(this)
 
@@ -248,6 +258,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 viewContext.expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
                 viewContext.expandedWins = view?.findViewById(R.id.expandedWins)
                 viewContext.noPlayersText = view?.findViewById(R.id.noPlayersText)
+                viewContext.message = view?.findViewById(R.id.message)
             }
             else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
@@ -263,7 +274,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
                 sendChallengeButton?.setOnClickListener {
                     val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
-                    (context as ChallengeView).interactor?.requestMessageForChallenger(request)
+                    (context as ChallengeView).interactor?.requestChallenger(request)
                 }
 
                 val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)

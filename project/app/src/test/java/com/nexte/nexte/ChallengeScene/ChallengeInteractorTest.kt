@@ -59,7 +59,7 @@ class ChallengeInteractorTest {
         val expectedResult = true
 
         //call
-        interactor?.requestMessageForChallenger(request)
+        interactor?.requestChallenger(request)
 
         //assert
         assertEquals(expectedResult, this.mock?.passedHere)
@@ -107,7 +107,7 @@ private class MockChallengePresentationLogic: ChallengePresentationLogic{
         passedHere = true
     }
 
-    override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
+    override fun formatMatch(response: ChallengeModel.ChallengeButtonRequest.Response) {
         passedHere = true
     }
 

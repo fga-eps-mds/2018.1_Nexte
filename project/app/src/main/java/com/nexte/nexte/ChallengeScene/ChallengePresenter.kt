@@ -25,7 +25,7 @@ interface ChallengePresentationLogic {
      *
      * @param response contains unformatted data received from [ChallengeModel]
      */
-    fun formatMessage(response : ChallengeModel.ChallengeButtonRequest.Response)
+    fun formatMatch(response : ChallengeModel.ChallengeButtonRequest.Response)
 
     /**
      * Method responsible to format the message tho inform that there are no
@@ -95,12 +95,17 @@ class ChallengePresenter : ChallengePresentationLogic {
      *
      * @param response contains unformatted data received from [ChallengeWorker]
      */
-    override fun formatMessage(response: ChallengeModel.ChallengeButtonRequest.Response) {
-        val message: String
+    override fun formatMatch(response: ChallengeModel.ChallengeButtonRequest.Response) {
 
-        message = String.format("Desafio enviado com sucesso para o jogador %s", response.username)
+        val message: String = String.format("Desafio enviado com sucesso para o jogador %s", response.username)
 
-        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
+        val matchMessage: String = if(response.challenge.challenged.name != ""){
+            "Você já enviou um desafio"
+        } else{
+            ""
+        }
+
+        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message, matchMessage, response.challenge)
 
         viewChallenge?.displayMessage(viewModel)
 

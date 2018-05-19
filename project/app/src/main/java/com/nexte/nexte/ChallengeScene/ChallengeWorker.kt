@@ -1,6 +1,9 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
+import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -67,12 +70,16 @@ class ChallengeWorker {
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun fetchMessageForChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
-                                 completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
+    fun generateChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
+                          completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
 
         val user = request.userChallenged
 
-        val response = ChallengeModel.ChallengeButtonRequest.Response(user)
+        val challenged = MatchModel.MatchPlayer(user, R.mipmap.ic_launcher_round)
+        val challenger = MatchModel.MatchPlayer(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher_round)
+        val match = MatchModel.MatchData(challenged, challenger)
+
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user, match)
 
         completion(response)
 

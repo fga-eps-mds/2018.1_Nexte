@@ -59,7 +59,7 @@ class ChallengeViewTest {
             hasBeenCalled = true
         }
 
-        override fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+        override fun requestChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
             hasBeenCalled = true
         }
 

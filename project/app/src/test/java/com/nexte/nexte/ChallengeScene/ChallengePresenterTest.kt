@@ -73,7 +73,7 @@ class ChallengePresenterTest {
         val response = ChallengeModel.ChallengeButtonRequest.Response("larissa")
 
         //call
-        this.presenter?.formatMessage(response)
+        this.presenter?.formatMatch(response)
 
         //assert
         assertNotNull(this.mock?.formattedMessageToShow)

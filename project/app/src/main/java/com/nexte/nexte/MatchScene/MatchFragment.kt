@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.nexte.nexte.ChallengeScene.ChallengeModel
 import com.nexte.nexte.R
-import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
 import java.text.SimpleDateFormat
@@ -43,8 +43,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     var recyclerView: RecyclerView?= null
 
     //method created because in the future maybe this class will receive arguments.
-    fun getInstance(): MatchFragment {
+    fun getInstance(challenge: MatchModel.MatchData): MatchFragment {
         val fragmentFirst = MatchFragment()
+        val bundle = Bundle()
+
+        fragmentFirst.arguments = bundle
+
         return fragmentFirst
     }
 
