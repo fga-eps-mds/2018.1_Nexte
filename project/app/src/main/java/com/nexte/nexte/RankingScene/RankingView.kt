@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintSet
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -62,11 +64,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
 ////ERRO
-//        profileButton.setOnClickListener{
-//            val intent = Intent(this, ShowProfileView::class.java)
-//            startActivity(intent)
-//            TODO()
-//        }
+//
     }
 
     /**
@@ -78,6 +76,11 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                                   savedInstanceState: Bundle?): View? {
 
             return inflater.inflate(R.layout.row_ranking, container, false)
+        }
+
+        private fun goToShowProfileView() {
+            val intent = Intent(this.activity, ShowProfileView::class.java)
+            startActivity(intent)
         }
 
         override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -203,6 +206,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             return ItemHolder(view!!)
         }
 
+
         /**
          * Method responsible to set the view holder and expand player cell
          *
@@ -237,12 +241,15 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
             itemHolder?.efficiency?.text = item.player.userEfficiency
-
+            itemHolder?.profileButton?.setOnClickListener{
+                (context as RankingView)
+            }
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
             } else {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
+
         }
 
         /**
@@ -264,6 +271,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var lastGame = v.lastGame
             var expandedView = v.expandedView
             var efficiency = v.efficiency
+            var profileButton = v.profileButton
         }
     }
 }
