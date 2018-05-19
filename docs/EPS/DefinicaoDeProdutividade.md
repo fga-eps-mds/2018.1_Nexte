@@ -23,12 +23,6 @@ Essa métrica terá impacto direto na produtividade da equipe, pois a produtivid
 
 Assim, para a equipe ser considerada produtiva a equipe não pode ter dívidas técnicas na _sprint_, a equipe tem de ser capaz de entregar as histórias que foram planejadas para a _sprint_ ou mais, o _velocity_ da equipe não pode diminuir, o velocity da equipe não pode ficar estagnado de modo que, mesmo se a equipe planeje mais pontos que o _velocity_, a equipe não consiga fazer o _velocity_ crescer.
 
-* **Planilha de horas**
-
-Foi estipulado para esse projeto que os membros trabalhassem aproximadamente 10 horas por semana. Contudo, com vista que a equipe é inexperiente com as tecnologias utilizadas e que os alunos de EPS e MDS não tiveram experiências similares as disciplinas que eles estão cursando nesse semestre, será definido que o integrante da equipe tem de estar trabalhando de 8-14 horas, aproximadamente, para ser considerado produtivo.
-
-Caso o membro esteja trabalhando menos que 8 horas, aproximadamente, é bem provável que o planejamento da _sprint_ não foi eficaz. Caso o membro esteja extrapolando as 14, aproximadas, o membro do grupo tanto pode não estar sendo muito produtivo, visto que ele está gastando muito mais tempo do que o considerado ideal para realizar aquela atividade, tanto pode ser uma falha no planejamento da _sprint_ que sobrecarregou o membros da equipe.
-
 ### **2.2 Métricas com dados similares, mas sem impacto **direto** na produtividade**
 
 * **_Burndown_ e _Commits_ por dia**

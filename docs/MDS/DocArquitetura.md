@@ -23,6 +23,7 @@
 | 27/04/2018| 1.1.1| Adição do novo diagrama de classe da Comments. | Alexandre Miguel |
 | 01/05/2018| 1.1.2| Adição do novo diagrama de classe da Comments. | Gabriel Albino |
 | 03/05/2018| 2.0| Atualização da Arquitetura((Frontend) | Miguel Pimentel|
+| 10/05/2018| 2.0.1| Atualização do novo diagrama da classe da Comments | Alexandre Miguel|
 
 ### Índice Analítico
 
@@ -202,7 +203,7 @@ Algumas cenas podem necessitar do uso das entidades globais. Dessa forma, para e
 
 ![Diagrama de classes da showProfile](https://i.imgur.com/OCn6Gh3.jpg)
 
-![Diagrama de classes da comments](https://i.imgur.com/YiVslho.jpg)
+![Diagrama de classes da comments](https://i.imgur.com/xGqIEIH.jpg)
 
 ![Diagrama de classes do feed](https://i.imgur.com/z6icAhU.jpg)
 

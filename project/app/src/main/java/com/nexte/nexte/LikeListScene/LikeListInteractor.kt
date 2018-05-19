@@ -22,14 +22,15 @@ interface LikeListBusinessLogic {
  * @property worker Reference to worker [LikeListWorker]
  * @property presenter Reference to presenter [LikeListPresenter]
  */
-class LikeListInteractor(var presenter: LikeListPresentationLogic? = null ) : LikeListBusinessLogic {
+class LikeListInteractor(var presenter: LikeListPresentationLogic? = null ) : LikeListBusinessLogic, WorkerUpdateLogic {
 
     var worker: LikeListWorker = LikeListWorker()
 
     override fun fetchDataToList(request: LikeListModel.Request) {
-        worker.getListLikesPlayers(request) { response ->
-            presenter?.formatLikeList(response)
+        this.worker.getListLikesPlayers(request = request)
+    }
 
-        }
+    override fun updateUsers(response: LikeListModel.Response) {
+        this.presenter?.formatLikeList(response)
     }
 }

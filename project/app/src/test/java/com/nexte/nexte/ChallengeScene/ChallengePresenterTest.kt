@@ -20,7 +20,7 @@ class ChallengePresenterTest {
     }
 
     @Test
-    fun formatPlayersToChallenge() {
+    fun successFormatPlayersToChallenge() {
         //prepare
         val name = "Gabriel"
         val rankingPosition = 1
@@ -50,6 +50,44 @@ class ChallengePresenterTest {
         assertEquals(playerFormatted.rankingPosition, this.mock?.formattedPlayersToShow?.get(0)?.rankingPosition)
     }
 
+    @Test
+    fun successFormatExpandedChallengedInfo() {
+        //prepare
+        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(
+                ChallengeModel.PlayerRankingDetails("larissa", 0,  0, 5)
+        )
+
+        //call
+        this.presenter?.formatExpandedChallengedInfo(response)
+
+        //assert
+        assertEquals(mock?.formattedPlayerToChallenge?.name, "larissa")
+        assertEquals(mock?.formattedPlayerToChallenge?.wins, "VITÓRIAS: 0")
+        assertEquals(mock?.formattedPlayerToChallenge?.loses, "DERROTAS: 0")
+        assertEquals(mock?.formattedPlayerToChallenge?.rankingPosition, "#5")
+    }
+
+    @Test
+    fun successFormatMessage() {
+        //prepare
+        val response = ChallengeModel.ChallengeButtonRequest.Response("larissa")
+
+        //call
+        this.presenter?.formatMessage(response)
+
+        //assert
+        assertNotNull(this.mock?.formattedMessageToShow)
+    }
+
+    @Test
+    fun successGetViewChallenge(){
+        //prepare and call
+        val viewChallenge = ChallengePresenter().viewChallenge
+
+        //assert
+        assertNull(viewChallenge)
+    }
+
     @After
     fun tearDown(){
         this.mock = null
@@ -74,5 +112,9 @@ private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
 
     override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
         this.formattedMessageToShow = viewModel.messageForChallenger
+    }
+
+    override fun displayNoPlayersMessage(messageText: String) {
+        this.formattedMessageToShow = messageText
     }
 }

@@ -4,9 +4,12 @@
 
 [![pipeline status](https://gitlab.com/Baldissera/2018.1_Nexte/badges/dev/pipeline.svg)](https://gitlab.com/Baldissera/2018.1_Nexte/commits/dev)
 
-O Nexte tem como objetivo promover a integração entre tenistas a partir da realização de desafios entre os membros desta comunidade. Não obstante, Nexte é desenvolvido com tecnologias modernas como: Docker, Kotlin, Node, e muitas outras.
+O Nexte tem como objetivo promover a integração entre tenistas a partir da realização de desafios entre os membros desta comunidade. Não obstante, Nexte é desenvolvido com tecnologias modernas como: Docker, Kotlin, Node, GO e muitas outras.
 
-For english support, read out [README](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/Docs/EPS/READMEen.MD) provided in english.
+Não obstante, além desse repositório referente ao *frontend*, o Nexte dispõe de outro repositório aberto: Servidor de imagens, desenvolvido em Go. No caso, são adotadas as mesmas políticas adotadas nesse repositório, para mais informações accese no [GitLab](https://gitlab.com/Baldissera/NexteImageServer).
+
+For english support, read out [README](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/Docs/EPS/READMEen.MD) provided in 
+english.
 
 ## Primeiros Passos
 
@@ -28,7 +31,7 @@ Assim, o *CI* pode ser dividido em 4 etapas:
 Caso deseje executar apenas a análise estática:
 
 ```bash
-  docker run -v $(pwd)/project:/application baldissera/android-container /bin/bash "/static_analysis.sh"
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container:2.0 /bin/bash "/static_analysis.sh"
 ```
     
 2. Testes: Fase que o CI executa os testes unitários. Utiliza-se do Docker para realizar essa tarefa.
@@ -36,7 +39,7 @@ Caso deseje executar apenas a análise estática:
 Caso deseje executar apenas os testes:
 
 ```bash
-  docker run -v $(pwd)/project:/application baldissera/android-container /bin/bash "/test.sh"
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container:2.0 /bin/bash "/test.sh"
 ```
 
 3. Build: Fase em que é criado uma build, .apk. Utiliza-se do Docker para realizar essa tarefa.
@@ -44,7 +47,7 @@ Caso deseje executar apenas os testes:
 Caso deseje executar uma build:
 
 ```bash
-  docker run -v $(pwd)/project:/application baldissera/android-container /bin/bash "/build.sh"
+  docker run -v $(pwd)/project:/application -v $(pwd)/docker/local.properties:/application/local.properties baldissera/android-container:2.0 /bin/bash "/build.sh"
 ```
 
 4. *Deploy*: Cria uma *build* pronta para ser disponibilizada como *beta* na *Google Play*. Esta interação do CI apenas ocorre nas branches master e dev. GitlabCI faz uso do *Fastlane*.
