@@ -144,13 +144,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLabel"></com.github.mikephil.charting.charts.LineChart>
+            app:layout_constraintTop_toBottomOf="@+id/emailLabel">
+
+        </com.github.mikephil.charting.charts.LineChart>
 
         <Button
             android:id="@+id/editProfileButton"
             android:layout_width="64dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="90dp"
+            android:layout_marginBottom="190dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="60dp"
             android:background="@android:color/black"

@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
             R.id.feed -> {
                 val feedFragment = FeedFragment().getInstance()
                 openFragment(feedFragment)
-
                 return@OnNavigationItemSelectedListener true
 
             }           // include activity

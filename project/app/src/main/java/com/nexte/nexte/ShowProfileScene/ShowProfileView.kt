@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -37,6 +39,8 @@ interface ShowProfileDisplayLogic {
 class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
+    var buttonEditProfile : Button? = null
+    var newLineChart : LineChart? = null
 
     /**
      * Method called when screen is loaded, responsible to load user information
@@ -48,18 +52,25 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
         this.createShowProfileRequest()
 
-       editProfileButton?.setOnClickListener {
-
-            val intent = Intent(this.activity, EditProfileView::class.java)
-            startActivity(intent)
-        }
-
-        this.createGraph()
     }
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.activity_show_profile, container, false)
+
+        val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
+        buttonEditProfile =  newView?.findViewById(R.id.editProfileButton)
+        buttonEditProfile?.setOnClickListener {
+            val intent = Intent(activity, EditProfileView::class.java)
+            startActivity(intent)
+        }
+
+
+        newLineChart = newView?.findViewById(R.id.lineChart)
+        this.createGraph()
+
+        return newView
+
+
     }
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
@@ -118,7 +129,7 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
     fun createGraph() {
 
-        val xAxis = lineChart?.xAxis
+        val xAxis = newLineChart?.xAxis
         val xAxes = setXAxisValues()
         val yAxes = setYAxisValues()
         val dataSets = ArrayList<ILineDataSet>()
@@ -138,15 +149,15 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
         points.setValueTextColor(Color.WHITE)
 
         val lineData = LineData(dataSets)
-        lineChart?.data = lineData
-        lineChart?.axisLeft?.setAxisMaxValue(8f)
-        lineChart?.axisLeft?.setAxisMinValue(0f)
-        lineChart?.axisRight?.setAxisMaxValue(0f)
-        lineChart?.axisRight?.setAxisMinValue(8f)
-        lineChart?.axisLeft?.setDrawGridLines(false)
-        lineChart?.xAxis?.setDrawGridLines(false)
-        lineChart?.setScaleEnabled(false)
-        lineChart?.invalidate()
+        newLineChart?.data = lineData
+        newLineChart?.axisLeft?.setAxisMaxValue(8f)
+        newLineChart?.axisLeft?.setAxisMinValue(0f)
+        newLineChart?.axisRight?.setAxisMaxValue(0f)
+        newLineChart?.axisRight?.setAxisMinValue(8f)
+        newLineChart?.axisLeft?.setDrawGridLines(false)
+        newLineChart?.xAxis?.setDrawGridLines(false)
+        newLineChart?.setScaleEnabled(false)
+        newLineChart?.invalidate()
     }
 
     /**
