@@ -17,6 +17,7 @@ object CommentMocker{
             "Cala a boca!")
     private var commentsId = 0
     var userAdapter: UserAdapter? = null
+    var commentAdapter: CommentAdapter? = null
     var allComments = mutableListOf<Comment>()
 
     private fun randomNumber(from: Int, to: Int): Int{
