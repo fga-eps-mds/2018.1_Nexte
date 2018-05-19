@@ -104,7 +104,7 @@ object StoryMocker{
 
         //Loser
         val loserUser = winnerAndLoser[1]
-        val loserResultRange = randomNumber(0, (winnerResultRange - 1))
+        val loserResultRange = randomNumber(0, winnerResultRange - 1)
         val loser = StoryPlayer(userId = loserUser.id, setResult = loserResultRange)
 
         //Date
