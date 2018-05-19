@@ -20,10 +20,21 @@ class RankingPresenterTest {
     @Test
     fun successPresentRanking(){
         //prepare
-        val player1 = RankingModel.Player(name = "luis", pictureURL = 1, wins = 3, losses =
-        1, rankingPosition = 2)
-        val player2 = RankingModel.Player(name = "teste", pictureURL = 2, wins = 2, losses =
-        3, rankingPosition = 3)
+        val player1 = RankingModel.Player(name = "luis",
+                pictureURL = 1,
+                wins = 3, losses = 1,
+                rankingPosition = 2,
+                efficiency = "90%",
+                lastGame = "ontem",
+                playerCategory = "profissional")
+        val player2 = RankingModel.Player(name = "teste",
+                pictureURL = 2,
+                wins = 2,
+                losses = 3,
+                rankingPosition = 3,
+                efficiency = "80%",
+                lastGame = "hoje",
+                playerCategory = "intermediario")
         val response = RankingModel.Response(players = arrayOf(player1, player2))
 
         //call
@@ -32,13 +43,18 @@ class RankingPresenterTest {
         //assert
         assertEquals(this.mock?.players?.size, 2)
         assertEquals(this.mock?.players!![0].player.userName, player1.name)
-        assertEquals(this.mock?.players!![0].player.userRankingPosition, "#" + player1.rankingPosition.toString())
+        assertEquals(this.mock?.players!![0].player.userRankingPosition, player1.rankingPosition.toString())
         assertEquals(this.mock?.players!![0].player.userWins, "Vitórias: " + player1.wins.toString())
-        assertEquals(this.mock?.players!![0].player.userLosses,"Derrotas: " + player1.losses.toString())
+        assertEquals(this.mock?.players!![0].player.userEfficiency, "Aproveitamento: " + player1.efficiency)
+        assertEquals(this.mock?.players!![0].player.userLastGame, "Último Jogo: " + player1.lastGame)
+        assertEquals(this.mock?.players!![0].player.userCategory, player1.playerCategory)
+
         assertEquals(this.mock?.players!![1].player.userName, player2.name)
-        assertEquals(this.mock?.players!![1].player.userRankingPosition, "#" + player2.rankingPosition.toString())
+        assertEquals(this.mock?.players!![1].player.userRankingPosition,  player2.rankingPosition.toString())
         assertEquals(this.mock?.players!![1].player.userWins,"Vitórias: " +  player2.wins.toString())
-        assertEquals(this.mock?.players!![1].player.userLosses,"Derrotas: " + player2.losses.toString())
+        assertEquals(this.mock?.players!![1].player.userEfficiency, "Aproveitamento: " + player2.efficiency)
+        assertEquals(this.mock?.players!![1].player.userLastGame, "Último Jogo: " + player2.lastGame)
+        assertEquals(this.mock?.players!![1].player.userCategory, player2.playerCategory)
     }
 
     @Test

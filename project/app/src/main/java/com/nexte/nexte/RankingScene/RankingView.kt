@@ -237,6 +237,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             }
 
             itemHolder?.nameText?.text = item.player.userName
+            itemHolder?.playerCategory?.text = item.player.userCategory
             itemHolder?.rankingText?.text = item.player.userRankingPosition
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
@@ -272,6 +273,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var expandedView = v.expandedView
             var efficiency = v.efficiency
             var profileButton = v.profileButton
+            var playerCategory = v.playerCategory
         }
     }
 }
