@@ -19,6 +19,7 @@ class LikeListModelTest {
 
         //call
         val request = LikeListModel.Request(request = requestMessage)
+        request.request
 
         //assert
         assertEquals(requestMessage, request.request)
@@ -33,6 +34,9 @@ class LikeListModelTest {
 
         //call
         val player = LikeListModel.Players(name = name, photo = photo, time = time)
+        player.name
+        player.photo
+        player.time
 
         //assert
         assertEquals(name, player.name)
@@ -49,6 +53,9 @@ class LikeListModelTest {
 
         //call
         val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo, time = time)
+        playersFormatted.name
+        playersFormatted.photo
+        playersFormatted.time
 
         //assert
         assertEquals(name, playersFormatted.name)
@@ -66,6 +73,7 @@ class LikeListModelTest {
 
         //call
         val response = LikeListModel.Response(players = mutableListOf(player))
+        response.players
 
         //assert
         assertEquals(response.players.size, 1)
@@ -82,10 +90,24 @@ class LikeListModelTest {
 
         //call
         val viewModel = LikeListModel.ViewModel(playersFormatted = mutableListOf(playersFormatted))
+        playersFormatted.time = time
+        playersFormatted.photo = photo
+        playersFormatted.name = name
 
         //assert
         assertEquals(viewModel.playersFormatted.size, 1)
         assertEquals(viewModel.playersFormatted[0], playersFormatted)
+    }
+
+    @Test
+    fun successLikeListModel() {
+        //prepare
+
+        //call
+        val model = LikeListModel()
+
+        //assert
+        assertNotNull(model)
     }
 
     @After
