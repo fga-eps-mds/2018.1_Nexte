@@ -6,15 +6,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
-import com.nexte.nexte.ChallengeScene.ChallengeView
-import com.nexte.nexte.MatchScene.MatchView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
-import android.view.View
 import com.nexte.nexte.FeedScene.FeedFragment
-import kotlinx.android.synthetic.main.row_match_sets.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,33 +20,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottom_nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-
-        // Setting up feed button listener
-
-        challangeButton.setOnClickListener {
-            val intent = Intent(this, ChallengeView::class.java)
-            startActivity(intent)
-        }
-
-        // Ranking button
+        bottom_nav_view.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
+        this.bottom_nav_view.selectedItemId = R.id.profile
 
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
             startActivity(intent)
         }
 
-
-        //Button to display Match scene
-        matchButton.setOnClickListener {
-            val intent = Intent(this, MatchView::class.java)
-            intent.putExtra("identifier", "matchName")
-            startActivity(intent)
-        }
     }
 
+    private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->
+
+        when(item.itemId) {
+            R.id.profile -> {
+                Log.e("Resultado do item reselecionado", item.itemId.toString())
+            }
+        }
+
+    }
    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
 
+       Log.e("Resultado do item", item.itemId.toString())
         when (item.itemId) {
             R.id.feed -> {
                 val feedFragment = FeedFragment().getInstance()

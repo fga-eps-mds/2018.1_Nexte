@@ -13,7 +13,7 @@ class CommentsWorker {
     /**
      * Variable created to simulate mocked data to be implemented on Package mocker
      */
-    var CommentsMockedData = generateCommentsList()
+    var commentsMockedData = generateCommentsList()
 
     /**
      * Function to get comments data of server
@@ -42,7 +42,7 @@ class CommentsWorker {
         val today = Date()
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
         val newComment = CommentsModel.Comment(message, today, author, 5)
-        this.CommentsMockedData.add(newComment)
+        this.commentsMockedData.add(newComment)
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         completion (response)
@@ -76,8 +76,8 @@ class CommentsWorker {
     fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request,
                             completion: (CommentsModel.DeleteCommentRequest.Response) -> Unit){
 
-        this.CommentsMockedData.removeAt(request.commentIdentifier)
-        val response = CommentsModel.DeleteCommentRequest.Response(this.CommentsMockedData)
+        this.commentsMockedData.removeAt(request.commentIdentifier)
+        val response = CommentsModel.DeleteCommentRequest.Response(this.commentsMockedData)
 
         completion(response)
     }

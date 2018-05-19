@@ -1,7 +1,6 @@
 package com.nexte.nexte.FeedScene
 
 import android.content.Intent
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,10 +11,6 @@ import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
-//import io.realm.Realm
-//import io.realm.RealmConfiguration
-//import io.realm.RealmObject
-//import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.row_feed.view.*
 
 /**
