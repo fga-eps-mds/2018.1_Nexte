@@ -14,9 +14,9 @@
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="9dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/picture_img_view"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="12dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
@@ -41,29 +41,70 @@
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="23dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
         android:text="N"
         android:textColor="#ffffff"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
         app:layout_constraintEnd_toStartOf="@+id/picture_img_view"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 
     <ImageView
         android:id="@+id/ring"
         android:layout_width="20sp"
         android:layout_height="20sp"
-        android:layout_marginBottom="109dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginStart="170dp"
+        android:layout_marginBottom="43dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/circle_ranking"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/ring2"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ring2"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/circle_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/ring3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ring3"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/circle_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/ring4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ring4"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/circle_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/ring5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ring5"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/circle_ranking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -198,11 +239,13 @@
         android:id="@+id/playerCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="8dp"
         android:text="Categoria"
         android:textColor="#ffffff"
         android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 </android.support.constraint.ConstraintLayout>

@@ -63,8 +63,12 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                 UserSingleton.getUserInformations().rankingPosition, this))
 
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
-////ERRO
-//
+    }
+
+
+    private fun goToShowProfileView() {
+        val intent = Intent(this, ShowProfileView::class.java)
+        startActivity(intent)
     }
 
     /**
@@ -76,11 +80,6 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                                   savedInstanceState: Bundle?): View? {
 
             return inflater.inflate(R.layout.row_ranking, container, false)
-        }
-
-        private fun goToShowProfileView() {
-            val intent = Intent(this.activity, ShowProfileView::class.java)
-            startActivity(intent)
         }
 
         override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -243,8 +242,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             itemHolder?.lastGame?.text = item.player.userLastGame
             itemHolder?.efficiency?.text = item.player.userEfficiency
             itemHolder?.profileButton?.setOnClickListener{
-                (context as RankingView)
+                (context as RankingView).goToShowProfileView()
             }
+
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
             } else {
