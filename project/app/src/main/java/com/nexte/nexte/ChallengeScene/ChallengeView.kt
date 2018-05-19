@@ -86,7 +86,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
-        viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
+        viewpager.adapter = ViewPagerAdapter(supportFragmentManager, this)
         tabs.setupWithViewPager(viewpager)
     }
 
@@ -151,7 +151,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
+            this.tabs.getTabAt(1)?.select()
             dialogInterface.cancel()
+
         })
 
         val alert = builder.create()
@@ -287,7 +289,8 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     /**
      * Adapter Class that populates the fragment
      */
-    class ViewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    class ViewPagerAdapter (fragmentManager: FragmentManager,
+                            var context: Context) : FragmentPagerAdapter(fragmentManager) {
 
         private val pageTitles = listOf("Tenistas", "Enviados", "Recebidos")
 
@@ -298,7 +301,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         override fun getItem(position: Int): Fragment {
             return if(position == 1){
-                MatchFragment().getInstance()
+                MatchFragment().getInstance((context as ChallengeView).match)
             } else{
                 TabFragment().getInstance(position)
             }

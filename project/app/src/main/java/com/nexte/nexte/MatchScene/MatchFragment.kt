@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.nexte.nexte.ChallengeScene.ChallengeModel
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
@@ -39,37 +38,63 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     private var matchViewAdapter: MatchDataAdapter? = null
     var numberOfSets = MatchModel.SetsNumber.One
 
-    var sendButton: Button?= null
-    var recyclerView: RecyclerView?= null
+    private var sendButton: Button?= null
+    private var recyclerView: RecyclerView?= null
+    var challenged: String = ""
+    var challenger: String = ""
+    var hasChallenge: Int = 0
 
     //method created because in the future maybe this class will receive arguments.
-    fun getInstance(challenge: MatchModel.MatchData): MatchFragment {
+    fun getInstance(challenge: MatchModel.MatchData?): MatchFragment {
         val fragmentFirst = MatchFragment()
         val bundle = Bundle()
+
+        bundle.putString("Challenger", challenge?.challenger?.name)
+        bundle.putString("Challenged", challenge?.challenged?.name)
+        if(challenge == null){
+            bundle.putInt("HasChallenge", 0)
+        }
+        else {
+            bundle.putInt("HasChallenge", 1)
+        }
 
         fragmentFirst.arguments = bundle
 
         return fragmentFirst
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        this.challenged = arguments.getString("Challenged")
+        this.challenger = arguments.getString("Challenger")
+        this.hasChallenge = arguments.getInt("HasChallenge")
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        val view = inflater?.inflate(R.layout.activity_match, container, false)
-        this.setUpMatchScene()
-        this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
-        this.sendButton = view?.findViewById(R.id.sendButton)
+        val view: View?
+        if(hasChallenge == 1) {
+            view = inflater?.inflate(R.layout.activity_match, container, false)
+            this.setUpMatchScene()
+            this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
+            this.sendButton = view?.findViewById(R.id.sendButton)
 
-        val empty = MatchModel.FormattedMatchData("", 1,
-                "", 1)
+            val match = MatchModel.FormattedMatchData(challenged, 1,
+                    challenger, 1)
 
-        this.matchViewAdapter = MatchDataAdapter(empty,this)
-        recyclerView?.adapter = this.matchViewAdapter
-        recyclerView?.layoutManager = LinearLayoutManager(activity)
+            this.matchViewAdapter = MatchDataAdapter(match, this)
+            recyclerView?.adapter = this.matchViewAdapter
+            recyclerView?.layoutManager = LinearLayoutManager(activity)
 
-        val request = MatchModel.InitScene.Request("identifier")
-        interactor?.getInfoMatches(request)
+            val request = MatchModel.InitScene.Request("identifier")
+            interactor?.getInfoMatches(request)
 
-        sendButton?.isEnabled = false
+            sendButton?.isEnabled = false
+        }
+        else {
+            view = inflater?.inflate(R.layout.fragment_nochallenge, container, false)
+        }
 
         return view!!
     }
