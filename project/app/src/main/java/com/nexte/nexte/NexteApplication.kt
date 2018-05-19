@@ -3,6 +3,8 @@ package com.nexte.nexte
 import android.app.Application
 import android.content.Context
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Like.LikeManager
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.Entities.User.UserManager
@@ -22,6 +24,8 @@ class NexteApplication: Application() {
             UserCategoryManager().createInitialMocker()
             UserManager().createInitialMocker()
             StoryManager().createInitialMocker()
+            CommentManager().createInitialMocker()
+            LikeManager().createInitialMocker()
             sharedPreference.edit().putBoolean("FirstRun", false).apply()
         }
 

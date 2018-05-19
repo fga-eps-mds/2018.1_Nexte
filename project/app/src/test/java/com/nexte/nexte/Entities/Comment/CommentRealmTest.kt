@@ -25,7 +25,7 @@ class StoryRealmTest {
         //assert
         Assert.assertEquals(id, commentRealm.id)
         Assert.assertEquals(userId, commentRealm.userId)
-        Assert.assertEquals(userId, commentRealm.comment)
+        Assert.assertEquals(comment, commentRealm.comment)
         Assert.assertEquals(date, commentRealm.date)
     }
 
@@ -63,7 +63,7 @@ class StoryRealmTest {
         //assert
         Assert.assertEquals(id, commentRealm.id)
         Assert.assertEquals(userId, commentRealm.userId)
-        Assert.assertEquals(userId, commentRealm.comment)
+        Assert.assertEquals(comment, commentRealm.comment)
         Assert.assertEquals(date, commentRealm.date)
     }
 

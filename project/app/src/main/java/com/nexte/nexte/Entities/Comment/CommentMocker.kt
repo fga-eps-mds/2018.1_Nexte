@@ -15,7 +15,7 @@ object CommentMocker{
             "Mais seriedade",
             "Não vou mais jogar contigo.",
             "Cala a boca!")
-    private var commentsId = 0
+    var commentsId = 0
     var userAdapter: UserAdapter? = null
     var commentAdapter: CommentAdapter? = null
     var allComments = mutableListOf<Comment>()
@@ -44,7 +44,7 @@ object CommentMocker{
     private fun getCommentIds(amount: Int): List<String>{
 
         val commentsIds = mutableListOf<String>()
-        for(counter in 0..(amount - 1)){
+        for(counter in 0..amount - 1){
             commentsIds.add(commentsId++.toString())
         }
 
@@ -64,7 +64,7 @@ object CommentMocker{
 
         println(users.size)
         println(usersAmount)
-        for (counter in 0..(usersAmount - 1)){
+        for (counter in 0..usersAmount - 1){
             println(counter)
             usersIds.add(users[counter].id)
         }
@@ -75,7 +75,7 @@ object CommentMocker{
     private fun getDates(amount: Int): List<Date>{
         val dates = mutableListOf<Date>()
 
-        for (counter in 0..(amount - 1)){
+        for (counter in 0..amount - 1){
             dates.add(generateRandomDate())
         }
 
@@ -85,7 +85,7 @@ object CommentMocker{
     private fun getComments(amount: Int): List<String>{
         val comments = mutableListOf<String>()
 
-        for(counter in 0..(amount -1)){
+        for(counter in 0..amount - 1){
             comments.add(commentTextMocks[counter])
         }
 
@@ -98,7 +98,7 @@ object CommentMocker{
         val dates = getDates(amount)
         val comments = getComments(amount)
 
-        for (counter in 0..(amount - 1)){
+        for (counter in 0..amount - 1){
             val comment = Comment(ids[counter], userIds[counter], comments[counter], dates[counter])
             allComments.add(comment)
         }

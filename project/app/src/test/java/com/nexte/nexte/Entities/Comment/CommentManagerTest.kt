@@ -31,7 +31,7 @@ class CommentManagerTest {
 
         Assert.assertEquals(comment?.id, "1")
         Assert.assertEquals(comment?.userId, "2")
-        Assert.assertEquals(comment?.comment, "3")
+        Assert.assertEquals(comment?.comment, "")
     }
 
     @Test
@@ -58,7 +58,7 @@ class CommentManagerTest {
 
         Assert.assertEquals(commentsUpdated?.id, "1")
         Assert.assertEquals(commentsUpdated?.userId, "2")
-        Assert.assertEquals(commentsUpdated?.comment, "3")
+        Assert.assertEquals(commentsUpdated?.comment, "")
     }
 
     @Test
@@ -78,7 +78,7 @@ class CommentManagerTest {
 
         Assert.assertEquals(commentList!![0].id, "1")
         Assert.assertEquals(commentList!![0].userId, "2")
-        Assert.assertEquals(commentList!![0].comment, "3")
+        Assert.assertEquals(commentList!![0].comment, "")
     }
 
     @Test

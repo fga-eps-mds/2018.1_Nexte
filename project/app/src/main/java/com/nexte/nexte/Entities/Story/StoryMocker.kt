@@ -7,7 +7,6 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import java.util.*
 import com.nexte.nexte.Entities.User.UserAdapter
-import com.nexte.nexte.Entities.User.UserAdapterRealm
 
 object StoryMocker{
 

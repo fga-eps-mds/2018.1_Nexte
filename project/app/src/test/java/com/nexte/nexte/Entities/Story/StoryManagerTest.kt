@@ -1,6 +1,8 @@
 package com.nexte.nexte.Entities.Story
 
 import com.nexte.nexte.Entities.Comment.CommentAdapter
+import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
+import com.nexte.nexte.Entities.Comment.CommentMocker
 import com.nexte.nexte.Entities.Like.LikeAdapterSpy
 import com.nexte.nexte.Entities.Like.LikeMocker
 import com.nexte.nexte.Entities.User.UserAdapterSpy
@@ -22,6 +24,7 @@ class StoryManagerTest {
         LikeMocker.userAdapter = UserAdapterSpy()
         LikeMocker.likeAdapter = LikeAdapterSpy()
         StoryMocker.commentAdapter = CommentAdapterSpy()
+        CommentMocker.userAdapter = UserAdapterSpy()
         storyManager = StoryManager(storyAdapter = StoryAdapterSpy())
     }
 

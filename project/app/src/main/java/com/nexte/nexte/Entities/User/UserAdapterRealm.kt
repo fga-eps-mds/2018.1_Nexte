@@ -1,6 +1,5 @@
 package com.nexte.nexte.Entities.User
 
-import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryRealm

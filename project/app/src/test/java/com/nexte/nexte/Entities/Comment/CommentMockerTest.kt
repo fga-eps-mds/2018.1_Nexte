@@ -19,10 +19,12 @@ class CommentMockerTest {
     @Test
     fun testGenerateComments(){
 
-        val randomComments = CommentMocker.generateComments(1)
+        var commentId = CommentMocker.commentsId
+        val randomComments = CommentMocker.generateComments(2)
 
-        Assert.assertEquals(1, randomComments.size)
-        Assert.assertEquals("1", randomComments[0])
+        Assert.assertEquals(2, randomComments.size)
+        Assert.assertEquals(commentId.toString(), randomComments[0])
+        Assert.assertEquals((++commentId).toString(), randomComments[1])
     }
 
     @After

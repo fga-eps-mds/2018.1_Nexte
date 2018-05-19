@@ -45,9 +45,9 @@ class LikeTest {
 
         // Asserts
         Assert.assertEquals(id, comments.id)
-        Assert.assertEquals("Id of comment is incorrect!", userId, comments.userId)
-        Assert.assertEquals("Comment is incorrect!", userId, comments.comment)
-        Assert.assertEquals("Date is incorrect!", date, comments.date)
+        Assert.assertEquals(userId, comments.userId)
+        Assert.assertEquals(comment, comments.comment)
+        Assert.assertEquals(date, comments.date)
     }
 
     @Test
