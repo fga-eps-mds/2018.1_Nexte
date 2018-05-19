@@ -16,6 +16,17 @@ class ShowProfileViewTest {
     }
 
     @Test
+    fun testCompanionObject(){
+        //prepare
+        //call
+
+        val testComp = ShowProfileView.newInstance()
+
+        //assert
+        assertNotNull(testComp)
+    }
+
+    @Test
     fun testSetupShowProfileScene(){
         //prepare
         this.view?.setupShowProfileScene()
