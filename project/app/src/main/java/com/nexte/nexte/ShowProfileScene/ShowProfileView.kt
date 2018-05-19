@@ -24,6 +24,7 @@ interface ShowProfileDisplayLogic {
 }
 
 @Suppress("DEPRECATION")
+
 /**
  * This class implements ShowProfileDisplayLogic, and it is responsible to
  * display information about the user
@@ -53,6 +54,7 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         }
 
         this.createGraph()
+        this.createRankingGraph()
     }
 
     /**
@@ -65,21 +67,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsable to define a param to X axis.
-     * @property xVals array responsable to store all values of X
-     * @property tam responsable to store the data of X axis.
-     */
-
-    fun setXAxisValues(): ArrayList<Entry> {
-
-        val xVals = ArrayList<Entry>()
-
-        return xVals
-    }
-
-    /**
-     * Method responsable to define the data of Y axis.
-     *  @property yVals array responsable to store all values of Y
+     * Method responsible to define the data of Y axis.
+     *  @property yVals array responsible to store all values of Y
      */
 
     fun setYAxisValues(): ArrayList<Entry> {
@@ -98,10 +87,28 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsible to create the graph, using the function setXAxisValues and
+     * Method responsible to define the data of Y axis.
+     *  @property yValsRanking array responsible to store all values of Y
+     */
+
+    fun setYAxisValuesRanking(): ArrayList<Entry> {
+
+        val yValsRanking = ArrayList<Entry>()
+
+        yValsRanking.add(Entry(0f, 3f))
+        yValsRanking.add(Entry(1f, 2f))
+        yValsRanking.add(Entry(2f, 5f))
+        yValsRanking.add(Entry(3f, 2f))
+        yValsRanking.add(Entry(4f, 1f))
+        yValsRanking.add(Entry(5f, 4f))
+
+        return yValsRanking
+    }
+
+    /**
+     * Method responsible to create the graph, using the function and
      * SetYAxisValues.
      *  @property lineChart instance a view from xml.
-     * @property xAxis responsible to access the method setXAxisValues
      * @property yAxes responsible to access the method setYAxisValues
      * @property dataSet Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
      * @property line Access the data of yAxes, introduce a legend and customize the graphic
@@ -112,7 +119,6 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     fun createGraph() {
 
         val xAxis = lineChart.xAxis
-        val xAxes = setXAxisValues()
         val yAxes = setYAxisValues()
         val dataSets = ArrayList<ILineDataSet>()
 
@@ -140,6 +146,48 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         lineChart.xAxis.setDrawGridLines(false)
         lineChart.setScaleEnabled(false)
         lineChart.invalidate()
+    }
+    /**
+    * Method responsible to create the graph, using the function
+    * SetYAxisValuesRanking.
+    *  @property rankingChart instance a view from xml.
+    * @property yAxesRanking responsible to access the method setYAxisValuesRanking
+    * @property dataSetsRanking Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
+    * @property lineRanking Access the data of yAxes, introduce a legend and customize the graphic
+    * @property lastMonths Responsible to create an array that store the string about last months of matches of the user
+    * @property RankingData Type: LineData, access the data defined, and xml LineChart have access to it
+    */
+
+    fun createRankingGraph() {
+
+        val xAxisRanking = rankingChart.xAxis
+        val yAxesRanking = setYAxisValuesRanking()
+        val dataSetsRanking = ArrayList<ILineDataSet>()
+
+        val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking")
+        lineRanking.fillAlpha = houndredLine
+        lineRanking.color = Color.RED
+        lineRanking.axisDependency =YAxis.AxisDependency.LEFT
+        dataSetsRanking.add(lineRanking)
+
+        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
+        xAxisRanking.valueFormatter = IndexAxisValueFormatter(lastMonths)
+        xAxisRanking.granularity = 1f
+        xAxisRanking.textColor = Color.WHITE
+
+        val points = LineData(dataSetsRanking)
+        points.setValueTextColor(Color.WHITE)
+
+        val rankingData = LineData(dataSetsRanking)
+        rankingChart.data = rankingData
+        rankingChart.axisLeft.setAxisMaxValue(8f)
+        rankingChart.axisLeft.setAxisMinValue(0f)
+        rankingChart.axisRight.setAxisMaxValue(0f)
+        rankingChart.axisRight.setAxisMinValue(8f)
+        rankingChart.axisLeft.setDrawGridLines(false)
+        rankingChart.xAxis.setDrawGridLines(false)
+        rankingChart.setScaleEnabled(false)
+        rankingChart.invalidate()
     }
 
     /**
