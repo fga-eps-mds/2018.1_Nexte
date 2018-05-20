@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,6 +13,8 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.PagerAdapter
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.MatchScene.MatchFragment
@@ -142,7 +143,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         if(viewModel.matchMessage != ""){
             this.match = viewModel.matchData
             this.message?.text = viewModel.matchMessage
+            this.message?.visibility = View.VISIBLE
             this.sendChallengeButton?.isEnabled = false
+            this.viewpager.adapter.notifyDataSetChanged()
         }
 
 
@@ -153,7 +156,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
             this.tabs.getTabAt(1)?.select()
             dialogInterface.cancel()
-
         })
 
         val alert = builder.create()
@@ -261,6 +263,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 viewContext.expandedWins = view?.findViewById(R.id.expandedWins)
                 viewContext.noPlayersText = view?.findViewById(R.id.noPlayersText)
                 viewContext.message = view?.findViewById(R.id.message)
+                if(viewContext.match != null){
+                    viewContext.message?.visibility = View.VISIBLE
+                }
             }
             else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
@@ -282,7 +287,6 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
                 (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
             }
-
         }
     }
 
@@ -290,9 +294,13 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Adapter Class that populates the fragment
      */
     class ViewPagerAdapter (fragmentManager: FragmentManager,
-                            var context: Context) : FragmentPagerAdapter(fragmentManager) {
+                            var context: Context) : FragmentStatePagerAdapter(fragmentManager) {
 
         private val pageTitles = listOf("Tenistas", "Enviados", "Recebidos")
+
+        override fun getItemPosition(`object`: Any?): Int {
+            return PagerAdapter.POSITION_NONE
+        }
 
         override fun getCount(): Int {
 
@@ -371,6 +379,11 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 context.removePlayerDetailedInfo()
                 context.sendChallengeButton?.isEnabled = false
             }
+            if(context.match != null){
+                context.sendChallengeButton?.isEnabled = false
+            }
+
+
         }
 
         override fun getItemCount(): Int {

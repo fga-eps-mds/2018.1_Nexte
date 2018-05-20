@@ -42,20 +42,21 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     private var recyclerView: RecyclerView?= null
     var challenged: String = ""
     var challenger: String = ""
-    var hasChallenge: Int = 0
+    private var hasChallenge: Int = 0
 
     //method created because in the future maybe this class will receive arguments.
     fun getInstance(challenge: MatchModel.MatchData?): MatchFragment {
         val fragmentFirst = MatchFragment()
         val bundle = Bundle()
-
-        bundle.putString("Challenger", challenge?.challenger?.name)
-        bundle.putString("Challenged", challenge?.challenged?.name)
         if(challenge == null){
             bundle.putInt("HasChallenge", 0)
+            bundle.putString("Challenger", "")
+            bundle.putString("Challenged", "")
         }
         else {
             bundle.putInt("HasChallenge", 1)
+            bundle.putString("Challenger", challenge.challenger.name)
+            bundle.putString("Challenged", challenge.challenged.name)
         }
 
         fragmentFirst.arguments = bundle
@@ -80,14 +81,19 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
             this.sendButton = view?.findViewById(R.id.sendButton)
 
-            val match = MatchModel.FormattedMatchData(challenged, 1,
-                    challenger, 1)
+            val match = MatchModel.FormattedMatchData(challenged,
+                    R.mipmap.ic_launcher_round,
+                    challenger,
+                    R.mipmap.ic_launcher_round)
 
             this.matchViewAdapter = MatchDataAdapter(match, this)
             recyclerView?.adapter = this.matchViewAdapter
             recyclerView?.layoutManager = LinearLayoutManager(activity)
 
-            val request = MatchModel.InitScene.Request("identifier")
+            val request = MatchModel.InitScene.Request(MatchModel.MatchData(
+                    MatchModel.MatchPlayer(challenged, R.mipmap.ic_launcher_round),
+                    MatchModel.MatchPlayer(challenger, R.mipmap.ic_launcher_round)
+            ))
             interactor?.getInfoMatches(request)
 
             sendButton?.isEnabled = false

@@ -8,7 +8,6 @@ import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.RankingScene.RankingView
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.ChallengeScene.ChallengeView
-import com.nexte.nexte.MatchScene.MatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 

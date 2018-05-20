@@ -20,7 +20,12 @@ class MatchWorker {
      */
     fun fetchMatchData (request: MatchModel.InitScene.Request, completion: (MatchModel.InitScene.Response) -> Unit) {
 
-        val response = MatchModel.InitScene.Response (this.generateMatchData())
+        val response = if(request.match == null) {
+            MatchModel.InitScene.Response (this.generateMatchData())
+        }
+        else{
+            MatchModel.InitScene.Response(request.match!!)
+        }
         completion(response)
     }
 
@@ -30,9 +35,9 @@ class MatchWorker {
      */
      fun generateMatchData() : MatchModel.MatchData{
 
-        var challenger = MatchModel.MatchPlayer("Letícia",  R.mipmap.ic_launcher )
+        val challenger = MatchModel.MatchPlayer("Letícia",  R.mipmap.ic_launcher )
 
-        var challenged = MatchModel.MatchPlayer("Alexandre Miguel", R.mipmap.ic_launcher )
+        val challenged = MatchModel.MatchPlayer("Alexandre Miguel", R.mipmap.ic_launcher )
 
         val match = MatchModel.MatchData(challenger, challenged)
 
