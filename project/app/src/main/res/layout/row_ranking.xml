@@ -13,9 +13,9 @@
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="9dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,28 +27,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/picture_img_view"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
         android:textColor="#ffffff"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/picture_img_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
         android:text="N"
+        android:textAlignment="viewEnd"
         android:textColor="#ffffff"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
+        app:layout_constraintEnd_toStartOf="@+id/picture_img_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 
@@ -56,18 +58,39 @@
         android:id="@+id/circle1"
         android:layout_width="15sp"
         android:layout_height="15sp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/circle_undefeated_ranking"
-        app:layout_constraintEnd_toStartOf="@+id/circle4"
+        app:layout_constraintEnd_toStartOf="@+id/circle2"
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <ImageView
+        android:id="@+id/circle2"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_victory_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circle3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/circle3"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_defeat_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circle4"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/circle4"
         android:layout_width="15sp"
         android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/circle_victory_ranking"
         app:layout_constraintEnd_toStartOf="@+id/circle5"
@@ -81,7 +104,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/circle_empty_ranking"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 
@@ -101,7 +124,7 @@
             android:id="@+id/victory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:text="Vitórias:"
             android:textColor="#ffffff"
