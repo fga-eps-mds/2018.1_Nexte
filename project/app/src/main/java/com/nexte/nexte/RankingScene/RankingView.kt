@@ -19,6 +19,8 @@ import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 
 /**
  * Interface responsible to define methods used to get user information data
@@ -67,6 +69,12 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             startActivity(intent)
         }
     }
+
+    private fun goToShowProfileView() {
+        val intent = Intent(this, ShowProfileView::class.java)
+        startActivity(intent)
+    }
+
 
     /**
      * Class responsible for generate the fragment of the fixed row ranking
@@ -236,6 +244,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
             itemHolder?.efficiency?.text = item.player.userEfficiency
+            itemHolder?.profileButton?.setOnClickListener{
+                (context as RankingView).goToShowProfileView()
+            }
 
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
@@ -263,6 +274,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var lastGame = v.lastGame
             var expandedView = v.expandedView
             var efficiency = v.efficiency
+            var profileButton = v.profileButton
         }
     }
 }

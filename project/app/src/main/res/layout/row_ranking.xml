@@ -52,6 +52,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
 
+    <ImageView
+        android:id="@+id/circle1"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/circle_undefeated_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circle4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <ImageView
+        android:id="@+id/circle4"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_victory_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circle5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circle5"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_empty_ranking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -107,7 +142,6 @@
             android:layout_marginBottom="7dp"
             android:layout_marginEnd="18dp"
             android:layout_marginStart="147dp"
-            android:background="@android:color/transparent"
             android:elevation="0dp"
             android:text="Perfil"
             android:textAlignment="center"
@@ -116,7 +150,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/ranking_profile_button_border"/>
 
         <ImageView
             android:id="@+id/currentUser"
