@@ -1,5 +1,5 @@
 # Baldissera image of android container.
-image: baldissera/android-container:2.0
+image: baldissera/android-container:2.1
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -83,15 +83,21 @@ deploy_beta:
     - tags
 
 # Build of GitHub Pages
-# pages:
-#   stage: build
-#   script:
-#     - mkdocs gh-deploy
-#   only:
-#     - dev
+pages:
+  stage: build
+  before_script:
+    - git config user.email "<guilhermebaldissera@gmail.com>"
+    - git config --global user.name "Baldissera"
+  script:
+    - mkdocs build
+    - git add site/
+    - git commit -m"Build new Pages with $CI_PIPELINE_ID"
+    - git push https://$GITHUB_USERNAME:$GITHUB_CREDENTIALS@github.com/fga-gpp-mds/2018.1_Nexte.git `git subtree split --prefix site/`:gh-pages --force
+  only:
+    - dev
 
 # Cache for use on next executions
 cache:
-  key: ${CI_PROJECT_ID}
+  key: ${CI_PROJECT_ID}2
   paths:
     - .gradle/

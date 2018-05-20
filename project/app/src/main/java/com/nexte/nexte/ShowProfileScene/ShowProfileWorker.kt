@@ -30,6 +30,7 @@ class ShowProfileWorker {
             "",
             "",
             -1,
+            "",
             "")
 
         var returnedUser: Player? = null

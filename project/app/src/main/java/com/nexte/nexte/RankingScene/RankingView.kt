@@ -17,7 +17,6 @@ import com.nexte.nexte.R
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
-import kotlinx.android.synthetic.main.row_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.startActivity
@@ -63,11 +62,12 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
                 UserSingleton.getUserInformations().rankingPosition, this))
 
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
+    }
 
-        profileButton.setOnClickListener{
-            val intent = Intent(this, ShowProfileView::class.java)
-            startActivity(intent)
-        }
+
+    private fun goToShowProfileView() {
+        val intent = Intent(this, ShowProfileView::class.java)
+        startActivity(intent)
     }
 
     private fun goToShowProfileView() {
@@ -91,6 +91,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
             view?.position?.text = String.format("%d", UserSingleton.getUserInformations().rankingPosition)
             view?.name?.text = UserSingleton.getUserInformations().name
+            view?.playerCategory?.text = UserSingleton.getUserInformations().category
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
     }
@@ -210,6 +211,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             return ItemHolder(view!!)
         }
 
+
         /**
          * Method responsible to set the view holder and expand player cell
          *
@@ -240,6 +242,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             }
 
             itemHolder?.nameText?.text = item.player.userName
+            itemHolder?.playerCategory?.text = item.player.userCategory
             itemHolder?.rankingText?.text = item.player.userRankingPosition
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
@@ -253,6 +256,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             } else {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
+
         }
 
         /**
@@ -275,6 +279,10 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var expandedView = v.expandedView
             var efficiency = v.efficiency
             var profileButton = v.profileButton
+<<<<<<< HEAD
+=======
+            var playerCategory = v.playerCategory
+>>>>>>> 357fe77e2d1cb5730d36f17c057177f847762dea
         }
     }
 }

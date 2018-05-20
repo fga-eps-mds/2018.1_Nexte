@@ -23,9 +23,11 @@ class PlayerTest {
         val club = "Tenis House"
         val age = 21
         val password = "123456"
+        val category = "profissional"
 
         //call
-        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAddress = "", email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21, password = "123456")
+        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAddress = "", email = "luis@email.com", gender = "Masculino",
+                club = "Tenis House", age = 21, password = "123456", category = "profissional")
 
         //assert
         assertEquals(name, player.name)
@@ -36,6 +38,7 @@ class PlayerTest {
         assertEquals(club, player.club)
         assertEquals(age, player.age)
         assertEquals(password, player.password)
+        assertEquals(category, player.category)
     }
 
     @After

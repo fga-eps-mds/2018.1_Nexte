@@ -36,6 +36,7 @@ class RankingModel {
      *
      * @property name it's the name of the player
      * @property pictureURL it's the photo of the player
+     * @property playerCategory it's the category that the player plays
      * @property wins are all the games won by the player
      * @property losses are all the games lost by the player
      * @property rankingPosition it's the position of the player on the ranking
@@ -43,6 +44,7 @@ class RankingModel {
      */
     class Player(var name: String,
                  var pictureURL: Int,
+                 var playerCategory: String,
                  var wins: Int,
                  var losses: Int,
                  var rankingPosition: Int,
@@ -66,12 +68,14 @@ class RankingModel {
      * @property userWins are all the games won by the player presented as a String
      * @property userRankingPosition it's the position of the player on the ranking presented as a String
      * @property userLastGame it's the user last game presented as a String
+     * @property userCategory it's the player category presented as a String
      */
     class FormattedPlayer(var userName: String,
                           var userPictureURL: Int,
                           var userWins: String,
                           var userRankingPosition: String,
                           var userLastGame: String,
-                          var userEfficiency: String  )
+                          var userEfficiency: String,
+                          var userCategory: String)
 }
 
