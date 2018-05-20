@@ -70,11 +70,6 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         startActivity(intent)
     }
 
-    private fun goToShowProfileView() {
-        val intent = Intent(this, ShowProfileView::class.java)
-        startActivity(intent)
-    }
-
 
     /**
      * Class responsible for generate the fragment of the fixed row ranking
@@ -279,10 +274,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             var expandedView = v.expandedView
             var efficiency = v.efficiency
             var profileButton = v.profileButton
-<<<<<<< HEAD
-=======
             var playerCategory = v.playerCategory
->>>>>>> 357fe77e2d1cb5730d36f17c057177f847762dea
         }
     }
 }
