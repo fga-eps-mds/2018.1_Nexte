@@ -100,7 +100,8 @@ class EditProfileView : AppCompatActivity(),
                     "",
                     clubName.text.toString(),
                     ageTextEdit.text.trim().toString().toInt(),
-                    passwordTextEdit.text.trim().toString())
+                    passwordTextEdit.text.trim().toString(),
+                    "")
 
             this.createEditProfileRequest(user = user)
         }
