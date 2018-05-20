@@ -4,9 +4,12 @@
 
 [![pipeline status](https://gitlab.com/Baldissera/2018.1_Nexte/badges/dev/pipeline.svg)](https://gitlab.com/Baldissera/2018.1_Nexte/commits/dev)
 
-O Nexte tem como objetivo promover a integração entre tenistas a partir da realização de desafios entre os membros desta comunidade. Não obstante, Nexte é desenvolvido com tecnologias modernas como: Docker, Kotlin, Node, e muitas outras.
+O Nexte tem como objetivo promover a integração entre tenistas a partir da realização de desafios entre os membros desta comunidade. Não obstante, Nexte é desenvolvido com tecnologias modernas como: Docker, Kotlin, Node, GO e muitas outras.
 
-For english support, read out [README](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/Docs/EPS/READMEen.MD) provided in english.
+Não obstante, além desse repositório referente ao *frontend*, o Nexte dispõe de outro repositório aberto: Servidor de imagens, desenvolvido em Go. No caso, são adotadas as mesmas políticas adotadas nesse repositório, para mais informações accese no [GitLab](https://gitlab.com/Baldissera/NexteImageServer).
+
+For english support, read out [README](https://github.com/fga-gpp-mds/2018.1_Nexte/blob/dev/Docs/EPS/READMEen.MD) provided in 
+english.
 
 ## Primeiros Passos
 

@@ -25,7 +25,7 @@ class FeedModelTest {
 
     @Test
     fun testCreateResponseGetFeedActivities(){
-        //preprare
+        //prepare
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
         val date = Date()
@@ -34,6 +34,7 @@ class FeedModelTest {
 
         //call
         val response = FeedModel.GetFeedActivities.Response(feedActivities = mutableListOf(activity1))
+        response.feedActivities
 
         //assert
         assertEquals(challenged1, response.feedActivities[0].challenge.challenged)
@@ -61,6 +62,7 @@ class FeedModelTest {
 
         //call
         val viewModel = FeedModel.GetFeedActivities.ViewModel(feedActivities = mutableListOf(feedActivityFormated))
+        viewModel.feedActivities
 
         //assert
         assertEquals(challengerName, viewModel.feedActivities[0].challengerName)
@@ -87,7 +89,6 @@ class FeedModelTest {
         feedPlayer.photo = photo
         feedPlayer.set = set
         feedPlayer.name = name
-
         //assert
         assertEquals(name, feedPlayer.name)
         assertEquals(photo, feedPlayer.photo)
@@ -103,9 +104,9 @@ class FeedModelTest {
 
         //call
         val feedChallenge = FeedModel.FeedChallenge(challenger = challenger, challenged = challenged, challengeDate = challengeDate)
-        feedChallenge.challenger = challenger
-        feedChallenge.challenged = challenged
         feedChallenge.challengeDate = challengeDate
+        feedChallenge.challenged = challenged
+        feedChallenge.challenger = challenger
 
         //assert
         assertEquals(challenger, feedChallenge.challenger)
@@ -126,10 +127,10 @@ class FeedModelTest {
 
         //call
         val feedActivity = FeedModel.FeedActivity(challenge = challenge, feedDate = feedDate, identifier = identifier, likes = likes)
-        feedActivity.likes = likes
-        feedActivity.identifier = identifier
-        feedActivity.feedDate = feedDate
         feedActivity.challenge = challenge
+        feedActivity.feedDate = feedDate
+        feedActivity.identifier = identifier
+        feedActivity.likes = likes
 
         //assert
         assertEquals(challenge, feedActivity.challenge)
@@ -153,15 +154,16 @@ class FeedModelTest {
 
         //call
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(challengerName = challengerName, challengerPhoto = challengerPhoto, challengerSets = challengerSets, challengedName = challengedName, challengedPhoto = challengedPhoto, challengedSets =  challengedSets, feedDate = feedDate, identifier = identifier, numberOfLikes = numberOfLikes)
-        feedActivityFormatted.numberOfLikes = numberOfLikes
-        feedActivityFormatted.identifier = identifier
-        feedActivityFormatted.feedDate = feedDate
-        feedActivityFormatted.challengerSets = challengerSets
-        feedActivityFormatted.challengerPhoto = challengerPhoto
-        feedActivityFormatted.challengerName = challengerName
+
         feedActivityFormatted.challengedName = challengedName
         feedActivityFormatted.challengedPhoto = challengedPhoto
         feedActivityFormatted.challengedSets = challengedSets
+        feedActivityFormatted.challengerName = challengerName
+        feedActivityFormatted.challengerPhoto = challengerPhoto
+        feedActivityFormatted.challengerSets = challengerSets
+        feedActivityFormatted.feedDate = feedDate
+        feedActivityFormatted.identifier = identifier
+        feedActivityFormatted.numberOfLikes = numberOfLikes
 
         //assert
         assertEquals(challengerName, feedActivityFormatted.challengerName)
@@ -183,6 +185,7 @@ class FeedModelTest {
         // call
         val request = FeedModel.LikeAndUnlike.Request(identifier = identifier)
         request.identifier = identifier
+
         //assert
         assertEquals(identifier, request.identifier)
         assertNotNull(request)
@@ -201,6 +204,7 @@ class FeedModelTest {
 
         //call
         val response = FeedModel.LikeAndUnlike.Response(likedActivity = activity1)
+        response.likedActivity
 
         //assert
         assertEquals(activity1, response.likedActivity)
@@ -208,6 +212,11 @@ class FeedModelTest {
         assertEquals(identifier, response.likedActivity.identifier)
         assertEquals(date, response.likedActivity.feedDate)
         assertEquals(likes, response.likedActivity.likes)
+
+    }
+
+    @Test
+    fun successCreateViewModelLikeAndUnlike(){
 
     }
 
@@ -220,11 +229,6 @@ class FeedModelTest {
 
         //assert
         assertNotNull(model)
-    }
-
-    @Test
-    fun successCreateViewModelLikeAndUnlike(){
-
     }
 
     @After
