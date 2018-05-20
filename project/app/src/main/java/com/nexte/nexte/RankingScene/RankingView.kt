@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintSet
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -19,7 +17,6 @@ import com.nexte.nexte.R
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
-import kotlinx.android.synthetic.main.row_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 
 /**

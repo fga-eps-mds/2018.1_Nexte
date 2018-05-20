@@ -14,9 +14,9 @@
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="12dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,11 +29,11 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/picture_img_view"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
         android:textColor="#ffffff"
-        android:textSize="9sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,6 +46,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="20dp"
         android:text="N"
+        android:textAlignment="viewEnd"
         android:textColor="#ffffff"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
@@ -55,52 +56,50 @@
 
     <ImageView
         android:id="@+id/ring"
-        android:layout_width="20sp"
+        android:layout_width="15sp"
         android:layout_height="20sp"
-        android:layout_marginBottom="43dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/circle_ranking"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ring2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ring2"
-        android:layout_width="20sp"
+        android:layout_width="15sp"
         android:layout_height="20sp"
         android:layout_marginEnd="5dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/circle_ranking"
         app:layout_constraintEnd_toStartOf="@+id/ring3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ring3"
-        android:layout_width="20sp"
+        android:layout_width="15sp"
         android:layout_height="20sp"
         android:layout_marginEnd="5dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/circle_ranking"
         app:layout_constraintEnd_toStartOf="@+id/ring4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ring4"
-        android:layout_width="20sp"
+        android:layout_width="15sp"
         android:layout_height="20sp"
         android:layout_marginEnd="5dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/circle_ranking"
         app:layout_constraintEnd_toStartOf="@+id/ring5"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ring5"
-        android:layout_width="20sp"
+        android:layout_width="15sp"
         android:layout_height="20sp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/circle_ranking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -112,15 +111,15 @@
         android:id="@+id/expandedView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="12dp"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/picture_img_view">
 
         <TextView
             android:id="@+id/victory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:text="Vitórias:"
             android:textColor="#ffffff"
@@ -133,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:text="Último Jogo:"
             android:textColor="#ffffff"
@@ -146,7 +145,7 @@
             android:id="@+id/efficiency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:text="Aproveitamento:"
             android:textColor="#ffffff"
@@ -160,8 +159,8 @@
             android:layout_height="17dp"
             android:layout_marginBottom="7dp"
             android:layout_marginEnd="18dp"
-            android:layout_marginStart="147dp"
-            android:background="@android:color/transparent"
+            android:layout_marginStart="200dp"
+            android:background="@drawable/ranking_profile_button_border"
             android:elevation="0dp"
             android:text="Perfil"
             android:textAlignment="center"
@@ -176,9 +175,8 @@
             android:id="@+id/currentUser"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="146dp"
             app:layout_constraintBottom_toBottomOf="@+id/efficiency"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profileButton"
             app:layout_constraintTop_toTopOf="@+id/efficiency"
             app:srcCompat="@mipmap/ic_launcher_round" />
 
@@ -189,6 +187,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginStart="33dp"
             app:layout_constraintBottom_toTopOf="@+id/profileButton"
+            app:layout_constraintEnd_toEndOf="@+id/profileButton"
             app:layout_constraintStart_toEndOf="@+id/currentUser"
             app:layout_constraintTop_toTopOf="@+id/currentUser"
             app:srcCompat="@mipmap/ic_launcher_round" />
@@ -197,12 +196,10 @@
             android:id="@+id/versus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:text="X"
             android:textColor="#ffffff"
-            android:textSize="9sp"
-            app:layout_constraintBottom_toBottomOf="@+id/loggedUser"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/gamesLoggedUser"
             app:layout_constraintEnd_toStartOf="@+id/loggedUser"
             app:layout_constraintStart_toEndOf="@+id/currentUser"
             app:layout_constraintTop_toTopOf="@+id/loggedUser" />
@@ -215,7 +212,7 @@
             android:text="N"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/loggedUser"
             app:layout_constraintStart_toStartOf="@+id/loggedUser"
             app:layout_constraintTop_toBottomOf="@+id/loggedUser" />
@@ -228,7 +225,7 @@
             android:text="N"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/currentUser"
             app:layout_constraintStart_toStartOf="@+id/currentUser"
             app:layout_constraintTop_toBottomOf="@+id/currentUser" />
@@ -239,13 +236,11 @@
         android:id="@+id/playerCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
         android:layout_marginStart="7dp"
         android:layout_marginTop="8dp"
         android:text="Categoria"
         android:textColor="#ffffff"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 </android.support.constraint.ConstraintLayout>
