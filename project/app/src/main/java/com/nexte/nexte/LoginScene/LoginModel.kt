@@ -47,7 +47,7 @@ class LoginModel {
     class AccountKit {
 
         companion object {
-            val ACCOUNTKIT_CODE = 13
+           const val ACCOUNTKIT_CODE = 13
         }
 
         /**
@@ -69,8 +69,8 @@ class LoginModel {
         class ViewModel(val message: String)
 
         /**
-         *  Enum class to handle with error and responses from server
-         * @param value status code provided from Facebook API
+         * Enum class to handle with error and responses from server
+         * (status code provided from Facebook API)
          */
         enum class StatusCode {
             SUCESSED, CANCELLED, ERROR

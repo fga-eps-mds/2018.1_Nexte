@@ -43,7 +43,8 @@ class RankingWorker {
         val userRanking12 = RankingModel.Player("Leticia", R.mipmap.ic_launcher,"Profissional", 9, 1, 12, "ontem", "90%")
         val userRanking13 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher,"Profissional", 8, 2, 13, "ontem", "80%")
         val userRanking14 = RankingModel.Player("Lorrany", R.mipmap.ic_launcher, "Profissional",7, 3, 14, "ontem", "70%")
-        val userRanking15 = RankingModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher,"Profissional", 6, 4, 15, "ontem", "60%")
+        val userRanking15 = RankingModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher,"Profissional",
+                6, 4, 15, "ontem", "60%")
         val userRanking16 = RankingModel.Player("Luis Gustavo", R.mipmap.ic_launcher,"Profissional", 5, 5, 16, "ontem", "50%")
         val userRanking17 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher,"Profissional", 4, 6, 17, "ontem", "40%")
         val userRanking18 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher,"Profissional", 3, 7, 18, "ontem", "30%")

@@ -42,6 +42,7 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
 
         //call
@@ -66,10 +67,11 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
         val firstRequest = EditProfileModel.RecoverUserRequest.Request("lul", "aa")
         val secondRequest = EditProfileModel.EditProfileRequest.Request(Player(
-                "lul", 1, "", "", "", "", 1, ""
+                "lul", 1, "", "", "", "", 1, "", ""
         ))
         //call
         firstRequest.tokenID = newTokenID
@@ -92,6 +94,7 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
         val errorID = 3
 
@@ -115,12 +118,13 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
         val newErrorID = 3
         val firstResponse = EditProfileModel.EditProfileRequest.Response(2,
-                Player("",0,"", "", "", "", 0, ""))
+                Player("",0,"", "", "", "", 0, "", ""))
         val secondResponse = EditProfileModel.RecoverUserRequest.Response(
-                Player("",0,"", "", "", "", 0, "")
+                Player("",0,"", "", "", "", 0, "",  "")
         )
 
         //call
