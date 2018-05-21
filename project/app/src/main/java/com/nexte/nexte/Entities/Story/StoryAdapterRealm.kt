@@ -102,7 +102,11 @@ class StoryAdapterRealm: StoryAdapter{
             likesIdRealmList.add(like)
         }
 
-        val storyRealm = StoryRealm(id = id, winnerId = winnerId, winnerSetResult = winnerSetResult, loserId = loserId, loserSetResult = loserSetResult, date = date, commentsId = commentsIdRealmList, likesId = likesIdRealmList)
+        val storyRealm = StoryRealm(id = id, winnerId = winnerId,
+                winnerSetResult = winnerSetResult, loserId = loserId,
+                loserSetResult = loserSetResult, date = date,
+                commentsId = commentsIdRealmList,
+                likesId = likesIdRealmList)
         return storyRealm
     }
 

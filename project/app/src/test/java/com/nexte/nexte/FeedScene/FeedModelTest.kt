@@ -86,10 +86,9 @@ class FeedModelTest {
 
         //call
         val feedPlayer = FeedModel.FeedPlayer(name = name, photo = photo, set = set)
-        feedPlayer.name = name
-        feedPlayer.set = set
         feedPlayer.photo = photo
-
+        feedPlayer.set = set
+        feedPlayer.name = name
         //assert
         assertEquals(name, feedPlayer.name)
         assertEquals(photo, feedPlayer.photo)
@@ -155,6 +154,7 @@ class FeedModelTest {
 
         //call
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(challengerName = challengerName, challengerPhoto = challengerPhoto, challengerSets = challengerSets, challengedName = challengedName, challengedPhoto = challengedPhoto, challengedSets =  challengedSets, feedDate = feedDate, identifier = identifier, numberOfLikes = numberOfLikes)
+
         feedActivityFormatted.challengedName = challengedName
         feedActivityFormatted.challengedPhoto = challengedPhoto
         feedActivityFormatted.challengedSets = challengedSets

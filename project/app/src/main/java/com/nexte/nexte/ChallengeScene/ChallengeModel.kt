@@ -1,4 +1,5 @@
 package com.nexte.nexte.ChallengeScene
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 
 /**
@@ -79,16 +80,21 @@ class ChallengeModel {
          * Responsible for the user of the challenge
          *
          * @param username is the challenged user
+         * @param challenge is the challenge
          */
-        class Response(var username: String)
+        class Response(var username: String,
+                       var challenge: MatchModel.MatchData)
 
         /**
          * Class responsible to show a confirmation message informing that a challenged
          * has been sent
          *
          * @param messageForChallenger message with the confirmation of the challenge sent
+         * @param matchMessage indicate the response of the challenge
          */
-        class ViewModel(var messageForChallenger: String)
+        class ViewModel(var messageForChallenger: String,
+                        var matchMessage: String,
+                        var matchData : MatchModel.MatchData?)
     }
 
     // ---------- Aux classes ----------

@@ -21,9 +21,9 @@ class MatchModel {
        * Class responsible to receive the ID of the challenge and passing it to
        * request other informations on worker
        *
-       * @param matchID identifier of the challenge that needs to be found
+       * @param match match that will be displayed
        */
-      class Request(var matchID: String)
+      class Request(var match: MatchData?)
 
       /**
        * Class responsible to pass the unformmated elements from worker to presenter

@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Test
@@ -71,10 +72,13 @@ class ChallengePresenterTest {
     @Test
     fun successFormatMessage() {
         //prepare
-        val response = ChallengeModel.ChallengeButtonRequest.Response("larissa")
+        val match = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
+        val response = ChallengeModel.ChallengeButtonRequest.Response("larissa", match)
 
         //call
-        this.presenter?.formatMessage(response)
+        this.presenter?.formatMatch(response)
 
         //assert
         assertNotNull(this.mock?.formattedMessageToShow)

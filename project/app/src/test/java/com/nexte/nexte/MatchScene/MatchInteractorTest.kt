@@ -20,7 +20,10 @@ class MatchInteractorTest {
     @Test
     fun testGetInfoMatches() {
         //prepare
-        val request = MatchModel.InitScene.Request("abcd123")
+        val matchData = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
+        val request = MatchModel.InitScene.Request(matchData)
 
         //call
         this.interactor?.getInfoMatches(request)

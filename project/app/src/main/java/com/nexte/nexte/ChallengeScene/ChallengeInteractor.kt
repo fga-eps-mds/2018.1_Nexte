@@ -28,7 +28,7 @@ interface ChallengeBusinessLogic {
      *
      * @param request variable that gets the request from the 'send challenge' button
      */
-    fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request)
+    fun requestChallenger(request: ChallengeModel.ChallengeButtonRequest.Request)
 }
 
 /**
@@ -79,10 +79,10 @@ class ChallengeInteractor : ChallengeBusinessLogic {
      *
      * @param request
      */
-    override fun requestMessageForChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+    override fun requestChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
 
-        worker.fetchMessageForChallenge(request) { response ->
-            this.presenter?.formatMessage(response)
+        worker.generateChallenge(request) { response ->
+            this.presenter?.formatMatch(response)
         }
     }
 }
