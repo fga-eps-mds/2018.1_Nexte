@@ -41,16 +41,6 @@ class ShowProfileViewTest {
     }
 
     @Test
-    fun testSetXAxisValues(){
-        //prepare //call
-        val xVals = this.view?.setXAxisValues()
-
-        //assert
-        assertNotNull(xVals)
-        assertEquals(0, xVals?.size)
-    }
-
-    @Test
     fun testSetYAxisValues(){
         //prepare //call
         val yVals = this.view?.setYAxisValues()
@@ -62,6 +52,20 @@ class ShowProfileViewTest {
         assertEquals(yVals[0].y, 2f)
         assertEquals(yVals[5].x, 5f)
         assertEquals(yVals[5].y, 5f)
+    }
+
+    @Test
+    fun testSetYAxisValuesRanking(){
+        //prepare//call
+        val yValsRanking = this.view?.setYAxisValuesRanking()
+
+        //assert
+        assertNotNull(yValsRanking)
+        assertEquals(6, yValsRanking?.size)
+        assertEquals(yValsRanking?.get(0)!!.x, 0f)
+        assertEquals(yValsRanking[0].y, 3f)
+        assertEquals(yValsRanking[5].x, 5f)
+        assertEquals(yValsRanking[5].y, 4f)
     }
 
     @After

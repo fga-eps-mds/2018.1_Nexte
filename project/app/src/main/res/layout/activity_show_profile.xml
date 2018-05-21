@@ -9,9 +9,7 @@
     android:fillViewport="true"
     android:scrollbars="vertical">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -142,9 +140,21 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailLabel">
+
+        </com.github.mikephil.charting.charts.LineChart>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/rankingChart"
+            android:layout_width="340dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineChart">
 
         </com.github.mikephil.charting.charts.LineChart>
 
@@ -152,15 +162,15 @@
             android:id="@+id/editProfileButton"
             android:layout_width="64dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="190dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
             android:background="@android:color/black"
             android:text="Editar"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
+            app:layout_constraintTop_toBottomOf="@+id/rankingChart" />
 
 
     </android.support.constraint.ConstraintLayout>
