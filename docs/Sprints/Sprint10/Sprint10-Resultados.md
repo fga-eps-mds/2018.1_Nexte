@@ -3,6 +3,7 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 20/05/2018| 0.1 | Criação do Documento| Geovanni Oliveira|
+| 21/05/2018| 0.2 | Preenchimento dos tópicos que estavam faltando| Geovanni Oliveira|
 
 ----------------------------------------------------------------------
 
@@ -43,21 +44,17 @@
 ### **1.1. Resumo da Sprint**
 ![Resumo da Sprint](https://i.imgur.com/y8kTCFC.png)
 
-Como pode-se observar a equipe concluiu nessa _Sprint_ 8 das 11 histórias planejadas, sendo que uma delas foi débito da Sprint 8, totalizando um total de 70 de 83 pontos concluídos.
-
-Pode-se perceber que uma  grande quantidade de trabalho foi feita, houve uma participação maior do time de EPS, uma análise mais profunda está no tópico [5 - Análise do Scrum Master](#5-análise-do-scrum-master).
+Como pode-se observar a equipe concluiu nessa _Sprint_, 7 das 8 histórias planejadas, sendo que uma delas foi débito da Sprint 8, totalizando uma pontuação total de 70 de 83 pontos concluídos.
 
 #### 1.2.1. Burndown
 ![Burndown](https://i.imgur.com/yaQmeYe.png)
 
-Apesar dos membros de MDS terem tido um desempenho muito bom, as histórias foram fechadas mais próximo para o final da _Sprint_, os pontos foram queimados restando somente 1 débito.
+Nessa Sprint, houve um impecílio para a Membro Letícia, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, e não foi entregue no sábado, houve falha de comunicação das duas em realção à história que deveria ser feita. houve o Burndow caiu somente no final, pois sábado haviam pull requests, porém não estavam passando, o que foi necessário abrir exceção para aceitá-los no domingo, o que ainda sim não deu certo, e na segunda feira dia 21 ainda estava com pull requests a serem concertados pelos membros, houve um impecílio de um dos pull requests onde um dos PRs anteriores não havia side dado Merge, e isso foi feito sábado dia 19, o que atrapalhou o andamento de alguns PRs e fez com que ele não caísse como desejado.
 
 ### 1.2.2. Commits por dia
-![Commits por dia](https://i.imgur.com/9T19R1H.png)
+![Commits por dia](https://i.imgur.com/dfQsFct.png)
 
-Pode-se observar que a equipe, de maneira geral, manteve entregas contínua ao longo de toda a sprint, sendo que o dia que mais teve commits foi no quinto dia.
-
-Percebe-se também que nessa sprint a equipe teve uma média de commits um pouco menor que a sprint anterior, e que nos nos primeiros dias não houve uma frequência de commits tão alta quanto na passada, e que a quantidade dos commits realmente aumentaram a partir de quinta feira, e na anterior no Domingo já estavam acontecendo uma quantidade boa de commits.
+Pode-se observar que nessa sprint houve o menor número de commits de todo o projeto, os integrantes estavam bem atarefados, o que é vísivel pelo números de commits durante a semana e que os picos de commits foram quinta e sábado.
 
 ### **1.3. Produtividade**
 
@@ -66,7 +63,7 @@ Percebe-se também que nessa sprint a equipe teve uma média de commits um pouco
 ![Velocity Sprint8](https://i.imgur.com/fqlnh3p.png)
 ![](https://i.imgur.com/NNy80iG.png)
 
-Como pode-se observar a equipe fechou bem menos pontos que na sprint anterior, porém as histórias foram fechadas restando apenas 2 débitos técnicos, o que representou uma pequena melhora em relação à Sprint passada, porém a quantidade de pontos planejadas não foi tão grande, o que acarretou em uma queda no Velocity de aproximadamente 2 pontos.
+Como pode-se observar a equipe fechou pontos praticamente iguais à sprint passda, o velocity abaixou em relação à média até a sprint anterior que era de 75,67 e agora está em que na sprint anterior, porém as histórias foram fechadas restando apenas 2 débitos técnicos, o que representou uma pequena melhora em relação à Sprint passada, porém a quantidade de pontos planejadas não foi tão grande, o que acarretou em uma queda no Velocity de aproximadamente 2 pontos.
 
 Apesar do esforço dos membros, a equipe não conseguiu atingir 100% da sua capacidade de produção.
 
@@ -85,34 +82,45 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 ### **1.5. Retrospectiva**
 <h4> Pontos Positivos:</h4>
 
-* Os membros Miguel e Baldisseram melhoraram o comprometimento com o time de forma a surpreender a todos, parabéns aos membros;
-* O grupo no geral apresentou um maior rendimento após a reunião de resolução de conflitos na segunda feira, segundo dia da Sprint;
-* Houve o primeiro encontro com o novo Cliente;
-* Feedback da professora Carla/ (adequação do Roadmap) e do Cliente gerou consolidação do produto final;
-* PR's feitos no meio da semana;
-* Compromisso com a daily por parte dos integrantes;
-* Retirada do quadro de pareamemto e de horas foi uma alívio para os membros. 
+* Os membros de MDS estão mais responsáveis;
+* O pareamento entre membros de EPS e MDS foi muito bom;
+* A nova forma de documentar Sprints foi facilitada para gastar menos tempo nela;
+* O sevidor finalmente foi feito;
+* Miguel aprendeu Docker e Servidor;
+* Issues possuem respostas atômicas;
+* Geek Bot voltou a funcionar, o que facilita as dailies;
+* Pareamento entre Geovanni e Alexandre fluiu muito bem;
+* Cooperação entre Alexandre e ALbino, mesno eles não sendo duplas de pareamento;
+* MDS possui auxílio mútuo entre os membros;
+* Helena Começou a fazer testes.
 
 <h4> Pontos A Melhorar: </h4>
 
-* Falta de testes unitários;
-* Ninguém está rodando os testes instrumentais;
-* Gitlab CI ficou fora do ar, isso fez com que alguns PR's não fossem aceitos para ter certeza que eles passariam no CI;
-* Lorrany ficou esperando o CI rodar para ver a porcentagem de cobertura de código, o que poderia ser feito localmente;
-* Gabriel Albino e Larissa terminaram a história com antecedência e não auxiliaram Letícia, que estava sobrecarregada;
-* Houve uma overpontuating na história de deixar o ranking fixo;
-* Pontuação baixa;
-* Burndown não está caindo.
+* Histórias não foram entregues no último dia da Sprint;
+* O Scrum master não teve tanta disponibilidade para cobrar o time por conta de várias atividades que ele teve nas outras matérias;
+* Professor de EDA novamente fica colocando trabalhos difíceis e trabalhosos para poder "Competir" com MDS em relação a dedicação dos alunos;
+* Código bugado passou em PUll Request, o que dificultou uma história da Sprint 10;
+* Falta de comprometimento com o pareamento entre Letícia e Larissa;
+* O grupo MDS/EPS está disperso, não tão empenhado como no início do projeto;
+* O Cliente não consegue rodar o App no celular dele;
+* A Cobertura de teste está baixa;
+* As Entities do projeto estão com código deprecated;
+* Nunca tem um ponto positivo no feedback da Carla com MDS.
 
 
 <h4> Como Melhorar: </h4>
 
-* Achar alguma forma de testar a View com testes unitários para subir a cobertura de código;
-* Atualizar os testes de instrumentação quando houver alguma refatoração de código, parar que os testes existentes não sejam danificados;
-* Executar a cobertura de testes localmente;
-* Pedir ajuda de forma direta quando necessário;
-* Levar em consideração o que deve ser feito (Item por item) nas histórias
-* Quebrar histórias muito grandes em histórias menores, para que o Burndown seja melhor, assim haverá uma entrega contínua e não somente ao final da Sprint.
+* Pontuar issues com no máximo 8 pontos, acima disso ela deve ser quebrado em duas histórias;
+* Mensagem para cobrar mais o time durante a semana;
+* Gamificação com comida para incentivar as entregas do time;
+* Fazer planejamento melhor, contanto com os impecílios do professor de EDA;
+* Analisar melhor os Pull Requests;
+* Letícia deve definir horários melhor de paremento para se comprometer mais com as atividades propostas do time;
+* Voltar a ter uma comunicação melhor entre MDS e EPS;
+* Ter mais comprometimento do time todo, insentivar o time;
+* Mudar API do aplicativo para o cliente conseguir rodar no celular dele;
+* Colocar Baldissera somente com uma história (Teste de View)para não deixar que ele participe de todas as histórias;
+* Achar uma alternativa para classe Date que está deprecated nas Entities. 
 
 ## **2. Gestão de Risco**
 
@@ -122,7 +130,7 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 
 #### 2.2. _Burndown risk_
 
-![Burndow Risk do Projeto](https://i.imgur.com/E7zJVDH.png)
+![Burndow Risk do Projeto](https://i.imgur.com/y7t9Is6.png)
 
 Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
@@ -130,14 +138,17 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 
 | ID | Status | Por que mudou? |
 |---|---|---|
-| RN03 | Diminuiu | Esse risco diminuiu um pouco a probabilidade dada a maturidade da equipe como um todo, pois todos já estão aptos a resolver eventuais problemas de ambiente, dado que já está tudo instalado e rodando como deveria.|
-| RN04 | Diminuiu | Esse risco diminuiu um pouco dado que os membros Guilherme Baldissera e Miguel Pimentel já iniciaram os trabalhos no servidor|
+| RN02 | aumentou | Esse risco aumentou pois nessa hisprint houve um perigo que muitas histórias não serem entregues e não foi por conta da complexidade e sim por falta do comprometimento dos membros|
+| RN06 | aumentou | Alguns membros estavam atarefados com outras matérias e um membro estava "disponível" mas não trabalhou no projeto|
+| RN07 | aumentou | Houve uma falha na comunicação entre uma dupla de pareamento entre si e entre elas e o time.|
+| RN05 | diminuiu | O membro já está fazendo algumas tarefas e mostrando grande empenho no projeto para mitigar esse risco|
+
 #### 1.5.4 Ações para riscos atuais
 
 | ID | Como mitigar |
 |---|---|
-| RN01 | O pareamento entre membros de EPS e MDS foi instituido nesta sprint para que o conhecimento seja passado para todos os membros e que as limitações técnicas sejam sanadas. |
-| RN02 | Houve uma conversa com os membros e aparentemente todos estão mais empenhados em fazer mais coisas, mas no limite para Não serem prejudicados em outras disciplinas. |
+| RN01 | O pareamento entre membros de EPS e MDS vai continuar. |
+| RN02 | vai  haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada. |
 | RN03 | E dito que a qualquer problema, qualquer membro deve tentar resolver, caso não consigam, deve-se pedir ajuda o mais rápido possível |
 | RN04 | Os membros de EPS trabalharão no servidor juntamente com o cliente. Segundo o planejamento da equipe esse servidor estará disponível para a aplicação a partir da sprint 10. |
 | RN06 | Alguns membros já têm viagens marcadas, como os membros Guilherme Baldissera e Geovanni Oliveira, para que no período de ausênsia seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
