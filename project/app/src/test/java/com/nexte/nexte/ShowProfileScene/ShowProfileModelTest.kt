@@ -22,6 +22,8 @@ class ShowProfileModelTest {
 
         //call
         val request = ShowProfileModel.Request(username = "luis-gustavo", tokenID = "akjbd2130as")
+        request.tokenID = tokenId
+        request.username = userName
 
         //assert
         assertEquals(userName, request.username)
@@ -37,6 +39,7 @@ class ShowProfileModelTest {
 
         //call
         val response = ShowProfileModel.Response(user = player)
+        response.user
 
         //assert
         assertEquals(player, response.user)
@@ -58,6 +61,11 @@ class ShowProfileModelTest {
 
         //call
         val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer)
+        viewModel.playerInfo.rank
+        viewModel.playerInfo.name
+        viewModel.playerInfo.email
+        viewModel.playerInfo.club
+        viewModel.playerInfo.age
 
         //assert
         assertEquals(formattedPlayer, viewModel.playerInfo)
@@ -79,6 +87,11 @@ class ShowProfileModelTest {
 
         //call
         val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", club = "AASCD", email = "luis@email.com", age = "21")
+        formattedPlayer.age = age
+        formattedPlayer.club = club
+        formattedPlayer.email = email
+        formattedPlayer.name = name
+        formattedPlayer.rank = rank
 
         //assert
         assertEquals(name, formattedPlayer.name)
@@ -86,6 +99,17 @@ class ShowProfileModelTest {
         assertEquals(club, formattedPlayer.club)
         assertEquals(email, formattedPlayer.email)
         assertEquals(age, formattedPlayer.age)
+    }
+
+    @Test
+    fun successShowProfileModel() {
+        //prepare
+
+        //call
+        val model = ShowProfileModel()
+
+        //assert
+        assertNotNull(model)
     }
 
     @After
