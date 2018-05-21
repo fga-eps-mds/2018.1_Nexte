@@ -1,9 +1,15 @@
 package com.nexte.nexte.ShowProfileScene
 
 import android.content.Intent
+import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -31,9 +37,12 @@ interface ShowProfileDisplayLogic {
  *
  * @property showProfileInteractor responsible to receive request and send it to worker
  */
-class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
+class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
     var showProfileInteractor : ShowProfileBusinessLogic? = null
+    var buttonEditProfile : Button? = null
+    var rankingChart : LineChart? = null
+    var newLineChart : LineChart? = null
 
     /**
      * Method called when screen is loaded, responsible to load user information
@@ -41,29 +50,56 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_show_profile)
         setupShowProfileScene()
 
         this.createShowProfileRequest()
 
-        editProfileButton.setOnClickListener {
+    }
 
-            val intent = Intent(this, EditProfileView::class.java)
 
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
+        buttonEditProfile =  newView?.findViewById(R.id.editProfileButton)
+        buttonEditProfile?.setOnClickListener {
+            val intent = Intent(activity, EditProfileView::class.java)
             startActivity(intent)
         }
 
+
+        newLineChart = newView?.findViewById(R.id.lineChart)
+        rankingChart = newView?.findViewById(R.id.rankingChart)
+
         this.createGraph()
         this.createRankingGraph()
-    }
 
+
+        return newView
+
+
+    }
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
      */
-    fun createShowProfileRequest(){
+    fun createShowProfileRequest() {
         val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
                 "AUFDSASFSA321IEUNFDI23FIQ2F")
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
+
+    }
+
+
+    /**
+     * Method responsable to define a param to X axis.
+     * @property xVals array responsable to store all values of X
+     * @property tam responsable to store the data of X axis.
+     */
+
+    fun setXAxisValues(): ArrayList<Entry> {
+
+        val xVals = ArrayList<Entry>()
+
+        return xVals
     }
 
     /**
@@ -118,7 +154,8 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     fun createGraph() {
 
-        val xAxis = lineChart.xAxis
+        val xAxis = newLineChart?.xAxis
+        val xAxes = setXAxisValues()
         val yAxes = setYAxisValues()
         val dataSets = ArrayList<ILineDataSet>()
 
@@ -129,23 +166,23 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         dataSets.add(line)
 
         val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
-        xAxis.valueFormatter = IndexAxisValueFormatter(lastMonths)
-        xAxis.granularity = 1f
-        xAxis.textColor = Color.WHITE
+        xAxis?.valueFormatter = IndexAxisValueFormatter(lastMonths)
+        xAxis?.granularity = 1f
+        xAxis?.textColor = Color.WHITE
 
         val points = LineData(dataSets)
         points.setValueTextColor(Color.WHITE)
 
         val lineData = LineData(dataSets)
-        lineChart.data = lineData
-        lineChart.axisLeft.setAxisMaxValue(8f)
-        lineChart.axisLeft.setAxisMinValue(0f)
-        lineChart.axisRight.setAxisMaxValue(0f)
-        lineChart.axisRight.setAxisMinValue(8f)
-        lineChart.axisLeft.setDrawGridLines(false)
-        lineChart.xAxis.setDrawGridLines(false)
-        lineChart.setScaleEnabled(false)
-        lineChart.invalidate()
+        newLineChart?.data = lineData
+        newLineChart?.axisLeft?.setAxisMaxValue(8f)
+        newLineChart?.axisLeft?.setAxisMinValue(0f)
+        newLineChart?.axisRight?.setAxisMaxValue(0f)
+        newLineChart?.axisRight?.setAxisMinValue(8f)
+        newLineChart?.axisLeft?.setDrawGridLines(false)
+        newLineChart?.xAxis?.setDrawGridLines(false)
+        newLineChart?.setScaleEnabled(false)
+        newLineChart?.invalidate()
     }
     /**
     * Method responsible to create the graph, using the function
@@ -160,9 +197,11 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
 
     fun createRankingGraph() {
 
-        val xAxisRanking = rankingChart.xAxis
+        val xAxisRanking = rankingChart?.xAxis
         val yAxesRanking = setYAxisValuesRanking()
         val dataSetsRanking = ArrayList<ILineDataSet>()
+
+        Log.e("Entrou", "aqui")
 
         val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking")
         lineRanking.fillAlpha = houndredLine
@@ -171,23 +210,23 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
         dataSetsRanking.add(lineRanking)
 
         val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
-        xAxisRanking.valueFormatter = IndexAxisValueFormatter(lastMonths)
-        xAxisRanking.granularity = 1f
-        xAxisRanking.textColor = Color.WHITE
+        xAxisRanking?.valueFormatter = IndexAxisValueFormatter(lastMonths)
+        xAxisRanking?.granularity = 1f
+        xAxisRanking?.textColor = Color.WHITE
 
         val points = LineData(dataSetsRanking)
         points.setValueTextColor(Color.WHITE)
 
         val rankingData = LineData(dataSetsRanking)
-        rankingChart.data = rankingData
-        rankingChart.axisLeft.setAxisMaxValue(8f)
-        rankingChart.axisLeft.setAxisMinValue(0f)
-        rankingChart.axisRight.setAxisMaxValue(0f)
-        rankingChart.axisRight.setAxisMinValue(8f)
-        rankingChart.axisLeft.setDrawGridLines(false)
-        rankingChart.xAxis.setDrawGridLines(false)
-        rankingChart.setScaleEnabled(false)
-        rankingChart.invalidate()
+        rankingChart?.data = rankingData
+        rankingChart?.axisLeft?.setAxisMaxValue(8f)
+        rankingChart?.axisLeft?.setAxisMinValue(0f)
+        rankingChart?.axisRight?.setAxisMaxValue(0f)
+        rankingChart?.axisRight?.setAxisMinValue(8f)
+        rankingChart?.axisLeft?.setDrawGridLines(false)
+        rankingChart?.xAxis?.setDrawGridLines(false)
+        rankingChart?.setScaleEnabled(false)
+        rankingChart?.invalidate()
     }
 
     /**
@@ -221,15 +260,18 @@ class ShowProfileView : AppCompatActivity(), ShowProfileDisplayLogic {
      */
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
 
-        username.text = viewModel.playerInfo.name
-        RankingID.text = viewModel.playerInfo.rank
-        club.text = viewModel.playerInfo.club
-        age.text = viewModel.playerInfo.age
-        email.text = viewModel.playerInfo.email
+        username?.text = viewModel.playerInfo.name
+        RankingID?.text = viewModel.playerInfo.rank
+        club?.text = viewModel.playerInfo.club
+        age?.text = viewModel.playerInfo.age
+        email?.text = viewModel.playerInfo.email
     }
 
     companion object {
         const val houndredLine = 110
+
+        fun newInstance(): ShowProfileView = ShowProfileView()
+
+        }
     }
 
-}

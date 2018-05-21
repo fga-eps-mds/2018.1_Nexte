@@ -1,5 +1,4 @@
 package com.nexte.nexte.Entities.Challenge
-
 import java.util.*
 
 object ChallengeMocker {

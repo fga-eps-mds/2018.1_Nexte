@@ -45,7 +45,7 @@
             android:name=".RankingScene.RankingView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FeedScene.FeedView"
+            android:name=".FeedScene.FeedFragment"
             android:label="@string/title_activity_feed_view"
             android:screenOrientation="portrait" />
         <activity

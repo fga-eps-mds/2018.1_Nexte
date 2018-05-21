@@ -21,7 +21,7 @@ class LikeListInteractorTest {
         this.interactor = LikeListInteractor(presenter = mock)
         this.mockUpdateResponseLogic?.mock = mock
         this.interactor?.worker?.updateLogic = this.mockUpdateResponseLogic
-        this.interactor?.worker?.manager = UserManager(userAdapter = UserAdapterSpy())
+        this.interactor?.worker?.userManager = UserManager(userAdapter = UserAdapterSpy())
     }
 
     @Test
