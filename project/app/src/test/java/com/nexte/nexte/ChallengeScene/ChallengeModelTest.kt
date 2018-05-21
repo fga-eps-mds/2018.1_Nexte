@@ -103,9 +103,10 @@ class ChallengeModelTest{
         val club = "clubTop"
         val age = 19
         val password = "adoroPicole"
+        val category = "profissional"
 
         val players = listOf(
-                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password)
+                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password,  category)
         )
 
         //call
@@ -121,6 +122,7 @@ class ChallengeModelTest{
         assertEquals(response.usersAbove[0].club, club)
         assertEquals(response.usersAbove[0].age, age)
         assertEquals(response.usersAbove[0].password, password)
+        assertEquals(response.usersAbove[0].category, category)
     }
 
     @Test

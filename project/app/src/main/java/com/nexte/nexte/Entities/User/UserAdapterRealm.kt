@@ -83,8 +83,9 @@ class UserAdapterRealm: UserAdapter {
             it.category?.let {
                 category = UserCategoryManager().get(it.id)
             }
+            
+            // Update Challenge Sended (Sent!) and Challenge Received after do ChallengeManager
 
-            // Need to do Update Challenge Sended e Challenge Received after do ChallengeManager
             user = User(it.id,
                     it.name,
                     it.profilePicture,

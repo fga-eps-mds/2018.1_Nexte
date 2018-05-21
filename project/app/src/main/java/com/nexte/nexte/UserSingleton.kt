@@ -15,7 +15,8 @@ object UserSingleton {
             "masculino",
             "ASCAD",
             ageConstant,
-            "feioso")
+            "feioso",
+            "Profissional")
 
     fun getUserInformations(): Player {
         return userInformations

@@ -33,12 +33,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Ranking button
-
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
             startActivity(intent)
         }
+
+         test.setOnClickListener {
+             val intent = Intent(this, RankingView::class.java)
+             startActivity(intent)
+         }
 
 
         //Button to display Match scene
@@ -54,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             R.id.feed -> {val intent = Intent(this, FeedView::class.java)
                 startActivity(intent)
 
-            }           // include activity
+            }
 
             R.id.challenge -> {val intent = Intent(this, ChallengeView::class.java)
                 startActivity(intent)
