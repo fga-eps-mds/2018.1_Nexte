@@ -1,9 +1,8 @@
 package com.nexte.nexte.FeedScene
 
 import android.content.Intent
-import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,15 +11,10 @@ import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
-//import io.realm.Realm
-//import io.realm.RealmConfiguration
-//import io.realm.RealmObject
-//import io.realm.annotations.PrimaryKey
-import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
 
 /**
- * Interface to define Display Logic to FeedView Class that will receive information
+ * Interface to define Display Logic to FeedFragment Class that will receive information
  * from Presenter
  */
 interface FeedDisplayLogic {
@@ -36,29 +30,37 @@ interface FeedDisplayLogic {
  * @property feedViewAdapter FeedAdapter instance for broad using on class
  */
 
-class FeedView : AppCompatActivity(), FeedDisplayLogic {
+class FeedFragment : Fragment(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
-
+    var feedRecyclerView : RecyclerView? = null
     /**
      * On Create is a method that will setup this scene and call first Request for Interactor
      *
      * @param savedInstanceState
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+    fun getInstance() : FeedFragment {
+        return FeedFragment()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed_view)
+        //       setContentView(R.layout.activity_feed_view)
 
         this.setupFeedScene()
-
+        val newView = inflater?.inflate(R.layout.activity_feed_view, container, false)
+        this.feedRecyclerView = newView?.findViewById(R.id.feedRecyclerView)
         this.feedViewAdapter = FeedAdapter(mutableListOf(), this)
-        feedRecyclerView.adapter = this.feedViewAdapter
-        feedRecyclerView.layoutManager = LinearLayoutManager(this)
+        feedRecyclerView?.adapter = this.feedViewAdapter
+        feedRecyclerView?.layoutManager = LinearLayoutManager(activity)
 
         this.createGetActivitiesRequest()
+        return newView
+
     }
+
 
     /**
      * Method responsible to setup all the references of this scene
@@ -87,14 +89,14 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      */
     private fun goToLikesList() {
 
-        val intent = Intent(this, LikeListView::class.java)
+        val intent = Intent(activity, LikeListView::class.java)
         startActivity(intent)
     }
 
 
     private fun goToCommentsList() {
 
-        val intent = Intent(this, CommentsView::class.java)
+        val intent = Intent(activity, CommentsView::class.java)
         startActivity(intent)
     }
 
@@ -133,20 +135,20 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
      * Adapter Class to control recycler view on feed activity
      *
      * @property activities List of all feed activities
-     * @property context Context that will show this adapter
+     * @property fragment Fragment that will show this adapter
      */
     class FeedAdapter(private var activities: MutableList<FeedModel.FeedActivityFormatted>,
-                      private val context: Context) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+                      private val fragment: Fragment) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedAdapter.ViewHolder {
 
-            val view = LayoutInflater.from(context).inflate(R.layout.row_feed, parent,false)
+            val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_feed, parent,false)
             return FeedAdapter.ViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-            holder.bindView(activities[position], context)
+            holder.bindView(activities[position], fragment)
         }
 
         override fun getItemCount(): Int {
@@ -196,7 +198,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
              */
 
             fun bindView(activity: FeedModel.FeedActivityFormatted,
-                         context: Context) {
+                         fragment: Fragment) {
 
                 itemView.challengerName.text = activity.challengerName
                 itemView.challengerPhoto.setImageResource(activity.challengerPhoto)
@@ -210,17 +212,17 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 itemView.likesButton.setOnClickListener {
 
                     val sendLikesAux = FeedModel.LikeAndUnlike.Request(activity.identifier)
-                    (context as FeedView).sendLike(sendLikesAux)
+                    (fragment as FeedFragment).sendLike(sendLikesAux)
                 }
 
                 itemView.numberOfLikes.setOnClickListener {
 
-                    (context as FeedView).goToLikesList()
+                    (fragment as FeedFragment).goToLikesList()
                 }
 
                 itemView.comments.setOnClickListener {
 
-                    (context as FeedView).goToCommentsList()
+                    (fragment as FeedFragment).goToCommentsList()
                 }
             }
         }
