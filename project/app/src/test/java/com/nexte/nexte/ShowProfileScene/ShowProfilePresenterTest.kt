@@ -19,6 +19,7 @@ class ShowProfilePresenterTest {
         this.presenter?.viewScene = mock
     }
 
+
     @Test
     fun successPresentUserProfile(){
         //prepare
