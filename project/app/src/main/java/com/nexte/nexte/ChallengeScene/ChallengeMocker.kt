@@ -23,7 +23,7 @@ object ChallengeMocker {
 
         for(count in 0..numPlayers){
             val player = Player(String.format("nome%d",count+1), count+1,
-                    "", "", "", "", 0, "")
+                    "", "", "", "", 0, "", "")
 
             list += player
         }

@@ -31,12 +31,13 @@ class ChallengePresenterTest {
         val club = "clubTop"
         val age = 19
         val password = "adoroPicole"
+        val category = "profissional"
         val nameFormatted = "Gabriel"
         val rankingPositionFormatted = "#1"
         val pictureAddressFormatted = "https://www.algumsite.com.br/algumaimagem.png"
 
         val players = listOf(
-                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password)
+                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password,  category)
         )
         val playerFormatted = ChallengeModel.FormattedPlayer(nameFormatted, rankingPositionFormatted, pictureAddressFormatted)
 
