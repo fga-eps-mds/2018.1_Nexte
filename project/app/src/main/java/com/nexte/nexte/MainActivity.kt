@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.ShowProfileScene.ShowProfileView
-import com.nexte.nexte.ChallengeScene.ChallengeView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
