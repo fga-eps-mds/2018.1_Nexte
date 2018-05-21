@@ -2,6 +2,9 @@ package com.nexte.nexte.Entities.Comment
 import io.realm.Realm
 import io.realm.kotlin.where
 
+/**
+ * Class to allow adaptations of data and sending to Realm.
+ * */
 class CommentAdapterRealm : CommentAdapter {
 
     var realm: Realm = Realm.getDefaultInstance()

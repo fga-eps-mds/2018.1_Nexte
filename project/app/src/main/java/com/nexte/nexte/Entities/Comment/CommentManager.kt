@@ -1,5 +1,10 @@
 package com.nexte.nexte.Entities.Comment
 
+/**
+ * Class define according to scene requests which kind of response will be displayed:
+ * data from remote repository or from data storage.
+ * @param commentAdapter hold information from CommentAdapterRealm
+ * */
 class CommentManager(private val commentAdapter: CommentAdapter = CommentAdapterRealm()) {
     fun get(identifier: String): Comment? {
         return commentAdapter.get(identifier)

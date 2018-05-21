@@ -4,8 +4,15 @@ import com.nexte.nexte.Entities.User.UserAdapter
 import com.nexte.nexte.Entities.User.UserManager
 import java.util.*
 
+
+/**
+ * Singleton responsible for mock comment data
+ */
 object CommentMocker{
 
+    /**
+     * @property commentTextMocks contains a list of mock comments
+     */
     private val commentTextMocks = listOf("Que jogo sensacional! " +
             "Muita coisa ruim aconteceu mas eu sei que muita coisa ainda " +
             "vai acontecer e por isso torço muito para que muita coisa" +
@@ -30,6 +37,9 @@ object CommentMocker{
     var commentAdapter: CommentAdapter? = null
     var allComments = mutableListOf<Comment>()
 
+    /**
+     * Function to generate random numbers
+     */
     private fun randomNumber(from: Int, to: Int): Int{
         val random = Random()
         println("BOUND: " + (to - from))
@@ -43,6 +53,9 @@ object CommentMocker{
         }
     }
 
+    /**
+     * Function to generate random dates for all comments
+     */
     private fun generateRandomDate(): Date {
         val year = randomNumber(2013, 2018)
         val dayOfYear = randomNumber(1, 30)
@@ -51,6 +64,9 @@ object CommentMocker{
         return date
     }
 
+    /**
+     * Function to generate comments Ids
+     */
     private fun getCommentIds(amount: Int): List<String>{
 
         val commentsIds = mutableListOf<String>()
@@ -61,6 +77,9 @@ object CommentMocker{
         return commentsIds.toList()
     }
 
+    /**
+     * Function to generate users Ids
+     */
     private fun getUsersIds(usersAmount: Int) : List<String> {
         var users = listOf<User>()
 
@@ -82,6 +101,9 @@ object CommentMocker{
         return usersIds
     }
 
+    /**
+     * Function to generate a date for a comment
+     */
     private fun getDates(amount: Int): List<Date>{
         val dates = mutableListOf<Date>()
 
@@ -92,6 +114,9 @@ object CommentMocker{
         return dates
     }
 
+    /**
+     * Function to get content of a comment
+     */
     private fun getComments(amount: Int): List<String>{
         val comments = mutableListOf<String>()
 
@@ -102,6 +127,10 @@ object CommentMocker{
         return comments
     }
 
+    /**
+     * Function to generate random data for comments which contains ids,
+     * userIds, dates and a comment from a user
+     */
     fun generateComments(amount: Int): List<String>{
         val ids = getCommentIds(amount)
         val userIds = getUsersIds(amount)

@@ -3,6 +3,13 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
+/**
+ * Class to define global data for the whole application.
+ * @param id contains the id of the comment
+ * @param userId contains the id from the user which is commenting
+ * @param comment contains the comment
+ * @param date contains the date of the comment
+ * */
 open class CommentRealm(@PrimaryKey var id: String? = null,
                         var userId: String? = null,
                         var comment: String? = null,

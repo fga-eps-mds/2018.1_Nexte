@@ -59,7 +59,6 @@ class CommentsPresenter : CommentsPresentationLogic {
      * Function that formatted the new comment wrote by user to send to View
      * @param response
      */
-
     override fun presentNewComment(response: CommentsModel.PublishCommentRequest.Response) {
 
         val newComment = response.newComment
