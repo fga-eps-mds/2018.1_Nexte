@@ -61,7 +61,9 @@ class EditProfileViewTest {
         this.view?.editUserInformationInteractor = mock
 
         //call
-        this.view?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc", name = "luis", club = "asdasdas", email = "asdasdasd", rankingPosition = 1, pictureAddress = "asd"))
+        this.view?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc",
+                name = "luis", club = "asdasdas", email = "asdasdasd", rankingPosition = 1,
+                pictureAddress = "asd", category = "profissional"))
 
         //assert
         mock.hasBeenHere = true
