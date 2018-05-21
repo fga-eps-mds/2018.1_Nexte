@@ -18,8 +18,7 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.startActivity
+import android.support.v7.widget.DividerItemDecoration
 
 /**
  * Interface responsible to define methods used to get user information data
@@ -51,6 +50,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
+
+        val dividerItemDecoration = DividerItemDecoration(this, requestedOrientation)
+        rankingRecyclerView.addItemDecoration(dividerItemDecoration)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fixedFragment, FixedRowRankingFragment())
