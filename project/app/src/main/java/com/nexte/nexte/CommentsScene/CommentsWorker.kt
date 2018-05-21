@@ -68,7 +68,7 @@ class CommentsWorker {
 
     /**
      * Function responsible to delete the comment at the position set by request
-     * and to send the list [CommentsMockedData] after deletion as the response to interactor
+     * and to send the list [commentsMockedData] after deletion as the response to interactor
      *
      * @param request Position of the comment to be deleted
      * @param completion List of unformatted list of comments after deletion

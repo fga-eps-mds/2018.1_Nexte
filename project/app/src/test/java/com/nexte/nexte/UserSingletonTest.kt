@@ -26,7 +26,8 @@ class UserSingletonTest {
                 "masculino123",
                 "akjsdb",
                 21,
-                "alsjndajks")
+                "alsjndajks",
+                "")
 
         //call
         UserSingleton.setUserInformations(userInformations = userInformations)
@@ -41,6 +42,7 @@ class UserSingletonTest {
         assertEquals(userInformations.club, userInfo.club)
         assertEquals(userInformations.age, userInfo.age)
         assertEquals(userInformations.password, userInfo.password)
+        assertEquals(userInformations.category, userInfo.category)
     }
 
     @Test
@@ -60,6 +62,7 @@ class UserSingletonTest {
         assertEquals(userInformations.club, userInfo.club)
         assertEquals(userInformations.age, userInfo.age)
         assertEquals(userInformations.password, userInfo.password)
+        assertEquals(userInformations.category, userInfo.category)
     }
 
     @After

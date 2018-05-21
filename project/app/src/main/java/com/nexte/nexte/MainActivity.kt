@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 openFragment(feedFragment)
                 return@OnNavigationItemSelectedListener true
 
-            }           // include activity
+            }
 
             R.id.challenge -> {
 //                val intent = Intent(this, ChallengeView::class.java)
