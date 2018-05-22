@@ -1,5 +1,7 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 
@@ -18,7 +20,7 @@ class RankingViewTest {
     @Test
     fun testSetupRankingScene(){
         //prepare
-        this.view?.setupRankingScene()
+        this.view?.setupRankingScene(UserManager(UserAdapterSpy()))
 
         //call
 
@@ -30,7 +32,7 @@ class RankingViewTest {
     @Test
     fun testCreateGetPlayersRequest(){
         //prepare
-        this.view?.setupRankingScene()
+        this.view?.setupRankingScene(UserManager(UserAdapterSpy()))
         val mock = MockRankingsPresentationLogic()
         this.view?.interactor?.presenter = mock
 

@@ -159,7 +159,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     /**
      * Method responsible to set the ranking information on screen
      */
-    fun setupRankingScene(){
+    fun setupRankingScene(userMananger: UserManager = UserManager()){
 
         val view = this
         val interactor = RankingInteractor()
@@ -167,7 +167,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
-        interactor.worker.userManager = UserManager()
+        interactor.worker.userManager = userMananger
         interactor.worker.updateLogic = interactor
         presenter.viewScene = view
     }

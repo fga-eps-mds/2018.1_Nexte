@@ -1,5 +1,7 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 
@@ -15,6 +17,7 @@ class RankingInteractorTest {
     fun setUp() {
         this.mock = MockRankingPresentationLogic()
         this.interactor = RankingInteractor(presenter = mock)
+        this.interactor?.worker?.userManager = UserManager(UserAdapterSpy())
     }
 
     @Test

@@ -5,11 +5,12 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -46,7 +47,6 @@ class RankingWorker {
         val users = userManager?.getAll()
         var players = convertUsersToRankingModelPlayers(users!!)
         players = players.sortedBy { it.rankingPosition }.toTypedArray()
-
         val response = RankingModel.Response(players)
 
         updateLogic?.updateUsersInRanking(response)
@@ -61,10 +61,12 @@ class RankingWorker {
 
                 is Result.Success -> {
                     val json = result.get()
-                    val usersList = convertJsonToListOfUsers(json.obj())
+                    var usersList = convertJsonToListOfUsers(json.obj())
+                    usersList = userManager?.updateMany(usersList)!!
                     var players = convertUsersToRankingModelPlayers(usersList)
                     players = players.sortedBy { it.rankingPosition }.toTypedArray()
                     val newResponse = RankingModel.Response(players)
+
                     updateLogic?.updateUsersInRanking(newResponse)
                 }
             }
@@ -82,29 +84,59 @@ class RankingWorker {
         var usersMutableList = mutableListOf<User>()
         for (counter in 0..usersJsonArray.length()-1){
             val jsonUser = usersJsonArray.getJSONObject(counter)
-            val id =  jsonUser["id"] as String
-            val name = jsonUser["name"] as String
-            val profilePicture = jsonUser["profileImageURL"] as String
-            val nickname = jsonUser["nickname"] as String
-            val birthDate =  Date()
-            val rankingPosition = jsonUser["rankPosition"] as Int
-            val email = jsonUser["email"] as String
-            val phone = jsonUser["phone"] as String
-            val wins = jsonUser["wins"] as Int
-            val loses = jsonUser["loses"] as Int
-            val gender = User.Gender.MALE
-            val category =  UserCategory(name = "a", id = "a")
-            val status = User.Status.AVAILABLE
-            val challengeSended = Challenge(status = Challenge.Status.CONFIRMED, id = "1", challengeDate = Date(), challengedId = "1", challengerId = "1", stage = Challenge.Stage.Played(date = Date(), detail = "asd", fifthGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), firstGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), fourthGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), secondGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), setChallenged = 1, setChallenger = 1, thirdGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1)))
-            val challengeReceived = Challenge(status = Challenge.Status.CONFIRMED, id = "1", challengeDate = Date(), challengedId = "1", challengerId = "1", stage = Challenge.Stage.Played(date = Date(), detail = "asd", fifthGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), firstGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), fourthGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), secondGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1), setChallenged = 1, setChallenger = 1, thirdGame = Challenge.Stage.Played.Game(gameChallenged = 1, gameChallenger = 1)))
-            var latestGames = listOf<Challenge>()
-
-            val user = User(id, name, profilePicture, nickname, birthDate, rankingPosition, email, phone, wins, loses, gender, category, status, challengeSended, challengeReceived, latestGames)
+            val user = createUser(jsonUser)
             usersMutableList.add(user)
-        }
 
+        }
         return usersMutableList.toList()
 
+    }
+
+    /**
+     *
+     */
+    private fun createUser(jsonUser: JSONObject): User{
+        val id =  jsonUser["id"] as String
+        val name = jsonUser["name"] as String
+        val profilePicture = jsonUser["profileImageURL"] as String
+        val nickname = jsonUser["nickname"] as String
+        val rankingPosition = jsonUser["rankPosition"] as Int
+        val email = jsonUser["email"] as String
+        val phone = jsonUser["phone"] as String
+        val wins = jsonUser["wins"] as Int
+        val loses = jsonUser["loses"] as Int
+        val birthDate = SimpleDateFormat("dd-MM-yyyy")
+                .parse((jsonUser["birthDate"] as String))
+        val genderString = jsonUser["gender"] as String
+        var gender: User.Gender? = null
+        if (genderString.equals("M")){
+            gender = User.Gender.MALE
+        }else{
+            gender = User.Gender.FEMALE
+        }
+        val categoryInt = jsonUser["category"] as Int
+        var category = UserCategoryManager().get(categoryInt.toString())
+        val statusInt = jsonUser["status"] as Int
+        var status: User.Status? = null
+        when(statusInt){
+            0 ->
+                status = User.Status.AVAILABLE
+            1 ->
+                status = User.Status.INJURED
+            2 ->
+                status = User.Status.UNAVAILABLE
+            else ->{
+                status = null
+            }
+        }
+        val challengeSended = null
+        val challengeReceived = null
+        var latestGames = listOf<Challenge>()
+
+        val user = User(id, name, profilePicture, nickname, birthDate,
+                rankingPosition, email, phone, wins, loses, gender,
+                category, status!!, challengeSended, challengeReceived, latestGames)
+        return user
     }
 
     /**
