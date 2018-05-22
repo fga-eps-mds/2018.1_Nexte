@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2E2E2E"
-    tools:context=".CommentsScene.CommentsView"
+    tools:context=".CommentsScene.CommentsFragment"
     android:configChanges="keyboard|keyboardHidden">
 
     <EditText

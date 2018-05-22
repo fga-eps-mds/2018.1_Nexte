@@ -1,8 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
-import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,12 +12,13 @@ import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.row_comments.view.*
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Fragment
 import android.widget.EditText
 import com.nexte.nexte.UserSingleton
 
 
 /**
- * Interface to define Display Logic to CommentsView Class that will
+ * Interface to define Display Logic to CommentsFragment Class that will
  * receive information from Presenter
  */
 interface CommentsDisplayLogic {
@@ -36,7 +35,7 @@ interface CommentsDisplayLogic {
  *
  * @property interactor it's a Interactor layer for sending requests [CommentsInteractor]
  */
-class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
+class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
     var interactor: CommentsBusinessLogic? = null
 
@@ -45,12 +44,17 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      *
      * @param savedInstanceState
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
 
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comments)
+    fun getInstance(): CommentsFragment{
+        val commentsFragment = CommentsFragment()
+        return commentsFragment
+    }
 
-        commentsRecyclerView.layoutManager = LinearLayoutManager(this)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        val view = inflater?.inflate(R.layout.activity_comments, container, false)
+
+        commentsRecyclerView.layoutManager = LinearLayoutManager(this.activity)
         this.setUpCommentsScene()
 
         this.setActionToCloseKeyboard(mainLayout)
@@ -62,7 +66,11 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
         commentEditText.setOnClickListener {
             rollToEndOfList()
         }
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+
     }
+
 
     /**
      * Method responsible to setup all the references of this scene
@@ -86,7 +94,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
     override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
         commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
-                this)
+                this.parentFragment)
     }
 
     /**
@@ -105,7 +113,7 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      * @param viewModel is received from presenter to show on screen
      */
     override fun displayComplaintMessage(viewModel: CommentsModel.ComplaintRequest.ViewModel) {
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this.activity)
         builder.setCancelable(true)
         builder.setMessage(viewModel.alertMessage)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
@@ -139,10 +147,10 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
     }
 
     private fun hideSoftKeyboard() {
-        val inputMethodManager = this.getSystemService(
+        val inputMethodManager = this.activity.getSystemService(
                 Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(
-                this.currentFocus!!.windowToken, 0)
+                this.activity.currentFocus!!.windowToken, 0)
     }
 
     private fun rollToEndOfList(){
@@ -166,36 +174,36 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
      * Adapter Class to control recycler view on ListLike
      *
      * @property comments It's a list of all comments
-     * @property context Context that will show this adapter
+     * @property fragment Context that will show this adapter
      */
     class CommentsAdapter(var comments: MutableList<CommentsModel.CommentFormatted>,
-                          private val context: Context) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+                          private val fragment: Fragment) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-                CommentsView.CommentsAdapter.ViewHolder {
+                CommentsFragment.CommentsAdapter.ViewHolder {
 
-            val view = LayoutInflater.from(context).inflate(R.layout.row_comments,
+            val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_comments,
                     parent,
                     false)
             view.setOnClickListener {
-                (context as CommentsView).hideSoftKeyboard()
+                (fragment as CommentsFragment).hideSoftKeyboard()
             }
-            return CommentsView.CommentsAdapter.ViewHolder(view)
+            return CommentsFragment.CommentsAdapter.ViewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: CommentsView.CommentsAdapter.ViewHolder,
+        override fun onBindViewHolder(holder: CommentsFragment.CommentsAdapter.ViewHolder,
                                       position: Int) {
 
             holder.bindView(comments[position])
             val message = String.format("Tem certeza que deseja denunciar o usuário " +
                     "%s pela mensagem \"%s\"?", comments[position].username, comments[position].comment)
             holder.itemView.reportButton.setOnClickListener {
-                val builder = AlertDialog.Builder(context)
+                val builder = AlertDialog.Builder(fragment.activity)
                 builder.setCancelable(true)
                 builder.setMessage(message)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
                     val request = CommentsModel.ComplaintRequest.Request(position)
-                    (context as CommentsView).interactor?.sendComplaint(request)
+                    (fragment as CommentsFragment).interactor?.sendComplaint(request)
                     dialogInterface.dismiss()
                 })
                 builder.setNegativeButton("Não", { dialogInterface, _ ->
@@ -208,12 +216,12 @@ class CommentsView: AppCompatActivity(), CommentsDisplayLogic {
 
             val messageDel = "Tem certeza que deseja excluir esse comentário?"
             holder.itemView.deleteButton.setOnClickListener {
-                val builder = AlertDialog.Builder(context)
+                val builder = AlertDialog.Builder(fragment.activity)
                 builder.setCancelable(true)
                 builder.setMessage(messageDel)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
                     val request = CommentsModel.DeleteCommentRequest.Request(position)
-                    (context as CommentsView).interactor?.deleteComment(request)
+                    (fragment as CommentsFragment).interactor?.deleteComment(request)
                     dialogInterface.dismiss()
                 })
                 builder.setNegativeButton("Não", { dialogInterface, _ ->
