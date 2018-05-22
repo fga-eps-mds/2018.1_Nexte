@@ -23,9 +23,10 @@
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="409dp"
         android:layout_above="@+id/bottom_nav_view"
         android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

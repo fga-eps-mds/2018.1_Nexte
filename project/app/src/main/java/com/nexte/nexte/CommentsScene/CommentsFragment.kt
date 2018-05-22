@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.row_comments.view.*
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Fragment
+import android.support.constraint.ConstraintLayout
+import android.widget.Button
 import android.widget.EditText
 import com.nexte.nexte.UserSingleton
 
@@ -37,12 +39,14 @@ interface CommentsDisplayLogic {
  */
 class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
+    var commentsRecyclerView : RecyclerView? = null
     var interactor: CommentsBusinessLogic? = null
+    var sendButton : Button? = null
+    var commentEditText: EditText? = null
+    var mainLayout: ConstraintLayout? = null
 
     /**
      * On Create method that will setup this scene and call first Request for Interactor
-     *
-     * @param savedInstanceState
      */
 
     fun getInstance(): CommentsFragment{
@@ -54,20 +58,25 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
         val view = inflater?.inflate(R.layout.activity_comments, container, false)
 
-        commentsRecyclerView.layoutManager = LinearLayoutManager(this.activity)
+        commentsRecyclerView = view?.findViewById(R.id.commentsRecyclerView)
+        sendButton = view?.findViewById(R.id.sendButton)
+        commentEditText = view?.findViewById(R.id.commentEditText)
+        mainLayout = view?.findViewById(R.id.mainLayout)
+
+        commentsRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
         this.setUpCommentsScene()
 
-        this.setActionToCloseKeyboard(mainLayout)
+        this.setActionToCloseKeyboard(mainLayout!!)
 
         val request = CommentsModel.GetCommentsRequest.Request()
         interactor?.recentComments(request)
 
-        sendButton.setOnClickListener(sendCommentAction)
-        commentEditText.setOnClickListener {
+        sendButton?.setOnClickListener(sendCommentAction)
+        commentEditText?.setOnClickListener {
             rollToEndOfList()
         }
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return view!!
 
     }
 
@@ -93,8 +102,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
      */
     override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
-        commentsRecyclerView.adapter = CommentsAdapter(viewModel.commentsFormatted,
-                this.parentFragment)
+        commentsRecyclerView?.adapter = CommentsAdapter(viewModel.commentsFormatted, this)
     }
 
     /**
@@ -104,7 +112,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
      */
 
     override fun displayPublishedComment(viewModel: CommentsModel.PublishCommentRequest.ViewModel) {
-        (commentsRecyclerView.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
+        (commentsRecyclerView?.adapter as CommentsAdapter).addItem(viewModel.newCommentFormatted)
     }
 
     /**
@@ -124,7 +132,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     }
 
     override fun displayCommentsAfterDel(viewModel: CommentsModel.DeleteCommentRequest.ViewModel) {
-        (commentsRecyclerView.adapter as CommentsAdapter).deleteComment(viewModel.delCommentsFormatted)
+        (commentsRecyclerView?.adapter as CommentsAdapter).deleteComment(viewModel.delCommentsFormatted)
     }
 
     private fun setActionToCloseKeyboard(view: View) {
@@ -154,18 +162,18 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     }
 
     private fun rollToEndOfList(){
-        commentsRecyclerView.smoothScrollToPosition(
-                commentsRecyclerView.adapter.itemCount-1
+        commentsRecyclerView?.smoothScrollToPosition(
+                commentsRecyclerView?.adapter!!.itemCount-1
         )
     }
 
     private val sendCommentAction = View.OnClickListener {
-        if(commentEditText.text.isNotEmpty()){
+        if(commentEditText?.text!!.isNotEmpty()){
             val request = CommentsModel.PublishCommentRequest.Request(
-                    commentEditText.text.toString()
+                    commentEditText?.text.toString()
             )
             interactor?.publishNewComment(request)
-            commentEditText.text.clear()
+            commentEditText?.text?.clear()
             rollToEndOfList()
         }
     }
