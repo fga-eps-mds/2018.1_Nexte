@@ -18,6 +18,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.activity_feed_view.*
 import kotlinx.android.synthetic.main.row_feed.view.*
+import android.support.v4.app.Fragment
 
 /**
  * Interface to define Display Logic to FeedView Class that will receive information
@@ -45,7 +46,7 @@ interface FeedDisplayLogic {
 //    var name: String? = null
 //}
 
-class FeedView : AppCompatActivity(), FeedDisplayLogic {
+class FeedView : Fragment(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
@@ -58,7 +59,7 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed_view)
+        // setContentView(R.layout.activity_feed_view)
 
         /**
          * Testing Realm Database
@@ -98,6 +99,13 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
 
         val request = FeedModel.GetFeedActivities.Request()
         interactor?.fetchFeed(request)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view = inflater?.inflate(R.layout.activity_feed_view, container, false)
+
+        return view
     }
 
     /**
@@ -256,5 +264,9 @@ class FeedView : AppCompatActivity(), FeedDisplayLogic {
                 }
             }
         }
+    }
+
+    companion object {
+        fun newInstance() : FeedView = FeedView()
     }
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeedScene.FeedView"
     android:background="#2E2E2E">
 
     <android.support.v7.widget.RecyclerView
