@@ -42,26 +42,23 @@
 ## **1. Indicadores da Equipe**
 
 ### **1.1. Resumo da Sprint**
-![Resumo da Sprint](https://i.imgur.com/y8kTCFC.png)
+![Resumo da Sprint](https://i.imgur.com/HSM9gvN.png)
 
-Como pode-se observar a equipe concluiu nessa _Sprint_, 7 das 8 histórias planejadas, sendo que uma delas foi débito da Sprint 8, totalizando uma pontuação total de 70 de 83 pontos concluídos.
+Como pode-se observar a equipe concluiu nessa _Sprint_, 7 das 7 histórias planejadas, sendo que uma delas foi débito da Sprint 9, totalizando uma pontuação total de 70 de 70 pontos concluídos.
 
 #### 1.2.1. Burndown
-![Burndown](https://i.imgur.com/yaQmeYe.png)
+![Burndown](https://i.imgur.com/C8CYk9X.png)
 
-Nessa Sprint, houve um impecílio para a Membro Letícia, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, e não foi entregue no sábado, houve falha de comunicação das duas em realção à história que deveria ser feita. houve o Burndow caiu somente no final, pois sábado haviam pull requests, porém não estavam passando, o que foi necessário abrir exceção para aceitá-los no domingo, o que ainda sim não deu certo, e na segunda feira dia 21 ainda estava com pull requests a serem concertados pelos membros, houve um impecílio de um dos pull requests onde um dos PRs anteriores não havia side dado Merge, e isso foi feito sábado dia 19, o que atrapalhou o andamento de alguns PRs e fez com que ele não caísse como desejado.
+O Burndow caiu somente no final, pois sábado haviam pull requests, porém não estavam passando, o que foi necessário abrir exceção para aceitá-los no domingo, o que ainda sim não deu certo, e na segunda feira dia 21 ainda estava com pull requests a serem concertados pelos membros, houve um impecílio de um dos pull requests onde um dos PRs anteriores não havia side dado Merge, e isso foi feito sábado dia 19, o que atrapalhou o andamento de alguns PRs e fez com que ele não caísse como desejado.
 
 ### 1.2.2. Commits por dia
-![Commits por dia](https://i.imgur.com/dfQsFct.png)
+![Commits por dia](https://i.imgur.com/lHL9HW4.png)
 
-Pode-se observar que nessa sprint houve o menor número de commits de todo o projeto, os integrantes estavam bem atarefados, o que é vísivel pelo números de commits durante a semana e que os picos de commits foram quinta e sábado.
-
+Pode-se observar que nessa sprint o início dos trabalhos realmente começou no domingo e se intensificou na terça, cresceu na quinta, aumentou drásticamente na sexta e ficou muito alto no sábado, isso é um reflexo que o time deixou para fazer suas histórias basicamento no final da sprint, inclusive no último dia dela.
 ### **1.3. Produtividade**
 
 #### 1.3.1. Velocity
-
-![Velocity Sprint8](https://i.imgur.com/fqlnh3p.png)
-![](https://i.imgur.com/NNy80iG.png)
+![](https://i.imgur.com/ckIVHmz.png)
 
 Como pode-se observar a equipe fechou pontos praticamente iguais à sprint passda, o velocity abaixou em relação à média até a sprint anterior que era de 75,67 e agora está em que na sprint anterior, porém as histórias foram fechadas restando apenas 2 débitos técnicos, o que representou uma pequena melhora em relação à Sprint passada, porém a quantidade de pontos planejadas não foi tão grande, o que acarretou em uma queda no Velocity de aproximadamente 2 pontos.
 
@@ -187,6 +184,8 @@ Alguns deles são:
 Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão de código definido pela equipe, logo está métrica não foi ferida ao finalizar a sprint.
 
 ## **5. Análise do Scrum Master**
+
+Nessa Sprint, houve um impecílio para a Membro Letícia, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em realção à história que deveria ser feita.
 
 Essa sprint foi a sprint do projeto que teve uma melhora por parte dos membros de EPS, dando suporte e tirando dúvidas do projeto com o pessoal de MDS, houveram duas duas dívidas técnicas, uma que já estava desde a sprint passada.
 Houve uma melhora na comunicação de modo geral, somente a integrante Letícia teve uma dificuldade em pedir ajuda quando necessário.
