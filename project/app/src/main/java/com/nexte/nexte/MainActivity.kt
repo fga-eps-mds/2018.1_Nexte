@@ -11,6 +11,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
 import com.nexte.nexte.FeedScene.FeedFragment
+import com.nexte.nexte.RankingScene.RankingView
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,8 +59,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ranking -> {
-//                val intent = Intent(this, RankingView::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, RankingView::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 
