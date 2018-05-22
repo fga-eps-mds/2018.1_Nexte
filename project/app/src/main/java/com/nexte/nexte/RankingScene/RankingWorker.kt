@@ -106,7 +106,7 @@ class RankingWorker {
         val wins = jsonUser["wins"] as Int
         val loses = jsonUser["loses"] as Int
         val birthDate = SimpleDateFormat("dd-MM-yyyy")
-                .parse((jsonUser["birthDate"] as String))
+                .parse(jsonUser["birthDate"] as String)
         val genderString = jsonUser["gender"] as String
         var gender: User.Gender? = null
         if (genderString.equals("M")){
@@ -176,7 +176,7 @@ class RankingWorker {
         val allGames = wins + losses
         val efficiency: String?
         if (allGames != 0){
-            efficiency = "" + (wins/allGames*100).toString() + "%"
+            efficiency = "" + (wins/allGames*oneHundredPercent).toString() + "%"
         }else{
             efficiency = "100%"
         }
@@ -202,7 +202,7 @@ class RankingWorker {
             if (today.month == latestGameDate.month){
                 if (today.day == latestGameDate.day){
                     latestGame = "hoje"
-                }else if(today.day == (latestGameDate.day - 1)){
+                }else if(today.day == latestGameDate.day - 1){
                     latestGame = "ontem"
                 }else{
                     latestGame = "" + (today.day - latestGameDate.day) + " days"
@@ -215,5 +215,9 @@ class RankingWorker {
         }
 
         return latestGame
+    }
+
+    companion object {
+        const val oneHundredPercent = 100
     }
 }
