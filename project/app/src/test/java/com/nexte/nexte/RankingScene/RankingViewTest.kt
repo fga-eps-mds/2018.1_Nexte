@@ -7,6 +7,7 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.concurrent.thread
 
 class RankingViewTest {
 
@@ -37,7 +38,7 @@ class RankingViewTest {
         this.view?.interactor?.presenter = mock
 
         //call
-        this.view?.createGetPlayersRequest()
+        thread { this.view?.createGetPlayersRequest() }.join()
 
         //assert
         assertNotNull(mock.response)

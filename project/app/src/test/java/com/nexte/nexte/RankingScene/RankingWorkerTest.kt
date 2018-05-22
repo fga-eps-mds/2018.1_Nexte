@@ -9,7 +9,7 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
-import org.mockito.internal.configuration.plugins.Plugins
+import kotlin.concurrent.thread
 
 class RankingWorkerTest {
 
@@ -35,16 +35,16 @@ class RankingWorkerTest {
         val request = RankingModel.Request()
 
         //call
-        this.worker?.getUsersInRanking(request = request)
+        thread { this.worker?.getUsersInRanking(request = request) }.join()
 
         //assert
         assertEquals(this.mock?.response?.players?.size, 9)
         assertEquals(this.mock?.response?.players!![0].name, "User test")
         assertEquals(this.mock?.response?.players!![3].wins, 0)
         assertEquals(this.mock?.response?.players!![1].rankingPosition, 1)
-        assertEquals(this.mock?.response?.players!![9].playerCategory, null)
-        assertEquals(this.mock?.response?.players!![15].lastGame, "Nenhum jogo")
-        assertEquals(this.mock?.response?.players!![11].efficiency, "0%")
+        assertEquals(this.mock?.response?.players!![4].playerCategory, "")
+        assertEquals(this.mock?.response?.players!![5].lastGame, "Nenhum jogo")
+        assertEquals(this.mock?.response?.players!![6].efficiency, "100%")
 
     }
 

@@ -7,17 +7,22 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.concurrent.thread
 
 class RankingInteractorTest {
 
     private var interactor: RankingInteractor? = null
     private var mock: MockRankingPresentationLogic? = null
+    private var rankingUpdateLogicMock: MockRankWorkerUpdateLogic? = null
 
     @Before
     fun setUp() {
         this.mock = MockRankingPresentationLogic()
         this.interactor = RankingInteractor(presenter = mock)
         this.interactor?.worker?.userManager = UserManager(UserAdapterSpy())
+        this.rankingUpdateLogicMock = MockRankWorkerUpdateLogic()
+        this.interactor?.worker?.updateLogic = rankingUpdateLogicMock
+        this.rankingUpdateLogicMock?.mock = mock
     }
 
     @Test
@@ -30,6 +35,7 @@ class RankingInteractorTest {
         val oldWorker = interactor.worker
         interactor.worker = newWorker
 
+
         //assert
         assertNotNull(interactor)
         assertNotNull(oldWorker)
@@ -39,10 +45,14 @@ class RankingInteractorTest {
     @Test
     fun testGetPlayersRanksForScene(){
         //prepare
+        val newWorker = RankingWorker()
         val request = RankingModel.Request()
 
         //call
-        this.interactor?.getPlayersRanksForScene(request = request)
+        val interactor = RankingInteractor()
+        val oldWorker = interactor.worker
+        interactor.worker = newWorker
+        thread { this.interactor?.getPlayersRanksForScene(request = request) }.join()
 
         //assert
         assertEquals(this.mock?.passedHere, true)
@@ -70,5 +80,13 @@ private class MockRankingPresentationLogic: RankingPresentationLogic{
 
     override fun presentRanking(response: RankingModel.Response) {
         this.passedHere = true
+    }
+}
+
+private class MockRankWorkerUpdateLogic : RankingWorkerUpdateLogic{
+    var mock: MockRankingPresentationLogic? = null
+
+    override fun updateUsersInRanking(response: RankingModel.Response) {
+        this.mock?.presentRanking(response)
     }
 }
