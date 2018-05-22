@@ -127,7 +127,7 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 
 #### 2.2. _Burndown risk_
 
-![Burndow Risk do Projeto](https://i.imgur.com/y7t9Is6.png)
+![Burndow Risk do Projeto](https://i.imgur.com/XUaRP1e.png)
 
 Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
@@ -135,8 +135,8 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 
 | ID | Status | Por que mudou? |
 |---|---|---|
-| RN02 | aumentou | Esse risco aumentou pois nessa hisprint houve um perigo que muitas histórias não serem entregues e não foi por conta da complexidade e sim por falta do comprometimento dos membros|
-| RN06 | aumentou | Alguns membros estavam atarefados com outras matérias e um membro estava "disponível" mas não trabalhou no projeto|
+| RN02 | aumentou | Esse risco aumentou pois nessa hisprint houve um perigo que muitas histórias não serem entregues e não foi por conta da complexidade e sim por falta do comprometimento dos membros e está chegando a copa do mundo, que é um perídodo em que as pessoas normalmente não trabalham por conta dos jogos|
+| RN06 | aumentou | Alguns membros estavam atarefados com outras matérias e um membro estava "disponível" mas não trabalhou no projeto e está chegando a copa do mundo, que é um perídodo em que as pessoas normalmente não trabalham por conta dos jogos|
 | RN07 | aumentou | Houve uma falha na comunicação entre uma dupla de pareamento entre si e entre elas e o time.|
 | RN05 | diminuiu | O membro já está fazendo algumas tarefas e mostrando grande empenho no projeto para mitigar esse risco|
 
@@ -145,7 +145,7 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 | ID | Como mitigar |
 |---|---|
 | RN01 | O pareamento entre membros de EPS e MDS vai continuar. |
-| RN02 | vai  haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada. |
+| RN02 | vai  haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada, além disse me relação aos outros membros pois aconteceu parecido com a maioria do time. Além disso o período da copa do mundo vai ser organizado para que os membros trabalhem em conjunto. |
 | RN03 | E dito que a qualquer problema, qualquer membro deve tentar resolver, caso não consigam, deve-se pedir ajuda o mais rápido possível |
 | RN04 | Os membros de EPS trabalharão no servidor juntamente com o cliente. Segundo o planejamento da equipe esse servidor estará disponível para a aplicação a partir da sprint 10. |
 | RN06 | Alguns membros já têm viagens marcadas, como os membros Guilherme Baldissera e Geovanni Oliveira, para que no período de ausênsia seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
@@ -160,7 +160,7 @@ A agregação de valor foi acima do que foi planejado, com a diferença de R$ 5.
 
 ## **4. Análise de código**
 
-![](https://i.imgur.com/JYmC156.png)
+![](https://i.imgur.com/jmCXPFh.png)
 
 **Quantidade de linhas por método**
 Dois métodos estão diagnosticados como longos, eles vêm das classes de tipo Mocke, em uma sprint que haverá refatoração de código ele será alocado para adequar à métrica proposta.  
@@ -170,12 +170,11 @@ Não houve classes que ferissem esta métrica, todas estão dentro do parâmetro
 
 
 **Complexidade ciclomática**
-Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 459 e temos 291 métodos, o que dá uma média de 1,57 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite acertado pela ferramente por complexidade individual é 10.
+Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 460 e temos 292 métodos, o que dá uma média de 1,57 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite acertado pela ferramente por complexidade individual é 10.
 
 **Quantidade de code smells**
 9 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, está bem próximo do limiar não aceitável.
 Alguns deles são:
- - Nomeação d
  - Um método está com a complexidade ciclomática acima de 10, o que não é recomendado nem aceitável, loco a análise estática relatou esta ocorrência.
  - Nome de variável
  - um construtor de classe vazio
@@ -185,8 +184,7 @@ Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão 
 
 ## **5. Análise do Scrum Master**
 
-Nessa Sprint, houve um impecílio para a Membro Letícia, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em realção à história que deveria ser feita.
+Nessa Sprint, houve um impecílio para o grupo, pois todos os Pull requests foram feitos no sábado e as histórias não foram fechadas, o que foi inaceitável, e realmente foi concluída na segunda feira dia 21, além disso a Membro Letícia teve um impedimento, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar em uma história mais leve, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em realção à história que deveria ser feita e dificuldades. 
+Novamente a história de testar view com testes unitários ficou como dívida técnica, e na próxima sprint ela deve ser fechada, e terá um membro alocado comente para ela durante toda a sprint.
+A história entre Gabriel Albino e Lorrany foi a última a ser aceita, mas foi algo do time como um todo, o que acontecerá na próxima sprint é que eu, como scrum master vou averiguar a situação do andamento de cada história com cada dupla de paremento.
 
-Essa sprint foi a sprint do projeto que teve uma melhora por parte dos membros de EPS, dando suporte e tirando dúvidas do projeto com o pessoal de MDS, houveram duas duas dívidas técnicas, uma que já estava desde a sprint passada.
-Houve uma melhora na comunicação de modo geral, somente a integrante Letícia teve uma dificuldade em pedir ajuda quando necessário.
-Os membros estão mais comprometidos com o projeto, e estão sendo mais transparentes em relação aos impedimentos que vão dificultar a participação deles no projeto, isso fez com que a alocação de membros mais atarefados fosse priorizada. 
