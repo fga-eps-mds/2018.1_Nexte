@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FA3F42</color>
-    <color name="colorPrimaryDark">#50E3C2</color>
-    <color name="colorAccent">#E6AD3C</color>
-
+    <color name="darkGrey">#212121</color>
+    <color name="black">#000000</color>
+    <color name="gold">#e6ad3c</color>
+    <color name="red">#fa3f42</color>
+    <color name="background">#4a4a4a</color>
+    <color name="green">#50e3c2</color>
+    <color name="hint_color_pattern">#535151</color>
 </resources>

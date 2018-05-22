@@ -247,14 +247,14 @@ style:
     excludeImports: 'java.util.*,kotlinx.android.synthetic.*'
   MaxLineLength:
     active: true
-    maxLineLength: 120
+    maxLineLength: 150
     excludePackageStatements: false
     excludeImportStatements: false
   EqualsNullCall:
     active: false
   ForbiddenComment:
     active: true
-    values: 'TODO:,FIXME:,STOPSHIP:'
+    values: 'FIXME:,STOPSHIP:'
   ForbiddenImport:
     active: false
     imports: ''
@@ -349,7 +349,7 @@ style:
   UseDataClass:
     active: false
   UnusedImports:
-    active: false
+    active: true
   ExpressionBodySyntax:
     active: false
   NestedClassesVisibility:

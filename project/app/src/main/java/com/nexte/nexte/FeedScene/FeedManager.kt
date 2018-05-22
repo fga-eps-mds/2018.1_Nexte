@@ -1,6 +1,6 @@
 package com.nexte.nexte.FeedScene
 
-import com.nexte.nexte.Mocker.FeedMocker
+import com.nexte.nexte.Entities.FeedMocker
 
 /**
  * Object class for use static mode in other classes.

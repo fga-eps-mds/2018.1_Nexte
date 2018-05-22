@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/matchActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:background="#2E2E2E">
+
+
+    <ImageView
+        android:id="@+id/imageChallenged"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/imageChallenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="X"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageChallenged"
+        app:layout_constraintEnd_toStartOf="@+id/imageChallenged"
+        app:layout_constraintStart_toEndOf="@+id/imageChallenger"
+        app:layout_constraintTop_toTopOf="@+id/imageChallenger" />
+
+    <TextView
+        android:id="@+id/challengerName"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Challenger"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageChallenger"
+        app:layout_constraintStart_toStartOf="@+id/imageChallenger"
+        app:layout_constraintTop_toBottomOf="@+id/imageChallenger" />
+
+    <TextView
+        android:id="@+id/challengedName"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Challenged"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
+        app:layout_constraintStart_toStartOf="@+id/imageChallenged"
+        app:layout_constraintTop_toBottomOf="@+id/imageChallenged" />
+
+    <TextView
+        android:id="@+id/fixMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Você já jogou? Informe o resultado!"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageChallenged"
+        app:layout_constraintStart_toStartOf="@+id/imageChallenger"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+        android:id="@+id/buttonGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:rrbg_animate="true"
+        app:rrbg_animateSelector="2"
+        app:rrbg_animateSelector_duration="100"
+        app:rrbg_animateTexts_enter="overshoot"
+        app:rrbg_backgroundColor="#2E2E2E"
+        app:rrbg_dividerColor="#2E2E2E"
+        app:rrbg_dividerSize="1dp"
+        app:rrbg_radius="10dp"
+        app:rrbg_selectorColor="#fa3f42"
+        app:rrbg_selectorSize="4dp">
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/actionModeSplitBackground"
+            android:backgroundTint="@color/darkGrey"
+            android:foreground="@color/background"
+            android:foregroundTint="@android:color/transparent"
+            app:rrb_checked="false"
+            app:rrb_text="1"
+            app:rrb_textColor="#FFFFFF" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_checked="false"
+            app:rrb_text="3"
+            app:rrb_textColor="#FFFFFF" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonFive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_checked="false"
+            app:rrb_text="5"
+            app:rrb_textColor="#FFFFFF" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/buttonWO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_checked="false"
+            app:rrb_text="WO"
+            app:rrb_textColor="#FFFFFF" />
+    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="23dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="70dp"
+        android:text="Melhor de"
+        android:textAlignment="center"
+        android:textColor="@color/hint_color_pattern"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/challengedName"
+        app:layout_constraintStart_toEndOf="@+id/challengerName"
+        app:layout_constraintTop_toBottomOf="@+id/x" />
+</android.support.constraint.ConstraintLayout>

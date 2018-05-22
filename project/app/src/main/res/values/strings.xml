@@ -17,9 +17,11 @@
     <string name="title_activity_show_profile">ShowProfileActivity</string>
     <string name="title_activity_feed_view">FeedView</string>
 
-    <string name="FACEBOOK_APP_ID">1649151788738895</string>
-    <string name="ACCOUNT_KIT_CLIENT_TOKEN">c776fc2fa28197d69bda7826df30567c</string>
+    <!--Account Kit-->
 
+    <string name="FACEBOOK_APP_ID">165708047598044</string>
+    <string name="ak_login_protocol_scheme">ak165708047598044</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">19cbea5f56f6e79143670c57d334e290</string>
     <string name="user_picture">User picture</string>
     <string name="nome">nome</string>
     <string name="_2">#2</string>
@@ -27,4 +29,14 @@
     <string name="vitorias_x">Vitorias: X</string>
     <string name="derrotas_x">Derrotas: X</string>
     <string name="check">✓</string>
+    <string name="enviados">Enviados</string>
+    <string name="recebidos">Recebidos</string>
+    <string name="enviar">Enviar</string>
+    <string name="enviar_desafio">Enviar Desafio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="n">#N</string>
+    <string name="userpicture">UserPicture</string>
+    <string name="tenistas">Tenistas</string>
 </resources>

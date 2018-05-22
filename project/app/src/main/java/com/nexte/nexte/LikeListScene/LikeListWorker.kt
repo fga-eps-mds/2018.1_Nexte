@@ -1,5 +1,21 @@
 package com.nexte.nexte.LikeListScene
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
+
+/**
+ * Interface to define Response Logic of Like List Class
+ * that will be used to make the communication between worker and interactor
+ */
+interface WorkerUpdateLogic {
+
+    /**
+     * * Method that will be used to pass response data for the presenter
+     *
+     * @param response Response model of list that contains data to pass for Presenter
+     */
+    fun updateUsers(response: LikeListModel.Response)
+}
 
 /**
  * Class responsible to do request from view, format response and call
@@ -7,17 +23,18 @@ import com.nexte.nexte.R
  */
 class LikeListWorker {
 
+    var updateLogic: WorkerUpdateLogic? = null
+    var userManager: UserManager? = null
+
     /**
      * Function to fetch like list data of server
      *
      * @param request
-     * @param completion
      */
-    fun getListLikesPlayers(request: LikeListModel.Request, completion:
-    (LikeListModel.Response) -> Unit) {
-
-        val response = LikeListModel.Response(this.generateLikeList())
-        completion(response)
+    fun getListLikesPlayers(request: LikeListModel.Request){
+        val player = userManager?.get(request.request)
+        val response = LikeListModel.Response(this.convertUserToLikeListPlayer(user = player))
+        this.updateLogic?.updateUsers(response = response)
     }
 
     /**
@@ -25,18 +42,9 @@ class LikeListWorker {
      *
      * @return MutableList of addPLayers
      */
-    private fun generateLikeList(): MutableList<LikeListModel.Players> {
+    private fun convertUserToLikeListPlayer(user: User?): MutableList<LikeListModel.Players> {
+        val likeListModelPlayer = LikeListModel.Players(name = user!!.name, time = "", photo = R.mipmap.ic_launcher)
 
-        val player1 = LikeListModel.Players("Alexandre", R.mipmap.ic_launcher, String())
-        val player2 = LikeListModel.Players("Lorrany", R.mipmap.ic_launcher, String())
-        val player3 = LikeListModel.Players("Letícia", R.mipmap.ic_launcher, String())
-        val player4 = LikeListModel.Players("Larissa", R.mipmap.ic_launcher, String())
-
-        val addPlayers: MutableList<LikeListModel.Players> = mutableListOf(
-                player1,
-                player2,
-                player3,
-                player4)
-        return addPlayers
+        return mutableListOf(likeListModelPlayer)
     }
 }

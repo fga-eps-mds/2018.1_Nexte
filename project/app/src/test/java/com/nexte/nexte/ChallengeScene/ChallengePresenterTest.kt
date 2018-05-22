@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Test
@@ -20,7 +21,7 @@ class ChallengePresenterTest {
     }
 
     @Test
-    fun formatPlayersToChallenge() {
+    fun successFormatPlayersToChallenge() {
         //prepare
         val name = "Gabriel"
         val rankingPosition = 1
@@ -30,12 +31,13 @@ class ChallengePresenterTest {
         val club = "clubTop"
         val age = 19
         val password = "adoroPicole"
+        val category = "profissional"
         val nameFormatted = "Gabriel"
         val rankingPositionFormatted = "#1"
         val pictureAddressFormatted = "https://www.algumsite.com.br/algumaimagem.png"
 
         val players = listOf(
-                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password)
+                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password,  category)
         )
         val playerFormatted = ChallengeModel.FormattedPlayer(nameFormatted, rankingPositionFormatted, pictureAddressFormatted)
 
@@ -50,6 +52,47 @@ class ChallengePresenterTest {
         assertEquals(playerFormatted.rankingPosition, this.mock?.formattedPlayersToShow?.get(0)?.rankingPosition)
     }
 
+    @Test
+    fun successFormatExpandedChallengedInfo() {
+        //prepare
+        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(
+                ChallengeModel.PlayerRankingDetails("larissa", 0,  0, 5)
+        )
+
+        //call
+        this.presenter?.formatExpandedChallengedInfo(response)
+
+        //assert
+        assertEquals(mock?.formattedPlayerToChallenge?.name, "larissa")
+        assertEquals(mock?.formattedPlayerToChallenge?.wins, "VITÓRIAS: 0")
+        assertEquals(mock?.formattedPlayerToChallenge?.loses, "DERROTAS: 0")
+        assertEquals(mock?.formattedPlayerToChallenge?.rankingPosition, "#5")
+    }
+
+    @Test
+    fun successFormatMessage() {
+        //prepare
+        val match = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
+        val response = ChallengeModel.ChallengeButtonRequest.Response("larissa", match)
+
+        //call
+        this.presenter?.formatMatch(response)
+
+        //assert
+        assertNotNull(this.mock?.formattedMessageToShow)
+    }
+
+    @Test
+    fun successGetViewChallenge(){
+        //prepare and call
+        val viewChallenge = ChallengePresenter().viewChallenge
+
+        //assert
+        assertNull(viewChallenge)
+    }
+
     @After
     fun tearDown(){
         this.mock = null
@@ -59,8 +102,10 @@ class ChallengePresenterTest {
 
 
 private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
+
     var formattedPlayersToShow: List<ChallengeModel.FormattedPlayer>? = null
     var formattedPlayerToChallenge: ChallengeModel.FormattedRankingDetails?= null
+    var formattedMessageToShow: String?= null
 
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
          this.formattedPlayersToShow = viewModel.formattedPlayer
@@ -68,5 +113,13 @@ private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
 
     override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
         this.formattedPlayerToChallenge = viewModel.challengedRankingDetails
+    }
+
+    override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+        this.formattedMessageToShow = viewModel.messageForChallenger
+    }
+
+    override fun displayNoPlayersMessage(messageText: String) {
+        this.formattedMessageToShow = messageText
     }
 }

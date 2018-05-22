@@ -1,70 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nexte.nexte.ChallengeScene.ChallengeView">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:orientation="horizontal"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/columns_challenged" />
+        android:background="?android:attr/colorForegroundInverse"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/black"
+        app:tabMode="fixed"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <TextView
-        android:id="@+id/expandedRankingTextView"
-        android:layout_width="49dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/r"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabPlayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tenistas" />
 
-    <TextView
-        android:id="@+id/expandedWins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/vitorias_x"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
-        app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enviados" />
 
-    <TextView
-        android:id="@+id/expandedLosses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/derrotas_x"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
-        app:layout_constraintStart_toEndOf="@+id/expandedWins" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabReceived"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recebidos" />
+    </android.support.design.widget.TabLayout>
 
-    <TextView
-        android:id="@+id/expandedName"
-        android:layout_width="124dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/nome"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"
-        app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-</android.support.constraint.ConstraintLayout>
-
-    <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager" -->
+</LinearLayout>

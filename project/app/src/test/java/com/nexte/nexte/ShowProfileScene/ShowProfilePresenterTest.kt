@@ -19,11 +19,15 @@ class ShowProfilePresenterTest {
         this.presenter?.viewScene = mock
     }
 
+
     @Test
     fun successPresentUserProfile(){
         //prepare
-        val response = ShowProfileModel.Response(user = Player(name = "gabrielalbino", rankingPosition = 2, pictureAddress = "imgur.com/nudh486d4", email = "enggabriel@gmail.com", gender = "masculino", club = "ASCAD", age = 19, password = "123456"))
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "gabrielalbino", rank = "#2", club = "ASCAD", email = "enggabriel@gmail.com", age = "19")
+        val response = ShowProfileModel.Response(user = Player(name = "gabrielalbino", rankingPosition = 2,
+                pictureAddress = "imgur.com/nudh486d4", email = "enggabriel@gmail.com", gender = "masculino", club = "ASCAD",
+                age = 19, password = "123456", category = "profissional"))
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "gabrielalbino", rank = "#2",
+                club = "ASCAD", email = "enggabriel@gmail.com", age = "19")
 
         //call
         this.presenter?.presentUserProfile(response = response)

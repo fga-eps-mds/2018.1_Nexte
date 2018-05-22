@@ -27,6 +27,7 @@ class ShowProfileWorkerTest {
                 "",
                 "",
                 -1,
+                "",
                 "")
 
         //call
@@ -40,6 +41,7 @@ class ShowProfileWorkerTest {
             assertEquals(response.user?.club, player.club)
             assertEquals(response.user?.age, player.age)
             assertEquals(response.user?.password, player.password)
+            assertEquals(response.user?.category, player.category)
         })
     }
 
@@ -48,13 +50,14 @@ class ShowProfileWorkerTest {
         //prepare
         val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "kjbdjh213")
         val player = Player("gabrielalbino",
-                2,
+                15,
                 "imgur.com/nudh486d4",
                 "enggabriel@gmail.com",
                 "masculino",
                 "ASCAD",
                 19,
-                "feioso")
+                "feioso",
+                "Profissional")
 
         //call
         this.worker?.getUserProfile(request = request, completion = { response ->
@@ -66,6 +69,7 @@ class ShowProfileWorkerTest {
             assertEquals(response.user?.gender, player.gender)
             assertEquals(response.user?.club, player.club)
             assertEquals(response.user?.age, player.age)
+            assertEquals(response.user?.category, player.category)
         })
     }
 

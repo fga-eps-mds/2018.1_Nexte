@@ -20,4 +20,5 @@ class Player(
         var gender: String,
         var club: String,
         var age: Int,
-        var password: String)
+        var password: String,
+        var category: String)

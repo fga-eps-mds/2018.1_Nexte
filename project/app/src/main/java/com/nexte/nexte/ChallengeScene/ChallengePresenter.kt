@@ -1,6 +1,5 @@
 package com.nexte.nexte.ChallengeScene
 
-
 /**
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
@@ -19,6 +18,21 @@ interface ChallengePresentationLogic {
      * @param response contains unformatted data received from [ChallengeModel]
      */
     fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
+
+
+    /**
+     * Method responsible to format the message of the button and send it to view
+     *
+     * @param response contains unformatted data received from [ChallengeModel]
+     */
+    fun formatMatch(response : ChallengeModel.ChallengeButtonRequest.Response)
+
+    /**
+     * Method responsible to format the message tho inform that there are no
+     * players to be challenged
+     */
+    fun formatNoPlayersMessage()
+
 }
 
 /**
@@ -75,4 +89,34 @@ class ChallengePresenter : ChallengePresentationLogic {
         viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
+    /**
+     * This method is responsible for formatting data contained on
+     * [ChallengeModel.ChallengeButtonRequest.Response] and send it to View
+     *
+     * @param response contains unformatted data received from [ChallengeWorker]
+     */
+    override fun formatMatch(response: ChallengeModel.ChallengeButtonRequest.Response) {
+
+        val message: String = String.format("Desafio enviado com sucesso para o jogador %s", response.username)
+
+        val matchMessage: String = if(response.challenge.challenged.name != ""){
+            "Você já enviou um desafio"
+        } else{
+            ""
+        }
+
+        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message, matchMessage, response.challenge)
+
+        viewChallenge?.displayMessage(viewModel)
+
+    }
+
+    /**
+     * This method is responsible for setting the message
+     */
+    override fun formatNoPlayersMessage() {
+        val message = "Sem jogadores disponíveis.\nTente novamente mais tarde."
+
+        viewChallenge?.displayNoPlayersMessage(message)
+    }
 }

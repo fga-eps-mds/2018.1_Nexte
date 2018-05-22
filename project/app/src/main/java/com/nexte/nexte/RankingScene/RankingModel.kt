@@ -2,7 +2,7 @@ package com.nexte.nexte.RankingScene
 
 /**
  * Class to define the Model of Ranking Scene to send information about players position
- * on rank. It contains [Request], [Response] and [ViewModel] classes to be used on the flow
+ * on ranking. It contains [Request], [Response] and [ViewModel] classes to be used on the flow
  * of getting players and setting details about their wins and losses
  */
 class RankingModel {
@@ -36,15 +36,20 @@ class RankingModel {
      *
      * @property name it's the name of the player
      * @property pictureURL it's the photo of the player
+     * @property playerCategory it's the category that the player plays
      * @property wins are all the games won by the player
      * @property losses are all the games lost by the player
-     * @property rankPosition it's the position of the player on the rank
+     * @property rankingPosition it's the position of the player on the ranking
+     * @property lastGame it's when the user player the last
      */
     class Player(var name: String,
                  var pictureURL: Int,
+                 var playerCategory: String,
                  var wins: Int,
                  var losses: Int,
-                 var rankPosition: Int)
+                 var rankingPosition: Int,
+                 var lastGame: String,
+                 var efficiency: String)
 
     /**
      * Class responsible to define format players information
@@ -61,13 +66,16 @@ class RankingModel {
      * @property userName it's the name of the player presented as a String
      * @property userPictureURL it's the photo of the player presented as an Int
      * @property userWins are all the games won by the player presented as a String
-     * @property userLosses are all the games lost by the player presented as a String
-     * @property userRankPosition it's the position of the player on the rank presented as a String
+     * @property userRankingPosition it's the position of the player on the ranking presented as a String
+     * @property userLastGame it's the user last game presented as a String
+     * @property userCategory it's the player category presented as a String
      */
     class FormattedPlayer(var userName: String,
                           var userPictureURL: Int,
                           var userWins: String,
-                          var userLosses: String,
-                          var userRankPosition: String)
+                          var userRankingPosition: String,
+                          var userLastGame: String,
+                          var userEfficiency: String,
+                          var userCategory: String)
 }
 

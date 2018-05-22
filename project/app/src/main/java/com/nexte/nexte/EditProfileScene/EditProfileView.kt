@@ -38,13 +38,13 @@ class EditProfileView : AppCompatActivity(),
                         ShowProfileToEditDisplayLogic,
                         EditProfileDisplayLogic {
 
-    private var getUserInformationInteractor: GetProfileToEditBusinessLogic? = null
-    private var editUserInformationInteractor: EditProfileBusinessLogic? = null
+    var getUserInformationInteractor: GetProfileToEditBusinessLogic? = null
+    var editUserInformationInteractor: EditProfileBusinessLogic? = null
 
     /**
      * Class responsible to define behavior of password validation (checking if password and confirmation match)
      */
-    private class PasswordWatcher(var view: EditProfileView) : TextWatcher {
+    class PasswordWatcher(var view: EditProfileView) : TextWatcher {
 
         /**
          * This method does nothing but is necessary
@@ -89,12 +89,7 @@ class EditProfileView : AppCompatActivity(),
         this.passwordConfirmationTextEdit.addTextChangedListener(PasswordWatcher(this))
         this.passwordTextEdit.addTextChangedListener(PasswordWatcher(this))
 
-        val recoverUserRequest: EditProfileModel.RecoverUserRequest.Request =
-                EditProfileModel.RecoverUserRequest.Request(
-                 "gabrielalbino",
-                 "UHDASFUHADSUHF2828HJDDJFHA")
-
-        getUserInformationInteractor?.getProfileToEdit(recoverUserRequest)
+        this.createGetProfileRequest()
 
         updateProfileButton.setOnClickListener {
 
@@ -105,12 +100,10 @@ class EditProfileView : AppCompatActivity(),
                     "",
                     clubName.text.toString(),
                     ageTextEdit.text.trim().toString().toInt(),
-                    passwordTextEdit.text.trim().toString())
+                    passwordTextEdit.text.trim().toString(),
+                    "")
 
-            val editProfileRequest: EditProfileModel.EditProfileRequest.Request =
-                    EditProfileModel.EditProfileRequest.Request(user)
-
-            editUserInformationInteractor?.setEditedProfile(editProfileRequest)
+            this.createEditProfileRequest(user = user)
         }
     }
 
@@ -143,11 +136,34 @@ class EditProfileView : AppCompatActivity(),
             this.errorMessageTextView.text = errorMessage
         }
     }
+    /**
+     * Method responsible for creating the get profile request and passing it to the interactor
+     */
+    fun createGetProfileRequest(){
+        val recoverUserRequest: EditProfileModel.RecoverUserRequest.Request =
+                EditProfileModel.RecoverUserRequest.Request(
+                        "gabrielalbino",
+                        "UHDASFUHADSUHF2828HJDDJFHA")
+
+        getUserInformationInteractor?.getProfileToEdit(recoverUserRequest)
+    }
+
+    /**
+     * Method responsible for creating the edit profile request and passing it to the interactor
+     */
+    fun createEditProfileRequest(user: Player){
+        val editProfileRequest: EditProfileModel.EditProfileRequest.Request =
+                EditProfileModel.EditProfileRequest.Request(user)
+
+        editUserInformationInteractor?.setEditedProfile(editProfileRequest)
+    }
+
+
 
     /**
      * Method responsible to set all the references in this scene
      */
-    private fun setupEditProfileScene() {
+    fun setupEditProfileScene() {
         val interactor = EditProfileInteractor()
         val presenter = EditProfilePresenter()
         val view = this

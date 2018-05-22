@@ -7,7 +7,10 @@ import com.nexte.nexte.Player
  */
 object ChallengeMocker {
 
-    private const val numPlayers = 9 // Constant to define number of mocked players
+    /**
+     * @property numPlayers Constant to define number of mocked players
+     */
+    private const val numPlayers = 9
 
     /**
      * Method responsible for generating players.
@@ -20,7 +23,7 @@ object ChallengeMocker {
 
         for(count in 0..numPlayers){
             val player = Player(String.format("nome%d",count+1), count+1,
-                    "", "", "", "", 0, "")
+                    "", "", "", "", 0, "", "")
 
             list += player
         }
@@ -28,12 +31,12 @@ object ChallengeMocker {
         return list
     }
 
-    fun createPlayerDetailedInfo(): List<ChallengeModel.PlayerRankingDatails>{
+    fun createPlayerDetailedInfo(): List<ChallengeModel.PlayerRankingDetails>{
 
-        var list: List<ChallengeModel.PlayerRankingDatails> = listOf()
+        var list: List<ChallengeModel.PlayerRankingDetails> = listOf()
 
         for(count in 0..numPlayers){
-            val player = ChallengeModel.PlayerRankingDatails(String.format("nome%d", count+1),
+            val player = ChallengeModel.PlayerRankingDetails(String.format("nome%d", count+1),
                     10-count,
                     count,
                     count+1

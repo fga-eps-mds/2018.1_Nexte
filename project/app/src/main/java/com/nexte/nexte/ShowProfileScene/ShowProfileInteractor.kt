@@ -32,7 +32,7 @@ class ShowProfileInteractor : ShowProfileBusinessLogic {
     var presenter : ShowProfilePresentationLogic? = null
 
     /**
-     * This method does the communication between Worker and Presenter
+     * This method does the communication between Worker and Presenter.
      *
      * @param request Contains the request that was sent by our View
      */

@@ -2,82 +2,248 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowRankingLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/activity_horizontal_margin"
+    android:background="@drawable/cell_border">
 
     <ImageView
         android:id="@+id/picture_img_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/position"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/ic_launcher_round" />
+
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/picture_img_view"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/picture_img_view"
         android:text="Nome"
         android:textColor="#ffffff"
-        android:textSize="30sp"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/picture_img_view"
-        app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="#N"
-        android:textSize="30sp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
+        android:text="N"
+        android:textAlignment="viewEnd"
         android:textColor="#ffffff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/picture_img_view"
+        app:layout_constraintEnd_toStartOf="@+id/picture_img_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/picture_img_view" />
+
+    <ImageView
+        android:id="@+id/circulo1"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_undefeated_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circulo2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circulo2"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_victory_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circulo3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/circulo3"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_defeat_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circulo4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circulo4"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_victory_ranking"
+        app:layout_constraintEnd_toStartOf="@+id/circulo5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circulo5"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle_empty_ranking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/expandedView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="12dp"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toBottomOf="@+id/picture_img_view">
 
         <TextView
             android:id="@+id/victory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
             android:text="Vitórias:"
             android:textColor="#ffffff"
-            android:textSize="18sp"
+            android:textSize="9sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/efficiency" />
 
         <TextView
-            android:id="@+id/losses"
+            android:id="@+id/lastGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Derrotas:"
+            android:layout_marginBottom="13dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Último Jogo:"
             android:textColor="#ffffff"
-            android:textSize="18sp"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/victory" />
 
+
+        <TextView
+            android:id="@+id/efficiency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Aproveitamento:"
+            android:textColor="#ffffff"
+            android:textSize="9sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/profileButton"
+            android:layout_width="69dp"
+            android:layout_height="17dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginStart="200dp"
+            android:background="@drawable/ranking_profile_button_border"
+            android:elevation="0dp"
+            android:text="Perfil"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/currentUser"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/efficiency"
+            app:layout_constraintStart_toStartOf="@+id/profileButton"
+            app:layout_constraintTop_toTopOf="@+id/efficiency"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/loggedUser"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="33dp"
+            app:layout_constraintBottom_toTopOf="@+id/profileButton"
+            app:layout_constraintEnd_toEndOf="@+id/profileButton"
+            app:layout_constraintStart_toEndOf="@+id/currentUser"
+            app:layout_constraintTop_toTopOf="@+id/currentUser"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/versus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/gamesLoggedUser"
+            app:layout_constraintEnd_toStartOf="@+id/loggedUser"
+            app:layout_constraintStart_toEndOf="@+id/currentUser"
+            app:layout_constraintTop_toTopOf="@+id/loggedUser" />
+
+        <TextView
+            android:id="@+id/gamesLoggedUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="N"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/loggedUser"
+            app:layout_constraintStart_toStartOf="@+id/loggedUser"
+            app:layout_constraintTop_toBottomOf="@+id/loggedUser" />
+
+        <TextView
+            android:id="@+id/gamesCurrentUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="N"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/currentUser"
+            app:layout_constraintStart_toStartOf="@+id/currentUser"
+            app:layout_constraintTop_toBottomOf="@+id/currentUser" />
+
     </android.support.constraint.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/playerCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="8dp"
+        android:text="Categoria"
+        android:textColor="#ffffff"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/picture_img_view"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 </android.support.constraint.ConstraintLayout>
