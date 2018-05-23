@@ -70,7 +70,7 @@ O velocity ficou em **75.67**
 ### **1.4. Quadro de conhecimentos**
 
 
-![Quadro de Conhecimento sprint 8](https://i.imgur.com/QMvBhee.png)
+![Quadro de Conhecimento sprint 10](https://i.imgur.com/QMvBhee.png)
 
 Não houve alterações no quadro de conhecimento, provavelmente porque não houve solicitação para atualiza-lo, falha do novo Scrum Master que não cobrou o time para realizar esta tarefa.
 
@@ -87,7 +87,7 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 * Issues possuem respostas atômicas;
 * Geek Bot voltou a funcionar, o que facilita as dailies;
 * Pareamento entre Geovanni e Alexandre fluiu muito bem;
-* Cooperação entre Alexandre e ALbino, mesno eles não sendo duplas de pareamento;
+* Cooperação entre Alexandre e Albino, mesmo eles não sendo duplas de pareamento;
 * MDS possui auxílio mútuo entre os membros;
 * Helena Começou a fazer testes.
 
@@ -114,7 +114,7 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 * Analisar melhor os Pull Requests;
 * Letícia deve definir horários melhor de paremento para se comprometer mais com as atividades propostas do time;
 * Voltar a ter uma comunicação melhor entre MDS e EPS;
-* Ter mais comprometimento do time todo, insentivar o time;
+* Ter mais comprometimento do time todo, incentivar o time;
 * Mudar API do aplicativo para o cliente conseguir rodar no celular dele;
 * Colocar Baldissera somente com uma história (Teste de View)para não deixar que ele participe de todas as histórias;
 * Achar uma alternativa para classe Date que está deprecated nas Entities. 
@@ -184,7 +184,7 @@ Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão 
 
 ## **5. Análise do Scrum Master**
 
-Nessa Sprint, houve um impecílio para o grupo, pois todos os Pull requests foram feitos no sábado e as histórias não foram fechadas, o que foi inaceitável, e realmente foi concluída na segunda feira dia 21, além disso a Membro Letícia teve um impedimento, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar em uma história mais leve, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em realção à história que deveria ser feita e dificuldades. 
+Nessa Sprint, houve um impecílio para o grupo, pois todos os Pull requests foram feitos no sábado e as histórias não foram fechadas, o que foi inaceitável, e realmente foi concluída na segunda feira dia 21, além disso a Membro Letícia teve um impedimento, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar em uma história mais leve, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em relação à história que deveria ser feita e dificuldades. 
 Novamente a história de testar view com testes unitários ficou como dívida técnica, e na próxima sprint ela deve ser fechada, e terá um membro alocado comente para ela durante toda a sprint.
 A história entre Gabriel Albino e Lorrany foi a última a ser aceita, mas foi algo do time como um todo, o que acontecerá na próxima sprint é que eu, como scrum master vou averiguar a situação do andamento de cada história com cada dupla de paremento.
 
