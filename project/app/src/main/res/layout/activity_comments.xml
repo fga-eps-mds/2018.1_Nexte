@@ -12,8 +12,8 @@
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:background="@android:color/white"
+        android:layout_height="30dp"
+        android:background="color/background"
         android:ems="10"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,10 +23,19 @@
         app:layout_constraintTop_toBottomOf="@+id/commentsRecyclerView"
         tools:ignore="LabelFor" />
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginBottom="1dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/sendButton"
+        tools:layout_editor_absoluteX="0dp" />
+
     <Button
         android:id="@+id/sendButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
+        android:background="#2E2E2E"
         android:text="@string/enviar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +44,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/commentsRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="471dp"
         android:layout_marginBottom="40dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
