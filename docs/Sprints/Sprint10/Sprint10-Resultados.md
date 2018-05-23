@@ -4,7 +4,7 @@
 | -----|--------|-----------|-----------|
 | 20/05/2018| 0.1 | Criação do Documento| Geovanni Oliveira|
 | 21/05/2018| 0.2 | Preenchimento dos tópicos que estavam faltando| Geovanni Oliveira|
-
+| 22/05/2018| 0.3 | Modificação do Burndown de riscos e mudança da EVM| Geovanni Oliveira|
 ----------------------------------------------------------------------
 
 **Número da Sprint:** 10
@@ -152,11 +152,11 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 | RN25 | Foram planejados e serão executados dois treinamentos de GO e criação de servidor em GO para a equipe de MDS/EPS. |
 
 ## **3. EVM**
+![](https://i.imgur.com/tw7g8MQ.png)
+![](https://i.imgur.com/wMYN1sV.png)    
 
-![](https://i.imgur.com/4EXbWHm.png)    
-
-A quantidade de pontos realizados nesta sprint foi maior do que na sprint passada, houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
-A agregação de valor foi acima do que foi planejado, com a diferença de R$ 5.534,02.  
+A quantidade de pontos realizados nesta sprint foi de 70 pontos, houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
+  
 
 ## **4. Análise de código**
 
@@ -187,4 +187,6 @@ Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão 
 Nessa Sprint, houve um impecílio para o grupo, pois todos os Pull requests foram feitos no sábado e as histórias não foram fechadas, o que foi inaceitável, e realmente foi concluída na segunda feira dia 21, além disso a Membro Letícia teve um impedimento, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar em uma história mais leve, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em realção à história que deveria ser feita e dificuldades. 
 Novamente a história de testar view com testes unitários ficou como dívida técnica, e na próxima sprint ela deve ser fechada, e terá um membro alocado comente para ela durante toda a sprint.
 A história entre Gabriel Albino e Lorrany foi a última a ser aceita, mas foi algo do time como um todo, o que acontecerá na próxima sprint é que eu, como scrum master vou averiguar a situação do andamento de cada história com cada dupla de paremento.
+
+
 
