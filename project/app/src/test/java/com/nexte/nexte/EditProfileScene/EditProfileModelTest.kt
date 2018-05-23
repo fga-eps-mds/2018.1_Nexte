@@ -42,12 +42,16 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
 
         //call
         val firstRequest = EditProfileModel.RecoverUserRequest.Request(username, tokenID)
         val secondRequest = EditProfileModel.EditProfileRequest.Request(player)
 
+        firstRequest.tokenID = tokenID
+        firstRequest.username = username
+        secondRequest.user = player
         //assert
         assertEquals(username, firstRequest.username)
         assertEquals(tokenID, firstRequest.tokenID)
@@ -66,10 +70,11 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
         val firstRequest = EditProfileModel.RecoverUserRequest.Request("lul", "aa")
         val secondRequest = EditProfileModel.EditProfileRequest.Request(Player(
-                "lul", 1, "", "", "", "", 1, ""
+                "lul", 1, "", "", "", "", 1, "", ""
         ))
         //call
         firstRequest.tokenID = newTokenID
@@ -92,12 +97,17 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
         val errorID = 3
 
         //call
         val firstResponse = EditProfileModel.EditProfileRequest.Response(errorID, newPlayer)
         val secondResponse = EditProfileModel.RecoverUserRequest.Response(newPlayer)
+
+        firstResponse.errorID = errorID
+        firstResponse.newUser = newPlayer
+        secondResponse.user = newPlayer
 
         //assert
         assertEquals(firstResponse.errorID, errorID)
@@ -115,12 +125,13 @@ class EditProfileModelTest {
                 "",
                 "",
                 1,
+                "",
                 "")
         val newErrorID = 3
         val firstResponse = EditProfileModel.EditProfileRequest.Response(2,
-                Player("",0,"", "", "", "", 0, ""))
+                Player("",0,"", "", "", "", 0, "", ""))
         val secondResponse = EditProfileModel.RecoverUserRequest.Response(
-                Player("",0,"", "", "", "", 0, "")
+                Player("",0,"", "", "", "", 0, "",  "")
         )
 
         //call
@@ -147,6 +158,12 @@ class EditProfileModelTest {
         val formattedPlayer = EditProfileModel.RecoverUserRequest.FormattedPlayer(
                 username, ranking, club, age, email
         )
+
+        formattedPlayer.age = age
+        formattedPlayer.club = club
+        formattedPlayer.email = email
+        formattedPlayer.ranking = ranking
+        formattedPlayer.username = username
 
         //assert
         assertEquals(formattedPlayer.age, age)
@@ -199,6 +216,8 @@ class EditProfileModelTest {
         val firstViewModel = EditProfileModel.RecoverUserRequest.ViewModel(formattedPlayer)
         val secondViewModel = EditProfileModel.EditProfileRequest.ViewModel(message)
 
+        firstViewModel.playerToEdit = formattedPlayer
+        secondViewModel.errorMessage = message
         //assert
         assertEquals(firstViewModel.playerToEdit, formattedPlayer)
         assertEquals(secondViewModel.errorMessage, message)
@@ -229,5 +248,15 @@ class EditProfileModelTest {
         //assert
         assertEquals(firstViewModel.playerToEdit, formattedPlayer)
         assertEquals(secondViewModel.errorMessage, message)
+    }
+
+    @Test
+    fun successEditProfileModel(){
+        //prepare
+        //call
+        val model = EditProfileModel()
+
+        //assert
+        assertNotNull(model)
     }
 }

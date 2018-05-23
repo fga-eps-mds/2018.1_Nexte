@@ -27,7 +27,9 @@ class RankingWorkerTest {
             assertEquals(response.players[0].name, "Helena")
             assertEquals(response.players[3].wins, 7)
             assertEquals(response.players[1].rankingPosition, 2)
-            assertEquals(response.players[9].losses, 5)
+            assertEquals(response.players[9].playerCategory, "Profissional")
+            assertEquals(response.players[15].lastGame, "ontem")
+            assertEquals(response.players[11].efficiency, "90%")
         })
     }
 

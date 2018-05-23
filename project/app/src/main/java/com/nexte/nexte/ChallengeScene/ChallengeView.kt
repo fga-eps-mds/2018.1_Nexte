@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,8 +13,12 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.PagerAdapter
 import android.widget.Button
 import android.widget.TextView
+import com.nexte.nexte.MatchScene.MatchFragment
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger.*
 
@@ -63,6 +66,7 @@ interface ChallengeDisplayLogic {
  */
 class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
+    var match: MatchModel.MatchData?= null
     var recyclerView: RecyclerView?= null
     var sendChallengeButton: Button?= null
     var expandedLosses: TextView?= null
@@ -70,16 +74,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
     var noPlayersText: TextView?= null
+    var message: TextView?= null
     var interactor: ChallengeBusinessLogic? = null
     private val context: Context? = null
-
-    /**
-     * This object is used for avoid magic numbers
-     */
-    companion object {
-
-        const val playerRanking = 8 //simulates the logged player ranking
-    }
 
     /**
      * Method called whenever the view is created, responsible for create first
@@ -90,7 +87,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
-        viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
+        viewpager.adapter = ViewPagerAdapter(supportFragmentManager, this)
         tabs.setupWithViewPager(viewpager)
     }
 
@@ -143,11 +140,21 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      */
     override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
 
+        if(viewModel.matchMessage != ""){
+            this.match = viewModel.matchData
+            this.message?.text = viewModel.matchMessage
+            this.message?.visibility = View.VISIBLE
+            this.sendChallengeButton?.isEnabled = false
+            this.viewpager.adapter.notifyDataSetChanged()
+        }
+
+
         val builder = AlertDialog.Builder(this)
 
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
+            this.tabs.getTabAt(1)?.select()
             dialogInterface.cancel()
         })
 
@@ -255,7 +262,12 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 viewContext.expandedRankingTextView = view?.findViewById(R.id.expandedRankingTextView)
                 viewContext.expandedWins = view?.findViewById(R.id.expandedWins)
                 viewContext.noPlayersText = view?.findViewById(R.id.noPlayersText)
-            } else {
+                viewContext.message = view?.findViewById(R.id.message)
+                if(viewContext.match != null){
+                    viewContext.message?.visibility = View.VISIBLE
+                }
+            }
+            else {
                 view = inflater?.inflate(R.layout.activity_challenger_received, container,  false)
             }
             return view
@@ -269,22 +281,26 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
                 sendChallengeButton?.setOnClickListener {
                     val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
-                    (context as ChallengeView).interactor?.requestMessageForChallenger(request)
+                    (context as ChallengeView).interactor?.requestChallenger(request)
                 }
 
                 val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
                 (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
             }
-
         }
     }
 
     /**
      * Adapter Class that populates the fragment
      */
-    class ViewPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    class ViewPagerAdapter (fragmentManager: FragmentManager,
+                            var context: Context) : FragmentStatePagerAdapter(fragmentManager) {
 
-        private val pageTitles = listOf("Enviados", "Recebidos")
+        private val pageTitles = listOf("Tenistas", "Enviados", "Recebidos")
+
+        override fun getItemPosition(`object`: Any?): Int {
+            return PagerAdapter.POSITION_NONE
+        }
 
         override fun getCount(): Int {
 
@@ -292,10 +308,11 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         }
 
         override fun getItem(position: Int): Fragment {
-
-            val tabFragment = TabFragment()
-
-            return tabFragment.getInstance(position)
+            return if(position == 1){
+                MatchFragment().getInstance((context as ChallengeView).match)
+            } else{
+                TabFragment().getInstance(position)
+            }
         }
 
         override fun getPageTitle(position: Int): CharSequence {
@@ -362,6 +379,11 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                 context.removePlayerDetailedInfo()
                 context.sendChallengeButton?.isEnabled = false
             }
+            if(context.match != null){
+                context.sendChallengeButton?.isEnabled = false
+            }
+
+
         }
 
         override fun getItemCount(): Int {

@@ -2,8 +2,6 @@ package com.nexte.nexte.LikeListScene
 
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import org.junit.After
 import org.junit.Before
 
@@ -20,7 +18,7 @@ class LikeListWorkerTest {
         this.worker = LikeListWorker()
         this.mock = MockWorkersUpdateLogic()
         this.worker?.updateLogic = mock
-        this.worker?.manager = UserManager(userAdapter = UserAdapterSpy())
+        this.worker?.userManager = UserManager(userAdapter = UserAdapterSpy())
     }
 
     @Test

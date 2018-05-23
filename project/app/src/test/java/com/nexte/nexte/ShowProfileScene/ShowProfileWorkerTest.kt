@@ -27,6 +27,7 @@ class ShowProfileWorkerTest {
                 "",
                 "",
                 -1,
+                "",
                 "")
 
         //call
@@ -40,6 +41,7 @@ class ShowProfileWorkerTest {
             assertEquals(response.user?.club, player.club)
             assertEquals(response.user?.age, player.age)
             assertEquals(response.user?.password, player.password)
+            assertEquals(response.user?.category, player.category)
         })
     }
 
@@ -54,7 +56,8 @@ class ShowProfileWorkerTest {
                 "masculino",
                 "ASCAD",
                 19,
-                "feioso")
+                "feioso",
+                "Profissional")
 
         //call
         this.worker?.getUserProfile(request = request, completion = { response ->
@@ -66,6 +69,7 @@ class ShowProfileWorkerTest {
             assertEquals(response.user?.gender, player.gender)
             assertEquals(response.user?.club, player.club)
             assertEquals(response.user?.age, player.age)
+            assertEquals(response.user?.category, player.category)
         })
     }
 

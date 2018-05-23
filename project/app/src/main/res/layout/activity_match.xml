@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2E2E2E"
-    tools:context=".MatchScene.MatchView">
+    tools:context=".MatchScene.MatchFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/matchRecyclerView"
@@ -29,7 +29,7 @@
         android:layout_height="64dp"
         android:layout_marginStart="37dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/colorSend"
+        android:backgroundTint="@color/green"
         android:text="Send  Challenge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matchRecyclerView" />
@@ -40,7 +40,7 @@
         android:layout_height="64dp"
         android:layout_marginEnd="37dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/colorDecline"
+        android:backgroundTint="@color/red"
         android:text="Decline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matchRecyclerView" />

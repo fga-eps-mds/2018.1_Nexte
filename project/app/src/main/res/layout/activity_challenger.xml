@@ -14,9 +14,15 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/colorForegroundInverse"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabIndicatorColor="@color/black"
         app:tabMode="fixed"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabPlayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tenistas" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabSent"

@@ -15,6 +15,16 @@ class ShowProfileModelTest {
     }
 
     @Test
+    fun initShowProfile(){
+        //prepare
+        //call
+        val testInit = ShowProfileModel()
+
+        //assert
+        assertNotNull(testInit)
+    }
+
+    @Test
     fun successRequest(){
         //prepare
         val userName = "luis-gustavo"
@@ -33,13 +43,16 @@ class ShowProfileModelTest {
     @Test
     fun successResponse(){
         //prepare
-        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAddress = "", email = "luis@email.com", gender = "Masculino", club = "Tenis House", age = 21, password = "123456")
+        val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAddress = "",
+                email = "luis@email.com", gender = "Masculino", club = "Tenis House",
+                age = 21, password = "123456", category = "")
 
         //call
         val response = ShowProfileModel.Response(user = player)
         response.user
 
         //assert
+        assertNotNull(response.user)
         assertEquals(player, response.user)
         assertEquals(player.name, response.user?.name)
         assertEquals(player.rankingPosition, response.user?.rankingPosition)
@@ -49,6 +62,7 @@ class ShowProfileModelTest {
         assertEquals(player.club, response.user?.club)
         assertEquals(player.age, response.user?.age)
         assertEquals(player.password, response.user?.password)
+        assertEquals(player.category, response.user?.category)
     }
 
     @Test
@@ -64,7 +78,10 @@ class ShowProfileModelTest {
         viewModel.playerInfo.club
         viewModel.playerInfo.age
 
+        viewModel.playerInfo = formattedPlayer
+
         //assert
+        assertNotNull(viewModel.playerInfo)
         assertEquals(formattedPlayer, viewModel.playerInfo)
         assertEquals(formattedPlayer.name, viewModel.playerInfo.name)
         assertEquals(formattedPlayer.rank, viewModel.playerInfo.rank)

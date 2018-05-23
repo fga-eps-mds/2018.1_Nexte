@@ -25,7 +25,7 @@ interface FeedPresentationLogic {
 /**
  * Class needed to format response for data can be displayed on activity
  *
- * @property viewController Reference to the activity where data will be displayed on [FeedView]
+ * @property viewController Reference to the activity where data will be displayed on [FeedFragment]
  */
 class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresentationLogic {
 

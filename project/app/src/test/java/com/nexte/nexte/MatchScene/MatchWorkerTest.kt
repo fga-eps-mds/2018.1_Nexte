@@ -1,6 +1,5 @@
 package com.nexte.nexte.MatchScene
 
-import com.nexte.nexte.ChallengeScene.ChallengeWorker
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -18,13 +17,16 @@ class MatchWorkerTest {
     @Test
     fun testFetchMatchDatas() {
         //prepare
-        val request = MatchModel.InitScene.Request("1234abcd")
+        val match  = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
+        val request = MatchModel.InitScene.Request(match)
 
         //calls
         worker?.fetchMatchData(request = request, completion = {response ->
         //asserts
-            assertEquals("Letícia", response.match.challenged.name)
-            assertEquals("Alexandre Miguel", response.match.challenger.name)
+            assertEquals("larissa", response.match.challenged.name)
+            assertEquals("larissa2", response.match.challenger.name)
         })
 
     }

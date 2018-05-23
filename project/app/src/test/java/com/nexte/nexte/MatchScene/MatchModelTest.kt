@@ -1,6 +1,5 @@
 package com.nexte.nexte.MatchScene
 
-import com.fasterxml.jackson.databind.deser.DataFormatReaders
 import com.nexte.nexte.R
 import org.junit.Assert.*
 import org.junit.Before
@@ -16,7 +15,7 @@ class MatchModelTest {
     fun testMatchModel() {
         //prepare
         //call
-        var testClass = MatchModel()
+        val testClass = MatchModel()
 
         //assert
         assertNotNull(testClass)
@@ -26,7 +25,7 @@ class MatchModelTest {
     fun testInitScene() {
         //prepare
         //call
-        var testInit = MatchModel.InitScene()
+        val testInit = MatchModel.InitScene()
 
         //assert
         assertNotNull(testInit)
@@ -35,13 +34,15 @@ class MatchModelTest {
     @Test
     fun testRequest() {
         //prepare
-        val identifierMatch = "abcd1234"
+        val matchData  = MatchModel.MatchData(
+        MatchModel.MatchPlayer("larissa", 1),
+        MatchModel.MatchPlayer("larissa2", 1))
 
         //call
-        val request = MatchModel.InitScene.Request(identifierMatch)
+        val request = MatchModel.InitScene.Request(matchData)
 
         //assert
-        assertEquals(request.matchID, identifierMatch)
+        assertEquals(request.match, matchData)
     }
 
     @Test

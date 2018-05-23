@@ -1,5 +1,6 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Assert.*
@@ -103,9 +104,10 @@ class ChallengeModelTest{
         val club = "clubTop"
         val age = 19
         val password = "adoroPicole"
+        val category = "profissional"
 
         val players = listOf(
-                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password)
+                Player(name, rankingPosition, pictureAddress, email, gender, club, age, password,  category)
         )
 
         //call
@@ -121,6 +123,7 @@ class ChallengeModelTest{
         assertEquals(response.usersAbove[0].club, club)
         assertEquals(response.usersAbove[0].age, age)
         assertEquals(response.usersAbove[0].password, password)
+        assertEquals(response.usersAbove[0].category, category)
     }
 
     @Test
@@ -155,13 +158,17 @@ class ChallengeModelTest{
     fun successThirdResponse(){
         //prepare
         val user = "larissa"
+        val match = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
 
         //call
-        val response = ChallengeModel.ChallengeButtonRequest.Response(user)
+        val response = ChallengeModel.ChallengeButtonRequest.Response(user, match)
         response.username = user
-
+        response.challenge = match
         //assert
         assertEquals(response.username, user)
+        assertEquals(response.challenge, match)
     }
 
     @Test
@@ -210,13 +217,18 @@ class ChallengeModelTest{
     fun successThirdViewModel(){
         //prepare
         val message = "Sucesso"
-
+        val matchData = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
         //call
-        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message)
+        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message, message, matchData)
         viewModel.messageForChallenger = message
-
+        viewModel.matchData = matchData
+        viewModel.messageForChallenger = message
         //assert
         assertEquals(viewModel.messageForChallenger, message)
+        assertEquals(viewModel.matchMessage, message)
+        assertEquals(viewModel.matchData, matchData)
     }
 
     @Test
