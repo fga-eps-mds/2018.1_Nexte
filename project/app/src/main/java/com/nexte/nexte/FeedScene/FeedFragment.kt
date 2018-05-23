@@ -12,6 +12,7 @@ import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_feed.view.*
+//import android.support.v7.widget.DividerItemDecoration
 
 /**
  * Interface to define Display Logic to FeedFragment Class that will receive information
@@ -24,14 +25,6 @@ interface FeedDisplayLogic {
 }
 
 /**
- * Class that implements [FeedDisplayLogic] and is responsible to control feed screen
- *
- * @property interactor Interactor layer for send requests [FeedInteractor]
- * @property feedViewAdapter FeedAdapter instance for broad using on class
- */
-
-
-/**
  * Test for the Realm Database
  */
 //open class Person: RealmObject() {
@@ -40,16 +33,18 @@ interface FeedDisplayLogic {
 //    var name: String? = null
 //}
 
+/**
+ * Class that implements [FeedDisplayLogic] and is responsible to control feed screen
+ *
+ * @property interactor Interactor layer for send requests [FeedInteractor]
+ * @property feedViewAdapter FeedAdapter instance for broad using on class
+ */
 class FeedFragment : Fragment(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
     var feedRecyclerView : RecyclerView? = null
-    /**
-     * On Create is a method that will setup this scene and call first Request for Interactor
-     *
-     * @param savedInstanceState
-     */
+
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
@@ -68,6 +63,12 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
         this.createGetActivitiesRequest()
         return newView
+
+        //TODO("colocar linha entre celulas")
+        //val context = inflater?.context
+
+        //val dividerItemDecoration = DividerItemDecoration(context, )
+        //feedRecyclerView?.addItemDecoration(dividerItemDecoration)
     }
 
 

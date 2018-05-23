@@ -7,4 +7,5 @@
     <color name="background">#4a4a4a</color>
     <color name="green">#50e3c2</color>
     <color name="hint_color_pattern">#535151</color>
+    <color name="lightGrey">#595959</color>
 </resources>
