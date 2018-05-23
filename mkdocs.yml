@@ -61,5 +61,9 @@ pages:
     - Resultados: Sprints/Sprint8/Sprint8-Resultados.md
   - Sprint 9:
     - Planejamento: Sprints/Sprint9/Sprint9-Planejamento.md
+    - Resultados: Sprint/Sprint9/Sprint9-Resultados.md
+  - Sprint 10:
+    - Planejamento: Sprints/Sprint10/Sprint10-Planejamento.md
+    - Resultados: Sprints/Sprint10/Sprint10-Resultados.md
   - Post Mortem:
     - Post Mortem - Release 1: PostMortem/PostMortemRelease1.md
