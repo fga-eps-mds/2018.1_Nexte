@@ -51,11 +51,15 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return lastFiveChallenges
     }
 
+    companion object {
+        const val five = 5
+    }
+
     private fun getChallengesOfUser(allChallenges: List<Challenge>, userId: String): List<Challenge>{
         var userChallenges = mutableListOf<Challenge>()
 
         for (challenge in userChallenges){
-            if (userChallenges.size == 5) {
+            if (userChallenges.size == five) {
                 break
             }
             if (userId.equals(challenge.challengedId) || userId.equals(challenge.challengerId)){
