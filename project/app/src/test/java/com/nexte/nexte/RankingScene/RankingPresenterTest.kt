@@ -1,10 +1,12 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class RankingPresenterTest {
 
@@ -20,41 +22,36 @@ class RankingPresenterTest {
     @Test
     fun successPresentRanking(){
         //prepare
-        val player1 = RankingModel.Player(name = "luis",
-                pictureURL = 1,
-                wins = 3, losses = 1,
-                rankingPosition = 2,
-                efficiency = "90%",
-                lastGame = "ontem",
-                playerCategory = "profissional")
-        val player2 = RankingModel.Player(name = "teste",
-                pictureURL = 2,
-                wins = 2,
-                losses = 3,
-                rankingPosition = 3,
-                efficiency = "80%",
-                lastGame = "hoje",
-                playerCategory = "intermediario")
-        val response = RankingModel.Response(players = arrayOf(player1, player2))
+        val user1 = User(id = "1", name = "test1", status = User.Status.AVAILABLE, challengeSended = null,
+        challengeReceived = null, latestGames = listOf(), birthDate = Date(), email = "teste@email.com",
+        rankingPosition = 1, nickname = "test1", category = null, loses = 0, gender = User.Gender.MALE,
+        profilePicture = "1", phone = "123456", wins = 1)
+        val user2 = User(id = "2", name = "test2", status = User.Status.AVAILABLE, challengeSended = null,
+                challengeReceived = null, latestGames = listOf(), birthDate = Date(), email = "teste2@email.com",
+                rankingPosition = 2, nickname = "test2", category = null, loses = 1, gender = User.Gender.MALE,
+                profilePicture = "2", phone = "1234567", wins = 1)
+
+
+        val response = RankingModel.Response(users = arrayOf(user1, user2))
 
         //call
         this.presenter?.presentRanking(response = response)
 
         //assert
         assertEquals(this.mock?.players?.size, 2)
-        assertEquals(this.mock?.players!![0].player.userName, player1.name)
-        assertEquals(this.mock?.players!![0].player.userRankingPosition, player1.rankingPosition.toString())
-        assertEquals(this.mock?.players!![0].player.userWins, "Vitórias: " + player1.wins.toString())
-        assertEquals(this.mock?.players!![0].player.userEfficiency, "Aproveitamento: " + player1.efficiency)
-        assertEquals(this.mock?.players!![0].player.userLastGame, "Último Jogo: " + player1.lastGame)
-        assertEquals(this.mock?.players!![0].player.userCategory, player1.playerCategory)
+        assertEquals(this.mock?.players!![0].player.userName, user1.name)
+        assertEquals(this.mock?.players!![0].player.userRankingPosition, user1.rankingPosition.toString())
+        assertEquals(this.mock?.players!![0].player.userWins, "Vitórias: " + user1.wins.toString())
+        assertEquals(this.mock?.players!![0].player.userEfficiency, "Aproveitamento: 100%")
+        assertEquals(this.mock?.players!![0].player.userLastGame, "Último Jogo: Nenhum jogo")
+        assertEquals(this.mock?.players!![0].player.userCategory, "")
 
-        assertEquals(this.mock?.players!![1].player.userName, player2.name)
-        assertEquals(this.mock?.players!![1].player.userRankingPosition,  player2.rankingPosition.toString())
-        assertEquals(this.mock?.players!![1].player.userWins,"Vitórias: " +  player2.wins.toString())
-        assertEquals(this.mock?.players!![1].player.userEfficiency, "Aproveitamento: " + player2.efficiency)
-        assertEquals(this.mock?.players!![1].player.userLastGame, "Último Jogo: " + player2.lastGame)
-        assertEquals(this.mock?.players!![1].player.userCategory, player2.playerCategory)
+        assertEquals(this.mock?.players!![1].player.userName, user2.name)
+        assertEquals(this.mock?.players!![1].player.userRankingPosition,  user2.rankingPosition.toString())
+        assertEquals(this.mock?.players!![1].player.userWins,"Vitórias: " +  user2.wins.toString())
+        assertEquals(this.mock?.players!![1].player.userEfficiency, "Aproveitamento: 0%")
+        assertEquals(this.mock?.players!![1].player.userLastGame, "Último Jogo: Nenhum jogo")
+        assertEquals(this.mock?.players!![1].player.userCategory, "")
     }
 
     @Test

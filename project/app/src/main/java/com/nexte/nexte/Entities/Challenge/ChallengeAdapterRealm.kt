@@ -43,6 +43,29 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return challenge
     }
 
+    override fun getLastFiveChallenges(userdId: String): List<Challenge> {
+        val allChallengeRealm = realm.where<ChallengeRealm>().findAll()
+        var allChallenges = convertListChallengeRealmToChallengeList(allChallengeRealm)
+        allChallenges = allChallenges.sortedByDescending { it.challengeDate }
+        val lastFiveChallenges = getChallengesOfUser(allChallenges, userdId)
+        return lastFiveChallenges
+    }
+
+    private fun getChallengesOfUser(allChallenges: List<Challenge>, userId: String): List<Challenge>{
+        var userChallenges = mutableListOf<Challenge>()
+
+        for (challenge in userChallenges){
+            if (userChallenges.size == 5) {
+                break
+            }
+            if (userId.equals(challenge.challengedId) || userId.equals(challenge.challengerId)){
+                userChallenges.add(challenge)
+            }
+        }
+
+        return userChallenges.toList()
+    }
+
     private fun convertChallengeToChallengeRealm(challenge: Challenge?): ChallengeRealm? {
 
         var challengeRealm: ChallengeRealm? = null
@@ -83,11 +106,11 @@ class ChallengeAdapterRealm: ChallengeAdapter {
                     stage = Challenge.Stage.Played(it.setChallenger,
                             it.setChallenged,
                             it.date!!,
-                            Challenge.Stage.Played.Game(it.firstGame!!.gameChallenger, it.firstGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.secondGame!!.gameChallenger, it.secondGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.thirdGame!!.gameChallenger, it.thirdGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.fourthGame!!.gameChallenger, it.fourthGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.fifthGame!!.gameChallenger, it.fifthGame!!.gameChallenged),
+                            Challenge.Stage.Played.Game(it.firstGame?.gameChallenger, it.firstGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.secondGame?.gameChallenger, it.secondGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.thirdGame?.gameChallenger, it.thirdGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.fourthGame?.gameChallenger, it.fourthGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.fifthGame?.gameChallenger, it.fifthGame?.gameChallenged),
                             it.detail)
                 }
             } else if (challengeRealm.stageCancelledRealm != null) {
@@ -100,11 +123,17 @@ class ChallengeAdapterRealm: ChallengeAdapter {
                   stage = Challenge.Stage.Scheduled()
             }
 
+            var status = it.status
+            if (it.status.isEmpty()){
+                status = "WAITING"
+            }
+
             challenge = Challenge(it.id,
                     it.challengerId,
                     it.challengedId,
                     it.challegeDate,
-                    Challenge.Status.valueOf(it.status),
+
+                    Challenge.Status.valueOf(status),
                     stage!!)
         }
 
