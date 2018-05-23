@@ -218,7 +218,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
                 itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
                 itemView.challengedSet.text = activity.challengedSets
 
-                itemView.numberOfLikes.text = activity.numberOfLikes
+                itemView.numberOfLikes.text = String.format("%s curtidas", activity.numberOfLikes)
 
                 if (activity.challengerSets > activity.challengedSets) {
                     itemView.whoWon.text = String.format("%s ganhou de %s", activity.challengerName, activity.challengedName)
