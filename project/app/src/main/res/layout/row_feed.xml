@@ -83,6 +83,8 @@
         android:id="@+id/challengedPhoto"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="35dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,29 +143,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="18dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="8dp"
-        android:text="Likes"
+        android:text="curtidas"
         android:textColor="#ffffff"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/likesButton"
         app:layout_constraintStart_toEndOf="@+id/likesButton"
         app:layout_constraintTop_toTopOf="@+id/likesButton" />
 
-    <Button
+    <ImageButton
         android:id="@+id/likesButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="18dp"
         android:layout_marginTop="95dp"
-        android:backgroundTint="@color/red"
-        android:textColor="@android:color/background_light"
-        android:textSize="8sp"
-        android:textStyle="bold"
+        android:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/feed_like" />
+
 
     <TextView
         android:id="@+id/comments"
@@ -172,7 +173,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="18dp"
         android:layout_marginTop="8dp"
-        android:text="4 comentários"
+        android:text="comentários"
         android:textColor="#ffffff"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/numberOfLikes"
@@ -192,6 +193,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/commentsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/comments"
+        app:layout_constraintEnd_toStartOf="@+id/comments"
+        app:layout_constraintTop_toTopOf="@+id/comments"
+        app:srcCompat="@mipmap/feed_comment" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
+import com.nexte.nexte.R.id.likesButton
 import kotlinx.android.synthetic.main.row_feed.view.*
 //import android.support.v7.widget.DividerItemDecoration
 
@@ -230,6 +231,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                     val sendLikesAux = FeedModel.LikeAndUnlike.Request(activity.identifier)
                     (fragment as FeedFragment).sendLike(sendLikesAux)
+
+                    itemView.likesButton.setImageResource(R.mipmap.feed_like_fill)
                 }
 
                 itemView.numberOfLikes.setOnClickListener {
@@ -238,6 +241,11 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
                 }
 
                 itemView.comments.setOnClickListener {
+
+                    (fragment as FeedFragment).goToCommentsList()
+                }
+
+                itemView.commentsButton.setOnClickListener {
 
                     (fragment as FeedFragment).goToCommentsList()
                 }
