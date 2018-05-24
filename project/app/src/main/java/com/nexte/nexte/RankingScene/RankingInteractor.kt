@@ -21,14 +21,16 @@ interface RankingBusinessLogic {
  * @property worker Reference to worker [RankingWorker]
  * @property presenter Reference to presenter [RankingPresenter]
  */
-class RankingInteractor(var presenter: RankingPresentationLogic? = null) : RankingBusinessLogic {
+class RankingInteractor(var presenter: RankingPresentationLogic? = null) :
+        RankingBusinessLogic, RankingWorkerUpdateLogic {
 
     var worker = RankingWorker()
 
     override fun getPlayersRanksForScene(request: RankingModel.Request) {
+        this.worker.getUsersInRanking(request)
+    }
 
-        worker.getUsersInRanking(request){ response ->
-            presenter?.presentRanking(response)
-        }
+    override fun updateUsersInRanking(response: RankingModel.Response) {
+        this.presenter?.presentRanking(response)
     }
 }
