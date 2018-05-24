@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Metodologia - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Metodologia";
+    var mkdocs_page_input_path = "EPS/MetodologiaDoProjeto.md";
+    var mkdocs_page_url = "/EPS/MetodologiaDoProjeto/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../RoadMap/">ROADMAP</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Metodologia</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-de-revisao">Histórico de Revisão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#sumario">Sumário</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-introducao">1. Introdução</a></li>
+        
+            <li><a class="toctree-l4" href="#2-papeis">2. Papéis</a></li>
+        
+            <li><a class="toctree-l4" href="#3-scrum-ritos">3. Scrum Ritos</a></li>
+        
+            <li><a class="toctree-l4" href="#4-xp">4. XP</a></li>
+        
+            <li><a class="toctree-l4" href="#5-kanban">5. Kanban</a></li>
+        
+            <li><a class="toctree-l4" href="#6-referencias">6. Referências</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>EPS &raquo;</li>
+        
+      
+    
+    <li>Metodologia</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/EPS/MetodologiaDoProjeto.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="historico-de-revisao">Histórico de Revisão</h2>
+<table>
+<thead>
+<tr>
+<th align="center">Data</th>
+<th align="center">Versão</th>
+<th align="center">Descrição</th>
+<th align="center">Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">13/03/2018</td>
+<td align="center">0.1</td>
+<td align="center">Criado estrutura inicial do documento</td>
+<td align="center">Luis Gustavo</td>
+</tr>
+<tr>
+<td align="center">13/03/2018</td>
+<td align="center">0.2</td>
+<td align="center">Adicionado Papel do scrum master e time de desenvolvimento, introdução e ritos</td>
+<td align="center">Luis Gustavo</td>
+</tr>
+<tr>
+<td align="center">13/03/2018</td>
+<td align="center">0.3</td>
+<td align="center">Adicionado nova responsabilidade para a equipe de desenvolvimento</td>
+<td align="center">Luis Gustavo</td>
+</tr>
+<tr>
+<td align="center">15/03/2018</td>
+<td align="center">0.4</td>
+<td align="center">Arrumado sumário</td>
+<td align="center">Luis Gustavo</td>
+</tr>
+<tr>
+<td align="center">15/03/2018</td>
+<td align="center">0.5</td>
+<td align="center">Adicionando papel arquitetura</td>
+<td align="center">Miguel Pimentel</td>
+</tr>
+<tr>
+<td align="center">15/03/2018</td>
+<td align="center">0.6</td>
+<td align="center">Adicionando metodologia XP e Scrum</td>
+<td align="center">Miguel Pimentel</td>
+</tr>
+<tr>
+<td align="center">15/03/2018</td>
+<td align="center">0.7</td>
+<td align="center">Adicionando papel DevOps</td>
+<td align="center">Miguel Pimentel</td>
+</tr>
+</tbody>
+</table>
+<h1 id="sumario">Sumário</h1>
+<p><a href="#1-introdução">1. Introdução</a></p>
+<p><a href="#2-papéis">2. Papéis</a></p>
+<p><a href="#3-ritos">3. Scrum Ritos</a></p>
+<p><a href="#4-xp">4. XP</a></p>
+<p><a href="#5-kanban">5. Kanban</a></p>
+<p><a href="#6-referências">6. Referências</a></p>
+<h2 id="1-introducao">1. Introdução</h2>
+<p>Ao longo de todo o projeto será empregado metodologia de desenvolvimento ágil. No projeto será utilizado uma adaptação do Scrum e também será empregados práticas das <em>frameworks</em> XP e Kanban.</p>
+<h2 id="2-papeis">2. Papéis</h2>
+<h3 id="21-scrum-master">2.1. Scrum Master</h3>
+<p>Durante a <em>Release 1</em> o responsável por esse papel é o <a href="https://github.com/luis-gustavo">Luis Gustavo</a>. São tarefas do Scrum Master:</p>
+<ul>
+<li>Fazer gestão de riscos;</li>
+<li>Garantir que os membros da equipe estejam executando a metodologia;</li>
+<li>Ficar responsável por conduzir as reuniões;</li>
+<li>Manter os <em>stakeholders</em> a par do projeto;</li>
+<li>Resolver ou designar membros da equipe para resolver impedimentos;</li>
+<li>Documentar o planejamento e resultados das <em>sprints</em> na Wiki;</li>
+<li>Garantir que nos ritos os dados sobre a equipe e a <em>sprint</em> estejam disponíveis;</li>
+<li>Garantir que as reuniões sejam preparadas e que não demore mais que o tempo estipulado;</li>
+</ul>
+<h3 id="22-devops">2.2. DevOps</h3>
+<p>Neste projeto foi definido como arquiteto devOps o membro <a href="https://github.com/guibaldissera">Guilherme Baldissera</a> que tem como responsabilidades:</p>
+<ul>
+<li>Engajar-se em operações como um cliente e parceiro, em que “uma das partes interessadas é a primeira classe”, - em desenvolvimento.</li>
+<li>Envolver os desenvolvedores em tratamento de incidentes. </li>
+<li>Garantir que todas as alterações de código e configurações sejam feitas usando mecanismos automatizados, rastreáveis ​​e repetíveis.</li>
+<li>Implantação contínua de mudanças do check-in para produção.</li>
+<li>Infraestrutura como código.</li>
+</ul>
+<h3 id="23-arquitetura">2.3. Arquitetura</h3>
+<p>No desenvolvimento do projeto foi definido como responsável pela arquitetura o membro <a href="https://github.com/miguelpimentel">Miguel Pimentel</a> que tem como responsabilidade:</p>
+<ul>
+<li>Limitar as escolhas dentro do desenvolvimento em relação: A padrões de projetos a serem utilizados; Definir/Criar frameworks a serem utilizados no processo de desenvolvimento.</li>
+<li>Identificar pontos de reutilização de código no desenvolvimento do projeto por meio: Enxergar de forma mais abrangente; projeto baseando-se em componentes; e ter contato com todos os produtos desenvolvidos ao longo do projeto.</li>
+<li>Definir escolhas em relação: A arquitetura ser fragmentada em pequenos formatos como forma de diminuir a complexidade no processo de desenvolvimento;</li>
+<li>Ter domínio em relação: Função componentes; dependência de componentes; e comunicar arquitetura ao time de desenvolvimento.</li>
+</ul>
+<h3 id="24-time-de-desenvolvimento">2.4. Time de Desenvolvimento</h3>
+<p>São tarefas do time de desenvolvimento:</p>
+<ul>
+<li>Elaborar protótipos;</li>
+<li>Elaborar documento de visão, arquitetura e especificação suplementar;</li>
+<li>Desenvolver funcionalidades;</li>
+<li>Testar funcionalidades;</li>
+<li>Montar <em>backlog</em> da <em>sprint</em>;</li>
+<li>Elaborar folha de estilo;</li>
+</ul>
+<h3 id="25-product-owner">2.5. Product Owner</h3>
+<p>As tarefas do P.O de acordo com este projeto são:</p>
+<ul>
+<li>Escrever histórias de usuário</li>
+<li>Escrever critério de aceitação</li>
+<li>Priorizar o Backlog do produto</li>
+<li>Compreender completamente as necessidades do cliente  </li>
+<li>Aceitar ou rejeitar uma funcionalidade</li>
+<li>Revisar Pull Requests</li>
+<li>guiar e liderar o planejamento da Sprint</li>
+</ul>
+<h2 id="3-scrum-ritos">3. Scrum Ritos</h2>
+<p>Cada <em>sprint</em> se inicia ao domingo e termina ao sábado.</p>
+<h3 id="31-daily-scrum">3.1. <em>Daily Scrum</em></h3>
+<p>As <em>daily scrum</em> são reuniões diárias feitas pela equipe e tem como objetivo disseminar conhecimento sobre o que foi feito no dia anterior, identificar impedimentos e priorizar o trabalho a ser realizado. Como os membros da equipe de desenvolvimento e os membros da equipe de gerência possuem horários muito diferentes, foi definido que as reuniões seriam da seguinte forma:</p>
+<ul>
+<li><strong>Segunda</strong> e <strong>Quarta</strong> a reunião será via Hangouts às 21h30.</li>
+<li><strong>Terça</strong> e <strong>Quinta</strong> a reunião será presencial, após a aula de EPS.</li>
+<li><strong>Sexta</strong> e <strong>Domingo</strong> a reunião será feita via bot standuply no Slack, o bot poderá ser respondido de 20h até 23h59.</li>
+</ul>
+<p>A reunião deverá durar até 15 minutos.</p>
+<h3 id="32-revisao-da-sprint">3.2. Revisão da <em>Sprint</em></h3>
+<p>Ao final de cada <em>sprint</em> será feito uma reunião de revisão da <em>sprint</em>, o projeto será avaliado em relação aos objetivos da <em>sprint</em>, os será discutido o que foi concluído durante a <em>sprint</em> e, se necessário, o <em>product backlog</em> poderá ser alterado. A realização dessa reunião será feito durante a reunião de sábado da equipe e deverá durar até 45 minutos.</p>
+<h3 id="33-retrospectiva-da-sprint">3.3. Retrospectiva da <em>Sprint</em></h3>
+<p>A retrospectiva da <em>sprint</em> ocorrerá ao final de cada <em>sprint</em> nela serão avaliados os pontos que funcionaram bem durante a <em>sprint</em>, as melhoras que a equipe teve, o que pode ser melhorado e as ações a serem tomadas. Essa reunião ocorrerá durante a reunião de sábado da equipe e deverá durar até 1h30.</p>
+<h3 id="34-planejamento-da-sprint">3.4. Planejamento da <em>Sprint</em></h3>
+<p>Na reunião de planejamento de <em>sprint</em> será planejado todo o trabalho a ser feito na respectiva <em>sprint</em>, nela será definida o objetivo da <em>sprint</em>.Essa reunião ocorrerá durante a reunião de sábado da equipe e deverá durar até 2h.</p>
+<h2 id="4-xp">4. XP</h2>
+<p>Além do SCRUM, o desenvolvimento deste projeto adotou algumas práticas do Extreme Programming(XP) como forma de promover práticas que tenham impacto diretamente em código, destacando-se:</p>
+<ul>
+<li>Jogo de Planejamento (Planning Game)</li>
+<li>Fases pequenas (Small Releases)</li>
+<li>Metáfora (Metaphor)</li>
+<li>Design Simples (Simple Design)</li>
+<li>Testes de Aceitação (Customer Tests)</li>
+<li>Programação Pareada (Pair Programming)</li>
+<li>Padronização do Codigo (Coding Standards)</li>
+<li>Refatoração (Refactoring)</li>
+<li>Integração Contínua (Continuous Integration)</li>
+</ul>
+<h2 id="5-kanban">5. Kanban</h2>
+<p>Oriundo do japonés KANBAN significa cartão ou sinalização. É um método para a implantação de mudanças que não prescreve papéis ou práticas específicas. No caso, ajudaria na nossa metodologia como algo suplementar, dando uma visão clara das tarefas, seus responsáveis e seu status. Para a implementação desta técnica, utilizou-se de ferramentas como o ZenHub e o taiga, ambos interligados ao Git e Slack.</p>
+<h2 id="6-referencias">6. Referências</h2>
+<blockquote>
+<p><p align="justify">O que é o Scrum?. Disponível em: <a href="http://www.desenvolvimentoagil.com.br/scrum/">http://www.desenvolvimentoagil.com.br/scrum/</a>. Acessado em 13/03/2018</p></p>
+</blockquote>
+<p><br/></p>
+<blockquote>
+<p><p align="justify">Scrum Guide. Disponível em: <a href="https://www.scrumguides.org/scrum-guide.html">https://www.scrumguides.org/scrum-guide.html<a>. Acessado em 13/03/2018</p></p>
+</blockquote>
+<p><br/></p>
+<blockquote>
+<p><p align="justify">Extreme Programming Conceitos e Práticas. Disponível em: <a href="https://www.devmedia.com.br/extreme-programming-conceitos-e-praticas/1498">https://www.devmedia.com.br/extreme-programming-conceitos-e-praticas/1498</a>. Acessado em 10/03/2018</p></p>
+</blockquote>
+<p><br/></p>
+<blockquote>
+<p><p align="justify"> Arquitetura de Software em DevOps. Disponível em: <a href="https://imasters.com.br/desenvolvimento/arquitetura-de-software-em-devops/?trace=1519021197&source=single">https://imasters.com.br/desenvolvimento/arquitetura-de-software-em-devops/?trace=1519021197&amp;source=single</a>. Acessado em 15/03/2018</p></p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../PoliticaDeBranches/" class="btn btn-neutral float-right" title="Politica de Branches">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../RoadMap/" class="btn btn-neutral" title="ROADMAP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../RoadMap/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../PoliticaDeBranches/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

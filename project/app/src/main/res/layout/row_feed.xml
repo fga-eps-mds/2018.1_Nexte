@@ -5,6 +5,7 @@
     android:id="@+id/feedActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:minWidth="@dimen/activity_horizontal_margin"
     android:background="@drawable/cell_border">
 
@@ -151,6 +152,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/likesButton"
         app:layout_constraintStart_toEndOf="@+id/likesButton"
         app:layout_constraintTop_toTopOf="@+id/likesButton" />
+
+    <View
+        android:id="@+id/backgroundBar"
+        android:layout_width="388dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/feedRowBottom"
+        app:layout_constraintCircleRadius="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/versusTextView" />
 
     <ImageButton
         android:id="@+id/likesButton"

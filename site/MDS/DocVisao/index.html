@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Documento de visão - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Documento de vis\u00e3o";
+    var mkdocs_page_input_path = "MDS/DocVisao.md";
+    var mkdocs_page_url = "/MDS/DocVisao/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../EPS/TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Documento de visão</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-da-revisao">Histórico da Revisão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#indice-analitico">Índice Analítico</a></li>
+    
+
+    <li class="toctree-l3"><a href="#1-introducao">1  Introdução</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#11-proposito">1.1 Propósito</a></li>
+        
+            <li><a class="toctree-l4" href="#12-escopo">1.2 Escopo</a></li>
+        
+            <li><a class="toctree-l4" href="#13-definicoes-acronimos-e-abreviacoes">1.3 Definições, acrônimos e abreviações</a></li>
+        
+            <li><a class="toctree-l4" href="#14-referencias">1.4  Referências</a></li>
+        
+            <li><a class="toctree-l4" href="#15-visao-geral">1.5  Visão geral</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#2-posicionando">2  Posicionando</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#21-oportunidade-de-negocios">2.1 Oportunidade de Negócios</a></li>
+        
+            <li><a class="toctree-l4" href="#22-instrucao-do-problema">2.2 Instrução do Problema</a></li>
+        
+            <li><a class="toctree-l4" href="#23-instrucao-de-posicao-do-produto">2.3 Instrução de Posição do Produto</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#3-descricoes-da-parte-interessada-e-do-usuario">3  Descrições da Parte Interessada e do Usuário</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#31-demograficos-de-mercado">3.1 Demográficos de Mercado</a></li>
+        
+            <li><a class="toctree-l4" href="#32-resumo-da-parte-interessada">3.2 Resumo da Parte Interessada</a></li>
+        
+            <li><a class="toctree-l4" href="#33-resumo-do-usuario">3.3 Resumo do Usuário</a></li>
+        
+            <li><a class="toctree-l4" href="#34-ambiente-do-usuario">3.4 Ambiente do Usuário</a></li>
+        
+            <li><a class="toctree-l4" href="#35-perfis-das-partes-interessadas">3.5 Perfis das Partes Interessadas</a></li>
+        
+            <li><a class="toctree-l4" href="#36-perfis-do-usuario">3.6 Perfis do Usuário</a></li>
+        
+            <li><a class="toctree-l4" href="#37-principais-necessidades-da-parte-interessada-ou-do-usuario">3.7 Principais Necessidades da Parte Interessada ou do Usuário</a></li>
+        
+            <li><a class="toctree-l4" href="#38-alternativas-e-concorrencia">3.8 Alternativas e Concorrência</a></li>
+        
+            <li><a class="toctree-l4" href="#41-perspectiva-do-produto">4.1 Perspectiva do Produto</a></li>
+        
+            <li><a class="toctree-l4" href="#42-resumo-das-capacidades">4.2 Resumo das Capacidades</a></li>
+        
+            <li><a class="toctree-l4" href="#43-suposicoes-e-dependencias">4.3 Suposições e Dependências</a></li>
+        
+            <li><a class="toctree-l4" href="#51-sistema-de-autenticacao-de-clubes">5.1 Sistema de autenticação de clubes</a></li>
+        
+            <li><a class="toctree-l4" href="#52-sistema-de-rankings">5.2 Sistema de rankings</a></li>
+        
+            <li><a class="toctree-l4" href="#53-sistema-de-desafios">5.3 Sistema de desafios</a></li>
+        
+            <li><a class="toctree-l4" href="#54-gerenciamento-de-partidas">5.4 Gerenciamento de partidas</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#6-restricoes">6  Restrições</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#61-restricoes-de-design">6.1 Restrições de design</a></li>
+        
+            <li><a class="toctree-l4" href="#62-restricoes-de-plataforma">6.2 Restrições de plataforma</a></li>
+        
+            <li><a class="toctree-l4" href="#63-restricoes-de-implementacao">6.3 Restrições de implementação</a></li>
+        
+            <li><a class="toctree-l4" href="#64-restricoes-de-uso">6.4 Restrições de uso</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>MDS &raquo;</li>
+        
+      
+    
+    <li>Documento de visão</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/MDS/DocVisao.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="historico-da-revisao">Histórico da Revisão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10/03/2018</td>
+<td>0.1</td>
+<td>Criação do documento</td>
+<td>Geovanni Oliveira</td>
+</tr>
+<tr>
+<td>10/03/2018</td>
+<td>0.2</td>
+<td>Início do preenchimento do Documento</td>
+<td>Alexandre Miguel, Gabriel Albino, Helena Goulart, Larissa Sales, Letícia Meneses, Lorrany Freire</td>
+</tr>
+<tr>
+<td>11/03/2018</td>
+<td>0.3</td>
+<td>Estrutura do documento foi completada</td>
+<td>Geovanni Olivera</td>
+</tr>
+<tr>
+<td>12/03/2018</td>
+<td>0.4</td>
+<td>Preenchimento inicial do posicionamento</td>
+<td>Alexandre Miguel, Letícia Meneses, Lorrany Freire</td>
+</tr>
+<tr>
+<td>12/03/2018</td>
+<td>0.5</td>
+<td>Adicionado as descrições da parte interessada e do usuário</td>
+<td>Helena Goulart, Larissa Sales</td>
+</tr>
+<tr>
+<td>13/03/2018</td>
+<td>0.6</td>
+<td>Finalização do preenchimento e Alternativas e concorrencia</td>
+<td>Gabriel Albino, Letícia Meneses, Lorrany Freire</td>
+</tr>
+<tr>
+<td>13/03/2018</td>
+<td>0.6.1</td>
+<td>Removido tópicos que não serão abordados nesse documento</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>13/03/2018</td>
+<td>0.6.2</td>
+<td>Atualização do índice</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>13/03/2018</td>
+<td>0.7</td>
+<td>Melhoria da descrição das partes interessadas e visão geral do documento</td>
+<td>Alexandre Miguel, Gabriel Albino</td>
+</tr>
+<tr>
+<td>13/03/2018</td>
+<td>0.8</td>
+<td>Preenchimento das descrições das partes interessadas e do usuário</td>
+<td>Gabriel Albino, Helena Goulart, Larissa Sales, Leticia Meneses</td>
+</tr>
+<tr>
+<td>13/03/2018</td>
+<td>0.9</td>
+<td>Atualização das necessidades das partes interessadas</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>14/03/2018</td>
+<td>0.9.1</td>
+<td>Revisão de texto e formatação até o tópico 3.3</td>
+<td>ALexandre Miguel, Helena Goulart</td>
+</tr>
+<tr>
+<td>15/03/2018</td>
+<td>1.0</td>
+<td>Correções ortográficas e de informações erradas</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>15/03/2018</td>
+<td>1.0.1</td>
+<td>Corrigido indíce analítico</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>15/03/2018</td>
+<td>1.0.2</td>
+<td>Corrigido formatação</td>
+<td>Gabriel Albino</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="indice-analitico">Índice Analítico</h3>
+<ul>
+<li><a href="#1--introdução">1  Introdução</a><ul>
+<li><a href="#11-propósito">1.1 Propósito</a></li>
+<li><a href="#12-escopo">1.2 Escopo</a></li>
+<li><a href="#13-definições-acrônimos-e-abreviações">1.3 Definições, acrônimos e abreviações</a></li>
+<li><a href="#14--referências">1.4  Referências</a></li>
+<li><a href="#15--visão-geral">1.5  Visão geral</a></li>
+</ul>
+</li>
+<li><a href="#2--posicionando">2  Posicionando</a><ul>
+<li><a href="#21oportunidade-de-negócios">2.1 Oportunidade de Negócios</a></li>
+<li><a href="#22instrução-do-problema">2.2 Instrução do Problema</a></li>
+<li><a href="#23instrução-de-posição-do-produto">2.3 Instrução de Posição do Produto</a></li>
+</ul>
+</li>
+<li><a href="#3--descrições-da-parte-interessada-e-do-usuário">3  Descrições da Parte Interessada e do Usuário</a><ul>
+<li><a href="#31-demográficos-de-mercado">3.1 Demográficos de Mercado</a></li>
+<li><a href="#32-resumo-da-parte-interessada">3.2 Resumo da Parte Interessada</a></li>
+<li><a href="#33-resumo-do-usuário">3.3 Resumo do Usuário</a></li>
+<li><a href="#34-ambiente-do-usuário">3.4 Ambiente do Usuário</a></li>
+<li><a href="#35-perfis-das-partes-interessadas">3.5 Perfis das Partes Interessadas</a></li>
+<li><a href="#36-perfis-do-usuário">3.6 Perfis do Usuário</a></li>
+<li><a href="#37-principais-necessidades-da-parte-interessada-ou-do-usuário">3.7 Principais Necessidades da Parte Interessada ou do Usuário</a></li>
+<li><a href="#38-alternativas-e-concorrência">3.8 Alternativas e Concorrência</a></li>
+</ul>
+</li>
+<li><a href="#4-visão-geral-do-produto">4 Visão Geral do Produto</a><ul>
+<li><a href="#41perspectiva-do-produto">4.1 Perspectiva do Produto</a></li>
+<li><a href="#42resumo-das-capacidades">4.2 Resumo das Capacidades</a></li>
+<li><a href="#43suposições-e-dependências">4.3 Suposições e Dependências</a></li>
+</ul>
+</li>
+<li><a href="#5--recursos-do-produto">5  Recursos do Produto</a><ul>
+<li><a href="#51-sistema-de-autenticação-de-clubes">5.1 Sistema de autenticação de clubes</a></li>
+<li><a href="#52-sistema-de-rankings">5.2 Sistema de rankings</a></li>
+<li><a href="#53-sistema-de-desafios">5.3 Sistema de desafios</a></li>
+<li><a href="#54-gerenciamento-de-partidas">5.4 Gerenciamento de partidas</a></li>
+</ul>
+</li>
+<li><a href="#6--restrições">6  Restrições</a><ul>
+<li><a href="#61-restrições-de-design">6.1 Restrições de design</a></li>
+<li><a href="#62-restrições-de-plataforma">6.2 Restrições de plataforma</a></li>
+<li><a href="#63-restrições-de-implementação">6.3 Restrições de implementação</a></li>
+<li><a href="#64-restrições-de-uso">6.4 Restrições de uso</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-introducao">1  Introdução</h2>
+<p>Esta introdução fornece uma visão geral de todo o documento de visão. Ela inclui o propósito, escopo, definições, acrônimos, abreviações, referências e visão geral de todo o documento.  </p>
+<h3 id="11-proposito">1.1 Propósito</h3>
+<p>O documento explana o funcionamento do aplicativo Nexte, assim como os requisitos necessários para a compreensão do escopo do projeto.</p>
+<h3 id="12-escopo">1.2 Escopo</h3>
+<p>O projeto contemplado por esse documento apresenta formas de auxiliar a interação entre os jogadores de tênis através do gerenciamento de rankings e partidas.</p>
+<h3 id="13-definicoes-acronimos-e-abreviacoes">1.3 Definições, acrônimos e abreviações</h3>
+<ul>
+<li>MDS - Métodos de Desenvolvimento de Software;</li>
+<li>EPS - Engenharia de Produto de Software;</li>
+<li>FGA - Faculdade do Gama;</li>
+<li>UnB - Universidade de Brasília;</li>
+<li>CLT - Cinta Liga de Tênis. </li>
+</ul>
+<h3 id="14-referencias">1.4  Referências</h3>
+<p>Entre as fontes de base para o desenvolvimento do projeto é importante citar:
+1. Regras de jogos da CLT
+2. <a href="http://www.tenisintegrado.com.br/clube/">Tênis Integrado</a> </p>
+<h3 id="15-visao-geral">1.5  Visão geral</h3>
+<p>O documento objetiva descrever de forma sucinta o software como serviço, ressaltando os aspectos fundamentais para o seu desenvolvimento, tais como:
+- O posicionamento do produto em relação ao mercado, a perspectiva das partes interessadas e dos usuários;
+- Descrição das partes interessadas e dos usuários;
+- Custo, capacidades e dependências para a ampla funcionalidade do aplicativo;
+- Descrição dos recursos oferecidos pelo aplicativo, apresentando a perspectiva da sua funcionalidade;
+- Restrições de uso, desenvolvimento e funcionalidade do aplicativo.</p>
+<h2 id="2-posicionando">2  Posicionando</h2>
+<h3 id="21-oportunidade-de-negocios">2.1 Oportunidade de Negócios</h3>
+<p>O projeto propõe uma melhoria no envolvimento dos associados dos clubes, resultando em uma maior taxa de fidelidade dos membros e a oportunidade de adesão de novos, favorecendo o comércio local através da movimentação das quadras esportivas.</p>
+<h3 id="22-instrucao-do-problema">2.2 Instrução do Problema</h3>
+<p>A desorganização de partidas de tênis afeta os seus praticantes bem como os proprietários de clubes, ocasionando a falta de incentivo aos jogadores em se desenvolverem dentro do esporte através da prática com adversários distintos e seus diferentes níveis de habilidades. O desenvolvimento de um método gamificado possibilita a solução desse problema, uma vez que proporciona a praticidade dos usuários em encontrar novos oponentes em horários vantajosos para ambos, aliando essas funcionalidades a um sistema de rankings que promove a competitividade sadia entre os jogadores e estimula a prática do esporte.</p>
+<h3 id="23-instrucao-de-posicao-do-produto">2.3 Instrução de Posição do Produto</h3>
+<p>Para os membros dos clubes de tênis que necessitam de incentivo e praticidade pra exercer o esporte, o Nexte é um aplicativo que administra os jogos de tênis e a competitividade entre seus usuários. Comparando-o com o sistema <em>Quero Jogar Tênis</em>, o projeto Nexte possui sistema de gamificação que possibilita a imersão do usuário no esporte, possibilitanto também o engajamento das comunidades amadoras já existentes de tênis. O aplicativo divulga o ranking entre jogadores com facilidade e rapidez em relação às formas anteriores de registro de resultados, como o excel, sites ou aplicativos exclusivos para esse fim.</p>
+<h2 id="3-descricoes-da-parte-interessada-e-do-usuario">3  Descrições da Parte Interessada e do Usuário</h2>
+<p>Para os proprietários de clubes amadores de tênis, o problema enfrentado é, principalmente, a falta de estímulo dos membros associados, acarretando na falta de frequência e participação nas quadras. O aplicativo visa melhorar o engajamento dos sócios como um incentivador, atuando no aumento o envolvimento dos associados nos eventos, colaborando para a assiduidade.</p>
+<p>Para os membros de clubes amadores de tênis, o maior desafio enfrentado é a dificuldade de achar oponentes em horários que se adequem à rotina pessoal. O aplicativo visa administrar o sistema de partidas, atuando principalmente no gerenciamento dos jogos e competições, oferecendo comodidade na organização da prática do esporte.</p>
+<p>Para os patrocinadores, que necessitam de um ambiente para expor seus produtos, o aplicativo visa oferecer uma plataforma conveniente para o anúncio de artefatos esportivos, aumentando a visibilidade da marca no nicho propício. </p>
+<h3 id="31-demograficos-de-mercado">3.1 Demográficos de Mercado</h3>
+<p>O aplicativo Nexte pretende atingir as organizações amadoras de tênis, assim como seus sócios. Atualmente, no Brasil, existem cerca de <a href="#14-referencias">300 clubes</a> que poderiam se beneficiar do aplicativo.</p>
+<h3 id="32-resumo-da-parte-interessada">3.2 Resumo da Parte Interessada</h3>
+<p>Os tenistas, clubes e desenvolvedores do projeto apresentam entre as necessidades os seguintes tópicos: Desenvolver habilidades na modalidade tênis através do desafio entre oponentes, assim como a utilização de diferentes espaços físicos e o interesse em organizar as partidas e seus respectivos rankings.</p>
+<h3 id="33-resumo-do-usuario">3.3 Resumo do Usuário</h3>
+<p>O aplicativo Nexte conta com representantes de clubes de tênis, assim como tenistas ativos como usuários que tenham disponibilidade de disputar o ranking como desafiantes e desafiados. Torna-se importante ressaltar que os clubes são os responsáveis pelo cadastro dos tenistas, não sendo possível o cadastro de usuários não associados a um clube.</p>
+<h3 id="34-ambiente-do-usuario">3.4 Ambiente do Usuário</h3>
+<p>As quadras de tênis de Brasília são os principais ambientes compartilhados pelos esportistas. Sejam em clubes ou em áreas privadas, a localização da quadra é um critério escolhido entre os jogadores da partida, que tendem a enfrentar algumas limitações relacionadas à reserva das quadras por serem exclusivas a moradores e sócios. O tempo de duração de cada partida varia de acordo com a pontuação de cada set.</p>
+<h3 id="35-perfis-das-partes-interessadas">3.5 Perfis das Partes Interessadas</h3>
+<p>Dentre as partes interessadas encontram-se os representantes dos clubes de tênis, responsáveis  pelo cadastro dos sócios do clube e infraestrutura do local.
+O engajamento de novos membros e a assiduidade dos antigos são as principais recompensas para os representantes.</p>
+<h3 id="36-perfis-do-usuario">3.6 Perfis do Usuário</h3>
+<p>Dentre os usuários encontram-se os associados dos clubes de tênis, sendo responsáveis pela organização de partidas, sendo gratificados com a comodidade na organização da prática do esporte. </p>
+<h3 id="37-principais-necessidades-da-parte-interessada-ou-do-usuario">3.7 Principais Necessidades da Parte Interessada ou do Usuário</h3>
+<table>
+<thead>
+<tr>
+<th>Necessidade</th>
+<th>Prioridade</th>
+<th>Interesses</th>
+<th>Solução atual</th>
+<th>Solução proposta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dificuldade no gerenciamento de partidas</td>
+<td>Alta</td>
+<td>Sócios dos clubes</td>
+<td>Softwares de baixa qualidade feita pelos próprios clubes, sendo a maioria sem suporte para mobile</td>
+<td>Aplicativo que integra de forma mais rápida e funcional os membros do clube</td>
+</tr>
+<tr>
+<td>Falta de motivação dos membros do clube</td>
+<td>Alta</td>
+<td>Representantes do clube</td>
+<td>Os softwares existentes não se preocupam com essa necessidade, fornecendo apenas funcionalidades básicas sem nenhum tipo de incentivo</td>
+<td>O aplicativo proposto utiliza a metodologia de gameficação, que vai incentivar o uso constante do aplicativo e uma eventual motivação para os membros do clube continuarem a desafiar novos oponentes.</td>
+</tr>
+<tr>
+<td>Ausência de dados dos jogadores (Vitorias, derrotas, aproveitamento, etc.)</td>
+<td>Alta</td>
+<td>Membros e representantes dos clubes</td>
+<td>Os softwares existentes não se preocupam em armazenar os dados dos jogadores.</td>
+<td>O aplicativo proposto deixará os dados dos jogadores mais acessíveis, tornando possível uma analise geral dos jogadores, assim como irá fornecer detalhes sobre o desempenho deles nas partidas.</td>
+</tr>
+<tr>
+<td>Falta de ferramentas de integração da comunidade</td>
+<td>Media</td>
+<td>Membros do clube</td>
+<td>As soluções atuais não apresentam um canal de interação entre os usuários</td>
+<td>Será implementado no aplicativo um sistema de feed que exibirá resumo das partidas, assim como chat e integração com redes sociais e/ou informações de contato.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="38-alternativas-e-concorrencia">3.8 Alternativas e Concorrência</h3>
+<p>Os principais concorrentes apresentam como pontos fortes a possibilidade de reservar quadras e marcar horarios com treinadores, mas em contrapartida não possuem um sitema para manter os usuários engajados no uso diário do aplicativo.
+Como diferencial, o Nexte apresenta um sistema de gamificação, incentivando os usuários a manterem o uso constante do aplicativo, tanto pelo sistema de rank quanto pelo sistema de trofeús e conqusitas.</p>
+<p>## 4  Visão Geral do Produto
+O aplicativo é voltado para gerenciamento de clubes amadores de tênis, possuindo um sistema de ranking baseado nas regras da CLT.</p>
+<h3 id="41-perspectiva-do-produto">4.1 Perspectiva do Produto</h3>
+<p>O produto se difere dos demais pois ele é focado em clubes ao invés de jogadores, onde o clube é responsável pelo controle de seus membros. Utilizando a gamificação para incentivar os usuários, o aplicavo visa aumentar tanto a pratica do esporte, quanto a utilização do mesmo.
+ O Nexte é um aplicativo independente com possibilidade de parcerias.</p>
+<h3 id="42-resumo-das-capacidades">4.2 Resumo das Capacidades</h3>
+<table>
+<thead>
+<tr>
+<th>Benefício para o Cliente</th>
+<th>Recursos de Suporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gerenciamento de clubes.</td>
+<td>Engajamento dos clubes já existentes de tênis, permitindo cadastro de seus membros.</td>
+</tr>
+<tr>
+<td>Sistema de rankings</td>
+<td>Colocação dos membros do clube com base em seu desempenho nas partidas.</td>
+</tr>
+<tr>
+<td>Gerenciamento de partidas.</td>
+<td>Marcação da partida por meio de desafios com regras pré-definidas e controle de resultados para o sistema de rankings</td>
+</tr>
+<tr>
+<td>Sistema de gamificação.</td>
+<td>Incentivo à competitividade sadia entre jogadores do clube</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-suposicoes-e-dependencias">4.3 Suposições e Dependências</h3>
+<ul>
+<li>Os membros do clube devem possuir um smartphone com harware suficiente para sua utilização.</li>
+<li>Os membros do clube devem possuir uma versão mínima do sistema operacional Android (A definir).</li>
+</ul>
+<p>## 5  Recursos do Produto</p>
+<h3 id="51-sistema-de-autenticacao-de-clubes">5.1 Sistema de autenticação de clubes</h3>
+<p>O aplicativo fornece um sistema de gerenciamento de clubes, permitindo cadastramento, atualização, login ou exclusão da conta.</p>
+<h3 id="52-sistema-de-rankings">5.2 Sistema de rankings</h3>
+<p>O aplicativo segue regras pré-definidas para classificar o usuário.</p>
+<h3 id="53-sistema-de-desafios">5.3 Sistema de desafios</h3>
+<p>O aplicativo torna possível o usuário desafiar outros jogadores seguindo regras pré-definidas.</p>
+<h3 id="54-gerenciamento-de-partidas">5.4 Gerenciamento de partidas</h3>
+<p>O aplicativo gerencia as partidas realizadas, desde o desafio até a coleta do resultado.</p>
+<h2 id="6-restricoes">6  Restrições</h2>
+<h3 id="61-restricoes-de-design">6.1 Restrições de design</h3>
+<p>O design do aplicativo será limpo e "user-friendly", de modo a tornar a navegação o mais natural possível.</p>
+<h3 id="62-restricoes-de-plataforma">6.2 Restrições de plataforma</h3>
+<p>O aplicativo será desenvolvido para smartphones com sistema android.</p>
+<h3 id="63-restricoes-de-implementacao">6.3 Restrições de implementação</h3>
+<p>Será utilizado no desenvolvimento a linguagem  Kotlin.</p>
+<h3 id="64-restricoes-de-uso">6.4 Restrições de uso</h3>
+<p>Para a utilização do aplicativo é necessário que o usuário possua um dispositivo android com conexão de internet.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../DocArquitetura/" class="btn btn-neutral float-right" title="Documento de arquitetura">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../EPS/PlanoDeQualidade/Questoes/" class="btn btn-neutral" title="Questões"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../EPS/PlanoDeQualidade/Questoes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../DocArquitetura/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

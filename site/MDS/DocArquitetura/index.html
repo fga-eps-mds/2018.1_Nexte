@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Documento de arquitetura - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Documento de arquitetura";
+    var mkdocs_page_input_path = "MDS/DocArquitetura.md";
+    var mkdocs_page_url = "/MDS/DocArquitetura/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../EPS/TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../DocVisao/">Documento de visão</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Documento de arquitetura</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-da-revisao">Histórico da Revisão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#indice-analitico">Índice Analítico</a></li>
+    
+
+    <li class="toctree-l3"><a href="#nexte">Nexte</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#objetivo-desse-documento">Objetivo desse documento</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#1-introducao">1 INTRODUÇÃO</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#11-finalidade">1.1 Finalidade</a></li>
+        
+            <li><a class="toctree-l4" href="#12-escopo">1.2 Escopo</a></li>
+        
+            <li><a class="toctree-l4" href="#13-definicoes-acronimos-e-abreviacoes">1.3 Definições, Acrônimos e Abreviações</a></li>
+        
+            <li><a class="toctree-l4" href="#14-referencias">1.4 Referências</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#2-representacao-arquitetural">2. REPRESENTAÇÃO ARQUITETURAL</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#21-representacao-arquitetural-das-cenas">2.1 Representação Arquitetural das Cenas</a></li>
+        
+            <li><a class="toctree-l4" href="#22-representacao-arquitetural-das-entidades-globais">2.2 Representação Arquitetural das Entidades Globais</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#3-requisitos-e-restricoes-de-arquitetura">3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#31-requisitos-gerais">3.1 Requisitos gerais</a></li>
+        
+            <li><a class="toctree-l4" href="#32-restricoes-de-arquitetura">3.2 Restrições de arquitetura</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#4-visao-logica">4. VISÃO LÓGICA</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#41-visao-geral-para-as-cenas-pacotes-e-camada">4.1 Visão Geral para as Cenas – pacotes e camada</a></li>
+        
+            <li><a class="toctree-l4" href="#42-visao-geral-para-as-entidade-globais-pacotes-e-camada">4.2 Visão Geral para as Entidade Globais – pacotes e camada</a></li>
+        
+            <li><a class="toctree-l4" href="#43-observacoes">4.3 Observações</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#5-visao-de-implementacao">5. VISÃO DE IMPLEMENTAÇÃO</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#51-caso-de-uso">5.1 Caso de Uso</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#6-dimensionamento">6. DIMENSIONAMENTO</a></li>
+    
+
+    <li class="toctree-l3"><a href="#7-qualidade">7. QUALIDADE</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>MDS &raquo;</li>
+        
+      
+    
+    <li>Documento de arquitetura</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/MDS/DocArquitetura.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="historico-da-revisao">Histórico da Revisão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16/03/2018</td>
+<td>0.1</td>
+<td>Criação do documento</td>
+<td>Gabriel Albino, Letícia Meneses</td>
+</tr>
+<tr>
+<td>17/03/2018</td>
+<td>0.1.1</td>
+<td>Correção do índice analítico</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>18/03/2018</td>
+<td>0.2</td>
+<td>Adicionado introdução e representação arquitetural</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>18/03/2018</td>
+<td>0.3</td>
+<td>Finalizado restrições de arquitetura.</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>19/03/2018</td>
+<td>0.4</td>
+<td>Produção do Dimensionamento e Performance.</td>
+<td>Gabriel Albino, Letícia Meneses e Lorrany Freire</td>
+</tr>
+<tr>
+<td>19/03/2018</td>
+<td>0.4.1</td>
+<td>Adicionado descrição e atributos das classes principais.</td>
+<td>Gabriel Albino, Letícia Meneses e Lorrany Freire</td>
+</tr>
+<tr>
+<td>20/03/2018</td>
+<td>0.5</td>
+<td>Adicionado diagrama de pacotes e camadas, assim como sua descrição.</td>
+<td>Gabriel Albino e Letícia Meneses</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.5.1</td>
+<td>Revisão de texto e padronização do formato das tabelas</td>
+<td>Alexandre Miguel</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.6</td>
+<td>Adicionado diagrama de classes</td>
+<td>Gabriel Albino, Letícia Meneses e Lorrany Freire</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.7</td>
+<td>Adicionado o índice analítico e definidos os aspectos de qualidade</td>
+<td>Alexandre Miguel e Helena Goulart</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.7.1</td>
+<td>Realizadas correções nos tópicos e no diagrama de classes</td>
+<td>Gabriel Albino, Letícia Meneses e Lorrany Freire</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.7.2</td>
+<td>Relizado correção na definição de <em>model</em></td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.7.3</td>
+<td>Relizado correção no diagrama de classes</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>21/03/2018</td>
+<td>0.7.4</td>
+<td>Relizado correção no diagrama de classes</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>23/03/2018</td>
+<td>0.8</td>
+<td>Adicionado diagrama de sequência</td>
+<td>Lorrany Freire</td>
+</tr>
+<tr>
+<td>24/03/2018</td>
+<td>1.0</td>
+<td>Correção de detalhes e remoção de tópicos que não serão abordados nesse documento.</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>24/03/2018</td>
+<td>1.0.1</td>
+<td>Correção do tópico 3.2 (Restrições de arquitetura).</td>
+<td>Gabriel Albino, Letícia Meneses, Lorrany Freire</td>
+</tr>
+<tr>
+<td>19/04/2018</td>
+<td>1.1</td>
+<td>Adição dos novos diagramas de classe.</td>
+<td>Gabriel Albino, Alexandre Miguel</td>
+</tr>
+<tr>
+<td>27/04/2018</td>
+<td>1.1.1</td>
+<td>Adição do novo diagrama de classe da Comments.</td>
+<td>Alexandre Miguel</td>
+</tr>
+<tr>
+<td>01/05/2018</td>
+<td>1.1.2</td>
+<td>Adição do novo diagrama de classe da Comments.</td>
+<td>Gabriel Albino</td>
+</tr>
+<tr>
+<td>03/05/2018</td>
+<td>2.0</td>
+<td>Atualização da Arquitetura((Frontend)</td>
+<td>Miguel Pimentel</td>
+</tr>
+<tr>
+<td>10/05/2018</td>
+<td>2.0.1</td>
+<td>Atualização do novo diagrama da classe da Comments</td>
+<td>Alexandre Miguel</td>
+</tr>
+</tbody>
+</table>
+<h3 id="indice-analitico">Índice Analítico</h3>
+<ul>
+<li><a href="#1-introdução">1 INTRODUÇÃO</a><ul>
+<li><a href="#11-finalidade">1.1 Finalidade</a></li>
+<li><a href="#12-escopo">1.2 Escopo</a></li>
+<li><a href="#13-definições-acrônimos-e-abreviações">1.3 Definições, Acrônimos e Abreviações</a></li>
+<li><a href="#14-referências">1.4 Referências</a></li>
+</ul>
+</li>
+<li><a href="#2-representação-arquitetural">2. REPRESENTAÇÃO ARQUITETURAL</a><ul>
+<li><a href="#21-Representação Arquitetural das Cenas">2.1 Representação Arquitetural das Cenas</a></li>
+<li><a href="#22-escopo">2.2 Representação Arquitetural das Entidades Globais</a></li>
+</ul>
+</li>
+<li><a href="#3-requisitos-e-restrições-de-arquitetura">3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA</a><ul>
+<li><a href="#31-requisitos-gerais">3.1 Requisitos gerais</a></li>
+<li><a href="#32-restrições-de-arquitetura">3.2 Restrições de arquitetura</a></li>
+</ul>
+</li>
+<li><a href="#4-visÃo-lógica">4. VISÃO LÓGICA</a><ul>
+<li><a href="#41-visão-geral-–-pacotes-e-camadas">4.1 Visão Geral – pacotes e camadas</a></li>
+<li><a href="#411-diagrama-de-pacotes">4.1.1 Diagrama de pacotes</a></li>
+<li><a href="#412-diagrama-de-camadas">4.1.2 Diagrama de camadas</a></li>
+</ul>
+</li>
+<li><a href="#5-visão-de-implementação">5. VISÃO DE IMPLEMENTAÇÃO</a><ul>
+<li><a href="#51-caso-de-uso">5.1 Caso de Uso</a></li>
+<li><a href="#511-diagrama-de-classes">5.1.1  <em>Diagrama de Classes</em></a></li>
+<li><a href="#512-diagrama-de-sequência">5.1.2 <em>Diagrama de Sequência</em></a></li>
+</ul>
+</li>
+<li><a href="#6-dimensionamento">6. DIMENSIONAMENTO</a></li>
+<li><a href="#7-qualidade">7. QUALIDADE</a></li>
+<li><a href="#8-apendice">8. Apêndice</a></li>
+</ul>
+<h2 id="nexte">Nexte</h2>
+<h3 id="objetivo-desse-documento">Objetivo desse documento</h3>
+<p>Este documento tem como objetivo descrever as principais decisões de projeto tomadas pela equipe de
+desenvolvimento e os critérios considerados durante a tomada destas decisões. Suas informações incluem a parte de hardware e software do sistema.</p>
+<h2 id="1-introducao">1 INTRODUÇÃO</h2>
+<h3 id="11-finalidade">1.1 Finalidade</h3>
+<p>É apresentada uma visão arquitetural abrangente do sistema Nexte, usando diversas modelos de arquitetura para representar diferentes aspectos do sistema. O objetivo deste documento é capturar e comunicar as decisões arquiteturais significativas que foram tomadas
+em relação ao sistema. Vale-se ressaltar que este documento de arquitetura é referente ao <em>frontend</em> desenvolvido em Android.</p>
+<h3 id="12-escopo">1.2 Escopo</h3>
+<p>Este Documento de Arquitetura de Software se aplica ao Nexte, auxiliando os desenvolvedores na construção do projeto.</p>
+<h3 id="13-definicoes-acronimos-e-abreviacoes">1.3 Definições, Acrônimos e Abreviações</h3>
+<ul>
+<li>UnB: Universidade de Brasília;</li>
+<li>FGA: Faculdade do Gama;</li>
+<li>MDS: Métodos de desenvolvimento de software;</li>
+<li>EPS: Engenharia de Produto de Software;</li>
+<li>JVM: <em>Java Virtual Machine</em>.</li>
+</ul>
+<h3 id="14-referencias">1.4 Referências</h3>
+<ul>
+<li>CLT: Cinta Liga de Tênis</li>
+</ul>
+<h2 id="2-representacao-arquitetural">2. REPRESENTAÇÃO ARQUITETURAL</h2>
+<p>A arquitetura do frontend da aplicação faz uso de modernos conceitos arquiteturais para <em>mobiles</em> como os propostos por <a href="">Uncle Bob</a> com o <em>clean architecture</em>. Entretanto,  devido a alguns requisitos do projeto, como a sincronização dos dados entre banco de dados local e outro remoto, houve a necessidade de adaptar esse modelo arquitetural. Não obstante, foram utilizados padrões de projeto GoF como o adapter com o objetivo de manter o projeto desaclopado e manutenível.</p>
+<p>Na arquitetura do frontend do Nexte Android, pode-se compreender duas representações:</p>
+<ul>
+<li>
+<p>Representação Arquitetural das Cenas: Consiste no fluxo de dados e funcionalidades de uma feature, de modo que cada cena tenha controle restrito apenas as camadas pertencentes a ela.</p>
+</li>
+<li>
+<p>Representação Arquitetural das Entidades Globais:  Consiste em modelos de dados que serão utilizados pela cenas, esta parte da representação arquitetural está relacionada com a persistência local dos dados, assim como a sincronização com os dados proveninentes do servidor.</p>
+</li>
+</ul>
+<h3 id="21-representacao-arquitetural-das-cenas">2.1 Representação Arquitetural das Cenas</h3>
+<p>Para a arquitetura será utilizado a "clean architecture", que se baseia em seis módulos:</p>
+<ul>
+<li>Model: Responsável pelas regras de definição de dados e pode possuir modelos globais ou modelos locais de cada cena;</li>
+<li>Worker: É responsável por controlar as requisições de dados ao local em que esses dados estão armazenados, isto é, faz requisições ao servidor ou ao banco de dados local;</li>
+<li>View: Apresenta os elementos na interface gráfica;</li>
+<li>Presenter: Formata os dados que serão exibidos e transmite essa informação para a view;</li>
+<li>Interactor: Módulo centralizador que controla o fluxo entre o Presenter e o Worker;</li>
+<li>Router: Controla o fluxo entre as cenas.</li>
+</ul>
+<p>As relações entre os módulos estão representadas no esquema a seguir.</p>
+<p>Imagem 1: Relação entre os módulos de cada cena</p>
+<p><a href="https://postimg.cc/image/umodkhivv/"><img alt="VIP.png" src="https://s9.postimg.cc/b4tq4jly7/VIP.png" /></a></p>
+<h3 id="22-representacao-arquitetural-das-entidades-globais">2.2 Representação Arquitetural das Entidades Globais</h3>
+<ul>
+<li>Entity: Modelo de dados referentes aos objetos da aplicação, em outras palavras seriam as models globais que seria utilizadas dentro das diferentes cenas.</li>
+<li>EntityAdapter: Permite que uma entidade possa assumir diferentes valores de acordo com as cenas e o modelo de armazenamento proposto pelo Realm.</li>
+<li>EntityManager: Módulo central que decide de acordo com a requisição proveniente da <em>worker</em> qual será o <em>response</em>, se será necessário trabalhar com o armazenamento de dados remoto ou local, entre outras operações relacionadas com armazenamento de dados.</li>
+<li>EntityMocker: Módulo responsável por carregar na memória instância dos dados mocados pela aplicação.</li>
+<li>EntityRealm: Modelo de dados que a model global será armazenado pelo real.</li>
+<li>EntityRealmAdapter: Permite que os dados sejam adaptados para o formato aceito pelo Realm, de forma que também facilite migrações para outros serviços de persistência local.</li>
+</ul>
+<p>Imagem 2:  Relação entre os módulos das entidades globais</p>
+<p><a href="https://postimg.cc/image/fdyg6s22z/"><img alt="Global_Entity.png" src="https://s9.postimg.cc/9ps5fvxqn/Global_Entity.png" /></a></p>
+<h2 id="3-requisitos-e-restricoes-de-arquitetura">3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA</h2>
+<p>Esta seção decreve os requisitos de software e restrições que têm um impacto significante no projeto.</p>
+<h3 id="31-requisitos-gerais">3.1 Requisitos gerais</h3>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linguagem</td>
+<td>Kotlin</td>
+</tr>
+<tr>
+<td>Plataforma</td>
+<td>Android versão 5.1 ou superior</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-restricoes-de-arquitetura">3.2 Restrições de arquitetura</h3>
+<p>A persistência e o servidor web são restrições da arquitetura utilizada, pois podem influenciar diretamente nela. Neste caso, foram realizadas alterações ao estabelecer camadas e padrões para realizar a sincronização entre dados remotos e locais.</p>
+<h2 id="4-visao-logica">4. VISÃO LÓGICA</h2>
+<table>
+<thead>
+<tr>
+<th align="center">Nome da classe</th>
+<th align="center">Atributos</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Jogadores</td>
+<td align="center">Nome completo, nome de usuário, senha, contato (e-mail e telefone), vitórias e derrotas</td>
+<td align="center">Define o jogador com suas informações pessoais, assim como seu desempenho nos jogos, podendo ele ser o diretor do clube, ou não.</td>
+</tr>
+<tr>
+<td align="center">Clube</td>
+<td align="center">Nome, Contato (e-mail e telefone), número de jogadores, diretor, membros</td>
+<td align="center">Gerencia informações sobre o clube, incluindo número de jogadores e quem eles são.</td>
+</tr>
+<tr>
+<td align="center">Ranking</td>
+<td align="center">Jogadores</td>
+<td align="center">Controla, a partir das regras da CLT, a colocação dos jogadores em relação aos demais membros do clube.</td>
+</tr>
+<tr>
+<td align="center">Jogos</td>
+<td align="center">Data, horário, jogadores, resultado, tempo de partida, local</td>
+<td align="center">Responsável pelo gerenciamento de jogos, desde sua marcação por meio de um desafio até a coleta de resultados.</td>
+</tr>
+<tr>
+<td align="center">Feed</td>
+<td align="center">Jogadores, jogos</td>
+<td align="center">Gerencia os jogos mais recentes a modo de torná-los visíveis, exbindo-os na página inicial do aplicativo.</td>
+</tr>
+<tr>
+<td align="center">Match</td>
+<td align="center">Número de Sets, Data e Hora do jogo, valor obtido em cada set</td>
+<td align="center">Permite ao usuário a definição, no aplicativo, do horário em que um jogo ocorreru, bem como o resultado final (placar, sets e eventual WO) da partida.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-visao-geral-para-as-cenas-pacotes-e-camada">4.1 Visão Geral para as Cenas – pacotes e camada</h3>
+<p>A <em>Clean Architecture</em> é organizada de modo em que as camadas mais externas passam as informações para as camadas mais internas, facilitando o armazenamento e obtenção de dados.</p>
+<p><img alt="" src="https://i.imgur.com/NLLi7Kr.jpg" /></p>
+<h4 id="411-divisao-dos-modulos-por-responsabilidades">4.1.1 Divisão dos módulos por responsabilidades</h4>
+<p><img alt=" Exemplo de Diagrama de Pacotes da Aplicação" src="https://i.imgur.com/hVXTV2M.jpg" /></p>
+<p>No diagrama de pacotes temos que a arquitetura é composta de 3 partes distintas, sendo elas:
+- <em>Presentation</em> : Responsável pela interface gráfica e controle da entrada e saída de dados;
+- <em>Domain</em> : Responsável pelo processamento de eventos, funcionando como intermediador entre a presentation e a infrastructure;
+- <em>Infrastructure</em> : Responsável pelo armazenamento e fornecimento de dados para a domain ou presentation.</p>
+<h4 id="412-diagrama-de-camadas">4.1.2 Diagrama de camadas</h4>
+<p><a href="https://postimg.cc/image/umodkhivv/"><img alt="VIP.png" src="https://s9.postimg.cc/b4tq4jly7/VIP.png" /></a></p>
+<p>No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:</p>
+<ul>
+<li><em>Model</em> : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.</li>
+<li><em>Worker</em> : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;</li>
+<li><em>Iteractor</em> : Responsável por controlar o fluxo entre o view, worker e presenter;</li>
+<li><em>Presenter</em> : Formata os dados que serão exibidos na view;</li>
+<li><em>View</em> : Responsável pela interface gráfica e entrada de dados;</li>
+<li><em>Router</em> : Responsável por controlar o fluxo entre as telas;</li>
+</ul>
+<h3 id="42-visao-geral-para-as-entidade-globais-pacotes-e-camada">4.2 Visão Geral para as Entidade Globais – pacotes e camada</h3>
+<p><a href="https://postimg.cc/image/fdyg6s22z/"><img alt="Global_Entity.png" src="https://s9.postimg.cc/9ps5fvxqn/Global_Entity.png" /></a></p>
+<p>No diagrama de camadas é mostrado a interação entre os módulos, que são definidos como:</p>
+<p>-<em>EntityRealm</em> : Responsável por criar uma estruturação para troca de informações entre as camadas, mudando a estrutura de acordo com as camadas envolvidas, armazenando momentaneamente os dados.
+- <em>EntityAdapterRealm</em> : Responsável pela requisição dos dados para o servidor ou para um banco de dados local.;
+- <em>EntityAdapter</em> : Responsável por controlar o fluxo entre o view, worker e presenter;
+- <em>Entity</em> : Formata os dados que serão exibidos na view;
+- <em>EntityManager</em> : Responsável pela interface gráfica e entrada de dados.
+- <em>EntityMocker</em> : Responsável por controlar o fluxo entre as telas
+- <em>worker</em> : Módulo que está presente na cenas, enviar o request que será manipulado pela EntityManager</p>
+<h3 id="43-observacoes">4.3 Observações</h3>
+<p>Algumas cenas podem necessitar do uso das entidades globais. Dessa forma, para estas cenas poderíamos ter o seguinte diagrama de pacotes:</p>
+<p><a href="https://postimg.cc/image/wehcfizpn/"><img alt="Architecture.png" src="https://s9.postimg.cc/qdjnigd3j/Architecture.png" /></a></p>
+<h2 id="5-visao-de-implementacao">5. VISÃO DE IMPLEMENTAÇÃO</h2>
+<h3 id="51-caso-de-uso">5.1 Caso de Uso</h3>
+<h4 id="511-diagrama-de-classes">5.1.1 <em>Diagrama de Classes</em></h4>
+<ul>
+<li><strong>Diagrama de classe - Cenas</strong></li>
+</ul>
+<p><img alt="Diagrama de classes da editProfile" src="https://i.imgur.com/tXgt9oo.jpg" /></p>
+<p><img alt="Diagrama de classes da showProfile" src="https://i.imgur.com/OCn6Gh3.jpg" /></p>
+<p><img alt="Diagrama de classes da comments" src="https://i.imgur.com/xGqIEIH.jpg" /></p>
+<p><img alt="Diagrama de classes do feed" src="https://i.imgur.com/z6icAhU.jpg" /></p>
+<p><img alt="Diagrama de classes do challange" src="https://i.imgur.com/Cj3v8cF.jpg" /></p>
+<p><img alt="Diagrama de classes da likelist" src="https://i.imgur.com/HBW40Qv.jpg" /></p>
+<p><img alt="Diagrama de classes do login" src="https://i.imgur.com/JXGEqyj.jpg" /></p>
+<p><img alt="Diagrama de classes da ranking" src="https://i.imgur.com/MHfir5I.jpg" /></p>
+<p><img alt="Diagrama de classes da Match" src="https://i.imgur.com/EuwfGjt.jpg" /></p>
+<ul>
+<li><strong>Diagrama de classe - Entidade Global</strong></li>
+</ul>
+<p><a href="https://postimg.cc/image/xtix4gb57/"><img alt="Diagrama_Classe_Novo.png" src="https://s9.postimg.cc/hiit84ynj/Diagrama_Classe_Novo.png" /></a></p>
+<h4 id="512-diagrama-de-sequencia">5.1.2 <em>Diagrama de Sequência</em></h4>
+<p>No aprimoramento do aplicativo Nexte garantindo uma fácil manutenção e flexibilidade para se adaptar a transformações, utiliza-se a Clean Architecture para garantir esses quesitos, assim como padrões de projeto GRASP e GoF</p>
+<p><a href="https://postimg.cc/image/5tetk37nv/"><img alt="Diagrama_Sequencia_Novo.png" src="https://s9.postimg.cc/qdjniknf3/Diagrama_Sequencia_Novo.png" /></a></p>
+<h2 id="6-dimensionamento">6. DIMENSIONAMENTO</h2>
+<p>Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes esportivos e assim seus membros. Considerando que cada usuário terá um jogo por semana e que utilizará o aplicativo a cada dois dias devido o sistema de gameficação para conferir sua posição no ranking, estima-se uma média de quatro a cinco acessos semanais por membro, conectando-se ao aplicativo em torno de uma vez por dia para acompanhar as atualizações do mesmo, essencialmente no período da manhã e da tarde de aproximadamente 5-7 minutos de duração.</p>
+<h2 id="7-qualidade">7. QUALIDADE</h2>
+<table>
+<thead>
+<tr>
+<th align="center">Item</th>
+<th align="center">Solução</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Escalabilidade</td>
+<td align="center">Encapsulamento e <em>Clean Architecture</em></td>
+<td align="center">Através da modularização e do encapsulamento do software, o sistema ficará propício para manutenção, tornando-se adaptável e acolhendo o número crescente de usuários.</td>
+</tr>
+<tr>
+<td align="center">Disponibilidade</td>
+<td align="center">Manutenção periódica e <em>clean architecture</em></td>
+<td align="center">A solução apresentada permite que o software passe o menor tempo possível fora do ar devido às falhas do sistema, possibilitando o funcionamento contínuo. Isso ocorre pelo fato da arquitetura utilizada proporcionar um maior controle e maior modularização do código</td>
+</tr>
+<tr>
+<td align="center">Portabilidade</td>
+<td align="center">Linguagem Kotlin</td>
+<td align="center">A linguagem escolhida permite a compilação na máquina virtual Java, permitindo que os programas sejam executados em qualquer sistema Android que contenha uma versão da JVM.</td>
+</tr>
+<tr>
+<td align="center">Segurança</td>
+<td align="center">Servidor remoto</td>
+<td align="center">Os dados dos usuários serão protegidos em um servidor remoto, e informações confidenciais como senha serão armazenadas em HASH.</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../DocEspecificacaoSuplementar/" class="btn btn-neutral float-right" title="Especificação Suplementar">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../DocVisao/" class="btn btn-neutral" title="Documento de visão"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../DocVisao/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../DocEspecificacaoSuplementar/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
