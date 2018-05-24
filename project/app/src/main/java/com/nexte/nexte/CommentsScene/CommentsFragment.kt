@@ -55,19 +55,19 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         return commentsFragment
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater?.inflate(R.layout.activity_comments, container, false)
+        val newView = inflater?.inflate(R.layout.activity_comments, container, false)
 
-        commentsRecyclerView = view?.findViewById(R.id.commentsRecyclerView)
-        checkButton = view?.findViewById(R.id.checkButton)
-        commentEditText = view?.findViewById(R.id.commentEditText)
-        mainLayout = view?.findViewById(R.id.mainLayout)
+        commentsRecyclerView = newView?.findViewById(R.id.commentsRecyclerView)
+        checkButton = newView?.findViewById(R.id.checkButton)
+        commentEditText = newView?.findViewById(R.id.commentEditText)
+        mainLayout = newView?.findViewById(R.id.mainLayout)
 
         commentsRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
         this.setUpCommentsScene()
 
-        this.setActionToCloseKeyboard(mainLayout!!)
+        this.setActionToCloseKeyboard(newView)
 
         val request = CommentsModel.GetCommentsRequest.Request()
         interactor?.recentComments(request)
@@ -77,7 +77,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
             rollToEndOfList()
         }
 
-        return view!!
+        return newView
 
     }
 
@@ -136,11 +136,11 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         (commentsRecyclerView?.adapter as CommentsAdapter).deleteComment(viewModel.delCommentsFormatted)
     }
 
-    private fun setActionToCloseKeyboard(view: View) {
+    private fun setActionToCloseKeyboard(view: View?) {
 
         // Set up touch listener for non-text box views to hide keyboard.
         if (view !is EditText) {
-            view.setOnTouchListener { _, _ -> //This '_' replaces the unused arguments
+            view?.setOnTouchListener { _, _ -> //This '_' replaces the unused arguments
                 hideSoftKeyboard()
                 false
             }
@@ -159,7 +159,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         val inputMethodManager = this.activity.getSystemService(
                 Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(
-                this.activity.currentFocus!!.windowToken, 0)
+                this.activity?.currentFocus?.windowToken, 0)
     }
 
     private fun rollToEndOfList(){

@@ -11,6 +11,8 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
 import com.nexte.nexte.FeedScene.FeedFragment
+import com.nexte.nexte.MatchScene.MatchFragment
+import com.nexte.nexte.MatchScene.MatchModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         when(item.itemId) {
             R.id.profile -> {
-                Log.e("Resultado do item reselecionado", item.itemId.toString())
+                Log.e("Resultado d", item.itemId.toString())
             }
         }
 
@@ -52,8 +54,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-//                val intent = Intent(this, ChallengeView::class.java)
-//                startActivity(intent)
+                val leticia = MatchModel.MatchPlayer("Leticia", 1)
+                val lorrany = MatchModel.MatchPlayer("Lorrany", 2)
+                val match = MatchModel.MatchData(leticia, lorrany)
+                val matchFragment = MatchFragment().getInstance(match)
+                openFragment(matchFragment)
                 return@OnNavigationItemSelectedListener true
             }
 

@@ -5,18 +5,20 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E"
+    android:background="#393939"
     android:configChanges="keyboard|keyboardHidden"
     tools:context=".CommentsScene.CommentsFragment">
 
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:background="#393939"
         android:ems="10"
         android:inputType="textMultiLine"
+        android:hint="Adicione um comentário"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkButton"
         app:layout_constraintHorizontal_bias="1.0"
@@ -27,23 +29,21 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="2dp"
-        android:layout_marginBottom="1dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/sendButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="462dp" />
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/commentsRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="471dp"
+        android:layout_height="0dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125"
         tools:listitem="@layout/row_comments" />
 
     <ImageButton
@@ -55,16 +55,5 @@
         android:tint="#393939"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentsRecyclerView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="44dp"
-        android:text="Adicione um comentário"
-        android:textColor="#9b9b9b"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
