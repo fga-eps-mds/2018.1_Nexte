@@ -43,6 +43,21 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
     var buttonEditProfile : Button? = null
     var rankingChart : LineChart? = null
     var newLineChart : LineChart? = null
+    var anotherPlayerName : String = ""
+
+    fun getInstance(showProfile: ShowProfileModel.FormattedPlayer) : ShowProfileView {
+
+        val bundle = Bundle()
+        val showProfileFragment = ShowProfileView()
+
+        if(showProfile != null) {
+            bundle.putString("anotherPlayerName", anotherPlayerName.name)
+        }
+
+        showProfileFragment.arguments = bundle
+        return showProfileFragment
+    }
+
 
     /**
      * Method called when screen is loaded, responsible to load user information
@@ -51,6 +66,8 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
         super.onCreate(savedInstanceState)
         setupShowProfileScene()
+
+        this.anotherPlayerName = arguments.putString("anotherPlayerName")
 
         this.createShowProfileRequest()
 
