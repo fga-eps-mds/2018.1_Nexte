@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Post Mortem - Release 1 - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Post Mortem - Release 1";
+    var mkdocs_page_input_path = "PostMortem/PostMortemRelease1.md";
+    var mkdocs_page_url = "/PostMortem/PostMortemRelease1/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../EPS/TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Post Mortem - Release 1</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-de-reivsao">Histórico de reivsão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#post-mortem">Post Mortem</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#pontos-fortes">Pontos fortes</a></li>
+        
+            <li><a class="toctree-l4" href="#pontos-fracos">Pontos fracos</a></li>
+        
+            <li><a class="toctree-l4" href="#licoes-aprendidas">Lições aprendidas</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Post Mortem &raquo;</li>
+        
+      
+    
+    <li>Post Mortem - Release 1</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/PostMortem/PostMortemRelease1.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="historico-de-reivsao">Histórico de reivsão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18/04/2018</td>
+<td>0.1</td>
+<td>Criação do documento</td>
+<td>Luis Gustavo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-mortem">Post Mortem</h2>
+<p>Postmortem é um documento que sinaliza a conclusão de um projeto onde a equipe faz um pontos positivos e negativos e melhorias que poderiam ser aplicadas em projetos futuros.</p>
+<h3 id="pontos-fortes">Pontos fortes</h3>
+<ul>
+<li>DOJOs nas reuniões de sábado foram muito úteis para auxiliar MDS e para mitigar riscos;</li>
+<li>Comunicação/interação entre as equipes funcionou <strong>muito</strong> bem;</li>
+<li>Conseguimos cumprir o planejamento do roadmap da release 1;</li>
+<li>Equipe conseguiu utilizar muito bem o github para comunicação referentes a issues e pull requests;</li>
+<li>Dedicação e compromisso do projeto de todos os membros da equipe;</li>
+<li>MDS gostou muito da arquitetura utilizada no projeto, mesmo com toda a dificuldade de compreendê-la;</li>
+<li>Documentação do Kotlin é muito boa;</li>
+<li>MDS está bem tranquila e confiante com git;</li>
+</ul>
+<h3 id="pontos-fracos">Pontos fracos</h3>
+<ul>
+<li>Algumas sprints foram discrepantes(umas muito pesadas e outras fáceis);</li>
+<li>Polarização do conhecimento prejudicou o conhecimento de MDS em relação a arquitetura e código;</li>
+<li>A pontuação de algumas issues não refletiu o real esforço para realizá-las;</li>
+<li>Nas primeiras sprints tiveram muitos replanejamentos;</li>
+<li>Desenvolvimento Nativo Android engessado com Android Studio;</li>
+<li>Alta dependência do Android Studio;</li>
+<li>Deploy automatizado para loja difícil de ser feito devido a assinatura do APK que deve ser única para a vida, e os CI não conseguem armazena-lá devido ao tipo e a criptografia. Para conseguir outra forma de gerar uma assinatura, é bem difícil de achar informações;</li>
+<li>Desenvolvimento com Alta dependência de Emulador, o que não faz sentido usar Docker pois o mesmo não tem como objetivo gerar uma interação gráfica;</li>
+<li>Arquiteto demorou até descobrir seu sentido real no projeto;</li>
+<li>Scrum Master demorou para fazer algumas coisas essenciais no projeto, como adicionar quadro de conhecimentos, fazer gestão de risco e definir a produtividade da equipe;</li>
+<li>PO não teve sentido no projeto, se desde o início tivessemos tidos 2 devops provavelmente teriamos tido menos dívidas técnicas;</li>
+<li>Várias sprints com dívidas técnicas;</li>
+</ul>
+<h3 id="licoes-aprendidas">Lições aprendidas</h3>
+<ul>
+<li>É essencial que a equipe que as reuniões de planejamento sejam bem preparadas e que a equipe esteja focada durante essa reunião, se não é bem provável que haja replanejamentos, histórias mal pontuadas, etc...;</li>
+<li>EPS deveria ter focados nos seus papéis específicos desde mais cedo e gastado menos tempo com algumas documentações do projeto;</li>
+<li>MDS - os integrantes que não estão dominando alguma tecnologia devem correr atrás do prezuijo e não ficar dependendo da sua dupla de pareamento para ensiná-los realizar a história;</li>
+<li>Os ritos de sprint serão extremamente importantes para o sucesso das sprints;</li>
+<li>Ainda que gaste muito tempo para documentar planejamento/resultado de sprint, essas são documentações muito importantes para entendimento/análise da equipe/projeto. Fazer esses documentos de qualquer maneira será só perda de tempo que não trará resultado algum;</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../Sprints/Sprint9/Sprint9-Planejamento/" class="btn btn-neutral" title="Planejamento"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../Sprints/Sprint9/Sprint9-Planejamento/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
