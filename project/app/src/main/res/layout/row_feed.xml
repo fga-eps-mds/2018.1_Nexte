@@ -139,6 +139,19 @@
         app:layout_constraintStart_toEndOf="@+id/challengerPhoto"
         app:layout_constraintTop_toTopOf="@+id/challengerPhoto" />
 
+    <View
+        android:id="@+id/backgroundBar"
+        android:layout_width="388dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_bar_botton_rounded"
+        app:layout_constraintCircleRadius="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/challengerName" />
+
     <TextView
         android:id="@+id/numberOfLikes"
         android:layout_width="wrap_content"
@@ -153,30 +166,17 @@
         app:layout_constraintStart_toEndOf="@+id/likesButton"
         app:layout_constraintTop_toTopOf="@+id/likesButton" />
 
-    <View
-        android:id="@+id/backgroundBar"
-        android:layout_width="388dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/feedRowBottom"
-        app:layout_constraintCircleRadius="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/versusTextView" />
-
     <ImageButton
         android:id="@+id/likesButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundBar"
         app:srcCompat="@mipmap/feed_like" />
 
 
