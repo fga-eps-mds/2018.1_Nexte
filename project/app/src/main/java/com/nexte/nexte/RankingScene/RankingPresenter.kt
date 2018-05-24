@@ -1,6 +1,7 @@
 package com.nexte.nexte.RankingScene
 
 import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
 import java.util.*
@@ -25,6 +26,8 @@ interface RankingPresentationLogic {
  * @property viewScene Reference to the ranking where data will be displayed on [RankingView]
  */
 class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPresentationLogic {
+
+    var challengeManager: ChallengeManager? = null
 
     /**
      * Formats user information contained in [RankingModel.Response]
@@ -54,7 +57,8 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val wins = user.wins
             val losses = user.loses
             val efficiency = calculatePlayerEfficiency(wins, losses)
-            val lastGame = calculatePlayerLastGame(user.latestGames!!)
+            user.latestGames = challengeManager?.getLastFiveChallenges(user.id)
+            val lastGame = calculatePlayerLastGame(user.latestGames)
             var playerCategory = ""
             if (user.category != null){
                 playerCategory = user.category?.name
@@ -93,13 +97,14 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return a string that represents a player last game
      */
-    private fun calculatePlayerLastGame(latestGames: List<Challenge>): String{
-        if (latestGames.isEmpty()) {
+    private fun calculatePlayerLastGame(latestGames: List<Challenge>?): String{
+        if (latestGames == null || latestGames.isEmpty()){
             return "Nenhum jogo"
         }
+
         val latestGameDate = latestGames.first().challengeDate
         val today = Date()
-        var latestGame = ""
+        var latestGame = "Nenhum jogo"
 
         if(today.year == latestGameDate.year){
             if (today.month == latestGameDate.month){

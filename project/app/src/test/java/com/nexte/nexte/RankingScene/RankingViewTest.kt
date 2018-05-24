@@ -16,12 +16,13 @@ class RankingViewTest {
     @Before
     fun setUp() {
         this.view = RankingView()
+        this.view?.userManager = UserManager(UserAdapterSpy())
     }
 
     @Test
     fun testSetupRankingScene(){
         //prepare
-        this.view?.setupRankingScene(UserManager(UserAdapterSpy()))
+        this.view?.setupRankingScene()
 
         //call
 
@@ -33,7 +34,7 @@ class RankingViewTest {
     @Test
     fun testCreateGetPlayersRequest(){
         //prepare
-        this.view?.setupRankingScene(UserManager(UserAdapterSpy()))
+        this.view?.setupRankingScene()
         val mock = MockRankingsPresentationLogic()
         this.view?.interactor?.presenter = mock
 

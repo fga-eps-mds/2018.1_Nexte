@@ -1,9 +1,6 @@
 package com.nexte.nexte.Entities.User
 
 import com.nexte.nexte.Entities.Challenge.Challenge
-import com.nexte.nexte.Entities.Challenge.ChallengeAdapter
-import com.nexte.nexte.Entities.Challenge.ChallengeAdapterRealm
-import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import org.json.JSONObject
@@ -37,7 +34,7 @@ class User(val id: String,
          *
          * @return user created from json
          */
-        fun createUserFromJsonObject(jsonUser: JSONObject, challengeAdapter: ChallengeAdapter = ChallengeAdapterRealm()): User {
+        fun createUserFromJsonObject(jsonUser: JSONObject): User {
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
             val profilePicture = jsonUser["profileImageURL"] as String
@@ -73,7 +70,7 @@ class User(val id: String,
             }
             val challengeSended = null
             val challengeReceived = null
-            var latestGames = ChallengeManager(challengeAdapter).getLastFiveChallenges(id)
+            var latestGames = null
 
             val user = User(id, name, profilePicture, nickname, birthDate,
                     rankingPosition, email, phone, wins, loses, gender,

@@ -1,6 +1,8 @@
 package com.nexte.nexte.RankingScene
 
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 
@@ -59,6 +61,7 @@ class RankingPresenterTest {
         //prepare and call
         val presenter = RankingPresenter()
         val newViewScene = RankingView()
+        newViewScene.userManager = UserManager(UserAdapterSpy())
         presenter.viewScene = newViewScene
         val testViewScene = presenter.viewScene
 

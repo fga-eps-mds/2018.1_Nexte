@@ -4,6 +4,7 @@ import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
 import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
 import io.realm.Realm
 import io.realm.RealmResults
+import io.realm.Sort
 import io.realm.kotlin.where
 
 class ChallengeAdapterRealm: ChallengeAdapter {
@@ -44,10 +45,12 @@ class ChallengeAdapterRealm: ChallengeAdapter {
     }
 
     override fun getLastFiveChallenges(userdId: String): List<Challenge> {
-        val allChallengeRealm = realm.where<ChallengeRealm>().findAll()
-        var allChallenges = convertListChallengeRealmToChallengeList(allChallengeRealm)
-        allChallenges = allChallenges.sortedByDescending { it.challengeDate }
-        val lastFiveChallenges = getChallengesOfUser(allChallenges, userdId)
+        val allChallengesRealmFromUser = realm.where<ChallengeRealm>().equalTo(
+                "challengerId", userdId).or().equalTo("challengedId", userdId).sort(
+                "challegeDate", Sort.DESCENDING).findAll()
+        val allChallengesFromUser = convertListChallengeRealmToChallengeList(
+                allChallengesRealmFromUser)
+        val lastFiveChallenges = getChallengesOfUser(allChallengesFromUser, userdId)
         return lastFiveChallenges
     }
 
@@ -56,6 +59,10 @@ class ChallengeAdapterRealm: ChallengeAdapter {
     }
 
     private fun getChallengesOfUser(allChallenges: List<Challenge>, userId: String): List<Challenge>{
+        if(allChallenges.size > five){
+            return allChallenges
+        }
+
         var userChallenges = mutableListOf<Challenge>()
 
         for (challenge in userChallenges){

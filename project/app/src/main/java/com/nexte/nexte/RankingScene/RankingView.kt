@@ -19,6 +19,7 @@ import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 
 /**
@@ -38,6 +39,8 @@ interface RankingDisplayLogic {
 class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
     var interactor: RankingInteractor? = null
+    var userManager: UserManager? = null
+    var challengeManager: ChallengeManager? = null
 
     /**
      * Method called on scene creation
@@ -45,6 +48,9 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        userManager = UserManager()
+        challengeManager = ChallengeManager()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
@@ -159,7 +165,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     /**
      * Method responsible to set the ranking information on screen
      */
-    fun setupRankingScene(userMananger: UserManager = UserManager()){
+    fun setupRankingScene(){
 
         val view = this
         val interactor = RankingInteractor()
@@ -167,7 +173,8 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
-        interactor.worker.userManager = userMananger
+        interactor.worker.userManager = userManager
+        presenter.challengeManager = challengeManager
         interactor.worker.updateLogic = interactor
         presenter.viewScene = view
     }
