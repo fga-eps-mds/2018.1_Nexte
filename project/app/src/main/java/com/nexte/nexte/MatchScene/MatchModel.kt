@@ -85,4 +85,38 @@ class MatchModel {
      */
     class MatchPlayer (var name: String, var photo: Int)
 
+
+    /**
+     * Class that defines the attributes that form a match result
+     */
+    class SendMatchResult {
+
+        /**
+         * Class responsible to define the request data of the match result
+         */
+        class Request
+
+        /**
+         * Class responsible to define the response data of the match result
+         *
+         * @param status status of the match result(if it was possible to save on the database or not)
+         */
+        class Response(val status: Status)
+
+        /**
+         * Class responsible to store the formatted data about the match result and use it to display on view
+         *
+         * @param message message that will be displayed on the view
+         */
+        class ViewModel(val message: String)
+
+        /**
+         * Class that defines the types of match result status
+         */
+        enum class Status {
+            SUCESSED, ERROR
+        }
+
+    }
+
 }

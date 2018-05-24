@@ -7,10 +7,26 @@ import com.nexte.nexte.R
  */
 
 /**
+ * Interface to define Response Logic of Match Class
+ * that will be used to make the communication between worker and interactor
+ */
+interface MatchUpdateWorkerLogic {
+
+    /**
+     * Method that will be used to communicate with the presenter
+     *
+     * @param response contains the data about the status of the match result
+     */
+    fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response)
+}
+
+/**
  * Class responsible to receive request, get Response from server and
  * call completion to send data for called class
  */
 class MatchWorker {
+
+    var updateLogic: MatchUpdateWorkerLogic? = null
 
     /**
      * Function to get Match Data from server
@@ -42,5 +58,17 @@ class MatchWorker {
         val match = MatchModel.MatchData(challenger, challenged)
 
          return match
+    }
+
+    /**
+     * Method responsible for saving the match result on the database
+     *
+     * @param request data that contains the request of the match result
+     */
+    fun generateMatchResult(request: MatchModel.SendMatchResult.Request) {
+        val response = MatchModel.SendMatchResult.Response(
+                MatchModel.SendMatchResult.Status.SUCESSED)
+        updateLogic?.getMatchResultResponse(response)
+
     }
 }
