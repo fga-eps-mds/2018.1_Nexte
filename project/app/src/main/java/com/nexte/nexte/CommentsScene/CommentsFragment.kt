@@ -16,6 +16,7 @@ import android.app.Fragment
 import android.support.constraint.ConstraintLayout
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import com.nexte.nexte.UserSingleton
 
 
@@ -41,7 +42,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
     var commentsRecyclerView : RecyclerView? = null
     var interactor: CommentsBusinessLogic? = null
-    var sendButton : Button? = null
+    var checkButton : ImageButton? = null
     var commentEditText: EditText? = null
     var mainLayout: ConstraintLayout? = null
 
@@ -59,7 +60,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         val view = inflater?.inflate(R.layout.activity_comments, container, false)
 
         commentsRecyclerView = view?.findViewById(R.id.commentsRecyclerView)
-        sendButton = view?.findViewById(R.id.sendButton)
+        checkButton = view?.findViewById(R.id.checkButton)
         commentEditText = view?.findViewById(R.id.commentEditText)
         mainLayout = view?.findViewById(R.id.mainLayout)
 
@@ -71,7 +72,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         val request = CommentsModel.GetCommentsRequest.Request()
         interactor?.recentComments(request)
 
-        sendButton?.setOnClickListener(sendCommentAction)
+        checkButton?.setOnClickListener(sendCommentAction)
         commentEditText?.setOnClickListener {
             rollToEndOfList()
         }
