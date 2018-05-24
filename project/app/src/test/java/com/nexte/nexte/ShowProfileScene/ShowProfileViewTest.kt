@@ -8,11 +8,11 @@ import org.junit.Test
 
 class ShowProfileViewTest {
 
-    var view: ShowProfileView? = null
+    var view: ShowProfileFragment? = null
 
     @Before
     fun setUp() {
-        this.view = ShowProfileView()
+        this.view = ShowProfileFragment()
     }
 
     @Test
@@ -20,7 +20,7 @@ class ShowProfileViewTest {
         //prepare
         //call
 
-        val testComp = ShowProfileView.newInstance()
+        val testComp = ShowProfileFragment.newInstance()
 
         //assert
         assertNotNull(testComp)

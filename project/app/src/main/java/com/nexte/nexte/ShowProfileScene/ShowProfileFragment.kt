@@ -18,6 +18,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
 /**
@@ -37,21 +38,27 @@ interface ShowProfileDisplayLogic {
  *
  * @property showProfileInteractor responsible to receive request and send it to worker
  */
-class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
+class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
-    var showProfileInteractor : ShowProfileBusinessLogic? = null
-    var buttonEditProfile : Button? = null
-    var rankingChart : LineChart? = null
-    var newLineChart : LineChart? = null
-    var anotherPlayerName : String = ""
+    var showProfileInteractor: ShowProfileBusinessLogic? = null
+    var buttonEditProfile: Button? = null
+    var rankingChart: LineChart? = null
+    private var newLineChart: LineChart? = null
+    private var anotherPlayerName: String = ""
 
-    fun getInstance(showProfile: ShowProfileModel.FormattedPlayer) : ShowProfileView {
+    /*
+    This method is called on instantiate, and it's responsible to set the player that the profile will be
+    displayed
+    */
+    fun getInstance(playerToShowName: String?): ShowProfileFragment {
 
         val bundle = Bundle()
-        val showProfileFragment = ShowProfileView()
+        val showProfileFragment = ShowProfileFragment()
 
-        if(showProfile != null) {
-            bundle.putString("anotherPlayerName", anotherPlayerName.name)
+        if (playerToShowName != null) {
+            bundle.putString("anotherPlayerName", playerToShowName)
+        } else {
+            bundle.putString("anotherPlayerName", "")
         }
 
         showProfileFragment.arguments = bundle
@@ -67,22 +74,21 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         setupShowProfileScene()
 
-        this.anotherPlayerName = arguments.putString("anotherPlayerName")
-
-        this.createShowProfileRequest()
-
+        this.anotherPlayerName = arguments.getString("anotherPlayerName")
     }
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
-        buttonEditProfile =  newView?.findViewById(R.id.editProfileButton)
+        buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
+
         buttonEditProfile?.setOnClickListener {
             val intent = Intent(activity, EditProfileView::class.java)
             startActivity(intent)
         }
 
+        this.createShowProfileRequest()
 
         newLineChart = newView?.findViewById(R.id.lineChart)
         rankingChart = newView?.findViewById(R.id.rankingChart)
@@ -92,36 +98,19 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
 
         return newView
-
-
     }
+
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest() {
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request("gabrielalbino",
-                "AUFDSASFSA321IEUNFDI23FIQ2F")
+        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(anotherPlayerName)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
     }
 
-
-    /**
-     * Method responsable to define a param to X axis.
-     * @property xVals array responsable to store all values of X
-     * @property tam responsable to store the data of X axis.
-     */
-
-    fun setXAxisValues(): ArrayList<Entry> {
-
-        val xVals = ArrayList<Entry>()
-
-        return xVals
-    }
-
     /**
      * Method responsible to define the data of Y axis.
-     *  @property yVals array responsible to store all values of Y
      */
 
     fun setYAxisValues(): ArrayList<Entry> {
@@ -141,12 +130,11 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
     /**
      * Method responsible to define the data of Y axis.
-     *  @property yValsRanking array responsible to store all values of Y
      */
 
     fun setYAxisValuesRanking(): ArrayList<Entry> {
 
-        val yValsRanking = ArrayList<Entry>()
+        val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
 
         yValsRanking.add(Entry(0f, 3f))
         yValsRanking.add(Entry(1f, 2f))
@@ -161,33 +149,26 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
     /**
      * Method responsible to create the graph, using the function and
      * SetYAxisValues.
-     *  @property lineChart instance a view from xml.
-     * @property yAxes responsible to access the method setYAxisValues
-     * @property dataSet Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-     * @property line Access the data of yAxes, introduce a legend and customize the graphic
-     * @property lastMonths Responsible to create an array that store the string about last months of matches of the user
-     * @property lineData Type: LineData, access the data defined, and xml LineChart have access to it
      */
 
-    fun createGraph() {
+    private fun createGraph() {
 
-        val xAxis = newLineChart?.xAxis
-        val xAxes = setXAxisValues()
-        val yAxes = setYAxisValues()
-        val dataSets = ArrayList<ILineDataSet>()
+        val xAxis = newLineChart?.xAxis //instance a view from xml.
+        val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
+        val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
 
-        val line = LineDataSet(yAxes, "Vitoria")
+        val line = LineDataSet(yAxes, "Vitoria") //Access the data of yAxes, introduce a legend and customize the graphic
         line.fillAlpha = houndredLine
         line.color = Color.BLUE
-        line.axisDependency =YAxis.AxisDependency.LEFT
+        line.axisDependency = YAxis.AxisDependency.LEFT
         dataSets.add(line)
 
-        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
+        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the string about last months of matches of the user
         xAxis?.valueFormatter = IndexAxisValueFormatter(lastMonths)
         xAxis?.granularity = 1f
         xAxis?.textColor = Color.WHITE
 
-        val points = LineData(dataSets)
+        val points = LineData(dataSets) //LineData, access the data defined, and xml LineChart have access to it
         points.setValueTextColor(Color.WHITE)
 
         val lineData = LineData(dataSets)
@@ -201,37 +182,34 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
         newLineChart?.setScaleEnabled(false)
         newLineChart?.invalidate()
     }
+
     /**
-    * Method responsible to create the graph, using the function
-    * SetYAxisValuesRanking.
-    *  @property rankingChart instance a view from xml.
-    * @property yAxesRanking responsible to access the method setYAxisValuesRanking
-    * @property dataSetsRanking Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-    * @property lineRanking Access the data of yAxes, introduce a legend and customize the graphic
-    * @property lastMonths Responsible to create an array that store the string about last months of matches of the user
-    * @property RankingData Type: LineData, access the data defined, and xml LineChart have access to it
-    */
+     * Method responsible to create the graph, using the function
+     * SetYAxisValuesRanking.
+     */
 
-    fun createRankingGraph() {
+    private fun createRankingGraph() {
 
-        val xAxisRanking = rankingChart?.xAxis
-        val yAxesRanking = setYAxisValuesRanking()
-        val dataSetsRanking = ArrayList<ILineDataSet>()
+        val xAxisRanking = rankingChart?.xAxis //instance a view from xml.
+        val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
+        val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
 
         Log.e("Entrou", "aqui")
 
-        val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking")
+        val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking") //Access the data of yAxes,
+        // introduce a legend and customize the graphic
         lineRanking.fillAlpha = houndredLine
         lineRanking.color = Color.RED
-        lineRanking.axisDependency =YAxis.AxisDependency.LEFT
+        lineRanking.axisDependency = YAxis.AxisDependency.LEFT
         dataSetsRanking.add(lineRanking)
 
-        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez","Jan","Fev")
+        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the
+        // string about last months of matches of the user
         xAxisRanking?.valueFormatter = IndexAxisValueFormatter(lastMonths)
         xAxisRanking?.granularity = 1f
         xAxisRanking?.textColor = Color.WHITE
 
-        val points = LineData(dataSetsRanking)
+        val points = LineData(dataSetsRanking) //access the data defined, and xml LineChart have access to it
         points.setValueTextColor(Color.WHITE)
 
         val rankingData = LineData(dataSetsRanking)
@@ -279,16 +257,14 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
 
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
-        club?.text = viewModel.playerInfo.club
-        age?.text = viewModel.playerInfo.age
         email?.text = viewModel.playerInfo.email
+        if(viewModel.playerInfo.name != UserSingleton.getUserInformations().name){
+            buttonEditProfile?.visibility = View.INVISIBLE
+        }
     }
 
     companion object {
         const val houndredLine = 110
-
-        fun newInstance(): ShowProfileView = ShowProfileView()
-
-        }
     }
+}
 

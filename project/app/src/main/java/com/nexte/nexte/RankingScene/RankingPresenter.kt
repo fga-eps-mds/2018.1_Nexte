@@ -17,13 +17,13 @@ interface RankingPresentationLogic {
 /**
  * Class needed to format response for data can be displayed on View
  *
- * @property viewScene Reference to the ranking where data will be displayed on [RankingView]
+ * @property viewScene Reference to the ranking where data will be displayed on [RankingFragment]
  */
 class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPresentationLogic {
 
     /**
      * Formats user information contained in [RankingModel.Response]
-     * and sends it to [RankingView]
+     * and sends it to [RankingFragment]
      *
      * @param response contains unformatted data received from [RankingModel]
      */

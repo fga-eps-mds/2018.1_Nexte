@@ -1,5 +1,8 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserMocker
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.Player
 
@@ -21,26 +24,24 @@ class ShowProfileWorker {
                        completion: (ShowProfileModel.Response) -> Unit) {
 
         val username = request.username
-        val tokenID = request.tokenID
+        val userList = UserMocker.generateUsers()
 
-        val emptyUser = Player("",
-            -1,
-            "",
-            "",
-            "",
-            "",
-            -1,
-            "",
-            "")
+        val emptyUser = User("", "", "", "", null, -1,
+                "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                User.Status.UNAVAILABLE,null, null, null)
 
-        var returnedUser: Player? = null
+        var returnedUser: User? = null
 
         // This condition verifies if exists a user
-        if(tokenID.equals("")) {
+        for(user in userList){
+            if(user.name == username){
+                returnedUser = user
+                break
+            }
+        }
+
+        if(returnedUser == null){
             returnedUser = emptyUser
-            UserSingleton.setUserInformations(emptyUser)
-        } else if(username.equals("gabrielalbino")) {
-            returnedUser = UserSingleton.getUserInformations()
         }
 
         val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)

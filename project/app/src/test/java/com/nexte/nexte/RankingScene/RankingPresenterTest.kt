@@ -61,7 +61,7 @@ class RankingPresenterTest {
     fun successRankingPresenter(){
         //prepare and call
         val presenter = RankingPresenter()
-        val newViewScene = RankingView()
+        val newViewScene = RankingFragment()
         presenter.viewScene = newViewScene
         val testViewScene = presenter.viewScene
 

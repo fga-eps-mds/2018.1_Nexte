@@ -8,7 +8,7 @@ object UserSingleton {
 
     private const val ageConstant = 19
     private const val rankConstant = 15
-    private var userInformations: Player = Player("gabrielalbino",
+    private var userInformations: Player = Player("André Rede",
             rankConstant,
             "imgur.com/nudh486d4",
             "enggabriel@gmail.com",

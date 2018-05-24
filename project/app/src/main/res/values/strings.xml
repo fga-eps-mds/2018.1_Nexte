@@ -39,4 +39,10 @@
     <string name="n">#N</string>
     <string name="userpicture">UserPicture</string>
     <string name="tenistas">Tenistas</string>
+    <string name="email">email</string>
+    <string name="editar">Editar</string>
+    <string name="age">age</string>
+    <string name="e_mail">E-mail:</string>
+    <string name="ranking">#Ranking</string>
+    <string name="username">username</string>
 </resources>
