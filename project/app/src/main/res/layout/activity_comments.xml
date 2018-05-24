@@ -16,8 +16,8 @@
         android:layout_marginEnd="8dp"
         android:background="#393939"
         android:ems="10"
-        android:inputType="textMultiLine"
         android:hint="Adicione um comentário"
+        android:inputType="textMultiLine"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkButton"
@@ -25,13 +25,6 @@
         app:layout_constraintStart_toStartOf="@+id/commentsRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/commentsRecyclerView"
         tools:ignore="LabelFor" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:background="#FFFFFF"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="462dp" />
 
 
     <android.support.v7.widget.RecyclerView
@@ -55,5 +48,12 @@
         android:tint="#393939"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentsRecyclerView" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="#FFFFFF"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="462dp" />
 
 </android.support.constraint.ConstraintLayout>
