@@ -13,7 +13,7 @@
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:background="color/background"
+        android:background="#2e2e2e"
         android:ems="10"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
         android:layout_marginBottom="1dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/sendButton"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/sendButton"
@@ -53,5 +53,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_comments" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2a2a2a"
+        android:src="@mipmap/check_comments_foreground"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="387dp" />
 
 </android.support.constraint.ConstraintLayout>
