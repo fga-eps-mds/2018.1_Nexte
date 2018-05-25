@@ -1,6 +1,7 @@
 package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
+import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
@@ -9,6 +10,7 @@ import java.util.*
 interface CommentsWorkerUpdateLogic {
 
     fun updateComment(response: Response)
+    fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response)
 }
 
 /**
@@ -44,16 +46,18 @@ class CommentsWorker {
      * @param completion Method to call on parent class
      */
 
-    fun setNewComment (request: CommentsModel.PublishCommentRequest.Request,
-                       completion: (CommentsModel.PublishCommentRequest.Response) -> Unit) {
+    fun setNewComment (request: CommentsModel.PublishCommentRequest.Request) {
+
+        val commentManager= commentsManager?.update(comment = )
+
         val message = request.commentToPost
         val today = Date()
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
         val newComment = CommentsModel.PublishCommentRequest()
         //this.commentsMockedData.add(newComment)
-        val response = CommentsModel.PublishCommentRequest.Response(newComment)
+        val response = CommentsModel.PublishCommentRequest.Response(    )
 
-        completion (response)
+        updateLogic?.updateNewComment(response)
     }
 
     /**
@@ -64,14 +68,11 @@ class CommentsWorker {
      * @param completion Method to call on parent class
      */
 
-    fun sendComplaint (request: CommentsModel.ComplaintRequest.Request,
-                       completion: (CommentsModel.ComplaintRequest.Response) -> Unit) {
+    fun sendComplaint (request: CommentsModel.ComplaintRequest.Request) {
 
         val serverCode = okMessage
-
         val response = CommentsModel.ComplaintRequest.Response(serverCode)
 
-        completion(response)
     }
 
     /**
@@ -81,8 +82,7 @@ class CommentsWorker {
      * @param request Position of the comment to be deleted
      * @param completion List of unformatted list of comments after deletion
      */
-    fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request,
-                            completion: (CommentsModel.DeleteCommentRequest.Response) -> Unit){
+    fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request){
 
         this.commentsMockedData.removeAt(request.commentIdentifier)
         val response = CommentsModel.DeleteCommentRequest.Response(this.commentsMockedData)
