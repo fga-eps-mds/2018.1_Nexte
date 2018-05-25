@@ -59,19 +59,18 @@
 
     <Button
         android:id="@+id/reportButton"
-        android:layout_width="69dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="60dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#393939"
         android:text="Denunciar"
         android:textAllCaps="false"
         android:textColor="#9b9b9b"
         android:textSize="7sp"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deleteButton"
         app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
     <TextView
@@ -103,18 +102,15 @@
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="53dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="45dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="272dp"
         android:backgroundTint="#393939"
-        android:text="excluir"
+        android:text="Excluir"
         android:textColor="#9b9b9b"
-        android:textSize="7sp"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="5sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/reportButton" />
 
 
 </android.support.constraint.ConstraintLayout>
