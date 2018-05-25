@@ -1,6 +1,8 @@
 package com.nexte.nexte.CommentsScene
 
 
+import android.os.UserManager
+import com.nexte.nexte.Entities.Comment.Comment
 import java.text.SimpleDateFormat
 
 
@@ -115,21 +117,21 @@ class CommentsPresenter : CommentsPresentationLogic {
      * @param gameComments MutableList of unformatted comments
      * @return MutableList of formatted comments
      */
-    private fun formatComment(gameComments: MutableList<CommentsModel.Comment>) :
+    private fun formatComment(gameComments: MutableList<Comment>) :
             MutableList<CommentsModel.CommentFormatted> {
 
         val commentsFormatted: MutableList<CommentsModel.CommentFormatted> = mutableListOf()
 
         for (gameComment in gameComments) {
-
+            val user = com.nexte.nexte.Entities.User.UserManager().get(gameComment.userId!!)
             val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
             val time = dateToShow.format(gameComment.date)
 
             val commentFormatted = CommentsModel.CommentFormatted(
-                    gameComment.comment,
+                    gameComment.comment!!,
                     time,
-                    gameComment.author.name,
-                    gameComment.author.photo)
+                    user!!.name,
+                    user.profilePicture!!.toInt())
 
             commentsFormatted.add(commentFormatted)
         }

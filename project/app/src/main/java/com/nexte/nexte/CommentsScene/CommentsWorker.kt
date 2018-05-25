@@ -1,8 +1,14 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import java.util.*
+
+interface CommentsWorkerUpdateLogic {
+
+    fun updateComment(response: CommentsModel.GetCommentsRequest.Response)
+}
 
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -10,10 +16,11 @@ import java.util.*
  */
 class CommentsWorker {
 
+    var updateLogic: CommentsWorkerUpdateLogic? = null
+    var commentsManager: CommentManager? = null
     /**
      * Variable created to simulate mocked data to be implemented on Package mocker
      */
-    var commentsMockedData = generateCommentsList()
 
     /**
      * Function to get comments data of server
@@ -21,11 +28,11 @@ class CommentsWorker {
      * @param request Comments model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request,
-                         completion: (CommentsModel.GetCommentsRequest.Response) -> Unit) {
+    fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request) {
 
-        val response = CommentsModel.GetCommentsRequest.Response(this.generateCommentsList())
-        completion(response)
+        val users = commentsManager?.getAll()
+        val response = CommentsModel.GetCommentsRequest.Response(comments!!.toTypedArray())
+        updateLogic?.updateUsersInRanking(response)
     }
 
     /**
@@ -87,34 +94,34 @@ class CommentsWorker {
      *
      * @return MutableList of addComments
      */
-    private fun generateCommentsList(): MutableList<CommentsModel.Comment> {
-
-        val player1 = CommentsModel.Player("Lorrany", R.mipmap.ic_launcher)
-        val player2 = CommentsModel.Player("Alexandre", R.mipmap.ic_launcher)
-        val player3 = CommentsModel.Player("Larissa", R.mipmap.ic_launcher)
-        val player4 = CommentsModel.Player("Letícia", R.mipmap.ic_launcher)
-
-        val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
-                                                Date(),
-                                                player1, 1)
-        val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
-                                                Date(),
-                                                player2, 2)
-        val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
-                                                Date(),
-                                                player3, 3)
-        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
-                                                Date(),
-                                                player4, 4)
-
-        val addComments: MutableList<CommentsModel.Comment> = mutableListOf(
-                comment1,
-                comment2,
-                comment3,
-                comment4)
-
-        return addComments
-    }
+//    private fun generateCommentsList(): MutableList<CommentsModel.Comment> {
+//
+//        val player1 = CommentsModel.Player("Lorrany", R.mipmap.ic_launcher)
+//        val player2 = CommentsModel.Player("Alexandre", R.mipmap.ic_launcher)
+//        val player3 = CommentsModel.Player("Larissa", R.mipmap.ic_launcher)
+//        val player4 = CommentsModel.Player("Letícia", R.mipmap.ic_launcher)
+//
+//        val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
+//                                                Date(),
+//                                                player1, 1)
+//        val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
+//                                                Date(),
+//                                                player2, 2)
+//        val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
+//                                                Date(),
+//                                                player3, 3)
+//        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
+//                                                Date(),
+//                                                player4, 4)
+//
+//        val addComments: MutableList<CommentsModel.Comment> = mutableListOf(
+//                comment1,
+//                comment2,
+//                comment3,
+//                comment4)
+//
+//        return addComments
+//    }
 
     companion object {
         const val okMessage = 200

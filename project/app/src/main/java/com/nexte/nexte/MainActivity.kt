@@ -11,8 +11,6 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
 import com.nexte.nexte.FeedScene.FeedFragment
-import com.nexte.nexte.MatchScene.MatchFragment
-import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.RankingScene.RankingView
 
 

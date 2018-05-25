@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.nexte.nexte.R
-import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.row_comments.view.*
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Fragment
 import android.support.constraint.ConstraintLayout
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import com.nexte.nexte.UserSingleton

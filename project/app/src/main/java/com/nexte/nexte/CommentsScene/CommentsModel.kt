@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.Comment
 import java.util.*
 
 /**
@@ -137,10 +138,6 @@ class CommentsModel {
      * @param author contains the player that posted the comment
      * @param commentId contains the comment identifier
      */
-    class Comment(var comment: String,
-                  var date: Date,
-                  var author: Player,
-                  var commentId: Int)
 
     /**
      * Class with formatted information about users and how they will be displayed in View
