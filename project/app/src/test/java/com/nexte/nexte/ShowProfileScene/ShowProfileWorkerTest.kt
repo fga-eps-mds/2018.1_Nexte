@@ -19,31 +19,6 @@ class ShowProfileWorkerTest {
     }
 
     @Test
-    fun testGetUserProfileEmptyUser(){
-        //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino")
-        val player = Player("",
-                -1,
-                "",
-                "",
-                "",
-                "",
-                -1,
-                "",
-                "")
-
-        //call
-        this.worker?.getUserProfile(request = request, completion = { response ->
-            //assert
-            assertEquals(response.user?.name, player.name)
-            assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.email, player.email)
-            assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.category, player.category)
-        })
-    }
-
-    @Test
     fun testGetUserProfileSuccess(){
         //prepare
         val request = ShowProfileModel.Request(username = "Robert Baptist")
