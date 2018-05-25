@@ -1,6 +1,6 @@
 package com.nexte.nexte.RankingScene
 
-import com.nexte.nexte.Entities.User.UserMockergit
+import com.nexte.nexte.Entities.User.UserMocker
 
 /**
  * Class responsible to do request for anywhere, format Response and
