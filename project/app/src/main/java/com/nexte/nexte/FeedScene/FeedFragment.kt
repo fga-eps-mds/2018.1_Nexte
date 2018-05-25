@@ -11,10 +11,7 @@ import android.view.ViewGroup
 import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
-import com.nexte.nexte.R.id.likesButton
-import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_feed.view.*
-//import android.support.v7.widget.DividerItemDecoration
 
 /**
  * Interface to define Display Logic to FeedFragment Class that will receive information
