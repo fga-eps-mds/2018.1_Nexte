@@ -8,10 +8,13 @@ import org.junit.Assert.*
 
 class MatchWorkerTest {
     private var worker: MatchWorker? = null
+    private var mock: MockMatchUpdateWorkerLogic? = null
 
     @Before
     fun setUp() {
         this.worker = MatchWorker()
+        mock = MockMatchUpdateWorkerLogic()
+        this.worker?.updateLogic = mock
     }
 
     @Test
@@ -31,8 +34,30 @@ class MatchWorkerTest {
 
     }
 
+    @Test
+    fun testGenerateMatchResult(){
+        //prepare
+        val request = MatchModel.SendMatchResult.Request()
+
+        //call
+        this.worker?.generateMatchResult(request)
+
+        //assert
+        assertEquals(mock?.response?.status, MatchModel.SendMatchResult.Status.SUCESSED)
+
+    }
+
     @After
     fun tearDown() {
         this.worker = null
+    }
+}
+
+private class MockMatchUpdateWorkerLogic: MatchUpdateWorkerLogic{
+
+    var response: MatchModel.SendMatchResult.Response? = null
+
+    override fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response) {
+        this.response = response
     }
 }
