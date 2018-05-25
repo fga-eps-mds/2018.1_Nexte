@@ -11,8 +11,8 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
 import com.nexte.nexte.FeedScene.FeedFragment
-import com.nexte.nexte.RankingScene.RankingView
 
+import com.nexte.nexte.RankingScene.RankingView
 
 
 class MainActivity : AppCompatActivity() {
