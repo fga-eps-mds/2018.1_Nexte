@@ -20,22 +20,24 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="150dp"
-        android:layout_height="9dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:background="#504d4d"
+        android:background="#393939"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/commentDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toEndOf="@+id/playerName"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#393939"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="8dp"
