@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
@@ -7,7 +8,7 @@ import java.util.*
 
 interface CommentsWorkerUpdateLogic {
 
-    fun updateComment(response: CommentsModel.GetCommentsRequest.Response)
+    fun updateComment(response: Response)
 }
 
 /**
@@ -30,9 +31,9 @@ class CommentsWorker {
      */
     fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request) {
 
-        val users = commentsManager?.getAll()
-        val response = CommentsModel.GetCommentsRequest.Response(comments!!.toTypedArray())
-        updateLogic?.updateUsersInRanking(response)
+        val commentManager= commentsManager?.getAll()
+        val response = Response(commentManager!!.toMutableList())
+        updateLogic?.updateComment(response)
     }
 
     /**
@@ -48,8 +49,8 @@ class CommentsWorker {
         val message = request.commentToPost
         val today = Date()
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
-        val newComment = CommentsModel.Comment(message, today, author, 5)
-        this.commentsMockedData.add(newComment)
+        val newComment = CommentsModel.PublishCommentRequest()
+        //this.commentsMockedData.add(newComment)
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         completion (response)
