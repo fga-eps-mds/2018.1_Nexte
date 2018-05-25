@@ -42,7 +42,7 @@ class ShowProfilePresenterTest {
             null,
             emptyList()
         ))
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "gabrielalbino", rank = "#2", email = "enggabriel@gmail.com")
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com")
 
         //call
         this.presenter?.presentUserProfile(response = response)

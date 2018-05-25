@@ -113,7 +113,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     /**
      * class used to manage graph data and exhibition
      */
-    public class GraphManager (var showProfileFragment : ShowProfileFragment) {
+    class GraphManager (var showProfileFragment : ShowProfileFragment) {
         /**
          * Method responsible to define the data of Y axis.
          */
@@ -169,12 +169,14 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             line.axisDependency = YAxis.AxisDependency.LEFT
             dataSets.add(line)
 
-            val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the string about last months of matches of the user
+            //Responsible to create an array that store the string about last months of matches of the user
+            val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev")
             xAxis?.valueFormatter = IndexAxisValueFormatter(lastMonths)
             xAxis?.granularity = 1f
             xAxis?.textColor = Color.WHITE
 
-            val points = LineData(dataSets) //LineData, access the data defined, and xml LineChart have access to it
+            //LineData, access the data defined, and xml LineChart have access to it
+            val points = LineData(dataSets)
             points.setValueTextColor(Color.WHITE)
 
             val lineData = LineData(dataSets)

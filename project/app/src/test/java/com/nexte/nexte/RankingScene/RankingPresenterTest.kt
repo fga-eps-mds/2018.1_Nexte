@@ -63,9 +63,8 @@ class RankingPresenterTest {
 
         //assert
         assertEquals(this.mock?.players?.size, 2)
-        assertEquals(this.mock?.players!![0], player1)
-        assertEquals(this.mock?.players!![1], player2)
-
+        assertNotNull(this.mock?.players!![0])
+        assertNotNull(this.mock?.players!![1])
     }
 
     @Test

@@ -1,8 +1,6 @@
 package com.nexte.nexte.RankingScene
 
-import com.nexte.nexte.Entities.User.UserMocker
-import com.nexte.nexte.R
-import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.Entities.User.UserMockergit
 
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -20,7 +18,7 @@ class RankingWorker {
 
         val userList = UserMocker.generateUsers()
 
-        val response = RankingModel.Response(userList.sortedWith(compareBy({ it.rankingPosition })))
+        val response = RankingModel.Response(userList.sortedWith(compareBy { it.rankingPosition }))
 
         completion(response)
     }
