@@ -13,6 +13,8 @@ import android.util.Log
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.MatchScene.MatchFragment
 import com.nexte.nexte.MatchScene.MatchModel
+import com.nexte.nexte.RankingScene.RankingView
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,17 +56,17 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-                val leticia = MatchModel.MatchPlayer("Leticia", 1)
-                val lorrany = MatchModel.MatchPlayer("Lorrany", 2)
-                val match = MatchModel.MatchData(leticia, lorrany)
-                val matchFragment = MatchFragment().getInstance(match)
-                openFragment(matchFragment)
+//                val leticia = MatchModel.MatchPlayer("Leticia", 1)
+//                val lorrany = MatchModel.MatchPlayer("Lorrany", 2)
+//                val match = MatchModel.MatchData(leticia, lorrany)
+//                val matchFragment = MatchFragment().getInstance(match)
+//                openFragment(matchFragment)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.ranking -> {
-//                val intent = Intent(this, RankingView::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, RankingView::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 

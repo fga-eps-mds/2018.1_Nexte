@@ -4,6 +4,7 @@ import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
 import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
 import io.realm.Realm
 import io.realm.RealmResults
+import io.realm.Sort
 import io.realm.kotlin.where
 
 class ChallengeAdapterRealm: ChallengeAdapter {
@@ -41,6 +42,39 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         challengeRealm.deleteAllFromRealm()
         realm.commitTransaction()
         return challenge
+    }
+
+    override fun getLastFiveChallenges(userdId: String): List<Challenge> {
+        val allChallengesRealmFromUser = realm.where<ChallengeRealm>().equalTo(
+                "challengerId", userdId).or().equalTo("challengedId", userdId).sort(
+                "challegeDate", Sort.DESCENDING).findAll()
+        val allChallengesFromUser = convertListChallengeRealmToChallengeList(
+                allChallengesRealmFromUser)
+        val lastFiveChallenges = getChallengesOfUser(allChallengesFromUser, userdId)
+        return lastFiveChallenges
+    }
+
+    companion object {
+        const val five = 5
+    }
+
+    private fun getChallengesOfUser(allChallenges: List<Challenge>, userId: String): List<Challenge>{
+        if(allChallenges.size > five){
+            return allChallenges
+        }
+
+        var userChallenges = mutableListOf<Challenge>()
+
+        for (challenge in userChallenges){
+            if (userChallenges.size == five) {
+                break
+            }
+            if (userId.equals(challenge.challengedId) || userId.equals(challenge.challengerId)){
+                userChallenges.add(challenge)
+            }
+        }
+
+        return userChallenges.toList()
     }
 
     private fun convertChallengeToChallengeRealm(challenge: Challenge?): ChallengeRealm? {
@@ -83,11 +117,11 @@ class ChallengeAdapterRealm: ChallengeAdapter {
                     stage = Challenge.Stage.Played(it.setChallenger,
                             it.setChallenged,
                             it.date!!,
-                            Challenge.Stage.Played.Game(it.firstGame!!.gameChallenger, it.firstGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.secondGame!!.gameChallenger, it.secondGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.thirdGame!!.gameChallenger, it.thirdGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.fourthGame!!.gameChallenger, it.fourthGame!!.gameChallenged),
-                            Challenge.Stage.Played.Game(it.fifthGame!!.gameChallenger, it.fifthGame!!.gameChallenged),
+                            Challenge.Stage.Played.Game(it.firstGame?.gameChallenger, it.firstGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.secondGame?.gameChallenger, it.secondGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.thirdGame?.gameChallenger, it.thirdGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.fourthGame?.gameChallenger, it.fourthGame?.gameChallenged),
+                            Challenge.Stage.Played.Game(it.fifthGame?.gameChallenger, it.fifthGame?.gameChallenged),
                             it.detail)
                 }
             } else if (challengeRealm.stageCancelledRealm != null) {
@@ -100,11 +134,17 @@ class ChallengeAdapterRealm: ChallengeAdapter {
                   stage = Challenge.Stage.Scheduled()
             }
 
+            var status = it.status
+            if (it.status.isEmpty()){
+                status = "WAITING"
+            }
+
             challenge = Challenge(it.id,
                     it.challengerId,
                     it.challengedId,
                     it.challegeDate,
-                    Challenge.Status.valueOf(it.status),
+
+                    Challenge.Status.valueOf(status),
                     stage!!)
         }
 
