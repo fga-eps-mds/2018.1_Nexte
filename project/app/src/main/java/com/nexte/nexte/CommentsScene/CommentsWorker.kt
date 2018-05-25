@@ -10,6 +10,7 @@ interface CommentsWorkerUpdateLogic {
     fun updateComment(response: Response)
     fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response)
     fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response)
+    fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response)
 }
 
 /**
@@ -70,6 +71,8 @@ class CommentsWorker {
         val serverCode = okMessage
         val response = CommentsModel.ComplaintRequest.Response(serverCode)
 
+        updateLogic?.updateSendComplaint(response)
+
     }
 
     /**
@@ -86,7 +89,6 @@ class CommentsWorker {
 
        updateLogic?.updateDeleteComment(response)
     }
-
     companion object {
         const val okMessage = 200
         const val idComment = "108"

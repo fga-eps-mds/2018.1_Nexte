@@ -45,6 +45,7 @@ interface CommentsBusinessLogic {
 * @property worker Reference to Worker [CommentsWorker]
 * @property presenter Reference to Presenter [CommentsPresenter]
 */
+
 class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) :
         CommentsBusinessLogic, CommentsWorkerUpdateLogic {
 
@@ -76,5 +77,9 @@ class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) :
 
     override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
         presenter?.presentNewComment(response)
+    }
+
+    override fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response) {
+        presenter?.presentComplaint(response)
     }
 }
