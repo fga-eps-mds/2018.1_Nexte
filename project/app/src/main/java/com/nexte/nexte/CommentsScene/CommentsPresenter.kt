@@ -67,12 +67,13 @@ class CommentsPresenter : CommentsPresentationLogic {
         val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
         val time = dateToShow.format(newComment.date)
 
+        val userComment = com.nexte.nexte.Entities.User.UserManager().get(newComment.userId!!)
         val formatted = CommentsModel.CommentFormatted(
 
-                newComment.comment,
+                newComment.comment!!,
                 time,
-                newComment.author.name,
-                newComment.author.photo
+                userComment!!.name,
+                userComment!!.profilePicture!!.toInt()
         )
 
         val viewModel = CommentsModel.PublishCommentRequest.ViewModel(formatted)
@@ -106,7 +107,7 @@ class CommentsPresenter : CommentsPresentationLogic {
      */
     override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
 
-        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(response.delComments))
+        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(mutableListOf(response.delComments)))
         viewController?.displayCommentsAfterDel(viewModel)
     }
 

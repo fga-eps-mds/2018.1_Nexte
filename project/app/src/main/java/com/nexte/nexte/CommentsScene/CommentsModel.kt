@@ -111,7 +111,7 @@ class CommentsModel {
          *
          * @param delComments list of unformatted comments without deleted comment
          */
-        class Response (var delComments: MutableList<Comment>)
+        class Response (var delComments: Comment)
 
         /**
          * Class responsible to define the standar format of the information that will

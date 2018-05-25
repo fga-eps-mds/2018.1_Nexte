@@ -11,6 +11,7 @@ interface CommentsWorkerUpdateLogic {
 
     fun updateComment(response: Response)
     fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response)
+    fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response)
 }
 
 /**
@@ -48,14 +49,12 @@ class CommentsWorker {
 
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request) {
 
-        val commentManager= commentsManager?.update(comment = )
-
         val message = request.commentToPost
         val today = Date()
-        val author = CommentsModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher)
-        val newComment = CommentsModel.PublishCommentRequest()
-        //this.commentsMockedData.add(newComment)
-        val response = CommentsModel.PublishCommentRequest.Response(    )
+        val author = "1"
+        val newComment = Comment(idComment, author, message, today)
+        val commentManager= commentsManager?.update(newComment)
+        val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         updateLogic?.updateNewComment(response)
     }
@@ -84,10 +83,10 @@ class CommentsWorker {
      */
     fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request){
 
-        this.commentsMockedData.removeAt(request.commentIdentifier)
-        val response = CommentsModel.DeleteCommentRequest.Response(this.commentsMockedData)
+        val comments = this.commentsManager?.delete(request.commentIdentifier.toString())
+        val response = CommentsModel.DeleteCommentRequest.Response(comments!!)
 
-        completion(response)
+       updateLogic?.updateDeleteComment(response)
     }
 
     /**
@@ -126,5 +125,6 @@ class CommentsWorker {
 
     companion object {
         const val okMessage = 200
+        const val idComment = "108"
     }
 }
