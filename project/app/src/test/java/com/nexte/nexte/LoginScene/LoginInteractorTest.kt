@@ -1,10 +1,16 @@
 package com.nexte.nexte.LoginScene
 
 import com.facebook.accountkit.AccountKitLoginResult
+import io.reactivex.Scheduler
+import io.reactivex.disposables.Disposable
+import io.reactivex.internal.schedulers.RxThreadFactory
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
+import org.junit.BeforeClass
 import org.junit.Test
 
 class LoginInteractorTest {
@@ -17,6 +23,7 @@ class LoginInteractorTest {
         this.mock = MockLoginPresentationLogic()
         this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
+
     }
     
     @After

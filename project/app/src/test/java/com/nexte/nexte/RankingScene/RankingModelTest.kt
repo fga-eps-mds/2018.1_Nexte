@@ -1,7 +1,9 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Before
+import java.util.*
 
 import org.junit.Assert.*
 import org.junit.Test
@@ -65,43 +67,37 @@ class RankingModelTest {
     @Test
     fun successResponse(){
         //call
-        val player1 = RankingModel.Player(name = "luis",
-                pictureURL = 1,
-                wins = 3,
-                losses = 1,
-                rankingPosition = 2,
-                efficiency = "90%",
-                playerCategory = "profissional",
-                lastGame = "ontem")
-        val player2 = RankingModel.Player(name = "teste",
-                pictureURL = 2,
-                wins = 2,
-                losses = 3,
-                rankingPosition = 3,
-                efficiency = "80%",
-                playerCategory = "intermediario",
-                lastGame = "hoje")
+        val user1 = User(id = "1", name = "test1", status = User.Status.AVAILABLE, challengeSended = null,
+                challengeReceived = null, latestGames = listOf(), birthDate = Date(), email = "teste@email.com",
+                rankingPosition = 1, nickname = "test1", category = null, loses = 0, gender = User.Gender.MALE,
+                profilePicture = "1", phone = "123456", wins = 1)
+        val user2 = User(id = "2", name = "test2", status = User.Status.AVAILABLE, challengeSended = null,
+                challengeReceived = null, latestGames = listOf(), birthDate = Date(), email = "teste2@email.com",
+                rankingPosition = 2, nickname = "test2", category = null, loses = 1, gender = User.Gender.MALE,
+                profilePicture = "2", phone = "1234567", wins = 1)
 
         //call
-        val response = RankingModel.Response(players = arrayOf(player1, player2))
-        response.players = arrayOf(player1, player2)
+
+        val response = RankingModel.Response(users = arrayOf(user1, user2))
+        response.users = arrayOf(user1, user2)
 
         //assert
-        assertEquals(response.players.size, 2)
-        assertEquals(response.players[0].name, "luis")
-        assertEquals(response.players[0].pictureURL, 1)
-        assertEquals(response.players[0].wins, 3)
-        assertEquals(response.players[0].rankingPosition, 2)
-        assertEquals(response.players[0].efficiency, "90%")
-        assertEquals(response.players[0].playerCategory, "profissional")
-        assertEquals(response.players[0].lastGame, "ontem")
-        assertEquals(response.players[1].name, "teste")
-        assertEquals(response.players[1].pictureURL, 2)
-        assertEquals(response.players[1].wins, 2)
-        assertEquals(response.players[1].rankingPosition, 3)
-        assertEquals(response.players[1].efficiency, "80%")
-        assertEquals(response.players[1].playerCategory, "intermediario")
-        assertEquals(response.players[1].lastGame, "hoje")
+        assertEquals(response.users.size, 2)
+        assertEquals(response.users[0].name, "test1")
+        assertEquals(response.users[0].profilePicture, "1")
+        assertEquals(response.users[0].wins, 1)
+        assertEquals(response.users[0].rankingPosition, 1)
+        assertEquals(response.users[0].latestGames?.size, 0)
+        assertEquals(response.users[0].category, null)
+        assertEquals(response.users[0].phone, "123456")
+
+        assertEquals(response.users[1].name, "test2")
+        assertEquals(response.users[1].profilePicture, "2")
+        assertEquals(response.users[1].wins, 1)
+        assertEquals(response.users[1].rankingPosition, 2)
+        assertEquals(response.users[1].latestGames?.size, 0)
+        assertEquals(response.users[1].category, null)
+        assertEquals(response.users[1].phone, "1234567")
     }
 
     @Test fun successFormattedPlayer(){
