@@ -1,8 +1,8 @@
 package com.nexte.nexte.CommentsScene
 
 
-import android.os.UserManager
 import com.nexte.nexte.Entities.Comment.Comment
+import com.nexte.nexte.R
 import java.text.SimpleDateFormat
 
 
@@ -73,7 +73,7 @@ class CommentsPresenter : CommentsPresentationLogic {
                 newComment.comment!!,
                 time,
                 userComment!!.name,
-                userComment!!.profilePicture!!.toInt()
+                R.mipmap.ic_launcher
         )
 
         val viewModel = CommentsModel.PublishCommentRequest.ViewModel(formatted)
@@ -132,7 +132,7 @@ class CommentsPresenter : CommentsPresentationLogic {
                     gameComment.comment!!,
                     time,
                     user!!.name,
-                    user.profilePicture!!.toInt())
+                    R.mipmap.ic_launcher)
 
             commentsFormatted.add(commentFormatted)
         }

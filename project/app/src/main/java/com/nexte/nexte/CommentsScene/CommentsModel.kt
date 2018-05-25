@@ -1,7 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.Entities.Comment.Comment
-import java.util.*
 
 /**
  * Class to define Model of Comments Scene to enable the conversation between users.

@@ -45,31 +45,36 @@ interface CommentsBusinessLogic {
 * @property worker Reference to Worker [CommentsWorker]
 * @property presenter Reference to Presenter [CommentsPresenter]
 */
-class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) : CommentsBusinessLogic {
+class CommentsInteractor(var presenter : CommentsPresentationLogic? = null) :
+        CommentsBusinessLogic, CommentsWorkerUpdateLogic {
 
     var worker = CommentsWorker()
 
     override fun recentComments(request: CommentsModel.GetCommentsRequest.Request) {
-        worker.getCommentsData(request) { response ->
-            this.presenter?.presentComment(response)
-        }
+        worker.getCommentsData(request)
     }
 
     override fun publishNewComment(request: CommentsModel.PublishCommentRequest.Request) {
-        worker.setNewComment(request) { response ->
-            this.presenter?.presentNewComment(response)
-        }
+        worker.setNewComment(request)
     }
 
     override fun sendComplaint(request: CommentsModel.ComplaintRequest.Request) {
-        worker.sendComplaint(request) { response ->
-            this.presenter?.presentComplaint(response)
-        }
+        worker.sendComplaint(request)
     }
 
     override fun deleteComment(request: CommentsModel.DeleteCommentRequest.Request) {
-        worker.getToDeleteComment(request) { response ->
-            this.presenter?.presentPositionToDelete(response)
-        }
+        worker.getToDeleteComment(request)
+    }
+
+    override fun updateComment(response: CommentsModel.GetCommentsRequest.Response) {
+        presenter?.presentComment(response)
+    }
+
+    override fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response) {
+        presenter?.presentPositionToDelete(response)
+    }
+
+    override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+        presenter?.presentNewComment(response)
     }
 }

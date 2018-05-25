@@ -3,8 +3,6 @@ package com.nexte.nexte.CommentsScene
 import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
-import com.nexte.nexte.R
-import com.nexte.nexte.UserSingleton
 import java.util.*
 
 interface CommentsWorkerUpdateLogic {
@@ -52,8 +50,8 @@ class CommentsWorker {
         val message = request.commentToPost
         val today = Date()
         val author = "1"
-        val newComment = Comment(idComment, author, message, today)
-        val commentManager= commentsManager?.update(newComment)
+        var newComment = Comment(idComment, author, message, today)
+        newComment = commentsManager?.update(newComment)!!
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         updateLogic?.updateNewComment(response)
@@ -88,40 +86,6 @@ class CommentsWorker {
 
        updateLogic?.updateDeleteComment(response)
     }
-
-    /**
-     * Function to create fictional comments to use in fictional app mode
-     *
-     * @return MutableList of addComments
-     */
-//    private fun generateCommentsList(): MutableList<CommentsModel.Comment> {
-//
-//        val player1 = CommentsModel.Player("Lorrany", R.mipmap.ic_launcher)
-//        val player2 = CommentsModel.Player("Alexandre", R.mipmap.ic_launcher)
-//        val player3 = CommentsModel.Player("Larissa", R.mipmap.ic_launcher)
-//        val player4 = CommentsModel.Player("Letícia", R.mipmap.ic_launcher)
-//
-//        val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
-//                                                Date(),
-//                                                player1, 1)
-//        val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
-//                                                Date(),
-//                                                player2, 2)
-//        val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
-//                                                Date(),
-//                                                player3, 3)
-//        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
-//                                                Date(),
-//                                                player4, 4)
-//
-//        val addComments: MutableList<CommentsModel.Comment> = mutableListOf(
-//                comment1,
-//                comment2,
-//                comment3,
-//                comment4)
-//
-//        return addComments
-//    }
 
     companion object {
         const val okMessage = 200
