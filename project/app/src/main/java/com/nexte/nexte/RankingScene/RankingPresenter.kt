@@ -1,5 +1,8 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.R
+
 /**
  * Interface to define Presentation Logic to Ranking Class that
  * will be used to call this Interactor on other class layer
@@ -39,19 +42,19 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @param players array of players that will be shown on ranking
      */
-    private fun formatPlayers(players: Array<RankingModel.Player>): List<RankingModel.FormattedPlayerInfo> {
+    private fun formatPlayers(players: List<User>): List<RankingModel.FormattedPlayerInfo> {
 
         val rankingPlayerFormatted: MutableList<RankingModel.FormattedPlayerInfo> = mutableListOf()
 
         for(player in players) {
 
             val playerFormatted = RankingModel.FormattedPlayer(player.name,
-                    player.pictureURL,
+                    R.mipmap.ic_launcher_round, //TODO: Change to get real user profile in the future
                     String.format("Vitórias: %d", player.wins),
                     String.format("%d", player.rankingPosition),
-                    String.format("Último Jogo: %s", player.lastGame),
-                    String.format("Aproveitamento: %s", player.efficiency),
-                    player.playerCategory)
+                    String.format("Último Jogo: %s", "Ontem"), //TODO: Change to get real user last game date
+                    String.format("Aproveitamento: %d%%", player.wins/player.matches*100),
+                    player.category.toString())
 
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
             rankingPlayerFormatted.add(playerFormattedInfo)

@@ -19,7 +19,7 @@ class ShowProfileWorkerTest {
     @Test
     fun testGetUserProfileEmptyUser(){
         //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "")
+        val request = ShowProfileModel.Request(username = "gabrielalbino")
         val player = Player("",
                 -1,
                 "",
@@ -35,12 +35,8 @@ class ShowProfileWorkerTest {
             //assert
             assertEquals(response.user?.name, player.name)
             assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAddress, player.pictureAddress)
             assertEquals(response.user?.email, player.email)
             assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.club, player.club)
-            assertEquals(response.user?.age, player.age)
-            assertEquals(response.user?.password, player.password)
             assertEquals(response.user?.category, player.category)
         })
     }
@@ -48,7 +44,7 @@ class ShowProfileWorkerTest {
     @Test
     fun testGetUserProfileSuccess(){
         //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "kjbdjh213")
+        val request = ShowProfileModel.Request(username = "gabrielalbino")
         val player = Player("gabrielalbino",
                 15,
                 "imgur.com/nudh486d4",
@@ -64,11 +60,8 @@ class ShowProfileWorkerTest {
             //assert
             assertEquals(response.user?.name, player.name)
             assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAddress, player.pictureAddress)
             assertEquals(response.user?.email, player.email)
             assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.club, player.club)
-            assertEquals(response.user?.age, player.age)
             assertEquals(response.user?.category, player.category)
         })
     }

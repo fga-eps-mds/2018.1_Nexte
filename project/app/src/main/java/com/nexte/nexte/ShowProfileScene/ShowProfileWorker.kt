@@ -3,8 +3,6 @@ package com.nexte.nexte.ShowProfileScene
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserMocker
-import com.nexte.nexte.UserSingleton
-import com.nexte.nexte.Player
 
 /**
  * This class verifies if the logged user is valid and return the user information as response.

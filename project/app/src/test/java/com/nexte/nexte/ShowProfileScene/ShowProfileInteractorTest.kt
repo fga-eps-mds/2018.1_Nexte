@@ -21,7 +21,7 @@ class ShowProfileInteractorTest {
     @Test
     fun successShowProfile(){
         //prepare
-        val request = ShowProfileModel.Request(username = "luis", tokenID = "asdkjabsd")
+        val request = ShowProfileModel.Request(username = "luis")
         val expectedResult = true
 
         //call

@@ -45,6 +45,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var rankingChart: LineChart? = null
     private var newLineChart: LineChart? = null
     private var anotherPlayerName: String = ""
+    val graphManager = GraphManager(this)
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -93,8 +94,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         newLineChart = newView?.findViewById(R.id.lineChart)
         rankingChart = newView?.findViewById(R.id.rankingChart)
 
-        this.createGraph()
-        this.createRankingGraph()
+        this.graphManager.createGraph()
+        this.graphManager.createRankingGraph()
 
 
         return newView
@@ -110,127 +111,131 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     }
 
     /**
-     * Method responsible to define the data of Y axis.
+     * class used to manage graph data and exhibition
      */
+    public class GraphManager (var showProfileFragment : ShowProfileFragment) {
+        /**
+         * Method responsible to define the data of Y axis.
+         */
 
-    fun setYAxisValues(): ArrayList<Entry> {
+        fun setYAxisValues(): ArrayList<Entry> {
 
-        val yVals = ArrayList<Entry>()
+            val yVals = ArrayList<Entry>()
 
-        yVals.add(Entry(0f, 2f))
-        yVals.add(Entry(1f, 3f))
-        yVals.add(Entry(2f, 4f))
-        yVals.add(Entry(3f, 2f))
-        yVals.add(Entry(4f, 1f))
-        yVals.add(Entry(5f, 5f))
+            yVals.add(Entry(0f, 2f))
+            yVals.add(Entry(1f, 3f))
+            yVals.add(Entry(2f, 4f))
+            yVals.add(Entry(3f, 2f))
+            yVals.add(Entry(4f, 1f))
+            yVals.add(Entry(5f, 5f))
 
 
-        return yVals
-    }
+            return yVals
+        }
 
-    /**
-     * Method responsible to define the data of Y axis.
-     */
+        /**
+         * Method responsible to define the data of Y axis.
+         */
 
-    fun setYAxisValuesRanking(): ArrayList<Entry> {
+        fun setYAxisValuesRanking(): ArrayList<Entry> {
 
-        val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
+            val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
 
-        yValsRanking.add(Entry(0f, 3f))
-        yValsRanking.add(Entry(1f, 2f))
-        yValsRanking.add(Entry(2f, 5f))
-        yValsRanking.add(Entry(3f, 2f))
-        yValsRanking.add(Entry(4f, 1f))
-        yValsRanking.add(Entry(5f, 4f))
+            yValsRanking.add(Entry(0f, 3f))
+            yValsRanking.add(Entry(1f, 2f))
+            yValsRanking.add(Entry(2f, 5f))
+            yValsRanking.add(Entry(3f, 2f))
+            yValsRanking.add(Entry(4f, 1f))
+            yValsRanking.add(Entry(5f, 4f))
 
-        return yValsRanking
-    }
+            return yValsRanking
+        }
 
-    /**
-     * Method responsible to create the graph, using the function and
-     * SetYAxisValues.
-     */
+        /**
+         * Method responsible to create the graph, using the function and
+         * SetYAxisValues.
+         */
 
-    private fun createGraph() {
+        fun createGraph() {
 
-        val xAxis = newLineChart?.xAxis //instance a view from xml.
-        val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
-        val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
+            val xAxis = showProfileFragment.newLineChart?.xAxis //instance a view from xml.
+            val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
+            val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
 
-        val line = LineDataSet(yAxes, "Vitoria") //Access the data of yAxes, introduce a legend and customize the graphic
-        line.fillAlpha = houndredLine
-        line.color = Color.BLUE
-        line.axisDependency = YAxis.AxisDependency.LEFT
-        dataSets.add(line)
+            val line = LineDataSet(yAxes, "Vitoria") /*Access the data of yAxes, introduce a
+             legend and customize the graphic*/
+            line.fillAlpha = houndredLine
+            line.color = Color.BLUE
+            line.axisDependency = YAxis.AxisDependency.LEFT
+            dataSets.add(line)
 
-        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the string about last months of matches of the user
-        xAxis?.valueFormatter = IndexAxisValueFormatter(lastMonths)
-        xAxis?.granularity = 1f
-        xAxis?.textColor = Color.WHITE
+            val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the string about last months of matches of the user
+            xAxis?.valueFormatter = IndexAxisValueFormatter(lastMonths)
+            xAxis?.granularity = 1f
+            xAxis?.textColor = Color.WHITE
 
-        val points = LineData(dataSets) //LineData, access the data defined, and xml LineChart have access to it
-        points.setValueTextColor(Color.WHITE)
+            val points = LineData(dataSets) //LineData, access the data defined, and xml LineChart have access to it
+            points.setValueTextColor(Color.WHITE)
 
-        val lineData = LineData(dataSets)
-        newLineChart?.data = lineData
-        newLineChart?.axisLeft?.setAxisMaxValue(8f)
-        newLineChart?.axisLeft?.setAxisMinValue(0f)
-        newLineChart?.axisRight?.setAxisMaxValue(0f)
-        newLineChart?.axisRight?.setAxisMinValue(8f)
-        newLineChart?.axisLeft?.setDrawGridLines(false)
-        newLineChart?.xAxis?.setDrawGridLines(false)
-        newLineChart?.setScaleEnabled(false)
-        newLineChart?.invalidate()
-    }
+            val lineData = LineData(dataSets)
+            showProfileFragment.newLineChart?.data = lineData
+            showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
+            showProfileFragment.newLineChart?.axisLeft?.setAxisMinValue(0f)
+            showProfileFragment.newLineChart?.axisRight?.setAxisMaxValue(0f)
+            showProfileFragment.newLineChart?.axisRight?.setAxisMinValue(8f)
+            showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
+            showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
+            showProfileFragment.newLineChart?.setScaleEnabled(false)
+            showProfileFragment.newLineChart?.invalidate()
+        }
 
-    /**
-     * Method responsible to create the graph, using the function
-     * SetYAxisValuesRanking.
-     */
+        /**
+         * Method responsible to create the graph, using the function
+         * SetYAxisValuesRanking.
+         */
 
-    private fun createRankingGraph() {
+        fun createRankingGraph() {
 
-        val xAxisRanking = rankingChart?.xAxis //instance a view from xml.
-        val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
-        val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
+            val xAxisRanking = showProfileFragment.rankingChart?.xAxis //instance a view from xml.
+            val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
+            val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
 
-        Log.e("Entrou", "aqui")
+            Log.e("Entrou", "aqui")
 
-        val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking") //Access the data of yAxes,
-        // introduce a legend and customize the graphic
-        lineRanking.fillAlpha = houndredLine
-        lineRanking.color = Color.RED
-        lineRanking.axisDependency = YAxis.AxisDependency.LEFT
-        dataSetsRanking.add(lineRanking)
+            val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking") //Access the data of yAxes,
+            // introduce a legend and customize the graphic
+            lineRanking.fillAlpha = houndredLine
+            lineRanking.color = Color.RED
+            lineRanking.axisDependency = YAxis.AxisDependency.LEFT
+            dataSetsRanking.add(lineRanking)
 
-        val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the
-        // string about last months of matches of the user
-        xAxisRanking?.valueFormatter = IndexAxisValueFormatter(lastMonths)
-        xAxisRanking?.granularity = 1f
-        xAxisRanking?.textColor = Color.WHITE
+            val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the
+            // string about last months of matches of the user
+            xAxisRanking?.valueFormatter = IndexAxisValueFormatter(lastMonths)
+            xAxisRanking?.granularity = 1f
+            xAxisRanking?.textColor = Color.WHITE
 
-        val points = LineData(dataSetsRanking) //access the data defined, and xml LineChart have access to it
-        points.setValueTextColor(Color.WHITE)
+            val points = LineData(dataSetsRanking) //access the data defined, and xml LineChart have access to it
+            points.setValueTextColor(Color.WHITE)
 
-        val rankingData = LineData(dataSetsRanking)
-        rankingChart?.data = rankingData
-        rankingChart?.axisLeft?.setAxisMaxValue(8f)
-        rankingChart?.axisLeft?.setAxisMinValue(0f)
-        rankingChart?.axisRight?.setAxisMaxValue(0f)
-        rankingChart?.axisRight?.setAxisMinValue(8f)
-        rankingChart?.axisLeft?.setDrawGridLines(false)
-        rankingChart?.xAxis?.setDrawGridLines(false)
-        rankingChart?.setScaleEnabled(false)
-        rankingChart?.invalidate()
+            val rankingData = LineData(dataSetsRanking)
+            showProfileFragment.rankingChart?.data = rankingData
+            showProfileFragment.rankingChart?.axisLeft?.setAxisMaxValue(8f)
+            showProfileFragment.rankingChart?.axisLeft?.setAxisMinValue(0f)
+            showProfileFragment.rankingChart?.axisRight?.setAxisMaxValue(0f)
+            showProfileFragment.rankingChart?.axisRight?.setAxisMinValue(8f)
+            showProfileFragment.rankingChart?.axisLeft?.setDrawGridLines(false)
+            showProfileFragment.rankingChart?.xAxis?.setDrawGridLines(false)
+            showProfileFragment.rankingChart?.setScaleEnabled(false)
+            showProfileFragment.rankingChart?.invalidate()
+        }
     }
 
     /**
      * This method is called when user edits information.
      */
     override fun onResume() {
-
         super.onResume()
-
         this.createShowProfileRequest()
     }
 

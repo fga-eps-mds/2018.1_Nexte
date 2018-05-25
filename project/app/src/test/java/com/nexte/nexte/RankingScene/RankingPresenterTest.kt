@@ -1,10 +1,12 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class RankingPresenterTest {
 
@@ -20,41 +22,50 @@ class RankingPresenterTest {
     @Test
     fun successPresentRanking(){
         //prepare
-        val player1 = RankingModel.Player(name = "luis",
-                pictureURL = 1,
-                wins = 3, losses = 1,
-                rankingPosition = 2,
-                efficiency = "90%",
-                lastGame = "ontem",
-                playerCategory = "profissional")
-        val player2 = RankingModel.Player(name = "teste",
-                pictureURL = 2,
-                wins = 2,
-                losses = 3,
-                rankingPosition = 3,
-                efficiency = "80%",
-                lastGame = "hoje",
-                playerCategory = "intermediario")
-        val response = RankingModel.Response(players = arrayOf(player1, player2))
+        val player1 = User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+        val player2 = User("14",
+                "Robert Baptist",
+                null,
+                "Baptist",
+                Date(1989, 12, 4),
+                14,
+                "baptist@nexte.com",
+                "130",
+                194,
+                154,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+        val response = RankingModel.Response(players = listOf(player1, player2))
 
         //call
         this.presenter?.presentRanking(response = response)
 
         //assert
         assertEquals(this.mock?.players?.size, 2)
-        assertEquals(this.mock?.players!![0].player.userName, player1.name)
-        assertEquals(this.mock?.players!![0].player.userRankingPosition, player1.rankingPosition.toString())
-        assertEquals(this.mock?.players!![0].player.userWins, "Vitórias: " + player1.wins.toString())
-        assertEquals(this.mock?.players!![0].player.userEfficiency, "Aproveitamento: " + player1.efficiency)
-        assertEquals(this.mock?.players!![0].player.userLastGame, "Último Jogo: " + player1.lastGame)
-        assertEquals(this.mock?.players!![0].player.userCategory, player1.playerCategory)
+        assertEquals(this.mock?.players!![0], player1)
+        assertEquals(this.mock?.players!![1], player2)
 
-        assertEquals(this.mock?.players!![1].player.userName, player2.name)
-        assertEquals(this.mock?.players!![1].player.userRankingPosition,  player2.rankingPosition.toString())
-        assertEquals(this.mock?.players!![1].player.userWins,"Vitórias: " +  player2.wins.toString())
-        assertEquals(this.mock?.players!![1].player.userEfficiency, "Aproveitamento: " + player2.efficiency)
-        assertEquals(this.mock?.players!![1].player.userLastGame, "Último Jogo: " + player2.lastGame)
-        assertEquals(this.mock?.players!![1].player.userCategory, player2.playerCategory)
     }
 
     @Test

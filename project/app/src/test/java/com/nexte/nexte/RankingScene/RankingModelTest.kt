@@ -1,10 +1,12 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class RankingModelTest {
 
@@ -12,46 +14,6 @@ class RankingModelTest {
     fun setUp() {
     }
 
-    @Test
-    fun successPlayer(){
-        //prepare
-        val name = "luis"
-        val pictureURL = 1
-        val wins = 3
-        val losses = 1
-        val rankingPosition = 2
-        val lastGame = "ontem"
-        val efficiency = "90%"
-        val playerCategory = "profissional"
-
-        //call
-        val player = RankingModel.Player(name = name,
-                pictureURL = pictureURL,
-                wins = wins,
-                losses = losses,
-                rankingPosition = rankingPosition,
-                lastGame = lastGame,
-                efficiency = efficiency,
-                playerCategory = playerCategory)
-        player.losses = losses
-        player.name = name
-        player.pictureURL = pictureURL
-        player.wins = wins
-        player.rankingPosition = rankingPosition
-        player.lastGame = lastGame
-        player.efficiency = efficiency
-        player.playerCategory = playerCategory
-
-        //assert
-        assertEquals(name, player.name)
-        assertEquals(pictureURL, player.pictureURL)
-        assertEquals(wins, player.wins)
-        assertEquals(losses, player.losses)
-        assertEquals(rankingPosition, player.rankingPosition)
-        assertEquals(efficiency, player.efficiency)
-        assertEquals(playerCategory, player.playerCategory)
-        assertEquals(lastGame, player.lastGame)
-    }
 
     @Test
     fun successRequest(){
@@ -65,43 +27,49 @@ class RankingModelTest {
     @Test
     fun successResponse(){
         //call
-        val player1 = RankingModel.Player(name = "luis",
-                pictureURL = 1,
-                wins = 3,
-                losses = 1,
-                rankingPosition = 2,
-                efficiency = "90%",
-                playerCategory = "profissional",
-                lastGame = "ontem")
-        val player2 = RankingModel.Player(name = "teste",
-                pictureURL = 2,
-                wins = 2,
-                losses = 3,
-                rankingPosition = 3,
-                efficiency = "80%",
-                playerCategory = "intermediario",
-                lastGame = "hoje")
+        val player1 = User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+        val player2 = User("14",
+                "Robert Baptist",
+                null,
+                "Baptist",
+                Date(1989, 12, 4),
+                14,
+                "baptist@nexte.com",
+                "130",
+                194,
+                154,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
 
         //call
-        val response = RankingModel.Response(players = arrayOf(player1, player2))
-        response.players = arrayOf(player1, player2)
+        val response = RankingModel.Response(players = listOf(player1, player2))
+        response.players = listOf(player1, player2)
 
         //assert
         assertEquals(response.players.size, 2)
-        assertEquals(response.players[0].name, "luis")
-        assertEquals(response.players[0].pictureURL, 1)
-        assertEquals(response.players[0].wins, 3)
-        assertEquals(response.players[0].rankingPosition, 2)
-        assertEquals(response.players[0].efficiency, "90%")
-        assertEquals(response.players[0].playerCategory, "profissional")
-        assertEquals(response.players[0].lastGame, "ontem")
-        assertEquals(response.players[1].name, "teste")
-        assertEquals(response.players[1].pictureURL, 2)
-        assertEquals(response.players[1].wins, 2)
-        assertEquals(response.players[1].rankingPosition, 3)
-        assertEquals(response.players[1].efficiency, "80%")
-        assertEquals(response.players[1].playerCategory, "intermediario")
-        assertEquals(response.players[1].lastGame, "hoje")
+        assertEquals(response.players[0], player1)
+        assertEquals(response.players[1], player2)
     }
 
     @Test fun successFormattedPlayer(){

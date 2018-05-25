@@ -1,5 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
 
@@ -12,7 +13,7 @@ class ShowProfileViewTest {
 
     @Before
     fun setUp() {
-        this.view = ShowProfileFragment()
+        this.view = ShowProfileFragment().getInstance(UserSingleton.getUserInformations().name)
     }
 
     @Test
@@ -20,7 +21,7 @@ class ShowProfileViewTest {
         //prepare
         //call
 
-        val testComp = ShowProfileFragment.newInstance()
+        val testComp = ShowProfileFragment().getInstance(UserSingleton.getUserInformations().name)
 
         //assert
         assertNotNull(testComp)
@@ -54,7 +55,7 @@ class ShowProfileViewTest {
     @Test
     fun testSetYAxisValues(){
         //prepare //call
-        val yVals = this.view?.setYAxisValues()
+        val yVals = this.view?.graphManager?.setYAxisValues()
 
         //assert
         assertNotNull(yVals)
@@ -68,7 +69,7 @@ class ShowProfileViewTest {
     @Test
     fun testSetYAxisValuesRanking(){
         //prepare//call
-        val yValsRanking = this.view?.setYAxisValuesRanking()
+        val yValsRanking = this.view?.graphManager?.setYAxisValuesRanking()
 
         //assert
         assertNotNull(yValsRanking)

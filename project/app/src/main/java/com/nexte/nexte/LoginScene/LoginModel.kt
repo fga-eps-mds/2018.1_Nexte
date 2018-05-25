@@ -47,7 +47,7 @@ class LoginModel {
     class AccountKit {
 
         companion object {
-           const val ACCOUNTKIT_CODE = 13
+           const val accountKit_code = 13
         }
 
         /**
