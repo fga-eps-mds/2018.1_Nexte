@@ -12,6 +12,7 @@ import com.nexte.nexte.LikeListScene.LikeListView
 import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
 import com.nexte.nexte.R.id.likesButton
+import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_feed.view.*
 //import android.support.v7.widget.DividerItemDecoration
 
@@ -64,12 +65,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
         this.createGetActivitiesRequest()
         return newView
-
-        //TODO("colocar linha entre celulas")
-        //val context = inflater?.context
-
-        //val dividerItemDecoration = DividerItemDecoration(context, )
-        //feedRecyclerView?.addItemDecoration(dividerItemDecoration)
     }
 
 
@@ -227,12 +222,14 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
                     itemView.whoWon.text = String.format("%s ganhou de %s", activity.challengedName, activity.challengerName)
                 }
 
+                if (activity.currentUserLiked == true) {
+                    itemView.likesButton.setImageResource(R.mipmap.feed_like_fill)
+                }
+
                 itemView.likesButton.setOnClickListener {
 
                     val sendLikesAux = FeedModel.LikeAndUnlike.Request(activity.identifier)
                     (fragment as FeedFragment).sendLike(sendLikesAux)
-
-                    itemView.likesButton.setImageResource(R.mipmap.feed_like_fill)
                 }
 
                 itemView.numberOfLikes.setOnClickListener {
