@@ -1,5 +1,7 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
+import com.nexte.nexte.Entities.Comment.CommentManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -16,6 +18,7 @@ class CommentsInteractorTest {
         this.interactor = CommentsInteractor()
         this.interactor?.presenter = mock
         this.interactor?.worker?.updateLogic = mock
+        this.interactor?.worker?.commentsManager = CommentManager(CommentAdapterSpy())
     }
 
     @Test
@@ -89,7 +92,7 @@ class CommentsInteractorTest {
     fun successDeleteComment(){
         //prepare
         val request = CommentsModel.DeleteCommentRequest.Request(
-                3
+                108
         )
 
         //call
@@ -100,7 +103,7 @@ class CommentsInteractorTest {
     }
     
     @After
-    fun tearDown() {
+        fun tearDown() {
         this.mock = null
         this.interactor = null
     }

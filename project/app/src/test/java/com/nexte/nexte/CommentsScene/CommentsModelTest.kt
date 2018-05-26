@@ -316,25 +316,22 @@ class CommentsModelTest {
         //prepare
         val text = "Jogo top!!!!"
         val date = Date()
-        val name = "userName"
-        val photo = 1
-        val id = 1
-        val player = CommentsModel.Player(name, photo)
+        val id1 = "456789"
+        val idUser1 = "456"
 
         //call
-        val comment = CommentsModel.Comment("Oloko meu", Date(), CommentsModel.Player(
-                "gabs", 2
-        ), 2)
-        comment.author = player
+        val comment = Comment(id1, idUser1, text, date)
+
+        comment.id = id1
         comment.comment = text
         comment.date = date
-        comment.commentId = id
+        comment.userId = idUser1
+
         //assert
         assertEquals(comment.comment, text)
-        assertEquals(comment.author.photo, player.photo)
-        assertEquals(comment.author.name, player.name)
+        assertEquals(comment.id, id1)
+        assertEquals(comment.userId, idUser1)
         assertEquals(comment.date, date)
-        assertEquals(comment.commentId, id)
     }
 
     @Test
@@ -506,34 +503,26 @@ class CommentsModelTest {
     @Test
     fun DeleteCommentResponse() {
         //prepare
-        val player1 = CommentsModel.Player("Larissa", 1)
-        val player2 = CommentsModel.Player("Alexandre", 2)
+
+        val comment1 = Comment("hahaha",
+                "lehaha",
+                "Joga muito", Date())
 
 
-        val comment1 = CommentsModel.Comment("Muito bom galera",
-                Date(),
-                player1, 1)
-        val comment2 = CommentsModel.Comment("Nossa, foi top mesmo",
-                Date(),
-                player2, 2)
-        val commentsList = mutableListOf(comment1, comment2)
+        val commentsList = Comment("hahaha", "lehaha", "Joga muito", Date())
 
         //call
 
         val response = CommentsModel.DeleteCommentRequest.Response(commentsList)
 
         //assert
-        assertEquals(player1.name, response.delComments[0].author.name)
-        assertEquals(player2.name, response.delComments[1].author.name)
+        assertEquals(comment1.id, response.delComments.id)
 
-        assertEquals(player1.photo, response.delComments[0].author.photo)
-        assertEquals(player2.photo, response.delComments[1].author.photo)
+        assertEquals(comment1.userId, response.delComments.userId)
 
-        assertEquals(comment1.comment, response.delComments[0].comment)
-        assertEquals(comment2.comment, response.delComments[1].comment)
+        assertEquals(comment1.comment, response.delComments.comment)
 
-        assertEquals(comment1.commentId, response.delComments[0].commentId)
-        assertEquals(comment2.commentId, response.delComments[1].commentId)
+        assertEquals(comment1.date, response.delComments.date)
 
 
     }

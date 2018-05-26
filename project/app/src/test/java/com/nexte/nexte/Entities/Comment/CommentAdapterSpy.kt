@@ -6,7 +6,11 @@ class CommentAdapterSpy: CommentAdapter {
     override fun delete(identifier: String): Comment? {
         if (identifier == "1") {
             return mockComment()
-        } else {
+        }
+        else if(identifier == "108") {
+            return mockComment()
+        }
+        else {
             return null
         }
     }
@@ -27,7 +31,11 @@ class CommentAdapterSpy: CommentAdapter {
     override fun updateOrInsert(challenge: Comment): Comment? {
         if (challenge.id == "1") {
             return mockComment()
-        } else {
+
+        } else if(challenge.id == "108") {
+            return mockComment()
+        }
+        else {
             return null
         }
     }
