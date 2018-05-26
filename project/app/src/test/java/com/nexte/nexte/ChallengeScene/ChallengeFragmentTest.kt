@@ -5,16 +5,16 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class ChallengeViewTest {
+class ChallengeFragmentTest {
 
-    private var view: ChallengeView?= null
+    private var fragment: ChallengeFragment?= null
     private var mock: MockChallengeViewBusinessLogic?= null
 
     @Before
     fun setUp(){
-        view = ChallengeView()
+        fragment = ChallengeFragment()
         mock = MockChallengeViewBusinessLogic()
-        view?.interactor = mock
+        fragment?.interactor = mock
     }
 
     @Test
@@ -25,7 +25,7 @@ class ChallengeViewTest {
         val expectedResult = true
 
         //call
-        view?.getPlayerInfo(request)
+        fragment?.getPlayerInfo(request)
 
         //assert
         assertEquals(mock?.hasBeenCalled, expectedResult)
@@ -35,10 +35,10 @@ class ChallengeViewTest {
     @Test
     fun testSetupChallengeScene(){
         //prepare //call
-        this.view?.setupChallengeScene()
+        this.fragment?.setupChallengeScene()
 
         //assert
-        assertNotNull(this.view?.interactor)
+        assertNotNull(this.fragment?.interactor)
     }
 
     @After

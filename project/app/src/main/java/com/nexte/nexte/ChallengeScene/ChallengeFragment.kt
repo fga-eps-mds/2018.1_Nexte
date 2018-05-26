@@ -1,10 +1,9 @@
 package com.nexte.nexte.ChallengeScene
 
-import android.content.Context
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,18 +12,19 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.MatchScene.MatchFragment
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.UserSingleton
-import kotlinx.android.synthetic.main.activity_challenger.*
 
 
 /**
- * Interface to define Display Logic to ChallengeView Class that will
+ * Interface to define Display Logic to ChallengeFragment Class that will
  * receive information from Presenter
  */
 interface ChallengeDisplayLogic {
@@ -60,11 +60,8 @@ interface ChallengeDisplayLogic {
 
 /**
  * This class is responsible for treating user actions and also showing user needed information.
- *
- * @property interactor
- * @property context
  */
-class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
+class ChallengeFragment : Fragment(), ChallengeDisplayLogic {
 
     var match: MatchModel.MatchData?= null
     var recyclerView: RecyclerView?= null
@@ -76,7 +73,15 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     var noPlayersText: TextView?= null
     var message: TextView?= null
     var interactor: ChallengeBusinessLogic? = null
-    private val context: Context? = null
+
+    var viewpager: ViewPager?= null
+    var tabs: TabLayout?= null
+    /**
+     * This method is used for get an instance of the fragment and pass arguments to it
+     */
+    fun getInstance(): ChallengeFragment {
+        return ChallengeFragment()
+    }
 
     /**
      * Method called whenever the view is created, responsible for create first
@@ -85,10 +90,20 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
-        viewpager.adapter = ViewPagerAdapter(supportFragmentManager, this)
-        tabs.setupWithViewPager(viewpager)
+
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val newView: View? = inflater?.inflate(R.layout.activity_challenger, container, false)
+        //Above occurs the view instantiation
+        viewpager = newView?.findViewById(R.id.viewpager)
+        tabs = newView?.findViewById(R.id.tabs)
+
+        viewpager?.adapter = ViewPagerAdapter(this.activity.supportFragmentManager, this)
+        tabs?.setupWithViewPager(viewpager)
+
+        return newView
     }
 
     /**
@@ -145,16 +160,16 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             this.message?.text = viewModel.matchMessage
             this.message?.visibility = View.VISIBLE
             this.sendChallengeButton?.isEnabled = false
-            this.viewpager.adapter.notifyDataSetChanged()
+            this.viewpager?.adapter?.notifyDataSetChanged()
         }
 
 
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this.activity)
 
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
-            this.tabs.getTabAt(1)?.select()
+            this.tabs?.getTabAt(1)?.select()
             dialogInterface.cancel()
         })
 
@@ -170,7 +185,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         noPlayersText?.visibility = View.VISIBLE
         sendChallengeButton?.isEnabled = false
         sendChallengeButton?.visibility = View.INVISIBLE
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this.activity)
         builder.setCancelable(true)
         builder.setMessage(messageText)
         builder.setPositiveButton("ok", { dialogInterface, _ ->
@@ -250,7 +265,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             if(position == 0) {
                 view = inflater?.inflate(R.layout.activity_challenger_sent, container, false)
 
-                val viewContext = context as ChallengeView
+                val viewContext = parentFragment as ChallengeFragment
 
                 this.sendChallengeButton = view?.findViewById(R.id.sendChallengeButton)
                 this.recyclerView = view?.findViewById(R.id.challengeRecyclerView)
@@ -281,20 +296,23 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
                 sendChallengeButton?.setOnClickListener {
                     val request = ChallengeModel.ChallengeButtonRequest.Request(this.expandedName.text.toString())
-                    (context as ChallengeView).interactor?.requestChallenger(request)
+                    (parentFragment as ChallengeFragment).interactor?.requestChallenger(request)
                 }
 
                 val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
-                (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
+                (parentFragment as ChallengeFragment).interactor?.requestPlayersToChallenge(request)
             }
         }
     }
 
     /**
      * Adapter Class that populates the fragment
+     *
+     * @param fragmentManager is the manager that will control wich tab will be displayed
+     * @param fragment is the fragment that will render the tabs and contains the necessary methods to display it
      */
     class ViewPagerAdapter (fragmentManager: FragmentManager,
-                            var context: Context) : FragmentStatePagerAdapter(fragmentManager) {
+                            var fragment: Fragment) : FragmentStatePagerAdapter(fragmentManager) {
 
         private val pageTitles = listOf("Tenistas", "Enviados", "Recebidos")
 
@@ -309,7 +327,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
         override fun getItem(position: Int): Fragment {
             return if(position == 1){
-                MatchFragment().getInstance((context as ChallengeView).match)
+                MatchFragment().getInstance((fragment as ChallengeFragment).match)
             } else{
                 TabFragment().getInstance(position)
             }
@@ -325,27 +343,27 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
      * Adapter Class to control recycler view of users that can be challenged
      *
      * @property challenged List of the 5 players above the logged one
-     * @property context Context that will show this adapter
+     * @property fragment Fragment that will show this adapter
      */
     class ChallengeAdapter(private var challenged: List<ChallengeModel.FormattedPlayer>,
-                           private val context: Context) :
-            RecyclerView.Adapter<ChallengeView.ChallengeAdapter.ViewHolder>() {
+                           private val fragment: Fragment) :
+            RecyclerView.Adapter<ChallengeFragment.ChallengeAdapter.ViewHolder>() {
 
         private var expandedPlayer = -1
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeView.ChallengeAdapter.ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeFragment.ChallengeAdapter.ViewHolder {
 
-            val view = LayoutInflater.from(context).inflate(R.layout.columns_challenged, parent, false)
-            return ChallengeView.ChallengeAdapter.ViewHolder(view)
+            val view = LayoutInflater.from(fragment.activity).inflate(R.layout.columns_challenged, parent, false)
+            return ChallengeFragment.ChallengeAdapter.ViewHolder(view)
         }
 
         /**
          * Method that sets expanded player information on the screen when a player is selected
          * and enables a button to send a challenge to this  selected player
          */
-        override fun onBindViewHolder(holder: ChallengeView.ChallengeAdapter.ViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: ChallengeFragment.ChallengeAdapter.ViewHolder, position: Int) {
 
-            (context as ChallengeView).sendChallengeButton?.isEnabled = true
+            (fragment as ChallengeFragment).sendChallengeButton?.isEnabled = true
 
             holder.bindView(challenged[position])
 
@@ -366,7 +384,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
 
                 val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(
                         challenged[position].rankingPosition.removeRange(0, 1).toInt())
-                context.getPlayerInfo(request)
+                fragment.getPlayerInfo(request)
             }
 
             if (expandedPlayer == holder.layoutPosition) {
@@ -376,11 +394,11 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             }
 
             if(expandedPlayer == -1) {
-                context.removePlayerDetailedInfo()
-                context.sendChallengeButton?.isEnabled = false
+                fragment.removePlayerDetailedInfo()
+                fragment.sendChallengeButton?.isEnabled = false
             }
-            if(context.match != null){
-                context.sendChallengeButton?.isEnabled = false
+            if(fragment.match != null){
+                fragment.sendChallengeButton?.isEnabled = false
             }
 
 

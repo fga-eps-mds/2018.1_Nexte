@@ -9,8 +9,7 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.util.Log
-import com.nexte.nexte.ChallengeScene.ChallengeView
+import com.nexte.nexte.ChallengeScene.ChallengeFragment
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.RankingScene.RankingView
 
@@ -37,14 +36,13 @@ class MainActivity : AppCompatActivity() {
 
         when(item.itemId) {
             R.id.profile -> {
-                Log.e("Resultado do item reselecionado", item.itemId.toString())
+                /* Do nothing */
             }
         }
 
     }
    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
 
-       Log.e("Resultado do item", item.itemId.toString())
         when (item.itemId) {
             R.id.feed -> {
                 val feedFragment = FeedFragment().getInstance()
@@ -54,8 +52,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-                val intent = Intent(this, ChallengeView::class.java)
-                startActivity(intent)
+                val challengeFragment = ChallengeFragment().getInstance()
+                openFragment(challengeFragment)
                 return@OnNavigationItemSelectedListener true
             }
 
@@ -78,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun openFragment(fragment: Fragment) {
-        var transaction = supportFragmentManager.beginTransaction()
+        val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_layout,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
