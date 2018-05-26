@@ -1,5 +1,7 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.UserSingleton
+
 /**
  * Interface to define Presentation Logic to Feed Class that
  * will be used to call this Interactor on other class layer
@@ -56,6 +58,14 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
         for (activity in activities) {
+
+            val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.getUserInformations().name) }
+            var userIsOnLikeList = false
+
+            if(matchingUser != null) {
+                userIsOnLikeList = true
+            }
+
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.identifier,
                     activity.challenge.challenger.name,
@@ -65,7 +75,8 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                     activity.challenge.challenged.photo,
                     activity.challenge.challenged.set.toString(),
                     activity.feedDate.toString(),
-                    activity.likes.size.toString())
+                    activity.likes.size.toString(),
+                    userIsOnLikeList)
 
             feedActivitiesFormatted.add(feedActivityFormatted)
         }
@@ -82,6 +93,13 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
     private fun formatFeedActivity(activity: FeedModel.FeedActivity):
             FeedModel.FeedActivityFormatted {
 
+        val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.getUserInformations().name) }
+        var userIsOnLikeList = false
+
+        if(matchingUser != null) {
+            userIsOnLikeList = true
+        }
+
         val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                 activity.identifier,
                 activity.challenge.challenger.name,
@@ -91,7 +109,8 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 activity.challenge.challenged.photo,
                 activity.challenge.challenged.set.toString(),
                 activity.feedDate.toString(),
-                activity.likes.size.toString())
+                activity.likes.size.toString(),
+                userIsOnLikeList)
 
         return feedActivityFormatted
     }
