@@ -24,22 +24,26 @@ interface FeedDisplayLogic {
 }
 
 /**
+ * Test for the Realm Database
+ */
+//open class Person: RealmObject() {
+//    @PrimaryKey
+//    var id: Long = 0
+//    var name: String? = null
+//}
+
+/**
  * Class that implements [FeedDisplayLogic] and is responsible to control feed screen
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
  * @property feedViewAdapter FeedAdapter instance for broad using on class
  */
-
 class FeedFragment : Fragment(), FeedDisplayLogic {
 
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
     var feedRecyclerView : RecyclerView? = null
-    /**
-     * On Create is a method that will setup this scene and call first Request for Interactor
-     *
-     * @param savedInstanceState
-     */
+
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
@@ -58,7 +62,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
         this.createGetActivitiesRequest()
         return newView
-
     }
 
 
@@ -207,7 +210,20 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
                 itemView.challengedName.text = activity.challengedName
                 itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
                 itemView.challengedSet.text = activity.challengedSets
-                itemView.numberOfLikes.text = activity.numberOfLikes
+
+                itemView.numberOfLikes.text = String.format("%s curtidas", activity.numberOfLikes)
+
+                if (activity.challengerSets > activity.challengedSets) {
+                    itemView.whoWon.text = String.format("%s ganhou de %s", activity.challengerName, activity.challengedName)
+                } else {
+                    itemView.whoWon.text = String.format("%s ganhou de %s", activity.challengedName, activity.challengerName)
+                }
+
+                if (activity.currentUserLiked == true) {
+                    itemView.likesButton.setImageResource(R.mipmap.feed_like_fill)
+                } else {
+                    itemView.likesButton.setImageResource(R.mipmap.feed_like)
+                }
 
                 itemView.likesButton.setOnClickListener {
 
@@ -224,7 +240,16 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                     (fragment as FeedFragment).goToCommentsList()
                 }
+
+                itemView.commentsButton.setOnClickListener {
+
+                    (fragment as FeedFragment).goToCommentsList()
+                }
             }
         }
+    }
+
+    companion object {
+        fun newInstance() : FeedFragment = FeedFragment()
     }
 }
