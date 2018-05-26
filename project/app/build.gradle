@@ -27,7 +27,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.nexte.nexte"
-        minSdkVersion 22
+        minSdkVersion 18
         targetSdkVersion 26
         versionCode 5
         versionName "0.5"
