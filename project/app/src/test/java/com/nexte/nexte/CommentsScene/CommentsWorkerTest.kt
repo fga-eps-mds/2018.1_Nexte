@@ -21,29 +21,58 @@ class CommentsWorkerTest {
     @Test
     fun successGetCommentsData(){
         //prepare
-        val request = CommentsModel.GetCommentsRequest.Request()
+        val user1 = "123abc"
+        val userId1 = "fulano123"
+        val commentUser1 = "Mas cê ta brava?"
+        val date1 = Date()
 
-        val comment1 = Comment("123456",
-                "le123",
-                "Boa!!", 1)
-        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
-                Date(),
-                player4, 4  )
+        val user2 = "456def"
+        val userId2 = "ciclano456"
+        val commentUser2 = "Legal ein"
+        val date2 = Date()
+
+        val comment1 = Comment(user1,
+                userId1,
+                commentUser1,
+                date1)
+
+        val comment2 = Comment(user2,
+                userId2,
+                commentUser2,
+                date2)
+
+        val commentsList = mutableListOf(comment1, comment2)
+
+
+        //assert
+
+//        val request = CommentsModel.GetCommentsRequest.Request()
+//
+//        val comment1 = Comment("123456",
+//                "le123",
+//                "Boa!!",
+//                         Date())
+//        val comment4 = Comment("ria123",
+//                "maria123",
+//                      "Go!",
+//                      Date())
 
 
         //call
         this.worker?.getCommentsData(request, {response ->
 
-            //assert
+            assertEquals(comment1.id, response.comments[0].id)
+            assertEquals(comment2.id, response.comments[1].id)
+
+            assertEquals(comment1.userId, response.comments[0].userId)
+            assertEquals(comment2.userId, response.comments[1].userId)
+
             assertEquals(comment1.comment, response.comments[0].comment)
-            assertEquals(comment4.comment, response.comments[3].comment)
+            assertEquals(comment2.comment, response.comments[1].comment)
 
-            assertEquals(player1.name, response.comments[0].author.name)
-            assertEquals(player4.name, response.comments[3].author.name)
-
-            assertEquals(comment1.commentId, response.comments[0].commentId)
-            assertEquals(comment4.commentId, response.comments[3].commentId)
-        })
+            assertEquals(comment1.date, response.comments[0].date)
+            assertEquals(comment2.date, response.comments[1].date)
+            )}
     }
 
     @Test
@@ -53,7 +82,7 @@ class CommentsWorkerTest {
         val request = CommentsModel.PublishCommentRequest.Request(comment)
         val today = Date()
         val author = CommentsModel.Player(UserSingleton.getUserInformations().name, 3)
-        val newComment = CommentsModel.Comment(comment, today, author, 5)
+        val newComment = Comment("54633jp", "angelo", "eae", Date())
 
         //call
         worker?.setNewComment(request, {response ->
@@ -80,55 +109,31 @@ class CommentsWorkerTest {
     @Test
     fun successGetToDeletComment() {
         //prepare
-        val player1 = CommentsModel.Player("Lorrany", R.mipmap.ic_launcher)
-        val player2 = CommentsModel.Player("Alexandre", R.mipmap.ic_launcher)
-        val player3 = CommentsModel.Player("Larissa", R.mipmap.ic_launcher)
-        val player4 = CommentsModel.Player("Letícia", R.mipmap.ic_launcher)
 
-        val comment1 = CommentsModel.Comment("Nossa, esse jogo foi topzera",
-                Date(),
-                player1, 1)
-        val comment2 = CommentsModel.Comment("Boa galera, vocês arrasaram",
-                Date(),
-                player2, 2)
-        val comment3 = CommentsModel.Comment("Isso mesmo, man. Que jogão",
-                Date(),
-                player3, 3)
-        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
-                Date(),
-                player4, 4)
+        val comment1 = Comment("hahaha",
+                "lehaha",
+                "Joga muito", Date())
 
-        val originalList: MutableList<CommentsModel.Comment> = mutableListOf(
-                comment1,
-                comment2,
-                comment3,
-                comment4)
 
-        val position = 1
-
-        val requestToDel = CommentsModel.DeleteCommentRequest.Request(position)
+        val commentsList = Comment("hahaha", "lehaha", "Joga muito", Date())
 
         //call
         worker?.getToDeleteComment(requestToDel) {response ->
-            //assert
-            assertEquals(originalList[0].author.name, response.delComments[0].author.name )
-            assertEquals(originalList[2].author.name, response.delComments[1].author.name )
 
-            assertEquals(originalList[0].author.photo, response.delComments[0].author.photo )
-            assertEquals(originalList[2].author.photo, response.delComments[1].author.photo )
+        //assert
+        assertEquals(comment1.id, response.delComments.id)
 
-            assertEquals(originalList[0].comment, response.delComments[0].comment )
-            assertEquals(originalList[2].comment, response.delComments[1].comment )
+        assertEquals(comment1.userId, response.delComments.userId)
 
-            assertEquals(originalList[0].commentId, response.delComments[0].commentId )
-            assertEquals(originalList[2].commentId, response.delComments[1].commentId )
-        }
+        assertEquals(comment1.comment, response.delComments.comment)
+
+        assertEquals(comment1.date, response.delComments.date)
 
 
-    }
+            )}
 
 
-
+   // worker?.getToDeleteComment(requestToDel) {response ->
 
     @After
     fun tearDown() {
