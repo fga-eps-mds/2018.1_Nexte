@@ -8,10 +8,12 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
+import kotlin.concurrent.thread
 
 class CommentsWorkerTest {
 
     private var worker: CommentsWorker? = null
+    var mock: MockCommentsWorkerUpdateLogic? = null
 
     @Before
     fun setUp() {
@@ -22,27 +24,21 @@ class CommentsWorkerTest {
     fun successGetCommentsData(){
         //prepare
         val request = CommentsModel.GetCommentsRequest.Request()
-
         val comment1 = Comment("123456",
                 "le123",
-                "Boa!!", 1)
-        val comment4 = CommentsModel.Comment("Uhuuul, lindos!!",
-                Date(),
-                player4, 4  )
+                "Boa malandro", Date())
+
+        val comment4 = Comment("456789",
+                "lo456",
+                "Ai sim jovem!", Date()  )
 
 
         //call
         this.worker?.getCommentsData(request, {response ->
 
             //assert
-            assertEquals(comment1.comment, response.comments[0].comment)
-            assertEquals(comment4.comment, response.comments[3].comment)
-
-            assertEquals(player1.name, response.comments[0].author.name)
-            assertEquals(player4.name, response.comments[3].author.name)
-
-            assertEquals(comment1.commentId, response.comments[0].commentId)
-            assertEquals(comment4.commentId, response.comments[3].commentId)
+            assertEquals(comment1.id, response.comments[0].id)
+            assertEquals(comment4.id, response.comments[3].id)
         })
     }
 
@@ -127,11 +123,29 @@ class CommentsWorkerTest {
 
     }
 
-
-
-
     @After
     fun tearDown() {
         this.worker = null
     }
-}
+
+    class MockCommentsWorkerUpdateLogic: CommentsWorkerUpdateLogic{
+        var response1: CommentsModel.GetCommentsRequest.Response? = null
+        var response2: CommentsModel.PublishCommentRequest.Response? = null
+        var response3: CommentsModel.ComplaintRequest.Response? = null
+        var response4: CommentsModel.DeleteCommentRequest.Response? = null
+
+        override fun updateComment(response: CommentsModel.GetCommentsRequest.Response) {
+            this.response1 = response
+        }
+
+        override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+            this.response2 = response
+        }
+
+        override fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response) {
+            this.response3 = response
+        }
+
+        override fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response) {
+            this.response4 = response
+        }
