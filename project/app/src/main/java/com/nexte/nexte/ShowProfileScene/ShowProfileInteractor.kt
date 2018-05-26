@@ -28,7 +28,7 @@ interface ShowProfileBusinessLogic {
  */
 class ShowProfileInteractor : ShowProfileBusinessLogic {
 
-    private var worker = ShowProfileWorker()
+    var worker = ShowProfileWorker()
     var presenter : ShowProfilePresentationLogic? = null
 
     /**

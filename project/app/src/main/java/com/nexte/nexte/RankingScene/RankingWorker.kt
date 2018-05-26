@@ -1,6 +1,26 @@
 package com.nexte.nexte.RankingScene
 
-import com.nexte.nexte.Entities.User.UserMocker
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
+import org.json.JSONArray
+import org.json.JSONObject
+
+/**
+ * Interface to define Response Logic of Ranking Class
+ * that will be used to make the communication between worker and interactor
+ */
+interface RankingWorkerUpdateLogic {
+
+    /**
+     * * Method that will be used to pass response data for the presenter
+     *
+     * @param response Response model of list that contains data to pass for Presenter
+     */
+    fun updateUsersInRanking(response: RankingModel.Response)
+}
 
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -8,19 +28,57 @@ import com.nexte.nexte.Entities.User.UserMocker
  */
 class RankingWorker {
 
+    var updateLogic: RankingWorkerUpdateLogic? = null
+    var userManager: UserManager? = null
+
     /**
      * Function to get users in ranking
      *
      * @param request Ranking Model Request that contains need information to send for server
-     * @param completion Method to call on parent class
      */
-    fun getUsersInRanking(request: RankingModel.Request, completion: (RankingModel.Response) -> Unit) {
+    fun getUsersInRanking(request: RankingModel.Request) {
 
-        val userList = UserMocker.generateUsers()
+        var users = userManager?.getAll()
+        val response = RankingModel.Response(users!!.toTypedArray())
+        updateLogic?.updateUsersInRanking(response)
 
-        val response = RankingModel.Response(userList.sortedWith(compareBy { it.rankingPosition }))
+        val url = "http://10.0.2.2:3000/users"
+        url.httpGet().responseJson { _, _, result ->
+            when(result){
+                is Result.Failure -> {
+                    println(result.getException())
+                }
 
-        completion(response)
+                is Result.Success -> {
+                    val json = result.get()
+                    var usersList = convertJsonToListOfUsers(json.obj())
+                    usersList = userManager?.updateMany(usersList)!!
+                    users += usersList.toTypedArray()
+                }
+            }
+        }
+
     }
 
+    /**
+     * Method resposible for tranforming a jsonObject, that constains the response of the api request,
+     * into a list of users
+     *
+     * @param jsonObject jsonObject that contains the response data from the api
+     *
+     * @return list of users
+     */
+    fun convertJsonToListOfUsers(jsonObject: JSONObject): List<User>{
+        val dataJson = jsonObject["data"] as JSONObject
+        val usersJsonArray = dataJson["users"] as JSONArray
+
+        val usersMutableList = mutableListOf<User>()
+        for (counter in 0 until usersJsonArray.length()){
+            val jsonUser = usersJsonArray.getJSONObject(counter)
+            val user = User.createUserFromJsonObject(jsonUser)
+            usersMutableList.add(user)
+
+        }
+        return usersMutableList.toList()
+    }
 }

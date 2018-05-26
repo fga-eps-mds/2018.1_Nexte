@@ -17,6 +17,8 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.UserManager
 
 /**
  * Interface responsible to define methods used to get user information data
@@ -36,6 +38,8 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
     var rankingRecyclerView: RecyclerView?= null
     var fixedFragment: ContentFrameLayout?= null
     var rankingConstraintLayout: ConstraintLayout?= null
+    var userManager: UserManager? = null
+    var challengeManager: ChallengeManager?= null
 
     fun getInstance() : RankingFragment{
         return RankingFragment()
@@ -48,6 +52,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      */
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        userManager = UserManager()
+        challengeManager = ChallengeManager()
 
         super.onCreate(savedInstanceState)
         this.setupRankingScene()
@@ -161,7 +168,6 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      * Method responsible for creating get players request and passing it to the interactor
      */
     fun createGetPlayersRequest(){
-
         val request = RankingModel.Request()
         interactor?.getPlayersRanksForScene(request)
     }
@@ -177,6 +183,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker.userManager = userManager
+        presenter.challengeManager = challengeManager
+        interactor.worker.updateLogic = interactor
         presenter.viewScene = view
     }
 

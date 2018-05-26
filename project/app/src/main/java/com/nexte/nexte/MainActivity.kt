@@ -8,26 +8,31 @@ import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.widget.Button
+import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.RankingScene.RankingFragment
-import kotlinx.android.synthetic.main.activity_main.*
-
 
 class MainActivity : AppCompatActivity() {
 
-     override fun onCreate(savedInstanceState: Bundle?) {
+    private var bottomNavView: BottomNavigationView?= null
+    private var loginButton: Button?= null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bottom_nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        bottom_nav_view.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
-        this.bottom_nav_view.selectedItemId = R.id.profile
+        bottomNavView =this.findViewById(R.id.bottom_nav_view)
+        loginButton = this.findViewById(R.id.loginButton)
 
-        loginButton.setOnClickListener {
+        bottomNavView?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        bottomNavView?.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
+        bottomNavView?.selectedItemId = R.id.profile
+        loginButton?.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
             startActivity(intent)
         }
-     }
+    }
 
     private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->
 
@@ -38,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-   private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
 
         when (item.itemId) {
             R.id.feed -> {
@@ -48,8 +53,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-//                val intent = Intent(this, ChallengeView::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, ChallengeView::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 
@@ -65,8 +70,8 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
 
             } else -> {
-                return@OnNavigationItemSelectedListener true
-            }
+            return@OnNavigationItemSelectedListener true
+        }
         }
 
 

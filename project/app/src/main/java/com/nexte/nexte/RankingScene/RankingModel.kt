@@ -20,7 +20,7 @@ class RankingModel {
      *
      * @property players it's a array of all Players
      */
-    class Response(var players: List<User>)
+    class Response(var users: Array<User>)
 
     /**
      * Class responsible to define how the list view will display the formatted data

@@ -1,10 +1,13 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.concurrent.thread
 
 class RankingFragmentTest {
 

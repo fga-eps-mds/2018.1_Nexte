@@ -42,8 +42,8 @@ class Challenge(val id: String,
             val setsPlayed: Int
                 get() = this.setChallenger + this.setChallenged
 
-            class Game(val gameChallenger: Int,
-                       val gameChallenged: Int)
+            class Game(val gameChallenger: Int?,
+                       val gameChallenged: Int?)
         }
     }
 
