@@ -15,6 +15,7 @@ class CommentsInteractorTest {
         this.mock = MockCommentsPresentationLogic()
         this.interactor = CommentsInteractor()
         this.interactor?.presenter = mock
+        this.interactor?.worker?.updateLogic = mock
     }
 
     @Test
@@ -105,9 +106,24 @@ class CommentsInteractorTest {
     }
 }
 
-private class MockCommentsPresentationLogic : CommentsPresentationLogic {
+private class MockCommentsPresentationLogic : CommentsPresentationLogic, CommentsWorkerUpdateLogic {
     var passedHere = false
 
+    override fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun updateComment(response: CommentsModel.GetCommentsRequest.Response) {
+        this.passedHere = true
+    }
     override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
         this.passedHere = true
     }

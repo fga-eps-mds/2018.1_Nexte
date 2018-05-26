@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.Comment
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -52,16 +53,26 @@ class CommentsModelTest {
     @Test
     fun successFirstResponse(){
         //prepare
-        val player1 = CommentsModel.Player("Larissa", 1)
-        val player2 = CommentsModel.Player("Alexandre", 2)
+        val user1 = "123abc"
+        val userId1 = "fulano123"
+        val commentUser1 = "Mas cê ta brava?"
+        val date1 = Date()
 
+        val user2 = "456def"
+        val userId2 = "ciclano456"
+        val commentUser2 = "Legal ein"
+        val date2 = Date()
 
-        val comment1 = CommentsModel.Comment("Muito bom galera",
-                                            Date(),
-                                            player1, 1)
-        val comment2 = CommentsModel.Comment("Nossa, foi top mesmo",
-                                            Date(),
-                                            player2, 2)
+        val comment1 = Comment(user1,
+                userId1,
+                commentUser1,
+                date1)
+
+        val comment2 = Comment(user2,
+                               userId2,
+                               commentUser2,
+                               date2)
+
         val commentsList = mutableListOf(comment1, comment2)
 
         //call
@@ -69,37 +80,20 @@ class CommentsModelTest {
         val response = CommentsModel.GetCommentsRequest.Response(commentsList)
 
         //assert
-        assertEquals(player1.name, response.comments[0].author.name)
-        assertEquals(player2.name, response.comments[1].author.name)
+        assertEquals(comment1.id, response.comments[0].id)
+        assertEquals(comment2.id, response.comments[1].id)
 
-        assertEquals(player1.photo, response.comments[0].author.photo)
-        assertEquals(player2.photo, response.comments[1].author.photo)
+        assertEquals(comment1.userId, response.comments[0].userId)
+        assertEquals(comment2.userId, response.comments[1].userId)
 
         assertEquals(comment1.comment, response.comments[0].comment)
         assertEquals(comment2.comment, response.comments[1].comment)
 
-        assertEquals(comment1.commentId, response.comments[0].commentId)
-        assertEquals(comment2.commentId, response.comments[1].commentId)
+        assertEquals(comment1.date, response.comments[0].date)
+        assertEquals(comment2.date, response.comments[1].date)
     }
 
-    @Test
-    fun successFirstResponseSet(){
-        //prepare
-        val player = CommentsModel.Player("Larissa", 1)
-        val comment = mutableListOf(CommentsModel.Comment("Muito bom galera",
-                Date(),
-                player, 2))
-        val newComment = mutableListOf(CommentsModel.Comment("Boa galera",
-                Date(),
-                player, 1))
 
-        //call
-        val response = CommentsModel.GetCommentsRequest.Response(comment)
-        response.comments = newComment
-
-        //assert
-        assertEquals(response.comments, newComment)
-    }
 
     @Test
     fun successTestConstructor(){
@@ -118,19 +112,23 @@ class CommentsModelTest {
     @Test
     fun successSecondResponse(){
         //prepare
-        val player = CommentsModel.Player("Larissa", 1)
-        val comment = CommentsModel.Comment("Muito bom galera",
-                Date(),
-                player, 3)
+        val id1 = "1234"
+        val userId1 = "lala123"
+        val comment1 = "Muito bom galera"
+        val date1 = Date()
+
+        val comment = Comment(id1,
+                userId1,
+                comment1, date1)
 
         //call
         val response = CommentsModel.PublishCommentRequest.Response(comment)
 
         //assert
-        assertEquals(player.name, response.newComment.author.name)
-        assertEquals(player.photo, response.newComment.author.photo)
+        assertEquals(comment.id, response.newComment.id)
+        assertEquals(comment.userId, response.newComment.userId)
         assertEquals(comment.comment, response.newComment.comment)
-        assertEquals(comment.commentId, response.newComment.commentId)
+        assertEquals(comment.date, response.newComment.date)
     }
 
     @Test
@@ -152,13 +150,13 @@ class CommentsModelTest {
     @Test
     fun successSecondResponseSet(){
         //prepare
-        val player = CommentsModel.Player("Larissa", 1)
-        val comment = CommentsModel.Comment("Muito bom galera",
-                Date(),
-                player, 2)
-        val newComment = CommentsModel.Comment("Boa galera",
-                Date(),
-                player, 1)
+        val comment = Comment("haha123",
+                "lili123",
+                "Eae bro", Date())
+
+        val newComment = Comment("hehe123",
+                "lolo123",
+                "Iih coé", Date())
 
         //call
         val response = CommentsModel.PublishCommentRequest.Response(comment)
@@ -299,22 +297,18 @@ class CommentsModelTest {
     fun successComment() {
         //prepare
         val text = "Jogo top!!!!"
+        val id = "1"
+        val idUser = "2"
         val date = Date()
-        val name = "userName"
-        val photo = 1
-        val id = 1
-        val player = CommentsModel.Player(name, photo)
-
         //call
-        val comment = CommentsModel.Comment(text, date, player, id)
+        val comment = Comment(id, idUser, text, date)
 
         //assert
         assertEquals(text, comment.comment)
         assertEquals(date, comment.date)
-        assertEquals(player, comment.author)
-        assertEquals(player.name, comment.author.name)
-        assertEquals(player.photo, comment.author.photo)
-        assertEquals(id, comment.commentId)
+        assertEquals(id, comment.id)
+        assertEquals(idUser, comment.userId)
+
     }
 
     @Test

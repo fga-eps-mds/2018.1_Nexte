@@ -43,17 +43,7 @@ class CommentsFragmentTest {
         assertEquals((fragment?.interactor as CommentsInteractorMock).id, newMock.id)
     }
 
-    @Test
-    fun setUpCommentsScene() {
-        //prepare
-        //call
-        fragment?.setUpCommentsScene()
-        //assert
-        assertNotNull(fragment?.interactor)
-        assertNotNull((fragment?.interactor as CommentsInteractor).presenter)
-        assertNotNull(((fragment?.interactor as CommentsInteractor)
-                .presenter as CommentsPresenter).viewController)
-    }
+
 
     private class CommentsInteractorMock(var id: Int = 0) : CommentsBusinessLogic{
         var passedHere: Boolean = false
