@@ -33,11 +33,37 @@ class ShowProfilePresenterTest {
         this.presenter?.presentUserProfile(response = response)
 
         //assert
-        assertEquals(formattedPlayer.name, this.mock?.formatedPlayer?.name)
-        assertEquals(formattedPlayer.rank, this.mock?.formatedPlayer?.rank)
-        assertEquals(formattedPlayer.club, this.mock?.formatedPlayer?.club)
-        assertEquals(formattedPlayer.email, this.mock?.formatedPlayer?.email)
-        assertEquals(formattedPlayer.age, this.mock?.formatedPlayer?.age)
+        assertEquals(formattedPlayer.name, this.mock?.formattedPlayer?.name)
+        assertEquals(formattedPlayer.rank, this.mock?.formattedPlayer?.rank)
+        assertEquals(formattedPlayer.club, this.mock?.formattedPlayer?.club)
+        assertEquals(formattedPlayer.email, this.mock?.formattedPlayer?.email)
+        assertEquals(formattedPlayer.age, this.mock?.formattedPlayer?.age)
+    }
+
+    @Test
+    fun failedPresentUserProfile() {
+        //prepare
+        val response = ShowProfileModel.Response(user = Player(name = "gabrielalbino", rankingPosition = 2,
+                pictureAddress = "imgur.com/nudh486d4", email = "enggabriel@gmail.com", gender = "masculino", club = "ASCAD",
+                age = 19, password = "123456", category = "profissional"))
+
+        //call
+        this.presenter?.viewScene = null
+        this.presenter?.presentUserProfile(response = response)
+
+        //assert
+        assertNull(mock?.formattedPlayer)
+
+    }
+
+    @Test
+    fun getViewScene() {
+        //prepare
+        val viewScene = presenter?.viewScene
+
+        //assert
+        assertEquals(viewScene, this.presenter?.viewScene)
+
     }
 
     @After
@@ -48,9 +74,9 @@ class ShowProfilePresenterTest {
 }
 
 private class MockShowProfileDisplayLogic: ShowProfileDisplayLogic{
-    var formatedPlayer: ShowProfileModel.FormattedPlayer? = null
+    var formattedPlayer: ShowProfileModel.FormattedPlayer? = null
 
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-        this.formatedPlayer = viewModel.playerInfo
+        this.formattedPlayer = viewModel.playerInfo
     }
 }
