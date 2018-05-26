@@ -1,6 +1,8 @@
 package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.FeedMocker
+import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 
 /**
  * Object class for use static mode in other classes.
@@ -62,20 +64,20 @@ object FeedManager {
      * unformatted Activity to presenter as a completion, after calling the function to add
      * or remove users from likes list
      *
-     * @param randomUser user that will be added to likesList
+     * @param currentUser user that will be added to likesList
      * @param matchingUser user that corresponds to previous randomUser
      * @param indexToChange index of the found activity
      * @return activity changed, with or without the member on likes List
      */
      fun addAndRemoveUser(activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
-        val randomUser = FeedModel.FeedPlayer("UserName",1, 1)
-        val matchingUser = activity?.likes?.find { it.name.equals("UserName") }
+        val currentUser = FeedModel.FeedPlayer(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher, 3)
+        val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.getUserInformations().name) }
         val indexToChange = activity?.likes?.indexOf(matchingUser)
 
         indexToChange as Int
 
         if(matchingUser == null) {
-            activity.likes.add(randomUser)
+            activity.likes.add(currentUser)
         }
         else {
             activity.likes.removeAt(indexToChange)

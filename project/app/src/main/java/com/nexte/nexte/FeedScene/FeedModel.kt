@@ -117,5 +117,6 @@ class FeedModel {
                                 var challengedPhoto: Int,
                                 var challengedSets: String,
                                 var feedDate: String,
-                                var numberOfLikes: String)
+                                var numberOfLikes: String,
+                                var currentUserLiked: Boolean)
 }
