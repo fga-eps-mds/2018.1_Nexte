@@ -37,8 +37,8 @@
             android:text="@string/recebidos" />
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <android.support.v4.fragment.ViewPager
+        android:id="@+id/challengerviewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

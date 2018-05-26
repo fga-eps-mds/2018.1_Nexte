@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.MatchScene.MatchFragment
@@ -87,8 +88,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_challenger)
         this.setupChallengeScene()
-        viewpager.adapter = ViewPagerAdapter(supportFragmentManager, this)
-        tabs.setupWithViewPager(viewpager)
+        val viewPager: ViewPager = findViewById(R.id.challengerviewpager)
+        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, this)
+        tabs.setupWithViewPager(viewPager)
     }
 
     /**
@@ -145,7 +147,8 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
             this.message?.text = viewModel.matchMessage
             this.message?.visibility = View.VISIBLE
             this.sendChallengeButton?.isEnabled = false
-            this.viewpager.adapter.notifyDataSetChanged()
+            val viewPager: ViewPager = findViewById(R.id.challengerviewpager)
+            viewPager.adapter.notifyDataSetChanged()
         }
 
 

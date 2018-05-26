@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment
 import android.util.Log
 import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.FeedScene.FeedFragment
+
 import com.nexte.nexte.RankingScene.RankingView
 
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         when(item.itemId) {
             R.id.profile -> {
-                Log.e("Resultado do item reselecionado", item.itemId.toString())
+                Log.e("Resultado d", item.itemId.toString())
             }
         }
 
