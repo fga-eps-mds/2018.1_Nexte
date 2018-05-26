@@ -1,4 +1,4 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
@@ -8,15 +8,15 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 
-class ChallengePresenterTest {
+class PlayersListPresenterTest {
 
     private var mock: MockChallengeDisplayLogic? = null
-    private var presenter: ChallengePresenter? = null
+    private var presenter: PlayersListPresenter? = null
 
     @Before
     fun setUp(){
         this.mock = MockChallengeDisplayLogic()
-        this.presenter = ChallengePresenter()
+        this.presenter = PlayersListPresenter()
         this.presenter?.viewChallenge = mock
     }
 
@@ -39,9 +39,9 @@ class ChallengePresenterTest {
         val players = listOf(
                 Player(name, rankingPosition, pictureAddress, email, gender, club, age, password,  category)
         )
-        val playerFormatted = ChallengeModel.FormattedPlayer(nameFormatted, rankingPositionFormatted, pictureAddressFormatted)
+        val playerFormatted = PlayersListModel.FormattedPlayer(nameFormatted, rankingPositionFormatted, pictureAddressFormatted)
 
-        val response = ChallengeModel.ShowRankingPlayersRequest.Response(players)
+        val response = PlayersListModel.ShowRankingPlayersRequest.Response(players)
 
         //call
         this.presenter?.formatPlayersToChallenge(response)
@@ -55,18 +55,18 @@ class ChallengePresenterTest {
     @Test
     fun successFormatExpandedChallengedInfo() {
         //prepare
-        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(
-                ChallengeModel.PlayerRankingDetails("larissa", 0,  0, 5)
+        val response = PlayersListModel.SelectPlayerForChallengeRequest.Response(
+                PlayersListModel.PlayerRankingDetails("larissa", 0,  0, 5)
         )
 
         //call
         this.presenter?.formatExpandedChallengedInfo(response)
 
         //assert
-        assertEquals(mock?.formattedPlayerToChallenge?.name, "larissa")
-        assertEquals(mock?.formattedPlayerToChallenge?.wins, "VITÓRIAS: 0")
-        assertEquals(mock?.formattedPlayerToChallenge?.loses, "DERROTAS: 0")
-        assertEquals(mock?.formattedPlayerToChallenge?.rankingPosition, "#5")
+        assertEquals(mock?.formattedPlayerToPlayersList?.name, "larissa")
+        assertEquals(mock?.formattedPlayerToPlayersList?.wins, "VITÓRIAS: 0")
+        assertEquals(mock?.formattedPlayerToPlayersList?.loses, "DERROTAS: 0")
+        assertEquals(mock?.formattedPlayerToPlayersList?.rankingPosition, "#5")
     }
 
     @Test
@@ -75,7 +75,7 @@ class ChallengePresenterTest {
         val match = MatchModel.MatchData(
                 MatchModel.MatchPlayer("larissa", 1),
                 MatchModel.MatchPlayer("larissa2", 1))
-        val response = ChallengeModel.ChallengeButtonRequest.Response("larissa", match)
+        val response = PlayersListModel.ChallengeButtonRequest.Response("larissa", match)
 
         //call
         this.presenter?.formatMatch(response)
@@ -87,7 +87,7 @@ class ChallengePresenterTest {
     @Test
     fun successGetViewChallenge(){
         //prepare and call
-        val viewChallenge = ChallengePresenter().viewChallenge
+        val viewChallenge = PlayersListPresenter().viewChallenge
 
         //assert
         assertNull(viewChallenge)
@@ -103,19 +103,19 @@ class ChallengePresenterTest {
 
 private class MockChallengeDisplayLogic: ChallengeDisplayLogic{
 
-    var formattedPlayersToShow: List<ChallengeModel.FormattedPlayer>? = null
-    var formattedPlayerToChallenge: ChallengeModel.FormattedRankingDetails?= null
+    var formattedPlayersToShow: List<PlayersListModel.FormattedPlayer>? = null
+    var formattedPlayerToPlayersList: PlayersListModel.FormattedRankingDetails?= null
     var formattedMessageToShow: String?= null
 
-    override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
+    override fun displayPlayersToChallenge(viewModel: PlayersListModel.ShowRankingPlayersRequest.ViewModel) {
          this.formattedPlayersToShow = viewModel.formattedPlayer
     }
 
-    override fun displayPlayerDetailedInfo(viewModel: ChallengeModel.SelectPlayerForChallengeRequest.ViewModel) {
-        this.formattedPlayerToChallenge = viewModel.challengedRankingDetails
+    override fun displayPlayerDetailedInfo(viewModel: PlayersListModel.SelectPlayerForChallengeRequest.ViewModel) {
+        this.formattedPlayerToPlayersList = viewModel.challengedRankingDetails
     }
 
-    override fun displayMessage(viewModel: ChallengeModel.ChallengeButtonRequest.ViewModel) {
+    override fun displayMessage(viewModel: PlayersListModel.ChallengeButtonRequest.ViewModel) {
         this.formattedMessageToShow = viewModel.messageForChallenger
     }
 

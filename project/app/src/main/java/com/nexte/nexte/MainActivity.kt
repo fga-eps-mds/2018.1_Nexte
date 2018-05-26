@@ -9,7 +9,6 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import com.nexte.nexte.ChallengeScene.ChallengeFragment
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.RankingScene.RankingView
 
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-                val challengeFragment = ChallengeFragment().getInstance()
+                val challengeFragment = ChallengeTabsFragment().getInstance()
                 openFragment(challengeFragment)
                 return@OnNavigationItemSelectedListener true
             }

@@ -1,11 +1,11 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import com.nexte.nexte.Player
 
 /**
  * Singleton responsible for mock challenge data
  */
-object ChallengeMocker {
+object PlayersListMocker {
 
     /**
      * @property numPlayers Constant to define number of mocked players
@@ -31,12 +31,12 @@ object ChallengeMocker {
         return list
     }
 
-    fun createPlayerDetailedInfo(): List<ChallengeModel.PlayerRankingDetails>{
+    fun createPlayerDetailedInfo(): List<PlayersListModel.PlayerRankingDetails>{
 
-        var list: List<ChallengeModel.PlayerRankingDetails> = listOf()
+        var list: List<PlayersListModel.PlayerRankingDetails> = listOf()
 
         for(count in 0..numPlayers){
-            val player = ChallengeModel.PlayerRankingDetails(String.format("nome%d", count+1),
+            val player = PlayersListModel.PlayerRankingDetails(String.format("nome%d", count+1),
                     10-count,
                     count,
                     count+1

@@ -1,4 +1,4 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
@@ -7,7 +7,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class ChallengeModelTest{
+class PlayersListModelTest{
     @Before
     fun setUp(){
 
@@ -22,7 +22,7 @@ class ChallengeModelTest{
         val rankingPosition = "#1"
 
         //call
-        val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
+        val playerFormatted = PlayersListModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
         playerFormatted.rankingPosition = rankingPosition
         playerFormatted.wins = wins
         playerFormatted.loses = loses
@@ -43,7 +43,7 @@ class ChallengeModelTest{
         val pictureAddress = "https://www.www.com/www.jpg"
 
         //call
-        val playerFormatted = ChallengeModel.FormattedPlayer(name, rankingPosition, pictureAddress)
+        val playerFormatted = PlayersListModel.FormattedPlayer(name, rankingPosition, pictureAddress)
         playerFormatted.pictureAddress = pictureAddress
         playerFormatted.name = name
         playerFormatted.rankingPosition = rankingPosition
@@ -60,7 +60,7 @@ class ChallengeModelTest{
         val ranking = 5
 
         //call
-        val request = ChallengeModel.ShowRankingPlayersRequest.Request(ranking)
+        val request = PlayersListModel.ShowRankingPlayersRequest.Request(ranking)
         request.challengerRankingPosition = ranking
 
         //assert
@@ -73,7 +73,7 @@ class ChallengeModelTest{
         val ranking = 5
 
         //call
-        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(ranking)
+        val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(ranking)
         request.challengedRankingPosition = ranking
 
         //assert
@@ -86,7 +86,7 @@ class ChallengeModelTest{
         val user = "larissa"
 
         //call
-        val request = ChallengeModel.ChallengeButtonRequest.Request(user)
+        val request = PlayersListModel.ChallengeButtonRequest.Request(user)
         request.userChallenged = user
 
         //assert
@@ -111,7 +111,7 @@ class ChallengeModelTest{
         )
 
         //call
-        val response = ChallengeModel.ShowRankingPlayersRequest.Response(players)
+        val response = PlayersListModel.ShowRankingPlayersRequest.Response(players)
         response.usersAbove = players
 
         //assert
@@ -134,7 +134,7 @@ class ChallengeModelTest{
         val loses = 6
         val rankingPosition = 1
 
-        val player = ChallengeModel.PlayerRankingDetails(
+        val player = PlayersListModel.PlayerRankingDetails(
                 name, wins, loses, rankingPosition
         )
 
@@ -144,7 +144,7 @@ class ChallengeModelTest{
         player.rankingPosition = rankingPosition
         player.wins
 
-        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(player)
+        val response = PlayersListModel.SelectPlayerForChallengeRequest.Response(player)
         response.challengedPersonalDetails = player
 
         //assert
@@ -163,7 +163,7 @@ class ChallengeModelTest{
                 MatchModel.MatchPlayer("larissa2", 1))
 
         //call
-        val response = ChallengeModel.ChallengeButtonRequest.Response(user, match)
+        val response = PlayersListModel.ChallengeButtonRequest.Response(user, match)
         response.username = user
         response.challenge = match
         //assert
@@ -177,12 +177,12 @@ class ChallengeModelTest{
         val name = "Gabriel"
         val rankingPosition = "#1"
         val pictureAddress = "https://www.www.com/www.jpg"
-        val playerFormatted = ChallengeModel.FormattedPlayer(name, rankingPosition, pictureAddress)
+        val playerFormatted = PlayersListModel.FormattedPlayer(name, rankingPosition, pictureAddress)
 
         val playersFormatted = listOf(playerFormatted)
 
         //call
-        val viewModel = ChallengeModel.ShowRankingPlayersRequest.ViewModel(playersFormatted)
+        val viewModel = PlayersListModel.ShowRankingPlayersRequest.ViewModel(playersFormatted)
         viewModel.formattedPlayer = playersFormatted
 
         //assert
@@ -200,10 +200,10 @@ class ChallengeModelTest{
         val wins = "3"
         val loses = "6"
         val rankingPosition = "#1"
-        val playerFormatted = ChallengeModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
+        val playerFormatted = PlayersListModel.FormattedRankingDetails(name, wins, loses, rankingPosition)
 
         //call
-        val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(playerFormatted)
+        val viewModel = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(playerFormatted)
         viewModel.challengedRankingDetails = playerFormatted
 
         //assert
@@ -221,7 +221,7 @@ class ChallengeModelTest{
                 MatchModel.MatchPlayer("larissa", 1),
                 MatchModel.MatchPlayer("larissa2", 1))
         //call
-        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message, message, matchData)
+        val viewModel = PlayersListModel.ChallengeButtonRequest.ViewModel(message, message, matchData)
         viewModel.messageForChallenger = message
         viewModel.matchData = matchData
         viewModel.messageForChallenger = message
@@ -236,7 +236,7 @@ class ChallengeModelTest{
         //prepare
 
         //call
-        val model = ChallengeModel()
+        val model = PlayersListModel()
 
         //assert
         assertNotNull(model)
@@ -248,7 +248,7 @@ class ChallengeModelTest{
         val name = "larissa"
         val rankingPosition = "5"
         val pictureAddress = ""
-        val formattedPlayer = ChallengeModel.FormattedPlayer("albino", "6", "a")
+        val formattedPlayer = PlayersListModel.FormattedPlayer("albino", "6", "a")
 
         //call
         formattedPlayer.name = name
@@ -266,7 +266,7 @@ class ChallengeModelTest{
         //prepare
 
         //call
-        val model = ChallengeModel.ChallengeButtonRequest()
+        val model = PlayersListModel.ChallengeButtonRequest()
 
         //assert
         assertNotNull(model)
@@ -277,7 +277,7 @@ class ChallengeModelTest{
         //prepare
 
         //call
-        val model = ChallengeModel.ShowRankingPlayersRequest()
+        val model = PlayersListModel.ShowRankingPlayersRequest()
 
         //assert
         assertNotNull(model)

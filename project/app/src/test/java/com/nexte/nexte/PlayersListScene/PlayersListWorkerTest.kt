@@ -1,4 +1,4 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import org.junit.After
 import org.junit.Test
@@ -6,20 +6,20 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 
-class ChallengeWorkerTest {
+class PlayersListWorkerTest {
 
-    private var worker: ChallengeWorker? = null
+    private var worker: PlayersListWorker? = null
 
     @Before
     fun setUp() {
-        this.worker = ChallengeWorker()
+        this.worker = PlayersListWorker()
     }
 
     @Test
     fun fetchPlayersToChallenge() {
         //prepare
-        val request = ChallengeModel.ShowRankingPlayersRequest.Request(6)
-        val request2 = ChallengeModel.ShowRankingPlayersRequest.Request(2)
+        val request = PlayersListModel.ShowRankingPlayersRequest.Request(6)
+        val request2 = PlayersListModel.ShowRankingPlayersRequest.Request(2)
 
         //call
         worker?.fetchPlayersToChallenge(request){ response->

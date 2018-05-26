@@ -1,11 +1,11 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 
 /**
  * Class to define the Model of Challenge Scene to send informations between layers
  */
-class ChallengeModel {
+class PlayersListModel {
 
     /**
      * Information that will be passed between layers when user first open the activity

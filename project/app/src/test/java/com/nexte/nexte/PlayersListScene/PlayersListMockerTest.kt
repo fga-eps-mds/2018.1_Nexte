@@ -1,11 +1,11 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import com.nexte.nexte.Player
 import org.junit.Test
 
 import org.junit.Assert.*
 
-class ChallengeMockerTest {
+class PlayersListMockerTest {
 
     @Test
     fun successCreatePlayers() {
@@ -23,7 +23,7 @@ class ChallengeMockerTest {
         )
 
         //call
-        val players = ChallengeMocker.createPlayers()
+        val players = PlayersListMocker.createPlayers()
 
         //assert
         assertEquals(player.name, players[0].name)
@@ -38,14 +38,14 @@ class ChallengeMockerTest {
         val wins = 10
         val loses = 0
         val rankPosition = 1
-        val player = ChallengeModel.PlayerRankingDetails(name,
+        val player = PlayersListModel.PlayerRankingDetails(name,
                 wins,
                 loses,
                 rankPosition
         )
 
         //call
-        val players = ChallengeMocker.createPlayerDetailedInfo()
+        val players = PlayersListMocker.createPlayerDetailedInfo()
 
         //assert
         assertEquals(player.name, players[0].name)

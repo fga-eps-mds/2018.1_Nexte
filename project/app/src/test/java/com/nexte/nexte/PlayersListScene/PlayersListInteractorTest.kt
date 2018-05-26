@@ -1,26 +1,26 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class ChallengeInteractorTest {
+class PlayersListInteractorTest {
 
-    private var interactor: ChallengeInteractor?= null
+    private var interactor: PlayersListInteractor?= null
     private var mock: MockChallengePresentationLogic?= null
 
     @Before
     fun setUp() {
         this.mock = MockChallengePresentationLogic()
-        this.interactor = ChallengeInteractor()
+        this.interactor = PlayersListInteractor()
         this.interactor?.presenter = mock
     }
 
     @Test
     fun successTestConstructor(){
         //prepare and call
-        val interactor = ChallengeInteractor()
+        val interactor = PlayersListInteractor()
 
         //assert
         assertNotNull(interactor)
@@ -29,7 +29,7 @@ class ChallengeInteractorTest {
     @Test
     fun requestPlayersToChallengeTest(){
         //prepare
-        val request = ChallengeModel.ShowRankingPlayersRequest.Request(6)
+        val request = PlayersListModel.ShowRankingPlayersRequest.Request(6)
         val expectedResult = true
 
         //call
@@ -42,7 +42,7 @@ class ChallengeInteractorTest {
     @Test
     fun successRequestChallengedUser(){
         //prepare
-        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(6)
+        val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(6)
         val expectedResult = true
 
         //call
@@ -55,7 +55,7 @@ class ChallengeInteractorTest {
     @Test
     fun successRequestMessageForChallenger() {
         //prepare
-        val request = ChallengeModel.ChallengeButtonRequest.Request("larissa")
+        val request = PlayersListModel.ChallengeButtonRequest.Request("larissa")
         val expectedResult = true
 
         //call
@@ -79,7 +79,7 @@ class ChallengeInteractorTest {
     @Test
     fun successSetWorker() {
         //prepare
-        val worker = ChallengeWorker()
+        val worker = PlayersListWorker()
 
         //call
         this.interactor?.worker = worker
@@ -99,15 +99,15 @@ private class MockChallengePresentationLogic: ChallengePresentationLogic{
 
     var passedHere = false
 
-    override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
+    override fun formatPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
         passedHere = true
     }
 
-    override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
+    override fun formatExpandedChallengedInfo(response: PlayersListModel.SelectPlayerForChallengeRequest.Response) {
         passedHere = true
     }
 
-    override fun formatMatch(response: ChallengeModel.ChallengeButtonRequest.Response) {
+    override fun formatMatch(response: PlayersListModel.ChallengeButtonRequest.Response) {
         passedHere = true
     }
 

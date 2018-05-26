@@ -1,4 +1,4 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 /**
  * Interface to define Presentation Logic to Challenge Class that
@@ -8,24 +8,24 @@ interface ChallengePresentationLogic {
     /**
      * Method responsible to format the user information about players above the logged user and send it to view
      *
-     * @param response contains unformatted data received from [ChallengeModel]
+     * @param response contains unformatted data received from [PlayersListModel]
      */
-    fun formatPlayersToChallenge(response : ChallengeModel.ShowRankingPlayersRequest.Response)
+    fun formatPlayersToChallenge(response : PlayersListModel.ShowRankingPlayersRequest.Response)
 
     /**
      * Method responsible to format the user detailed information and send it to view
      *
-     * @param response contains unformatted data received from [ChallengeModel]
+     * @param response contains unformatted data received from [PlayersListModel]
      */
-    fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response)
+    fun formatExpandedChallengedInfo(response: PlayersListModel.SelectPlayerForChallengeRequest.Response)
 
 
     /**
      * Method responsible to format the message of the button and send it to view
      *
-     * @param response contains unformatted data received from [ChallengeModel]
+     * @param response contains unformatted data received from [PlayersListModel]
      */
-    fun formatMatch(response : ChallengeModel.ChallengeButtonRequest.Response)
+    fun formatMatch(response : PlayersListModel.ChallengeButtonRequest.Response)
 
     /**
      * Method responsible to format the message tho inform that there are no
@@ -36,66 +36,66 @@ interface ChallengePresentationLogic {
 }
 
 /**
-* This class will be responsible to receive a [ChallengeModel.ShowRankingPlayersRequest.Response]
-* and generate a [ChallengeModel.ShowRankingPlayersRequest.ViewModel], sending it to View
+* This class will be responsible to receive a [PlayersListModel.ShowRankingPlayersRequest.Response]
+* and generate a [PlayersListModel.ShowRankingPlayersRequest.ViewModel], sending it to View
 *
 * @property viewChallenge Reference to display formatted data
 */
 
-class ChallengePresenter : ChallengePresentationLogic {
+class PlayersListPresenter : ChallengePresentationLogic {
 
     var viewChallenge: ChallengeDisplayLogic? = null // reference of the view
 
     /**
      * This method is responsible for formatting data contained on
-     * [ChallengeModel.ShowRankingPlayersRequest.Response] and send it to View
+     * [PlayersListModel.ShowRankingPlayersRequest.Response] and send it to View
      *
-     * @param response contains unformatted data received from [ChallengeWorker]
+     * @param response contains unformatted data received from [PlayersListWorker]
      */
-    override fun formatPlayersToChallenge(response: ChallengeModel.ShowRankingPlayersRequest.Response) {
+    override fun formatPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
         val selectedPlayers = response.usersAbove
 
-        var formattedPlayers: List<ChallengeModel.FormattedPlayer> = listOf()
+        var formattedPlayers: List<PlayersListModel.FormattedPlayer> = listOf()
 
         for(player in selectedPlayers){
-            val formattedPlayer = ChallengeModel.FormattedPlayer(player.name,
+            val formattedPlayer = PlayersListModel.FormattedPlayer(player.name,
                     String.format("#%d", player.rankingPosition), player.pictureAddress)
 
             formattedPlayers += formattedPlayer
         }
 
-        val viewModel = ChallengeModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
+        val viewModel = PlayersListModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
         viewChallenge?.displayPlayersToChallenge(viewModel)
     }
 
     /**
      * This method is responsible for formatting data contained on
-     * [ChallengeModel.SelectPlayerForChallengeRequest.Response] and send it to View
+     * [PlayersListModel.SelectPlayerForChallengeRequest.Response] and send it to View
      *
-     * @param response contains unformatted data received from [ChallengeWorker]
+     * @param response contains unformatted data received from [PlayersListWorker]
      */
-    override fun formatExpandedChallengedInfo(response: ChallengeModel.SelectPlayerForChallengeRequest.Response) {
+    override fun formatExpandedChallengedInfo(response: PlayersListModel.SelectPlayerForChallengeRequest.Response) {
         val selectedChallenged = response.challengedPersonalDetails
 
-        val formattedPlayer = ChallengeModel.FormattedRankingDetails(
+        val formattedPlayer = PlayersListModel.FormattedRankingDetails(
                 selectedChallenged.name,
                 String.format("VITÓRIAS: %d", selectedChallenged.wins),
                 String.format("DERROTAS: %d", selectedChallenged.loses),
                 String.format("#%d", selectedChallenged.rankingPosition)
         )
 
-        val viewModel = ChallengeModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
+        val viewModel = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
 
         viewChallenge?.displayPlayerDetailedInfo(viewModel)
     }
 
     /**
      * This method is responsible for formatting data contained on
-     * [ChallengeModel.ChallengeButtonRequest.Response] and send it to View
+     * [PlayersListModel.ChallengeButtonRequest.Response] and send it to View
      *
-     * @param response contains unformatted data received from [ChallengeWorker]
+     * @param response contains unformatted data received from [PlayersListWorker]
      */
-    override fun formatMatch(response: ChallengeModel.ChallengeButtonRequest.Response) {
+    override fun formatMatch(response: PlayersListModel.ChallengeButtonRequest.Response) {
 
         val message: String = String.format("Desafio enviado com sucesso para o jogador %s", response.username)
 
@@ -105,7 +105,7 @@ class ChallengePresenter : ChallengePresentationLogic {
             ""
         }
 
-        val viewModel = ChallengeModel.ChallengeButtonRequest.ViewModel(message, matchMessage, response.challenge)
+        val viewModel = PlayersListModel.ChallengeButtonRequest.ViewModel(message, matchMessage, response.challenge)
 
         viewChallenge?.displayMessage(viewModel)
 

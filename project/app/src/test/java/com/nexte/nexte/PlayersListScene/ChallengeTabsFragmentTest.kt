@@ -1,31 +1,31 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class ChallengeFragmentTest {
+class ChallengeTabsFragmentTest {
 
-    private var fragment: ChallengeFragment?= null
+    private var tabsFragment: ChallengeTabsFragment?= null
     private var mock: MockChallengeViewBusinessLogic?= null
 
     @Before
     fun setUp(){
-        fragment = ChallengeFragment()
+        tabsFragment = ChallengeTabsFragment()
         mock = MockChallengeViewBusinessLogic()
-        fragment?.interactor = mock
+        tabsFragment?.interactor = mock
     }
 
     @Test
     fun successGetPlayerInfo(){
         //prepare
         val playerRanking = 3
-        val request = ChallengeModel.SelectPlayerForChallengeRequest.Request(playerRanking)
+        val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(playerRanking)
         val expectedResult = true
 
         //call
-        fragment?.getPlayerInfo(request)
+        tabsFragment?.getPlayerInfo(request)
 
         //assert
         assertEquals(mock?.hasBeenCalled, expectedResult)
@@ -35,10 +35,10 @@ class ChallengeFragmentTest {
     @Test
     fun testSetupChallengeScene(){
         //prepare //call
-        this.fragment?.setupChallengeScene()
+        this.tabsFragment?.setupChallengeScene()
 
         //assert
-        assertNotNull(this.fragment?.interactor)
+        assertNotNull(this.tabsFragment?.interactor)
     }
 
     @After
@@ -51,15 +51,15 @@ class ChallengeFragmentTest {
 
         var hasBeenCalled = false
 
-        override fun requestChallengedUser(request: ChallengeModel.SelectPlayerForChallengeRequest.Request) {
+        override fun requestChallengedUser(request: PlayersListModel.SelectPlayerForChallengeRequest.Request) {
            hasBeenCalled = true
         }
 
-        override fun requestPlayersToChallenge(request: ChallengeModel.ShowRankingPlayersRequest.Request) {
+        override fun requestPlayersToChallenge(request: PlayersListModel.ShowRankingPlayersRequest.Request) {
             hasBeenCalled = true
         }
 
-        override fun requestChallenger(request: ChallengeModel.ChallengeButtonRequest.Request) {
+        override fun requestChallenger(request: PlayersListModel.ChallengeButtonRequest.Request) {
             hasBeenCalled = true
         }
 

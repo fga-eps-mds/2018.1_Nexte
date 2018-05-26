@@ -1,4 +1,4 @@
-package com.nexte.nexte.ChallengeScene;
+package com.nexte.nexte.PlayersListScene;
 
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.matcher.ViewMatchers;
