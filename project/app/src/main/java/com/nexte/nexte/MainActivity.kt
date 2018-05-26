@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
+import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.FeedScene.FeedFragment
 
 import com.nexte.nexte.RankingScene.RankingView
@@ -54,11 +55,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-//                val leticia = MatchModel.MatchPlayer("Leticia", 1)
-//                val lorrany = MatchModel.MatchPlayer("Lorrany", 2)
-//                val match = MatchModel.MatchData(leticia, lorrany)
-//                val matchFragment = MatchFragment().getInstance(match)
-//                openFragment(matchFragment)
+                val intent = Intent(this, ChallengeView::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 

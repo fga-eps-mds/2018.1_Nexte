@@ -1,6 +1,7 @@
 package com.nexte.nexte.MatchScene
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -22,6 +23,8 @@ import java.util.*
 interface MatchDisplayLogic {
 
     fun displayMatch(viewModel: MatchModel.InitScene.ViewModel)
+
+    fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel)
 }
 
 /**
@@ -34,17 +37,18 @@ interface MatchDisplayLogic {
  */
 class MatchFragment : Fragment(), MatchDisplayLogic {
 
-    var interactor: MatchInteractor? = null
     private var matchViewAdapter: MatchDataAdapter? = null
-    var numberOfSets = MatchModel.SetsNumber.One
-
+    private var hasChallenge: Int = 0
     private var sendButton: Button?= null
     private var recyclerView: RecyclerView?= null
+    var interactor: MatchInteractor? = null
+    var numberOfSets = MatchModel.SetsNumber.One
     var challenged: String = ""
     var challenger: String = ""
-    private var hasChallenge: Int = 0
 
-    //method created because in the future maybe this class will receive arguments.
+    /**
+     * Method created because in the future maybe this class will receive arguments.
+     */
     fun getInstance(challenge: MatchModel.MatchData?): MatchFragment {
         val fragmentFirst = MatchFragment()
         val bundle = Bundle()
@@ -96,13 +100,24 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             ))
             interactor?.getInfoMatches(request)
 
-            sendButton?.isEnabled = false
+            sendButton?.setOnClickListener {
+                sendMatchResult()
+            }
+
         }
         else {
             view = inflater?.inflate(R.layout.fragment_nochallenge, container, false)
         }
 
         return view!!
+    }
+
+    /**
+     * Method responsible to send the match result request to the interactor
+     */
+    private fun sendMatchResult(){
+        val request = MatchModel.SendMatchResult.Request()
+        this.interactor?.getMatchResult(request)
     }
 
     /**
@@ -114,13 +129,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         val presenter = MatchPresenter()
         val view = this
 
+        interactor.worker.updateLogic = interactor
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view
 
-
     }
-
 
     /**
      * Function to update the list shown on activity
@@ -141,6 +155,24 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
 
         matchViewAdapter?.updateMatchInfo(viewModel.matchFormatted)
+    }
+
+    /**
+     * Method that will create a popup with the appropriate message related to the match result
+     *
+     * @param viewModel information that will be displayed in the popup
+     */
+    override fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel) {
+        val builder = AlertDialog.Builder(context)
+
+        builder.setCancelable(true)
+        builder.setMessage(viewModel.message)
+        builder.setPositiveButton("Ok", { dialogInterface, _ ->
+            dialogInterface.cancel()
+        })
+
+        val alert = builder.create()
+        alert.show()
     }
 
     /**

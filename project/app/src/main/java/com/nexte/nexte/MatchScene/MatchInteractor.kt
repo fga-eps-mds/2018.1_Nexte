@@ -13,6 +13,11 @@ interface MatchBusinessLogic {
      * @param request Request model of feed that contains data to pass for Worker
      */
     fun getInfoMatches(request: MatchModel.InitScene.Request)
+
+    /**
+     * Method that pass the request data about the match result to the worker
+     */
+    fun getMatchResult(request: MatchModel.SendMatchResult.Request)
 }
 
 /**
@@ -26,9 +31,10 @@ interface MatchBusinessLogic {
  * @property presenter it's a reference for presenter that will receive the response and
  * create a viewModel
  */
-class MatchInteractor(var presenter : MatchPresentationLogic? = null) : MatchBusinessLogic {
+class MatchInteractor(var presenter : MatchPresentationLogic? = null) :
+        MatchBusinessLogic, MatchUpdateWorkerLogic {
 
-    private var worker = MatchWorker()
+    var worker = MatchWorker()
 
     override fun getInfoMatches(request: MatchModel.InitScene.Request) {
 
@@ -36,4 +42,17 @@ class MatchInteractor(var presenter : MatchPresentationLogic? = null) : MatchBus
             this.presenter?.presentMatch(response)
         }
     }
+
+    override fun getMatchResult(request: MatchModel.SendMatchResult.Request) {
+        worker.generateMatchResult(request)
+    }
+
+    override fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response) {
+        if (response?.status == MatchModel.SendMatchResult.Status.SUCESSED){
+            this.presenter?.presentSuccessMessageForMatchResult(response)
+        } else {
+            this.presenter?.presentErrorMessageForMatchResult(response)
+        }
+    }
+
 }

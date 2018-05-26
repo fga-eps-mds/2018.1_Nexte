@@ -108,4 +108,34 @@ class MatchModelTest {
         assertEquals(name, testMatchPlayer.name)
         assertEquals(photo, testMatchPlayer.photo)
     }
+
+    @Test
+    fun testSendMatchResultConstructor(){
+        val sendMatchResult = MatchModel.SendMatchResult()
+
+        assertNotNull(sendMatchResult)
+    }
+
+    @Test
+    fun testSendMatchResultRequest(){
+        val request = MatchModel.SendMatchResult.Request()
+
+        assertNotNull(request)
+    }
+
+    @Test
+    fun testSendMatchResultResponse(){
+        val response = MatchModel.SendMatchResult.Response(
+                MatchModel.SendMatchResult.Status.SUCESSED)
+
+        assertEquals(response.status, MatchModel.SendMatchResult.Status.SUCESSED)
+
+    }
+
+    @Test
+    fun testSendMatchResultViewModel(){
+        val viewModel = MatchModel.SendMatchResult.ViewModel("asdasd")
+
+        assertEquals(viewModel.message, "asdasd")
+    }
 }
