@@ -5,12 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.LoginScene.*
-import com.nexte.nexte.ShowProfileScene.ShowProfileView
-import kotlinx.android.synthetic.main.activity_main.*
+import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.util.Log
 import com.nexte.nexte.FeedScene.FeedFragment
+import com.nexte.nexte.RankingScene.RankingFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,14 +35,13 @@ class MainActivity : AppCompatActivity() {
 
         when(item.itemId) {
             R.id.profile -> {
-                Log.e("Resultado do item reselecionado", item.itemId.toString())
+                /* Do Nothing*/
             }
         }
 
     }
    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
 
-       Log.e("Resultado do item", item.itemId.toString())
         when (item.itemId) {
             R.id.feed -> {
                 val feedFragment = FeedFragment().getInstance()
@@ -58,13 +57,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ranking -> {
-//                val intent = Intent(this, RankingView::class.java)
-//                startActivity(intent)
+                val rankingFragment = RankingFragment().getInstance()
+                openFragment(rankingFragment)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.profile -> {
-                val showProfileFragment = ShowProfileView.newInstance()
+                val showProfileFragment = ShowProfileFragment().getInstance(UserSingleton.getUserInformations().name)
                 openFragment(showProfileFragment)
                 return@OnNavigationItemSelectedListener true
 
@@ -76,10 +75,10 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun openFragment(fragment: Fragment) {
-        var transaction = supportFragmentManager.beginTransaction()
+        val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_layout,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
-
 }
+

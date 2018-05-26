@@ -1,5 +1,7 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
+
 /**
  * Class to define the Model of Ranking Scene to send information about players position
  * on ranking. It contains [Request], [Response] and [ViewModel] classes to be used on the flow
@@ -18,7 +20,7 @@ class RankingModel {
      *
      * @property players it's a array of all Players
      */
-    class Response(var players: Array<Player>)
+    class Response(var players: List<User>)
 
     /**
      * Class responsible to define how the list view will display the formatted data
@@ -30,26 +32,6 @@ class RankingModel {
     class ViewModel(var formattedPlayers: List<FormattedPlayerInfo>)
 
     //-------------- Aux Classes --------------
-
-    /**
-     * Class responsible to define personal data of all players
-     *
-     * @property name it's the name of the player
-     * @property pictureURL it's the photo of the player
-     * @property playerCategory it's the category that the player plays
-     * @property wins are all the games won by the player
-     * @property losses are all the games lost by the player
-     * @property rankingPosition it's the position of the player on the ranking
-     * @property lastGame it's when the user player the last
-     */
-    class Player(var name: String,
-                 var pictureURL: Int,
-                 var playerCategory: String,
-                 var wins: Int,
-                 var losses: Int,
-                 var rankingPosition: Int,
-                 var lastGame: String,
-                 var efficiency: String)
 
     /**
      * Class responsible to define format players information

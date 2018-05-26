@@ -1,11 +1,13 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class ShowProfileWorkerTest {
 
@@ -17,58 +19,33 @@ class ShowProfileWorkerTest {
     }
 
     @Test
-    fun testGetUserProfileEmptyUser(){
-        //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "")
-        val player = Player("",
-                -1,
-                "",
-                "",
-                "",
-                "",
-                -1,
-                "",
-                "")
-
-        //call
-        this.worker?.getUserProfile(request = request, completion = { response ->
-            //assert
-            assertEquals(response.user?.name, player.name)
-            assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAddress, player.pictureAddress)
-            assertEquals(response.user?.email, player.email)
-            assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.club, player.club)
-            assertEquals(response.user?.age, player.age)
-            assertEquals(response.user?.password, player.password)
-            assertEquals(response.user?.category, player.category)
-        })
-    }
-
-    @Test
     fun testGetUserProfileSuccess(){
         //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "kjbdjh213")
-        val player = Player("gabrielalbino",
-                15,
-                "imgur.com/nudh486d4",
-                "enggabriel@gmail.com",
-                "masculino",
-                "ASCAD",
-                19,
-                "feioso",
-                "Profissional")
-
+        val request = ShowProfileModel.Request(username = "Robert Baptist")
+        val player = User("14",
+                "Robert Baptist",
+                null,
+                "Baptist",
+                Date(1989, 12, 4),
+                14,
+                "baptist@nexte.com",
+                "130",
+                194,
+                154,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
         //call
         this.worker?.getUserProfile(request = request, completion = { response ->
             //assert
             assertEquals(response.user?.name, player.name)
             assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAddress, player.pictureAddress)
             assertEquals(response.user?.email, player.email)
             assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.club, player.club)
-            assertEquals(response.user?.age, player.age)
             assertEquals(response.user?.category, player.category)
         })
     }

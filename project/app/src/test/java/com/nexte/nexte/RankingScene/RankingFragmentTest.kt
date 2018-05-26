@@ -6,36 +6,36 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 
-class RankingViewTest {
+class RankingFragmentTest {
 
-    var view: RankingView? = null
+    var fragment: RankingFragment? = null
 
     @Before
     fun setUp() {
-        this.view = RankingView()
+        this.fragment = RankingFragment()
     }
 
     @Test
     fun testSetupRankingScene(){
         //prepare
-        this.view?.setupRankingScene()
+        this.fragment?.setupRankingScene()
 
         //call
 
         //assert
-        assertNotNull(this.view?.interactor)
-        assertNotNull(this.view?.interactor?.presenter)
+        assertNotNull(this.fragment?.interactor)
+        assertNotNull(this.fragment?.interactor?.presenter)
     }
 
     @Test
     fun testCreateGetPlayersRequest(){
         //prepare
-        this.view?.setupRankingScene()
+        this.fragment?.setupRankingScene()
         val mock = MockRankingsPresentationLogic()
-        this.view?.interactor?.presenter = mock
+        this.fragment?.interactor?.presenter = mock
 
         //call
-        this.view?.createGetPlayersRequest()
+        this.fragment?.createGetPlayersRequest()
 
         //assert
         assertNotNull(mock.response)
