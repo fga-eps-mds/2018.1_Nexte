@@ -1,6 +1,10 @@
 package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.Entities.Comment.Comment
+import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
+import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -17,13 +21,15 @@ class CommentsPresenterTest {
         this.mock = MockCommentsDisplayLogic()
         this.presenter = CommentsPresenter()
         this.presenter?.viewController = mock
+        this.presenter?.userManager = UserManager(UserAdapterSpy())
+
     }
 
     @Test
     fun successPresentComment() {
         //prepare
-        val comment1 = Comment("456tpp", "hiago999", "Eita!", Date())
-        val comment2 = Comment("jin6789", "helenagoulart", "Credito ou débito?", Date())
+        val comment1 = Comment("1", "1", "", Date())
+        val comment2 = Comment("1", "1", "", Date())
         val commentsList = mutableListOf(comment1, comment2)
         val response = CommentsModel.GetCommentsRequest.Response(commentsList)
 
@@ -36,7 +42,7 @@ class CommentsPresenterTest {
 
     @Test
     fun successPresentNewComment(){
-        val comment = Comment("hjh777", "gabrielalbino2", "Iti Malia", Date())
+        val comment = Comment("1", "1", "", Date())
         val response = CommentsModel.PublishCommentRequest.Response(comment)
 
         //call
@@ -60,8 +66,8 @@ class CommentsPresenterTest {
     @Test
     fun testDeleteComment(){
         //prepare
-        val comment2 = Comment("596leti", "leticiageografia", "Devolve meu sapato, Albino!", Date())
-        val commentsList = Comment("596leti", "leticiageografia", "Devolve meu sapato, Albino!", Date())
+        val comment2 = Comment("1", "1", "", Date())
+        val commentsList = Comment(comment2.id, comment2.userId, comment2.comment, Date())
         val response = CommentsModel.DeleteCommentRequest.Response(commentsList)
 
         //call

@@ -16,6 +16,7 @@ import android.support.constraint.ConstraintLayout
 import android.widget.EditText
 import android.widget.ImageButton
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.UserSingleton
 
 
@@ -89,6 +90,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         val view = this
         val interactor = CommentsInteractor()
         val presenter = CommentsPresenter()
+        presenter.userManager = UserManager()
 
         view.interactor = interactor
         interactor.worker.updateLogic = interactor

@@ -5,7 +5,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2a2a2a"
+    android:background="#393939"
     android:configChanges="keyboard|keyboardHidden"
     tools:context=".CommentsScene.CommentsFragment">
 
@@ -40,17 +40,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_comments" />
 
-    <ImageButton
-        android:id="@+id/checkButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:backgroundTint="#2a2a2a"
-        android:padding="0dp"
-        android:src="@mipmap/check_mdpi"
-        android:tint="#393939"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
@@ -70,5 +59,18 @@
         android:tint="#9b9b9b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/checkButton"
+        android:layout_width="37dp"
+        android:layout_height="30dp"
+        android:background="#2a2a2a"
+        android:backgroundTint="#2a2a2a"
+        android:padding="0dp"
+        android:src="@mipmap/check_mdpi"
+        android:tint="#393939"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/commentEditText" />
 
 </android.support.constraint.ConstraintLayout>

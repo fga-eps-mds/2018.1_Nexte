@@ -2,6 +2,7 @@ package com.nexte.nexte.CommentsScene
 
 
 import com.nexte.nexte.Entities.Comment.Comment
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import java.text.SimpleDateFormat
 
@@ -49,6 +50,7 @@ interface CommentsPresentationLogic {
  */
 class CommentsPresenter : CommentsPresentationLogic {
 
+    var userManager: UserManager? = null
     var viewController: CommentsDisplayLogic? = null
 
     override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
@@ -67,7 +69,7 @@ class CommentsPresenter : CommentsPresentationLogic {
         val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
         val time = dateToShow.format(newComment.date)
 
-        val userComment = com.nexte.nexte.Entities.User.UserManager().get(newComment.userId!!)
+        val userComment = userManager?.get(newComment.userId!!)
         val formatted = CommentsModel.CommentFormatted(
 
                 newComment.comment!!,
@@ -124,7 +126,7 @@ class CommentsPresenter : CommentsPresentationLogic {
         val commentsFormatted: MutableList<CommentsModel.CommentFormatted> = mutableListOf()
 
         for (gameComment in gameComments) {
-            val user = com.nexte.nexte.Entities.User.UserManager().get(gameComment.userId!!)
+            val user = userManager?.get(gameComment.userId!!)
             val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
             val time = dateToShow.format(gameComment.date)
 
