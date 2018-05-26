@@ -45,4 +45,8 @@
     <string name="e_mail">E-mail:</string>
     <string name="ranking">#Ranking</string>
     <string name="username">username</string>
+    <string name="profile">Profile</string>
+    <string name="challenge">Challenge</string>
+    <string name="feed">Feed</string>
+    <string name="rankingMenu">Ranking</string>
 </resources>

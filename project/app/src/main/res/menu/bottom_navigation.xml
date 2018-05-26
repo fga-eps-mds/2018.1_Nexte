@@ -6,26 +6,33 @@
             android:id="@+id/feed"
             android:enabled="true"
             android:icon="@drawable/ic_feed"
-            android:title="Feed"
+            android:iconTint="#fff"
+            android:title="@string/feed"
             app:showAsAction="ifRoom" />
+
         <item
             android:id="@+id/challenge"
             android:enabled="true"
+            android:tint="#fff"
             android:icon="@drawable/ic_challenge"
-            android:title="Challenge"
-            app:showAsAction="ifRoom" />
+            android:title="@string/challenge"
+            app:showAsAction="ifRoom"
+            />
+
 
         <item
             android:id="@+id/ranking"
             android:enabled="true"
+            android:tint="#fff"
             android:icon="@drawable/ic_ranking"
-            android:title="Ranking"
+            android:title="@string/rankingMenu"
             app:showAsAction="ifRoom" />
         <item
             android:id="@+id/profile"
             android:enabled="true"
+            android:tint="#fff"
             android:icon="@drawable/ic_ranking"
-            android:title="Profile"
+            android:title="@string/profile"
             app:showAsAction="ifRoom" />
 
 </menu>

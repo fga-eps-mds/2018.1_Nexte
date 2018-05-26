@@ -23,13 +23,11 @@ class MainActivity : AppCompatActivity() {
         bottom_nav_view.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
         this.bottom_nav_view.selectedItemId = R.id.profile
 
-
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
             startActivity(intent)
         }
-
-    }
+     }
 
     private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->
 
@@ -47,7 +45,6 @@ class MainActivity : AppCompatActivity() {
                 val feedFragment = FeedFragment().getInstance()
                 openFragment(feedFragment)
                 return@OnNavigationItemSelectedListener true
-
             }
 
             R.id.challenge -> {

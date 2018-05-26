@@ -2,6 +2,7 @@ package com.nexte.nexte.ShowProfileScene
 
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.Entities.User.UserMocker
 
 /**
@@ -22,7 +23,7 @@ class ShowProfileWorker {
                        completion: (ShowProfileModel.Response) -> Unit) {
 
         val username = request.username
-        val userList = UserMocker.generateUsers()
+        val userList = UserManager().getAll()
 
         val emptyUser = User("", "", "", "", null, -1,
                 "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
