@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:background="#393939"
         android:ems="10"
@@ -53,7 +53,8 @@
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
         android:background="#393939"
         android:src="@mipmap/direct_mdpi"
         android:tint="#9b9b9b"
@@ -62,8 +63,9 @@
 
     <ImageButton
         android:id="@+id/checkButton"
-        android:layout_width="37dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="1dp"
         android:background="#2a2a2a"
         android:backgroundTint="#2a2a2a"
         android:padding="0dp"
@@ -71,6 +73,7 @@
         android:tint="#393939"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/commentEditText" />
+        app:layout_constraintStart_toEndOf="@+id/commentEditText"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 </android.support.constraint.ConstraintLayout>
