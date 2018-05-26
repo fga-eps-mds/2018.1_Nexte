@@ -16,6 +16,22 @@ interface MatchPresentationLogic {
      * @param response contains unformatted data received from [MatchModel]
      */
     fun presentMatch (response: MatchModel.InitScene.Response)
+
+    /**
+     * Method responsible for creating the appropriate message for
+     * a success match result
+     *
+     * @param response contains the data about the status of the match result
+     */
+    fun presentSuccessMessageForMatchResult (response: MatchModel.SendMatchResult.Response)
+
+    /**
+     * Method responsible for creating the appropriate message for
+     * a failed match result
+     *
+     * @param response contains the data about the status of the match result
+     */
+    fun presentErrorMessageForMatchResult (response: MatchModel.SendMatchResult.Response)
 }
 
 /**
@@ -49,5 +65,17 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
                                                            challengerName,
                                                            challengerPhoto)
         return matchFormatted
+    }
+
+    override fun presentSuccessMessageForMatchResult(response: MatchModel.SendMatchResult.Response) {
+        val message = "Resultado do desafio enviado com sucesso!"
+        val viewModel = MatchModel.SendMatchResult.ViewModel(message)
+        this.viewController?.displayMatchResultMessage(viewModel)
+    }
+
+    override fun presentErrorMessageForMatchResult(response: MatchModel.SendMatchResult.Response) {
+        val message = "Resultado do desafio não pode ser enviado. Por favor, tente novamente mais tarde."
+        val viewModel = MatchModel.SendMatchResult.ViewModel(message)
+        this.viewController?.displayMatchResultMessage(viewModel)
     }
 }

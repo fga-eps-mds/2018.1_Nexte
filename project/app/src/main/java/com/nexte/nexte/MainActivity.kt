@@ -10,7 +10,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
+import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.FeedScene.FeedFragment
+import com.nexte.nexte.RankingScene.RankingView
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,14 +54,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.challenge -> {
-//                val intent = Intent(this, ChallengeView::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, ChallengeView::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.ranking -> {
-//                val intent = Intent(this, RankingView::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, RankingView::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 

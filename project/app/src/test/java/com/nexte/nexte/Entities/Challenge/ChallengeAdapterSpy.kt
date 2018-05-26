@@ -33,6 +33,10 @@ class ChallengeAdapterSpy: ChallengeAdapter {
         }
     }
 
+    override fun getLastFiveChallenges(userdId: String): List<Challenge> {
+        return listOf()
+    }
+
     private fun mockChallenge(): Challenge {
         val id = "1"
         val challengerId = "1"

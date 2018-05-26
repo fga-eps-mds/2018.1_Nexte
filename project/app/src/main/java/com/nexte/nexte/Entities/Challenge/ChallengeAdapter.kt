@@ -5,4 +5,5 @@ interface ChallengeAdapter {
     fun get(identifier: String): Challenge?
     fun updateOrInsert(challenge: Challenge): Challenge?
     fun delete(identifier: String): Challenge?
+    fun getLastFiveChallenges(userdId: String): List<Challenge>
 }

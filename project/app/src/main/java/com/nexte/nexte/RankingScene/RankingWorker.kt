@@ -1,7 +1,26 @@
 package com.nexte.nexte.RankingScene
 
-import com.nexte.nexte.R
-import com.nexte.nexte.UserSingleton
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
+import org.json.JSONArray
+import org.json.JSONObject
+
+/**
+ * Interface to define Response Logic of Ranking Class
+ * that will be used to make the communication between worker and interactor
+ */
+interface RankingWorkerUpdateLogic {
+
+    /**
+     * * Method that will be used to pass response data for the presenter
+     *
+     * @param response Response model of list that contains data to pass for Presenter
+     */
+    fun updateUsersInRanking(response: RankingModel.Response)
+}
 
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -9,85 +28,60 @@ import com.nexte.nexte.UserSingleton
  */
 class RankingWorker {
 
+    var updateLogic: RankingWorkerUpdateLogic? = null
+    var userManager: UserManager? = null
+
     /**
      * Function to get users in ranking
      *
      * @param request Ranking Model Request that contains need information to send for server
      * @param completion Method to call on parent class
      */
-    fun getUsersInRanking(request: RankingModel.Request, completion: (RankingModel.Response) -> Unit) {
+    fun getUsersInRanking(request: RankingModel.Request) {
 
-        val response = RankingModel.Response(this.generateRankingMockData())
+        val users = userManager?.getAll()
+        val response = RankingModel.Response(users!!.toTypedArray())
+        updateLogic?.updateUsersInRanking(response)
 
-        completion(response)
+        val url = "http://10.0.2.2:3000/users"
+        url.httpGet().responseJson { request, response, result ->
+            when(result){
+                is Result.Failure -> {
+                    println(result.getException())
+                }
+
+                is Result.Success -> {
+                    val json = result.get()
+                    var usersList = convertJsonToListOfUsers(json.obj())
+                    usersList = userManager?.updateMany(usersList)!!
+                    val newResponse = RankingModel.Response(usersList.toTypedArray())
+
+                    updateLogic?.updateUsersInRanking(newResponse)
+                }
+            }
+        }
+
     }
 
     /**
-     * Method for create initial mocker data to use in fictional app mode of ranking scene
+     * Method resposible for tranforming a jsonObject, that constains the response of the api request,
+     * into a list of users
      *
-     * @return a array of users on ranking
+     * @param jsonObject jsonObject that contains the response data from the api
+     *
+     * @return list of users
      */
-    private fun generateRankingMockData(): Array<RankingModel.Player> {
+    private fun convertJsonToListOfUsers(jsonObject: JSONObject): List<User>{
+        val dataJson = jsonObject["data"] as JSONObject
+        val usersJsonArray = dataJson["users"] as JSONArray
 
-        val userRanking1 = RankingModel.Player("Helena", R.mipmap.ic_launcher, "Profissional", 10, 0, 1, "ontem", "100%")
-        val userRanking2 = RankingModel.Player("Leticia", R.mipmap.ic_launcher, "Profissional",9, 1, 2, "ontem", "90%")
-        val userRanking3 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher, "Profissional",8, 2, 3, "ontem", "80%")
-        val userRanking4 = RankingModel.Player("Lorrany", R.mipmap.ic_launcher,"Profissional", 7, 3, 4, "ontem", "70%")
-        val userRanking5 = RankingModel.Player("Alexandre", R.mipmap.ic_launcher, "Profissional",6, 4, 5, "ontem", "60%")
-        val userRanking6 = RankingModel.Player("Luis Gustavo", R.mipmap.ic_launcher, "Profissional",5, 5, 6, "ontem", "50%")
-        val userRanking7 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher,"Profissional", 4, 6, 7, "ontem", "40%")
-        val userRanking8 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher,"Profissional", 3, 7, 8, "ontem", "30%")
-        val userRanking9 = RankingModel.Player("Miguel", R.mipmap.ic_launcher,"Profissional", 2, 6, 9, "ontem", "35%")
-        val userRanking10 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher, "Profissional",1, 5, 10, "ontem", "10%")
-        val userRanking11 = RankingModel.Player("Helena", R.mipmap.ic_launcher,"Profissional", 10, 0, 11, "ontem", "100%")
-        val userRanking12 = RankingModel.Player("Leticia", R.mipmap.ic_launcher,"Profissional", 9, 1, 12, "ontem", "90%")
-        val userRanking13 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher,"Profissional", 8, 2, 13, "ontem", "80%")
-        val userRanking14 = RankingModel.Player("Lorrany", R.mipmap.ic_launcher, "Profissional",7, 3, 14, "ontem", "70%")
-        val userRanking15 = RankingModel.Player(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher,"Profissional",
-                6, 4, 15, "ontem", "60%")
-        val userRanking16 = RankingModel.Player("Luis Gustavo", R.mipmap.ic_launcher,"Profissional", 5, 5, 16, "ontem", "50%")
-        val userRanking17 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher,"Profissional", 4, 6, 17, "ontem", "40%")
-        val userRanking18 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher,"Profissional", 3, 7, 18, "ontem", "30%")
-        val userRanking19 = RankingModel.Player("Miguel", R.mipmap.ic_launcher,"Profissional", 2, 6, 19, "ontem", "35%")
-        val userRanking20 = RankingModel.Player("Larissa", R.mipmap.ic_launcher,"Profissional", 1, 5, 20, "ontem", "10%")
-        val userRanking21 = RankingModel.Player("Helena", R.mipmap.ic_launcher, "Profissional",10, 0, 21, "ontem", "100%")
-        val userRanking22 = RankingModel.Player("Leticia", R.mipmap.ic_launcher, "Profissional",9, 1, 22, "ontem", "90%")
-        val userRanking23 = RankingModel.Player("Gabriel", R.mipmap.ic_launcher, "Profissional",8, 2, 23, "ontem", "80%")
-        val userRanking24 = RankingModel.Player("Lorrany", R.mipmap.ic_launcher, "Profissional",7, 3, 24, "ontem", "70%")
-        val userRanking25 = RankingModel.Player("Leticia", R.mipmap.ic_launcher, "Profissional",6, 4, 25, "ontem", "60%")
-        val userRanking26 = RankingModel.Player("Luis Gustavo", R.mipmap.ic_launcher,"Profissional", 5, 5, 26, "ontem", "50%")
-        val userRanking27 = RankingModel.Player("Guilherme", R.mipmap.ic_launcher, "Profissional",4, 6, 27, "ontem", "80%")
-        val userRanking28 = RankingModel.Player("Giovanni", R.mipmap.ic_launcher,"Profissional", 3, 7, 28, "ontem", "45%")
-        val userRanking29 = RankingModel.Player("Miguel", R.mipmap.ic_launcher,"Profissional", 2, 6, 29, "ontem", "35%")
+        var usersMutableList = mutableListOf<User>()
+        for (counter in 0..usersJsonArray.length()-1){
+            val jsonUser = usersJsonArray.getJSONObject(counter)
+            val user = User.createUserFromJsonObject(jsonUser)
+            usersMutableList.add(user)
 
-         return arrayOf(userRanking1,
-                 userRanking2,
-                 userRanking3,
-                 userRanking4,
-                 userRanking5,
-                 userRanking6,
-                 userRanking7,
-                 userRanking8,
-                 userRanking9,
-                 userRanking10,
-                 userRanking11,
-                 userRanking12,
-                 userRanking13,
-                 userRanking14,
-                 userRanking15,
-                 userRanking16,
-                 userRanking17,
-                 userRanking18,
-                 userRanking19,
-                 userRanking20,
-                 userRanking21,
-                 userRanking22,
-                 userRanking23,
-                 userRanking24,
-                 userRanking25,
-                 userRanking26,
-                 userRanking27,
-                 userRanking28,
-                 userRanking29)
+        }
+        return usersMutableList.toList()
     }
 }

@@ -35,6 +35,26 @@ class MatchPresenterTest {
         assertEquals(testFormattedMatchData.challengerPhoto, this.mock?.matchDataFormatted?.challengerPhoto)
     }
 
+    @Test
+    fun testPresentSuccessMessageForMatchResult(){
+        val response = MatchModel.SendMatchResult.Response(
+                MatchModel.SendMatchResult.Status.SUCESSED)
+
+        this.presenter?.presentSuccessMessageForMatchResult(response)
+
+        assertEquals(this.mock?.viewModel?.message, "Resultado do desafio enviado com sucesso!")
+    }
+
+    @Test
+    fun testPresentErrorMessageForMatchResult(){
+        val response = MatchModel.SendMatchResult.Response(
+                MatchModel.SendMatchResult.Status.ERROR)
+
+        this.presenter?.presentErrorMessageForMatchResult(response)
+
+        assertEquals(this.mock?.viewModel?.message, "Resultado do desafio não pode ser enviado. Por favor, tente novamente mais tarde.")
+    }
+
     @After
     fun tearDown() {
         this.mock = null
@@ -45,8 +65,13 @@ class MatchPresenterTest {
 private class MockMatchDisplayLogic : MatchDisplayLogic {
 
     var matchDataFormatted: MatchModel.FormattedMatchData? = null
+    var viewModel: MatchModel.SendMatchResult.ViewModel? = null
 
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
         this.matchDataFormatted = viewModel.matchFormatted
+    }
+
+    override fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel) {
+        this.viewModel = viewModel
     }
 }
