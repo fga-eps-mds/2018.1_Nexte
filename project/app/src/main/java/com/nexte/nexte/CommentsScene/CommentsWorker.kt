@@ -7,7 +7,7 @@ import java.util.*
 
 interface CommentsWorkerUpdateLogic {
 
-    fun updateComment(response: Response)
+    fun updateComment(response: CommentsModel.GetCommentsRequest.Response)
     fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response)
     fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response)
     fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response)
@@ -34,7 +34,7 @@ class CommentsWorker {
     fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request) {
 
         val commentManager= commentsManager?.getAll()
-        val response = Response(commentManager!!.toMutableList())
+        val response = CommentsModel.GetCommentsRequest.Response(commentManager!!.toMutableList())
         updateLogic?.updateComment(response)
     }
 

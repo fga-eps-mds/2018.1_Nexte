@@ -7,6 +7,7 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
+import kotlin.concurrent.thread
 
 
 class CommentsWorkerTest {
@@ -44,35 +45,23 @@ class CommentsWorkerTest {
 
         val commentsList = mutableListOf(comment1, comment2)
 
-
-        //assert
-
-//        val request = CommentsModel.GetCommentsRequest.Request()
-//
-//        val comment1 = Comment("123456",
-//                "le123",
-//                "Boa!!",
-//                         Date())
-//        val comment4 = Comment("ria123",
-//                "maria123",
-//                      "Go!",
-//                      Date())
+        val request = CommentsModel.GetCommentsRequest.Request()
 
         //call
-        this.worker?.getCommentsData(request, {response ->
+        thread { this.worker?.getCommentsData(request)}.join()
 
-            assertEquals(comment1.id, response.comments[0].id)
-            assertEquals(comment2.id, response.comments[1].id)
+            assertEquals(comment1.id, this.mock?.response1?.comments!![0].id)
+            assertEquals(comment2.id, this.mock?.response1?.comments!![1].id)
 
-            assertEquals(comment1.userId, response.comments[0].userId)
-            assertEquals(comment2.userId, response.comments[1].userId)
+            assertEquals(comment1.userId, this.mock?.response1?.comments!![0].userId)
+            assertEquals(comment2.userId, this.mock?.response1?.comments!![1].userId)
 
-            assertEquals(comment1.comment, response.comments[0].comment)
-            assertEquals(comment2.comment, response.comments[1].comment)
+            assertEquals(comment1.comment, this.mock?.response1?.comments!![0].comment)
+            assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
 
-            assertEquals(comment1.date, response.comments[0].date)
-            assertEquals(comment2.date, response.comments[1].date)
-            )}
+            assertEquals(comment1.date, this.mock?.response1?.comments!![0].date)
+            assertEquals(comment2.date, this.mock?.response1?.comments!![1].date)
+
     }
 
     @Test
@@ -85,12 +74,14 @@ class CommentsWorkerTest {
         val newComment = Comment("54633jp", "angelo", "eae", Date())
 
         //call
-        worker?.setNewComment(request, {response ->
+        thread{worker?.setNewComment(request)}.join()
             //assert
-            assertEquals(response.newComment.author.name,newComment.author.name)
-            assertEquals(response.newComment.comment, newComment.comment)
-            assertEquals(response.newComment.commentId, newComment.commentId)
-        })
+            assertEquals(this.mock?.response2?.newComment?.id, newComment.id)
+            assertEquals(this.mock?.response2?.newComment?.userId, newComment.userId)
+            assertEquals(this.mock?.response2?.newComment?.comment, newComment.comment)
+            assertEquals(this.mock?.response2?.newComment?.date, newComment.date)
+
+
     }
 
     @Test
@@ -100,14 +91,15 @@ class CommentsWorkerTest {
         )
 
         //call
-        worker?.sendComplaint(request, {response ->
-            //assert
-            assertEquals(response.serverResponse,200)
-        })
+        thread{ worker?.sendComplaint(request)}.join()
+
+        //assert
+        assertEquals(this.mock!!.response3!!.serverResponse,200)
+
     }
 
     @Test
-    fun successGetToDeletComment() {
+    fun successGetToDeleteComment() {
         //prepare
 
         val comment1 = Comment("hahaha",
@@ -115,21 +107,21 @@ class CommentsWorkerTest {
                 "Joga muito", Date())
 
 
-        val commentsList = Comment("hahaha", "lehaha", "Joga muito", Date())
+        val requestToDel = CommentsModel.DeleteCommentRequest.Request(2)
 
         //call
-        worker?.getToDeleteComment(requestToDel) { response ->
+        thread {this.worker?.getToDeleteComment(requestToDel)}.join()
+
 
             //assert
-            assertEquals(comment1.id, response.delComments.id)
-
-            assertEquals(comment1.userId, response.delComments.userId)
-
-            assertEquals(comment1.comment, response.delComments.comment)
-
-            assertEquals(comment1.date, response.delComments.date)
+            assertEquals(comment1.id, this.mock?.response4?.delComments?.id)
+            assertEquals(comment1.userId, this.mock?.response4?.delComments?.userId)
+            assertEquals(comment1.comment, this.mock?.response4?.delComments?.comment)
+            assertEquals(comment1.date, this.mock?.response4?.delComments?.date)
 
 
+
+    }
             @After
             fun tearDown() {
                 this.worker = null
@@ -157,3 +149,5 @@ class CommentsWorkerTest {
                     this.response4 = response
                 }
             }
+
+    }
