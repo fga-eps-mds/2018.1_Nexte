@@ -221,6 +221,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                 if (activity.currentUserLiked == true) {
                     itemView.likesButton.setImageResource(R.mipmap.feed_like_fill)
+                } else {
+                    itemView.likesButton.setImageResource(R.mipmap.feed_like)
                 }
 
                 itemView.likesButton.setOnClickListener {
