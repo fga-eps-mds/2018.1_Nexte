@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame_layout,fragment)
+        transaction.replace(R.id.frame_layout,fragment, "currentFragment")
         transaction.addToBackStack(null)
         transaction.commit()
     }

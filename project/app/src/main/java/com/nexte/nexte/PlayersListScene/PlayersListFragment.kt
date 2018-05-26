@@ -13,6 +13,7 @@ import android.app.AlertDialog
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
+import com.nexte.nexte.MainActivity
 import com.nexte.nexte.UserSingleton
 
 
@@ -57,7 +58,7 @@ interface ChallengeDisplayLogic {
  */
 class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
 
-
+    var fragment: Fragment?= null
     var sendChallengeButton: Button?= null
     var expandedLosses: TextView?= null
     var expandedWins: TextView?= null
@@ -191,11 +192,13 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
     override fun displayMessage(viewModel: PlayersListModel.ChallengeButtonRequest.ViewModel) {
 
         if(viewModel.matchMessage != ""){
-            (this.parentFragment as? ChallengeTabsFragment)?.match = viewModel.matchData
+            val activity = this.activity as MainActivity
+            fragment = activity.supportFragmentManager.findFragmentByTag("currentFragment")
+            (fragment as? ChallengeTabsFragment)?.match = viewModel.matchData
             this.message?.text = viewModel.matchMessage
             this.message?.visibility = View.VISIBLE
             this.sendChallengeButton?.isEnabled = false
-            (this.parentFragment as ChallengeTabsFragment).viewpager?.adapter?.notifyDataSetChanged()
+            (fragment as? ChallengeTabsFragment)?.viewpager?.adapter?.notifyDataSetChanged()
         }
 
 
@@ -204,7 +207,7 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
-            (this.parentFragment as ChallengeTabsFragment).tabs?.getTabAt(1)?.select()
+            (fragment as? ChallengeTabsFragment)?.tabs?.getTabAt(1)?.select()
             dialogInterface.cancel()
         })
 
@@ -292,11 +295,11 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
                         challenged[position].rankingPosition.removeRange(0, 1).toInt())
                 fragment.getPlayerInfo(request)
             }
-
+            val checkTextView: TextView = holder.view.findViewById(R.id.checkTextView)
             if (expandedPlayer == holder.layoutPosition) {
-                holder.view.checkTextView.visibility = View.VISIBLE
+                checkTextView.visibility = View.VISIBLE
             } else {
-                holder.view.checkTextView.visibility = View.INVISIBLE
+                checkTextView.visibility = View.INVISIBLE
             }
 
             if(expandedPlayer == -1) {

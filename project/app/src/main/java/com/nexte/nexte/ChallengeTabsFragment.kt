@@ -64,17 +64,11 @@ class ChallengeTabsFragment : Fragment() {
         }
 
         override fun getItem(position: Int): Fragment {
-            var fragmentInstanced: Fragment? = null
-            if(position == 0){
-                fragmentInstanced = PlayersListFragment().getInstance((fragment as ChallengeTabsFragment).match != null)
-            } else if(position == 1){
-                fragmentInstanced = MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
+            return when (position) {
+                0 -> PlayersListFragment().getInstance((fragment as ChallengeTabsFragment).match != null)
+                1 -> MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
+                else -> MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
             }
-            else{
-                fragmentInstanced = MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
-            }
-
-            return fragmentInstanced
         }
 
         override fun getPageTitle(position: Int): CharSequence {

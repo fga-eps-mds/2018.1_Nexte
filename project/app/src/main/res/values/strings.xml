@@ -39,4 +39,6 @@
     <string name="n">#N</string>
     <string name="userpicture">UserPicture</string>
     <string name="tenistas">Tenistas</string>
+    <string name="sem_jogadores_dispon_veis">Sem Jogadores Disponíveis.</string>
+    <string name="voc_j_enviou_um_desafio">Você já enviou um desafio</string>
 </resources>
