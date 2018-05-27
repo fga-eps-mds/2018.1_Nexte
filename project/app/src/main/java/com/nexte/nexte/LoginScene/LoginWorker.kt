@@ -72,7 +72,7 @@ class LoginWorker {
 
             result.success {
 
-                // TO DO: Add more user to server to authenticate with
+                // TO DO: Add auth with token in NEXTE main server
                 val player = UserSingleton.getUserInformations()
                 UserSingleton.setUserInformations(player)
 
@@ -96,11 +96,12 @@ class LoginWorker {
         val json = JSONObject()
 
         if(phone != null) {
-            json.put("username",  "ramires") // Expected ramires
             json.put("phone",  phone) // Expected test-nexte-ramires
+            json.put("password",  "test-nexte-ramires")  // Expected ramires
+
         } else {
-            json.put("username",  "ramires") // Expected ramires
-            json.put("email",  email) // Expected test-nexte-ramires
+            json.put("email",  email)
+            json.put("password",  "test-nexte-ramires")  // Expected ramires
         }
 
         return json.toString()
