@@ -11,76 +11,76 @@ before_script:
 
 # GitLab CI Stages executed in this CI
 stages:
-  - test
+  # - test
   - build
-  - deploy
+  # - deploy
 
 # Static Analysis for avaliate code smells
-static_analysis:
-  stage: test
-  before_script:
-    - cd project/
-    - mv ../docker/static_analysis.sh ./static_analysis.sh
-    - chmod +x ./static_analysis.sh
-  script:
-    - ./static_analysis.sh
+# static_analysis:
+#   stage: test
+#   before_script:
+#     - cd project/
+#     - mv ../docker/static_analysis.sh ./static_analysis.sh
+#     - chmod +x ./static_analysis.sh
+#   script:
+#     - ./static_analysis.sh
 
-# Run Unit Tests, verifying the code coverage
-unit_test:
-  stage: test
-  before_script:
-    - cd project/
-    - mv ../docker/test.sh ./test.sh
-    - chmod +x ./test.sh
-  script:
-    - ./test.sh
-  artifacts:
-    name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
-    when: always
-    expire_in: 2 days
-    paths:
-      - project/app/build/reports/jacocoTestReport/html
+# # Run Unit Tests, verifying the code coverage
+# unit_test:
+#   stage: test
+#   before_script:
+#     - cd project/
+#     - mv ../docker/test.sh ./test.sh
+#     - chmod +x ./test.sh
+#   script:
+#     - ./test.sh
+#   artifacts:
+#     name: "reports_${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_unit_test"
+#     when: always
+#     expire_in: 2 days
+#     paths:
+#       - project/app/build/reports/jacocoTestReport/html
 
-# Build script for generate new .APK
-build:
-  stage: build
-  before_script:
-    - cd project/
-    - git clone $KEY_STORE_REPO ./key
-    - mv ./key/$STORE_FILE ./app/
-    - mv ../docker/build.sh ./build.sh
-    - chmod +x ./build.sh
-  script:
-    - fastlane update_build_number
-    - ./build.sh
-  after_script:
-    - rm -Rf ./app/.git/
-    - rm ./app/$STORE_FILE
-  artifacts:
-    paths:
-    - project/app/build/outputs/apk
-  only:
-    - tags
-    - dev
-    # - master
+# # Build script for generate new .APK
+# build:
+#   stage: build
+#   before_script:
+#     - cd project/
+#     - git clone $KEY_STORE_REPO ./key
+#     - mv ./key/$STORE_FILE ./app/
+#     - mv ../docker/build.sh ./build.sh
+#     - chmod +x ./build.sh
+#   script:
+#     - fastlane update_build_number
+#     - ./build.sh
+#   after_script:
+#     - rm -Rf ./app/.git/
+#     - rm ./app/$STORE_FILE
+#   artifacts:
+#     paths:
+#     - project/app/build/outputs/apk
+#   only:
+#     - tags
+#     - dev
+#     # - master
 
-# Deploy to PlayStore in Beta Version
-deploy_beta:
-  stage: deploy
-  before_script:
-    - cd project/
-    - echo $DEPLOY_KEY_FILE >> key.json
-  script:
-    - fastlane beta
-  after_script:
-    - rm key.json
-  dependencies:
-    - build
-  artifacts:
-    paths:
-      - fastlane/logs
-  only:
-    - tags
+# # Deploy to PlayStore in Beta Version
+# deploy_beta:
+#   stage: deploy
+#   before_script:
+#     - cd project/
+#     - echo $DEPLOY_KEY_FILE >> key.json
+#   script:
+#     - fastlane beta
+#   after_script:
+#     - rm key.json
+#   dependencies:
+#     - build
+#   artifacts:
+#     paths:
+#       - fastlane/logs
+#   only:
+#     - tags
 
 # Build of GitHub Pages
 pages:
@@ -93,11 +93,11 @@ pages:
     - git add site/
     - git commit -m"Build new Pages with $CI_PIPELINE_ID"
     - git push https://$GITHUB_USERNAME:$GITHUB_CREDENTIALS@github.com/fga-gpp-mds/2018.1_Nexte.git `git subtree split --prefix site/`:gh-pages --force
-  only:
-    - dev
+  # only:
+  #   - dev
 
 # Cache for use on next executions
-cache:
-  key: ${CI_PROJECT_ID}2
-  paths:
-    - .gradle/
+# cache:
+#   key: ${CI_PROJECT_ID}2
+#   paths:
+#     - .gradle/
