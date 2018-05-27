@@ -42,8 +42,6 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
-    var phoneNumber: String = ""
-    var email: String = ""
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -82,16 +80,19 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         when (requestCode) {
             LoginModel.AccountKit.ACCOUNTKIT_CODE -> {
-                val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-                val request: LoginModel.AccountKit.Request =  LoginModel.AccountKit.Request(loginResult!!)
-                this.interactor?.accountKitAuthentication(request)
+//                val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+//                val request: LoginModel.AccountKit.Request =  LoginModel.AccountKit.Request(loginResult!!)
+//                this.interactor?.accountKitAuthentication(request)
+
+                this.getAccount()
             }
         }
+
+        this.getAccount()
     }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         val message: String = viewModel.message
-        Log.i("wed", "dssdsd")
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
     }
@@ -125,26 +126,30 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     /**
-     * Gets current account from Facebook Account Kit which include user's phone number.
+     * Gets current account from Facebook Account Kit which include user's phone number
      */
-
     private fun getAccount() {
-
         AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
             override fun onSuccess(account: Account) {
 
-                // Get phone number
+                // Get Phone number
                 val phoneNumber = account.getPhoneNumber()
                 val phoneNumberString = phoneNumber.toString()
 
-                // Surface the result to your user in an appropriate way.
+                // Get Email
+                val email = account.getEmail()
+                val emailString = email.toString()
 
-                Log.i("lala", phoneNumberString)
+                if(phoneNumberString !=  "") {
+                    Log.i("Phone number:", phoneNumberString)
+
+                } else if (emailString != "") {
+                    Log.i("Email:", phoneNumberString)
+                }
             }
 
             override fun onError(error: AccountKitError) {
                 Log.e("AccountKit", error.toString())
-                // Handle Error
             }
         })
     }
