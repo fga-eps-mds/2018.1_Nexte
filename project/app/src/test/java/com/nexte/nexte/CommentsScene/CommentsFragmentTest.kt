@@ -6,20 +6,20 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class CommentsViewTest {
+class CommentsFragmentTest {
 
-    private var view: CommentsView?= null
+    private var fragment: CommentsFragment?= null
     private var mock: CommentsInteractorMock?= null
     @Before
     fun setUp() {
-        view = CommentsView()
+        fragment = CommentsFragment()
         mock = CommentsInteractorMock(123)
-        view?.interactor = mock
+        fragment?.interactor = mock
     }
 
     @After
     fun tearDown() {
-        view = null
+        fragment = null
         mock = null
     }
 
@@ -30,7 +30,7 @@ class CommentsViewTest {
         //call
 
         //assert
-        assertEquals((view?.interactor as CommentsInteractorMock).id, mock?.id)
+        assertEquals((fragment?.interactor as CommentsInteractorMock).id, mock?.id)
     }
 
     @Test
@@ -38,22 +38,12 @@ class CommentsViewTest {
         //prepare
         val newMock = CommentsInteractorMock(321)
         //call
-        view?.interactor = newMock
+        fragment?.interactor = newMock
         //assert
-        assertEquals((view?.interactor as CommentsInteractorMock).id, newMock.id)
+        assertEquals((fragment?.interactor as CommentsInteractorMock).id, newMock.id)
     }
 
-    @Test
-    fun setUpCommentsScene() {
-        //prepare
-        //call
-        view?.setUpCommentsScene()
-        //assert
-        assertNotNull(view?.interactor)
-        assertNotNull((view?.interactor as CommentsInteractor).presenter)
-        assertNotNull(((view?.interactor as CommentsInteractor)
-                .presenter as CommentsPresenter).viewController)
-    }
+
 
     private class CommentsInteractorMock(var id: Int = 0) : CommentsBusinessLogic{
         var passedHere: Boolean = false

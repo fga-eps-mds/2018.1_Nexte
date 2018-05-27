@@ -1,5 +1,10 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.Comment
+import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
+import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -16,15 +21,15 @@ class CommentsPresenterTest {
         this.mock = MockCommentsDisplayLogic()
         this.presenter = CommentsPresenter()
         this.presenter?.viewController = mock
+        this.presenter?.userManager = UserManager(UserAdapterSpy())
+
     }
 
     @Test
     fun successPresentComment() {
         //prepare
-        val player1 = CommentsModel.Player("Larissa", 1)
-        val player2 = CommentsModel.Player("Alexandre", 2)
-        val comment1 = CommentsModel.Comment("Muito bom galera", Date(), player1, 1)
-        val comment2 = CommentsModel.Comment("Nossa, foi top mesmo", Date(), player2, 2)
+        val comment1 = Comment("1", "1", "", Date())
+        val comment2 = Comment("1", "1", "", Date())
         val commentsList = mutableListOf(comment1, comment2)
         val response = CommentsModel.GetCommentsRequest.Response(commentsList)
 
@@ -37,8 +42,7 @@ class CommentsPresenterTest {
 
     @Test
     fun successPresentNewComment(){
-        val player = CommentsModel.Player("Gabriel Albino", 2)
-        val comment = CommentsModel.Comment("Show!", Date(), player, 1)
+        val comment = Comment("1", "1", "", Date())
         val response = CommentsModel.PublishCommentRequest.Response(comment)
 
         //call
@@ -62,11 +66,8 @@ class CommentsPresenterTest {
     @Test
     fun testDeleteComment(){
         //prepare
-        val player1 = CommentsModel.Player("Larissa", 1)
-        val player2 = CommentsModel.Player("Alexandre", 2)
-        val comment1 = CommentsModel.Comment("Muito bom galera", Date(), player1, 1)
-        val comment2 = CommentsModel.Comment("Nossa, foi top mesmo", Date(), player2, 2)
-        val commentsList = mutableListOf(comment1, comment2)
+        val comment2 = Comment("1", "1", "", Date())
+        val commentsList = Comment(comment2.id, comment2.userId, comment2.comment, Date())
         val response = CommentsModel.DeleteCommentRequest.Response(commentsList)
 
         //call
@@ -75,7 +76,6 @@ class CommentsPresenterTest {
         //assert
         assertEquals(this.mock?.passedHere,true)
     }
-
 
     @After
     fun tearDown() {

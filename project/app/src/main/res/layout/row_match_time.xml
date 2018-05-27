@@ -10,7 +10,7 @@
     android:background="#2E2E2E">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/fragment"
         android:layout_width="1dp"
         android:layout_height="80dp"
         android:layout_marginStart="10dp"

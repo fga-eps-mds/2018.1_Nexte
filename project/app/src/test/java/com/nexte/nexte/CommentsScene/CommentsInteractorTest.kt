@@ -1,5 +1,7 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
+import com.nexte.nexte.Entities.Comment.CommentManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -15,6 +17,8 @@ class CommentsInteractorTest {
         this.mock = MockCommentsPresentationLogic()
         this.interactor = CommentsInteractor()
         this.interactor?.presenter = mock
+        this.interactor?.worker?.updateLogic = mock
+        this.interactor?.worker?.commentsManager = CommentManager(CommentAdapterSpy())
     }
 
     @Test
@@ -88,7 +92,7 @@ class CommentsInteractorTest {
     fun successDeleteComment(){
         //prepare
         val request = CommentsModel.DeleteCommentRequest.Request(
-                3
+                108
         )
 
         //call
@@ -99,15 +103,30 @@ class CommentsInteractorTest {
     }
     
     @After
-    fun tearDown() {
+        fun tearDown() {
         this.mock = null
         this.interactor = null
     }
 }
 
-private class MockCommentsPresentationLogic : CommentsPresentationLogic {
+private class MockCommentsPresentationLogic : CommentsPresentationLogic, CommentsWorkerUpdateLogic {
     var passedHere = false
 
+    override fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response) {
+        this.passedHere = true
+    }
+
+    override fun updateComment(response: CommentsModel.GetCommentsRequest.Response) {
+        this.passedHere = true
+    }
     override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
         this.passedHere = true
     }

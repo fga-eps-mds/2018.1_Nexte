@@ -35,13 +35,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->
-
         when(item.itemId) {
             R.id.profile -> {
                 /* Do Nothing*/
             }
         }
-
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
 
@@ -73,9 +71,8 @@ class MainActivity : AppCompatActivity() {
             return@OnNavigationItemSelectedListener true
         }
         }
-
-
     }
+
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_layout,fragment)

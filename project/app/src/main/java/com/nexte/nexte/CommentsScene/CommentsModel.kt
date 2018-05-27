@@ -1,6 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
-import java.util.*
+import com.nexte.nexte.Entities.Comment.Comment
 
 /**
  * Class to define Model of Comments Scene to enable the conversation between users.
@@ -110,7 +110,7 @@ class CommentsModel {
          *
          * @param delComments list of unformatted comments without deleted comment
          */
-        class Response (var delComments: MutableList<Comment>)
+        class Response (var delComments: Comment)
 
         /**
          * Class responsible to define the standar format of the information that will
@@ -137,10 +137,6 @@ class CommentsModel {
      * @param author contains the player that posted the comment
      * @param commentId contains the comment identifier
      */
-    class Comment(var comment: String,
-                  var date: Date,
-                  var author: Player,
-                  var commentId: Int)
 
     /**
      * Class with formatted information about users and how they will be displayed in View
