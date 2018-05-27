@@ -38,7 +38,7 @@ class RankingWorker {
      */
     fun getUsersInRanking(request: RankingModel.Request) {
 
-        var users = userManager?.getAll()?.sortedBy { it.rankingPosition }
+        val users = userManager?.getAll()?.sortedBy { it.rankingPosition }
         val response = RankingModel.Response(users!!.toTypedArray())
         updateLogic?.updateUsersInRanking(response)
 
@@ -53,7 +53,8 @@ class RankingWorker {
                     val json = result.get()
                     var usersList = convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
                     usersList = userManager?.updateMany(usersList)!!
-                    users += usersList.toTypedArray()
+                    val newResponse = RankingModel.Response(usersList.toTypedArray())
+                    updateLogic?.updateUsersInRanking(newResponse)
                 }
             }
         }

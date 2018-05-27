@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
@@ -45,6 +46,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var rankingChart: LineChart? = null
     private var newLineChart: LineChart? = null
     private var anotherPlayerName: String = ""
+    var userManager: UserManager? = null
     val graphManager = GraphManager(this)
 
     /*
@@ -73,6 +75,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        this.userManager = UserManager()
         setupShowProfileScene()
         this.anotherPlayerName = arguments.getString("anotherPlayerName")
     }
@@ -252,6 +255,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         interactor.presenter = presenter
         presenter.viewScene = viewScene
         viewScene.showProfileInteractor = interactor
+        interactor.worker.userManager = userManager
     }
 
     /**
