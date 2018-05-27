@@ -3,6 +3,7 @@ package com.nexte.nexte.LoginScene
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
+import com.nexte.nexte.UserSingleton
 import org.json.JSONObject
 
 /**
@@ -22,7 +23,7 @@ class LoginWorker {
     fun authenticateUser(request: LoginModel.Authentication.Request,
                          completion: (LoginModel.Authentication.Response) -> Unit) {
 
-        val authentication = "http://192.168.100.2:3000/auth/login" // Works only with IP
+        val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                                     "Accept-Version" to "1.0.0")
         val json = JSONObject()
@@ -35,6 +36,11 @@ class LoginWorker {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
                 val status = LoginModel.Authentication.StatusCode.AUTHORIZED
                 val response = LoginModel.Authentication.Response(token, status)
+
+                // TO DO: Add more user to server to authenticate with
+                val player = UserSingleton.getUserInformations()
+                UserSingleton.setUserInformations(player)
+
                 completion(response)
             }
 
@@ -57,18 +63,48 @@ class LoginWorker {
     fun requestForAuth(request: LoginModel.AccountKit.Request,
                         completion: (LoginModel.AccountKit.Response) -> Unit) {
 
-         val loginResult = request.loginResult
-         var response: LoginModel.AccountKit.Response? = null
+        val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
+        val headers = mapOf("Content-Type" to "application/json",
+                "Accept-Version" to "1.0.0")
+        val body = defineBodyForAccountKitAuth(request.phone, request.email)
 
-         if (loginResult.wasCancelled()) {
-             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.CANCELLED)
-         } else if (loginResult.error != null) {
-             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.ERROR)
-         } else {
-             response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
-         }
+        Fuel.post(authentication).header(headers).body(body).responseString { request, response, result ->
 
-        completion(response)
+            result.success {
+
+                // TO DO: Add auth with token in NEXTE main server
+                val player = UserSingleton.getUserInformations()
+                UserSingleton.setUserInformations(player)
+
+                val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
+                completion(response)
+            }
+
+            result.failure {
+                val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.ERROR)
+                completion(response)
+            }
+        }
+    }
+
+    /**
+     * Define body to authenticate user with Nexte main server
+     * @param phone Phone from a user - used in Account Kit auth
+     * @param phone Email from a user - used in Account Kit auth
+     */
+    private fun defineBodyForAccountKitAuth(phone: String?, email: String?): String {
+        val json = JSONObject()
+
+        if(phone != null) {
+            json.put("phone",  phone) // Expected test-nexte-ramires
+            json.put("password",  "test-nexte-ramires")  // Expected ramires
+
+        } else {
+            json.put("email",  email)
+            json.put("password",  "test-nexte-ramires")  // Expected ramires
+        }
+
+        return json.toString()
     }
 }
 
