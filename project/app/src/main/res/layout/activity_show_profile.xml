@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="44dp"
-            android:text="username"
+            android:text="@string/username"
             android:textColor="#ffffff"
             android:textSize="21sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -40,97 +40,41 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="36dp"
-            android:text="#Ranking"
+            android:layout_marginTop="16dp"
+            android:text="@string/ranking"
             android:textColor="#ffffff"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
-        <TextView
-            android:id="@+id/clubLabel"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp"
-            android:text="Clube:"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/ageLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            tools:text="Clube :  " />
 
         <TextView
             android:id="@+id/emailLabel"
             android:layout_width="89dp"
             android:layout_height="35dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="E-mail:"
+            android:layout_marginTop="16dp"
+            android:text="@string/e_mail"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ageLabel"
+            app:layout_constraintTop_toBottomOf="@+id/RankingID"
             tools:text="E-mail:" />
-
-        <TextView
-            android:id="@+id/ageLabel"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Idade:"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clubLabel"
-            tools:text="Idade: " />
-
-        <TextView
-            android:id="@+id/club"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="60dp"
-            android:text="clubName"
-            android:textColor="#aaaaaa"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clubLabel"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
         <TextView
             android:id="@+id/email"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="email"
+            android:text="@string/email"
             android:textColor="#aaaaaa"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/emailLabel"
-            app:layout_constraintTop_toBottomOf="@+id/ageLabel" />
-
-        <TextView
-            android:id="@+id/age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="age"
-            android:textColor="#aaaaaa"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ageLabel"
-            app:layout_constraintTop_toBottomOf="@+id/clubLabel" />
+            app:layout_constraintTop_toTopOf="@+id/emailLabel" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
@@ -166,7 +110,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:background="@android:color/black"
-            android:text="Editar"
+            android:text="@string/editar"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

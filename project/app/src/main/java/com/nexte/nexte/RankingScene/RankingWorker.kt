@@ -35,16 +35,15 @@ class RankingWorker {
      * Function to get users in ranking
      *
      * @param request Ranking Model Request that contains need information to send for server
-     * @param completion Method to call on parent class
      */
     fun getUsersInRanking(request: RankingModel.Request) {
 
-        val users = userManager?.getAll()
+        val users = userManager?.getAll()?.sortedBy { it.rankingPosition }
         val response = RankingModel.Response(users!!.toTypedArray())
         updateLogic?.updateUsersInRanking(response)
 
         val url = "http://10.0.2.2:3000/users"
-        url.httpGet().responseJson { request, response, result ->
+        url.httpGet().responseJson { _, _, result ->
             when(result){
                 is Result.Failure -> {
                     println(result.getException())
@@ -52,15 +51,13 @@ class RankingWorker {
 
                 is Result.Success -> {
                     val json = result.get()
-                    var usersList = convertJsonToListOfUsers(json.obj())
+                    var usersList = convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
                     usersList = userManager?.updateMany(usersList)!!
                     val newResponse = RankingModel.Response(usersList.toTypedArray())
-
                     updateLogic?.updateUsersInRanking(newResponse)
                 }
             }
         }
-
     }
 
     /**
@@ -71,12 +68,12 @@ class RankingWorker {
      *
      * @return list of users
      */
-    private fun convertJsonToListOfUsers(jsonObject: JSONObject): List<User>{
+    fun convertJsonToListOfUsers(jsonObject: JSONObject): List<User>{
         val dataJson = jsonObject["data"] as JSONObject
         val usersJsonArray = dataJson["users"] as JSONArray
 
-        var usersMutableList = mutableListOf<User>()
-        for (counter in 0..usersJsonArray.length()-1){
+        val usersMutableList = mutableListOf<User>()
+        for (counter in 0 until usersJsonArray.length()){
             val jsonUser = usersJsonArray.getJSONObject(counter)
             val user = User.createUserFromJsonObject(jsonUser)
             usersMutableList.add(user)

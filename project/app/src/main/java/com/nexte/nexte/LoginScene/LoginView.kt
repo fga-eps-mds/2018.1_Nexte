@@ -79,7 +79,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            LoginModel.AccountKit.ACCOUNTKIT_CODE -> {
+            LoginModel.AccountKit.accountKit_code -> {
                 this.getAccount()
             }
         }
@@ -138,7 +138,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
-        startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
+        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 
     /**
@@ -149,7 +149,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
-        startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
+        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 
     /**
