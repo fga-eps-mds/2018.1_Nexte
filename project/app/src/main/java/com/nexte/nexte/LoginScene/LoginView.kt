@@ -3,14 +3,15 @@ package com.nexte.nexte.LoginScene
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.facebook.accountkit.AccountKitLoginResult
-import com.facebook.accountkit.ui.AccountKitConfiguration
-import com.facebook.accountkit.ui.AccountKitActivity
-import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
+import com.facebook.accountkit.*
 import kotlinx.android.synthetic.main.activity_login_view.*
+import com.facebook.accountkit.ui.AccountKitConfiguration
+import com.facebook.accountkit.ui.AccountKitActivity
+import com.facebook.accountkit.ui.LoginType
+
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -41,6 +42,8 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
+    var phoneNumber: String = ""
+    var email: String = ""
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -49,6 +52,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AccountKit.initialize(this)
         setContentView(R.layout.activity_login_view)
         this.setup()
 
@@ -110,19 +114,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     /**
-     * Method responsible for setup protocol between scenes
-     */
-    fun setup() {
-        val view = this
-        val interactor = LoginInteractor()
-        val presenter = LoginPresenter()
-
-        view.interactor = interactor
-        interactor.presenter = presenter
-        presenter.view = view
-    }
-
-    /**
      * Request login by phone - AccountKit
      */
     fun loginPhoneNumber() {
@@ -134,6 +125,31 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     /**
+     * Gets current account from Facebook Account Kit which include user's phone number.
+     */
+
+    private fun getAccount() {
+
+        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
+            override fun onSuccess(account: Account) {
+
+                // Get phone number
+                val phoneNumber = account.getPhoneNumber()
+                val phoneNumberString = phoneNumber.toString()
+
+                // Surface the result to your user in an appropriate way.
+
+                Log.i("lala", phoneNumberString)
+            }
+
+            override fun onError(error: AccountKitError) {
+                Log.e("AccountKit", error.toString())
+                // Handle Error
+            }
+        })
+    }
+
+    /**
      * Request login by email - AccountKit
      */
     fun loginByEmail() {
@@ -142,5 +158,18 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
         startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
+    }
+
+    /**
+     * Method responsible for setup protocol between scenes
+     */
+    fun setup() {
+        val view = this
+        val interactor = LoginInteractor()
+        val presenter = LoginPresenter()
+
+        view.interactor = interactor
+        interactor.presenter = presenter
+        presenter.view = view
     }
 }
