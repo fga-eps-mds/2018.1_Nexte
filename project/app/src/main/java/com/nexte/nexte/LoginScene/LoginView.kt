@@ -79,7 +79,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            LoginModel.AccountKit.ACCOUNTKIT_CODE -> {
+            LoginModel.AccountKit.accountKit_code -> {
                 this.getAccount()
             }
         }
