@@ -80,15 +80,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         when (requestCode) {
             LoginModel.AccountKit.ACCOUNTKIT_CODE -> {
-//                val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-//                val request: LoginModel.AccountKit.Request =  LoginModel.AccountKit.Request(loginResult!!)
-//                this.interactor?.accountKitAuthentication(request)
-
                 this.getAccount()
             }
         }
-
-        this.getAccount()
     }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
@@ -115,6 +109,28 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     /**
+     * Gets current account from Facebook Account Kit which include user's phone number
+     */
+    private fun getAccount() {
+        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
+            override fun onSuccess(account: Account) {
+                val phoneNumber = account.getPhoneNumber()
+                val phoneNumberString = phoneNumber.toString()
+
+                if(phoneNumberString !=  "") {
+                    Log.i("Phone number:", phoneNumberString)
+                    val request = LoginModel.AccountKit.Request("", phoneNumberString)
+                    interactor?.accountKitAuthentication(request)
+                }
+            }
+
+            override fun onError(error: AccountKitError) {
+                Log.e("AccountKit", error.toString())
+            }
+        })
+    }
+
+    /**
      * Request login by phone - AccountKit
      */
     fun loginPhoneNumber() {
@@ -123,35 +139,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
         startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
-    }
-
-    /**
-     * Gets current account from Facebook Account Kit which include user's phone number
-     */
-    private fun getAccount() {
-        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
-            override fun onSuccess(account: Account) {
-
-                // Get Phone number
-                val phoneNumber = account.getPhoneNumber()
-                val phoneNumberString = phoneNumber.toString()
-
-                // Get Email
-                val email = account.getEmail()
-                val emailString = email.toString()
-
-                if(phoneNumberString !=  "") {
-                    Log.i("Phone number:", phoneNumberString)
-
-                } else if (emailString != "") {
-                    Log.i("Email:", phoneNumberString)
-                }
-            }
-
-            override fun onError(error: AccountKitError) {
-                Log.e("AccountKit", error.toString())
-            }
-        })
     }
 
     /**

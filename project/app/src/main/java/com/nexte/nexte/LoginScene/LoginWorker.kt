@@ -66,43 +66,44 @@ class LoginWorker {
         val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val body = defineHeaderForAccountKitAuth(request.phone, request.email)
-        var response: LoginModel.AccountKit.Response? = null
+        val body = defineBodyForAccountKitAuth(request.phone, request.email)
 
         Fuel.post(authentication).header(headers).body(body).responseString { request, response, result ->
 
             result.success {
-                val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
-                val status = LoginModel.Authentication.StatusCode.AUTHORIZED
-                val response = LoginModel.Authentication.Response(token, status)
 
                 // TO DO: Add more user to server to authenticate with
                 val player = UserSingleton.getUserInformations()
                 UserSingleton.setUserInformations(player)
 
+                val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
                 completion(response)
             }
 
             result.failure {
-                val token = ""
-                val status = LoginModel.Authentication.StatusCode.UNAUTHORIZED
-                val response = LoginModel.Authentication.Response(token, status)
+                val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.ERROR)
                 completion(response)
             }
         }
     }
 
-    private fun defineHeaderForAccountKitAuth(phone: String?, email: String?): String {
-
+    /**
+     * Define body to authenticate user with Nexte main server
+     * @param phone Phone from a user - used in Account Kit auth
+     * @param phone Email from a user - used in Account Kit auth
+     */
+    private fun defineBodyForAccountKitAuth(phone: String?, email: String?): String {
         val json = JSONObject()
-        json.put("username",  phone) // Expected ramires
-        json.put("password",  email) // Expected test-nexte-ramires
 
-        if(phone != "") {
-            return json.toString()
+        if(phone != null) {
+            json.put("username",  "ramires") // Expected ramires
+            json.put("phone",  phone) // Expected test-nexte-ramires
         } else {
-            return json.toString()
+            json.put("username",  "ramires") // Expected ramires
+            json.put("email",  email) // Expected test-nexte-ramires
         }
+
+        return json.toString()
     }
 }
 
