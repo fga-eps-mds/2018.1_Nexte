@@ -1,8 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import com.facebook.accountkit.AccountKitLoginResult
-
-
 /**
  * Class to define Model of Login Scene to send informations between layers
  */
