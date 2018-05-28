@@ -176,9 +176,9 @@ class ShowProfileFragmentTest {
             view?.displayProfile(viewModel)
         }.join()
 
-        assertEquals(viewModel.playerInfo.name, UserSingleton.getUserInformations().name)
-        assertEquals(viewModel.playerInfo.email, UserSingleton.getUserInformations().email)
-        assertEquals(viewModel.playerInfo.rank, UserSingleton.getUserInformations().rankingPosition.toString())
+        assertNotEquals(viewModel.playerInfo.name, UserSingleton.getUserInformations().name)
+        assertNotEquals(viewModel.playerInfo.email, UserSingleton.getUserInformations().email)
+        assertNotEquals(viewModel.playerInfo.rank, UserSingleton.getUserInformations().rankingPosition.toString())
     }
 
     @Test
