@@ -26,15 +26,18 @@ class ShowProfileInteractorTest {
     @Test
     fun successShowProfile(){
         //prepare
+        this.interactor?.worker = ShowProfileWorker()
         this.interactor?.worker?.updateLogic = mock2
         this.interactor?.worker?.userManager = UserManager(UserAdapterSpy())
         val request = ShowProfileModel.Request("luis")
         val expectedResult = true
+        val presenter = this?.interactor?.presenter
 
         //call
         thread { this.interactor?.showProfile(request = request) }.join()
 
         //assert
+        assertNotNull(presenter)
         assertEquals(expectedResult, this.mock2?.passedHere)
     }
 

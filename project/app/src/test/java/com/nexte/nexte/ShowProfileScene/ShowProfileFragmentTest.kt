@@ -1,6 +1,8 @@
 package com.nexte.nexte.ShowProfileScene
 
 import android.os.Bundle
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
 import org.junit.After
@@ -50,6 +52,22 @@ class ShowProfileFragmentTest {
 
         }.join()
     }
+
+    @Test
+    fun testGettersAndSetters(){
+        view?.userManager = UserManager(UserAdapterSpy())
+        view?.buttonEditProfile = null
+        view?.rankingChart = null
+
+        val userManager = view?.userManager
+        val buttonEditProfile = view?.buttonEditProfile
+        val rankingChart = view?.rankingChart
+
+        assertNotNull(userManager)
+        assertNull(buttonEditProfile)
+        assertNull(rankingChart)
+    }
+
 
     @Test
     fun testOnCreateView(){
@@ -118,9 +136,26 @@ class ShowProfileFragmentTest {
     }
 
     @Test
+    fun testGetShowProfileFragment(){
+        val graphManager = ShowProfileFragment.GraphManager(view!!)
+        val fragment = graphManager.showProfileFragment
+
+        assertNotNull(fragment)
+    }
+
+    @Test
+    fun testSetShowProfileFragment(){
+        val graphManager = ShowProfileFragment.GraphManager(view!!)
+        graphManager.showProfileFragment = view!!
+
+        assertNotNull(graphManager.showProfileFragment)
+    }
+
+
+    @Test
     fun testGraphManagerCreateRankingGraph(){
         thread {
-            view?.graphManager?.createGraph()
+            view?.graphManager?.createRankingGraph()
         }.join()
 
         assertNotNull(view?.graphManager)

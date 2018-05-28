@@ -4,6 +4,7 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.Player
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 
@@ -27,12 +28,16 @@ class ShowProfileWorkerTest {
     fun testGetUserProfileSuccess(){
         //prepare
         worker?.userManager = UserManager(UserAdapterSpy())
+        val userManager = worker?.userManager
         worker?.updateLogic = mock
+        val updateLogic = worker?.updateLogic
         val request = ShowProfileModel.Request("Robert Baptist")
 
         //call
         thread { this.worker?.getUserProfile(request = request) }.join()
 
+        assertNotNull(updateLogic)
+        assertNotNull(userManager)
         assertNotNull(this.mock?.response)
     }
 

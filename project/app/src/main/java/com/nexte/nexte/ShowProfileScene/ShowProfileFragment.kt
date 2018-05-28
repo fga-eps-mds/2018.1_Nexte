@@ -109,7 +109,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     fun createShowProfileRequest() {
         val showUserProfileRequest = ShowProfileModel.Request(anotherPlayerName)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
-
     }
 
     /**
