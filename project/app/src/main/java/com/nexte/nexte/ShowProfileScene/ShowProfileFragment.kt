@@ -45,7 +45,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var buttonEditProfile: Button? = null
     var rankingChart: LineChart? = null
     private var newLineChart: LineChart? = null
-    private var anotherPlayerName: String = ""
+    var anotherPlayerName: String = ""
     var userManager: UserManager? = null
     val graphManager = GraphManager(this)
 
@@ -107,7 +107,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest() {
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(anotherPlayerName)
+        val showUserProfileRequest = ShowProfileModel.Request(anotherPlayerName)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
 
     }
