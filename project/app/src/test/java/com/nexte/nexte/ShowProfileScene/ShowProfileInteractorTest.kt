@@ -1,34 +1,41 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.concurrent.thread
 
 class ShowProfileInteractorTest {
 
     private var mock: MockShowProfilePresentationLogic? = null
     private var interactor: ShowProfileInteractor? = null
+    private var mock2: MockShowProfileUpdateLogic? = null
 
     @Before
     fun setUp() {
         this.mock = MockShowProfilePresentationLogic()
         this.interactor = ShowProfileInteractor()
         this.interactor?.presenter = mock
+        this.mock2 = MockShowProfileUpdateLogic()
     }
 
     @Test
     fun successShowProfile(){
         //prepare
-        val request = ShowProfileModel.Request(username = "luis")
+        this.interactor?.worker?.updateLogic = mock2
+        this.interactor?.worker?.userManager = UserManager(UserAdapterSpy())
+        val request = ShowProfileModel.Request("luis")
         val expectedResult = true
 
         //call
-        this.interactor?.showProfile(request = request)
+        thread { this.interactor?.showProfile(request = request) }.join()
 
         //assert
-        assertEquals(expectedResult, this.mock?.passedHere)
+        assertEquals(expectedResult, this.mock2?.passedHere)
     }
 
     @After
@@ -38,11 +45,21 @@ class ShowProfileInteractorTest {
     }
 }
 
-private class MockShowProfilePresentationLogic: ShowProfilePresentationLogic{
+private class MockShowProfilePresentationLogic: ShowProfilePresentationLogic {
 
     var passedHere = false
 
-    override fun presentUserProfile(response: ShowProfileModel.Response){
+    override fun presentUserProfile(response: ShowProfileModel.Response) {
+        this.passedHere = true
+    }
+
+}
+
+private class MockShowProfileUpdateLogic: ShowProfileWorkerUpdateLogic{
+
+    var passedHere = false
+
+    override fun updateUserProfile(response: ShowProfileModel.Response) {
         this.passedHere = true
     }
 }
