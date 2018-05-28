@@ -131,7 +131,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             yVals.add(Entry(4f, 1f))
             yVals.add(Entry(5f, 5f))
 
-
             return yVals
         }
 
@@ -255,6 +254,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         interactor.presenter = presenter
         presenter.viewScene = viewScene
         viewScene.showProfileInteractor = interactor
+        interactor.worker.updateLogic = interactor
         interactor.worker.userManager = userManager
     }
 
