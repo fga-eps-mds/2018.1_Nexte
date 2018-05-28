@@ -213,6 +213,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/updateProfileButton" />
 
+        <View
+            android:id="@+id/view_password"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/red"
+            app:layout_constraintBottom_toTopOf="@+id/passwordConfirmationTextEdit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/passwordConfirmationTextEdit" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/edge_password"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/updateProfileButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/edge_info"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/passwordTextEdit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </android.support.constraint.ConstraintLayout>
 
