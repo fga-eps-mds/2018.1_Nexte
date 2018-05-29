@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -154,17 +156,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * SetYAxisValues.
          */
 
-        fun createGraph() {
+        fun customizeChartLine(yAxes: ArrayList<Entry>, label: String): LineDataSet {
 
-            val xAxis = showProfileFragment.newLineChart?.xAxis //instance a view from xml.
-            val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
-            val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-
-            // Configure line Style
-
-            val line = LineDataSet(yAxes, "Vitoria") /*Access the data of yAxes, introduce a
-             legend and customize the graphic*/
-
+            val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
             line.setDrawCircleHole(true) // Draw Circles
             line.setDrawValues(false)// Hide values from a point in chart
@@ -174,6 +168,17 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             line.color = Color.BLUE // Line color
             line.lineWidth = 4.0f // Line width
             line.axisDependency = YAxis.AxisDependency.LEFT
+
+            return line
+        }
+
+        fun createGraph() {
+
+            val xAxis = showProfileFragment.newLineChart?.xAxis //instance a view from xml.
+            val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
+            val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
+
+            val line = this.customizeChartLine(yAxes, "Vitoria")
             dataSets.add(line)
 
             //Responsible to create an array that store the string about last months of matches of the user
@@ -183,41 +188,44 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             xAxis?.textColor = Color.WHITE
 
             /* TO DO - Review this fragment of code
-
             LineData, access the data defined, and xml LineChart have access to it
             val points = LineData(dataSets)
             points.setValueTextColor(Color.WHITE)
-
             */
 
             val lineData = LineData(dataSets) // Added data to chart
+            val description = Description()
+            description.text = ""
 
             // Scale
 
-            // General
-
-//            showProfileFragment.newLineChart..
+            // TO-DO: General
+            showProfileFragment.newLineChart?.setDrawBorders(false)
 
             // TO-DO: Grid Lines
-
-
+            showProfileFragment.newLineChart?.isScaleXEnabled = false
+            showProfileFragment.newLineChart?.isScaleYEnabled = false
+            showProfileFragment.newLineChart?.description = description
 
             // TO-DO: Axis X
-
-//            val axisX = showProfileFragment.newLineChart.xAxis
-//
+            val axisX = showProfileFragment.newLineChart?.xAxis
+            axisX?.textColor = Color.BLACK
+            axisX?.gridLineWidth = 1.0f
+            axisX?.mLabelWidth = 0
 
             // TO-DO: Axis Y
-            
-//            showProfileFragment.newLineChart?.data = lineData
-//            showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
-//            showProfileFragment.newLineChart?.axisLeft?.setAxisMinValue(0f)
-//            showProfileFragment.newLineChart?.axisRight?.setAxisMaxValue(0f)
-//            showProfileFragment.newLineChart?.axisRight?.setAxisMinValue(8f)
-//            showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
-//            showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
-//            showProfileFragment.newLineChart?.setScaleEnabled(false)
-//            showProfileFragment.newLineChart?.invalidate()
+            showProfileFragment.newLineChart?.axisRight?.isEnabled = false
+            showProfileFragment.newLineChart?.data = lineData
+            showProfileFragment.newLineChart?.legend!!.isEnabled = false
+            showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
+            showProfileFragment.newLineChart?.axisLeft?.setAxisMinValue(0f)
+            showProfileFragment.newLineChart?.axisRight?.setAxisMaxValue(0f)
+            showProfileFragment.newLineChart?.axisRight?.setAxisMinValue(8f)
+            showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
+            showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
+            showProfileFragment.newLineChart?.xAxis?.setDrawAxisLine(false)
+            showProfileFragment.newLineChart?.setScaleEnabled(false) // Allows interaction
+            showProfileFragment.newLineChart?.invalidate()
         }
 
         /**
