@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.TextView
 import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Player
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_edit_profile.*

@@ -1,8 +1,5 @@
 package com.nexte.nexte.EditProfileScene
 
-import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Player
-import com.nexte.nexte.UserSingleton
 
 /**
  * Interface responsible to interpret received user information and send it to [EditProfileView]

@@ -1,7 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
 import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Player
 
 /**
  * Class responsible to determinate what will be passed between classes of scene
