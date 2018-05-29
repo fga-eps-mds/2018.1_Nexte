@@ -22,6 +22,7 @@ import com.nexte.nexte.MatchScene.MatchFragment
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger.*
+import kotlinx.android.synthetic.main.row_ranking.*
 
 
 /**
@@ -287,8 +288,9 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
                     (context as ChallengeView).interactor?.requestChallenger(request)
                 }
 
-                val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
-                (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
+                    val request = ChallengeModel.ShowRankingPlayersRequest.Request(UserSingleton.loggedUser.rankingPosition)
+                    (context as ChallengeView).interactor?.requestPlayersToChallenge(request)
+
             }
         }
     }

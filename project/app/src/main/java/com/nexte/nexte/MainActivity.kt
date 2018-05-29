@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.profile -> {
-                val showProfileFragment = ShowProfileFragment().getInstance(UserSingleton.getUserInformations().name)
+                val showProfileFragment = ShowProfileFragment().getInstance(UserSingleton.loggedUser.name)
                 openFragment(showProfileFragment)
                 return@OnNavigationItemSelectedListener true
 

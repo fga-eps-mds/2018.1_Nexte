@@ -1,5 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
 
@@ -25,28 +26,9 @@ class EditProfileWorker {
         val username = request.username
         val tokenID = request.tokenID
 
-        val emptyUser = Player("",
-            -1,
-            "",
-            "",
-            "",
-            "",
-            -1,
-            "",
-            "")
-
-        var returnedUser: Player? = null
-
-        // This condition verify if exist a user
-        if(tokenID == "") {
-            returnedUser = emptyUser
-            UserSingleton.setUserInformations(emptyUser)
-        } else if(username == "gabrielalbino") {
-            returnedUser = UserSingleton.getUserInformations()
-        }
 
         val response: EditProfileModel.RecoverUserRequest.Response =
-                EditProfileModel.RecoverUserRequest.Response(returnedUser!!)
+                EditProfileModel.RecoverUserRequest.Response(UserSingleton.loggedUser)
 
         completion(response)
     }
@@ -63,17 +45,15 @@ class EditProfileWorker {
 
         val user = request.user
         var errorID: Int? = null
-        var newUser: Player? = null
+        var newUser: User? = null
+        val password = request.password
 
         if(!user.email.contains('@')) {
             errorID = 1
-        } else if(user.password.isNotEmpty() && user.password.length < minPasswordLenght) {
+        } else if(password.isNotEmpty() && password.length < minPasswordLenght) {
             errorID = 2
         } else {
             newUser = user
-            if(user.password.isEmpty()) {
-                user.password = UserSingleton.getUserInformations().password
-            }
         }
 
         val response: EditProfileModel.EditProfileRequest.Response =

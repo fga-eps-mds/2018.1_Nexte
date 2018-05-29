@@ -76,7 +76,7 @@ class ChallengeWorker {
         val user = request.userChallenged
 
         val challenged = MatchModel.MatchPlayer(user, R.mipmap.ic_launcher_round)
-        val challenger = MatchModel.MatchPlayer(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher_round)
+        val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
         val match = MatchModel.MatchData(challenged, challenger)
 
         val response = ChallengeModel.ChallengeButtonRequest.Response(user, match)

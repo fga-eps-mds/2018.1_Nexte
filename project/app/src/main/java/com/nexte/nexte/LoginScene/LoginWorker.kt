@@ -37,9 +37,9 @@ class LoginWorker {
                 val status = LoginModel.Authentication.StatusCode.AUTHORIZED
                 val response = LoginModel.Authentication.Response(token, status)
 
-                // TO DO: Add more user to server to authenticate with
-                val player = UserSingleton.getUserInformations()
-                UserSingleton.setUserInformations(player)
+                // TODO: Add more user to server to authenticate with
+                val player = UserSingleton.loggedUser
+                UserSingleton.setLoggedUser(player.id)
 
                 completion(response)
             }
@@ -72,9 +72,9 @@ class LoginWorker {
 
             result.success {
 
-                // TO DO: Add auth with token in NEXTE main server
-                val player = UserSingleton.getUserInformations()
-                UserSingleton.setUserInformations(player)
+                //TODO: Add auth with token in NEXTE main server
+                val player = UserSingleton.loggedUser
+                UserSingleton.setLoggedUser(player.id)
 
                 val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
                 completion(response)
