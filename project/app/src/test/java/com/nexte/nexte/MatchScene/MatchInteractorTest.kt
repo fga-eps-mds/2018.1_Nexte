@@ -19,6 +19,40 @@ class MatchInteractorTest {
         this.mockk = MockkMatchUpdateWorkerLogic()
         this.mockk?.mock = mock
         this.interactor?.worker?.updateLogic = mockk
+
+        //assert
+        assertNotNull(this.interactor)
+    }
+
+    @Test
+    fun testSetWorker(){
+        //prepare
+        val worker = MatchWorker()
+
+        //call
+        this.interactor?.worker = worker
+
+        //call
+        assertEquals(this.interactor?.worker, worker)
+    }
+
+    @Test
+    fun testNullGetInfoMatches() {
+        //prepare
+        val matchData = MatchModel.MatchData(
+                MatchModel.MatchPlayer("larissa", 1),
+                MatchModel.MatchPlayer("larissa2", 1))
+        val request = MatchModel.InitScene.Request(matchData)
+        val presenter = this.interactor?.presenter
+        this.interactor?.presenter = null
+
+        //call
+        this.interactor?.getInfoMatches(request)
+
+        //assert
+        assertEquals(this.mock?.passedHere, false)
+        this.interactor?.presenter = presenter
+
     }
 
     @Test
@@ -47,6 +81,13 @@ class MatchInteractorTest {
     }
 
     @Test
+    fun testInteractor(){
+        val interactor = MatchInteractor()
+
+        assertNotNull(interactor)
+    }
+
+    @Test
     fun testGetMatchResultSucess(){
         val response = MatchModel.SendMatchResult.Response(
                 MatchModel.SendMatchResult.Status.SUCESSED)
@@ -64,6 +105,38 @@ class MatchInteractorTest {
         this.interactor?.getMatchResultResponse(response = response)
 
         assertEquals(MatchModel.SendMatchResult.Status.ERROR, mock?.response2?.status)
+    }
+
+    @Test
+    fun testGetMatchResultWithoutPresenter(){
+        //prepare
+        val response = MatchModel.SendMatchResult.Response(
+                MatchModel.SendMatchResult.Status.ERROR)
+        val presenter = this.interactor?.presenter
+        this.interactor?.presenter = null
+        mock?.response2 = null
+        //call
+        this.interactor?.getMatchResultResponse(response = response)
+
+        //assert
+        assertNull(mock?.response2)
+        this.interactor?.presenter = presenter
+    }
+
+    @Test
+    fun testGetMatchResult2WithoutPresenter(){
+        //prepare
+        val response = MatchModel.SendMatchResult.Response(
+                MatchModel.SendMatchResult.Status.SUCESSED)
+        val presenter = this.interactor?.presenter
+        this.interactor?.presenter = null
+        mock?.response2 = null
+        //call
+        this.interactor?.getMatchResultResponse(response = response)
+
+        //assert
+        assertNull(mock?.response2)
+        this.interactor?.presenter = presenter
     }
 
     @After

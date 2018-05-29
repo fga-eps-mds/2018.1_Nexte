@@ -20,15 +20,14 @@ class CommentAdapterRealm : CommentAdapter {
 
     }
 
-    override fun updateOrInsert(comment: Comment): Comment? {
-        convertCommentToCommentRealm(comment)?.let {
+    override fun updateOrInsert(challenge: Comment): Comment? {
+        convertCommentToCommentRealm(challenge).let {
             realm.beginTransaction()
             realm.insertOrUpdate(it)
             realm.commitTransaction()
-            return comment
+            return challenge
         }
 
-        return null
     }
 
     override fun delete(identifier: String): Comment? {
@@ -46,14 +45,13 @@ class CommentAdapterRealm : CommentAdapter {
 
         val date = commentRealm.date
 
-        val comments = Comment(id = commentId, userId = userId, comment = comment, date = date)
-        return comments
+        return Comment(id = commentId, userId = userId, comment = comment, date = date)
     }
 
     private fun convertListCommentRealmToCommentList(commentRealm: List<CommentRealm>) : List<Comment> {
         val comments: MutableList<Comment> = mutableListOf()
-        for(commentRealm in commentRealm) {
-            convertCommentRealmToComment(commentRealm)?.let {
+        for(currentCommentRealm in commentRealm) {
+            convertCommentRealmToComment(currentCommentRealm).let {
                 comments.add(it)
             }
         }
@@ -71,8 +69,7 @@ class CommentAdapterRealm : CommentAdapter {
 
         val date = comment.date
 
-        val commentRealm = CommentRealm(id = id, userId = userId, comment = comments, date = date)
-        return commentRealm
+        return CommentRealm(id = id, userId = userId, comment = comments, date = date)
     }
 
 }

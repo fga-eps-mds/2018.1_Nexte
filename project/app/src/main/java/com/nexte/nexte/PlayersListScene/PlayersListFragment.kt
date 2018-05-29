@@ -56,6 +56,18 @@ interface ChallengeDisplayLogic {
 
 /**
  * Class that sets the tab fragment on the screen with the 'sent' and 'received' tabs
+ * @property userManager is the [UserManager] object that will be passed to the worker
+ * @property fragment is the parent fragment instance ([MatchFragment]) that will be used to update tabs when user send challenge
+ * @property sendChallengeButton is the instance of the button responsible to send the challenge
+ * @property expandedLosses is the instance of field that will hold player losses when expanded view is visible
+ * @property expandedWins is the instance of field that will hold player wins when expanded view is visible
+ * @property expandedRankingTextView is the instance of field that will hold player ranking position when expanded view is visible]
+ * @property expandedName is the instance of field that will hold player username when expanded view is visible
+ * @property noPlayersText instance of text view that will be shown when user has no player to challenge
+ * @property message instance of text view that will be shown when player already challenged someone
+ * @property interactor holds an instance of interector that will be called to control view actions
+ * @property hasMatch is tha variable that will control when the message will be shown
+ * @property recyclerView is an instance of the recyclerview that is holding players avaliable for challenge
  */
 class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
 
@@ -72,10 +84,15 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
 
+    /**
+     * Companion Object responsible to create an instance of this fragment
+     */
     companion object {
 
         /**
          * Method that gets which tab is selected by the user
+         *
+         * @param hasMatch defines if the challenge button will be enabled (if there isn't any match) or disabled (if there is)
          */
         fun getInstance(hasMatch: Boolean) : PlayersListFragment {
 
@@ -89,7 +106,10 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
         }
     }
 
-
+    /**
+     * Method responsible to get the bundle arguments and transfer it to the class, and also call the set up function that will
+     * load the instances required by [Interactor], [Presenter] and [Worker]
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -136,6 +156,9 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
         return newView
     }
 
+    /**
+     * Method responsible to set action listeners
+     */
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
@@ -224,6 +247,8 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
 
     /**
      * Method to display message informing that there are no players avaliable to set a match
+     *
+     * @param messageText Text that will be displaed on alertDialog
      */
     override fun displayNoPlayersMessage(messageText: String) {
         recyclerView?.visibility = View.INVISIBLE
