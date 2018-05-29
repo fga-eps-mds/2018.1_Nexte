@@ -43,7 +43,7 @@ class LikeListWorker {
      * @return MutableList of addPLayers
      */
     private fun convertUserToLikeListPlayer(user: User?): MutableList<LikeListModel.Players> {
-        val likeListModelPlayer = LikeListModel.Players(name = user!!.name, time = "", photo = R.mipmap.ic_launcher)
+        val likeListModelPlayer = LikeListModel.Players(name = user!!.name, photo = R.mipmap.ic_launcher)
 
         return mutableListOf(likeListModelPlayer)
     }

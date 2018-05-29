@@ -43,8 +43,7 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
     for (likePlayer in likePlayers) {
         val likePlayerFormatted = LikeListModel.PlayersFormatted(
                 likePlayer.name,
-                likePlayer.photo,
-                likePlayer.time)
+                likePlayer.photo)
 
         playersFormatted.add(likePlayerFormatted)
     }

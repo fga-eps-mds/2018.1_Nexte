@@ -8,6 +8,7 @@ import com.nexte.nexte.R
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Adapter
 import com.nexte.nexte.Entities.User.UserManager
 import kotlinx.android.synthetic.main.row_likes.view.*
 
@@ -86,7 +87,7 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
     * @param viewModel is received from presenter to show on screen
     */
     override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
-        likesListRecyclerView?.adapter = LikesListAdapter(viewModel.playersFormatted, this.parentFragment)
+        likesListRecyclerView!!.adapter = LikesListAdapter(viewModel.playersFormatted, this)
     }
 
     /**
@@ -130,7 +131,6 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
              */
             fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
                 itemView.PlayerName.text = printedPlayer.name
-                itemView.commentDate.text = printedPlayer.time
             }
         }
     }
