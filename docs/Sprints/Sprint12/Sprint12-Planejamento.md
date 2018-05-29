@@ -71,7 +71,6 @@ A priorização essa sprint foi seguindo o roadmap e fechando as dívidas técni
 |[#337](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/337) |Eu, como Scrum Master desejo documentar a Sprint 11, para que seja possível mensurar seu sucesso. | 0 |
 |[#336](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/336) |Eu, como Scrum master, desejo documentar o planejamento da Sprint 12 para saber quais histórias vão ser feitas. | 0 |
 |[#326](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/326) |Eu, como desenvolvedor, desejo aplicar design à tela de alteração de perfil. | 5 |
-|[#326](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/326) |Eu, como desenvolvedor, desejo aplicar design à tela de alteração de perfil. | 5 |
 |[#127](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/127) |Eu, como desenvolvedor, desejo aplicar design ao perfil do usuário para que atenda as requisitos de design. | 8 |
 |[#138](https://github.com/fga-gpp-mds/2018.1_Nexte/issues/138) |Eu, como desenvolvedor, desejo Integrar servidor com perfil do usuário. | 5
  |
