@@ -93,10 +93,13 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     private fun goToLikesList() {
 
         val likeListFragment = LikeListFragment().getInstance()
-        val intent = Intent(activity, LikeListFragment::class.java)
-        startActivity(intent)
+        val fragmentManager = activity.fragmentManager
+      //  val intent = Intent(activity, LikeListFragment::class.java)
+      //  startActivity(intent)
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, likeListFragment, "like")
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
 
