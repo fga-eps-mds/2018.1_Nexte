@@ -3,14 +3,15 @@ package com.nexte.nexte.LoginScene
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.facebook.accountkit.AccountKitLoginResult
-import com.facebook.accountkit.ui.AccountKitConfiguration
-import com.facebook.accountkit.ui.AccountKitActivity
-import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
+import com.facebook.accountkit.*
 import kotlinx.android.synthetic.main.activity_login_view.*
+import com.facebook.accountkit.ui.AccountKitConfiguration
+import com.facebook.accountkit.ui.AccountKitActivity
+import com.facebook.accountkit.ui.LoginType
+
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -49,6 +50,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AccountKit.initialize(this)
         setContentView(R.layout.activity_login_view)
         this.setup()
 
@@ -77,17 +79,14 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            LoginModel.AccountKit.ACCOUNTKIT_CODE -> {
-                val loginResult = data?.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-                val request: LoginModel.AccountKit.Request =  LoginModel.AccountKit.Request(loginResult!!)
-                this.interactor?.accountKitAuthentication(request)
+            LoginModel.AccountKit.accountKit_code -> {
+                this.getAccount()
             }
         }
     }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         val message: String = viewModel.message
-        Log.i("wed", "dssdsd")
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
     }
@@ -110,16 +109,25 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     /**
-     * Method responsible for setup protocol between scenes
+     * Gets current account from Facebook Account Kit which include user's phone number
      */
-    fun setup() {
-        val view = this
-        val interactor = LoginInteractor()
-        val presenter = LoginPresenter()
+    private fun getAccount() {
+        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
+            override fun onSuccess(account: Account) {
+                val phoneNumber = account.getPhoneNumber()
+                val phoneNumberString = phoneNumber.toString()
 
-        view.interactor = interactor
-        interactor.presenter = presenter
-        presenter.view = view
+                if(phoneNumberString !=  "") {
+                    Log.i("Phone number:", phoneNumberString)
+                    val request = LoginModel.AccountKit.Request("", phoneNumberString)
+                    interactor?.accountKitAuthentication(request)
+                }
+            }
+
+            override fun onError(error: AccountKitError) {
+                Log.e("AccountKit", error.toString())
+            }
+        })
     }
 
     /**
@@ -130,7 +138,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
-        startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
+        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 
     /**
@@ -141,6 +149,19 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
-        startActivityForResult(intent, LoginModel.AccountKit.ACCOUNTKIT_CODE)
+        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
+    }
+
+    /**
+     * Method responsible for setup protocol between scenes
+     */
+    fun setup() {
+        val view = this
+        val interactor = LoginInteractor()
+        val presenter = LoginPresenter()
+
+        view.interactor = interactor
+        interactor.presenter = presenter
+        presenter.view = view
     }
 }

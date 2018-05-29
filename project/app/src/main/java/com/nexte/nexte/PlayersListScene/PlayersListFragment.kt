@@ -191,8 +191,9 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
      */
     override fun displayMessage(viewModel: PlayersListModel.ChallengeButtonRequest.ViewModel) {
 
+        val activity = this.activity as MainActivity
+
         if(viewModel.matchMessage != ""){
-            val activity = this.activity as MainActivity
             fragment = activity.supportFragmentManager.findFragmentByTag("currentFragment")
             (fragment as? ChallengeTabsFragment)?.match = viewModel.matchData
             this.message?.text = viewModel.matchMessage
@@ -202,7 +203,7 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
         }
 
 
-        val builder = AlertDialog.Builder(this.activity)
+        val builder = AlertDialog.Builder(context)
 
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)

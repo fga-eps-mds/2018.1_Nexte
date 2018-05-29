@@ -5,44 +5,76 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E"
-    tools:context=".CommentsScene.CommentsView"
-    android:configChanges="keyboard|keyboardHidden">
+    android:background="#393939"
+    android:configChanges="keyboard|keyboardHidden"
+    tools:context=".CommentsScene.CommentsFragment">
 
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:background="@android:color/white"
+        android:layout_height="94dp"
+        android:layout_marginEnd="8dp"
+        android:background="#393939"
         android:ems="10"
+        android:hint="Adicione um comentário"
         android:inputType="textMultiLine"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAlignment="center"
+        android:textColorHint="#9b9b9b"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sendButton"
+        app:layout_constraintEnd_toStartOf="@+id/checkButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/commentsRecyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/commentsRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/commentsRecyclerView"
         tools:ignore="LabelFor" />
 
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/enviar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/commentEditText" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/commentsRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="477dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_comments" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#979797"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="3dp"
+        android:background="#393939"
+        android:src="@mipmap/direct_mdpi"
+        android:tint="#9b9b9b"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/checkButton"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:background="#2a2a2a"
+        android:backgroundTint="#2a2a2a"
+        android:padding="0dp"
+        android:src="@mipmap/check_mdpi"
+        android:tint="#393939"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 </android.support.constraint.ConstraintLayout>

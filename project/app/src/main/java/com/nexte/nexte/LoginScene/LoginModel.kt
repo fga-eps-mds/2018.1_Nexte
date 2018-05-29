@@ -1,8 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import com.facebook.accountkit.AccountKitLoginResult
-
-
 /**
  * Class to define Model of Login Scene to send informations between layers
  */
@@ -47,14 +44,15 @@ class LoginModel {
     class AccountKit {
 
         companion object {
-           const val ACCOUNTKIT_CODE = 13
+           const val accountKit_code = 13
         }
 
         /**
          * Class responsible to store received information from Presenter to View
-         * @param loginResult: Result to a request for facebook API
+         * @param email: Email used to auth with facebook API
+         * @param phone: Phone used to auth with facebook API
          */
-        class Request(val loginResult: AccountKitLoginResult)
+        class Request(val email: String?, val phone: String?)
 
         /**
          * Class responsible to store received information from worker to Presenter

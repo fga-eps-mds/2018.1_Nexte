@@ -7,6 +7,7 @@ import java.util.*
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class RankingModelTest {
 
@@ -14,46 +15,6 @@ class RankingModelTest {
     fun setUp() {
     }
 
-    @Test
-    fun successPlayer(){
-        //prepare
-        val name = "luis"
-        val pictureURL = 1
-        val wins = 3
-        val losses = 1
-        val rankingPosition = 2
-        val lastGame = "ontem"
-        val efficiency = "90%"
-        val playerCategory = "profissional"
-
-        //call
-        val player = RankingModel.Player(name = name,
-                pictureURL = pictureURL,
-                wins = wins,
-                losses = losses,
-                rankingPosition = rankingPosition,
-                lastGame = lastGame,
-                efficiency = efficiency,
-                playerCategory = playerCategory)
-        player.losses = losses
-        player.name = name
-        player.pictureURL = pictureURL
-        player.wins = wins
-        player.rankingPosition = rankingPosition
-        player.lastGame = lastGame
-        player.efficiency = efficiency
-        player.playerCategory = playerCategory
-
-        //assert
-        assertEquals(name, player.name)
-        assertEquals(pictureURL, player.pictureURL)
-        assertEquals(wins, player.wins)
-        assertEquals(losses, player.losses)
-        assertEquals(rankingPosition, player.rankingPosition)
-        assertEquals(efficiency, player.efficiency)
-        assertEquals(playerCategory, player.playerCategory)
-        assertEquals(lastGame, player.lastGame)
-    }
 
     @Test
     fun successRequest(){

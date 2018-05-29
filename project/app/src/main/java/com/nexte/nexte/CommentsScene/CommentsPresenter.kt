@@ -1,6 +1,9 @@
 package com.nexte.nexte.CommentsScene
 
 
+import com.nexte.nexte.Entities.Comment.Comment
+import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.R
 import java.text.SimpleDateFormat
 
 
@@ -47,6 +50,7 @@ interface CommentsPresentationLogic {
  */
 class CommentsPresenter : CommentsPresentationLogic {
 
+    var userManager: UserManager? = null
     var viewController: CommentsDisplayLogic? = null
 
     override fun presentComment(response: CommentsModel.GetCommentsRequest.Response) {
@@ -65,12 +69,13 @@ class CommentsPresenter : CommentsPresentationLogic {
         val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
         val time = dateToShow.format(newComment.date)
 
+        val userComment = userManager?.get(newComment.userId!!)
         val formatted = CommentsModel.CommentFormatted(
 
-                newComment.comment,
+                newComment.comment!!,
                 time,
-                newComment.author.name,
-                newComment.author.photo
+                userComment!!.name,
+                R.mipmap.ic_launcher
         )
 
         val viewModel = CommentsModel.PublishCommentRequest.ViewModel(formatted)
@@ -104,7 +109,7 @@ class CommentsPresenter : CommentsPresentationLogic {
      */
     override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
 
-        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(response.delComments))
+        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(mutableListOf(response.delComments)))
         viewController?.displayCommentsAfterDel(viewModel)
     }
 
@@ -115,21 +120,21 @@ class CommentsPresenter : CommentsPresentationLogic {
      * @param gameComments MutableList of unformatted comments
      * @return MutableList of formatted comments
      */
-    private fun formatComment(gameComments: MutableList<CommentsModel.Comment>) :
+    private fun formatComment(gameComments: MutableList<Comment>) :
             MutableList<CommentsModel.CommentFormatted> {
 
         val commentsFormatted: MutableList<CommentsModel.CommentFormatted> = mutableListOf()
 
         for (gameComment in gameComments) {
-
+            val user = userManager?.get(gameComment.userId!!)
             val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
             val time = dateToShow.format(gameComment.date)
 
             val commentFormatted = CommentsModel.CommentFormatted(
-                    gameComment.comment,
+                    gameComment.comment!!,
                     time,
-                    gameComment.author.name,
-                    gameComment.author.photo)
+                    user!!.name,
+                    R.mipmap.ic_launcher)
 
             commentsFormatted.add(commentFormatted)
         }

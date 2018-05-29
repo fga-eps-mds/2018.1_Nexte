@@ -1,7 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import com.facebook.accountkit.AccountKit
-import com.facebook.accountkit.AccountKitLoginResult
 import org.junit.After
 import org.junit.Before
 
@@ -99,7 +97,7 @@ class LoginModelTest {
     @Test
     fun testAccountKitCode() {
         //prepare
-        val accountKitCode = LoginModel.AccountKit.ACCOUNTKIT_CODE
+        val accountKitCode = LoginModel.AccountKit.accountKit_code
 
         //assert
         assertEquals(accountKitCode, 13)

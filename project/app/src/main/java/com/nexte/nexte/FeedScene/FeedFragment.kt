@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nexte.nexte.CommentsScene.CommentsFragment
 import com.nexte.nexte.LikeListScene.LikeListView
-import com.nexte.nexte.CommentsScene.CommentsView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_feed.view.*
 
@@ -43,7 +43,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
     var feedRecyclerView : RecyclerView? = null
-
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
@@ -99,8 +98,12 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
     private fun goToCommentsList() {
 
-        val intent = Intent(activity, CommentsView::class.java)
-        startActivity(intent)
+        val commentsFragment = CommentsFragment().getInstance()
+        val fragmentManager = activity.fragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, commentsFragment, "comments")
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     /**
