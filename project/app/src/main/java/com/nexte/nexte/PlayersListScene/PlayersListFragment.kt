@@ -72,18 +72,21 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
 
-    /**
-     * Method that gets which tab is selected by the user
-     */
-    fun getInstance(hasMatch: Boolean) : PlayersListFragment {
+    companion object {
 
-        val bundle = Bundle()
-        val fragment = PlayersListFragment()
+        /**
+         * Method that gets which tab is selected by the user
+         */
+        fun getInstance(hasMatch: Boolean) : PlayersListFragment {
 
-        bundle.putBoolean("has match", hasMatch)
-        fragment.arguments = bundle
+            val bundle = Bundle()
+            val fragment = PlayersListFragment()
 
-        return fragment
+            bundle.putBoolean("has match", hasMatch)
+            fragment.arguments = bundle
+
+            return fragment
+        }
     }
 
 
@@ -251,6 +254,8 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
         this.expandedWins?.visibility = View.INVISIBLE
         this.expandedWins?.text = ""
     }
+
+
 
     /**
      * Adapter Class to control recycler view of users that can be challenged

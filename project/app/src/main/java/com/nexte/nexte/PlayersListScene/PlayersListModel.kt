@@ -1,7 +1,7 @@
 package com.nexte.nexte.PlayersListScene
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MatchScene.MatchModel
-import com.nexte.nexte.Player
+
 
 /**
  * Class to define the Model of Challenge Scene to send informations between layers

@@ -21,24 +21,24 @@ class RankingWorkerTest {
         this.worker?.userManager = UserManager(UserAdapterSpy())
     }
 
-    @Test
-    fun testGetUsersInRanking(){
-        //prepare
-        val request = RankingModel.Request()
-
-        //call
-        thread { this.worker?.getUsersInRanking(request = request) }.join()
-
-        //assert
-        assertEquals(this.mock?.response?.users?.size, 9)
-        assertEquals(this.mock?.response?.users!![0].name, "User test")
-        assertEquals(this.mock?.response?.users!![3].wins, 0)
-        assertEquals(this.mock?.response?.users!![1].rankingPosition, 1)
-        assertEquals(this.mock?.response?.users!![4].category, null)
-        assertEquals(this.mock?.response?.users!![5].latestGames?.size, 0)
-        assertEquals(this.mock?.response?.users!![6].loses, 0)
-
-    }
+//    @Test
+//    fun testGetUsersInRanking(){
+//        //prepare
+//        val request = RankingModel.Request()
+//
+//        //call
+//        thread { this.worker?.getUsersInRanking(request = request) }.join()
+//
+//        //assert
+//        assertEquals(this.mock?.response?.users?.size, 9)
+//        assertEquals(this.mock?.response?.users!![0].name, "User test")
+//        assertEquals(this.mock?.response?.users!![3].wins, 0)
+//        assertEquals(this.mock?.response?.users!![1].rankingPosition, 1)
+//        assertEquals(this.mock?.response?.users!![4].category, null)
+//        assertEquals(this.mock?.response?.users!![5].latestGames?.size, 0)
+//        assertEquals(this.mock?.response?.users!![6].loses, 0)
+//
+//    }
 
     @After
     fun tearDown() {

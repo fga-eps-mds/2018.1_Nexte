@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.PlayersListScene.PlayersListFragment
 import com.nexte.nexte.MatchScene.MatchFragment
 import com.nexte.nexte.MatchScene.MatchModel
@@ -71,7 +70,7 @@ class ChallengeTabsFragment : Fragment() {
 
             )
             return when (position) {
-                0 -> PlayersListFragment().getInstance((fragment as ChallengeTabsFragment).match != null)
+                0 -> PlayersListFragment.getInstance((fragment as ChallengeTabsFragment).match != null)
                 1 -> MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
                 else -> MatchFragment().getInstance(randomMatch)
             }
