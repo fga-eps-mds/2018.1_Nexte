@@ -20,6 +20,7 @@ interface RankingPresentationLogic {
     fun presentRanking(response: RankingModel.Response)
 }
 
+@Suppress("DEPRECATION")
 /**
  * Class needed to format response for data can be displayed on View
  *
@@ -76,17 +77,17 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
     }
 
     /**
-     * Method used to get player effiency based on his wins and losses
+     * Method used to get player efficiency based on his wins and losses
      *
      * @return a string that represents player efficiency
      */
     private fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
         val allGames = wins + losses
         val efficiency: String?
-        if (allGames != 0){
-            efficiency = "" + (wins/allGames*oneHundredPercent).toString() + "%"
+        efficiency = if (allGames != 0){
+            "" + (wins/allGames*oneHundredPercent).toString() + "%"
         }else{
-            efficiency = "0%"
+            "0%"
         }
 
         return efficiency
