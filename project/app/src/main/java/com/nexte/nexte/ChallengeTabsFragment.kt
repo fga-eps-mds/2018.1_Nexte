@@ -34,7 +34,7 @@ class ChallengeTabsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val newView: View? = inflater?.inflate(R.layout.activity_challenger, container, false)
         //Above occurs the view instantiation
-        viewpager = newView?.findViewById(R.id.viewpager)
+        viewpager = newView?.findViewById(R.id.challengerviewpager)
         tabs = newView?.findViewById(R.id.tabs)
 
         viewpager?.adapter = ViewPagerAdapter(this.activity.supportFragmentManager, this)
