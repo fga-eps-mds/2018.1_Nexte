@@ -56,7 +56,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     displayed
     */
     fun getInstance(playerToShowName: String?): ShowProfileFragment {
-
         val bundle = Bundle()
         val showProfileFragment = ShowProfileFragment()
 
@@ -75,7 +74,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * Method called when screen is loaded, responsible to load user information
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
@@ -84,17 +82,14 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
         buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
-
         buttonEditProfile?.setOnClickListener {
             val intent = Intent(activity, EditProfileView::class.java)
             startActivity(intent)
         }
 
         this.createShowProfileRequest()
-
         newLineChart = newView?.findViewById(R.id.lineChart)
         rankingChart = newView?.findViewById(R.id.rankingChart)
 
@@ -121,8 +116,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
 
         fun setYAxisValues(): ArrayList<Entry> {
-
             val yVals = ArrayList<Entry>()
+
             yVals.add(Entry(0f, 2f))
             yVals.add(Entry(1f, 3f))
             yVals.add(Entry(2f, 4f))
@@ -138,7 +133,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
 
         fun setYAxisValuesRanking(): ArrayList<Entry> {
-
             val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
 
             yValsRanking.add(Entry(0f, 3f))
@@ -157,7 +151,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
 
         fun customizeChartLine(yAxes: ArrayList<Entry>, label: String): LineDataSet {
-
             val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
             line.setDrawCircleHole(true) // Draw Circles
@@ -173,7 +166,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         }
 
         fun createGraph() {
-
             val xAxis = showProfileFragment.newLineChart?.xAxis //instance a view from xml.
             val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
@@ -197,8 +189,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val description = Description()
             description.text = ""
 
-            // Scale
-
             // TO-DO: General
             showProfileFragment.newLineChart?.setDrawBorders(false)
 
@@ -214,7 +204,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             axisX?.mLabelWidth = 0
 
             // TO-DO: Axis Y
-            showProfileFragment.newLineChart?.axisRight?.isEnabled = false
+            showProfileFragment.newLineChart?.axisRight?.isEnabled = false // Take off left edge
+            showProfileFragment.newLineChart?.axisLeft?.setDrawAxisLine(false)
             showProfileFragment.newLineChart?.data = lineData
             showProfileFragment.newLineChart?.legend!!.isEnabled = false
             showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
@@ -236,7 +227,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         // FIX-ME: Apply design to second chart
 
         fun createRankingGraph() {
-
             val xAxisRanking = showProfileFragment.rankingChart?.xAxis //instance a view from xml.
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
@@ -260,6 +250,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val rankingData = LineData(dataSetsRanking)
             showProfileFragment.rankingChart?.data = rankingData
             showProfileFragment.rankingChart?.axisLeft?.setAxisMaxValue(8f)
+            showProfileFragment.newLineChart?.animateXY(2000, 2000)
             showProfileFragment.rankingChart?.axisLeft?.setAxisMinValue(0f)
             showProfileFragment.rankingChart?.axisRight?.setAxisMaxValue(0f)
             showProfileFragment.rankingChart?.axisRight?.setAxisMinValue(8f)
@@ -282,7 +273,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * Method responsible to set all the references on this scene
      */
     fun setupShowProfileScene() {
-
         val viewScene = this
         val interactor = ShowProfileInteractor()
         val presenter = ShowProfilePresenter()
@@ -299,7 +289,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * @param viewModel Contains the formatted data to be displayed
      */
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
-
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
         email?.text = viewModel.playerInfo.email
