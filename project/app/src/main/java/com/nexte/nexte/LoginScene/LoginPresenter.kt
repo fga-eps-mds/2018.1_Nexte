@@ -33,7 +33,7 @@ interface LoginPresentationLogic {
 }
 
 /**
- * Class that formats data from LoginInteractor(request) to LoginView(viewModel)
+ * Class that formats data from LoginInteractor(request) to LoginFragment(viewModel)
  *
  * @property view reference to view
  */

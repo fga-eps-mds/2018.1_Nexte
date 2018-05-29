@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginScene.LoginView"
+            android:name=".LoginScene.LoginFragment"
             android:label="Login" />
         <activity
             android:name=".RankingScene.RankingFragment"

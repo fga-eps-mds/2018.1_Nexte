@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavView?.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
         bottomNavView?.selectedItemId = R.id.profile
         loginButton?.setOnClickListener {
-            val intent = Intent(this, LoginView::class.java)
+            val intent = Intent(this, LoginFragment::class.java)
             startActivity(intent)
         }
     }
