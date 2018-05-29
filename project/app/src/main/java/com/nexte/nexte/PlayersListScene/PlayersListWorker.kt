@@ -1,5 +1,8 @@
 package com.nexte.nexte.PlayersListScene
 
+
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 import com.nexte.nexte.R
@@ -12,7 +15,7 @@ import com.nexte.nexte.UserSingleton
 class PlayersListWorker {
 
 
-
+    var userManager: UserManager? = null
     /**
      * Function to get players 5 rank positions above the logged player
      *
@@ -23,10 +26,10 @@ class PlayersListWorker {
                                  completion: (PlayersListModel.ShowRankingPlayersRequest.Response) -> Unit) {
         val rankingPostion = request.challengerRankingPosition
 
-        var selectedPlayers: List<Player> = listOf()
-        val players = PlayersListMocker.createPlayers()
+        var selectedPlayers: List<User> = listOf()
+        val players = userManager?.getAll()
 
-        players.forEach {
+        players?.forEach {
             if (it.rankingPosition >= rankingPostion-rankingGap && it.rankingPosition < rankingPostion) {
                 selectedPlayers += it
             }
@@ -49,11 +52,11 @@ class PlayersListWorker {
                                     completion: (PlayersListModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
 
-        var selectedPlayer: PlayersListModel.PlayerRankingDetails?= null
+        var selectedPlayer: User?= null
 
-        val players = PlayersListMocker.createPlayerDetailedInfo()
+        val players = userManager?.getAll()
 
-        players.forEach {
+        players?.forEach {
             if (it.rankingPosition == challengedPosition){
                 selectedPlayer = it
             }

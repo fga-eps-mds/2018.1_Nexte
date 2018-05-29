@@ -59,7 +59,7 @@ class PlayersListPresenter : ChallengePresentationLogic {
 
         for(player in selectedPlayers){
             val formattedPlayer = PlayersListModel.FormattedPlayer(player.name,
-                    String.format("#%d", player.rankingPosition), player.pictureAddress)
+                    String.format("#%d", player.rankingPosition), "")//TODO: replace picture adress
 
             formattedPlayers += formattedPlayer
         }

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import android.util.Log
+import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
@@ -59,6 +59,7 @@ interface ChallengeDisplayLogic {
  */
 class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
 
+    var userManager: UserManager? = null
     var fragment: Fragment?= null
     var sendChallengeButton: Button?= null
     var expandedLosses: TextView?= null
@@ -90,6 +91,7 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
 
         super.onCreate(savedInstanceState)
         this.hasMatch = this.arguments.getBoolean("has match")
+        userManager = UserManager()
         this.setupPlayersListScene()
     }
 
@@ -104,6 +106,7 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker.userManager = userManager
         presenter.viewChallenge = view
     }
 
@@ -202,7 +205,7 @@ class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
             this.sendChallengeButton?.isEnabled = false
             (fragment as? ChallengeTabsFragment)?.viewpager?.adapter?.notifyDataSetChanged()
         }
-        
+
         val builder = AlertDialog.Builder(fragActivity)
 
         builder.setCancelable(true)

@@ -1,4 +1,5 @@
 package com.nexte.nexte.PlayersListScene
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.Player
 
@@ -24,7 +25,7 @@ class PlayersListModel {
          *
          * @param usersAbove The players above our logged user in ranking
          */
-        class Response(var usersAbove: List<Player>)
+        class Response(var usersAbove: List<User>)
 
         /**
          * ViewModel responsible for format the selected players information
@@ -54,7 +55,7 @@ class PlayersListModel {
          *
          * @param challengedPersonalDetails detailed info about clicked player
          */
-        class Response(var challengedPersonalDetails: PlayerRankingDetails)
+        class Response(var challengedPersonalDetails: User)
 
         /**
          * Class responsible to edit the player data that will be exhibited
