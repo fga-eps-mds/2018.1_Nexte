@@ -31,6 +31,11 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
     var interactor: LikeListInteractor? = null
     var likesListRecyclerView: RecyclerView? = null
 
+    fun getInstance(): LikeListFragment{
+        val likeListFragment = LikeListFragment()
+        return likeListFragment
+    }
+
     /**
      * On Create method that will setup this scene and call first Request for Interactor
      *

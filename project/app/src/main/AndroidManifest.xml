@@ -57,7 +57,7 @@
             <!--android:theme="@style/AppLoginTheme"-->
             <!--tools:replace="android:theme" />-->
         <activity
-            android:name=".LikeListScene.LikeListView"
+            android:name=".LikeListScene.LikeListFragment"
             android:label="LikeListView"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
