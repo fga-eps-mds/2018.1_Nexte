@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.PlayersListScene.PlayersListFragment
 import com.nexte.nexte.MatchScene.MatchFragment
 import com.nexte.nexte.MatchScene.MatchModel
@@ -64,10 +65,15 @@ class ChallengeTabsFragment : Fragment() {
         }
 
         override fun getItem(position: Int): Fragment {
+            val randomMatch = MatchModel.MatchData(
+                    MatchModel.MatchPlayer(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher_round),
+                            MatchModel.MatchPlayer("Gabriel Albino", R.mipmap.calendar_logo_round)
+
+            )
             return when (position) {
                 0 -> PlayersListFragment().getInstance((fragment as ChallengeTabsFragment).match != null)
                 1 -> MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
-                else -> MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
+                else -> MatchFragment().getInstance(randomMatch)
             }
         }
 
