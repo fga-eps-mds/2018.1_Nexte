@@ -2,7 +2,9 @@
 
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
-| 28/05/2018| 0.1 | Criação do Documento| Miguel Pimentel|
+| 28/05/2018| 0.1 | Criação do Documento | Miguel Pimentel|
+| 29/05/2018| 0.2 | Adição dos riscos e Indicadores da equipe | Miguel Pimentel|
+| 30/05/2018| 1.0 | Finalização do Documento| Miguel Pimentel|
 
 **Número da Sprint:** 111
 
@@ -40,23 +42,19 @@
 
 ### **1.1. Resumo da Sprint**
 
-// Remaining issues
-
-![Resumo da Sprint](https://i.imgur.com/HSM9gvN.png)
+![Resumo da Sprint](https://i.imgur.com/f5Cnid5.png)
 
 Como pode-se observar a equipe concluiu nessa _Sprint_, 12 das 14 histórias planejadas, sendo que uma delas foi débito da Sprint 10, totalizando uma pontuação total de 65 de 81 pontos concluídos.
 
 #### 1.2.1. Burndown
 
-// Burndown
-
-![Burndown](https://i.imgur.com/C8CYk9X.png)
+![Burndown](https://i.imgur.com/qSltkjE.png)
 
 O *Burndown* caiu somente no final da semana. Os primeiros *Pull Requests* foram aceitos na quinta-feira, e muitos outros na sexta. Um avanço significativo em relação a *sprint* anterior, muito em virtude de medidas de incentivos como pizza. Entretanto, uma das histórias foi fechada às 4 da manhã de domingo, ou seja, 4 horas atrasada. De qualquer forma, o time está determinado a mudar esse cenário, e já está adotando práticas para tentar reverter esse cenário, mesmo com o final do semestre.
 
 ### 1.2.2. *Commits* por dia
 
-// Commits por dia
+![Commits por dia](https://i.imgur.com/7vrlEIG.png)
 
 O número de *commits* por dia, foi mais regular que a semana anterior, sendo que com excessão de segunda e terça-feira, o número de *commits* oscilou muito pouco. Não obstante, na quarta e quinta-feira a equipe se mostrou mais ativa em relação ao número de *commits*.
 
@@ -64,7 +62,8 @@ O número de *commits* por dia, foi mais regular que a semana anterior, sendo qu
 
 #### 1.3.1. Velocity
 
-//Velocity
+![Velocity](https://i.imgur.com/gFMCSS0.png)
+
 
 Como pode-se observar a equipe fechou a *sprint* com aproximadamente 5 pontos
 abaixo da médias das duas últimas *sprints*. Dessa forma, o velocity dessa *sprint* teve um valor inferior a última média inferida no valor de 75.67. Esse valor inferior, foi consequência das duas dívidas técnicas já citadas anteriormente. 
@@ -75,7 +74,7 @@ Portanto, a nova média do velocity ficou em **74,7** *sprint points*
 
 ### **1.4. Quadro de conhecimentos**
 
-// Quadro de Conhecimento
+![Quadro de conhecimento](https://i.imgur.com/2DToTdX.png)
 
 Em relação a *sprint* anterior o quadro de conhecimento apresentou um crescimento em importantes áreas para o time, testes e Docker. Neste âmbito, pode-se citar o crescimento dos membros de MDS em testes unitários e de instrumentação, principalmente. No contexto de GPP, o crescimento na área técnico de ferramentas como o Docker. A partir desses resultados, foi possível observar o crescimento técnico em áreas que serão bastante exploradas nas próximas *sprints*.
 
@@ -120,13 +119,11 @@ Em relação a *sprint* anterior o quadro de conhecimento apresentou um crescime
 
 #### 2.1. Riscos priorizados
 
-// Gestão de Risco
-
-![Gestão de Risco](https://i.imgur.com/Ajg1DLa.png)
+![Gestão de Risco](https://i.imgur.com/3lFw00t.png)
 
 #### 2.2. _Burndown risk_
 
-![Burndow Risk do Projeto](https://i.imgur.com/XUaRP1e.png)
+![Burndow Risk do Projeto](https://i.imgur.com/O3IeVWj.png)
 
 Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
@@ -144,25 +141,23 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 | ID | Como mitigar |
 |---|---|
 | RN01 | O pareamento entre membros de EPS e MDS vai continuar. |
-| RN02 | vai  haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada, além disse me relação aos outros membros pois aconteceu parecido com a maioria do time. Além disso o período da copa do mundo vai ser organizado para que os membros trabalhem em conjunto. |
+| RN02 | vai haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada, além disse me relação aos outros membros pois aconteceu parecido com a maioria do time. Além disso o período da copa do mundo vai ser organizado para que os membros trabalhem em conjunto. |
 | RN03 | E dito que a qualquer problema, qualquer membro deve tentar resolver, caso não consigam, deve-se pedir ajuda o mais rápido possível |
 | RN04 | Os membros de EPS trabalharão no servidor juntamente com o cliente. Segundo o planejamento da equipe esse servidor estará disponível para a aplicação a partir da sprint 10. |
-| RN06 | Alguns membros já têm viagens marcadas, como os membros Larrisa e Geovanni, para que no período de ausênsia seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
+| RN06 | Alguns membros já têm viagens marcadas, como os membros Larrisa e Geovanni, para que no período de ausência seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
 | RN07 | O Scrum Master, será mais presente no papel de fazer com que todos integrantes estejam ativos na implementação de histórias e participação do rituais do SCRUM. |
 
 ## **3. EVM**
 
-// EVM 
+![EVM Gráfico](https://i.imgur.com/8vbjbLh.png) 
 
-![](https://i.imgur.com/tw7g8MQ.png)
-
-![](https://i.imgur.com/wMYN1sV.png) 
+![EVM](https://i.imgur.com/pRtGfgG.png)
 
 A quantidade de pontos realizados nessa *sprint* foi de 65 pontos,houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
 
 ## **4. Análise de código**
 
-![](https://i.imgur.com/jmCXPFh.png)
+![Detekt](https://i.imgur.com/XbwBsfn.png)
 
 **Quantidade de linhas por método**
 
@@ -174,12 +169,12 @@ Não houve classes que ferissem esta métrica, todas estão dentro do parâmetro
 
 **Complexidade ciclomática**
 
-Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 460 e temos 292 métodos, o que dá uma média de 1,57 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite acertado pela ferramente por complexidade individual é 10.
+Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 675 e temos 406 métodos, o que dá uma média de 1,66 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite definido é 10.
 
 **Quantidade de code smells**
 
-9 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, está bem próximo do limiar não aceitável.
-Alguns deles são:
+6 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, melhor que a *sprint* anterior, dentre os motivos, pode-se destacar alguns deles:
+
  - Um método está com a complexidade ciclomática acima de 10, o que não é recomendado nem aceitável, loco a análise estática relatou esta ocorrência.
  - Nome de variável
  - um construtor de classe vazio
