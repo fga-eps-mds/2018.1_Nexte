@@ -39,39 +39,46 @@
 ## **1. Indicadores da Equipe**
 
 ### **1.1. Resumo da Sprint**
+
+// Remaining issues
+
 ![Resumo da Sprint](https://i.imgur.com/HSM9gvN.png)
 
-Como pode-se observar a equipe concluiu nessa _Sprint_, 7 das 7 histórias planejadas, sendo que uma delas foi débito da Sprint 9, totalizando uma pontuação total de 70 de 70 pontos concluídos.
+Como pode-se observar a equipe concluiu nessa _Sprint_, 12 das 14 histórias planejadas, sendo que uma delas foi débito da Sprint 10, totalizando uma pontuação total de 65 de 81 pontos concluídos.
 
 #### 1.2.1. Burndown
+
+// Burndown
+
 ![Burndown](https://i.imgur.com/C8CYk9X.png)
 
-O Burndow caiu somente no final, pois sábado haviam pull requests, porém não estavam passando, o que foi necessário abrir exceção para aceitá-los no domingo, o que ainda sim não deu certo, e na segunda feira dia 21 ainda estava com pull requests a serem concertados pelos membros, houve um impecílio de um dos pull requests onde um dos PRs anteriores não havia side dado Merge, e isso foi feito sábado dia 19, o que atrapalhou o andamento de alguns PRs e fez com que ele não caísse como desejado.
+O *Burndown* caiu somente no final da semana. Os primeiros *Pull Requests* foram aceitos na quinta-feira, e muitos outros na sexta. Um avanço significativo em relação a *sprint* anterior, muito em virtude de medidas de incentivos como pizza. Entretanto, uma das histórias foi fechada às 4 da manhã de domingo, ou seja, 4 horas atrasada. De qualquer forma, o time está determinado a mudar esse cenário, e já está adotando práticas para tentar reverter esse cenário, mesmo com o final do semestre.
 
-### 1.2.2. Commits por dia
-![Commits por dia](https://i.imgur.com/lHL9HW4.png)
+### 1.2.2. *Commits* por dia
 
-Pode-se observar que nessa sprint o início dos trabalhos realmente começou no domingo e se intensificou na terça, cresceu na quinta, aumentou drásticamente na sexta e ficou muito alto no sábado, isso é um reflexo que o time deixou para fazer suas histórias basicamento no final da sprint, inclusive no último dia dela.
+// Commits por dia
+
+O número de *commits* por dia, foi mais regular que a semana anterior, sendo que com excessão de segunda e terça-feira, o número de *commits* oscilou muito pouco. Não obstante, na quarta e quinta-feira a equipe se mostrou mais ativa em relação ao número de *commits*.
 
 ### **1.3. Produtividade**
 
 #### 1.3.1. Velocity
 
-![](https://i.imgur.com/ckIVHmz.png)
+//Velocity
 
-Como pode-se observar a equipe fechou pontos praticamente iguais à sprint passda, o velocity abaixou em relação à média até a sprint anterior que era de 75,67 e agora está em que na sprint anterior, porém as histórias foram fechadas restando apenas 2 débitos técnicos, o que representou uma pequena melhora em relação à Sprint passada, porém a quantidade de pontos planejadas não foi tão grande, o que acarretou em uma queda no Velocity de aproximadamente 2 pontos.
+Como pode-se observar a equipe fechou a *sprint* com aproximadamente 5 pontos
+abaixo da médias das duas últimas *sprints*. Dessa forma, o velocity dessa *sprint* teve um valor inferior a última média inferida no valor de 75.67. Esse valor inferior, foi consequência das duas dívidas técnicas já citadas anteriormente. 
 
-Apesar do esforço dos membros, a equipe não conseguiu atingir 100% da sua capacidade de produção.
+Dessa forma, apesar do esforço dos membros, a equipe não conseguiu terminar 100% das histórias planejadas para essa *sprint*.
 
-O velocity ficou em **75.67** 
+Portanto, a nova média do velocity ficou em **74,7** *sprint points*
 
 ### **1.4. Quadro de conhecimentos**
 
-![Quadro de Conhecimento sprint 10](https://i.imgur.com/QMvBhee.png)
+// Quadro de Conhecimento
 
-Não houve alterações no quadro de conhecimento, provavelmente porque não houve solicitação para atualiza-lo, falha do novo Scrum Master que não cobrou o time para realizar esta tarefa.
+Em relação a *sprint* anterior o quadro de conhecimento apresentou um crescimento em importantes áreas para o time, testes e Docker. Neste âmbito, pode-se citar o crescimento dos membros de MDS em testes unitários e de instrumentação, principalmente. No contexto de GPP, o crescimento na área técnico de ferramentas como o Docker. A partir desses resultados, foi possível observar o crescimento técnico em áreas que serão bastante exploradas nas próximas *sprints*.
 
-Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitários, Docker, principalmente para o Time de MDS e a API, que representa o servidor, pois não há um servidor ainda, o aplicativo está com dados fictícios. O foco das próximas sprints será nos testes, para que por consequência a cobertura aumente.
 
 ### **1.5. Retrospectiva**
 
@@ -89,30 +96,32 @@ Algumas áreas ainda estão ruins, como testes tanto instrumentais quanto unitá
 * Carla elogiou gerenciamento de riscos do projeto e EVM;
 * Poucas *issues* restantes para finalizar o projeto;
 * Avanço da arquitetura de micro serviços do projeto, com a inclusão do servidor de imagens;
-* Utilização de dados reais no aplicativo
-* Proatividade da equipe
+* Utilização de dados reais no aplicativo;
+* Proatividade da equipe;
 
 <h4> Pontos A Melhorar: </h4>
 
 * Demoraram a dar feedback no pull request da história de Larissa/Geovanni;
 * Replanejamento da sprint devido a utilização de versão incompleta do Roadmap;
-* Guilherme Baldissera não participou da daily e esqueceu de responder o bot(não foi transparente, ninguém sabia o que ele estava fazendo);
+* Guilherme Baldissera não participou da daily e esqueceu de responder o boot(não foi transparente, ninguém sabia o que ele estava fazendo);
 * Aparentemente, Guilherme Baldissera não se preocupou em fazer a história de testes view, o que era, em tese, sua única história;
-* Guilherme Baldissera atrasou de 50 minutos para entrar na reunião via *hangouts*;
-* Gabriel Albino atrasou de 90 minutos para entrar na reunião via *hangouts*;
+* Guilherme Baldissera atrasou 50 minutos para entrar na reunião via *hangouts*;
+* Gabriel Albino atrasou 90 minutos para entrar na reunião via *hangouts*;
 * Reunião teve que ser via hangouts por causa da greve dos caminhoneiros;
 * Cobertura de testes continua baixa em relação ao exigido pelas disciplinas;
 
 <h4> Como Melhorar: </h4>
 
 * Fazer ao menos uma reunião presencial durante a semana, provavelmente na quinta(tirando a reunião de sprint);
-* Replanejamento ocorreu por causa de uma falha de comunicação da equipe com o cliente, equipe não entendeu exatamente alguns critérios do cliente
-* Planejar a reunião de sábado presencialmente, já contando com os imprevistos da greve de caminhoneiros
-* Algumas duplas de pareamento ficarão responsáveis por aumentar a cobertura de testes, isso será destacado nos critérios de aceitação.
+* Replanejamento ocorreu por causa de uma falha de comunicação da equipe com o cliente, equipe não entendeu exatamente alguns critérios do cliente;
+* Planejar a reunião de sábado presencialmente, já contando com os imprevistos da greve de caminhoneiros;
+* Algumas duplas de pareamento ficarão responsáveis por aumentar a cobertura de testes, isso será destacado nos critérios de aceitação;
 
 ## **2. Gestão de Risco**
 
 #### 2.1. Riscos priorizados
+
+// Gestão de Risco
 
 ![Gestão de Risco](https://i.imgur.com/Ajg1DLa.png)
 
@@ -144,25 +153,32 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 
 ## **3. EVM**
 
-![](https://i.imgur.com/tw7g8MQ.png)
-![](https://i.imgur.com/wMYN1sV.png)    
+// EVM 
 
-A quantidade de pontos realizados nesta sprint foi de 70 pontos, houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
+![](https://i.imgur.com/tw7g8MQ.png)
+
+![](https://i.imgur.com/wMYN1sV.png) 
+
+A quantidade de pontos realizados nessa *sprint* foi de 65 pontos,houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
 
 ## **4. Análise de código**
 
 ![](https://i.imgur.com/jmCXPFh.png)
 
 **Quantidade de linhas por método**
-Dois métodos estão diagnosticados como longos, eles vêm das classes de tipo Mocke, em uma sprint que haverá refatoração de código ele será alocado para adequar à métrica proposta.  
+
+Dois métodos estão diagnosticados como longos, eles vêm das classes de tipo Mocker, em uma sprint que haverá refatoração de código ele será alocado para adequar à métrica proposta.  
 
 **Quantidade de métodos por classe**
+
 Não houve classes que ferissem esta métrica, todas estão dentro do parâmetro aceitável.
 
 **Complexidade ciclomática**
+
 Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 460 e temos 292 métodos, o que dá uma média de 1,57 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite acertado pela ferramente por complexidade individual é 10.
 
 **Quantidade de code smells**
+
 9 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, está bem próximo do limiar não aceitável.
 Alguns deles são:
  - Um método está com a complexidade ciclomática acima de 10, o que não é recomendado nem aceitável, loco a análise estática relatou esta ocorrência.
@@ -171,13 +187,22 @@ Alguns deles são:
  - dois métodos longos
 
 **Adequação à folha de estilo**
+
 Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão de código definido pela equipe, logo está métrica não foi ferida ao finalizar a sprint.
 
 ## **5. Análise do Scrum Master**
 
-Nessa Sprint, houve um impecílio para o grupo, pois todos os Pull requests foram feitos no sábado e as histórias não foram fechadas, o que foi inaceitável, e realmente foi concluída na segunda feira dia 21, além disso a Membro Letícia teve um impedimento, pois ela tinha muitas provas, foi alocada ele com a Membro Larissa para poder equilibarar em uma história mais leve, o que aconteceu foi que nenhum impedimento foi relatado pela membro Larissa e a história foi iniciada na quinta feita, houve falha de comunicação das duas em relação à história que deveria ser feita e dificuldades. 
-Novamente a história de testar view com testes unitários ficou como dívida técnica, e na próxima sprint ela deve ser fechada, e terá um membro alocado comente para ela durante toda a sprint.
-A história entre Gabriel Albino e Lorrany foi a última a ser aceita, mas foi algo do time como um todo, o que acontecerá na próxima sprint é que eu, como scrum master vou averiguar a situação do andamento de cada história com cada dupla de paremento.
+Nesta Sprint, houve como impecílio a greve do caminhoneiros, impossibilitando a reunião presencial. Dessa forma, este fator atrapalhou a comunicação e assiduidade de alguns membros em rituais do SCRUM. 
+
+Não obstante, houve um replanejamento que ocorreu devido a dificuldade de comunicação com o cliente e  utilização de uma versão incompleta do *Roadmap*, entretanto este replanejamento foi feito antes da equipe iniciar suas histórias, não comprometendo muito o desempenho nessa *sprint*. 
+
+Como ponto negativo, novamente a história de testar view com testes unitários ficou como dívida técnica, e na próxima sprint ela deve ser fechada sem falta.
+
+Apesar dessa *sprint* o velocity ter caído, e imprevistos terem aparecidos, a equipe se mostrou proativa em começar e terminar suas histórias antecipadas. Nosso servidor de imagens, teve grande progresso, assim como a arquitetura com de micro serviços. 
+
+Como forma de resolver esses problemas de comunicação e consequência da greve de caminhoneiro, o time irá realizar uma reunião/confraternização/hackathon na quinta-feira, 31 de maio. O time está ciente dos novos riscos como a chegada da copa e a crise do combustíveis, mas está apto a terminar o projeto da melhor forma possível.
+
+
 
 
 
