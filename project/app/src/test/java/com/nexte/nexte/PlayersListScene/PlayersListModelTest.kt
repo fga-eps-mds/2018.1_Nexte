@@ -19,6 +19,22 @@ class PlayersListModelTest {
     }
 
     @Test
+    fun successConstructors(){
+        //prepare
+        //call
+        val testModel = PlayersListModel()
+        val testShowRanking = PlayersListModel.ShowRankingPlayersRequest()
+        val testSelectPlayer = PlayersListModel.SelectPlayerForChallengeRequest()
+        val testChallengeButton = PlayersListModel.ChallengeButtonRequest()
+
+        //assert
+        assertNotNull(testModel)
+        assertNotNull(testShowRanking)
+        assertNotNull(testSelectPlayer)
+        assertNotNull(testChallengeButton)
+    }
+
+    @Test
     fun successShowRankingRequest(){
         //prepare
         val testInt = 2
@@ -57,6 +73,7 @@ class PlayersListModelTest {
         //call
 
         val testShowRankingRequestResponse = PlayersListModel.ShowRankingPlayersRequest.Response(testUsersList)
+        testShowRankingRequestResponse.usersAbove = testUsersList
 
 
         //assert
@@ -74,6 +91,7 @@ class PlayersListModelTest {
         //call
         val testShowRankingRequestViewModel = PlayersListModel.ShowRankingPlayersRequest.ViewModel(
                 testPlayersFormattedList)
+        testShowRankingRequestViewModel.formattedPlayer = testPlayersFormattedList
 
         //assert
         assertEquals(testFormatPlayer, testShowRankingRequestViewModel.formattedPlayer[0])
@@ -119,6 +137,7 @@ class PlayersListModelTest {
         //call
 
         val testSelectPlayerRequest = PlayersListModel.SelectPlayerForChallengeRequest.Response(testUser)
+        testSelectPlayerRequest.challengedPersonalDetails = testUser
 
 
         //assert
@@ -136,6 +155,7 @@ class PlayersListModelTest {
 
         //call
         val testSelectPlayerForChallenge = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(testRankingDetails)
+        testSelectPlayerForChallenge.challengedRankingDetails = testRankingDetails
 
         //assert
         assertEquals(testRankingDetails, testSelectPlayerForChallenge.challengedRankingDetails)
@@ -170,6 +190,8 @@ class PlayersListModelTest {
 
         val testChallengeButtonResponse = PlayersListModel.ChallengeButtonRequest.Response(testUsername,
                                                                                            testChallenge)
+        testChallengeButtonResponse.username = testUsername
+        testChallengeButtonResponse.challenge = testChallenge
 
         //assert
         assertEquals(testUsername,testChallengeButtonResponse.username)
@@ -195,6 +217,7 @@ class PlayersListModelTest {
         testChallengeButtonViewModel.messageForChallenger = testMessageForChallenge
         testChallengeButtonViewModel.matchData?.challenger = challenger
         testChallengeButtonViewModel.matchData?.challenged = challenged
+        testChallengeButtonViewModel.matchData = testMatchData
 
 
         //assert

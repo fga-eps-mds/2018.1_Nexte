@@ -7,6 +7,8 @@ import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 
+
+
 /**
  * Class responsible to do request for anywhere, format Response and
  * call completion to send data for called class
