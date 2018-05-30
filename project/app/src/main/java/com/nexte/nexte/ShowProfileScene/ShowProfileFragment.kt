@@ -12,6 +12,7 @@ import android.widget.Button
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -111,13 +112,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * class used to manage graph data and exhibition
      */
     class GraphManager (var showProfileFragment : ShowProfileFragment) {
+
         /**
          * Method responsible to define the data of Y axis.
          */
-
         fun setYAxisValues(): ArrayList<Entry> {
             val yVals = ArrayList<Entry>()
-
             yVals.add(Entry(0f, 2f))
             yVals.add(Entry(1f, 3f))
             yVals.add(Entry(2f, 4f))
@@ -134,7 +134,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
         fun setYAxisValuesRanking(): ArrayList<Entry> {
             val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
-
             yValsRanking.add(Entry(0f, 3f))
             yValsRanking.add(Entry(1f, 2f))
             yValsRanking.add(Entry(2f, 5f))
@@ -149,7 +148,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * Method responsible to create the graph, using the function and
          * SetYAxisValues.
          */
-
         fun customizeChartLine(yAxes: ArrayList<Entry>, label: String): LineDataSet {
             val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
@@ -189,33 +187,28 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val description = Description()
             description.text = ""
 
-            // TO-DO: General
-            showProfileFragment.newLineChart?.setDrawBorders(false)
-
-            // TO-DO: Grid Lines
-            showProfileFragment.newLineChart?.isScaleXEnabled = false
-            showProfileFragment.newLineChart?.isScaleYEnabled = false
-            showProfileFragment.newLineChart?.description = description
-
-            // TO-DO: Axis X
-            val axisX = showProfileFragment.newLineChart?.xAxis
-            axisX?.textColor = Color.BLACK
-            axisX?.gridLineWidth = 1.0f
-            axisX?.mLabelWidth = 0
-
-            // TO-DO: Axis Y
-            showProfileFragment.newLineChart?.axisRight?.isEnabled = false // Take off left edge
-            showProfileFragment.newLineChart?.axisLeft?.setDrawAxisLine(false)
+            //  General Chart Settings
             showProfileFragment.newLineChart?.data = lineData
             showProfileFragment.newLineChart?.legend!!.isEnabled = false
+            showProfileFragment.newLineChart?.description = description
+            showProfileFragment.newLineChart?.setDrawBorders(false)
+            showProfileFragment.newLineChart?.setScaleEnabled(false) // Allows interaction
+            showProfileFragment.newLineChart?.isScaleXEnabled = false
+            showProfileFragment.newLineChart?.isScaleYEnabled = false
+
+            showProfileFragment.newLineChart?.axisLeft?.textColor = Color.WHITE
+            showProfileFragment.newLineChart?.axisLeft?.textSize = 12.0f
+            showProfileFragment.newLineChart?.axisLeft?.setDrawAxisLine(false)
+            showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMinValue(0f)
-            showProfileFragment.newLineChart?.axisRight?.setAxisMaxValue(0f)
-            showProfileFragment.newLineChart?.axisRight?.setAxisMinValue(8f)
-            showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
-            showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
+
+            showProfileFragment.newLineChart?.axisRight?.isEnabled = false // Take off left edge
+
+            showProfileFragment.newLineChart?.xAxis?.textSize = 12.0f
             showProfileFragment.newLineChart?.xAxis?.setDrawAxisLine(false)
-            showProfileFragment.newLineChart?.setScaleEnabled(false) // Allows interaction
+            showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
+
             showProfileFragment.newLineChart?.invalidate()
         }
 
@@ -223,9 +216,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * Method responsible to create the graph, using the function
          * SetYAxisValuesRanking.
          */
-
-        // FIX-ME: Apply design to second chart
-
         fun createRankingGraph() {
             val xAxisRanking = showProfileFragment.rankingChart?.xAxis //instance a view from xml.
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
