@@ -40,7 +40,7 @@ interface ChallengeBusinessLogic {
 class PlayersListInteractor : ChallengeBusinessLogic {
 
     var worker = PlayersListWorker()
-    var presenter: ChallengePresentationLogic? = null
+    var presenter: PlayersListPresentationLogic? = null
 
     /**
      * Method that pass the request to Worker and send the response to Presenter for the request

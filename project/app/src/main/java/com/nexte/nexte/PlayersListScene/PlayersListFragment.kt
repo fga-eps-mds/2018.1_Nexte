@@ -22,7 +22,7 @@ import com.nexte.nexte.UserSingleton
  * Interface to define Display Logic to ChallengeTabsFragment Class that will
  * receive information from Presenter
  */
-interface ChallengeDisplayLogic {
+interface PlayersListDisplayLogic {
 
     /**
      * Method that defines how the players above the logged user formatted data will be displayed
@@ -69,7 +69,7 @@ interface ChallengeDisplayLogic {
  * @property hasMatch is tha variable that will control when the message will be shown
  * @property recyclerView is an instance of the recyclerview that is holding players avaliable for challenge
  */
-class PlayersListFragment : Fragment(), ChallengeDisplayLogic {
+class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
     var userManager: UserManager? = null
     var fragment: Fragment?= null

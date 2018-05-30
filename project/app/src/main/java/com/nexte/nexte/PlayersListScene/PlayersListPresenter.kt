@@ -4,7 +4,7 @@ package com.nexte.nexte.PlayersListScene
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
  */
-interface ChallengePresentationLogic {
+interface PlayersListPresentationLogic {
     /**
      * Method responsible to format the user information about players above the logged user and send it to view
      *
@@ -42,9 +42,9 @@ interface ChallengePresentationLogic {
 * @property viewChallenge Reference to display formatted data
 */
 
-class PlayersListPresenter : ChallengePresentationLogic {
+class PlayersListPresenter : PlayersListPresentationLogic {
 
-    var viewChallenge: ChallengeDisplayLogic? = null // reference of the view
+    var viewChallenge: PlayersListDisplayLogic? = null // reference of the view
 
     /**
      * This method is responsible for formatting data contained on
