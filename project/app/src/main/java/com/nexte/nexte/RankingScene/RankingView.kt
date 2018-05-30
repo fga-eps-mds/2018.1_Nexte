@@ -104,7 +104,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      * Function responsible to define when or where the fixed ranking row should appear
      *
      * @param context indicates the context that the fragment is contained in
-     * @param recyclerView indicates the recycler view that will be used to control how the fixed row will be displayed
+     * @param recyclerView indicates the recycler fragment that will be used to control how the fixed row will be displayed
      * @param playerRanking Indicates the player position that will be shown on screen, and it is used for comparision.
      */
     private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int) {
@@ -141,10 +141,10 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     }
 
     /**
-     * Class responsible to control recycler view scrolling
+     * Class responsible to control recycler fragment scrolling
      *
      * @param playerRanking indicates the position of the logged user
-     * @param context indicates the context that the recycler view is inserted in
+     * @param context indicates the context that the recycler fragment is inserted in
      */
     private class OnScrollRankingRecyclerView(val playerRanking: Int, val context: Context) : RecyclerView.OnScrollListener() {
 
@@ -201,7 +201,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
         private var expandedId = -1
 
         /**
-         * Method called on view holder creation
+         * Method called on fragment holder creation
          *
          * @param parent cell not expanded
          * @param viewType condition to know which layout will be used
@@ -219,7 +219,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
 
         /**
-         * Method responsible to set the view holder and expand player cell
+         * Method responsible to set the fragment holder and expand player cell
          *
          * @param holder reuses the same cell to display another player information
          */

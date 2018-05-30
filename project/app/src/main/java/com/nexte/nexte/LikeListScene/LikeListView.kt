@@ -82,7 +82,7 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     }
 
     /**
-     * Adapter Class to control recycler view on ListLike
+     * Adapter Class to control recycler fragment on ListLike
      *
      * @property listOfPlayers It's a list of all players
      * @property context Context that will show this adapter
@@ -109,9 +109,9 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
         }
 
         /**
-         * View Holder Class to control items that will show on Recycler view
+         * View Holder Class to control items that will show on Recycler fragment
          *
-         * @property itemView View that contains properties to show on recycler view
+         * @property itemView View that contains properties to show on recycler fragment
          */
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 

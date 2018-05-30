@@ -2,12 +2,12 @@ package com.nexte.nexte.LoginScene
 
 /**
  * Interface resposible to format request provided in Interactor to data as
- * it should be presented at view as viewModel
+ * it should be presented at fragment as viewModel
  */
 interface LoginPresentationLogic {
 
     /**
-     * Method responsible to format login data and send for view
+     * Method responsible to format login data and send for fragment
      *
      * @param response It's login model response containing unformatted data
      * received [LoginModel]
@@ -35,7 +35,7 @@ interface LoginPresentationLogic {
 /**
  * Class that formats data from LoginInteractor(request) to LoginView(viewModel)
  *
- * @property view reference to view
+ * @property view reference to fragment
  */
 class LoginPresenter: LoginPresentationLogic {
 

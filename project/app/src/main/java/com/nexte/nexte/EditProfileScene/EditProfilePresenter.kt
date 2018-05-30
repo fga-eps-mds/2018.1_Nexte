@@ -4,7 +4,7 @@ import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
 
 /**
- * Interface responsible to interpret received user information and send it to [EditProfileView]
+ * Interface responsible to interpret received user information and send it to [EditProfileFragment]
  */
 interface ShowProfileToEditPresentationLogic {
 
@@ -17,12 +17,12 @@ interface ShowProfileToEditPresentationLogic {
 }
 
 /**
- * Interface responsible interpret received editProfileError (if exists one) and shows it in [EditProfileView]
+ * Interface responsible interpret received editProfileError (if exists one) and shows it in [EditProfileFragment]
  */
 interface SendEditedProfileDataPresentationLogic {
 
     /**
-     * Method responsible to send edited data to view
+     * Method responsible to send edited data to fragment
      *
      * @param response contains unformatted data received from [EditProfileModel]
      */
@@ -33,8 +33,8 @@ interface SendEditedProfileDataPresentationLogic {
  * Class responsible to interpretation of [EditProfileModel.RecoverUserRequest]
  * and [EditProfileModel.EditProfileRequest] Responses and generate viewModels
  *
- * @property viewToShowUserInformation Shows profile view with method to show user
- * @property viewToShowEditProfileError Reference for show profile view with method
+ * @property viewToShowUserInformation Shows profile fragment with method to show user
+ * @property viewToShowEditProfileError Reference for show profile fragment with method
  * to show edit profile error
  */
 class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic{
@@ -44,7 +44,7 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
 
     /**
      * Formats user information contained in [EditProfileModel.RecoverUserRequest.Response]
-     * and sends it to [EditProfileView]
+     * and sends it to [EditProfileFragment]
      *
      * @param response contains unformatted data received from [EditProfileModel]
      */
@@ -71,7 +71,7 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
 
     /**
      * Format error contained in [EditProfileModel.RecoverUserRequest.Response] (if exists)
-     * and sends it to [EditProfileView]
+     * and sends it to [EditProfileFragment]
      *
      * @param response contains unformatted data received from [EditProfileModel]
      */

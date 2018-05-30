@@ -32,7 +32,7 @@ class EditProfileModel {
 
         /**
          * Class responsible to holds the information that will be passed
-         * from [EditProfilePresenter] to [EditProfileView]
+         * from [EditProfilePresenter] to [EditProfileFragment]
          *
          * @property playerToEdit
          */
@@ -62,7 +62,7 @@ class EditProfileModel {
     class EditProfileRequest {
         /**
          * Class responsible to holds the information that will be
-         * passed from [EditProfileView] to [EditProfileInteractor]
+         * passed from [EditProfileFragment] to [EditProfileInteractor]
          *
          * @property user
          */
@@ -80,7 +80,7 @@ class EditProfileModel {
 
         /**
          * Class responsible to holds the information that will be
-         * passed from [EditProfilePresenter] to [EditProfileView]
+         * passed from [EditProfilePresenter] to [EditProfileFragment]
          *
          * @property errorMessage
          */

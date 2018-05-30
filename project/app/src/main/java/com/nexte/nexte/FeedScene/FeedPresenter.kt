@@ -9,7 +9,7 @@ import com.nexte.nexte.UserSingleton
 interface FeedPresentationLogic {
 
     /**
-     * Method responsible to format feed data and send to view
+     * Method responsible to format feed data and send to fragment
      *
      * @param response contains unformatted data received from [FeedModel]
      */

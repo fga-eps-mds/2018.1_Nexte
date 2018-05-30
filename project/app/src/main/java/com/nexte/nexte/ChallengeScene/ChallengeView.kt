@@ -80,7 +80,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     private val context: Context? = null
 
     /**
-     * Method called whenever the view is created, responsible for create first
+     * Method called whenever the fragment is created, responsible for create first
      * request and set listeners
      */
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,10 +94,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Function responsible to get the formatted player data and exhibit it in a recycler view
+     * Function responsible to get the formatted player data and exhibit it in a recycler fragment
      * between an adapter
      *
-     * @param viewModel Contains the formatted player info to be displayed in the recycler view
+     * @param viewModel Contains the formatted player info to be displayed in the recycler fragment
      */
     override fun displayPlayersToChallenge(viewModel: ChallengeModel.ShowRankingPlayersRequest.ViewModel) {
 
@@ -105,10 +105,10 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Function responsible to receive the request from the recycler view item and send
+     * Function responsible to receive the request from the recycler fragment item and send
      * to the interactor
      *
-     * @param request contains the rank of the clicked user in the recycler view
+     * @param request contains the rank of the clicked user in the recycler fragment
      */
     fun getPlayerInfo(request: ChallengeModel.SelectPlayerForChallengeRequest.Request){
 
@@ -325,7 +325,7 @@ class ChallengeView : AppCompatActivity(), ChallengeDisplayLogic {
     }
 
     /**
-     * Adapter Class to control recycler view of users that can be challenged
+     * Adapter Class to control recycler fragment of users that can be challenged
      *
      * @property challenged List of the 5 players above the logged one
      * @property context Context that will show this adapter
