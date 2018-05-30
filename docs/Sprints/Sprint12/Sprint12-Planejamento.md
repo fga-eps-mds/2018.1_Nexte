@@ -4,7 +4,7 @@
 | 28/05/2018| 0.1 |Criação do documento | Miguel Pimentel |
 -------------------------------------------------------------------------------------------------
 
-**Número da Sprint:** 11
+**Número da Sprint:** 12
 
 **Data de ínicio:** 27/05/2018
 
@@ -38,6 +38,10 @@
 | Larissa Sales | Time de Desenvolvimento |
 | Letícia Meneses | Time de Desenvolvimento |
 | Lorrany Freire | Time de Desenvolvimento |
+
+### 2. **Pareamentos**
+
+![Pareamentos](https://i.imgur.com/mGT7f8U.png)
 
 ### 3. **Priorização**
 
