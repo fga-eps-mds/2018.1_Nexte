@@ -49,7 +49,8 @@ class LoginFragment : Fragment(), LoginDisplayLogic {
     var interactor: LoginBusinessLogic? = null
 
     fun getInstance() : LoginFragment {
-        return LoginFragment()
+        val loginFragment = LoginFragment()
+        return loginFragment
     }
 
     /**
@@ -57,9 +58,10 @@ class LoginFragment : Fragment(), LoginDisplayLogic {
      *
      * @param savedInstanceState
      */
-    override fun onCreate(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         super.onCreate(savedInstanceState)
+        val loginView: View? = inflater?.inflate(R.layout.activity_login, container, false)
 
         //AccountKit.initialize(this)
         //setContentView(R.layout.activity_login_view)
@@ -78,7 +80,7 @@ class LoginFragment : Fragment(), LoginDisplayLogic {
             createAuthenticationRequest()
         }
 
-        return view
+        return loginView
     }
     /**
      * On Acitvity Results is a method manager request and results provided
@@ -101,13 +103,13 @@ class LoginFragment : Fragment(), LoginDisplayLogic {
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         val message: String = viewModel.message
-        val toast = Toast.makeText(message, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(this.activity, message, Toast.LENGTH_SHORT)
         toast.show()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
         val message: String  = viewModel.message
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(this.activity, message, Toast.LENGTH_SHORT)
         toast.show()
     }
 
