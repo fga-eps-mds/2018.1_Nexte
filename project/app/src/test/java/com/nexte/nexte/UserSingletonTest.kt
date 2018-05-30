@@ -1,6 +1,8 @@
 package com.nexte.nexte
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 
 import org.junit.Assert.*
@@ -8,65 +10,44 @@ import org.junit.Test
 
 class UserSingletonTest {
 
-    var playerInfo: Player? = null
+    var userType: UserType = UserType.MOCKED
+    var loggedUserID: String = "9"
 
     @Before
     fun setUp() {
-        this.playerInfo = UserSingleton.getUserInformations()
-    }
-
-
-    @Test
-    fun testUserInformationsSet(){
-        //prepare
-        val userInformations: Player = Player("luis",
-                1,
-                "imgur.com/asdnkjadsn",
-                "aksjdb@gmail.com",
-                "masculino123",
-                "akjsdb",
-                21,
-                "alsjndajks",
-                "")
-
-        //call
-        UserSingleton.setUserInformations(userInformations = userInformations)
-        val userInfo = UserSingleton.getUserInformations()
-
-        //assert
-        assertEquals(userInformations.name, userInfo.name)
-        assertEquals(userInformations.rankingPosition, userInfo.rankingPosition)
-        assertEquals(userInformations.pictureAddress, userInfo.pictureAddress)
-        assertEquals(userInformations.email, userInfo.email)
-        assertEquals(userInformations.gender, userInfo.gender)
-        assertEquals(userInformations.club, userInfo.club)
-        assertEquals(userInformations.age, userInfo.age)
-        assertEquals(userInformations.password, userInfo.password)
-        assertEquals(userInformations.category, userInfo.category)
+        this.userType = UserSingleton.userType
+        this.loggedUserID = UserSingleton.loggedUserID
     }
 
     @Test
-    fun testUserInformationsGet(){
+    fun successEnum() {
         //prepare
-        val userInformations: Player = this.playerInfo!!
-
-        //call
-        val userInfo = UserSingleton.getUserInformations()
+        val userTypeReal = UserType.REAL
+        val userTypeMocked = UserType.MOCKED
 
         //assert
-        assertEquals(userInformations.name, userInfo.name)
-        assertEquals(userInformations.rankingPosition, userInfo.rankingPosition)
-        assertEquals(userInformations.pictureAddress, userInfo.pictureAddress)
-        assertEquals(userInformations.email, userInfo.email)
-        assertEquals(userInformations.gender, userInfo.gender)
-        assertEquals(userInformations.club, userInfo.club)
-        assertEquals(userInformations.age, userInfo.age)
-        assertEquals(userInformations.password, userInfo.password)
-        assertEquals(userInformations.category, userInfo.category)
+        Assert.assertNotNull("User type real is incorrect!", userTypeReal)
+        Assert.assertNotNull("User type mocked is incorrect!", userTypeMocked)
+    }
+
+    @Test
+    fun successSetLoggedUser(){
+        //prepare
+        val loggedUser: User = UserSingleton.loggedUser
+
+        //call
+        UserSingleton.setLoggedUser(identifier = "9", userType = UserType.MOCKED)
+        val userInfo = UserSingleton.loggedUser
+
+        //assert
+        assertEquals(loggedUser.name, userInfo.name)
+        assertEquals(loggedUser.rankingPosition, userInfo.rankingPosition)
+        assertEquals(loggedUser.email, userInfo.email)
+        assertEquals(loggedUser.gender, userInfo.gender)
+        assertEquals(loggedUser.category, userInfo.category)
     }
 
     @After
     fun tearDown() {
-        UserSingleton.setUserInformations(userInformations = this.playerInfo!!)
     }
 }

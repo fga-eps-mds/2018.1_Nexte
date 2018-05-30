@@ -1,6 +1,7 @@
 package com.nexte.nexte.EditProfileScene
 
 import com.nexte.nexte.Player
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
 
@@ -61,9 +62,7 @@ class EditProfileViewTest {
         this.view?.editUserInformationInteractor = mock
 
         //call
-        this.view?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc",
-                name = "luis", club = "asdasdas", email = "asdasdasd", rankingPosition = 1,
-                pictureAddress = "asd", category = "profissional"))
+        this.view?.createEditProfileRequest(user = UserSingleton.loggedUser, password = "senha")
 
         //assert
         mock.hasBeenHere = true
