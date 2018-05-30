@@ -30,18 +30,15 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
 
         //call
-        val player = LikeListModel.Players(name = name, photo = photo, time = time)
+        val player = LikeListModel.Players(name = name, photo = photo)
         player.name
         player.photo
-        player.time
 
         //assert
         assertEquals(name, player.name)
         assertEquals(photo, player.photo)
-        assertEquals(time, player.time)
     }
 
     @Test
@@ -49,18 +46,15 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
 
         //call
-        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo, time = time)
+        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo)
         playersFormatted.name
         playersFormatted.photo
-        playersFormatted.time
 
         //assert
         assertEquals(name, playersFormatted.name)
         assertEquals(photo, playersFormatted.photo)
-        assertEquals(time, playersFormatted.time)
     }
 
     @Test
@@ -68,8 +62,7 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
-        val player = LikeListModel.Players(name = name, photo = photo, time = time)
+        val player = LikeListModel.Players(name = name, photo = photo)
 
         //call
         val response = LikeListModel.Response(players = mutableListOf(player))
@@ -85,12 +78,10 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
-        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo, time = time)
+        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo)
 
         //call
         val viewModel = LikeListModel.ViewModel(playersFormatted = mutableListOf(playersFormatted))
-        playersFormatted.time = time
         playersFormatted.photo = photo
         playersFormatted.name = name
 

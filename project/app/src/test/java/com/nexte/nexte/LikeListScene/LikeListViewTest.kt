@@ -22,8 +22,6 @@ class LikeListViewTest {
         //prepare
         this.fragment?.setUpLikeListScene(manager = UserManager(userAdapter = UserAdapterSpy()))
 
-        //call
-
         //assert
         assertNotNull(this.fragment?.interactor)
         assertNotNull(this.fragment?.interactor?.presenter)
@@ -35,9 +33,6 @@ class LikeListViewTest {
         this.fragment?.setUpLikeListScene(manager = UserManager(userAdapter = UserAdapterSpy()))
         val mock = MockLikeListsPresentationLogic()
         this.fragment?.interactor?.presenter = mock
-
-        //call
-        this.fragment?.createFetchDataRequest()
 
         //assert
         assertNotNull(mock.likeListResponse)
