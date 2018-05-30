@@ -32,6 +32,8 @@ interface MatchPresentationLogic {
      * @param response contains the data about the status of the match result
      */
     fun presentErrorMessageForMatchResult (response: MatchModel.SendMatchResult.Response)
+
+    fun presentDeclineMatch(response: MatchModel.DeclineChallengeRequest.Response)
 }
 
 /**
@@ -77,5 +79,20 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
         val message = "Resultado do desafio não pode ser enviado. Por favor, tente novamente mais tarde."
         val viewModel = MatchModel.SendMatchResult.ViewModel(message)
         this.viewController?.displayMatchResultMessage(viewModel)
+    }
+
+    override fun presentDeclineMatch(response: MatchModel.DeclineChallengeRequest.Response) {
+        var viewModel: MatchModel.DeclineChallengeRequest.ViewModel? = null
+        var message: String? = null
+
+        if (response.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS){
+            message = ""
+        }else{
+            message = "Não foi possível cancelar esse desafio!"
+        }
+
+        viewModel = MatchModel.DeclineChallengeRequest.
+                ViewModel(response.status, message)
+        viewController?.displayDeclineMatch(viewModel)
     }
 }

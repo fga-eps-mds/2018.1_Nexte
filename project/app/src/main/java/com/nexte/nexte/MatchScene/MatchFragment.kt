@@ -6,11 +6,14 @@ import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.R
+import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
 import java.text.SimpleDateFormat
@@ -25,6 +28,8 @@ interface MatchDisplayLogic {
     fun displayMatch(viewModel: MatchModel.InitScene.ViewModel)
 
     fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel)
+
+    fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel)
 }
 
 /**
@@ -40,11 +45,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     private var matchViewAdapter: MatchDataAdapter? = null
     private var hasChallenge: Int = 0
     private var sendButton: Button?= null
+    private var declineButton: Button? = null
     private var recyclerView: RecyclerView?= null
     var interactor: MatchInteractor? = null
     var numberOfSets = MatchModel.SetsNumber.One
     var challenged: String = ""
     var challenger: String = ""
+    var challengeManager: ChallengeManager? = null
 
     /**
      * Method created because in the future maybe this class will receive arguments.
@@ -84,6 +91,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             this.setUpMatchScene()
             this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
             this.sendButton = view?.findViewById(R.id.sendButton)
+            this.declineButton = view?.findViewById(R.id.declineButton)
 
             val match = MatchModel.FormattedMatchData(challenged,
                     R.mipmap.ic_launcher_round,
@@ -104,12 +112,45 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 sendMatchResult()
             }
 
+            declineButton?.setOnClickListener {
+                declineMatch()
+            }
+
         }
         else {
             view = inflater?.inflate(R.layout.fragment_nochallenge, container, false)
         }
 
+        challengeManager = ChallengeManager()
         return view!!
+    }
+
+    /**
+     * Method responsible for the decline match result request to the interactor
+     */
+    private fun declineMatch(){
+        val request = MatchModel.DeclineChallengeRequest.
+                Request("xaosd")
+        interactor?.declineMatchResult(request)
+    }
+
+    override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel) {
+        if (viewModel.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS) {
+
+
+
+        } else {
+            val builder = AlertDialog.Builder(context)
+
+            builder.setCancelable(true)
+            builder.setMessage(viewModel.message)
+            builder.setPositiveButton("Ok", { dialogInterface, _ ->
+                dialogInterface.cancel()
+            })
+
+            val alert = builder.create()
+            alert.show()
+        }
     }
 
     /**
@@ -130,6 +171,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         val view = this
 
         interactor.worker.updateLogic = interactor
+        interactor.worker.challengeManager = challengeManager
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view

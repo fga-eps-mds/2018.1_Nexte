@@ -1,5 +1,6 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.R
 
 /**
@@ -12,12 +13,15 @@ import com.nexte.nexte.R
  */
 interface MatchUpdateWorkerLogic {
 
+
     /**
      * Method that will be used to communicate with the presenter
      *
      * @param response contains the data about the status of the match result
      */
     fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response)
+
+    fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response)
 }
 
 /**
@@ -27,6 +31,7 @@ interface MatchUpdateWorkerLogic {
 class MatchWorker {
 
     var updateLogic: MatchUpdateWorkerLogic? = null
+    var challengeManager: ChallengeManager? = null
 
     /**
      * Function to get Match Data from server
@@ -70,5 +75,19 @@ class MatchWorker {
                 MatchModel.SendMatchResult.Status.SUCESSED)
         updateLogic?.getMatchResultResponse(response)
 
+    }
+
+    fun declineMatch(request: MatchModel.DeclineChallengeRequest.Request){
+        val deletedChallenge = challengeManager?.delete(request.challengeId)
+        var response: MatchModel.DeclineChallengeRequest.Response? = null
+
+        if (deletedChallenge != null){
+            response = MatchModel.DeclineChallengeRequest.Response(MatchModel.DeclineChallengeRequest
+                    .Status.SUCCESS)
+        }else{
+            response = MatchModel.DeclineChallengeRequest.Response(MatchModel.DeclineChallengeRequest
+                    .Status.ERROR)
+        }
+        updateLogic?.declineMatchResultResponse(response)
     }
 }

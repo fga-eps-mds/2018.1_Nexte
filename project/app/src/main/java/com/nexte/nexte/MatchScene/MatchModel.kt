@@ -119,4 +119,17 @@ class MatchModel {
 
     }
 
+    class DeclineChallengeRequest {
+
+        class Request(val challengeId: String)
+
+        class Response(val status: Status)
+
+        class ViewModel(val status: Status, val message: String)
+
+        enum class Status {
+            SUCCESS, ERROR
+        }
+    }
+
 }
