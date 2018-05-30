@@ -27,7 +27,6 @@ class MatchPresenterTest {
         val testFormattedMatchData = MatchModel.FormattedMatchData("Lele", 1, "Ale", 2)
         val response = MatchModel.InitScene.Response(match = MatchModel.MatchData(challenged = MatchModel.MatchPlayer("Lele", 1),
                                                      challenger = MatchModel.MatchPlayer("Ale", 2)))
-
         //call
         this.presenter?.presentMatch(response = response)
 
@@ -72,7 +71,7 @@ class MatchPresenterTest {
         //prepare
         val response = MatchModel.SendMatchResult.Response(
                 MatchModel.SendMatchResult.Status.ERROR)
-        val viewModel = this.presenter?.viewController
+        val viewController = this.presenter?.viewController
         this.presenter?.viewController = null
         this.mock?.viewModel = null
 
@@ -81,7 +80,7 @@ class MatchPresenterTest {
 
         //assert
         assertNull(this.mock?.viewModel)
-        this.presenter?.viewController = viewModel
+        this.presenter?.viewController = viewController
     }
 
     @Test
@@ -89,7 +88,7 @@ class MatchPresenterTest {
         //prepare
         val response = MatchModel.SendMatchResult.Response(
                 MatchModel.SendMatchResult.Status.SUCESSED)
-        val viewModel = this.presenter?.viewController
+        val viewController = this.presenter?.viewController
         this.presenter?.viewController = null
         this.mock?.viewModel = null
 
@@ -98,7 +97,7 @@ class MatchPresenterTest {
 
         //assert
         assertNull(this.mock?.viewModel)
-        this.presenter?.viewController = viewModel
+        this.presenter?.viewController = viewController
     }
 
     @Test
