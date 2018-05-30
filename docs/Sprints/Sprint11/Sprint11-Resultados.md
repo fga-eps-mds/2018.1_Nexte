@@ -79,7 +79,6 @@ Portanto, a nova média do velocity ficou em **74,7** *sprint points*
 
 Em relação a *sprint* anterior o quadro de conhecimento apresentou um crescimento em importantes áreas para o time, testes e Docker. Neste âmbito, pode-se citar o crescimento dos membros de MDS em testes unitários e de instrumentação, principalmente. No contexto de GPP, o crescimento na área técnico de ferramentas como o Docker. A partir desses resultados, foi possível observar o crescimento técnico em áreas que serão bastante exploradas nas próximas *sprints*.
 
-
 ### **1.5. Retrospectiva**
 
 <h4> Pontos Positivos:</h4>
@@ -131,16 +130,16 @@ Em relação a *sprint* anterior o quadro de conhecimento apresentou um crescime
 
 Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
-#### 1.5.3 Diferenças da sprint anterior
+#### 2.3 Diferenças da sprint anterior
 
 | ID | Status | Por que mudou? |
 |---|---|---|
-| RN02 | aumentou | Esse risco aumentou pois nessa hisprint houve um perigo que muitas histórias não serem entregues e não foi por conta da complexidade e sim por falta do comprometimento dos membros e está chegando a copa do mundo, que é um perídodo em que as pessoas normalmente não trabalham por conta dos jogos|
-| RN06 | aumentou | Alguns membros estavam atarefados com outras matérias e um membro estava "disponível" mas não trabalhou no projeto e está chegando a copa do mundo, que é um perídodo em que as pessoas normalmente não trabalham por conta dos jogos|
-| RN07 | aumentou | Houve uma falha na comunicação entre uma dupla de pareamento entre si e entre elas e o time.|
-| RN05 | diminuiu | O membro já está fazendo algumas tarefas e mostrando grande empenho no projeto para mitigar esse risco|
+| RN15 | diminuiu | Os integrantes do times tiveram crescimento técnico em áreas que poucos integrantes dominavam. Dessa forma, o conhecimento está mais homegêneo. |
+| RN23 | diminuiu | Na última sprint, o foco nos testes, possibilitou que muitos integrantes tivessem maior conhecimento sobre testes unitários e de integração. |
+| RN25 | diminuiu | O servidor de imagem está em processo de finalização |
 
-#### 1.5.4 Ações para riscos atuais
+
+#### 2.4 Ações para riscos atuais
 
 | ID | Como mitigar |
 |---|---|
@@ -148,8 +147,8 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 | RN02 | vai  haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada, além disse me relação aos outros membros pois aconteceu parecido com a maioria do time. Além disso o período da copa do mundo vai ser organizado para que os membros trabalhem em conjunto. |
 | RN03 | E dito que a qualquer problema, qualquer membro deve tentar resolver, caso não consigam, deve-se pedir ajuda o mais rápido possível |
 | RN04 | Os membros de EPS trabalharão no servidor juntamente com o cliente. Segundo o planejamento da equipe esse servidor estará disponível para a aplicação a partir da sprint 10. |
-| RN06 | Alguns membros já têm viagens marcadas, como os membros Guilherme Baldissera e Geovanni Oliveira, para que no período de ausênsia seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
-| RN25 | Foram planejados e serão executados dois treinamentos de GO e criação de servidor em GO para a equipe de MDS/EPS. |
+| RN06 | Alguns membros já têm viagens marcadas, como os membros Larrisa e Geovanni, para que no período de ausênsia seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
+| RN07 | O Scrum Master, será mais presente no papel de fazer com que todos integrantes estejam ativos na implementação de histórias e participação do rituais do SCRUM. |
 
 ## **3. EVM**
 
