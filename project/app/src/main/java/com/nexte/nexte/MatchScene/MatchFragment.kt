@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.MainActivity
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_challenger.*
@@ -32,7 +34,7 @@ interface MatchDisplayLogic {
 
     fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel)
 
-    fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel)
+    fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel): Unit?
 }
 
 /**
@@ -162,6 +164,10 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel) =
             if (viewModel.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS) {
 
+                val challenge = ((this.activity as MainActivity).supportFragmentManager.findFragmentByTag("challenge") as ChallengeTabsFragment)
+                challenge.match = null
+                (this.activity as MainActivity).tabs.getTabAt(0)?.select()
+                challenge.viewpager?.adapter?.notifyDataSetChanged()
 
             } else {
                 val builder = AlertDialog.Builder(context)

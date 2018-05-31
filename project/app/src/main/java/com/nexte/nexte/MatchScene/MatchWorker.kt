@@ -84,7 +84,7 @@ class MatchWorker {
                     .Status.SUCCESS)
         }else{
             response = MatchModel.DeclineChallengeRequest.Response(MatchModel.DeclineChallengeRequest
-                    .Status.SUCCESS)
+                    .Status.ERROR)
         }
         updateLogic?.declineMatchResultResponse(response)
     }
