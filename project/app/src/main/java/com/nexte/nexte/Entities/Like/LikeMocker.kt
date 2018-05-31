@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.nexte.nexte.Entities.Like
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapter
@@ -18,10 +20,10 @@ object LikeMocker{
 
         val bound = to - from
 
-        if (bound > 0){
-            return random.nextInt(bound) + from
+        return if (bound > 0){
+            random.nextInt(bound) + from
         }else{
-            return from
+            from
         }
     }
 
@@ -29,24 +31,21 @@ object LikeMocker{
         val year = randomNumber(2013, 2018)
         val dayOfYear = randomNumber(1, 30)
         val monthOfYear = randomNumber(1, 12)
-        val date = Date(year, monthOfYear, dayOfYear)
-        return date
+        return Date(year, monthOfYear, dayOfYear)
     }
 
     private fun getUsersIds(usersAmount: Int) : List<String> {
-        var users = listOf<User>()
-
-        if(userAdapter == null){
-            users = UserManager().getAll()
+        val users: List<User> = if(userAdapter == null){
+            UserManager().getAll()
         }else{
-            users = UserManager(userAdapter = userAdapter!!).getAll()
+            UserManager(userAdapter = userAdapter!!).getAll()
         }
 
         val usersIds = mutableListOf<String>()
 
         println(users.size)
         println(usersAmount)
-        for (counter in 0..usersAmount - 1){
+        for (counter in 0 until usersAmount){
             println(counter)
             usersIds.add(users[counter].id)
         }
@@ -57,7 +56,7 @@ object LikeMocker{
     private fun getLikeIds(amount: Int): List<String>{
         val likesIds = mutableListOf<String>()
 
-        for (counter in 0..amount - 1){
+        for (counter in 0 until amount){
             likesIds.add(likeId++.toString())
         }
 
@@ -67,7 +66,7 @@ object LikeMocker{
     private fun getDates(amount: Int): List<Date>{
         val dates = mutableListOf<Date>()
 
-        for (counter in 0..amount - 1){
+        for (counter in 0 until amount){
             dates.add(generateRandomDate())
         }
 
@@ -79,7 +78,7 @@ object LikeMocker{
         val dates = getDates(likesAmount)
         val usersIds = getUsersIds(likesAmount)
 
-        for (counter in 0..usersIds.size - 1){
+        for (counter in 0 until usersIds.size){
             val like = Like(ids[counter], usersIds[counter], dates[counter])
             likesMocks.add(like)
         }

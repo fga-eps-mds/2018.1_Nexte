@@ -19,13 +19,12 @@ class LikeAdapterRealm : LikeAdapter {
     }
 
     override fun updateOrInsert(like: Like): Like? {
-        convertLikeToLikeRealm(like)?.let {
+        convertLikeToLikeRealm(like).let {
             realm.beginTransaction()
             realm.insertOrUpdate(it)
             realm.commitTransaction()
             return like
         }
-        return null
     }
 
 
@@ -43,14 +42,13 @@ class LikeAdapterRealm : LikeAdapter {
 
         val date = likeRealm.date
 
-        val likes = Like(id = id, userId = userId, date = date)
-        return likes
+        return Like(id = id, userId = userId, date = date)
     }
 
     private fun convertListLikeRealmToLikeList(likeRealm: List<LikeRealm>) : List<Like> {
         val likes: MutableList<Like> = mutableListOf()
-        for(likeRealm in likeRealm) {
-            convertLikeRealmToLike(likeRealm)?.let {
+        for(currentLikeRealm in likeRealm) {
+            convertLikeRealmToLike(currentLikeRealm).let {
                 likes.add(it)
             }
         }
@@ -65,7 +63,6 @@ class LikeAdapterRealm : LikeAdapter {
 
         val date = like.date
 
-        val likeRealm = LikeRealm(id = id, userId = userId, date = date)
-        return likeRealm
+        return LikeRealm(id = id, userId = userId, date = date)
     }
 }
