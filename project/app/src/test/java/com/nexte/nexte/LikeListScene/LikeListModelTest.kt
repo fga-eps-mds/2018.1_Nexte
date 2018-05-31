@@ -1,15 +1,26 @@
 package com.nexte.nexte.LikeListScene
 
+
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
 import org.junit.Test
+
 
 class LikeListModelTest {
 
     @Before
     fun setUp() {
+    }
+
+    @Test
+    fun initLikeList(){
+        //prepare
+        //call
+        val testInit = LikeListModel()
+
+        //assert
+        assertNotNull(testInit)
     }
 
     @Test
@@ -33,8 +44,8 @@ class LikeListModelTest {
 
         //call
         val player = LikeListModel.Players(name = name, photo = photo)
-        player.name
-        player.photo
+        player.name = name
+        player.photo = photo
 
         //assert
         assertEquals(name, player.name)
@@ -49,8 +60,8 @@ class LikeListModelTest {
 
         //call
         val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo)
-        playersFormatted.name
-        playersFormatted.photo
+        playersFormatted.name = name
+        playersFormatted.photo = photo
 
         //assert
         assertEquals(name, playersFormatted.name)

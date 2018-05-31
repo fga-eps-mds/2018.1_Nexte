@@ -27,16 +27,16 @@ class LikeListViewTest {
         assertNotNull(this.fragment?.interactor?.presenter)
     }
 
-    @Test
-    fun testCreateFetchDataRequest(){
-        //prepare
-        this.fragment?.setUpLikeListScene(manager = UserManager(userAdapter = UserAdapterSpy()))
-        val mock = MockLikeListsPresentationLogic()
-        this.fragment?.interactor?.presenter = mock
-
-        //assert
-        assertNotNull(mock.likeListResponse)
-    }
+    //@Test
+//    fun testCreateFetchDataRequest(){
+//        //prepare
+//        this.fragment?.setUpLikeListScene(manager = UserManager(userAdapter = UserAdapterSpy()))
+//        val mock = MockLikeListsPresentationLogic()
+//        this.fragment?.interactor?.presenter = mock
+//
+//        //assert
+//        assertNotNull(mock.likeListResponse)
+//    }
 
     @After
     fun tearDown() {
