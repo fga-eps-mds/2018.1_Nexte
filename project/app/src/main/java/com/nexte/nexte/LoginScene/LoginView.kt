@@ -54,14 +54,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_login_view)
         this.setup()
 
-        btnLoginPhonenumber.setOnClickListener {
-            this.loginPhoneNumber()
-        }
-
-        btnLoginFacebook.setOnClickListener {
-            this.loginByEmail()
-        }
-
         login.setOnClickListener {
             createAuthenticationRequest()
         }
