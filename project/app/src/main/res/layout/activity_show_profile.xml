@@ -44,40 +44,12 @@
             android:layout_marginStart="70dp"
             android:background="@drawable/circle_ranking_profile"
             android:text="R"
+            android:gravity="center"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView" />
-
-
-        <TextView
-            android:id="@+id/emailLabel"
-            android:layout_width="89dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="86dp"
-            android:text="e_mail"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonA"
-            tools:text="E-mail:" />
-
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="0dp"
-            android:layout_height="22dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
-            android:text="  email"
-            android:textColor="#aaaaaa"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/emailLabel"
-            app:layout_constraintTop_toTopOf="@+id/emailLabel" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
@@ -88,21 +60,20 @@
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLabel">
+            app:layout_constraintTop_toBottomOf="@+id/buttonA">
 
         </com.github.mikephil.charting.charts.LineChart>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/rankingChart"
-            android:layout_width="340dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="360dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lineChart">
-
         </com.github.mikephil.charting.charts.LineChart>
 
         <Button

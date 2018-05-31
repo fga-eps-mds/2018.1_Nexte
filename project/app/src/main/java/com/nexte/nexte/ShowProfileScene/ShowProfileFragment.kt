@@ -210,6 +210,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
 
             showProfileFragment.newLineChart?.invalidate()
+            showProfileFragment.newLineChart?.setExtraOffsets(0f,0f,0f,0f)
         }
 
         /**
@@ -281,7 +282,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
-        email?.text = viewModel.playerInfo.email
+//        email?.text = viewModel.playerInfo.email
         if(viewModel.playerInfo.name != UserSingleton.getUserInformations().name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
