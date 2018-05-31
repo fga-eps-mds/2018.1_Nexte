@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="#2E2E2E"
     tools:context="com.nexte.nexte.MainActivity">
 
 
@@ -26,13 +26,11 @@
         android:id="@+id/expandedRankingTextView"
         android:layout_width="49dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="65dp"
         android:layout_marginTop="22dp"
         android:text="@string/r"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/background_light"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/sendChallengeButton"
         app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />
 
     <TextView
@@ -75,29 +73,29 @@
         android:id="@+id/sendChallengeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="201dp"
         android:layout_marginEnd="125dp"
         android:layout_marginStart="127dp"
+        android:layout_marginTop="47dp"
         android:text="@string/enviar_desafio"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expandedWins" />
 
     <TextView
         android:id="@+id/noPlayersText"
         android:layout_width="233dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="192dp"
+        android:layout_height="24dp"
         android:layout_marginEnd="164dp"
         android:layout_marginStart="164dp"
+        android:layout_marginTop="40dp"
         android:text="@string/sem_jogadores_dispon_veis"
         android:textColor="@color/hint_color_pattern"
         android:textSize="18sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/sendChallengeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />
 
     <TextView
         android:id="@+id/message"
