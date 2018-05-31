@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.support.v4.app.Fragment
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -15,10 +14,7 @@ import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.R
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_challenger.*
-import kotlinx.android.synthetic.main.activity_comments.view.*
-import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
 import java.text.SimpleDateFormat
@@ -161,10 +157,15 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     }
 
 
+    /**
+     *  Function that is reponsible to the action of declining a challenge
+     *
+     *  @param viewModel match model to send a decline challenge request
+     */
     override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel) =
             if (viewModel.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS) {
 
-                val challenge = ((this.activity as MainActivity).supportFragmentManager.findFragmentByTag("challenge") as ChallengeTabsFragment)
+                val challenge = (this.activity as MainActivity).supportFragmentManager.findFragmentByTag("challenge") as ChallengeTabsFragment
                 challenge.match = null
                 (this.activity as MainActivity).tabs.getTabAt(0)?.select()
                 challenge.viewpager?.adapter?.notifyDataSetChanged()

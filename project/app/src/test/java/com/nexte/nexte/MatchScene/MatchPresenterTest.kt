@@ -133,6 +133,7 @@ class MatchPresenterTest {
 
 private class MockMatchDisplayLogic : MatchDisplayLogic {
 
+
     var matchDataFormatted: MatchModel.FormattedMatchData? = null
     var viewModel: MatchModel.SendMatchResult.ViewModel? = null
 
@@ -142,5 +143,9 @@ private class MockMatchDisplayLogic : MatchDisplayLogic {
 
     override fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel) {
         this.viewModel = viewModel
+    }
+
+    override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel): Unit? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

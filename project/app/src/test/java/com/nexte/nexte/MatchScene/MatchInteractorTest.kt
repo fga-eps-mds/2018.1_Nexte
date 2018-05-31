@@ -148,6 +148,9 @@ class MatchInteractorTest {
 }
 
 private class MMockMatchPresentationLogic: MatchPresentationLogic{
+    override fun presentDeclineMatch(response: MatchModel.DeclineChallengeRequest.Response) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     var passedHere = false
     var response2 : MatchModel.SendMatchResult.Response? = null
@@ -166,6 +169,9 @@ private class MMockMatchPresentationLogic: MatchPresentationLogic{
 }
 
 private class MockkMatchUpdateWorkerLogic: MatchUpdateWorkerLogic{
+    override fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     var mock: MMockMatchPresentationLogic? = null
 

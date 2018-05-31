@@ -75,6 +75,11 @@ class MatchWorker {
 
     }
 
+    /**
+     *  Function to decline a match
+     *
+     *  @param request the request of a challenge
+     */
     fun declineMatch(request: MatchModel.DeclineChallengeRequest.Request){
         val deletedChallenge = challengeManager?.delete(request.challengeId)
         var response: MatchModel.DeclineChallengeRequest.Response? = null

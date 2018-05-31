@@ -100,6 +100,9 @@ class MatchWorkerTest {
 }
 
 private class MockMatchUpdateWorkerLogic: MatchUpdateWorkerLogic{
+    override fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     var response: MatchModel.SendMatchResult.Response? = null
 

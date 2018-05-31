@@ -33,6 +33,11 @@ interface MatchPresentationLogic {
      */
     fun presentErrorMessageForMatchResult (response: MatchModel.SendMatchResult.Response)
 
+    /**
+     *  Method to present a decline of challenge
+     *
+     *  @param response of the challenge
+     */
     fun presentDeclineMatch(response: MatchModel.DeclineChallengeRequest.Response)
 }
 
