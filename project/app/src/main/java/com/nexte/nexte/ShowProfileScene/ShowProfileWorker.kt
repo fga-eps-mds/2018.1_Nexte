@@ -59,7 +59,12 @@ class ShowProfileWorker {
         val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
         updateLogic?.updateUserProfile(response)
 
-        val url = "http://10.0.2.2:3000/users"
+        val url = "http://10.0.2.2:3000/users/" + if(returnedUser != null){
+            returnedUser.id
+        }else{
+            ""
+        }
+
         url.httpGet().responseJson { _, _, result ->
             when(result){
                 is Result.Failure -> {

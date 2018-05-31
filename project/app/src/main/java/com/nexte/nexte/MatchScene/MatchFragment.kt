@@ -150,9 +150,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     /**
      * Method responsible for the decline match result request to the interactor
      */
-    private fun declineMatch(){
+    fun declineMatch(){
         val request = MatchModel.DeclineChallengeRequest.
-                Request("xaosd")
+                Request("1")
         interactor?.declineMatchResult(request)
     }
 
@@ -185,7 +185,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     /**
      * Method responsible to send the match result request to the interactor
      */
-    private fun sendMatchResult(){
+     fun sendMatchResult(){
         val request = MatchModel.SendMatchResult.Request()
         this.interactor?.getMatchResult(request)
     }
@@ -193,7 +193,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     /**
      * Method responsible to setup all the references of this scene
      */
-    private fun setUpMatchScene() {
+    fun setUpMatchScene() {
 
         val interactor = MatchInteractor()
         val presenter = MatchPresenter()
@@ -212,7 +212,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      *
      * @param setsNumber get the actual number of sets being used as reference
      */
-    private fun updateSetsNumber (setsNumber: MatchModel.SetsNumber) {
+     fun updateSetsNumber (setsNumber: MatchModel.SetsNumber) {
         numberOfSets = setsNumber
         matchViewAdapter?.notifyDataSetChanged()
 

@@ -161,4 +161,40 @@ class MatchModelTest {
 
         assertEquals(viewModel.message, "asdasd")
     }
+
+    @Test
+    fun testDeclineChallengeRequestConstructor(){
+        val declineChallenge = MatchModel.DeclineChallengeRequest()
+        assertNotNull(declineChallenge)
+    }
+
+    @Test
+    fun testDeclineChallengeRequestRequest(){
+        val request = MatchModel.DeclineChallengeRequest.
+                                                                        Request("1")
+        assertEquals("1", request.challengeId)
+    }
+
+    @Test
+    fun testDeclineChallengeRequestResponse(){
+        val response = MatchModel.DeclineChallengeRequest.
+                Response(MatchModel.DeclineChallengeRequest.Status.SUCCESS)
+        assertEquals(MatchModel.DeclineChallengeRequest.Status.SUCCESS, response.status)
+    }
+
+    @Test
+    fun testDeclineChallengeRequestViewModel(){
+        val viewModel = MatchModel.DeclineChallengeRequest
+                .ViewModel(MatchModel.DeclineChallengeRequest.Status.SUCCESS, "1")
+        assertEquals(MatchModel.DeclineChallengeRequest.Status.SUCCESS, viewModel.status)
+        assertEquals("1", viewModel.message)
+    }
+
+    @Test
+    fun testDeclineChallengeRequestStatus(){
+        val status = MatchModel.DeclineChallengeRequest.Status
+                .SUCCESS
+        assertEquals(MatchModel.DeclineChallengeRequest.Status
+                .SUCCESS, status)
+    }
 }
