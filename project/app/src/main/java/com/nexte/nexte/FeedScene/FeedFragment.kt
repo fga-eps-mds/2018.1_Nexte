@@ -51,7 +51,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        //       setContentView(R.layout.activity_feed_view)
 
         this.setupFeedScene()
         val newView = inflater?.inflate(R.layout.activity_feed_view, container, false)
@@ -94,8 +93,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
         val likeListFragment = LikeListFragment().getInstance()
         val fragmentManager = activity.fragmentManager
-      //  val intent = Intent(activity, LikeListFragment::class.java)
-      //  startActivity(intent)
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, likeListFragment, "like")
         fragmentTransaction.addToBackStack(null)

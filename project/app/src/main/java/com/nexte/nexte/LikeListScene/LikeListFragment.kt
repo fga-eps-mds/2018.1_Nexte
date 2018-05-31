@@ -8,7 +8,6 @@ import com.nexte.nexte.R
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Adapter
 import com.nexte.nexte.Entities.User.UserManager
 import kotlinx.android.synthetic.main.row_likes.view.*
 
@@ -45,8 +44,6 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val newView = inflater?.inflate(R.layout.activity_list_like, container, false)
-        // super.onCreateView(savedInstanceState)
-        //setContentView(R.layout.activity_list_like)
         likesListRecyclerView = newView?.findViewById(R.id.likesListRecyclerView)
         likesListRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
         this.setUpLikeListScene()
