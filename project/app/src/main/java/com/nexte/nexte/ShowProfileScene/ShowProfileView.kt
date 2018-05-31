@@ -1,6 +1,5 @@
 package com.nexte.nexte.ShowProfileScene
 
-import android.content.Intent
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle

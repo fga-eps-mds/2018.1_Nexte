@@ -1,5 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
+import android.widget.TextView
 import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Before
@@ -40,6 +41,19 @@ class EditProfileFragmentTest {
     }
 
     @Test
+    fun testOnTextChanged(){
+        //prepare
+        this.fragment?.passwordConfirmationTextEdit?.text?.trim().toString()
+        this.fragment?.passwordTextEdit?.text?.trim().toString()
+
+        //call
+        this.testPasswordWatcher()
+
+        // assert
+        assertEquals(this.fragment?.passwordConfirmationTextEdit?.text?.trim().toString(),this.fragment?.passwordTextEdit?.text?.trim().toString())
+    }
+
+    @Test
     fun testGetProfileCreateRequest(){
         //prepare
         this.fragment?.setupEditProfileScene()
@@ -67,6 +81,24 @@ class EditProfileFragmentTest {
 
         //assert
         mock.hasBeenHere = true
+    }
+
+    @Test
+    fun testGetInstance() {
+
+        //prepare
+        val editProfileFragment = EditProfileFragment()
+
+        //call
+        this.fragment?.getInstance()
+
+        //assert
+        assertNotNull(editProfileFragment)
+    }
+
+    @Test
+    fun testOnCreateView() {
+
     }
 
     @After
