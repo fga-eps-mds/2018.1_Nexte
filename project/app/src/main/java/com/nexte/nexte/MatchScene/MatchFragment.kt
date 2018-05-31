@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
@@ -76,6 +77,35 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         fragmentFirst.arguments = bundle
 
         return fragmentFirst
+    }
+
+    private fun validateNormalSet(challenger: Int, challenged: Int) : Boolean{
+        return if (challenger == 7 && (challenged == 6 || challenged == 5)) {
+            true
+        }
+        else if(challenged == 7 && (challenger == 6 || challenger == 5)) {
+            true
+        }
+        else if(challenged == 6 && challenger <= 4){
+            true
+        }
+        else challenger == 6 && challenged <= 4
+    }
+
+    fun validateSetResults(): Boolean {
+        var isSetResultsValid = true
+        recyclerView?.adapter as MatchDataAdapter
+
+
+        for(i in 1 until recyclerView?.adapter?.itemCount!!){
+            val item = recyclerView?.findViewHolderForAdapterPosition(i)
+
+            val challengerResult = item?.itemView?.findViewById<EditText>(R.id.challengerResult)
+            val challengedResult = item?.itemView?.findViewById<EditText>(R.id.challengedResult)
+
+        }
+
+        return isSetResultsValid
     }
 
     /**
@@ -217,39 +247,40 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             val layoutMatch : Int
 
             when((fragment as MatchFragment).numberOfSets.number){
-                firstPosition -> layoutMatch = when(position) {
-                    zeroPosition -> R.layout.row_match_info
-                    firstPosition -> R.layout.row_match_sets
-                    secondPosition -> R.layout.row_match_time
-                    else -> R.layout.row_match_wo
+                one -> layoutMatch = when(position) {
+                    zero -> R.layout.row_match_info
+                    one -> R.layout.row_match_sets
+                    two -> R.layout.row_match_time
+                    else -> throw IllegalArgumentException()
                 }
 
-                thirdPosition -> layoutMatch = when(position) {
-                    zeroPosition -> R.layout.row_match_info
-                    firstPosition -> R.layout.row_match_sets
-                    secondPosition -> R.layout.row_match_sets
-                    thirdPosition -> R.layout.row_match_sets
-                    fourthPosition -> R.layout.row_match_time
-                    else -> R.layout.row_match_wo
-                }
-                fifthPosition -> layoutMatch = when(position) {
-                    zeroPosition -> R.layout.row_match_info
-                    firstPosition -> R.layout.row_match_sets
-                    secondPosition -> R.layout.row_match_sets
-                    thirdPosition -> R.layout.row_match_sets
-                    fourthPosition -> R.layout.row_match_sets
-                    fifthPosition -> R.layout.row_match_sets
-                    sixthPosition -> R.layout.row_match_time
-                    else -> R.layout.row_match_wo
-                }
-                zeroPosition -> layoutMatch = when(position) {
-                    zeroPosition -> R.layout.row_match_info
-                    firstPosition -> R.layout.row_match_wo
-                    else -> R.layout.row_match_wo
+                three -> layoutMatch = when(position) {
+                    zero -> R.layout.row_match_info
+                    one -> R.layout.row_match_sets
+                    two -> R.layout.row_match_sets
+                    three -> R.layout.row_match_sets
+                    four -> R.layout.row_match_time
+                    else -> throw IllegalArgumentException()
                 }
 
-                else -> layoutMatch = R.layout.row_match_wo
+                five -> layoutMatch = when(position) {
+                    zero -> R.layout.row_match_info
+                    one -> R.layout.row_match_sets
+                    two -> R.layout.row_match_sets
+                    three -> R.layout.row_match_sets
+                    four -> R.layout.row_match_sets
+                    five -> R.layout.row_match_sets
+                    six -> R.layout.row_match_time
+                    else -> throw IllegalArgumentException()
+                }
 
+                zero -> layoutMatch = when(position) {
+                    zero -> R.layout.row_match_info
+                    one -> R.layout.row_match_wo
+                    else -> throw IllegalArgumentException()
+                }
+
+                else -> throw IllegalArgumentException()
             }
 
             return layoutMatch
@@ -295,11 +326,11 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         override fun getItemCount(): Int {
 
             return when((fragment as MatchFragment).numberOfSets.number) {
-                firstPosition -> thirdPosition
-                thirdPosition -> fifthPosition
-                fifthPosition -> seventhPosition
-                zeroPosition -> secondPosition
-                else -> secondPosition
+                one -> three
+                three -> five
+                five -> seven
+                zero -> two
+                else -> two
             }
         }
 
@@ -409,13 +440,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     }
 
     companion object {
-        const val zeroPosition = 0
-        const val firstPosition = 1
-        const val secondPosition = 2
-        const val thirdPosition = 3
-        const val fourthPosition = 4
-        const val fifthPosition = 5
-        const val sixthPosition = 6
-        const val seventhPosition = 7
+        const val zero = 0
+        const val one = 1
+        const val two = 2
+        const val three = 3
+        const val four = 4
+        const val five = 5
+        const val six = 6
+        const val seven = 7
     }
 }
