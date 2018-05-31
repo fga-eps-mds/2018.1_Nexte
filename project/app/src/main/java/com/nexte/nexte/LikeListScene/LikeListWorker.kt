@@ -1,4 +1,5 @@
 package com.nexte.nexte.LikeListScene
+
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
@@ -43,7 +44,7 @@ class LikeListWorker {
      * @return MutableList of addPLayers
      */
     private fun convertUserToLikeListPlayer(user: User?): MutableList<LikeListModel.Players> {
-        val likeListModelPlayer = LikeListModel.Players(name = user!!.name, time = "", photo = R.mipmap.ic_launcher)
+        val likeListModelPlayer = LikeListModel.Players(name = user!!.name, photo = R.mipmap.ic_launcher)
 
         return mutableListOf(likeListModelPlayer)
     }

@@ -42,8 +42,7 @@ class LikeListInteractorTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
-        val player = LikeListModel.Players(name = name, photo = photo, time = time)
+        val player = LikeListModel.Players(name = name, photo = photo)
         val response = LikeListModel.Response(players = mutableListOf(player))
 
         //call

@@ -23,7 +23,7 @@ class LikeListPresenterTest {
         val name = "luis"
         val photo = 1
         val time = "AASC"
-        val player = LikeListModel.Players(name = name, photo = photo, time = time)
+        val player = LikeListModel.Players(name = name, photo = photo)
         val response = LikeListModel.Response(players = mutableListOf(player))
 
         //call
@@ -33,7 +33,6 @@ class LikeListPresenterTest {
         assertEquals(this.mock?.playersFormatted?.size, 1)
         assertEquals(this.mock?.playersFormatted!![0].name, name)
         assertEquals(this.mock?.playersFormatted!![0].photo, photo)
-        assertEquals(this.mock?.playersFormatted!![0].time, time)
     }
 
     @After

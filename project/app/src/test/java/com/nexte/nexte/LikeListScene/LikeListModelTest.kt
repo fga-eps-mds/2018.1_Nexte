@@ -1,15 +1,26 @@
 package com.nexte.nexte.LikeListScene
 
+
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
 import org.junit.Test
+
 
 class LikeListModelTest {
 
     @Before
     fun setUp() {
+    }
+
+    @Test
+    fun initLikeList(){
+        //prepare
+        //call
+        val testInit = LikeListModel()
+
+        //assert
+        assertNotNull(testInit)
     }
 
     @Test
@@ -19,7 +30,7 @@ class LikeListModelTest {
 
         //call
         val request = LikeListModel.Request(request = requestMessage)
-        request.request
+        request.request = requestMessage
 
         //assert
         assertEquals(requestMessage, request.request)
@@ -30,18 +41,15 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
 
         //call
-        val player = LikeListModel.Players(name = name, photo = photo, time = time)
-        player.name
-        player.photo
-        player.time
+        val player = LikeListModel.Players(name = name, photo = photo)
+        player.name = name
+        player.photo = photo
 
         //assert
         assertEquals(name, player.name)
         assertEquals(photo, player.photo)
-        assertEquals(time, player.time)
     }
 
     @Test
@@ -49,18 +57,15 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
 
         //call
-        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo, time = time)
-        playersFormatted.name
-        playersFormatted.photo
-        playersFormatted.time
+        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo)
+        playersFormatted.name = name
+        playersFormatted.photo = photo
 
         //assert
         assertEquals(name, playersFormatted.name)
         assertEquals(photo, playersFormatted.photo)
-        assertEquals(time, playersFormatted.time)
     }
 
     @Test
@@ -68,12 +73,11 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
-        val player = LikeListModel.Players(name = name, photo = photo, time = time)
+        val player = LikeListModel.Players(name = name, photo = photo)
 
         //call
         val response = LikeListModel.Response(players = mutableListOf(player))
-        response.players
+        response.players = mutableListOf(player)
 
         //assert
         assertEquals(response.players.size, 1)
@@ -85,12 +89,10 @@ class LikeListModelTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val time = "AASC"
-        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo, time = time)
+        val playersFormatted = LikeListModel.PlayersFormatted(name = name, photo = photo)
 
         //call
         val viewModel = LikeListModel.ViewModel(playersFormatted = mutableListOf(playersFormatted))
-        playersFormatted.time = time
         playersFormatted.photo = photo
         playersFormatted.name = name
 
