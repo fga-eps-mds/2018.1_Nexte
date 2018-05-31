@@ -6,7 +6,7 @@
 | 29/05/2018| 0.2 | Adição dos riscos e Indicadores da equipe | Miguel Pimentel|
 | 30/05/2018| 1.0 | Finalização do Documento| Miguel Pimentel|
 
-**Número da Sprint:** 111
+**Número da Sprint:** 11
 
 **Data de ínicio:** 20/05/2018
 
