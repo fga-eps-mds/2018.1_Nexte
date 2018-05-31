@@ -9,7 +9,6 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.widget.Button
-import com.nexte.nexte.ChallengeScene.ChallengeView
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.RankingScene.RankingFragment
 
@@ -46,38 +45,37 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.feed -> {
                 val feedFragment = FeedFragment().getInstance()
-                openFragment(feedFragment)
+                openFragment(feedFragment, "feed")
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.challenge -> {
-                val intent = Intent(this, ChallengeView::class.java)
-                startActivity(intent)
+                val challengeFragment = ChallengeTabsFragment().getInstance()
+                openFragment(challengeFragment, "challenge")
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.ranking -> {
                 val rankingFragment = RankingFragment().getInstance()
-                openFragment(rankingFragment)
+                openFragment(rankingFragment, "ranking")
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.profile -> {
                 val showProfileFragment = ShowProfileFragment().getInstance(UserSingleton.getUserInformations().name)
-                openFragment(showProfileFragment)
+                openFragment(showProfileFragment, "profile")
                 return@OnNavigationItemSelectedListener true
 
             } else -> {
             return@OnNavigationItemSelectedListener true
+          }
         }
-        }
-    }
+      }
 
-    private fun openFragment(fragment: Fragment) {
+    private fun openFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame_layout,fragment)
+        transaction.replace(R.id.frame_layout,fragment, tag)
         transaction.addToBackStack(null)
         transaction.commit()
     }
 }
-

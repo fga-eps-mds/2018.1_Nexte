@@ -1,5 +1,6 @@
 package com.nexte.nexte.MatchScene
 
+import com.fasterxml.jackson.databind.deser.DataFormatReaders
 import com.nexte.nexte.R
 import org.junit.Assert.*
 import org.junit.Before
@@ -40,6 +41,7 @@ class MatchModelTest {
 
         //call
         val request = MatchModel.InitScene.Request(matchData)
+        request.match = matchData
 
         //assert
         assertEquals(request.match, matchData)
@@ -53,6 +55,7 @@ class MatchModelTest {
         val matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse)
         //call
         val matchTest = MatchModel.InitScene.Response(matchDataResponse)
+        matchTest.match = matchDataResponse
 
         //assert
         assertEquals(challengedResponse.name, matchTest.match.challenged.name )
@@ -76,6 +79,20 @@ class MatchModelTest {
         assertEquals(challenged, matchData.challenged)
     }
 
+
+    @Test
+    fun successSetMatchFormatted(){
+        //prepare
+        val cdName = "Gabriel"
+        val crName = "leticia"
+        val formatted = MatchModel.FormattedMatchData(cdName, 1, crName, 1)
+        //call
+        val viewModel = MatchModel.InitScene.ViewModel(formatted)
+        viewModel.matchFormatted = formatted
+        //assert
+        assertEquals(viewModel.matchFormatted, formatted)
+    }
+
     @Test
     fun formattedMatchData() {
         //prepare
@@ -87,6 +104,11 @@ class MatchModelTest {
         //call
         val formattedMatchData = MatchModel.FormattedMatchData(challengerName = challengerName, challengerPhoto = challengerPhoto,
                                                                 challengedName = challengedName, challengedPhoto = challengedPhoto)
+
+        formattedMatchData.challengedName = challengedName
+        formattedMatchData.challengedPhoto = challengedPhoto
+        formattedMatchData.challengerName = challengerName
+        formattedMatchData.challengerPhoto = challengerPhoto
 
         //asserts
         assertEquals(challengerName,formattedMatchData.challengerName)
@@ -103,7 +125,8 @@ class MatchModelTest {
 
         //call
         val testMatchPlayer = MatchModel.MatchPlayer(name =  "Rexxar", photo = 3)
-
+        testMatchPlayer.name = name
+        testMatchPlayer.photo = photo
         //asserts
         assertEquals(name, testMatchPlayer.name)
         assertEquals(photo, testMatchPlayer.photo)

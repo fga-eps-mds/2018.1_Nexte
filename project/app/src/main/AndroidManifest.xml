@@ -64,7 +64,7 @@
         <activity
             android:name=".EditProfileScene.EditProfileView"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChallengeScene.ChallengeView"
+        <activity android:name=".PlayersListScene.ChallengeTabsFragment"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity

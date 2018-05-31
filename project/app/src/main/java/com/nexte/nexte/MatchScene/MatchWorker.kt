@@ -60,9 +60,7 @@ class MatchWorker {
 
         val challenged = MatchModel.MatchPlayer("Alexandre Miguel", R.mipmap.ic_launcher )
 
-        val match = MatchModel.MatchData(challenger, challenged)
-
-         return match
+        return MatchModel.MatchData(challenger, challenged)
     }
 
     /**
