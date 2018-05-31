@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_match_info.view.*
+import kotlinx.android.synthetic.main.row_match_sets.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,23 +82,58 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         return fragmentFirst
     }
 
-    private fun validateNormalSet(challenger: Int, challenged: Int) : Boolean{
+    private fun validateProfessionalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
+        if (this.validateNormalSet(challenger, challenged, isValid)){
+            return isValid
+        }
+        if(challenger == 9 && challenged == 8){
+            return isValid
+        }
+        if(challenged == 9 && challenger == 8){
+            return isValid
+        }
+        if(challenger == 8 && challenged <= 6){
+            return isValid
+        }
+        if(challenged == 8 && challenger <= 6){
+            return isValid
+        }
+        return false
+    }
+
+    private fun validateTieBreakSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
+        if(this.validateNormalSet(challenger, challenged, isValid)){
+            return isValid
+        }
+        else if (challenger == 10 && challenged <= 9){
+            return isValid
+        }
+        else if (challenged == 10 && challenger <= 9) {
+            return isValid
+        }
+        return false
+    }
+
+    private fun validateNormalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
         return if (challenger == 7 && (challenged == 6 || challenged == 5)) {
-            true
+            isValid
         }
         else if(challenged == 7 && (challenger == 6 || challenger == 5)) {
-            true
+            isValid
         }
         else if(challenged == 6 && challenger <= 4){
-            true
+            isValid
         }
         else challenger == 6 && challenged <= 4
     }
 
-    fun validateSetResults(): Boolean {
+    private fun defineSetsValid(){
+        sendButton?.isEnabled = validateSetResults()
+    }
+
+    private fun validateSetResults(): Boolean {
         var isSetResultsValid = true
         recyclerView?.adapter as MatchDataAdapter
-
 
         for(i in 1 until recyclerView?.adapter?.itemCount!!){
             val item = recyclerView?.findViewHolderForAdapterPosition(i)
@@ -103,8 +141,50 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             val challengerResult = item?.itemView?.findViewById<EditText>(R.id.challengerResult)
             val challengedResult = item?.itemView?.findViewById<EditText>(R.id.challengedResult)
 
-        }
+            val iChallengedResult:Int
+            val iChallengerResult: Int
+            if(challengedResult != null && challengerResult != null) {
+                try {
+                    iChallengedResult = Integer.parseInt(challengedResult.text.toString())
+                    iChallengerResult = Integer.parseInt(challengerResult.text.toString())
 
+                    isSetResultsValid = when (numberOfSets) {
+                        MatchModel.SetsNumber.One -> {
+                            validateProfessionalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                        }
+                        MatchModel.SetsNumber.Three -> {
+                            when (i) {
+                                1 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                2 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                3 -> validateTieBreakSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                else -> {
+                                    isSetResultsValid
+                                }
+                            }
+
+                        }
+                        MatchModel.SetsNumber.Five -> {
+                            when (i) {
+                                1 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                2 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                3 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                4 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                5 -> validateTieBreakSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                                else -> {
+                                    isSetResultsValid
+                                }
+                            }
+                        }
+                        else -> {
+                            isSetResultsValid
+                        }
+                    }
+                }
+                catch (e: NumberFormatException){
+                    return false
+                }
+            }
+        }
         return isSetResultsValid
     }
 
@@ -305,6 +385,28 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 R.layout.row_match_sets -> {
                     val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_sets, parent,false)
                     holder = MatchFragment.MatchDataAdapter.SetsViewHolder(view)
+                    holder.itemView.challengedResult.addTextChangedListener(object : TextWatcher {
+                        override fun afterTextChanged(p0: Editable?) {
+                        }
+
+                        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        }
+
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                            (fragment as MatchFragment).defineSetsValid()
+                        }
+                    })
+                    holder.itemView.challengerResult.addTextChangedListener(object : TextWatcher {
+                        override fun afterTextChanged(p0: Editable?) {
+                        }
+
+                        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        }
+
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                            (fragment as MatchFragment).defineSetsValid()
+                        }
+                    })
                 }
                 R.layout.row_match_time -> {
                     val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_time, parent,false)
