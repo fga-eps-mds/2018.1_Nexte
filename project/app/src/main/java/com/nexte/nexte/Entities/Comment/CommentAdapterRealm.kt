@@ -20,12 +20,12 @@ class CommentAdapterRealm : CommentAdapter {
 
     }
 
-    override fun updateOrInsert(challenge: Comment): Comment? {
-        convertCommentToCommentRealm(challenge).let {
+    override fun updateOrInsert(comment: Comment): Comment? {
+        convertCommentToCommentRealm(comment).let {
             realm.beginTransaction()
             realm.insertOrUpdate(it)
             realm.commitTransaction()
-            return challenge
+            return comment
         }
 
     }
