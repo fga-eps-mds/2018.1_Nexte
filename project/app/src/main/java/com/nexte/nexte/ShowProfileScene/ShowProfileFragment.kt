@@ -163,6 +163,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             return line
         }
 
+        fun createChart(chart: LineChart, dataSets: ArrayList<ILineDataSet>) {
+
+        }
+
+
+
         fun createGraph() {
             val xAxis = showProfileFragment.newLineChart?.xAxis //instance a view from xml.
             val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
