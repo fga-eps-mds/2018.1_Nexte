@@ -30,7 +30,7 @@ class LikeListModelTest {
 
         //call
         val request = LikeListModel.Request(request = requestMessage)
-        request.request
+        request.request = requestMessage
 
         //assert
         assertEquals(requestMessage, request.request)
@@ -77,7 +77,7 @@ class LikeListModelTest {
 
         //call
         val response = LikeListModel.Response(players = mutableListOf(player))
-        response.players
+        response.players = mutableListOf(player)
 
         //assert
         assertEquals(response.players.size, 1)
