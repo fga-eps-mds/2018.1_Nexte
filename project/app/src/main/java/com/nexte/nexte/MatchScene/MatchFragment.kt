@@ -4,15 +4,18 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.R
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_challenger.*
+import kotlinx.android.synthetic.main.activity_comments.view.*
 import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
@@ -134,24 +137,22 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         interactor?.declineMatchResult(request)
     }
 
-    override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel) {
-        if (viewModel.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS) {
+
+    override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel) =
+            if (viewModel.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS) {
 
 
+            } else {
+                val builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setMessage(viewModel.message)
+                builder.setPositiveButton("Ok", { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                })
 
-        } else {
-            val builder = AlertDialog.Builder(context)
-
-            builder.setCancelable(true)
-            builder.setMessage(viewModel.message)
-            builder.setPositiveButton("Ok", { dialogInterface, _ ->
-                dialogInterface.cancel()
-            })
-
-            val alert = builder.create()
-            alert.show()
-        }
-    }
+                val alert = builder.create()
+                alert.show()
+            }
 
     /**
      * Method responsible to send the match result request to the interactor
