@@ -32,7 +32,6 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
      * @param response contains unformatted data received from [ShowProfileModel]
      */
     override fun presentUserProfile(response: ShowProfileModel.Response) {
-
         val name: String? = response.user?.name
         val ranking: String? = "#" + response.user?.rankingPosition.toString()
         val email: String? = response.user?.email
@@ -40,9 +39,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
                 name,
                 ranking,
                 email)
-
         val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer)
-
         viewScene?.displayProfile(viewModel)
     }
 }

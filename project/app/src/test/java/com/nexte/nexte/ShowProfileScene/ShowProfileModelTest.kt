@@ -31,11 +31,11 @@ class ShowProfileModelTest {
         val userName = "luis-gustavo"
 
         //call
-        val request = ShowProfileModel.Request(username = "luis-gustavo")
-        request.username = userName
+        val request = ShowProfileModel.Request("luis-gustavo")
+        request.userId = userName
 
         //assert
-        assertEquals(userName, request.username)
+        assertEquals(userName, request.userId)
     }
 
     @Test
