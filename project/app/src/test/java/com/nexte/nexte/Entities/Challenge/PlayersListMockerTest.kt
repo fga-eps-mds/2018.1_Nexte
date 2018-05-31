@@ -5,7 +5,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class ChallengeMockerTest {
+class PlayersListMockerTest {
 
     @Before
     fun setUp() {}

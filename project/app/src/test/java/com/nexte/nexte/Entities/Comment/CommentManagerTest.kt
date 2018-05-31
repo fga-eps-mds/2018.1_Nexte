@@ -77,8 +77,8 @@ class CommentManagerTest {
         val commentList = commentManager?.updateMany(comments = comments)
 
         Assert.assertEquals(commentList!![0].id, "1")
-        Assert.assertEquals(commentList!![0].userId, "2")
-        Assert.assertEquals(commentList!![0].comment, "")
+        Assert.assertEquals(commentList[0].userId, "2")
+        Assert.assertEquals(commentList[0].comment, "")
     }
 
     @Test

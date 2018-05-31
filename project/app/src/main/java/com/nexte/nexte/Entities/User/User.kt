@@ -1,5 +1,6 @@
 package com.nexte.nexte.Entities.User
 
+import android.annotation.SuppressLint
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
@@ -27,7 +28,8 @@ class User(val id: String,
 
     companion object {
 
-        /**
+        @SuppressLint("SimpleDateFormat")
+                /**
          * Method used to tranform a jsonObject(received from api) to a User
          *
          * @param jsonUser jsonObject that has user data
@@ -47,35 +49,34 @@ class User(val id: String,
             val birthDate = SimpleDateFormat("dd-MM-yyyy")
                     .parse(jsonUser["birthDate"] as String)
             val genderString = jsonUser["gender"] as String
-            var gender: Gender? = null
-            if (genderString.equals("M")) {
-                gender = Gender.MALE
+            val gender: Gender?
+            gender = if (genderString == "M") {
+                Gender.MALE
             } else {
-                gender = Gender.FEMALE
+                Gender.FEMALE
             }
             val categoryInt = jsonUser["category"] as Int
-            var category = UserCategoryManager().get(categoryInt.toString())
+            val category = UserCategoryManager().get(categoryInt.toString())
             val statusInt = jsonUser["status"] as Int
-            var status: Status? = null
-            when (statusInt) {
+            val status: Status?
+            status = when (statusInt) {
                 0 ->
-                    status = Status.AVAILABLE
+                    Status.AVAILABLE
                 1 ->
-                    status = Status.INJURED
+                    Status.INJURED
                 2 ->
-                    status = Status.UNAVAILABLE
+                    Status.UNAVAILABLE
                 else -> {
-                    status = null
+                    null
                 }
             }
             val challengeSended = null
             val challengeReceived = null
-            var latestGames = null
+            val latestGames = null
 
-            val user = User(id, name, profilePicture, nickname, birthDate,
+            return User(id, name, profilePicture, nickname, birthDate,
                     rankingPosition, email, phone, wins, loses, gender,
                     category, status!!, challengeSended, challengeReceived, latestGames)
-            return user
         }
     }
 
