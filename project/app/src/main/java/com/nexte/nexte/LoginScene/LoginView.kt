@@ -1,19 +1,14 @@
 package com.nexte.nexte.LoginScene
 
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
-import android.webkit.WebViewFragment
-
 import com.facebook.accountkit.*
-import com.nexte.nexte.FeedScene.FeedModel
 import kotlinx.android.synthetic.main.activity_login_view.*
 import kotlinx.android.synthetic.main.row_feed.*
-
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -117,8 +112,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     fun navigateWithoutLogin(){
 
-        var fragment = supportFragmentManager.findFragmentById(R.id.frame_layout) as WebViewFragment
-        fragment.feedActivity
+          val fragment = supportFragmentManager.findFragmentById(R.id.feedActivity)
+          fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
     }
 
     /**
