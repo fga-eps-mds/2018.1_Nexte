@@ -16,6 +16,8 @@ interface MatchBusinessLogic {
 
     /**
      * Method that pass the request data about the match result to the worker
+     *
+     * @param request Request that came from sendChallenge button
      */
     fun getMatchResult(request: MatchModel.SendMatchResult.Request)
 }
@@ -48,7 +50,7 @@ class MatchInteractor(var presenter : MatchPresentationLogic? = null) :
     }
 
     override fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response) {
-        if (response?.status == MatchModel.SendMatchResult.Status.SUCESSED){
+        if (response.status == MatchModel.SendMatchResult.Status.SUCESSED){
             this.presenter?.presentSuccessMessageForMatchResult(response)
         } else {
             this.presenter?.presentErrorMessageForMatchResult(response)

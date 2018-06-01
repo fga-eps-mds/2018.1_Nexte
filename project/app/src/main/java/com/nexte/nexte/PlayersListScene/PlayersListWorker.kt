@@ -1,41 +1,45 @@
-package com.nexte.nexte.ChallengeScene
+package com.nexte.nexte.PlayersListScene
 
+
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MatchScene.MatchModel
-import com.nexte.nexte.Player
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
+
+
 
 /**
  * Class responsible to do request for anywhere, format Response and
  * call completion to send data for called class
  */
-class ChallengeWorker {
+class PlayersListWorker {
 
 
-
+    var userManager: UserManager? = null
     /**
      * Function to get players 5 rank positions above the logged player
      *
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun fetchPlayersToChallenge (request: ChallengeModel.ShowRankingPlayersRequest.Request,
-                                 completion: (ChallengeModel.ShowRankingPlayersRequest.Response) -> Unit) {
+    fun fetchPlayersToChallenge (request: PlayersListModel.ShowRankingPlayersRequest.Request,
+                                 completion: (PlayersListModel.ShowRankingPlayersRequest.Response) -> Unit) {
         val rankingPostion = request.challengerRankingPosition
 
-        var selectedPlayers: List<Player> = listOf()
-        val players = ChallengeMocker.createPlayers()
+        var selectedPlayers: List<User> = listOf()
+        val players = userManager?.getAll()
 
-        players.forEach {
+        players?.forEach {
             if (it.rankingPosition >= rankingPostion-rankingGap && it.rankingPosition < rankingPostion) {
                 selectedPlayers += it
             }
         }
 
-        val response = ChallengeModel.ShowRankingPlayersRequest.Response(selectedPlayers)
+        val response = PlayersListModel.ShowRankingPlayersRequest.Response(selectedPlayers)
 
        //Variable that allows the "No Players" message
-       // val response = ChallengeModel.ShowRankingPlayersRequest.Response(mutableListOf())
+       // val response = PlayersListModel.ShowRankingPlayersRequest.Response(mutableListOf())
         completion(response)
     }
 
@@ -45,21 +49,21 @@ class ChallengeWorker {
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-        fun fetchChallengedDetails (request: ChallengeModel.SelectPlayerForChallengeRequest.Request,
-                                    completion: (ChallengeModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
+        fun fetchChallengedDetails (request: PlayersListModel.SelectPlayerForChallengeRequest.Request,
+                                    completion: (PlayersListModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
         val challengedPosition = request.challengedRankingPosition
 
-        var selectedPlayer: ChallengeModel.PlayerRankingDetails?= null
+        var selectedPlayer: User?= null
 
-        val players = ChallengeMocker.createPlayerDetailedInfo()
+        val players = userManager?.getAll()
 
-        players.forEach {
+        players?.forEach {
             if (it.rankingPosition == challengedPosition){
                 selectedPlayer = it
             }
         }
 
-        val response = ChallengeModel.SelectPlayerForChallengeRequest.Response(selectedPlayer!!)
+        val response = PlayersListModel.SelectPlayerForChallengeRequest.Response(selectedPlayer!!)
 
         completion(response)
     }
@@ -70,8 +74,8 @@ class ChallengeWorker {
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun generateChallenge(request: ChallengeModel.ChallengeButtonRequest.Request,
-                          completion: (ChallengeModel.ChallengeButtonRequest.Response) -> Unit) {
+    fun generateChallenge(request: PlayersListModel.ChallengeButtonRequest.Request,
+                          completion: (PlayersListModel.ChallengeButtonRequest.Response) -> Unit) {
 
         val user = request.userChallenged
 
@@ -79,7 +83,7 @@ class ChallengeWorker {
         val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
         val match = MatchModel.MatchData(challenged, challenger)
 
-        val response = ChallengeModel.ChallengeButtonRequest.Response(user, match)
+        val response = PlayersListModel.ChallengeButtonRequest.Response(user, match)
 
         completion(response)
 

@@ -30,7 +30,7 @@ class LoginWorker {
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
 
-        Fuel.post(authentication).header(headers).body(json.toString()).responseString { request, response, result ->
+        Fuel.post(authentication).header(headers).body(json.toString()).responseString { _, _, result ->
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
@@ -68,7 +68,7 @@ class LoginWorker {
                 "Accept-Version" to "1.0.0")
         val body = defineBodyForAccountKitAuth(request.phone, request.email)
 
-        Fuel.post(authentication).header(headers).body(body).responseString { request, response, result ->
+        Fuel.post(authentication).header(headers).body(body).responseString { _, _, result ->
 
             result.success {
 

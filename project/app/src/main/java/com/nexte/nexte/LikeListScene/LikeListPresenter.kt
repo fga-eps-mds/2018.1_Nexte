@@ -17,7 +17,7 @@ interface LikeListPresentationLogic {
 /**
  * Class needed to format response for data can be displayed on activity
  *
- * @property viewList Reference to the activity where data will be displayed [LikeListView].
+ * @property viewList Reference to the activity where data will be displayed [LikeListFragment].
  */
 class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
                         LikeListPresentationLogic {
@@ -43,8 +43,7 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
     for (likePlayer in likePlayers) {
         val likePlayerFormatted = LikeListModel.PlayersFormatted(
                 likePlayer.name,
-                likePlayer.photo,
-                likePlayer.time)
+                likePlayer.photo)
 
         playersFormatted.add(likePlayerFormatted)
     }

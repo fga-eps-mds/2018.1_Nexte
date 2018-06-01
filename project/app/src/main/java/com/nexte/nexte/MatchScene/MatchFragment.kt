@@ -33,6 +33,11 @@ interface MatchDisplayLogic {
  * @property interactor Interactor layer for send requests, reference to [MatchInteractor]
  * @property matchViewAdapter FeedAdapter instance for broad using on class
  * @property numberOfSets enum class to define the number of sets, which define the presentation
+ * @property hasChallenge defines whenever an match exists, this will define which xml it will inflate
+ * @property sendButton Instance of button that is used to send challenge
+ * @property recyclerView Instance of recyclerView used to display match result data
+ * @property challenged Challenged name to be displayed
+ * @property challenger Challenger name to be displayed
  * of recycler view
  */
 class MatchFragment : Fragment(), MatchDisplayLogic {
@@ -48,10 +53,15 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
     /**
      * Method created because in the future maybe this class will receive arguments.
+     * @param challenge is what define if there will be displayed match result data or an fragment with a textlabel
      */
     fun getInstance(challenge: MatchModel.MatchData?): MatchFragment {
         val fragmentFirst = MatchFragment()
         val bundle = Bundle()
+        /**
+         * When a null challenge is passed for this method the bundle arguments receive false on hasChallenge
+         * In the OnCreateView method the hasChallenge variable is used to define wich XML will be inflated
+         */
         if(challenge == null){
             bundle.putInt("HasChallenge", 0)
             bundle.putString("Challenger", "")
@@ -68,6 +78,10 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         return fragmentFirst
     }
 
+    /**
+     * Method called whenever the view is created, and it is responsible to get the bundle arguments and transfer
+     * it to the class, this need to be done becaus Fragment superclass do not allow custom constructors
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -76,9 +90,16 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         this.hasChallenge = arguments.getInt("HasChallenge")
     }
 
+    /**
+     * Method called after OnCreate and it is responsible to return the view that will be rendered.
+     */
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         val view: View?
+        /**
+         * Here we decide wich view will be inflated based on hasChallenge property
+         */
+
         if(hasChallenge == 1) {
             view = inflater?.inflate(R.layout.activity_match, container, false)
             this.setUpMatchScene()
@@ -284,6 +305,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
         /**
          * Function that refresh entire RecyclerView as the information of the [matchInfo] changes
+         *
+         * @param newMatchInfo contains the information about the new match, that will be used when notifyDataSetChanged is called.
          */
         fun updateMatchInfo(newMatchInfo: MatchModel.FormattedMatchData) {
 

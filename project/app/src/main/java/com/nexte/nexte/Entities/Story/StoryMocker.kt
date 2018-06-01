@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.nexte.nexte.Entities.Story
 import com.nexte.nexte.Entities.Comment.CommentAdapter
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -41,8 +43,7 @@ object StoryMocker{
             val story = generateRandomStory()
             storiesMutable.add(story)
         }
-        val stories = storiesMutable.toList()
-        return stories
+        return storiesMutable.toList()
     }
 
     private fun randomNumber(from: Int, to: Int): Int{
@@ -51,10 +52,10 @@ object StoryMocker{
 
         val bound = to - from
 
-        if (bound > 0){
-            return random.nextInt(bound) + from
+        return if (bound > 0){
+            random.nextInt(bound) + from
         }else{
-            return from
+            from
         }
     }
 
@@ -62,18 +63,16 @@ object StoryMocker{
         val year = randomNumber(2013, 2018)
         val dayOfYear = randomNumber(1, 30)
         val monthOfYear = randomNumber(1, 12)
-        val date = Date(year, monthOfYear, dayOfYear)
-        return date
+        return Date(year, monthOfYear, dayOfYear)
     }
 
     private fun generateRandomWinnerAndLoser(): List<User>{
         //val users = if (userAdapter == null) UserManager().getAll() else UserManager(userAdapter = userAdapter)
 
-        var users = listOf<User>()
-        if (userAdapter == null){
-            users = UserManager().getAll()
+        val users: List<User> = if (userAdapter == null){
+            UserManager().getAll()
         }else{
-            users = UserManager(userAdapter = userAdapter!!).getAll()
+            UserManager(userAdapter = userAdapter!!).getAll()
         }
 
         val winnerIndex = randomNumber(0, users.size - 1)
@@ -85,14 +84,12 @@ object StoryMocker{
         val winner = users[winnerIndex]
         val loser = users[loserIndex]
 
-        val winnerAndLoser = listOf(winner, loser)
-        return winnerAndLoser
+        return listOf(winner, loser)
     }
 
     private fun generateRandomCommentId(): String{
         val commentIndex = randomNumber(0, commentTextMocks.size - 1)
-        val commentId = commentIds[commentIndex]
-        return commentId
+        return commentIds[commentIndex]
     }
 
     private fun generateRandomLikeId(): String{
@@ -120,26 +117,25 @@ object StoryMocker{
 
         //Comments
         val commentsAmount = randomNumber(0, 9)
-        var commentsId = listOf<String>()
+        val commentsId: List<String>
 
-        if(commentAdapter == null){
-            commentsId = CommentManager().createCommentsIds(commentsAmount)
+        commentsId = if(commentAdapter == null){
+            CommentManager().createCommentsIds(commentsAmount)
         }else{
-            commentsId = CommentManager(commentAdapter = commentAdapter!!).createCommentsIds(commentsAmount)
+            CommentManager(commentAdapter = commentAdapter!!).createCommentsIds(commentsAmount)
         }
 
         //Likes
         val likesAmount = randomNumber(0, 6)
-        var likesId = listOf<String>()
+        val likesId: List<String>
 
-        if(likeAdapter == null){
-            likesId = LikeManager().createLikesIds(likesAmount)
+        likesId = if(likeAdapter == null){
+            LikeManager().createLikesIds(likesAmount)
         }else{
-            likesId = LikeManager(likeAdapter = likeAdapter!!).createLikesIds(likesAmount)
+            LikeManager(likeAdapter = likeAdapter!!).createLikesIds(likesAmount)
         }
 
 
-        val story = Story(id = storyId.toString(), winner = winner, loser = loser, date = date, commentsId = commentsId, likesId = likesId)
-        return story
+        return Story(id = storyId.toString(), winner = winner, loser = loser, date = date, commentsId = commentsId, likesId = likesId)
     }
 }
