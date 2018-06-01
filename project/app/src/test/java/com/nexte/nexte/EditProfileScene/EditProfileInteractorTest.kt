@@ -1,5 +1,7 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Player
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Test
 
@@ -8,73 +10,70 @@ import org.junit.Before
 
 class EditProfileInteractorTest {
 
-    var interactor: EditProfileInteractor?= null
+    var mock: MockEditProfilePresenter? = null
+    var interactor: EditProfileInteractor? = null
 
     @Before
     fun setUp(){
+        this.mock = MockEditProfilePresenter()
         interactor = EditProfileInteractor()
-        interactor?.formatUserDataPresenter = EditProfilePresenterMock()
-        interactor?.formatErrorCodePresenter = EditProfilePresenterMock()
+        interactor?.formatUserDataPresenter = mock
+        interactor?.formatErrorCodePresenter = mock
     }
 
     @Test
-    fun getFormatUserDataPresenter() {
+    fun getProfileToEditTest() {
 
-    }
+        // prepare
+        val request = EditProfileModel.RecoverUserRequest.Request("gabrielalbino",
+                "UHDASFUHADSUHF2828HJDDJFHA")
+        // call
+        this.interactor?.getProfileToEdit(request = request)
 
-    @Test
-    fun setFormatUserDataPresenter() {
-    }
-
-    @Test
-    fun getFormatErrorCodePresenter() {
-    }
-
-    @Test
-    fun setFormatErrorCodePresenter() {
-    }
-
-    @Test
-    fun successGetAndSetWorker() {
-        //prepare
-        val newWorker = EditProfileWorker()
-
-        //call
-        val worker = interactor?.worker
-        interactor?.worker = newWorker
-
-        //assert
-        assertEquals(interactor?.worker, newWorker)
-        assertNotNull(worker)
-    }
-
-    @Test
-    fun getProfileToEdit() {
-        //prepare
-
-        //call
-
+        // assert
+        assertEquals(this.mock?.hasBeenHere, true)
     }
 
     @Test
     fun setEditedProfile() {
+
+        //prepare
+        val player = Player("gabrielalbino",
+                1,
+                "imgur.com/nudh486d4",
+                "enggabriel@gmail.com",
+                "masculino",
+                "ASCAD",
+                35,
+                "feioso",
+                "Profissional")
+        val request = EditProfileModel.EditProfileRequest.Request(user = player)
+
+        // call
+        this.interactor?.setEditedProfile(request = request)
+
+        // assert
+        assertEquals(this.mock?.hasBeenHere, true)
     }
 
     @After
     fun tearDown(){
-        interactor = null
+        this.interactor = null
+        this.mock = null
     }
 
-    class EditProfilePresenterMock: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic
-    {
-        var  passedHere = false;
-        override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
-            passedHere = true
-        }
 
-        override fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response) {
-            passedHere = true
-        }
+}
+
+class MockEditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic {
+
+    var  hasBeenHere = false
+
+    override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
+        this.hasBeenHere = true
     }
 
+    override fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response) {
+        this.hasBeenHere = true
+    }
 }
