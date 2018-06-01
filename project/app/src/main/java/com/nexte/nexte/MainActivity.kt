@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->
         when(item.itemId) {
-            R.id.profile -> {
+            R.id.login -> {
                 /* Do Nothing*/
             }
         }
