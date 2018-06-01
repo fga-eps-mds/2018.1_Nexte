@@ -2,10 +2,8 @@ package com.nexte.nexte.EditProfileScene
 
 import org.junit.Before
 import org.junit.After
-
-/**
- * Created by miguelpimentel on 10/05/18.
- */
+import org.junit.*
+import junit.framework.Assert.assertNotNull
 
 class EditProfileWorkerTest {
 
@@ -14,6 +12,34 @@ class EditProfileWorkerTest {
     @Before
     fun setUp() {
         this.worker = EditProfileWorker()
+    }
+
+    @Test
+    fun getUserProfileToEditTestForAnInexistedUser() {
+
+        // prepare
+        val request = EditProfileModel.RecoverUserRequest.Request("gabrielalbino",
+                "")
+
+        // call
+        this.worker?.getUserProfileToEdit(request = request, completion =  { response ->
+
+            assertNotNull(response.user) // assert
+        })
+    }
+
+    @Test
+    fun getUserProfileToEditTestForAnExistedUser() {
+
+        // prepare
+        val request = EditProfileModel.RecoverUserRequest.Request("gabrielalbino",
+                "")
+
+        // call
+        this.worker?.getUserProfileToEdit(request = request, completion =  { response ->
+
+            assertNotNull(response.user) // assert
+        })
     }
 
     @After
