@@ -81,7 +81,7 @@
         android:id="@+id/loginline_left"
         android:layout_width="100dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="260dp"
         android:background="#ffff"
@@ -95,7 +95,21 @@
         android:layout_width="100dp"
         android:layout_height="1dp"
         android:layout_marginBottom="200dp"
-        android:layout_marginStart="250dp"
+        android:layout_marginStart="3500dp"
+        android:layout_marginTop="260dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/password_inline_right"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="250dp"
+        android:layout_marginStart="280dp"
         android:layout_marginTop="260dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
@@ -118,13 +132,31 @@
         app:srcCompat="@drawable/logo_nexte" />
 
     <TextView
-        android:id="@+id/emailtelephone"
+        android:id="@+id/email_and_phone"
+        android:layout_width="120"
+        android:layout_height="40"
+        android:text="E-mail ou telefone"
+        android:textColor="#c5c5c5"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <TextView
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:text="E-mail ou telefone"
-        android:textColor="#ffff"
-        app:layout_constraintStart_toEndOf="@+id/loginline1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        android:text="Senha"
+        android:textColor="#c5c5c5"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="299dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ou"
+        android:textColor="#c5c5c5"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="352dp" />
+
 
 </android.support.constraint.ConstraintLayout>

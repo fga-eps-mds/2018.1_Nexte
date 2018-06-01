@@ -1,6 +1,5 @@
 package com.nexte.nexte.FeedScene
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.CommentsScene.CommentsFragment
 import com.nexte.nexte.LikeListScene.LikeListFragment
-import com.nexte.nexte.LikeListScene.LikeListModel
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_feed.view.*
 

@@ -48,7 +48,6 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     /**
      * On Create method that will setup this scene and call first Request for Interactor
      */
-
     fun getInstance(): CommentsFragment{
         val commentsFragment = CommentsFragment()
         return commentsFragment
@@ -222,8 +221,6 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 })
                 val alert = builder.create()
                 alert.show() }
-
-
 
             val messageDel = "Tem certeza que deseja excluir esse comentário?"
             holder.itemView.deleteButton.setOnClickListener {
