@@ -116,15 +116,20 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
     private fun validateNormalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
         return if (challenger == 7 && (challenged == 6 || challenged == 5)) {
-            isValid
+            return isValid
         }
         else if(challenged == 7 && (challenger == 6 || challenger == 5)) {
-            isValid
+            return isValid
         }
         else if(challenged == 6 && challenger <= 4){
-            isValid
+            return isValid
         }
-        else challenger == 6 && challenged <= 4
+        else if (challenger == 6 && challenged <= 4)
+            return isValid
+        else if (challenged < 6 && challenger < 6)
+            return false
+        else
+            return false
     }
 
     private fun defineSetsValid(){
@@ -220,6 +225,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                     R.mipmap.ic_launcher_round,
                     challenger,
                     R.mipmap.ic_launcher_round)
+
+            this.sendButton?.isEnabled = false
 
             this.matchViewAdapter = MatchDataAdapter(match, this)
             recyclerView?.adapter = this.matchViewAdapter
@@ -456,7 +463,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
             if(holder is SetsViewHolder) {
 
-                holder.setsBindView()
+                holder.setsBindView(position, (fragment as MatchFragment).numberOfSets)
             }
 
             if(holder is TimeViewHolder) {
@@ -508,7 +515,30 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          */
         class SetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun setsBindView() {
+            fun setsBindView(position: Int, numberOfSets: MatchModel.SetsNumber) {
+
+                when(numberOfSets) {
+                    MatchModel.SetsNumber.One -> {
+                        itemView.setLabel.text = "Set Profissional"
+                    }
+                    MatchModel.SetsNumber.Three -> {
+                        when(position) {
+                            1 -> itemView.setLabel.text = "Primeiro Set"
+                            2 -> itemView.setLabel.text = "Segundo Set"
+                            3 -> itemView.setLabel.text = "Tie Break"
+                        }
+                    }
+                    MatchModel.SetsNumber.Five -> {
+                        when(position) {
+                            1 -> itemView.setLabel.text = "Primeiro Set"
+                            2 -> itemView.setLabel.text = "Segundo Set"
+                            3 -> itemView.setLabel.text = "Terceiro Set"
+                            4 -> itemView.setLabel.text = "Quarto Set"
+                            5 -> itemView.setLabel.text = "Tie Break"
+                        }
+                    }
+                }
+
             }
         }
 
