@@ -1,6 +1,5 @@
 package com.nexte.nexte.ShowProfileScene
 
-import android.content.Intent
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
@@ -16,7 +15,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.nexte.nexte.EditProfileScene.EditProfileView
+import com.nexte.nexte.EditProfileScene.EditProfileFragment
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_show_profile.*
 
@@ -62,8 +61,13 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
         val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
         buttonEditProfile =  newView?.findViewById(R.id.editProfileButton)
         buttonEditProfile?.setOnClickListener {
-            val intent = Intent(activity, EditProfileView::class.java)
-            startActivity(intent)
+            
+            val editProfileFragment = EditProfileFragment().getInstance()
+            val fragmentManager = activity.fragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame_layout, editProfileFragment, "editProfile")
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
 
@@ -144,7 +148,7 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
     /**
      * Method responsible to create the graph, using the function and
      * SetYAxisValues.
-     *  @property lineChart instance a view from xml.
+     *  @property lineChart instance a fragment from xml.
      * @property yAxes responsible to access the method setYAxisValues
      * @property dataSet Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
      * @property line Access the data of yAxes, introduce a legend and customize the graphic
@@ -187,7 +191,7 @@ class ShowProfileView : Fragment(), ShowProfileDisplayLogic {
     /**
     * Method responsible to create the graph, using the function
     * SetYAxisValuesRanking.
-    *  @property rankingChart instance a view from xml.
+    *  @property rankingChart instance a fragment from xml.
     * @property yAxesRanking responsible to access the method setYAxisValuesRanking
     * @property dataSetsRanking Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
     * @property lineRanking Access the data of yAxes, introduce a legend and customize the graphic

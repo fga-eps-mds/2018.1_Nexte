@@ -33,7 +33,7 @@ interface MatchDisplayLogic {
  * @property interactor Interactor layer for send requests, reference to [MatchInteractor]
  * @property matchViewAdapter FeedAdapter instance for broad using on class
  * @property numberOfSets enum class to define the number of sets, which define the presentation
- * of recycler view
+ * of recycler fragment
  */
 class MatchFragment : Fragment(), MatchDisplayLogic {
 
@@ -148,7 +148,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     }
 
     /**
-     * Function to get the recycle view started throuhr the object [matchViewAdapter]
+     * Function to get the recycle fragment started throuhr the object [matchViewAdapter]
      *
      * @param viewModel information to be displayed on activity
      */
@@ -189,7 +189,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          * Function to get the type of the row to be displayed
          * on different positions of the RecyclerView
          *
-         * @param position row position of the recycler view
+         * @param position row position of the recycler fragment
          */
         override fun getItemViewType(position: Int): Int {
 
@@ -236,7 +236,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
         /**
          * Following the viewType obtained, defines the row to be inflated and the holder
-         * inner class to be used on defining the attributes of the view
+         * inner class to be used on defining the attributes of the fragment
          *
          * @param parent
          * @param viewType Type of the layout to be displayed
@@ -268,7 +268,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         }
 
         /**
-         * Function that defines the size of the recycler view following the [numberOfSets]
+         * Function that defines the size of the recycler fragment following the [numberOfSets]
          * on [MatchFragment]
          */
         override fun getItemCount(): Int {
@@ -317,7 +317,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         /**
          * Class that implements the elements of the Info row
          *
-         * @param itemView view that contains elements of the row to be altered
+         * @param itemView fragment that contains elements of the row to be altered
          */
         class InfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -348,7 +348,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         /**
          * Class that implements the elements of the sets row
          *
-         * @param itemView view that contains elements of the row to be altered
+         * @param itemView fragment that contains elements of the row to be altered
          */
         class SetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -359,7 +359,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         /**
          * Class that implements the elements of the time row
          *
-         * @param itemView view that contains elements of the row to be altered
+         * @param itemView fragment that contains elements of the row to be altered
          */
         class TimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -375,7 +375,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         /**
          * Class that implements the elements of the WO row
          *
-         * @param itemView view that contains elements of the row to be altered
+         * @param itemView fragment that contains elements of the row to be altered
          */
         class WOViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

@@ -1,5 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
+import android.widget.TextView
 import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Before
@@ -7,29 +8,29 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 
-class EditProfileViewTest {
+class EditProfileFragmentTest {
 
-    var view: EditProfileView? = null
+    var fragment: EditProfileFragment? = null
 
     @Before
     fun setUp() {
-        this.view = EditProfileView()
+        this.fragment = EditProfileFragment()
     }
 
     @Test
     fun testSetupEditProfileScene(){
         //prepare  //call
-        this.view?.setupEditProfileScene()
+        this.fragment?.setupEditProfileScene()
 
         //assert
-        assertNotNull(this.view?.getUserInformationInteractor)
-        assertNotNull(this.view?.editUserInformationInteractor)
+        assertNotNull(this.fragment?.getUserInformationInteractor)
+        assertNotNull(this.fragment?.editUserInformationInteractor)
     }
 
     @Test
     fun testPasswordWatcher(){
         //prepare
-        val passwordWatcher = EditProfileView.PasswordWatcher(view = this.view!!)
+        val passwordWatcher = EditProfileFragment.PasswordWatcher(fragment = this.fragment!!)
 
         //call
         passwordWatcher.afterTextChanged(s = null)
@@ -40,14 +41,27 @@ class EditProfileViewTest {
     }
 
     @Test
-    fun testGetProfileCreateRequest(){
+    fun testOnTextChanged(){
         //prepare
-        this.view?.setupEditProfileScene()
-        val mock = MockGetProfileToEditBusinessLogic()
-        this.view?.getUserInformationInteractor = mock
+        this.fragment?.passwordConfirmationTextEdit?.text?.trim().toString()
+        this.fragment?.passwordTextEdit?.text?.trim().toString()
 
         //call
-        this.view?.createGetProfileRequest()
+        this.testPasswordWatcher()
+
+        // assert
+        assertEquals(this.fragment?.passwordConfirmationTextEdit?.text?.trim().toString(),this.fragment?.passwordTextEdit?.text?.trim().toString())
+    }
+
+    @Test
+    fun testGetProfileCreateRequest(){
+        //prepare
+        this.fragment?.setupEditProfileScene()
+        val mock = MockGetProfileToEditBusinessLogic()
+        this.fragment?.getUserInformationInteractor = mock
+
+        //call
+        this.fragment?.createGetProfileRequest()
 
         //assert
         mock.hasBeenHere = true
@@ -56,17 +70,35 @@ class EditProfileViewTest {
     @Test
     fun testEditProfileCreateRequest(){
         //prepare
-        this.view?.setupEditProfileScene()
+        this.fragment?.setupEditProfileScene()
         val mock = MockEditProfileBusinessLogic()
-        this.view?.editUserInformationInteractor = mock
+        this.fragment?.editUserInformationInteractor = mock
 
         //call
-        this.view?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc",
+        this.fragment?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc",
                 name = "luis", club = "asdasdas", email = "asdasdasd", rankingPosition = 1,
                 pictureAddress = "asd", category = "profissional"))
 
         //assert
         mock.hasBeenHere = true
+    }
+
+    @Test
+    fun testGetInstance() {
+
+        //prepare
+        val editProfileFragment = EditProfileFragment()
+
+        //call
+        this.fragment?.getInstance()
+
+        //assert
+        assertNotNull(editProfileFragment)
+    }
+
+    @Test
+    fun testOnCreateView() {
+
     }
 
     @After

@@ -23,8 +23,8 @@ class RankingModel {
     class Response(var users: Array<User>)
 
     /**
-     * Class responsible to define how the list view will display the formatted data
-     * passed to view
+     * Class responsible to define how the list fragment will display the formatted data
+     * passed to fragment
      *
      * @property formattedPlayers it's a list that hold information on the
      * right way to show in screen

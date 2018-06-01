@@ -104,9 +104,9 @@ class MatchModel {
         class Response(val status: Status)
 
         /**
-         * Class responsible to store the formatted data about the match result and use it to display on view
+         * Class responsible to store the formatted data about the match result and use it to display on fragment
          *
-         * @param message message that will be displayed on the view
+         * @param message message that will be displayed on the fragment
          */
         class ViewModel(val message: String)
 

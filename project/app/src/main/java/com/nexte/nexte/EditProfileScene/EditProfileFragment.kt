@@ -1,13 +1,19 @@
 package com.nexte.nexte.EditProfileScene
 
+import android.app.Fragment
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.nexte.nexte.Player
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
 /**
@@ -34,17 +40,20 @@ interface EditProfileDisplayLogic {
  * @property getUserInformationInteractor get user information from interactor
  * @property editUserInformationInteractor edit user information from interactor
  */
-class EditProfileView : AppCompatActivity(),
+class EditProfileFragment : Fragment(),
                         ShowProfileToEditDisplayLogic,
                         EditProfileDisplayLogic {
 
     var getUserInformationInteractor: GetProfileToEditBusinessLogic? = null
     var editUserInformationInteractor: EditProfileBusinessLogic? = null
-
+    var errorMessageTextView: TextView? = null
+    var passwordConfirmationTextEdit: EditText? = null
+    var passwordTextEdit: EditText? = null
+    var updateProfileButton: Button? = null
     /**
      * Class responsible to define behavior of password validation (checking if password and confirmation match)
      */
-    class PasswordWatcher(var view: EditProfileView) : TextWatcher {
+    class PasswordWatcher(var fragment: EditProfileFragment) : TextWatcher {
 
         /**
          * This method does nothing but is necessary
@@ -61,50 +70,65 @@ class EditProfileView : AppCompatActivity(),
          */
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-            if(this.view.passwordConfirmationTextEdit.text.trim().toString() ==
-               this.view.passwordTextEdit.text.trim().toString()) {
-                view.passwordValidationTextView.text = "✓"
-                view.passwordValidationTextView.setTextColor(Color.GREEN)
-                view.updateProfileButton.isEnabled = true
+            if(this.fragment.passwordConfirmationTextEdit?.text?.trim().toString() ==
+               this.fragment.passwordTextEdit?.text?.trim().toString()) {
+                fragment.passwordValidationTextView.text = "✓"
+                fragment.passwordValidationTextView.setTextColor(Color.GREEN)
+                fragment.updateProfileButton?.isEnabled = true
             } else {
-                view.passwordValidationTextView.text = "✕"
-                view.passwordValidationTextView.setTextColor(Color.RED)
-                view.updateProfileButton.isEnabled = false
+                fragment.passwordValidationTextView.text = "✕"
+                fragment.passwordValidationTextView.setTextColor(Color.RED)
+                fragment.updateProfileButton?.isEnabled = false
             }
         }
     }
 
-    /**
-     * Method called on scene creation and responsible to show initial user information for edition
-     *
-     * @param savedInstanceState
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    fun getInstance(): EditProfileFragment {
+        val editProfileFragment = EditProfileFragment()
+        return editProfileFragment
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val newView = inflater?.inflate(R.layout.activity_edit_profile, container, false)
+        this.errorMessageTextView = newView?.findViewById(R.id.errorMessageTextView)
+        this.passwordConfirmationTextEdit = newView?.findViewById(R.id.passwordConfirmationTextEdit)
+        this.passwordTextEdit = newView?.findViewById(R.id.passwordTextEdit)
+        this.updateProfileButton = newView?.findViewById(R.id.updateProfileButton)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profile)
+        this.setupEditProfileScene()
 
-        setupEditProfileScene()
+        this.createEditProfileRequest(user = Player("", -1, "", "", "", "", -1, "", ""))
 
-        this.passwordConfirmationTextEdit.addTextChangedListener(PasswordWatcher(this))
-        this.passwordTextEdit.addTextChangedListener(PasswordWatcher(this))
+        this.passwordConfirmationTextEdit?.addTextChangedListener(PasswordWatcher(this))
+        this.passwordTextEdit?.addTextChangedListener(PasswordWatcher(this))
 
+
+
+        return newView
+
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         this.createGetProfileRequest()
 
-        updateProfileButton.setOnClickListener {
+        updateProfileButton?.setOnClickListener {
 
             val user = Player(username.text.toString(),
-                    rankingID.text.removeRange(0, 1).toString().toInt(),
+                    UserSingleton.getUserInformations().rankingPosition,
                     "",
                     emailTextEdit.text.trim().toString(),
                     "",
                     clubName.text.toString(),
                     ageTextEdit.text.trim().toString().toInt(),
-                    passwordTextEdit.text.trim().toString(),
+                    passwordTextEdit?.text?.trim().toString(),
                     "")
 
             this.createEditProfileRequest(user = user)
+
         }
+        super.onViewCreated(view, savedInstanceState)
     }
 
     /**
@@ -115,7 +139,6 @@ class EditProfileView : AppCompatActivity(),
     override fun displayProfileToEdit(viewModel: EditProfileModel.RecoverUserRequest.ViewModel) {
 
         this.username.text = viewModel.playerToEdit.username
-        this.rankingID.text = viewModel.playerToEdit.ranking
         this.emailTextEdit.setText(viewModel.playerToEdit.email, TextView.BufferType.EDITABLE)
         this.ageTextEdit.setText(viewModel.playerToEdit.age, TextView.BufferType.EDITABLE)
         this.clubName.text = viewModel.playerToEdit.club
@@ -131,9 +154,9 @@ class EditProfileView : AppCompatActivity(),
         val errorMessage = viewModel.errorMessage
 
         if(errorMessage == null) {
-            this.finish()
+            this.activity.finish()
         } else {
-            this.errorMessageTextView.text = errorMessage
+            this.errorMessageTextView?.text = errorMessage
         }
     }
     /**

@@ -58,7 +58,7 @@ class EditProfileInteractor : GetProfileToEditBusinessLogic, EditProfileBusiness
     }
 
     /**
-     * Method responsible to get edited data from view, and send to worker for update the existing user
+     * Method responsible to get edited data from fragment, and send to worker for update the existing user
      *
      * @param request Has the edited user information
      */

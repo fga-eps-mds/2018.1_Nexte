@@ -20,7 +20,7 @@ class LikeListModel {
     class Response(var players: MutableList<Players>)
 
     /**
-     * Class responsible to define how the list view will display the formatted data, passed to view
+     * Class responsible to define how the list fragment will display the formatted data, passed to fragment
      *
      * @param playersFormatted MutableList that hold information to show in screen
      */
