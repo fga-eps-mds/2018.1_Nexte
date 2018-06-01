@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import com.nexte.nexte.Player
 import com.nexte.nexte.R
@@ -49,7 +50,7 @@ class EditProfileFragment : Fragment(),
     var errorMessageTextView: TextView? = null
     var passwordConfirmationTextEdit: EditText? = null
     var passwordTextEdit: EditText? = null
-    var updateProfileButton: Button? = null
+    var updateProfileButton: ImageButton? = null
     /**
      * Class responsible to define behavior of password validation (checking if password and confirmation match)
      */
