@@ -113,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="6dp"
             android:inputType="numberSigned"
@@ -121,7 +121,7 @@
             android:textColor="@android:color/white"
             android:textSize="9sp"
             app:layout_constraintBottom_toTopOf="@+id/view_info1"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/edge_info"
             app:layout_constraintStart_toEndOf="@+id/ageLabel"
             app:layout_constraintTop_toBottomOf="@+id/view_info2" />
 
@@ -132,8 +132,8 @@
             android:layout_marginTop="20dp"
             android:src="@mipmap/check_mdpi"
             android:tint="#ffffff"
-            android:background="#2a2a2a"
-            android:backgroundTint="#2a2a2a"
+            android:background="#2E2E2E"
+            android:backgroundTint="#2E2E2E"
             app:layout_constraintEnd_toEndOf="@+id/edge_password"
             app:layout_constraintTop_toBottomOf="@+id/edge_password" />
 
@@ -159,21 +159,24 @@
             android:textColor="#aaaaaa"
             app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/passwordLabel" />
+            app:layout_constraintStart_toEndOf="@+id/passwordLabel"
+            app:layout_constraintTop_toTopOf="@+id/passwordLabel" />
 
 
         <TextView
             android:id="@+id/passwordConfirmationLabel"
             android:layout_width="70dp"
             android:layout_height="21dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="5dp"
             android:text="Confirma:"
             android:textColor="@android:color/white"
             android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edge_password"
             app:layout_constraintEnd_toEndOf="@+id/passwordLabel"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/passwordLabel"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/view_password" />
 
         <EditText
             android:id="@+id/passwordConfirmationTextEdit"
@@ -185,7 +188,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/passwordConfirmationLabel"
             app:layout_constraintEnd_toEndOf="@+id/passwordTextEdit"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/passwordTextEdit" />
+            app:layout_constraintStart_toStartOf="@+id/passwordTextEdit"
+            app:layout_constraintTop_toTopOf="@+id/passwordConfirmationLabel" />
 
         <TextView
             android:id="@+id/passwordValidationTextView"
