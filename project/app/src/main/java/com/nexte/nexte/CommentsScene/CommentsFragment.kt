@@ -19,7 +19,6 @@ import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.UserSingleton
 
-
 /**
  * Interface to define Display Logic to CommentsFragment Class that will
  * receive information from Presenter
