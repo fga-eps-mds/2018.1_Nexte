@@ -1,23 +1,20 @@
 package com.nexte.nexte.EditProfileScene
 
-import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Player
-import com.nexte.nexte.R.id.password
+import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.UserSingleton
-import org.junit.After
-import org.junit.Before
-
+import org.junit.*
 import org.junit.Assert.*
-import org.junit.Test
 
-class EditProfileModelTest {
+class EditProfileModelTest: HelpForRealm() {
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
     }
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 
     @Test
@@ -36,20 +33,15 @@ class EditProfileModelTest {
     @Test
     fun testRequests(){
         //prepare
-        val username = "gabriel"
+        val username = "gabrielalbino"
         val tokenID = "123cc123s"
         val user = UserSingleton.loggedUser
         val password = "senha"
-
 
         //call
         val firstRequest = EditProfileModel.RecoverUserRequest.Request(username, tokenID)
         val secondRequest = EditProfileModel.EditProfileRequest.Request(user, password)
 
-        firstRequest.tokenID = tokenID
-        firstRequest.username = username
-        secondRequest.user = UserSingleton.loggedUser
-        secondRequest.password = password
         //assert
         assertEquals(username, firstRequest.username)
         assertEquals(tokenID, firstRequest.tokenID)

@@ -1,22 +1,14 @@
 package com.nexte.nexte
 
-import com.nexte.nexte.Entities.User.User
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-
+import org.junit.*
 import org.junit.Assert.*
-import org.junit.Test
 
-class UserSingletonTest {
 
-    var userType: UserType = UserType.MOCKED
-    var loggedUserID: String = "9"
+class UserSingletonTest: HelpForRealm() {
 
     @Before
     fun setUp() {
-        this.userType = UserSingleton.userType
-        this.loggedUserID = UserSingleton.loggedUserID
+        super.setUpWithUser()
     }
 
     @Test
@@ -32,22 +24,17 @@ class UserSingletonTest {
 
     @Test
     fun successSetLoggedUser(){
-        //prepare
-        val loggedUser: User = UserSingleton.loggedUser
-
         //call
         UserSingleton.setLoggedUser(identifier = "9", userType = UserType.MOCKED)
         val userInfo = UserSingleton.loggedUser
 
         //assert
-        assertEquals(loggedUser.name, userInfo.name)
-        assertEquals(loggedUser.rankingPosition, userInfo.rankingPosition)
-        assertEquals(loggedUser.email, userInfo.email)
-        assertEquals(loggedUser.gender, userInfo.gender)
-        assertEquals(loggedUser.category, userInfo.category)
+        assertEquals("9", userInfo.id)
+        assertEquals(UserType.MOCKED, UserSingleton.userType)
     }
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 }

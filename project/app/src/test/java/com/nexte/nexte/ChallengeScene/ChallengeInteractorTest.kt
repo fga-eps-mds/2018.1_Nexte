@@ -1,17 +1,21 @@
 package com.nexte.nexte.ChallengeScene
 
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class ChallengeInteractorTest {
+
+class ChallengeInteractorTest: HelpForRealm() {
 
     private var interactor: ChallengeInteractor?= null
     private var mock: MockChallengePresentationLogic?= null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
+
         this.mock = MockChallengePresentationLogic()
         this.interactor = ChallengeInteractor()
         this.interactor?.presenter = mock
@@ -92,6 +96,7 @@ class ChallengeInteractorTest {
     fun tearDown() {
         this.mock = null
         this.interactor = null
+        super.tearDownRealm()
     }
 }
 
