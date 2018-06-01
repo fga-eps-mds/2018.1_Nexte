@@ -26,9 +26,9 @@ interface ShowProfileBusinessLogic {
  * @property presenter it's a reference for presenter that will receive the response and
  * create a viewModel
  */
-class ShowProfileInteractor : ShowProfileBusinessLogic {
+class ShowProfileInteractor : ShowProfileBusinessLogic, ShowProfileWorkerUpdateLogic {
 
-    private var worker = ShowProfileWorker()
+    var worker = ShowProfileWorker()
     var presenter : ShowProfilePresentationLogic? = null
 
     /**
@@ -37,10 +37,11 @@ class ShowProfileInteractor : ShowProfileBusinessLogic {
      * @param request Contains the request that was sent by our View
      */
     override fun showProfile(request: ShowProfileModel.Request) {
+        worker.getUserProfile(request)
+    }
 
-        worker.getUserProfile(request) { response ->
-            this.presenter?.presentUserProfile(response)
-        }
+    override fun updateUserProfile(response: ShowProfileModel.Response) {
+        this.presenter?.presentUserProfile(response)
     }
 }
 

@@ -1,9 +1,9 @@
 package com.nexte.nexte.RankingScene
 
-import com.nexte.nexte.Entities.Challenge.Challenge
-import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
+import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import java.util.*
 
 /**
@@ -20,10 +20,11 @@ interface RankingPresentationLogic {
     fun presentRanking(response: RankingModel.Response)
 }
 
+@Suppress("DEPRECATION")
 /**
  * Class needed to format response for data can be displayed on View
  *
- * @property viewScene Reference to the ranking where data will be displayed on [RankingView]
+ * @property viewScene Reference to the ranking where data will be displayed on [RankingFragment]
  */
 class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPresentationLogic {
 
@@ -31,7 +32,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
 
     /**
      * Formats user information contained in [RankingModel.Response]
-     * and sends it to [RankingView]
+     * and sends it to [RankingFragment]
      *
      * @param response contains unformatted data received from [RankingModel]
      */
@@ -61,7 +62,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val lastGame = calculatePlayerLastGame(user.latestGames)
             var playerCategory = ""
             if (user.category != null){
-                playerCategory = user.category?.name
+                playerCategory = user.category.name
             }
             val playerFormatted = RankingModel.FormattedPlayer(name,
                     R.mipmap.ic_launcher, String.format("Vitórias: %d", wins),
@@ -76,20 +77,20 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
     }
 
     /**
-     * Method used to get player effiency based on his wins and losses
+     * Method used to get player efficiency based on his wins and losses
      *
      * @return a string that represents player efficiency
      */
     private fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
         val allGames = wins + losses
         val efficiency: String?
-        if (allGames != 0){
-            efficiency = "" + (wins/allGames*oneHundredPercent).toString() + "%"
+        efficiency = if (allGames != 0){
+            "" + (wins/allGames*oneHundredPercent).toString() + "%"
         }else{
-            efficiency = "0%"
+            "0%"
         }
 
-        return efficiency!!
+        return efficiency
     }
 
     /**
@@ -104,25 +105,20 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
 
         val latestGameDate = latestGames.first().challengeDate
         val today = Date()
-        var latestGame = "Nenhum jogo"
 
-        if(today.year == latestGameDate.year){
+        return if(today.year == latestGameDate.year){
             if (today.month == latestGameDate.month){
-                if (today.day == latestGameDate.day){
-                    latestGame = "hoje"
-                }else if(today.day == latestGameDate.day - 1){
-                    latestGame = "ontem"
-                }else{
-                    latestGame = "" + (today.day - latestGameDate.day) + " days"
+                when {
+                    today.day == latestGameDate.day -> "hoje"
+                    today.day == latestGameDate.day - 1 -> "ontem"
+                    else -> "" + (today.day - latestGameDate.day) + " days"
                 }
             }else{
-                latestGame = "" + (today.month - latestGameDate.month) + " months"
+                "" + (today.month - latestGameDate.month) + " months"
             }
         }else{
-            latestGame = "" + (today.year - latestGameDate.year) + " years"
+            "" + (today.year - latestGameDate.year) + " years"
         }
-
-        return latestGame
     }
 
     companion object {

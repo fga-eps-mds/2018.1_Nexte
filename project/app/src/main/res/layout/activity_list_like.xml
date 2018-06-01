@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LikeListScene.LikeListView"
-    android:background="#2E2E2E">
+    tools:context=".LikeListScene.LikeListFragment"
+    android:background="#393939">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/likesListRecyclerView"

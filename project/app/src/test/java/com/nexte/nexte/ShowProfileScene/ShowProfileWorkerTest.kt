@@ -1,80 +1,57 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.Player
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
+import kotlin.concurrent.thread
 
 class ShowProfileWorkerTest {
 
     private var worker: ShowProfileWorker? = null
+    private var mock: MockShowProfileWorker? = null
 
     @Before
     fun setUp() {
         this.worker = ShowProfileWorker()
-    }
-
-    @Test
-    fun testGetUserProfileEmptyUser(){
-        //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "")
-        val player = Player("",
-                -1,
-                "",
-                "",
-                "",
-                "",
-                -1,
-                "",
-                "")
-
-        //call
-        this.worker?.getUserProfile(request = request, completion = { response ->
-            //assert
-            assertEquals(response.user?.name, player.name)
-            assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAddress, player.pictureAddress)
-            assertEquals(response.user?.email, player.email)
-            assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.club, player.club)
-            assertEquals(response.user?.age, player.age)
-            assertEquals(response.user?.password, player.password)
-            assertEquals(response.user?.category, player.category)
-        })
+        this.mock = MockShowProfileWorker()
     }
 
     @Test
     fun testGetUserProfileSuccess(){
         //prepare
-        val request = ShowProfileModel.Request(username = "gabrielalbino", tokenID = "kjbdjh213")
-        val player = Player("gabrielalbino",
-                15,
-                "imgur.com/nudh486d4",
-                "enggabriel@gmail.com",
-                "masculino",
-                "ASCAD",
-                19,
-                "feioso",
-                "Profissional")
+        worker?.userManager = UserManager(UserAdapterSpy())
+        val userManager = worker?.userManager
+        worker?.updateLogic = mock
+        val updateLogic = worker?.updateLogic
+        val request = ShowProfileModel.Request("Robert Baptist")
 
         //call
-        this.worker?.getUserProfile(request = request, completion = { response ->
-            //assert
-            assertEquals(response.user?.name, player.name)
-            assertEquals(response.user?.rankingPosition, player.rankingPosition)
-            assertEquals(response.user?.pictureAddress, player.pictureAddress)
-            assertEquals(response.user?.email, player.email)
-            assertEquals(response.user?.gender, player.gender)
-            assertEquals(response.user?.club, player.club)
-            assertEquals(response.user?.age, player.age)
-            assertEquals(response.user?.category, player.category)
-        })
+        thread { this.worker?.getUserProfile(request = request) }.join()
+
+        assertNotNull(updateLogic)
+        assertNotNull(userManager)
+        assertNotNull(this.mock?.response)
     }
 
     @After
     fun tearDown() {
         this.worker = null
+    }
+}
+
+class MockShowProfileWorker: ShowProfileWorkerUpdateLogic {
+
+    var response: ShowProfileModel.Response? = null
+
+    override fun updateUserProfile(response: ShowProfileModel.Response) {
+        this.response = response
     }
 }

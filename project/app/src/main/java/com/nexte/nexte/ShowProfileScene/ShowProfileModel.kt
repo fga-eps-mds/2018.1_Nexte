@@ -1,5 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Player
 
 /**
@@ -13,17 +14,17 @@ class ShowProfileModel {
      * Class responsible to pass data of View to Interactor and after to Worker so it can
      * request data
      *
-     * @property username variable that holds the name chosen by the user on the app
+     * @property userID variable that holds the name chosen by the user on the app
      * @property tokenID variable that holds the token that validates the user in the system
      **/
-    class Request(var username: String, var tokenID: String)
+    class Request(var userId: String)
 
     /**
      * Class responsible to store received information of worker to pass for Presenter
      *
      * @property user variable that return the attributes of player after the validation step
      **/
-    class Response(var user: Player?)
+    class Response(var user: User?)
 
     /**
      * Class responsible to define how the list fragment will display the formatted data, passed to fragment
@@ -46,7 +47,5 @@ class ShowProfileModel {
     class FormattedPlayer(
             var name: String?,
             var rank: String?,
-            var club: String?,
-            var email: String?,
-            var age: String?)
+            var email: String?)
 }

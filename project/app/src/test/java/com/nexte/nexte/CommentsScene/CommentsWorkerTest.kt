@@ -3,7 +3,6 @@ package com.nexte.nexte.CommentsScene
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
-import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -47,8 +46,6 @@ class CommentsWorkerTest {
                 userId2,
                 commentUser2,
                 date2)
-
-        val commentsList = mutableListOf(comment1, comment2)
 
         val request = CommentsModel.GetCommentsRequest.Request()
 

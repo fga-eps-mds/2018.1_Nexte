@@ -9,7 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.CommentsScene.CommentsFragment
-import com.nexte.nexte.LikeListScene.LikeListView
+import com.nexte.nexte.LikeListScene.LikeListFragment
+import com.nexte.nexte.LikeListScene.LikeListModel
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_feed.view.*
 
@@ -50,7 +51,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        //       setContentView(R.layout.activity_feed_view)
 
         this.setupFeedScene()
         val newView = inflater?.inflate(R.layout.activity_feed_view, container, false)
@@ -91,8 +91,12 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
      */
     private fun goToLikesList() {
 
-        val intent = Intent(activity, LikeListView::class.java)
-        startActivity(intent)
+        val likeListFragment = LikeListFragment().getInstance()
+        val fragmentManager = activity.fragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, likeListFragment, "like")
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
 

@@ -62,7 +62,20 @@ build:
   only:
     - tags
     - dev
-    # - master
+
+# Build of GitHub Pages
+pages:
+  stage: build
+  before_script:
+    - git config user.email "<guilhermebaldissera@gmail.com>"
+    - git config --global user.name "Baldissera"
+  script:
+    - mkdocs build
+    - git add site/
+    - git commit -m"Build new Pages with $CI_PIPELINE_ID"
+    - git push https://$GITHUB_USERNAME:$GITHUB_CREDENTIALS@github.com/fga-gpp-mds/2018.1_Nexte.git `git subtree split --prefix site/`:gh-pages --force
+  only:
+    - dev
 
 # Deploy to PlayStore in Beta Version
 deploy_beta:
@@ -81,20 +94,6 @@ deploy_beta:
       - fastlane/logs
   only:
     - tags
-
-# Build of GitHub Pages
-pages:
-  stage: build
-  before_script:
-    - git config user.email "<guilhermebaldissera@gmail.com>"
-    - git config --global user.name "Baldissera"
-  script:
-    - mkdocs build
-    - git add site/
-    - git commit -m"Build new Pages with $CI_PIPELINE_ID"
-    - git push https://$GITHUB_USERNAME:$GITHUB_CREDENTIALS@github.com/fga-gpp-mds/2018.1_Nexte.git `git subtree split --prefix site/`:gh-pages --force
-  only:
-    - dev
 
 # Cache for use on next executions
 cache:

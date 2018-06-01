@@ -2,6 +2,8 @@ package com.nexte.nexte.Entities.User
 
 import java.util.*
 
+@Suppress("DEPRECATION")
+
 object UserMocker {
 
     fun generateUsers(): List<User> {

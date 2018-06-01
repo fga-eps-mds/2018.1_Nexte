@@ -1,8 +1,7 @@
 package com.nexte.nexte.LikeListScene
 
-import android.content.Context
+import android.app.Fragment
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.nexte.nexte.R
@@ -10,11 +9,10 @@ import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nexte.nexte.Entities.User.UserManager
-import kotlinx.android.synthetic.main.activity_list_like.*
 import kotlinx.android.synthetic.main.row_likes.view.*
 
 /**
- * Interface to define Display Logic to LikeListView Class that will receive information
+ * Interface to define Display Logic to LikeListFragment Class that will receive information
  * from Presenter
  */
 interface LikeListDisplayLogic {
@@ -28,25 +26,33 @@ interface LikeListDisplayLogic {
  *
  * @property interactor it's a Interactor layer for sending requests [LikeListInteractor]
  */
-class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
+class LikeListFragment : Fragment(), LikeListDisplayLogic {
 
     var interactor: LikeListInteractor? = null
+    var likesListRecyclerView: RecyclerView? = null
+
+    fun getInstance(): LikeListFragment{
+        val likeListFragment = LikeListFragment()
+        return likeListFragment
+    }
 
     /**
      * On Create method that will setup this scene and call first Request for Interactor
      *
      * @param savedInstanceState
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_like)
-
-        likesListRecyclerView.layoutManager = LinearLayoutManager(this)
+        val newView = inflater?.inflate(R.layout.activity_list_like, container, false)
+        likesListRecyclerView = newView?.findViewById(R.id.likesListRecyclerView)
+        likesListRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
         this.setUpLikeListScene()
-
         this.createFetchDataRequest()
+
+        return newView
     }
+
+
 
     /**
      * Method responsible for creating the fetch data to list request and passing it to the interactor
@@ -78,22 +84,22 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
     * @param viewModel is received from presenter to show on screen
     */
     override fun displayLikeList(viewModel: LikeListModel.ViewModel) {
-        likesListRecyclerView.adapter = LikesListAdapter(viewModel.playersFormatted, this)
+        likesListRecyclerView!!.adapter = LikesListAdapter(viewModel.playersFormatted, this)
     }
 
     /**
      * Adapter Class to control recycler fragment on ListLike
      *
      * @property listOfPlayers It's a list of all players
-     * @property context Context that will show this adapter
+     * @property fragment Fragment that will show this adapter
      */
     class LikesListAdapter(private val listOfPlayers: MutableList<LikeListModel.PlayersFormatted>,
-                           private val context: Context):
+                           private val fragment: Fragment):
                             RecyclerView.Adapter<LikesListAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                                         LikesListAdapter.ViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.row_likes, parent,
+            val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_likes, parent,
                         false)
             return LikesListAdapter.ViewHolder(view)
         }
@@ -122,7 +128,6 @@ class LikeListView : AppCompatActivity(), LikeListDisplayLogic {
              */
             fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
                 itemView.PlayerName.text = printedPlayer.name
-                itemView.commentDate.text = printedPlayer.time
             }
         }
     }

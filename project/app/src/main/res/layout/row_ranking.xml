@@ -5,8 +5,9 @@
     android:id="@+id/rowRankingLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/cell_border"
     android:minWidth="@dimen/activity_horizontal_margin"
-    android:background="@drawable/cell_border">
+    android:visibility="visible">
 
     <ImageView
         android:id="@+id/picture_img_view"

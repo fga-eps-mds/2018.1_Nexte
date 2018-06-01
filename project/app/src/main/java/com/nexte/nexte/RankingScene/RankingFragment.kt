@@ -1,22 +1,20 @@
 package com.nexte.nexte.RankingScene
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.support.v4.app.Fragment
+import android.support.v7.widget.ContentFrameLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.R
-import com.nexte.nexte.ShowProfileScene.ShowProfileView
+import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
-import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
@@ -33,50 +31,62 @@ interface RankingDisplayLogic {
 
 /**
  * Class that implements [RankingDisplayLogic]
- *
- * @property interactor responsible to receive request and send it to worker
  */
-class RankingView : AppCompatActivity(), RankingDisplayLogic {
+class RankingFragment : Fragment(), RankingDisplayLogic {
 
-    var interactor: RankingInteractor? = null
+    var interactor: RankingInteractor? = null //interactor responsible to receive request and send it to worker
+    var rankingRecyclerView: RecyclerView?= null
+    var fixedFragment: ContentFrameLayout?= null
+    var rankingConstraintLayout: ConstraintLayout?= null
     var userManager: UserManager? = null
-    var challengeManager: ChallengeManager? = null
+    var challengeManager: ChallengeManager?= null
+
+    fun getInstance() : RankingFragment{
+        return RankingFragment()
+    }
 
     /**
      * Method called on scene creation
      *
      * @param savedInstanceState
      */
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         userManager = UserManager()
         challengeManager = ChallengeManager()
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ranking)
-
-        rankingRecyclerView.layoutManager = LinearLayoutManager(this)
         this.setupRankingScene()
+    }
 
-        val dividerItemDecoration = DividerItemDecoration(this, requestedOrientation)
-        rankingRecyclerView.addItemDecoration(dividerItemDecoration)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view: View? = inflater?.inflate(R.layout.activity_ranking, container, false)
 
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fixedFragment = view?.findViewById(R.id.fixedFragment)
+        rankingRecyclerView = view?.findViewById(R.id.rankingRecyclerView)
+        rankingConstraintLayout = view?.findViewById(R.id.rankingConstraintLayout)
+        rankingRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
+        val dividerItemDecoration = DividerItemDecoration(this.activity, DividerItemDecoration.VERTICAL)
+        rankingRecyclerView?.addItemDecoration(dividerItemDecoration)
+
+        val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fixedFragment, FixedRowRankingFragment())
         fragmentTransaction.commit()
 
         this.createGetPlayersRequest()
 
-        this.rankingRecyclerView.addOnScrollListener(OnScrollRankingRecyclerView(
+        this.rankingRecyclerView?.addOnScrollListener(OnScrollRankingRecyclerView(
                 UserSingleton.getUserInformations().rankingPosition, this))
 
         setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
+
+        return view
     }
 
-
-    private fun goToShowProfileView() {
-        val intent = Intent(this, ShowProfileView::class.java)
-        startActivity(intent)
+    private fun goToShowProfileView(name: String?) {
+        val fragment = ShowProfileFragment().getInstance(name)
+        fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
     }
 
 
@@ -103,25 +113,25 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
     /**
      * Function responsible to define when or where the fixed ranking row should appear
      *
-     * @param context indicates the context that the fragment is contained in
-     * @param recyclerView indicates the recycler fragment that will be used to control how the fixed row will be displayed
+     * @param fragment indicates the fragment that this fragment is contained in
+     * @param recyclerView indicates the recycler view that will be used to control how the fixed row will be displayed
      * @param playerRanking Indicates the player position that will be shown on screen, and it is used for comparision.
      */
-    private fun setFixedRanking(context: Context, recyclerView: RecyclerView?, playerRanking: Int) {
+    private fun setFixedRanking(fragment: Fragment, recyclerView: RecyclerView?, playerRanking: Int) {
 
         val constraintSet = ConstraintSet()
-        val rankingView = context as RankingView
+        val rankingView = fragment as RankingFragment
         val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
 
         if(layoutManager.findFirstCompletelyVisibleItemPosition() <= playerRanking - 1
                 && playerRanking - 1 <= layoutManager.findLastCompletelyVisibleItemPosition()) {
 
-            rankingView.fixedFragment.visibility = View.INVISIBLE
+            rankingView.fixedFragment?.visibility = View.INVISIBLE
         }
 
         else if (playerRanking - 1 > layoutManager.findLastCompletelyVisibleItemPosition()) {
 
-            rankingView.fixedFragment.visibility = View.VISIBLE
+            rankingView.fixedFragment?.visibility = View.VISIBLE
             constraintSet.clone(rankingView.rankingConstraintLayout)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.TOP)
@@ -131,7 +141,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
 
         else if (playerRanking - 1 < layoutManager.findFirstCompletelyVisibleItemPosition()){
 
-            rankingView.fixedFragment.visibility = View.VISIBLE
+            rankingView.fixedFragment?.visibility = View.VISIBLE
             constraintSet.clone(rankingView.rankingConstraintLayout)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.BOTTOM)
             constraintSet.clear(R.id.fixedFragment, ConstraintSet.TOP)
@@ -144,13 +154,17 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      * Class responsible to control recycler fragment scrolling
      *
      * @param playerRanking indicates the position of the logged user
+<<<<<<< HEAD:project/app/src/main/java/com/nexte/nexte/RankingScene/RankingView.kt
      * @param context indicates the context that the recycler fragment is inserted in
+=======
+     * @param fragment indicates the fragment that the recycler view is inserted in
+>>>>>>> 436a600ad1d3c7d13e15052cb43dcd9891439e3f:project/app/src/main/java/com/nexte/nexte/RankingScene/RankingFragment.kt
      */
-    private class OnScrollRankingRecyclerView(val playerRanking: Int, val context: Context) : RecyclerView.OnScrollListener() {
+    private class OnScrollRankingRecyclerView(val playerRanking: Int, val fragment: Fragment) : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
 
-            (context as RankingView).setFixedRanking(context, recyclerView, playerRanking)
+            (fragment as RankingFragment).setFixedRanking(fragment, recyclerView, playerRanking)
         }
     }
 
@@ -186,17 +200,17 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
      */
     override fun displayRankingInScreen(viewModel: RankingModel.ViewModel) {
 
-        rankingRecyclerView.adapter = RankingAdapter(viewModel.formattedPlayers, this)
+        rankingRecyclerView?.adapter = RankingAdapter(viewModel.formattedPlayers, this)
     }
 
     /**
      * Class responsible to expand user information on click
      *
      * @property playerInformation List of formatted information
-     * @property context Context that will show this adapter
+     * @property fragment Fragment that will show this adapter
      */
     class RankingAdapter(private val playerInformation: List<RankingModel.FormattedPlayerInfo>,
-                         private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                         private val fragment: Fragment): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var expandedId = -1
 
@@ -209,7 +223,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
          */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-            val inflater = LayoutInflater.from(context)
+            val inflater = LayoutInflater.from(fragment.activity)
             val view: View?
 
             view = inflater.inflate(R.layout.row_ranking, parent, false)
@@ -254,7 +268,7 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
             itemHolder?.lastGame?.text = item.player.userLastGame
             itemHolder?.efficiency?.text = item.player.userEfficiency
             itemHolder?.profileButton?.setOnClickListener{
-                (context as RankingView).goToShowProfileView()
+                (fragment as RankingFragment).goToShowProfileView(item.player.userName)
             }
 
             if(expandedId == itemHolder?.layoutPosition) {
@@ -278,14 +292,14 @@ class RankingView : AppCompatActivity(), RankingDisplayLogic {
          */
         inner class ItemHolder(v: View): RecyclerView.ViewHolder(v) {
 
-            var nameText = v.name
-            var rankingText = v.position
-            var victory = v.victory
-            var lastGame = v.lastGame
-            var expandedView = v.expandedView
-            var efficiency = v.efficiency
-            var profileButton = v.profileButton
-            var playerCategory = v.playerCategory
+            var nameText = v.name!!
+            var rankingText = v.position!!
+            var victory = v.victory!!
+            var lastGame = v.lastGame!!
+            var expandedView = v.expandedView!!
+            var efficiency = v.efficiency!!
+            var profileButton = v.profileButton!!
+            var playerCategory = v.playerCategory!!
         }
     }
 }

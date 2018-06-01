@@ -34,26 +34,6 @@ class RankingModel {
     //-------------- Aux Classes --------------
 
     /**
-     * Class responsible to define personal data of all players
-     *
-     * @property name it's the name of the player
-     * @property pictureURL it's the photo of the player
-     * @property playerCategory it's the category that the player plays
-     * @property wins are all the games won by the player
-     * @property losses are all the games lost by the player
-     * @property rankingPosition it's the position of the player on the ranking
-     * @property lastGame it's when the user player the last
-     */
-    class Player(var name: String,
-                 var pictureURL: Int,
-                 var playerCategory: String,
-                 var wins: Int,
-                 var losses: Int,
-                 var rankingPosition: Int,
-                 var lastGame: String,
-                 var efficiency: String)
-
-    /**
      * Class responsible to define format players information
      *
      * @property player information about the player

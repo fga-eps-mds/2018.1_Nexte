@@ -42,14 +42,14 @@
             android:name=".LoginScene.LoginView"
             android:label="Login" />
         <activity
-            android:name=".RankingScene.RankingView"
+            android:name=".RankingScene.RankingFragment"
             android:screenOrientation="portrait" />
         <activity
             android:name=".FeedScene.FeedFragment"
             android:label="@string/title_activity_feed_view"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ShowProfileScene.ShowProfileView"
+            android:name=".ShowProfileScene.ShowProfileFragment"
             android:label="@string/title_activity_show_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--<activity-->
@@ -57,14 +57,14 @@
             <!--android:theme="@style/AppLoginTheme"-->
             <!--tools:replace="android:theme" />-->
         <activity
-            android:name=".LikeListScene.LikeListView"
+            android:name=".LikeListScene.LikeListFragment"
             android:label="LikeListView"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditProfileScene.EditProfileFragment"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChallengeScene.ChallengeView"
+        <activity android:name=".PlayersListScene.ChallengeTabsFragment"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity

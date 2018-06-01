@@ -9,9 +9,11 @@
             android:iconTint="@color/iconTint"
             android:title="Feed"
             app:showAsAction="ifRoom" />
+
         <item
             android:id="@+id/challenge"
             android:enabled="true"
+            android:tint="#fff"
             android:icon="@drawable/ic_challenge"
             android:iconTint="@color/iconTint"
             android:title="Challenge"
@@ -20,6 +22,7 @@
         <item
             android:id="@+id/ranking"
             android:enabled="true"
+            android:tint="#fff"
             android:icon="@drawable/ic_ranking"
             android:iconTint="@color/iconTint"
             android:title="Ranking"
@@ -27,6 +30,7 @@
         <item
             android:id="@+id/profile"
             android:enabled="true"
+            android:tint="#fff"
             android:icon="@drawable/ic_ranking"
             android:title="Profile"
             android:iconTint="@color/iconTint"
