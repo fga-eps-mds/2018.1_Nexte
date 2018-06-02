@@ -75,6 +75,7 @@
             android:name=".MatchScene.MatchFragment"
             android:label="MatchActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".LoginScene.LoginView" />
     </application>
 
 </manifest>

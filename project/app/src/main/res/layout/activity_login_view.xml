@@ -6,17 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:visibility="visible"
-    tools:context="com.nexte.nexte.LoginScene.LoginFragment">
-
-    <View
-        android:id="@+id/fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="#979797"
-        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+    tools:context="com.nexte.nexte.LoginScene.LoginView">
 
     <EditText
         android:id="@+id/userField"
@@ -24,14 +14,14 @@
         android:layout_height="27dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="370dp"
         android:background="#a7252525"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment" />
+        app:layout_constraintTop_toTopOf="@+id/nexte_logo" />
 
     <EditText
         android:id="@+id/passwordField"
@@ -39,7 +29,7 @@
         android:layout_height="27dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="272dp"
+        android:layout_marginTop="290dp"
         android:background="#a7252525"
         android:ems="10"
         android:inputType="textPassword"
@@ -54,7 +44,7 @@
         android:layout_height="27dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="450dp"
         android:background="#a7252525"
         android:text="Entrar"
         android:textColor="#ffff"
@@ -69,17 +59,18 @@
         android:layout_height="27dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="470dp"
-        android:background="##a7252525"
+        android:layout_marginTop="550dp"
+        android:background="#a7252525"
         android:text="Navegar pelo NEXTE!"
         android:textColor="#c5c5c5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment" />
+        app:layout_constraintTop_toBottomOf="@+id/container" />
 
     <View
         android:id="@+id/loginline_left_email"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="1dp"
         android:layout_marginBottom="100dp"
         android:layout_marginStart="50dp"
@@ -93,10 +84,10 @@
 
     <View
         android:id="@+id/loginline_email_right"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="1dp"
         android:layout_marginBottom="250dp"
-        android:layout_marginStart="270dp"
+        android:layout_marginStart="275dp"
         android:layout_marginTop="260dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
@@ -110,8 +101,8 @@
         android:layout_width="120dp"
         android:layout_height="1dp"
         android:layout_marginBottom="120dp"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginStart="255dp"
+        android:layout_marginTop="340dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,8 +115,8 @@
         android:layout_width="120dp"
         android:layout_height="1dp"
         android:layout_marginBottom="120dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="340dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,11 +126,11 @@
 
     <View
         android:id="@+id/loginline_or_right"
-        android:layout_width="125dp"
+        android:layout_width="120dp"
         android:layout_height="1dp"
         android:layout_marginBottom="120dp"
-        android:layout_marginStart="227dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="520dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -149,11 +140,11 @@
 
     <View
         android:id="@+id/loginline_or_left"
-        android:layout_width="125dp"
+        android:layout_width="120dp"
         android:layout_height="1dp"
         android:layout_marginBottom="120dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="520dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +158,6 @@
         android:layout_height="145dp"
         android:layout_marginEnd="54dp"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,13 +165,12 @@
         app:srcCompat="@drawable/logo_nexte" />
 
 
-
     <TextView
         android:id="@+id/email_and_phone"
         android:layout_width="120dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="327dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginEnd="360dp"
+        android:layout_marginTop="120dp"
         android:text="E-mail ou telefone"
         android:textColor="#c5c5c5"
         app:layout_constraintBottom_toTopOf="@+id/passwordField"
@@ -194,8 +183,8 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="165dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginTop="15dp"
         android:text="Senha"
         android:textColor="#c5c5c5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -205,8 +194,8 @@
         android:id="@+id/or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="174dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginTop="225dp"
         android:text="Ou"
         android:textColor="#c5c5c5"
         app:layout_constraintBottom_toTopOf="@+id/login"

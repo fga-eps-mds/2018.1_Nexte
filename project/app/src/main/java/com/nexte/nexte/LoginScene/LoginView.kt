@@ -34,7 +34,7 @@ interface LoginDisplayLogic {
 /**
  * Class that implements [LoginDisplayLogic] and its responsible to control feed screen
  *
- * @property interactor Interactor layer for send requests [FeedInteractor]
+ * @property interactor Interactor layer
  */
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
@@ -64,19 +64,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             createAuthenticationRequest()
         }
         navigationLogin.setOnClickListener{
-            this.navigateWithoutLogin()
+            this.finish()
         }
     }
 
-    /**
-     * On Acitvity Results is a method manager request and results provided
-     *
-     * @param savedInstanceState
-     */   /**
-     * On Create is a method that will setup this scene and call first Request and actions from UI
-     *
-     * @param savedInstanceState
-     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -102,18 +93,12 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Method responsible for creating the authetication request an passing it to the interactor
      */
-    fun createAuthenticationRequest(){
+    private fun createAuthenticationRequest(){
         val account = userField.text.toString()
         val password = passwordField.text.toString()
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
-    }
-
-    fun navigateWithoutLogin(){
-
-          val fragment = supportFragmentManager.findFragmentById(R.id.feedActivity)
-          fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
     }
 
     /**
@@ -122,7 +107,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     private fun getAccount() {
         AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
             override fun onSuccess(account: Account) {
-                val phoneNumber = account.getPhoneNumber()
+                val phoneNumber = account.phoneNumber
                 val phoneNumberString = phoneNumber.toString()
 
                 if(phoneNumberString !=  "") {
