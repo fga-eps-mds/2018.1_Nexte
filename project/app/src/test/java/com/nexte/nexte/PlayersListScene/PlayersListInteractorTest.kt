@@ -3,24 +3,25 @@ package com.nexte.nexte.PlayersListScene
 
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
 
-class PlayersListInteractorTest{
+class PlayersListInteractorTest: HelpForRealm() {
 
     private var mocker : MockPlayersListPresentationLogic? = null
     private var interactor : PlayersListInteractor? = null
 
     @Before
     fun setUp(){
+        super.setUpWithUser()
+
         this.mocker = MockPlayersListPresentationLogic()
         this.interactor = PlayersListInteractor()
         this.interactor?.presenter = mocker
-
-
     }
 
     @Test
@@ -68,9 +69,10 @@ class PlayersListInteractorTest{
 
     @After
     fun tearDown(){
+        super.tearDownRealm()
+
         this.mocker = null
         this.interactor = null
-
     }
 
     private class MockPlayersListPresentationLogic : PlayersListPresentationLogic{

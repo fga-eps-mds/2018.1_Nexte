@@ -65,7 +65,7 @@ class ChallengeTabsFragment : Fragment() {
 
         override fun getItem(position: Int): Fragment {
             val randomMatch = MatchModel.MatchData(
-                    MatchModel.MatchPlayer(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher_round),
+                    MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round),
                             MatchModel.MatchPlayer("Gabriel Albino", R.mipmap.calendar_logo_round)
 
             )

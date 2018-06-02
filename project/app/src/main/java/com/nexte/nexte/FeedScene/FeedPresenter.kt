@@ -59,7 +59,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
 
         for (activity in activities) {
 
-            val matchingUser = activity.likes.find { it.name == UserSingleton.getUserInformations().name }
+            val matchingUser = activity.likes.find { it.name == UserSingleton.loggedUser.name }
             var userIsOnLikeList = false
 
             if(matchingUser != null) {
@@ -93,7 +93,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
     private fun formatFeedActivity(activity: FeedModel.FeedActivity):
             FeedModel.FeedActivityFormatted {
 
-        val matchingUser = activity.likes.find { it.name == UserSingleton.getUserInformations().name }
+        val matchingUser = activity.likes.find { it.name == UserSingleton.loggedUser.name }
         var userIsOnLikeList = false
 
         if(matchingUser != null) {

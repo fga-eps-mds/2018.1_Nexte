@@ -1,7 +1,5 @@
 package com.nexte.nexte.EditProfileScene
 
-import com.nexte.nexte.Player
-import com.nexte.nexte.UserSingleton
 
 /**
  * Interface responsible to interpret received user information and send it to [EditProfileView]
@@ -52,15 +50,13 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
 
         val username: String = response.user.name
         val ranking: String = String.format("#%d", response.user.rankingPosition)
-        val club: String = response.user.club
-        val age: String = String.format("%d", response.user.age)
+        val club: String = "UnB"
         val email: String =  response.user.email
 
         val formattedPlayer: EditProfileModel.RecoverUserRequest.FormattedPlayer =
                 EditProfileModel.RecoverUserRequest.FormattedPlayer(username,
                     ranking,
                     club,
-                    age,
                     email)
 
         val viewModel: EditProfileModel.RecoverUserRequest.ViewModel =
@@ -79,13 +75,11 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
 
         val errorID: Int? = response.errorID
         val messageError: String?
-        val newUser: Player? = response.newUser
 
         messageError = when (errorID) {
             1 -> "Email inválido"
             2 -> "Sua senha deverá conter mais de 6 caracteres"
             else -> {
-                UserSingleton.setUserInformations(newUser!!)
                 null
             }
         }
