@@ -208,6 +208,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMinValue(0f)
+            showProfileFragment.newLineChart?.animateXY(2000, 2000)
 
             showProfileFragment.newLineChart?.axisRight?.isEnabled = false // Take off left edge
 
@@ -228,10 +229,20 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
 
+            val lineData = LineData(dataSetsRanking) // Added data to chart
+            val description = Description()
+            description.text = ""
+
             val lineRanking = LineDataSet(yAxesRanking, "Posição no Ranking") //Access the data of yAxes,
             // introduce a legend and customize the graphic
+            lineRanking.setDrawCircles(false) // Circle for important values
+            lineRanking.setDrawCircleHole(true) // Draw Circles
+            lineRanking.setDrawValues(false)// Hide values from a point in chart
+            lineRanking.setMode(LineDataSet.Mode.CUBIC_BEZIER) // Make it curves
+            lineRanking.cubicIntensity = 0.2f // Line curves intensity
             lineRanking.fillAlpha = houndredLine
             lineRanking.color = Color.RED
+            lineRanking.lineWidth = 4.0f // Line width
             lineRanking.axisDependency = YAxis.AxisDependency.LEFT
             dataSetsRanking.add(lineRanking)
 
@@ -246,15 +257,34 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
             val rankingData = LineData(dataSetsRanking)
             showProfileFragment.rankingChart?.data = rankingData
+            showProfileFragment.rankingChart?.legend!!.isEnabled = false
+            showProfileFragment.rankingChart?.description = description
+            showProfileFragment.rankingChart?.setDrawBorders(false)
+            showProfileFragment.rankingChart?.setScaleEnabled(false)
+            showProfileFragment.rankingChart?.isScaleXEnabled = false
+            showProfileFragment.rankingChart?.isScaleYEnabled = false
+
+            showProfileFragment.rankingChart?.axisLeft?.setDrawAxisLine(false)
+            showProfileFragment.rankingChart?.axisLeft?.setDrawGridLines(false)
+            showProfileFragment.rankingChart?.axisLeft?.textColor = Color.WHITE
+            showProfileFragment.rankingChart?.axisLeft?.textSize = 12.0f
             showProfileFragment.rankingChart?.axisLeft?.setAxisMaxValue(8f)
-            showProfileFragment.newLineChart?.animateXY(2000, 2000)
             showProfileFragment.rankingChart?.axisLeft?.setAxisMinValue(0f)
-            showProfileFragment.rankingChart?.axisRight?.setAxisMaxValue(0f)
-            showProfileFragment.rankingChart?.axisRight?.setAxisMinValue(8f)
             showProfileFragment.rankingChart?.axisLeft?.setDrawGridLines(false)
             showProfileFragment.rankingChart?.xAxis?.setDrawGridLines(false)
             showProfileFragment.rankingChart?.setScaleEnabled(false)
+            showProfileFragment.rankingChart?.animateXY(2000, 2000)
+
+            showProfileFragment.rankingChart?.axisRight?.isEnabled = false
+
+            showProfileFragment.rankingChart?.xAxis?.textSize = 12.0f
+            showProfileFragment.rankingChart?.xAxis?.setDrawAxisLine(false)
+            showProfileFragment.rankingChart?.xAxis?.setDrawGridLines(false)
+
+            showProfileFragment.rankingChart?.setExtraOffsets(0f,0f,0f,0f)
             showProfileFragment.rankingChart?.invalidate()
+
+
         }
     }
 

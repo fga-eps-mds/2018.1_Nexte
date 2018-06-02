@@ -21,13 +21,13 @@
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="16dp"
             android:text="username"
             android:textAlignment="center"
@@ -57,7 +57,7 @@
             android:layout_height="120dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonA">
@@ -83,7 +83,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/black"
+            android:background="@drawable/edge_text_edit_profile"
             android:text="editar"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
