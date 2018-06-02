@@ -11,7 +11,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
@@ -44,8 +44,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginStart="70dp"
             android:background="@drawable/circle_ranking_profile"
-            android:text="R"
             android:gravity="center"
+            android:text="R"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="15sp"
@@ -56,11 +56,10 @@
             android:id="@+id/lineChart"
             android:layout_width="0dp"
             android:layout_height="170dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Stats">
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         </com.github.mikephil.charting.charts.LineChart>
 
@@ -165,7 +164,7 @@
             android:id="@+id/buttonA"
             android:layout_width="110dp"
             android:layout_height="25dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/edge_text_edit_profile"
             android:fontFamily="@font/roboto"
@@ -198,8 +197,8 @@
         <TextView
             android:id="@+id/Stats"
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_height="25dp"
+            android:gravity="top"
             android:layout_marginEnd="145dp"
             android:layout_marginStart="146dp"
             android:layout_marginTop="30dp"
@@ -211,6 +210,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonA"
             tools:text="ESTATÍSTICAS" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="165dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Vitórias/Derrotas"
+            android:textAlignment="center"
+            android:textColor="#9b9b9b"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Stats" />
 
 
     </android.support.constraint.ConstraintLayout>

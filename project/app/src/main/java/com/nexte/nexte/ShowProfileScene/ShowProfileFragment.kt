@@ -195,7 +195,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
             chart.animateX(2000)
             chart.invalidate()
-            chart.setExtraOffsets(0f,0f,0f,0f)
+            chart.setExtraOffsets(0f,15f,0f,0f)
         }
 
         /**
@@ -225,6 +225,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             axisX.textColor = Color.WHITE
             axisX.setDrawGridLines(false)
             axisX.setDrawAxisLine(false)
+            axisX.position = XAxis.XAxisPosition.BOTTOM
         }
 
 
@@ -233,14 +234,17 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createGraph() {
 
-            val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
+            val victoryResults = setYAxisValues() //responsible to access the method setYAxisValues
+            val losesResults = setYAxisValuesRanking()
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val line = this.customizeChartLine(yAxes, "Vitoria", Color.BLUE)
-            dataSets.add(line)
+            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", Color.RED)
+            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", Color.GREEN)
+            dataSets.add(victoryLine)
+            dataSets.add(losesLine)
+
             val lineData = LineData(dataSets) // Added data to chart
             val description = Description()
             description.text = ""
-
             this.loadChart(lineData, showProfileFragment.newLineChart!!, description)
         }
 
@@ -252,12 +256,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val line = this.customizeChartLine(yAxesRanking, "Ranking", Color.RED)
+            val line = this.customizeChartLine(yAxesRanking, "Ranking", Color.BLUE)
             dataSetsRanking.add(line)
             val lineData = LineData(dataSetsRanking) // Added data to chart
             val description = Description()
             description.text = ""
-
 
             this.loadChart(lineData, showProfileFragment.rankingChart!!, description)
         }
