@@ -83,54 +83,90 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         return fragmentFirst
     }
 
-    private fun validateProfessionalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
-        if (this.validateNormalSet(challenger, challenged, isValid)){
-            return isValid
+    private class ValidateSets{
+        fun validateNineVsEight(challenger: Int, challenged: Int) : Boolean{
+            return when {
+                challenger == nine && challenged == eight -> true
+                else -> challenged == nine && challenger == eight
+            }
         }
-        if(challenger == 9 && challenged == 8){
-            return isValid
-        }
-        if(challenged == 9 && challenger == 8){
-            return isValid
-        }
-        if(challenger == 8 && challenged <= 6){
-            return isValid
-        }
-        if(challenged == 8 && challenger <= 6){
-            return isValid
-        }
-        return false
-    }
 
-    private fun validateTieBreakSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
-        if(this.validateNormalSet(challenger, challenged, isValid)){
-            return isValid
+        fun validateEightVsAny(challenger: Int, challenged: Int) : Boolean {
+            return when {
+                challenger == eight && challenged <= six -> true
+                else -> challenged == eight && challenger <= six
+            }
         }
-        else if (challenger == 10 && challenged <= 9){
-            return isValid
-        }
-        else if (challenged == 10 && challenger <= 9) {
-            return isValid
-        }
-        return false
-    }
 
-    private fun validateNormalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
-        return if (challenger == 7 && (challenged == 6 || challenged == 5)) {
-            return isValid
+        fun validateProfessionalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
+            return when {
+                this.validateNormalSet(challenger, challenged, isValid) -> isValid
+                validateNineVsEight(challenger,challenged) -> isValid
+                validateEightVsAny(challenger, challenged) -> isValid
+                else -> false
+            }
         }
-        else if(challenged == 7 && (challenger == 6 || challenger == 5)) {
-            return isValid
+
+        fun validateTieBreakSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
+            return if(this.validateNormalSet(challenger, challenged, isValid)){
+                isValid
+            }
+            else if (challenger == ten && challenged <= nine){
+                isValid
+            }
+            else if (challenged == ten && challenger <= nine) {
+                isValid
+            }
+            else {
+                false
+            }
         }
-        else if(challenged == 6 && challenger <= 4){
-            return isValid
+
+        fun validateSevenVsSixOrFive(challenger: Int, challenged: Int): Boolean{
+            return when {
+                challenger == seven && (challenged == six || challenged == five) -> true
+                else -> challenged == seven && (challenger == six || challenger == five)
+            }
         }
-        else if (challenger == 6 && challenged <= 4)
-            return isValid
-        else if (challenged < 6 && challenger < 6)
-            return false
-        else
-            return false
+
+        fun validateSixVsAny(challenger: Int, challenged: Int): Boolean{
+            return when {
+                challenger == six && challenged <= four -> true
+                else -> challenged == six && challenger <= four
+            }
+        }
+
+        fun validateNormalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
+            return when {
+                validateSevenVsSixOrFive(challenger, challenged) -> isValid
+                validateSixVsAny(challenger, challenged) -> isValid
+                else -> false
+            }
+        }
+
+        fun checkThreeSetsValid(set: Int, iChallengerResult: Int, iChallengedResult: Int, isSetResultsValid: Boolean) : Boolean{
+            return when (set) {
+                one -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                two -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                three -> this.validateTieBreakSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                else -> {
+                    isSetResultsValid
+                }
+            }
+        }
+
+        fun checkFiveSetsValid(set: Int, iChallengerResult: Int, iChallengedResult: Int, isSetResultsValid: Boolean) : Boolean{
+            return when (set) {
+                one -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                two -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                three -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                four -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                five -> this.validateTieBreakSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                else -> {
+                    isSetResultsValid
+                }
+            }
+        }
     }
 
     private fun defineSetsValid(){
@@ -141,53 +177,34 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         var isSetResultsValid = true
         recyclerView?.adapter as MatchDataAdapter
 
-        for(i in 1 until recyclerView?.adapter?.itemCount!!){
+        for (i in 1 until recyclerView?.adapter?.itemCount!!) {
             val item = recyclerView?.findViewHolderForAdapterPosition(i)
 
             val challengerResult = item?.itemView?.findViewById<EditText>(R.id.challengerResult)
             val challengedResult = item?.itemView?.findViewById<EditText>(R.id.challengedResult)
 
-            val iChallengedResult:Int
-            val iChallengerResult: Int
-            if(challengedResult != null && challengerResult != null) {
+            var iChallengedResult: Int
+            var iChallengerResult: Int
+            if (challengedResult != null && challengerResult != null) {
                 try {
                     iChallengedResult = Integer.parseInt(challengedResult.text.toString())
                     iChallengerResult = Integer.parseInt(challengerResult.text.toString())
-
-                    isSetResultsValid = when (numberOfSets) {
-                        MatchModel.SetsNumber.One -> {
-                            validateProfessionalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                        }
-                        MatchModel.SetsNumber.Three -> {
-                            when (i) {
-                                1 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                2 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                3 -> validateTieBreakSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                else -> {
-                                    isSetResultsValid
-                                }
-                            }
-
-                        }
-                        MatchModel.SetsNumber.Five -> {
-                            when (i) {
-                                1 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                2 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                3 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                4 -> validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                5 -> validateTieBreakSet(iChallengerResult, iChallengedResult, isSetResultsValid)
-                                else -> {
-                                    isSetResultsValid
-                                }
-                            }
-                        }
-                        else -> {
-                            isSetResultsValid
-                        }
-                    }
-                }
-                catch (e: NumberFormatException){
+                } catch (e: NumberFormatException) {
                     return false
+                }
+                isSetResultsValid = when (numberOfSets) {
+                    MatchModel.SetsNumber.One -> {
+                        ValidateSets().validateProfessionalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                    }
+                    MatchModel.SetsNumber.Three -> {
+                        ValidateSets().checkThreeSetsValid(i, iChallengerResult, iChallengedResult, isSetResultsValid)
+                    }
+                    MatchModel.SetsNumber.Five -> {
+                        ValidateSets().checkFiveSetsValid(i, iChallengerResult, iChallengedResult, isSetResultsValid)
+                    }
+                    else -> {
+                        isSetResultsValid
+                    }
                 }
             }
         }
@@ -330,48 +347,82 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          *
          * @param position row position of the recycler view
          */
-        override fun getItemViewType(position: Int): Int {
 
-            val layoutMatch : Int
-
-            when((fragment as MatchFragment).numberOfSets.number){
-                one -> layoutMatch = when(position) {
-                    zero -> R.layout.row_match_info
-                    one -> R.layout.row_match_sets
-                    two -> R.layout.row_match_time
-                    else -> throw IllegalArgumentException()
-                }
-
-                three -> layoutMatch = when(position) {
-                    zero -> R.layout.row_match_info
-                    one -> R.layout.row_match_sets
-                    two -> R.layout.row_match_sets
-                    three -> R.layout.row_match_sets
-                    four -> R.layout.row_match_time
-                    else -> throw IllegalArgumentException()
-                }
-
-                five -> layoutMatch = when(position) {
-                    zero -> R.layout.row_match_info
-                    one -> R.layout.row_match_sets
-                    two -> R.layout.row_match_sets
-                    three -> R.layout.row_match_sets
-                    four -> R.layout.row_match_sets
-                    five -> R.layout.row_match_sets
-                    six -> R.layout.row_match_time
-                    else -> throw IllegalArgumentException()
-                }
-
-                zero -> layoutMatch = when(position) {
-                    zero -> R.layout.row_match_info
-                    one -> R.layout.row_match_wo
-                    else -> throw IllegalArgumentException()
-                }
-
+        private fun getOneSetItemViewType(position: Int): Int {
+            return when(position) {
+                zero -> R.layout.row_match_info
+                one -> R.layout.row_match_sets
+                two -> R.layout.row_match_time
                 else -> throw IllegalArgumentException()
             }
+        }
 
-            return layoutMatch
+        private fun getThreeSetItemViewType(position: Int): Int {
+            return when(position) {
+                zero -> R.layout.row_match_info
+                one -> R.layout.row_match_sets
+                two -> R.layout.row_match_sets
+                three -> R.layout.row_match_sets
+                four -> R.layout.row_match_time
+                else -> throw IllegalArgumentException()
+            }
+        }
+
+        private fun getFiveSetItemViewType(position: Int): Int {
+            return when(position) {
+                zero -> R.layout.row_match_info
+                one -> R.layout.row_match_sets
+                two -> R.layout.row_match_sets
+                three -> R.layout.row_match_sets
+                four -> R.layout.row_match_sets
+                five -> R.layout.row_match_sets
+                six -> R.layout.row_match_time
+                else -> throw IllegalArgumentException()
+            }
+        }
+
+        private fun getWOItemViewType(position: Int): Int {
+            return when(position) {
+                zero -> R.layout.row_match_info
+                one -> R.layout.row_match_wo
+                else -> throw IllegalArgumentException()
+            }
+        }
+
+        override fun getItemViewType(position: Int): Int {
+
+            return when((fragment as MatchFragment).numberOfSets.number){
+                one -> getOneSetItemViewType(position)
+                three -> getThreeSetItemViewType(position)
+                five -> getFiveSetItemViewType(position)
+                zero -> getWOItemViewType(position)
+                else -> throw IllegalArgumentException()
+            }
+        }
+
+        private fun setTextActionListener(holder: RecyclerView.ViewHolder){
+            holder.itemView.challengedResult.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    (fragment as MatchFragment).defineSetsValid()
+                }
+            })
+            holder.itemView.challengerResult.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    (fragment as MatchFragment).defineSetsValid()
+                }
+            })
         }
 
         /**
@@ -393,28 +444,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 R.layout.row_match_sets -> {
                     val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_sets, parent,false)
                     holder = MatchFragment.MatchDataAdapter.SetsViewHolder(view)
-                    holder.itemView.challengedResult.addTextChangedListener(object : TextWatcher {
-                        override fun afterTextChanged(p0: Editable?) {
-                        }
-
-                        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                        }
-
-                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                            (fragment as MatchFragment).defineSetsValid()
-                        }
-                    })
-                    holder.itemView.challengerResult.addTextChangedListener(object : TextWatcher {
-                        override fun afterTextChanged(p0: Editable?) {
-                        }
-
-                        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                        }
-
-                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                            (fragment as MatchFragment).defineSetsValid()
-                        }
-                    })
+                    setTextActionListener(holder)
                 }
                 R.layout.row_match_time -> {
                     val view = LayoutInflater.from(fragment.activity).inflate(R.layout.row_match_time, parent,false)
@@ -515,7 +545,27 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          * @param itemView view that contains elements of the row to be altered
          */
         class SetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            @SuppressLint("SetTextI18n")
+            private fun setThreeSetsLabels(position: Int){
+                when(position) {
+                    one -> itemView.setLabel.text = "Primeiro Set"
+                    two -> itemView.setLabel.text = "Segundo Set"
+                    three -> itemView.setLabel.text = "Tie Break"
+                }
+            }
 
+            @SuppressLint("SetTextI18n")
+            private fun setFiveSetsLabels(position: Int){
+                when(position) {
+                    one -> itemView.setLabel.text = "Primeiro Set"
+                    two -> itemView.setLabel.text = "Segundo Set"
+                    three -> itemView.setLabel.text = "Terceiro Set"
+                    four -> itemView.setLabel.text = "Quarto Set"
+                    five -> itemView.setLabel.text = "Tie Break"
+                }
+            }
+
+            @SuppressLint("SetTextI18n")
             fun setsBindView(position: Int, numberOfSets: MatchModel.SetsNumber) {
 
                 when(numberOfSets) {
@@ -523,20 +573,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                         itemView.setLabel.text = "Set Profissional"
                     }
                     MatchModel.SetsNumber.Three -> {
-                        when(position) {
-                            1 -> itemView.setLabel.text = "Primeiro Set"
-                            2 -> itemView.setLabel.text = "Segundo Set"
-                            3 -> itemView.setLabel.text = "Tie Break"
-                        }
+                        setThreeSetsLabels(position)
                     }
                     MatchModel.SetsNumber.Five -> {
-                        when(position) {
-                            1 -> itemView.setLabel.text = "Primeiro Set"
-                            2 -> itemView.setLabel.text = "Segundo Set"
-                            3 -> itemView.setLabel.text = "Terceiro Set"
-                            4 -> itemView.setLabel.text = "Quarto Set"
-                            5 -> itemView.setLabel.text = "Tie Break"
-                        }
+                        setFiveSetsLabels(position)
+                    }
+                    else -> {
+                        /*do nothing*/
                     }
                 }
 
@@ -584,5 +627,6 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         const val seven = 7
         const val eight = 8
         const val nine = 9
+        const val ten = 10
     }
 }
