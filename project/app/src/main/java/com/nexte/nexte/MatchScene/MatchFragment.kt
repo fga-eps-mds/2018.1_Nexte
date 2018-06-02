@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_sets.view.*
@@ -32,6 +33,7 @@ interface MatchDisplayLogic {
     fun displayMatchResultMessage(viewModel: MatchModel.SendMatchResult.ViewModel)
 }
 
+@Suppress("DEPRECATION")
 /**
  * Class that implements [MatchDisplayLogic] and is responsible to control feed screen
  *
@@ -178,13 +180,14 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         recyclerView?.adapter as MatchDataAdapter
 
         for (i in 1 until recyclerView?.adapter?.itemCount!!) {
+            var isLocalResultsValid = true
             val item = recyclerView?.findViewHolderForAdapterPosition(i)
 
             val challengerResult = item?.itemView?.findViewById<EditText>(R.id.challengerResult)
             val challengedResult = item?.itemView?.findViewById<EditText>(R.id.challengedResult)
 
-            var iChallengedResult: Int
-            var iChallengerResult: Int
+            val iChallengedResult: Int
+            val iChallengerResult: Int
             if (challengedResult != null && challengerResult != null) {
                 try {
                     iChallengedResult = Integer.parseInt(challengedResult.text.toString())
@@ -192,19 +195,42 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 } catch (e: NumberFormatException) {
                     return false
                 }
-                isSetResultsValid = when (numberOfSets) {
+
+                if(challengedResult.text.toString() == "" || challengerResult.text.toString() == "") {
+                    return false
+                }
+
+                isLocalResultsValid = when (numberOfSets) {
                     MatchModel.SetsNumber.One -> {
-                        ValidateSets().validateProfessionalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
+                        ValidateSets().validateProfessionalSet(iChallengerResult, iChallengedResult, isLocalResultsValid)
                     }
                     MatchModel.SetsNumber.Three -> {
-                        ValidateSets().checkThreeSetsValid(i, iChallengerResult, iChallengedResult, isSetResultsValid)
+                        ValidateSets().checkThreeSetsValid(i, iChallengerResult, iChallengedResult, isLocalResultsValid)
                     }
                     MatchModel.SetsNumber.Five -> {
-                        ValidateSets().checkFiveSetsValid(i, iChallengerResult, iChallengedResult, isSetResultsValid)
+                        ValidateSets().checkFiveSetsValid(i, iChallengerResult, iChallengedResult, isLocalResultsValid)
                     }
                     else -> {
                         isSetResultsValid
                     }
+                }
+
+                if(!isLocalResultsValid) {
+                    isSetResultsValid = false
+                }
+
+                val labelToBePainted = item.itemView?.findViewById<TextView>(R.id.setLabel)
+                val wrongLabelColor = resources.getColor(R.color.red)
+                val rightLabelColor = resources.getColor(R.color.darker_gray)
+
+
+
+                if(!isLocalResultsValid) {
+                    labelToBePainted?.setTextColor(wrongLabelColor)
+                }
+
+                else {
+                    labelToBePainted?.setTextColor(rightLabelColor)
                 }
             }
         }
@@ -504,7 +530,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
             if(holder is WOViewHolder) {
 
-                holder.wOBindView()
+                holder.wOBindView(fragment as MatchFragment)
             }
         }
 
@@ -522,18 +548,31 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
+                val position = when((fragment as MatchFragment).numberOfSets){
+                    MatchModel.SetsNumber.One -> 0
+                    MatchModel.SetsNumber.Three -> 1
+                    MatchModel.SetsNumber.Five -> 2
+                    MatchModel.SetsNumber.WO -> 3
+
+                }
+                itemView.buttonGroup.setPosition(position, true)
+
                 itemView.buttonGroup.buttonOne.setOnClickListener {
+                    itemView.buttonGroup.setPosition(0, true)
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.One)
                 }
                 itemView.buttonGroup.buttonThree.setOnClickListener {
+                    itemView.buttonGroup.setPosition(1, true)
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Three)
                 }
 
                 itemView.buttonGroup.buttonFive.setOnClickListener {
+                    itemView.buttonGroup.setPosition(2, true)
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Five)
                 }
 
                 itemView.buttonGroup.buttonWO.setOnClickListener {
+                    itemView.buttonGroup.setPosition(3, true)
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.WO)
                 }
             }
@@ -609,7 +648,20 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          */
         class WOViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun wOBindView() {
+            fun wOBindView(fragment: MatchFragment) {
+
+                itemView.buttonGroupWO.buttonChallenger.setOnClickListener {
+                    itemView.buttonGroupWO.setPosition(0, true)
+                    fragment.sendButton?.isEnabled = true
+                }
+                itemView.buttonGroupWO.buttonSelect.setOnClickListener {
+                    itemView.buttonGroupWO.setPosition(1, true)
+                    fragment.sendButton?.isEnabled = false
+                }
+                itemView.buttonGroupWO.buttonChallenged.setOnClickListener {
+                    itemView.buttonGroupWO.setPosition(2, true)
+                    fragment.sendButton?.isEnabled = true
+                }
 
 
             }
