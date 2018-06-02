@@ -73,15 +73,18 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:+'
 
+    // RadioReal Button
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
+
     // MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     // Bottom Navigation
     implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support:support-v4:25.1.0'
+    implementation 'com.android.support:support-v4:26.1.0'
 
     // Account Kit
-    implementation 'com.facebook.android:account-kit-sdk:4.+'
+    implementation 'com.facebook.android:account-kit-sdk:4.33.0'
 
     // Fuel for Https Request
     implementation 'com.github.kittinunf.fuel:fuel:1.12.1' //for JVM
@@ -95,12 +98,12 @@ dependencies {
     // Tests
     implementation 'com.android.support:support-v4:26.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.1"
-    androidTestImplementation 'com.android.support:support-annotations:26.1.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test:rules:1.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.2"
+    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
     // Optional -- Hamcrest library
     androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
@@ -111,8 +114,8 @@ dependencies {
     // Robolectric
     testImplementation "org.robolectric:robolectric:3.8"
 
-    testImplementation "com.android.support.test:runner:1.0.2-beta1"
-    testImplementation "com.android.support.test:rules:1.0.2-beta1"
+    testImplementation "com.android.support.test:runner:1.0.2"
+    testImplementation "com.android.support.test:rules:1.0.2"
 
     // Power Mock of Robolectric
     testImplementation "org.powermock:powermock-module-junit4:1.6.6"
@@ -166,16 +169,6 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
-}
-
-dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
-}
-dependencies {
-    implementation 'com.android.support:support-v4:26.+'
 }
 
 

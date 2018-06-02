@@ -20,6 +20,8 @@ interface MatchBusinessLogic {
      * @param request Request that came from sendChallenge button
      */
     fun getMatchResult(request: MatchModel.SendMatchResult.Request)
+
+    fun declineMatchResult(request: MatchModel.DeclineChallengeRequest.Request)
 }
 
 /**
@@ -55,6 +57,14 @@ class MatchInteractor(var presenter : MatchPresentationLogic? = null) :
         } else {
             this.presenter?.presentErrorMessageForMatchResult(response)
         }
+    }
+
+    override fun declineMatchResult(request: MatchModel.DeclineChallengeRequest.Request) {
+        worker.declineMatch(request)
+    }
+
+    override fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response) {
+        this.presenter?.presentDeclineMatch(response)
     }
 
 }

@@ -1,28 +1,30 @@
 package com.nexte.nexte
 
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
+
+enum class UserType { REAL, MOCKED }
+
 /**
  * This class represents the user, with the
  * characteristics of interest for the functionality
  */
 object UserSingleton {
 
-    private const val ageConstant = 25
-    private const val rankConstant = 12
-    private var userInformations: Player = Player("Nick Cairo",
-            rankConstant,
-            "imgur.com/nudh486d4",
-            "cairo@nexte.com",
-            "masculino",
-            "ASCAD",
-            ageConstant,
-            "feioso",
-            "Profissional")
+    var userType: UserType = UserType.MOCKED
+    var loggedUserID: String = "9"
+        private set
+    val loggedUser: User
+        get() {
+            return if (userType == UserType.MOCKED){
+                UserManager().get(loggedUserID)!!
+            } else {
+                UserManager().get(loggedUserID)!!
+            }
+        }
 
-    fun getUserInformations(): Player {
-        return userInformations
-    }
-
-    fun setUserInformations(userInformations: Player) {
-        this.userInformations = userInformations
+    fun setLoggedUser(identifier: String, userType: UserType = UserType.MOCKED) {
+        this.loggedUserID = identifier
+        this.userType = userType
     }
 }
