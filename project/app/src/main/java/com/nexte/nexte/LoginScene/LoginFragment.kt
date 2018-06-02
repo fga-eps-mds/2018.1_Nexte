@@ -1,17 +1,25 @@
 package com.nexte.nexte.LoginScene
 
+import android.app.Fragment
 import android.content.Intent
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.facebook.accountkit.*
 import kotlinx.android.synthetic.main.activity_login_view.*
-import kotlinx.android.synthetic.main.row_feed.*
+import com.facebook.accountkit.ui.AccountKitConfiguration
+import com.facebook.accountkit.ui.AccountKitActivity
+import com.facebook.accountkit.ui.LoginType
+
 
 /**
- * Interface to define Display Logic to LoginView Class that will receive information
+ * Interface to define Display Logic to LoginFragment Class that will receive information
  * from Presenter
  */
 interface LoginDisplayLogic {
@@ -36,38 +44,36 @@ interface LoginDisplayLogic {
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
  */
-class LoginView : AppCompatActivity(), LoginDisplayLogic {
+class LoginFragment : Fragment(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
+
+    fun getInstance() : LoginFragment {
+        val loginFragment = LoginFragment()
+        return loginFragment
+    }
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
      *
+     * @param savedInstanceState
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_view)
+        val loginView: View? = inflater?.inflate(R.layout.activity_login, container, false)
 
+        //AccountKit.initialize(this)
+        //setContentView(R.layout.activity_login_view)
         this.setup()
         this.createAuthenticationRequest()
-//
-//        btnLoginPhonenumber.setOnClickListener {
-//            this.loginPhoneNumber()
-//        }
-//
-//        btnLoginFacebook.setOnClickListener {
-//            this.loginByEmail()
-//        }
 
         login.setOnClickListener {
             createAuthenticationRequest()
         }
-        navigationLogin.setOnClickListener{
-            this.navigateWithoutLogin()
-        }
-    }
 
+        return loginView
+    }
     /**
      * On Acitvity Results is a method manager request and results provided
      *
@@ -89,13 +95,13 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         val message: String = viewModel.message
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(this.activity, message, Toast.LENGTH_SHORT)
         toast.show()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
         val message: String  = viewModel.message
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(this.activity, message, Toast.LENGTH_SHORT)
         toast.show()
     }
 
@@ -108,12 +114,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
-    }
-
-    fun navigateWithoutLogin(){
-
-          val fragment = supportFragmentManager.findFragmentById(R.id.feedActivity)
-          fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
     }
 
     /**
@@ -141,24 +141,36 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Request login by phone - AccountKit
      */
-//    fun loginPhoneNumber() {
+    fun loginPhoneNumber() {
+        val loginFragment = LoginFragment().getInstance()
+        val fragmentManager = activity.fragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, loginFragment, "fragment")
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
 //        val intent = Intent(this, AccountKitActivity::class.java)
 //        val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
 //                AccountKitActivity.ResponseType.TOKEN)
 //        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
 //        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
-//    }
+    }
 
     /**
      * Request login by email - AccountKit
      */
-//    fun loginByEmail() {
+    fun loginByEmail() {
+        val loginFragment = LoginFragment().getInstance()
+        val fragmentManager = activity.fragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, loginFragment, "fragment")
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
 //        val intent  = Intent(this, AccountKitActivity::class.java)
 //        val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
 //                AccountKitActivity.ResponseType.TOKEN)
 //        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
 //        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
-//    }
+    }
 
     /**
      * Method responsible for setup protocol between scenes

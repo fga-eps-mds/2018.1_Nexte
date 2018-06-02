@@ -27,10 +27,9 @@ class MainActivity : AppCompatActivity() {
         bottomNavView?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         bottomNavView?.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
         bottomNavView?.selectedItemId = R.id.profile
-        loginButton?.setOnClickListener {
-            val intent = Intent(this, LoginView::class.java)
-            startActivity(intent)
-        }
+        val intent = Intent(this, LoginFragment::class.java)
+        startActivity(intent)
+
     }
 
     private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->

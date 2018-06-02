@@ -4,71 +4,221 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nexte.nexte.LoginScene.LoginView">
+    android:background="@drawable/background"
+    android:visibility="visible"
+    tools:context="com.nexte.nexte.LoginScene.LoginFragment">
 
-    <Button
-        android:id="@+id/btnLoginFacebook"
-        android:layout_width="300dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="73dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:text="login email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/btnLoginPhonenumber"
-        android:layout_width="300dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:text="Login Using phone number"
-        app:layout_constraintBottom_toTopOf="@id/btnLoginFacebook"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <View
+        android:id="@+id/fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#979797"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/userField"
-        android:layout_width="238dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="324dp"
+        android:background="#a7252525"
         android:ems="10"
-        android:hint="Insira seu usuário"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/passwordField"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment" />
 
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="272dp"
+        android:background="#a7252525"
         android:ems="10"
-        android:hint="Coloque sua senha"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userField" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="380dp"
+        android:background="#a7252525"
+        android:text="Entrar"
+        android:textColor="#ffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/navigationLogin"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="470dp"
+        android:background="##a7252525"
+        android:text="Navegar pelo NEXTE!"
+        android:textColor="#c5c5c5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment" />
+
+    <View
+        android:id="@+id/loginline_left_email"
+        android:layout_width="80dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="260dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/loginline_email_right"
+        android:layout_width="80dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="250dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="260dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/loginline_password_right"
+        android:layout_width="120dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="312dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/loginline_password_left"
+        android:layout_width="120dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="312dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/loginline_or_right"
+        android:layout_width="125dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="227dp"
+        android:layout_marginTop="440dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/loginline_or_left"
+        android:layout_width="125dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="440dp"
+        android:background="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/nexte_logo"
+        android:layout_width="0dp"
+        android:layout_height="145dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="96dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment"
+        app:srcCompat="@drawable/logo_nexte" />
+
+
+
+    <TextView
+        android:id="@+id/email_and_phone"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="327dp"
+        android:layout_marginTop="28dp"
+        android:text="E-mail ou telefone"
+        android:textColor="#c5c5c5"
+        app:layout_constraintBottom_toTopOf="@+id/passwordField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@+id/passwordField"
+        app:layout_constraintTop_toBottomOf="@+id/nexte_logo" />
+
+    <TextView
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="148dp"
-        android:layout_marginTop="44dp"
-        android:text="Logar"
+        android:layout_marginEnd="165dp"
+        android:layout_marginTop="5dp"
+        android:text="Senha"
+        android:textColor="#c5c5c5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordField" />
+
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="174dp"
+        android:layout_marginTop="150dp"
+        android:text="Ou"
+        android:textColor="#c5c5c5"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userField" />
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
