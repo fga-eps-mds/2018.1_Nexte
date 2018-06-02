@@ -70,8 +70,8 @@ object FeedManager {
      * @return activity changed, with or without the member on likes List
      */
      fun addAndRemoveUser(activity: FeedModel.FeedActivity?): FeedModel.FeedActivity? {
-        val currentUser = FeedModel.FeedPlayer(UserSingleton.getUserInformations().name, R.mipmap.ic_launcher, 3)
-        val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.getUserInformations().name) }
+        val currentUser = FeedModel.FeedPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher, 3)
+        val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.loggedUser.name) }
         val indexToChange = activity?.likes?.indexOf(matchingUser)
 
         indexToChange as Int

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.nexte.nexte.Entities.Challenge
 import java.util.*
 

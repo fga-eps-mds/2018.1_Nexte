@@ -46,7 +46,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var buttonEditProfile: Button? = null
     var rankingChart: LineChart? = null
     private var newLineChart: LineChart? = null // First chart view
-    private var anotherPlayerName: String = ""
+    var anotherPlayerName: String = ""
     var userManager: UserManager? = null
     val graphManager = GraphManager(this)
 
@@ -102,7 +102,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest() {
-        val showUserProfileRequest: ShowProfileModel.Request = ShowProfileModel.Request(anotherPlayerName)
+        val showUserProfileRequest = ShowProfileModel.Request(anotherPlayerName)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
     }
 
@@ -151,15 +151,17 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         private  fun customizeChartLine(yAxes: ArrayList<Entry>, label: String, color: Int): LineDataSet {
 
+            val cubicIntensity = 0.2f
+            val lineWidth = 4.0f
             val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
             line.setDrawCircleHole(true) // Draw Circles
             line.setDrawValues(false)// Hide values from a point in chart
             line.setMode(LineDataSet.Mode.CUBIC_BEZIER) // Make it curves
-            line.cubicIntensity = 0.2f // Line curves intensity
+            line.cubicIntensity = cubicIntensity// Line curves intensity
             line.fillAlpha = houndredLine
             line.color = color // Line color
-            line.lineWidth = 4.0f // Line width
+            line.lineWidth = lineWidth // Line width
             line.axisDependency = YAxis.AxisDependency.LEFT
 
             return line
@@ -193,9 +195,14 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         private  fun customizeChart(chart: LineChart) {
 
-            chart.animateX(2000)
+            val timeToAnimate = 2000
+            val left = 0f
+            val right = 0f
+            val top = 15f
+            val bottom = 0f
+            chart.animateX(timeToAnimate)
             chart.invalidate()
-            chart.setExtraOffsets(0f,15f,0f,0f)
+            chart.setExtraOffsets(left,top,right,bottom)
         }
 
         /**
@@ -204,13 +211,15 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         private fun customizeLeftAxis(leftAxis: YAxis) {
 
+            val textSize = 12.0f
+            val granularity = 2.0f
             leftAxis.textColor = Color.WHITE
-            leftAxis.textSize = 12.0f
+            leftAxis.textSize = textSize
             leftAxis.setDrawAxisLine(false)
             leftAxis.setDrawGridLines(false)
             leftAxis.setAxisMaxValue(8f)
             leftAxis.setAxisMinValue(0f)
-            leftAxis.granularity = 2.0f
+            leftAxis.granularity = granularity
         }
 
         /**
@@ -219,9 +228,10 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         private fun customizeAxisX(axisX: XAxis) {
 
+            val granularity = 1f
             val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev")
             axisX.valueFormatter = IndexAxisValueFormatter(lastMonths)
-            axisX.granularity = 1f
+            axisX.granularity = granularity
             axisX.textColor = Color.WHITE
             axisX.setDrawGridLines(false)
             axisX.setDrawAxisLine(false)
@@ -236,9 +246,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
             val victoryResults = setYAxisValues() //responsible to access the method setYAxisValues
             val losesResults = setYAxisValuesRanking()
+            val red = Color.RED
+            val green = Color.GREEN
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", Color.RED)
-            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", Color.GREEN)
+            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", red)
+            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", green)
             dataSets.add(victoryLine)
             dataSets.add(losesLine)
 
@@ -254,9 +266,10 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createRankingGraph() {
 
+            val blue = Color.BLUE
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val line = this.customizeChartLine(yAxesRanking, "Ranking", Color.BLUE)
+            val line = this.customizeChartLine(yAxesRanking, "Ranking", blue)
             dataSetsRanking.add(line)
             val lineData = LineData(dataSetsRanking) // Added data to chart
             val description = Description()
@@ -285,6 +298,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         interactor.presenter = presenter
         presenter.viewScene = viewScene
         viewScene.showProfileInteractor = interactor
+        interactor.worker.updateLogic = interactor
         interactor.worker.userManager = userManager
     }
 
@@ -296,7 +310,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
-        if(viewModel.playerInfo.name != UserSingleton.getUserInformations().name){
+        if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
     }

@@ -30,16 +30,16 @@ class LoginWorker {
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
 
-        Fuel.post(authentication).header(headers).body(json.toString()).responseString { request, response, result ->
+        Fuel.post(authentication).header(headers).body(json.toString()).responseString { _, _, result ->
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
                 val status = LoginModel.Authentication.StatusCode.AUTHORIZED
                 val response = LoginModel.Authentication.Response(token, status)
 
-                // TO DO: Add more user to server to authenticate with
-                val player = UserSingleton.getUserInformations()
-                UserSingleton.setUserInformations(player)
+                // TODO: Add more user to server to authenticate with
+                val player = UserSingleton.loggedUser
+                UserSingleton.setLoggedUser(player.id)
 
                 completion(response)
             }
@@ -68,13 +68,13 @@ class LoginWorker {
                 "Accept-Version" to "1.0.0")
         val body = defineBodyForAccountKitAuth(request.phone, request.email)
 
-        Fuel.post(authentication).header(headers).body(body).responseString { request, response, result ->
+        Fuel.post(authentication).header(headers).body(body).responseString { _, _, result ->
 
             result.success {
 
-                // TO DO: Add auth with token in NEXTE main server
-                val player = UserSingleton.getUserInformations()
-                UserSingleton.setUserInformations(player)
+                //TODO: Add auth with token in NEXTE main server
+                val player = UserSingleton.loggedUser
+                UserSingleton.setLoggedUser(player.id)
 
                 val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
                 completion(response)

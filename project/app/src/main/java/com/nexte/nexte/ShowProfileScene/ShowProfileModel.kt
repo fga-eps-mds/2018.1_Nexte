@@ -14,10 +14,10 @@ class ShowProfileModel {
      * Class responsible to pass data of View to Interactor and after to Worker so it can
      * request data
      *
-     * @property username variable that holds the name chosen by the user on the app
+     * @property userID variable that holds the name chosen by the user on the app
      * @property tokenID variable that holds the token that validates the user in the system
      **/
-    class Request(var username: String)
+    class Request(var userId: String)
 
     /**
      * Class responsible to store received information of worker to pass for Presenter

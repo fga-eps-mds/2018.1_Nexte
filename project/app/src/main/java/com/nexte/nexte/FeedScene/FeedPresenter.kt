@@ -59,7 +59,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
 
         for (activity in activities) {
 
-            val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.getUserInformations().name) }
+            val matchingUser = activity.likes.find { it.name == UserSingleton.loggedUser.name }
             var userIsOnLikeList = false
 
             if(matchingUser != null) {
@@ -93,14 +93,14 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
     private fun formatFeedActivity(activity: FeedModel.FeedActivity):
             FeedModel.FeedActivityFormatted {
 
-        val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.getUserInformations().name) }
+        val matchingUser = activity.likes.find { it.name == UserSingleton.loggedUser.name }
         var userIsOnLikeList = false
 
         if(matchingUser != null) {
             userIsOnLikeList = true
         }
 
-        val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+        return FeedModel.FeedActivityFormatted(
                 activity.identifier,
                 activity.challenge.challenger.name,
                 activity.challenge.challenger.photo,
@@ -111,7 +111,5 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 activity.feedDate.toString(),
                 activity.likes.size.toString(),
                 userIsOnLikeList)
-
-        return feedActivityFormatted
     }
 }

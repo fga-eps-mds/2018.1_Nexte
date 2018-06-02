@@ -1,6 +1,7 @@
 package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.FeedMocker
+import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
@@ -8,13 +9,14 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 
-class FeedWorkerTest {
+class FeedWorkerTest: HelpForRealm() {
 
     var worker: FeedWorker? = null
     var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
         this.worker = FeedWorker()
         this.feedList = FeedMocker.createFeedList()
     }
@@ -62,6 +64,7 @@ class FeedWorkerTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
         this.worker = null
     }
 }
