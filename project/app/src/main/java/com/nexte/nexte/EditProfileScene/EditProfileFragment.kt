@@ -109,6 +109,7 @@ class EditProfileFragment : Fragment(),
 
     }
 
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         this.createGetProfileRequest()
 
@@ -153,7 +154,7 @@ class EditProfileFragment : Fragment(),
         val errorMessage = viewModel.errorMessage
 
         if(errorMessage == null) {
-            this.activity.finish()
+            this.activity.fragmentManager.popBackStack()
         } else {
             this.errorMessageTextView?.text = errorMessage
         }

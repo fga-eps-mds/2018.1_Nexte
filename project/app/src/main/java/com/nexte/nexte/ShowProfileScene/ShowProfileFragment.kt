@@ -1,5 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.graphics.Color
@@ -242,6 +243,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      */
     override fun onResume() {
         super.onResume()
+        this.createShowProfileRequest()
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
         this.createShowProfileRequest()
     }
 
