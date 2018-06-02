@@ -1,5 +1,7 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.ChallengeAdapterSpy
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -93,6 +95,32 @@ class MatchWorkerTest {
         this.worker?.updateLogic = updateLogic
     }
 
+    @Test
+    fun testDeclineMatchSuccess(){
+        val request = MatchModel.DeclineChallengeRequest.Request("1")
+        val updateLogic = this.worker?.updateLogic
+        this.worker?.updateLogic = updateLogic
+        this.worker?.challengeManager = ChallengeManager(ChallengeAdapterSpy())
+
+        this.worker?.declineMatch(request)
+
+        assertEquals(MatchModel.DeclineChallengeRequest
+                .Status.SUCCESS, this.mock?.responseDecline?.status)
+    }
+
+    @Test
+    fun testDeclineMatchError(){
+        val request = MatchModel.DeclineChallengeRequest.Request("2")
+        val updateLogic = this.worker?.updateLogic
+        this.worker?.updateLogic = updateLogic
+        this.worker?.challengeManager = ChallengeManager(ChallengeAdapterSpy())
+
+        this.worker?.declineMatch(request)
+
+        assertEquals(MatchModel.DeclineChallengeRequest
+                .Status.ERROR, this.mock?.responseDecline?.status)
+    }
+
     @After
     fun tearDown() {
         this.worker = null
@@ -100,7 +128,11 @@ class MatchWorkerTest {
 }
 
 private class MockMatchUpdateWorkerLogic: MatchUpdateWorkerLogic{
+    override fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response) {
+        this.responseDecline = response
+    }
 
+    var responseDecline: MatchModel.DeclineChallengeRequest.Response? = null
     var response: MatchModel.SendMatchResult.Response? = null
 
     override fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response) {
