@@ -86,6 +86,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     }
 
     private class ValidateSets{
+        /**
+         * This method validates if the result is 8x9 or 9x8, returns true if it is and false if it's not
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         */
         fun validateNineVsEight(challenger: Int, challenged: Int) : Boolean{
             return when {
                 challenger == nine && challenged == eight -> true
@@ -93,6 +99,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates if the result is 8x6(or less) or 6(or less)x8, returns true if it is and false if it's not
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         */
         fun validateEightVsAny(challenger: Int, challenged: Int) : Boolean {
             return when {
                 challenger == eight && challenged <= six -> true
@@ -100,6 +112,14 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates a professional set style
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         * @param isValid Contains the information about previous validation, if it's false, then this validation will also fail
+         *
+         */
         fun validateProfessionalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
             return when {
                 this.validateNormalSet(challenger, challenged, isValid) -> isValid
@@ -109,6 +129,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates an tie-break style set
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         * @param isValid Contains the information about previous validation, if it's false, then this validation will also fail
+         */
         fun validateTieBreakSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
             return if(this.validateNormalSet(challenger, challenged, isValid)){
                 isValid
@@ -124,6 +151,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates if the result is 7x6, 7x5, 6x7 or 5x7, returns true if it is and false if it's not
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         */
         fun validateSevenVsSixOrFive(challenger: Int, challenged: Int): Boolean{
             return when {
                 challenger == seven && (challenged == six || challenged == five) -> true
@@ -131,6 +164,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates if the result is 8x9 or 9x8, returns true if it is and false if it's not
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         */
         fun validateSixVsAny(challenger: Int, challenged: Int): Boolean{
             return when {
                 challenger == six && challenged <= four -> true
@@ -138,6 +177,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates if a normal set is valid or not
+         *
+         * @param challenged Contains the challenged points
+         * @param challenger Contains the challenger points
+         * @param isValid Indicates whenever the validation is success or failing for the all previous sets.
+         */
         fun validateNormalSet(challenger: Int, challenged: Int, isValid: Boolean) : Boolean{
             return when {
                 validateSevenVsSixOrFive(challenger, challenged) -> isValid
@@ -146,6 +192,14 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates the result of each set for a BO3 game
+         *
+         * @param set Contains the number of the set that is being validated because the validation may be different on last set
+         * @param iChallengedResult contains the points made by the challenged
+         * @param iChallengerResult contains the points made by the challenger
+         * @param isSetResultsValid contains if the result till now is valid or not, because if it is not valid, it will keep it false.
+         */
         fun checkThreeSetsValid(set: Int, iChallengerResult: Int, iChallengedResult: Int, isSetResultsValid: Boolean) : Boolean{
             return when (set) {
                 one -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
@@ -157,6 +211,14 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * This method validates the result of each set for a BO5 game
+         *
+         * @param set Contains the number of the set that is being validated because the validation may be different on last set
+         * @param iChallengedResult contains the points made by the challenged
+         * @param iChallengerResult contains the points made by the challenger
+         * @param isSetResultsValid contains if the result till now is valid or not, because if it is not valid, it will keep it false.
+         */
         fun checkFiveSetsValid(set: Int, iChallengerResult: Int, iChallengedResult: Int, isSetResultsValid: Boolean) : Boolean{
             return when (set) {
                 one -> this.validateNormalSet(iChallengerResult, iChallengedResult, isSetResultsValid)
@@ -171,10 +233,17 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         }
     }
 
+    /**
+     * This method validates enables or diables the send button according to the validation of sets result
+     */
     private fun defineSetsValid(){
         sendButton?.isEnabled = validateSetResults()
     }
 
+    /**
+     * This method iterates within all rows of an recycler view, grabbing the result and validating it
+     *
+     */
     private fun validateSetResults(): Boolean {
         var isSetResultsValid = true
         recyclerView?.adapter as MatchDataAdapter
@@ -369,7 +438,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
         /**
          * Function to get the type of the row to be displayed
-         * on different positions of the RecyclerView
+         * on different positions of the RecyclerView for the one set option
          *
          * @param position row position of the recycler view
          */
@@ -383,6 +452,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Function to get the type of the row to be displayed
+         * on different positions of the RecyclerView for the three set option
+         *
+         * @param position row position of the recycler view
+         */
         private fun getThreeSetItemViewType(position: Int): Int {
             return when(position) {
                 zero -> R.layout.row_match_info
@@ -394,6 +469,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Function to get the type of the row to be displayed
+         * on different positions of the RecyclerView for the five set option
+         *
+         * @param position row position of the recycler view
+         */
         private fun getFiveSetItemViewType(position: Int): Int {
             return when(position) {
                 zero -> R.layout.row_match_info
@@ -407,6 +488,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Function to get the type of the row to be displayed
+         * on different positions of the RecyclerView for the WO set option
+         *
+         * @param position row position of the recycler view
+         */
         private fun getWOItemViewType(position: Int): Int {
             return when(position) {
                 zero -> R.layout.row_match_info
@@ -415,6 +502,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Function to get the type of the row to be displayed
+         * on different positions of the RecyclerView for each set option
+         *
+         * @param position row position of the recycler view
+         */
         override fun getItemViewType(position: Int): Int {
 
             return when((fragment as MatchFragment).numberOfSets.number){
@@ -426,6 +519,12 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             }
         }
 
+        /**
+         * Function to set the textChangedListener in each row of recyclerView that it's designed to
+         * receive the result, and the action listener is responsible to validate whenever the set is valid or not
+         *
+         * @param holder contains the viewholder that will receive the action listener
+         */
         private fun setTextActionListener(holder: RecyclerView.ViewHolder){
             holder.itemView.challengedResult.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
@@ -559,21 +658,21 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
                 itemView.buttonGroup.buttonOne.setOnClickListener {
                     itemView.buttonGroup.setPosition(0, true)
-                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.One)
+                    fragment.updateSetsNumber(MatchModel.SetsNumber.One)
                 }
                 itemView.buttonGroup.buttonThree.setOnClickListener {
                     itemView.buttonGroup.setPosition(1, true)
-                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Three)
+                    fragment.updateSetsNumber(MatchModel.SetsNumber.Three)
                 }
 
                 itemView.buttonGroup.buttonFive.setOnClickListener {
                     itemView.buttonGroup.setPosition(2, true)
-                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Five)
+                    fragment.updateSetsNumber(MatchModel.SetsNumber.Five)
                 }
 
                 itemView.buttonGroup.buttonWO.setOnClickListener {
                     itemView.buttonGroup.setPosition(3, true)
-                    (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.WO)
+                    fragment.updateSetsNumber(MatchModel.SetsNumber.WO)
                 }
             }
         }
