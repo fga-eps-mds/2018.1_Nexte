@@ -39,57 +39,14 @@
             app:layout_constraintTop_toTopOf="@+id/edge_nme" />
 
         <TextView
-            android:id="@+id/clubLabel"
-            android:layout_width="0dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="12dp"
-            android:text="Clube:"
-            android:textColor="@android:color/white"
-            android:textSize="9sp"
-            app:layout_constraintBottom_toBottomOf="@+id/edge_info"
-            app:layout_constraintStart_toStartOf="@+id/ageLabel"
-            tools:text="Clube :  " />
-
-        <TextView
-            android:id="@+id/emailLabel"
-            android:layout_width="30dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="7dp"
-            android:text="E-mail:"
-            android:textColor="@android:color/white"
-            android:textSize="9sp"
-            app:layout_constraintBottom_toTopOf="@+id/view_info2"
-            app:layout_constraintStart_toStartOf="@+id/view_info2"
-            app:layout_constraintTop_toTopOf="@+id/edge_info"
-            tools:text="E-mail:" />
-
-        <TextView
-            android:id="@+id/ageLabel"
-            android:layout_width="0dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="6dp"
-            android:text="Idade:"
-            android:textColor="@android:color/white"
-            android:textSize="9sp"
-            app:layout_constraintBottom_toTopOf="@+id/view_info1"
-            app:layout_constraintStart_toStartOf="@+id/emailLabel"
-            app:layout_constraintTop_toBottomOf="@+id/view_info2"
-            tools:text="Idade: " />
-
-        <TextView
             android:id="@+id/clubName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
             android:text="clubName"
             android:textColor="#aaaaaa"
             android:textSize="9sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clubLabel"
-            app:layout_constraintTop_toTopOf="@+id/clubLabel" />
+            app:layout_constraintStart_toStartOf="@+id/ageTextEdit"
+            tools:layout_editor_absoluteY="274dp" />
 
 
         <EditText
@@ -97,16 +54,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="7dp"
             android:inputType="textEmailAddress"
             android:text="email"
             android:textColor="@android:color/white"
             android:textSize="9sp"
             app:layout_constraintBottom_toTopOf="@+id/view_info2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/emailLabel"
+            app:layout_constraintStart_toStartOf="@+id/view_info2"
             app:layout_constraintTop_toTopOf="@+id/edge_info" />
 
         <EditText
@@ -114,16 +68,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="6dp"
             android:inputType="numberSigned"
             android:text="age"
             android:textColor="@android:color/white"
             android:textSize="9sp"
             app:layout_constraintBottom_toTopOf="@+id/view_info1"
-            app:layout_constraintEnd_toEndOf="@+id/edge_info"
-            app:layout_constraintStart_toEndOf="@+id/ageLabel"
+            app:layout_constraintStart_toStartOf="@+id/emailTextEdit"
             app:layout_constraintTop_toBottomOf="@+id/view_info2" />
 
         <ImageButton
@@ -146,8 +97,8 @@
             android:text="Senha:"
             android:textColor="@android:color/white"
             android:textSize="9sp"
-            app:layout_constraintStart_toStartOf="@+id/clubLabel"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            tools:layout_editor_absoluteX="32dp" />
 
         <EditText
             android:id="@+id/passwordTextEdit"
