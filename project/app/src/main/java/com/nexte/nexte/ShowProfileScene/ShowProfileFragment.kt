@@ -17,6 +17,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileView
@@ -117,6 +118,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * Method responsible to define the data of Y axis.
          */
         fun setYAxisValues(): ArrayList<Entry> {
+
             val yVals = ArrayList<Entry>()
             yVals.add(Entry(0f, 2f))
             yVals.add(Entry(1f, 3f))
@@ -133,6 +135,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
 
         fun setYAxisValuesRanking(): ArrayList<Entry> {
+
             val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
             yValsRanking.add(Entry(0f, 3f))
             yValsRanking.add(Entry(1f, 2f))
@@ -148,7 +151,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * Method responsible to create the graph, using the function and
          * SetYAxisValues.
          */
-        fun customizeChartLine(yAxes: ArrayList<Entry>, label: String): LineDataSet {
+        fun customizeChartLine(yAxes: ArrayList<Entry>, label: String, color: Int): LineDataSet {
+
             val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
             line.setDrawCircleHole(true) // Draw Circles
@@ -156,25 +160,31 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             line.setMode(LineDataSet.Mode.CUBIC_BEZIER) // Make it curves
             line.cubicIntensity = 0.2f // Line curves intensity
             line.fillAlpha = houndredLine
-            line.color = Color.BLUE // Line color
+            line.color = color // Line color
             line.lineWidth = 4.0f // Line width
             line.axisDependency = YAxis.AxisDependency.LEFT
 
             return line
         }
 
+
+        fun customizeLeftAxis(): YAxis {
+
+            val leftAxis: YAxis = YAxis()
+            return leftAxis
+        }
+
         fun createChart(chart: LineChart, dataSets: ArrayList<ILineDataSet>) {
 
         }
 
-
-
         fun createGraph() {
+
             val xAxis = showProfileFragment.newLineChart?.xAxis //instance a view from xml.
             val yAxes = setYAxisValues() //responsible to access the method setYAxisValues
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
 
-            val line = this.customizeChartLine(yAxes, "Vitoria")
+            val line = this.customizeChartLine(yAxes, "Vitoria", Color.BLUE)
             dataSets.add(line)
 
             //Responsible to create an array that store the string about last months of matches of the user
@@ -182,12 +192,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             xAxis?.valueFormatter = IndexAxisValueFormatter(lastMonths)
             xAxis?.granularity = 1f
             xAxis?.textColor = Color.WHITE
-
-            /* TO DO - Review this fragment of code
-            LineData, access the data defined, and xml LineChart have access to it
-            val points = LineData(dataSets)
-            points.setValueTextColor(Color.WHITE)
-            */
 
             val lineData = LineData(dataSets) // Added data to chart
             val description = Description()
@@ -208,6 +212,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMinValue(0f)
+            showProfileFragment.newLineChart?.axisLeft?.granularity = 2.0f
             showProfileFragment.newLineChart?.animateXY(2000, 2000)
 
             showProfileFragment.newLineChart?.axisRight?.isEnabled = false // Take off left edge
@@ -225,6 +230,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * SetYAxisValuesRanking.
          */
         fun createRankingGraph() {
+
             val xAxisRanking = showProfileFragment.rankingChart?.xAxis //instance a view from xml.
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
@@ -247,6 +253,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             dataSetsRanking.add(lineRanking)
 
             val lastMonths = arrayOf("Set", "Out", "Nov", "Dez", "Jan", "Fev") //Responsible to create an array that store the
+            val results = arrayListOf(1, 2, 5, 4, 5)
             // string about last months of matches of the user
             xAxisRanking?.valueFormatter = IndexAxisValueFormatter(lastMonths)
             xAxisRanking?.granularity = 1f
@@ -276,15 +283,13 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             showProfileFragment.rankingChart?.animateXY(2000, 2000)
 
             showProfileFragment.rankingChart?.axisRight?.isEnabled = false
-
+            showProfileFragment.rankingChart?.axisLeft?.granularity = 2.0f
             showProfileFragment.rankingChart?.xAxis?.textSize = 12.0f
             showProfileFragment.rankingChart?.xAxis?.setDrawAxisLine(false)
             showProfileFragment.rankingChart?.xAxis?.setDrawGridLines(false)
 
             showProfileFragment.rankingChart?.setExtraOffsets(0f,0f,0f,0f)
             showProfileFragment.rankingChart?.invalidate()
-
-
         }
     }
 

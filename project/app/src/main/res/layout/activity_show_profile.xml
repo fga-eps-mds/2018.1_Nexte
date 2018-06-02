@@ -165,7 +165,7 @@
             android:id="@+id/buttonA"
             android:layout_width="110dp"
             android:layout_height="25dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/edge_text_edit_profile"
             android:fontFamily="sans-serif"
