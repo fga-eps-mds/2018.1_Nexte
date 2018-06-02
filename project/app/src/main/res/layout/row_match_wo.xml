@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background">
+    android:background="#2E2E2E">
 
     <View
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <co.ceryle.radiorealbutton.RadioRealButtonGroup
-        android:id="@+id/buttonGroup"
+        android:id="@+id/buttonGroupWO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -54,7 +54,7 @@
         app:rrbg_selectorSize="4dp">
 
         <co.ceryle.radiorealbutton.RadioRealButton
-            android:id="@+id/buttonOne"
+            android:id="@+id/buttonChallenger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/actionModeSplitBackground"
@@ -65,15 +65,15 @@
             app:rrb_textColor="@color/hint_color_pattern" />
 
         <co.ceryle.radiorealbutton.RadioRealButton
-            android:id="@+id/buttonThree"
+            android:id="@+id/buttonSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rrb_text="Arraste "
+            app:rrb_text="Selecione "
             app:rrb_textColor="#FFFFFF"
             app:rrb_checked="true"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
-            android:id="@+id/buttonFive"
+            android:id="@+id/buttonChallenged"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:rrb_text="Desafiado"

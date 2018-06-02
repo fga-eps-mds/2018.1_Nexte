@@ -17,6 +17,7 @@ import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_match_info.view.*
 import kotlinx.android.synthetic.main.row_match_sets.view.*
 import kotlinx.android.synthetic.main.row_match_time.view.*
+import kotlinx.android.synthetic.main.row_match_wo.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -491,18 +492,18 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
-                itemView.buttonOne.setOnClickListener {
+                itemView.buttonGroup.buttonOne.setOnClickListener {
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.One)
                 }
-                itemView.buttonThree.setOnClickListener {
+                itemView.buttonGroup.buttonThree.setOnClickListener {
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Three)
                 }
 
-                itemView.buttonFive.setOnClickListener {
+                itemView.buttonGroup.buttonFive.setOnClickListener {
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.Five)
                 }
 
-                itemView.buttonWO.setOnClickListener {
+                itemView.buttonGroup.buttonWO.setOnClickListener {
                     (fragment as MatchFragment).updateSetsNumber(MatchModel.SetsNumber.WO)
                 }
             }
@@ -567,6 +568,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
             fun wOBindView() {
 
+
             }
         }
     }
@@ -580,5 +582,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         const val five = 5
         const val six = 6
         const val seven = 7
+        const val eight = 8
+        const val nine = 9
     }
 }
