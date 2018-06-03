@@ -4,15 +4,12 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -154,10 +151,10 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             line.setDrawCircleHole(true) // Draw Circles
             line.setDrawValues(false)// Hide values from a point in chart
             line.setMode(LineDataSet.Mode.CUBIC_BEZIER) // Make it curves
-            line.cubicIntensity = 0.2f // Line curves intensity
+            line.cubicIntensity = cubicValue // Line curves intensity
             line.fillAlpha = houndredLine
             line.color = Color.BLUE // Line color
-            line.lineWidth = 4.0f // Line width
+            line.lineWidth = lineValue // Line width
             line.axisDependency = YAxis.AxisDependency.LEFT
 
             return line
@@ -203,7 +200,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             showProfileFragment.newLineChart?.isScaleYEnabled = false
 
             showProfileFragment.newLineChart?.axisLeft?.textColor = Color.WHITE
-            showProfileFragment.newLineChart?.axisLeft?.textSize = 12.0f
+            showProfileFragment.newLineChart?.axisLeft?.textSize = textValue
             showProfileFragment.newLineChart?.axisLeft?.setDrawAxisLine(false)
             showProfileFragment.newLineChart?.axisLeft?.setDrawGridLines(false)
             showProfileFragment.newLineChart?.axisLeft?.setAxisMaxValue(8f)
@@ -212,7 +209,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
             showProfileFragment.newLineChart?.axisRight?.isEnabled = false // Take off left edge
 
-            showProfileFragment.newLineChart?.xAxis?.textSize = 12.0f
+            showProfileFragment.newLineChart?.xAxis?.textSize = textValue
             showProfileFragment.newLineChart?.xAxis?.setDrawAxisLine(false)
             showProfileFragment.newLineChart?.xAxis?.setDrawGridLines(false)
 
@@ -239,10 +236,10 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             lineRanking.setDrawCircleHole(true) // Draw Circles
             lineRanking.setDrawValues(false)// Hide values from a point in chart
             lineRanking.setMode(LineDataSet.Mode.CUBIC_BEZIER) // Make it curves
-            lineRanking.cubicIntensity = 0.2f // Line curves intensity
+            lineRanking.cubicIntensity = cubicValue // Line curves intensity
             lineRanking.fillAlpha = houndredLine
             lineRanking.color = Color.RED
-            lineRanking.lineWidth = 4.0f // Line width
+            lineRanking.lineWidth = lineValue // Line width
             lineRanking.axisDependency = YAxis.AxisDependency.LEFT
             dataSetsRanking.add(lineRanking)
 
@@ -267,7 +264,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             showProfileFragment.rankingChart?.axisLeft?.setDrawAxisLine(false)
             showProfileFragment.rankingChart?.axisLeft?.setDrawGridLines(false)
             showProfileFragment.rankingChart?.axisLeft?.textColor = Color.WHITE
-            showProfileFragment.rankingChart?.axisLeft?.textSize = 12.0f
+            showProfileFragment.rankingChart?.axisLeft?.textSize = textValue
             showProfileFragment.rankingChart?.axisLeft?.setAxisMaxValue(8f)
             showProfileFragment.rankingChart?.axisLeft?.setAxisMinValue(0f)
             showProfileFragment.rankingChart?.axisLeft?.setDrawGridLines(false)
@@ -277,7 +274,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
             showProfileFragment.rankingChart?.axisRight?.isEnabled = false
 
-            showProfileFragment.rankingChart?.xAxis?.textSize = 12.0f
+            showProfileFragment.rankingChart?.xAxis?.textSize = textValue
             showProfileFragment.rankingChart?.xAxis?.setDrawAxisLine(false)
             showProfileFragment.rankingChart?.xAxis?.setDrawGridLines(false)
 
@@ -324,6 +321,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         }
     }
 
-    companion object { const val houndredLine = 110 }
+    companion object {
+        const val houndredLine = 110
+        const val cubicValue = 0.2f
+        const val lineValue = 4f
+        const val textValue = 12f
+
+    }
 }
 
