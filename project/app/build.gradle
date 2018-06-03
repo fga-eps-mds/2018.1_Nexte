@@ -29,8 +29,8 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 6
-        versionName "0.6"
+        versionCode 7
+        versionName "0.7"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -152,7 +152,7 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     violationRules {
         rule {
             limit {
-                minimum = 0.40
+                minimum = 0.50
             }
         }
     }

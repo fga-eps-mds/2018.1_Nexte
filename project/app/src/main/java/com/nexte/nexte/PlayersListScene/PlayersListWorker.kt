@@ -1,12 +1,14 @@
 package com.nexte.nexte.PlayersListScene
 
 
+import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
-
+import java.util.*
 
 
 /**
@@ -16,7 +18,8 @@ import com.nexte.nexte.UserSingleton
 class PlayersListWorker {
 
 
-    var userManager: UserManager? = null
+    var userManager: UserManager = UserManager()
+    var challengeManager: ChallengeManager = ChallengeManager()
     /**
      * Function to get players 5 rank positions above the logged player
      *
@@ -77,16 +80,27 @@ class PlayersListWorker {
     fun generateChallenge(request: PlayersListModel.ChallengeButtonRequest.Request,
                           completion: (PlayersListModel.ChallengeButtonRequest.Response) -> Unit) {
 
-        val user = request.userChallenged
+        var challengedUser = userManager.get(request.userChallenged)
 
-        val challenged = MatchModel.MatchPlayer(user, R.mipmap.ic_launcher_round)
-        val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
-        val match = MatchModel.MatchData(challenged, challenger)
+        challengedUser?.let {
+            val challenge = Challenge(UUID.randomUUID().toString(),
+                    UserSingleton.loggedUserID,
+                    it.id,
+                    Date(),
+                    Challenge.Status.CONFIRMED,
+                    Challenge.Stage.Scheduled())
 
-        val response = PlayersListModel.ChallengeButtonRequest.Response(user, match)
+            challengeManager.update(challenge)
 
-        completion(response)
 
+            val challenged = MatchModel.MatchPlayer(challengedUser.name, R.mipmap.ic_launcher_round)
+            val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
+            val match = MatchModel.MatchData(challenged, challenger)
+
+            val response = PlayersListModel.ChallengeButtonRequest.Response(challengedUser.name, match)
+
+            completion(response)
+        }
     }
 
     companion object {

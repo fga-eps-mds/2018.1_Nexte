@@ -54,6 +54,11 @@ class ChallengeTabsFragment : Fragment() {
 
         private val pageTitles = listOf("Tenistas", "Enviados", "Recebidos")
 
+        val randomMatch = MatchModel.MatchData(
+                MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round),
+                MatchModel.MatchPlayer("Gabriel Albino", R.mipmap.calendar_logo_round)
+        )
+
         override fun getItemPosition(`object`: Any?): Int {
             return PagerAdapter.POSITION_NONE
         }
@@ -64,11 +69,7 @@ class ChallengeTabsFragment : Fragment() {
         }
 
         override fun getItem(position: Int): Fragment {
-            val randomMatch = MatchModel.MatchData(
-                    MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round),
-                            MatchModel.MatchPlayer("Gabriel Albino", R.mipmap.calendar_logo_round)
 
-            )
             return when (position) {
                 0 -> PlayersListFragment.getInstance((fragment as ChallengeTabsFragment).match != null)
                 1 -> MatchFragment().getInstance((fragment as ChallengeTabsFragment).match)
