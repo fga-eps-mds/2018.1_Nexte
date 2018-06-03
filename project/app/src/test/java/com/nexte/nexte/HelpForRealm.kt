@@ -74,6 +74,7 @@ open class HelpForRealm {
                 phone, wins, loses, gender.name, category, status.name, challengeSended, challengeReceived)
 
         val userList = Arrays.asList(u1)
+        val userResults: RealmResults<UserRealm> = mock()
 
         this.setUpRealm()
 
@@ -82,6 +83,7 @@ open class HelpForRealm {
         PowerMockito.`when`(mockRealm!!.where(UserRealm::class.java)).thenReturn(userQuery)
         PowerMockito.`when`(userQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(userQuery)
         PowerMockito.`when`(userQuery.findFirst()).thenReturn(userList[0])
+        PowerMockito.`when`(userQuery.findAll()).thenReturn(userResults)
     }
 
     @Test

@@ -83,7 +83,7 @@ class PlayersListModelTest {
     @Test
     fun successShowRankingViewModel(){
         //prepare
-        val testFormatPlayer = PlayersListModel.FormattedPlayer("Gabriel Albino",
+        val testFormatPlayer = PlayersListModel.FormattedPlayer("2", "Gabriel Albino",
                                                              "2",
                                                              "identifier")
         val testPlayersFormattedList = listOf(testFormatPlayer)
@@ -231,12 +231,13 @@ class PlayersListModelTest {
     @Test
     fun successFormattedPlayer(){
         //prepare
+        val testIdentifier = "2"
         val testName = "Mendelson"
         val testPosition = "2"
         val testPicture = "validToken"
 
         //call
-        val testFormattedPlayer = PlayersListModel.FormattedPlayer(testName, testPosition, testPicture)
+        val testFormattedPlayer = PlayersListModel.FormattedPlayer(testIdentifier, testName, testPosition, testPicture)
         testFormattedPlayer.name = testName
         testFormattedPlayer.rankingPosition = testPosition
         testFormattedPlayer.pictureAddress = testPicture

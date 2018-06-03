@@ -58,7 +58,7 @@ class PlayersListPresenter : PlayersListPresentationLogic {
         var formattedPlayers: List<PlayersListModel.FormattedPlayer> = listOf()
 
         for(player in selectedPlayers){
-            val formattedPlayer = PlayersListModel.FormattedPlayer(player.name,
+            val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
                     String.format("#%d", player.rankingPosition), "")//TODO: replace picture adress
 
             formattedPlayers += formattedPlayer
