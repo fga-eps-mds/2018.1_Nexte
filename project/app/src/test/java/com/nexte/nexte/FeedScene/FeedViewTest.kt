@@ -1,17 +1,20 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
 import org.junit.Test
 
-class FeedViewTest {
+
+class FeedViewTest: HelpForRealm() {
 
     var view: FeedFragment? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
+
         this.view = FeedFragment()
     }
 
@@ -55,6 +58,7 @@ class FeedViewTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 }
 

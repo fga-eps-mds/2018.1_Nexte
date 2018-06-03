@@ -277,8 +277,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
         email?.text = viewModel.playerInfo.email
-        if(viewModel.playerInfo.name != UserSingleton.getUserInformations().name){
-            buttonEditProfile?.visibility = View.VISIBLE
+
+        if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
+            buttonEditProfile?.visibility = View.INVISIBLE
         }
     }
 

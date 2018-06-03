@@ -168,7 +168,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
             this.interactor?.requestChallenger(request)
         }
 
-        val request = PlayersListModel.ShowRankingPlayersRequest.Request(UserSingleton.getUserInformations().rankingPosition)
+        val request = PlayersListModel.ShowRankingPlayersRequest.Request(UserSingleton.loggedUser.rankingPosition)
         this.interactor?.requestPlayersToChallenge(request)
     }
 

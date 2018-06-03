@@ -3,6 +3,7 @@ package com.nexte.nexte.ShowProfileScene
 import android.os.Bundle
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
 import org.junit.After
@@ -12,13 +13,14 @@ import org.junit.Assert.*
 import org.junit.Test
 import kotlin.concurrent.thread
 
-class ShowProfileFragmentTest {
+class ShowProfileFragmentTest: HelpForRealm() {
 
     private var view: ShowProfileFragment? = null
     private var mock: MockShowProfileBusinessLogic? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
         view = ShowProfileFragment()
         mock = MockShowProfileBusinessLogic()
     }
@@ -184,36 +186,30 @@ class ShowProfileFragmentTest {
     fun testDisplayProfileEqualsUserSingleton(){
         //prepare
         val viewModel = ShowProfileModel.ViewModel(ShowProfileModel.
-                FormattedPlayer(email = "123", name = "luis", rank = "1"))
-        UserSingleton.setUserInformations(Player(name = "luis", email = "123", gender = "male",
-                category = "1", rankingPosition = 1, age = 20, club = "abc", password = "123",
-                pictureAddress = "1"))
+                FormattedPlayer(email = "pardal@nexte.com", name = "Rafael Pardal", rank = "10"))
 
         thread {
             view?.displayProfile(viewModel)
         }.join()
 
-        assertEquals(viewModel.playerInfo.name, UserSingleton.getUserInformations().name)
-        assertEquals(viewModel.playerInfo.email, UserSingleton.getUserInformations().email)
-        assertEquals(viewModel.playerInfo.rank, UserSingleton.getUserInformations().rankingPosition.toString())
+        assertEquals(viewModel.playerInfo.name, UserSingleton.loggedUser.name)
+        assertEquals(viewModel.playerInfo.email, UserSingleton.loggedUser.email)
+        assertEquals(viewModel.playerInfo.rank, UserSingleton.loggedUser.rankingPosition.toString())
     }
 
     @Test
     fun testDisplayProfileDifferentUserSingleton(){
         //prepare
         val viewModel = ShowProfileModel.ViewModel(ShowProfileModel.
-                FormattedPlayer(email = "12", name = "lui", rank = "2"))
-        UserSingleton.setUserInformations(Player(name = "luis", email = "123", gender = "male",
-                category = "1", rankingPosition = 1, age = 20, club = "abc", password = "123",
-                pictureAddress = "1"))
+                FormattedPlayer(email = "12", name = "luis", rank = "2"))
 
         thread {
             view?.displayProfile(viewModel)
         }.join()
 
-        assertNotEquals(viewModel.playerInfo.name, UserSingleton.getUserInformations().name)
-        assertNotEquals(viewModel.playerInfo.email, UserSingleton.getUserInformations().email)
-        assertNotEquals(viewModel.playerInfo.rank, UserSingleton.getUserInformations().rankingPosition.toString())
+        assertNotEquals(viewModel.playerInfo.name, UserSingleton.loggedUser.name)
+        assertNotEquals(viewModel.playerInfo.email, UserSingleton.loggedUser.email)
+        assertNotEquals(viewModel.playerInfo.rank, UserSingleton.loggedUser.rankingPosition.toString())
     }
 
     @Test
@@ -225,6 +221,7 @@ class ShowProfileFragmentTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 }
 

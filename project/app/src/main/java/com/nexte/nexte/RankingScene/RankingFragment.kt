@@ -77,9 +77,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         this.createGetPlayersRequest()
 
         this.rankingRecyclerView?.addOnScrollListener(OnScrollRankingRecyclerView(
-                UserSingleton.getUserInformations().rankingPosition, this))
+                UserSingleton.loggedUser.rankingPosition, this))
 
-        setFixedRanking(this, this.rankingRecyclerView, UserSingleton.getUserInformations().rankingPosition)
+        setFixedRanking(this, this.rankingRecyclerView, UserSingleton.loggedUser.rankingPosition)
 
         return view
     }
@@ -103,9 +103,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
         override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 
-            view?.position?.text = String.format("%d", UserSingleton.getUserInformations().rankingPosition)
-            view?.name?.text = UserSingleton.getUserInformations().name
-            view?.playerCategory?.text = UserSingleton.getUserInformations().category
+            view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
+            view?.name?.text = UserSingleton.loggedUser.name
+            view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
     }
@@ -257,7 +257,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 notifyItemChanged(expandedId)
             }
 
-            if(itemHolder?.layoutPosition == UserSingleton.getUserInformations().rankingPosition-1){
+            if(itemHolder?.layoutPosition == UserSingleton.loggedUser.rankingPosition-1){
                 itemHolder.itemView?.background = ColorDrawable(Color.GRAY)
             }
 

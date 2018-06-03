@@ -3,18 +3,20 @@ package com.nexte.nexte.PlayersListScene
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.util.*
 
-class PlayersListWorkerTest{
+class PlayersListWorkerTest: HelpForRealm() {
 
     private var worker: PlayersListWorker? = null
 
     @Before
     fun setUp(){
+        super.setUpWithUser()
         this.worker = PlayersListWorker()
         this.worker?.userManager = UserManager(UserAdapterSpy())
     }
@@ -60,9 +62,9 @@ class PlayersListWorkerTest{
 
     @After
     fun tearDown(){
+        super.tearDownRealm()
         this.worker = null
 
     }
-
 
 }

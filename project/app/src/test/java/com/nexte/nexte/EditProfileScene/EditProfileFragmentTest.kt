@@ -1,19 +1,22 @@
 package com.nexte.nexte.EditProfileScene
 
-import android.widget.TextView
-import com.nexte.nexte.Player
+import com.nexte.nexte.HelpForRealm
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
 import org.junit.Test
 
-class EditProfileFragmentTest {
+
+class EditProfileViewTest: HelpForRealm() {
 
     var fragment: EditProfileFragment? = null
 
     @Before
     fun setUp() {
+
+        super.setUpWithUser()
+
         this.fragment = EditProfileFragment()
     }
 
@@ -75,9 +78,8 @@ class EditProfileFragmentTest {
         this.fragment?.editUserInformationInteractor = mock
 
         //call
-        this.fragment?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc",
-                name = "luis", club = "asdasdas", email = "asdasdasd", rankingPosition = 1,
-                pictureAddress = "asd", category = "profissional"))
+
+        this.fragment?.createEditProfileRequest(user = UserSingleton.loggedUser, password = "senha")
 
         //assert
         mock.hasBeenHere = true
@@ -103,6 +105,7 @@ class EditProfileFragmentTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 }
 

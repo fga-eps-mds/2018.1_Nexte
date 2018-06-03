@@ -1,5 +1,7 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.ChallengeAdapterSpy
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import org.junit.After
 import org.junit.Before
 
@@ -139,6 +141,24 @@ class MatchInteractorTest {
         this.interactor?.presenter = presenter
     }
 
+    @Test
+    fun testDeclineMatchResultResponse(){
+        val response = MatchModel.DeclineChallengeRequest
+                .Response(MatchModel.DeclineChallengeRequest.Status.SUCCESS)
+        this.interactor?.declineMatchResultResponse(response)
+        assertEquals(this.mock?.responseDecline?.status, response.status)
+    }
+
+    @Test
+    fun testDeclineMatchResult(){
+        val request = MatchModel.DeclineChallengeRequest
+                .Request("1")
+        this.interactor?.worker?.challengeManager = ChallengeManager(ChallengeAdapterSpy())
+        this.interactor?.declineMatchResult(request)
+
+        assertEquals(this.mockk?.response?.status, MatchModel.DeclineChallengeRequest.Status.SUCCESS)
+    }
+
     @After
     fun tearDown() {
         this.mock = null
@@ -148,7 +168,11 @@ class MatchInteractorTest {
 }
 
 private class MMockMatchPresentationLogic: MatchPresentationLogic{
+    override fun presentDeclineMatch(response: MatchModel.DeclineChallengeRequest.Response) {
+        this.responseDecline = response
+    }
 
+    var responseDecline: MatchModel.DeclineChallengeRequest.Response? = null
     var passedHere = false
     var response2 : MatchModel.SendMatchResult.Response? = null
 
@@ -166,7 +190,11 @@ private class MMockMatchPresentationLogic: MatchPresentationLogic{
 }
 
 private class MockkMatchUpdateWorkerLogic: MatchUpdateWorkerLogic{
+    override fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response) {
+        this.response = response
+    }
 
+    var response: MatchModel.DeclineChallengeRequest.Response? = null
     var mock: MMockMatchPresentationLogic? = null
 
     override fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response) {

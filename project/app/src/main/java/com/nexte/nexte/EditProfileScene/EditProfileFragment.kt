@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import com.nexte.nexte.Player
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_edit_profile.*
@@ -98,8 +98,6 @@ class EditProfileFragment : Fragment(),
         super.onCreate(savedInstanceState)
         this.setupEditProfileScene()
 
-        this.createEditProfileRequest(user = Player("", -1, "", "", "", "", -1, "", ""))
-
         this.passwordConfirmationTextEdit?.addTextChangedListener(PasswordWatcher(this))
         this.passwordTextEdit?.addTextChangedListener(PasswordWatcher(this))
 
@@ -115,18 +113,14 @@ class EditProfileFragment : Fragment(),
 
         updateProfileButton?.setOnClickListener {
 
-            val user = Player(username.text.toString(),
-                    UserSingleton.getUserInformations().rankingPosition,
-                    "",
-                    emailTextEdit.text.trim().toString(),
-                    "",
-                    clubName.text.toString(),
-                    ageTextEdit.text.trim().toString().toInt(),
-                    passwordTextEdit?.text?.trim().toString(),
-                    "")
+            val user = UserSingleton.loggedUser
+            val password: String = passwordTextEdit?.text?.trim().toString()
+            val newUser: User = User(user.id, user.name, user.profilePicture,
+                    user.nickname, user.birthDate, user.rankingPosition, emailTextEdit.text.trim().toString(),
+                    user.phone,  user.wins, user.loses, user.gender, user.category, user.status, user.challengeSended,
+                    user.challengeReceived, user.latestGames)
 
-            this.createEditProfileRequest(user = user)
-
+            this.createEditProfileRequest(user = newUser, password = password)
         }
         super.onViewCreated(view, savedInstanceState)
     }
@@ -140,7 +134,6 @@ class EditProfileFragment : Fragment(),
 
         this.username.text = viewModel.playerToEdit.username
         this.emailTextEdit.setText(viewModel.playerToEdit.email, TextView.BufferType.EDITABLE)
-        this.ageTextEdit.setText(viewModel.playerToEdit.age, TextView.BufferType.EDITABLE)
         this.clubName.text = viewModel.playerToEdit.club
     }
 
@@ -174,9 +167,9 @@ class EditProfileFragment : Fragment(),
     /**
      * Method responsible for creating the edit profile request and passing it to the interactor
      */
-    fun createEditProfileRequest(user: Player){
+    fun createEditProfileRequest(user: User, password: String){
         val editProfileRequest: EditProfileModel.EditProfileRequest.Request =
-                EditProfileModel.EditProfileRequest.Request(user)
+                EditProfileModel.EditProfileRequest.Request(user, password)
 
         editUserInformationInteractor?.setEditedProfile(editProfileRequest)
     }

@@ -119,4 +119,29 @@ class MatchModel {
 
     }
 
+    /**
+     *  Class responsible to manage the declining of a challenge
+     */
+    class DeclineChallengeRequest {
+
+        /**
+         *  class that is responsible of making a request
+         */
+        class Request(val challengeId: String)
+
+        /**
+         *  class that is responsible of making a response of declining challenge
+         */
+        class Response(val status: Status)
+
+        /**
+         * class that is responsible of formating the viewModel
+         */
+        class ViewModel(val status: Status, val message: String)
+
+        enum class Status {
+            SUCCESS, ERROR
+        }
+    }
+
 }
