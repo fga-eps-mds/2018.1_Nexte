@@ -6,7 +6,6 @@ import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
-import org.json.JSONArray
 import org.json.JSONObject
 
 /**
