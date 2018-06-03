@@ -11,25 +11,27 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="44dp"
-            android:text="@string/username"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="username"
+            android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="21sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -37,70 +39,38 @@
 
         <TextView
             android:id="@+id/RankingID"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/ranking"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="70dp"
+            android:background="@drawable/circle_ranking_profile"
+            android:gravity="center"
+            android:text="R"
+            android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="30sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
-
-
-        <TextView
-            android:id="@+id/emailLabel"
-            android:layout_width="89dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/e_mail"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RankingID"
-            tools:text="E-mail:" />
-
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/email"
-            android:textColor="#aaaaaa"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/emailLabel"
-            app:layout_constraintTop_toTopOf="@+id/emailLabel" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
-            android:layout_width="340dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLabel">
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         </com.github.mikephil.charting.charts.LineChart>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/rankingChart"
-            android:layout_width="340dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="167dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChart">
-
-        </com.github.mikephil.charting.charts.LineChart>
+            app:layout_constraintTop_toBottomOf="@+id/rankingLabel"></com.github.mikephil.charting.charts.LineChart>
 
         <Button
             android:id="@+id/editProfileButton"
@@ -109,12 +79,167 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/black"
-            android:text="@string/editar"
+            android:background="@drawable/edge_text_edit_profile"
+            android:text="editar"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rankingChart" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="37dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="Cinta Liga de Tênis"
+            android:textAlignment="center"
+            android:textColor="#9b9b9b"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <TextView
+            android:id="@+id/numb_games"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="41dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto"
+            android:text="N"
+            android:textColor="#e94345"
+            app:layout_constraintEnd_toStartOf="@+id/numb_victory"
+            app:layout_constraintStart_toEndOf="@+id/RankingID"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_horizontal"
+            android:letterSpacing="-0.02"
+            android:text="Jogos"
+            android:textColor="#9b9b9b"
+            app:layout_constraintEnd_toStartOf="@+id/victorys"
+            app:layout_constraintStart_toEndOf="@+id/RankingID"
+            app:layout_constraintTop_toBottomOf="@+id/numb_games" />
+
+        <TextView
+            android:id="@+id/numb_victory"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="69dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto"
+            android:text="N"
+            android:textColor="#e94345"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/victorys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="36dp"
+            android:layout_marginStart="173dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_horizontal"
+            android:letterSpacing="-0.02"
+            android:text="Vitórias"
+            android:textColor="#9b9b9b"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.897"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numb_victory" />
+
+        <Button
+            android:id="@+id/buttonA"
+            android:layout_width="110dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:fontFamily="@font/roboto"
+            android:text="Afastar-se"
+            android:textAlignment="center"
+            android:textColor="#e94345"
+            android:textSize="9dp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <Button
+            android:id="@+id/buttonC"
+            android:layout_width="110dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:fontFamily="@font/roboto"
+            android:text="Contato"
+            android:textAlignment="center"
+            android:textColor="#e94345"
+            android:textSize="9dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonA"
+            app:layout_constraintTop_toBottomOf="@+id/games" />
+
+        <TextView
+            android:id="@+id/Stats"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:gravity="top"
+            android:layout_marginEnd="145dp"
+            android:layout_marginStart="146dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="roboto_thin"
+            android:text="Estatísticas"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/lineChart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonA"
+            tools:text="ESTATÍSTICAS" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="165dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Vitórias/Derrotas"
+            android:textAlignment="center"
+            android:textColor="#9b9b9b"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Stats" />
+
+        <TextView
+            android:id="@+id/rankingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="163dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_thin"
+            android:textAlignment="center"
+            android:textColor="#9b9b9b"
+            android:text="Posições por tempo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -29,6 +29,9 @@
         <meta-data
             android:name="com.facebook.accountkit.ClientToken"
             android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
         <activity android:name=".MainActivity">
