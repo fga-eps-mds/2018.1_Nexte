@@ -23,15 +23,6 @@ interface FeedDisplayLogic {
 }
 
 /**
- * Test for the Realm Database
- */
-//open class Person: RealmObject() {
-//    @PrimaryKey
-//    var id: Long = 0
-//    var name: String? = null
-//}
-
-/**
  * Class that implements [FeedDisplayLogic] and is responsible to control feed screen
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
