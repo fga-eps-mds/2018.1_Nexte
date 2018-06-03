@@ -59,25 +59,25 @@ class ShowProfileWorker {
         val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
         updateLogic?.updateUserProfile(response)
 
-        val url = "http://10.0.2.2:3000/users/" + if(returnedUser != null){
-            returnedUser.id
-        }else{
-            ""
-        }
+        if(!returnedUser?.id.isEmpty()) {
+            val url = "http://10.0.2.2:3000/users/" + returnedUser.id
+            url.httpGet().responseJson { _, _, result ->
+                when(result){
+                    is Result.Failure -> {
+                        println(result.getException())
+                    }
 
-        url.httpGet().responseJson { _, _, result ->
-            when(result){
-                is Result.Failure -> {
-                    println(result.getException())
-                }
-
-                is Result.Success -> {
-                    val json = result.get()
-                    val user = convertJsonUserToUser(json.obj())
-                    val newResponse = ShowProfileModel.Response(user)
-                    updateLogic?.updateUserProfile(newResponse)
+                    is Result.Success -> {
+                        val json = result.get()
+                        val user = convertJsonUserToUser(json.obj())
+                        userManager?.update(user)
+                        val newResponse = ShowProfileModel.Response(user)
+                        updateLogic?.updateUserProfile(newResponse)
+                    }
                 }
             }
+        }else{
+            //Do nothing
         }
 
     }
@@ -92,9 +92,8 @@ class ShowProfileWorker {
      */
     fun convertJsonUserToUser(jsonObject: JSONObject): User {
         val dataJson = jsonObject["data"] as JSONObject
-        val usersJsonArray = dataJson["users"] as JSONArray
-
-        val jsonUser = usersJsonArray.getJSONObject(0)
+        val userJson = dataJson["user"] as JSONObject
+        val jsonUser = userJson
         val user = User.createUserFromJsonObject(jsonUser)
 
         return user
