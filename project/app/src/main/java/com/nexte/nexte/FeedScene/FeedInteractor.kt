@@ -31,14 +31,13 @@ interface FeedBusinessLogic {
  * @property worker Reference to worker [FeedWorker]
  * @property presenter Reference to presenter [FeedPresenter]
  */
-class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusinessLogic {
+class FeedInteractor(var presenter: FeedPresentationLogic? = null) :
+        FeedBusinessLogic, FeedWorkerUpdateLogic {
 
     val worker: FeedWorker = FeedWorker()
 
     override fun fetchFeed(request: FeedModel.GetFeedActivities.Request) {
-
-        worker.fetchFeedData(request) { response -> presenter?.formatFeed(response)
-        }
+        worker.fetchFeedData(request)
     }
 
     override fun fetchLikes(request: FeedModel.LikeAndUnlike.Request) {
@@ -46,5 +45,9 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) : FeedBusines
         worker.manageLikes(request) { response ->
             presenter?.updateViewActivity(response)
         }
+    }
+
+    override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
+        presenter?.formatFeed(response)
     }
 }
