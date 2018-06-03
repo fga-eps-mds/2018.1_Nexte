@@ -1,6 +1,8 @@
 package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.FeedMocker
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
 import org.junit.After
@@ -13,31 +15,28 @@ class FeedWorkerTest: HelpForRealm() {
 
     var worker: FeedWorker? = null
     var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
+    var mock: MockFeedUpdateLogic? = null
 
     @Before
     fun setUp() {
         super.setUpWithUser()
         this.worker = FeedWorker()
         this.feedList = FeedMocker.createFeedList()
+        this.mock = MockFeedUpdateLogic()
+        this.worker?.updateLogic = mock
+        this.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test
     fun testFetchData(){
         //prepare
-        val challenger2Name = "Letícia"
-        val challenged3Set = 0
-        val challenger5Name = "Larissa"
         val request = FeedModel.GetFeedActivities.Request()
 
         //call
-        this.worker?.fetchFeedData(request = request, completion = {response ->
-            //assert
-            assertNotNull(response)
-            assertEquals(response.feedActivities.size, 8)
-            assertEquals(response.feedActivities[1].challenge.challenger.name, challenger2Name)
-            assertEquals(response.feedActivities[2].challenge.challenged.set, challenged3Set)
-            assertEquals(response.feedActivities[4].challenge.challenger.name, challenger5Name)
-        })
+        this.worker?.fetchFeedData(request = request)
+
+        assertNotNull(this.mock?.response)
+        assertEquals(this.mock?.response?.feedActivities?.size, 4)
     }
 
     @Test
@@ -66,5 +65,14 @@ class FeedWorkerTest: HelpForRealm() {
     fun tearDown() {
         super.tearDownRealm()
         this.worker = null
+    }
+}
+
+class MockFeedUpdateLogic: FeedWorkerUpdateLogic {
+
+    var response: FeedModel.GetFeedActivities.Response? = null
+
+    override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
+        this.response = response
     }
 }

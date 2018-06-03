@@ -65,7 +65,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
 
         for (activity in activities) {
 
-            val matchingUser = activity.likesId.find { it == UserSingleton.loggedUser.id }
+            val matchingUser = activity.likesId.find { it == UserSingleton.loggedUserID }
             var userIsOnLikeList = false
 
             if(matchingUser != null) {
