@@ -112,9 +112,11 @@ class UserAdapterRealm: UserAdapter {
 
         val users: MutableList<User> = mutableListOf()
 
-        for (userRealm in userRealmResults) {
-            convertUserRealmToUser(userRealm)?.let {
-                users.add(it)
+        if (userRealmResults.size > 0) {
+            for (userRealm in userRealmResults) {
+                convertUserRealmToUser(userRealm)?.let {
+                    users.add(it)
+                }
             }
         }
 
