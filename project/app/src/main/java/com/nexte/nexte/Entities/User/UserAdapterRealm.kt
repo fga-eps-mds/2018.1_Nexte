@@ -13,13 +13,13 @@ class UserAdapterRealm: UserAdapter {
 
     override fun get(identifier: String): User? {
 
-        val userRealm = realm.where<UserRealm>().equalTo("id", identifier).findFirst()
+        val userRealm = realm.where(UserRealm::class.java).equalTo("id", identifier).findFirst()
         return convertUserRealmToUser(userRealm)
     }
 
     override fun getAll(): List<User> {
 
-        val userRealmResults = realm.where<UserRealm>().findAll()
+        val userRealmResults = realm.where(UserRealm::class.java).findAll()
         return convertUserRealmListToUserList(userRealmResults)
     }
 
@@ -36,7 +36,7 @@ class UserAdapterRealm: UserAdapter {
 
     override fun delete(identifier: String): User? {
 
-        val userRealm = realm.where<UserRealm>().equalTo("id", identifier).findAll()
+        val userRealm = realm.where(UserRealm::class.java).equalTo("id", identifier).findAll()
         realm.beginTransaction()
         val user = convertUserRealmToUser(userRealm.first())
         userRealm.deleteAllFromRealm()

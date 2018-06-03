@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="com.nexte.nexte.ChallengeScene.ChallengeView">
+    tools:context="com.nexte.nexte.MainActivity">
 
 
     <android.support.v7.widget.RecyclerView
@@ -78,7 +78,7 @@
         android:layout_marginBottom="201dp"
         android:layout_marginEnd="125dp"
         android:layout_marginStart="127dp"
-        android:text="Enviar Desafio"
+        android:text="@string/enviar_desafio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -90,7 +90,7 @@
         android:layout_marginBottom="192dp"
         android:layout_marginEnd="164dp"
         android:layout_marginStart="164dp"
-        android:text="Sem Jogadores Disponíveis."
+        android:text="@string/sem_jogadores_dispon_veis"
         android:textColor="@color/hint_color_pattern"
         android:textSize="18sp"
         android:visibility="invisible"
@@ -106,7 +106,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Você já enviou um desafio"
+        android:text="@string/voc_j_enviou_um_desafio"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
         android:visibility="invisible"

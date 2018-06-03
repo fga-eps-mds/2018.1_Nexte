@@ -1,18 +1,20 @@
 package com.nexte.nexte.EditProfileScene
 
-import com.nexte.nexte.Player
+import com.nexte.nexte.HelpForRealm
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
 import org.junit.Test
 
-class EditProfileViewTest {
+class EditProfileViewTest: HelpForRealm() {
 
     var view: EditProfileView? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
+
         this.view = EditProfileView()
     }
 
@@ -61,9 +63,7 @@ class EditProfileViewTest {
         this.view?.editUserInformationInteractor = mock
 
         //call
-        this.view?.createEditProfileRequest(user = Player(password = "123456", age = 19, gender = "masc",
-                name = "luis", club = "asdasdas", email = "asdasdasd", rankingPosition = 1,
-                pictureAddress = "asd", category = "profissional"))
+        this.view?.createEditProfileRequest(user = UserSingleton.loggedUser, password = "senha")
 
         //assert
         mock.hasBeenHere = true
@@ -71,6 +71,7 @@ class EditProfileViewTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 }
 

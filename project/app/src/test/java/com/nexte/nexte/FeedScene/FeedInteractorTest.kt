@@ -1,18 +1,20 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
 
-class FeedInteractorTest {
+class FeedInteractorTest: HelpForRealm() {
 
     private var mock: MockFeedPresentationLogic? = null
     private var interactor: FeedInteractor? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
         this.mock = MockFeedPresentationLogic()
         this.interactor = FeedInteractor(presenter = mock)
     }
@@ -45,6 +47,7 @@ class FeedInteractorTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
         this.mock = null
         this.interactor = null
     }

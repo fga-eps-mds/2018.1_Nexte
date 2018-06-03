@@ -67,7 +67,6 @@ class StoryManagerTest {
 
     @Test
     fun testUpdate(){
-        val identifier = "1"
         val story = Story(id = "1", date = Date(), likesId = listOf(), loser = StoryPlayer(), winner = StoryPlayer(), commentsId = listOf())
 
         val storyUpdated = storyManager?.update(story = story)
@@ -96,10 +95,10 @@ class StoryManagerTest {
         val storyList = storyManager?.updateMany(stories = stories)
 
         assertEquals(storyList!![0].id, "1")
-        assertEquals(storyList!![0].winner?.userId, "1")
-        assertEquals(storyList!![0].winner?.setResult, 5)
-        assertEquals(storyList!![0].loser?.userId, "2")
-        assertEquals(storyList!![0].loser?.setResult, 4)
+        assertEquals(storyList[0].winner?.userId, "1")
+        assertEquals(storyList[0].winner?.setResult, 5)
+        assertEquals(storyList[0].loser?.userId, "2")
+        assertEquals(storyList[0].loser?.setResult, 4)
     }
 
     @Test

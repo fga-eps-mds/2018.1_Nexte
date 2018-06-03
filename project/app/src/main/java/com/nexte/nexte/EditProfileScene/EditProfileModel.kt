@@ -1,6 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
-import com.nexte.nexte.Player
+import com.nexte.nexte.Entities.User.User
 
 /**
  * Class responsible to determinate what will be passed between classes of scene
@@ -28,7 +28,7 @@ class EditProfileModel {
          *
          * @property user
          */
-        class Response(var user: Player)
+        class Response(var user: User)
 
         /**
          * Class responsible to holds the information that will be passed
@@ -45,13 +45,11 @@ class EditProfileModel {
          * @property username Name of the logged user
          * @property ranking Ranking of the logged user
          * @property club Club of the logged user
-         * @property age Age of the logged user
          * @property email Email of the logged user
          */
         class FormattedPlayer(var username: String,
                               var ranking: String,
                               var club: String,
-                              var age: String,
                               var email: String)
     }
 
@@ -66,7 +64,8 @@ class EditProfileModel {
          *
          * @property user
          */
-        class Request(var user: Player)
+        class Request(var user: User,
+                      var password: String)
 
         /**
          * Class responsible to holds the information that will be
@@ -76,7 +75,7 @@ class EditProfileModel {
          * @property newUser
          */
         class Response(var errorID: Int?,
-                       var newUser: Player?)
+                       var newUser: User?)
 
         /**
          * Class responsible to holds the information that will be

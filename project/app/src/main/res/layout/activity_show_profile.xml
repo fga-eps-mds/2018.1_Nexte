@@ -11,14 +11,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_launcher_round" />
@@ -27,8 +27,9 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="75dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="username"
             android:textAlignment="center"
             android:textColor="#ffffff"
@@ -43,8 +44,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginStart="70dp"
             android:background="@drawable/circle_ranking_profile"
-            android:text="R"
             android:gravity="center"
+            android:text="R"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="15sp"
@@ -53,28 +54,23 @@
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
-            android:layout_width="340dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="60dp"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonA">
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         </com.github.mikephil.charting.charts.LineChart>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/rankingChart"
-            android:layout_width="360dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="167dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChart">
-        </com.github.mikephil.charting.charts.LineChart>
+            app:layout_constraintTop_toBottomOf="@+id/rankingLabel"></com.github.mikephil.charting.charts.LineChart>
 
         <Button
             android:id="@+id/editProfileButton"
@@ -97,6 +93,7 @@
             android:layout_marginEnd="37dp"
             android:layout_marginStart="31dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto"
             android:text="Cinta Liga de Tênis"
             android:textAlignment="center"
             android:textColor="#9b9b9b"
@@ -111,6 +108,7 @@
             android:layout_marginEnd="41dp"
             android:layout_marginStart="37dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto"
             android:text="N"
             android:textColor="#e94345"
             app:layout_constraintEnd_toStartOf="@+id/numb_victory"
@@ -124,7 +122,7 @@
             android:layout_marginEnd="22dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/roboto"
             android:gravity="center_horizontal"
             android:letterSpacing="-0.02"
             android:text="Jogos"
@@ -139,6 +137,7 @@
             android:layout_height="15dp"
             android:layout_marginEnd="69dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto"
             android:text="N"
             android:textColor="#e94345"
             app:layout_constraintEnd_toEndOf="parent"
@@ -151,7 +150,7 @@
             android:layout_marginEnd="36dp"
             android:layout_marginStart="173dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/roboto"
             android:gravity="center_horizontal"
             android:letterSpacing="-0.02"
             android:text="Vitórias"
@@ -165,10 +164,10 @@
             android:id="@+id/buttonA"
             android:layout_width="110dp"
             android:layout_height="25dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/edge_text_edit_profile"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/roboto"
             android:text="Afastar-se"
             android:textAlignment="center"
             android:textColor="#e94345"
@@ -183,9 +182,9 @@
             android:layout_height="25dp"
             android:layout_marginEnd="26dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/edge_text_edit_profile"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/roboto"
             android:text="Contato"
             android:textAlignment="center"
             android:textColor="#e94345"
@@ -195,6 +194,52 @@
             app:layout_constraintStart_toEndOf="@+id/buttonA"
             app:layout_constraintTop_toBottomOf="@+id/games" />
 
+        <TextView
+            android:id="@+id/Stats"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:gravity="top"
+            android:layout_marginEnd="145dp"
+            android:layout_marginStart="146dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="roboto_thin"
+            android:text="Estatísticas"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/lineChart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonA"
+            tools:text="ESTATÍSTICAS" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="165dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Vitórias/Derrotas"
+            android:textAlignment="center"
+            android:textColor="#9b9b9b"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Stats" />
+
+        <TextView
+            android:id="@+id/rankingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="163dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_thin"
+            android:textAlignment="center"
+            android:textColor="#9b9b9b"
+            android:text="Posições por tempo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
 
 
     </android.support.constraint.ConstraintLayout>

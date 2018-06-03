@@ -29,16 +29,15 @@ class StoryAdapterRealm: StoryAdapter{
     }
 
     override fun updateOrInsert(story: Story): Story? {
-        convertStoryToStoryRealm(story)?.let {
+        convertStoryToStoryRealm(story).let {
             realm.beginTransaction()
             realm.insertOrUpdate(it)
             realm.commitTransaction()
             return story
         }
-        return null
     }
 
-     fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
+     private fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
         //Id
         val storyId = storyRealm.id
 
@@ -58,11 +57,10 @@ class StoryAdapterRealm: StoryAdapter{
         val likesId = storyRealm.likesId
 
 
-        val story = Story(id = storyId, winner = winner, loser = loser, commentsId = commentsId, date = date, likesId = likesId)
-        return story
+         return Story(id = storyId, winner = winner, loser = loser, commentsId = commentsId, date = date, likesId = likesId)
     }
 
-     fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
+     private fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
         val storiesRealmMutable = storiesRealm.toMutableList()
         val storiesMutable = mutableListOf<Story>()
 
@@ -71,11 +69,10 @@ class StoryAdapterRealm: StoryAdapter{
             storiesMutable.add(story)
         }
 
-        val stories = storiesMutable.toList()
-        return stories
+         return storiesMutable.toList()
     }
 
-     fun convertStoryToStoryRealm(story: Story): StoryRealm{
+     private fun convertStoryToStoryRealm(story: Story): StoryRealm{
         //Id
         val id = story.id
 
@@ -102,12 +99,11 @@ class StoryAdapterRealm: StoryAdapter{
             likesIdRealmList.add(like)
         }
 
-        val storyRealm = StoryRealm(id = id, winnerId = winnerId,
-                winnerSetResult = winnerSetResult, loserId = loserId,
-                loserSetResult = loserSetResult, date = date,
-                commentsId = commentsIdRealmList,
-                likesId = likesIdRealmList)
-        return storyRealm
+         return StoryRealm(id = id, winnerId = winnerId,
+                 winnerSetResult = winnerSetResult, loserId = loserId,
+                 loserSetResult = loserSetResult, date = date,
+                 commentsId = commentsIdRealmList,
+                 likesId = likesIdRealmList)
     }
 
 }
