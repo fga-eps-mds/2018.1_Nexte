@@ -266,16 +266,11 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             val iChallengedResult: Int
             val iChallengerResult: Int
             if (challengedResult != null && challengerResult != null) {
-                try {
-                    iChallengedResult = Integer.parseInt(challengedResult.text.toString())
-                    iChallengerResult = Integer.parseInt(challengerResult.text.toString())
-                } catch (e: NumberFormatException) {
-                    return false
-                }
-
                 if(challengedResult.text.toString() == "" || challengerResult.text.toString() == "") {
                     return false
                 }
+                iChallengedResult = Integer.parseInt(challengedResult.text.toString())
+                iChallengerResult = Integer.parseInt(challengerResult.text.toString())
 
                 isLocalResultsValid = when (numberOfSets) {
                     MatchModel.SetsNumber.One -> {
@@ -291,7 +286,6 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                         isSetResultsValid
                     }
                 }
-
                 if(!isLocalResultsValid) {
                     isSetResultsValid = false
                 }
@@ -300,12 +294,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 val wrongLabelColor = resources.getColor(R.color.red)
                 val rightLabelColor = resources.getColor(R.color.darker_gray)
 
-
-
                 if(!isLocalResultsValid) {
                     labelToBePainted?.setTextColor(wrongLabelColor)
                 }
-
                 else {
                     labelToBePainted?.setTextColor(rightLabelColor)
                 }
@@ -698,30 +689,30 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 
                 val position = when((fragment as MatchFragment).numberOfSets){
-                    MatchModel.SetsNumber.One -> 0
-                    MatchModel.SetsNumber.Three -> 1
-                    MatchModel.SetsNumber.Five -> 2
-                    MatchModel.SetsNumber.WO -> 3
+                    MatchModel.SetsNumber.One -> zero
+                    MatchModel.SetsNumber.Three -> one
+                    MatchModel.SetsNumber.Five -> two
+                    MatchModel.SetsNumber.WO -> three
 
                 }
                 itemView.buttonGroup.setPosition(position, true)
 
                 itemView.buttonGroup.buttonOne.setOnClickListener {
-                    itemView.buttonGroup.setPosition(0, true)
+                    itemView.buttonGroup.setPosition(zero, true)
                     fragment.updateSetsNumber(MatchModel.SetsNumber.One)
                 }
                 itemView.buttonGroup.buttonThree.setOnClickListener {
-                    itemView.buttonGroup.setPosition(1, true)
+                    itemView.buttonGroup.setPosition(one, true)
                     fragment.updateSetsNumber(MatchModel.SetsNumber.Three)
                 }
 
                 itemView.buttonGroup.buttonFive.setOnClickListener {
-                    itemView.buttonGroup.setPosition(2, true)
+                    itemView.buttonGroup.setPosition(two, true)
                     fragment.updateSetsNumber(MatchModel.SetsNumber.Five)
                 }
 
                 itemView.buttonGroup.buttonWO.setOnClickListener {
-                    itemView.buttonGroup.setPosition(3, true)
+                    itemView.buttonGroup.setPosition(three, true)
                     fragment.updateSetsNumber(MatchModel.SetsNumber.WO)
                 }
             }
