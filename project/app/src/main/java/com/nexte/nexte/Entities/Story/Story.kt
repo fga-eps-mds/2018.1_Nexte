@@ -28,17 +28,20 @@ open class Story(var id: String? = null,
                  */
         fun createStoryFromJsonObject(jsonStory: JSONObject): Story {
             val id = jsonStory["id"] as String
-            val challenge = (jsonStory["challenge"] as JsonObject)
-            val winnerId = challenge["winner"] as String
-            val winner = StoryPlayer(userId = winnerId, setResult = 0)
-            val loserId = challenge["loser"] as String
-            val loser = StoryPlayer(userId = loserId, setResult = 0)
-            val commentsId = listOf<String>()
-            val likesId = listOf<String>()
+            val winnerJson = (jsonStory["winner"] as JSONObject)
+            val winnerId = winnerJson["userID"] as String
+            val winnerSetResult = (winnerJson["setResult"] as String).toInt()
+            val winner = StoryPlayer(userId = winnerId, setResult = winnerSetResult)
+            val loserJson = (jsonStory["loser"] as JSONObject)
+            val loserId = loserJson["userID"] as String
+            val loserSetResult = (loserJson["setResult"] as String).toInt()
+            val loser = StoryPlayer(userId = loserId, setResult = loserSetResult)
+            val commentsIds = jsonStory["comments"] as List<String>
+            val likesIds = jsonStory["comments"] as List<String>
             val date = SimpleDateFormat("yyyy-mm-dd")
                     .parse(jsonStory["date"] as String)
 
-            return Story(id, winner, loser, date, commentsId, likesId)
+            return Story(id, winner, loser, date, commentsIds, likesIds)
         }
     }
 }

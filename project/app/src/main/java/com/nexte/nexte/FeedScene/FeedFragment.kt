@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.CommentsScene.CommentsFragment
+import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.LikeListScene.LikeListFragment
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_feed.view.*
@@ -33,6 +35,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
     var feedRecyclerView : RecyclerView? = null
+    var storyManager: StoryManager? = null
+    var userManager: UserManager? = null
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
@@ -63,6 +67,9 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         val interactor = FeedInteractor()
 
         view.interactor = interactor
+        interactor.worker.updateLogic = interactor
+        interactor.worker.storyManager = storyManager
+        presenter.userManager = userManager
         interactor.presenter = presenter
         presenter.viewController = view
     }

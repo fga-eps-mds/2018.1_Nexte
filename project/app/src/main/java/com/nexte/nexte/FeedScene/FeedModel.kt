@@ -1,5 +1,6 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Entities.Story.Story
 import java.util.*
 
 /**
@@ -24,7 +25,7 @@ class FeedModel {
          *
          * @property feedActivities MutableList that hold informations to show in screen
          */
-        class Response(var feedActivities: MutableList<FeedActivity>)
+        class Response(var feedActivities: List<Story>)
 
         /**
          * Class responsible to define how the list view will display the formatted data passed to view
