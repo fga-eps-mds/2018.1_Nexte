@@ -1,30 +1,13 @@
 version: "3.3"
 
 services:
-  # android:
-  #   image: baldissera/android-container
-  #   container_name: android-container
-  #   volumes:
-  #     - ./project:/application
-  #     - ./docker/local.properties:/application/local.properties
-  #     - ./docker/compose.sh:/application/compose.sh
-  #   depends_on:
-  #     - server
-  #   networks:
-  #     - nexteNet
-
   server:
-    image: registry.gitlab.com/nexte/bepid/nexte-server:0.1.0
+    image: baldissera/nexteserver
     container_name: nexte-server
     ports:
       - "3000:3000"
     networks:
       nexteNet:
-                ipv4_address: 172.28.1.1
-
+      
 networks:
-    nexteNet:
-        ipam:
-            driver: default
-            config:
-                - subnet: 172.28.0.0/16
+  nexteNet:

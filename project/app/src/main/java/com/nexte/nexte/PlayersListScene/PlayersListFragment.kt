@@ -84,6 +84,8 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
 
+    var selectedUserIdentifier: String? = null
+
     /**
      * Companion Object responsible to create an instance of this fragment
      */
@@ -129,7 +131,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
-        interactor.worker.userManager = userManager
+        interactor.worker.userManager = userManager!!
         presenter.viewChallenge = view
     }
 
@@ -164,8 +166,10 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         super.onViewCreated(view, savedInstanceState)
 
         sendChallengeButton?.setOnClickListener {
-            val request = PlayersListModel.ChallengeButtonRequest.Request(this.expandedName?.text.toString())
-            this.interactor?.requestChallenger(request)
+            this.selectedUserIdentifier?.let {
+                val request = PlayersListModel.ChallengeButtonRequest.Request(it)
+                this.interactor?.requestChallenger(request)
+            }
         }
 
         val request = PlayersListModel.ShowRankingPlayersRequest.Request(UserSingleton.loggedUser.rankingPosition)
@@ -189,8 +193,9 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
      *
      * @param request contains the rank of the clicked user in the recycler view
      */
-    fun getPlayerInfo(request: PlayersListModel.SelectPlayerForChallengeRequest.Request){
+    fun getPlayerInfo(selectedUserIdentifier: String, request: PlayersListModel.SelectPlayerForChallengeRequest.Request){
 
+        this.selectedUserIdentifier = selectedUserIdentifier
         this.interactor?.requestChallengedUser(request)
     }
 
@@ -270,6 +275,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
      */
     fun removePlayerDetailedInfo() {
 
+        this.selectedUserIdentifier = null
         this.expandedLosses?.visibility = View.INVISIBLE
         this.expandedLosses?.text = ""
         this.expandedName?.visibility = View.INVISIBLE
@@ -310,6 +316,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
             holder.bindView(challenged[position])
 
+
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
                     notifyItemChanged(expandedPlayer)
@@ -327,7 +334,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
                 val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(
                         challenged[position].rankingPosition.removeRange(0, 1).toInt())
-                fragment.getPlayerInfo(request)
+                fragment.getPlayerInfo(challenged[position].identifier, request)
             }
             val checkTextView: TextView = holder.view.findViewById(R.id.checkTextView)
             if (expandedPlayer == holder.layoutPosition) {

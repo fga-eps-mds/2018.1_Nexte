@@ -102,7 +102,8 @@ class PlayersListModel {
     /**
      * Class that holds the formatted player data of the 5 users above player
      */
-    class FormattedPlayer(var name: String, // player name
+    class FormattedPlayer(var identifier: String, // user itendifier
+                          var name: String, // player name
                           var rankingPosition: String, //player position in ranking
                           var pictureAddress: String) //player picture url
 
