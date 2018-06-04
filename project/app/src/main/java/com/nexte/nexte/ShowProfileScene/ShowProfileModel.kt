@@ -27,7 +27,7 @@ class ShowProfileModel {
     class Response(var user: User?)
 
     /**
-     * Class responsible to define how the list view will display the formatted data, passed to view
+     * Class responsible to define how the list fragment will display the formatted data, passed to fragment
      *
      * @property playerInfo attribute already processed by [ShowProfilePresenter] class for display on screen
      **/

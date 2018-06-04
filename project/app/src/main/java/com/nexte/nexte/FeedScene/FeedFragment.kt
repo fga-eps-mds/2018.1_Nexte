@@ -109,7 +109,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     /**
      * Method responsible to receive the viewModel from Presenter and show it to the user
      *
-     * @param viewModel Feed view model received from Presenter to show on screen
+     * @param viewModel Feed fragment model received from Presenter to show on screen
      */
     override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
 
@@ -138,7 +138,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     }
 
     /**
-     * Adapter Class to control recycler view on feed activity
+     * Adapter Class to control recycler fragment on feed activity
      *
      * @property activities List of all feed activities
      * @property fragment Fragment that will show this adapter
@@ -191,9 +191,9 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         }
 
         /**
-         * View Holder Class to control itens that will be shown on Recycler view
+         * View Holder Class to control itens that will be shown on Recycler fragment
          *
-         * @property itemView View that contains properties to show on recycler view
+         * @property itemView View that contains properties to show on recycler fragment
          */
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

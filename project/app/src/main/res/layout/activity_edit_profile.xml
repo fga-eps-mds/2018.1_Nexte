@@ -15,14 +15,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EditProfileScene.EditProfileView">
+        tools:context=".EditProfileScene.EditProfileFragment">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginStart="23dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_launcher_round" />
@@ -31,177 +31,146 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="username"
-            android:textSize="21sp"
             android:textColor="#ffff"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/rankingID"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="36dp"
-            android:text="#Ranking"
-            android:textSize="30sp"
-            android:textColor="#ffff"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
-
-        <TextView
-            android:id="@+id/clubLabel"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp"
-            android:text="Clube:"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/ageLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            tools:text="Clube :  " />
-
-        <TextView
-            android:id="@+id/emailLabel"
-            android:layout_width="89dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="E-mail:"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ageLabel"
-            tools:text="E-mail:" />
-
-        <TextView
-            android:id="@+id/ageLabel"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Idade:"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/emailLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clubLabel"
-            tools:text="Idade: " />
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edge_nme"
+            app:layout_constraintEnd_toEndOf="@+id/edge_nme"
+            app:layout_constraintStart_toStartOf="@+id/edge_nme"
+            app:layout_constraintTop_toTopOf="@+id/edge_nme" />
 
         <TextView
             android:id="@+id/clubName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
             android:text="clubName"
-            android:textColor="#aaaaaa"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clubLabel"
-            app:layout_constraintTop_toTopOf="@+id/clubLabel" />
+            android:textColor="#ffffff"
+            android:letterSpacing="-0.06"
+            android:gravity="center_horizontal"
+            android:textSize="9sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/edge_info"
+            app:layout_constraintStart_toStartOf="@+id/ageTextEdit"
+            app:layout_constraintTop_toBottomOf="@+id/view_info1" />
 
 
         <EditText
             android:id="@+id/emailTextEdit"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:inputType="textEmailAddress"
             android:text="email"
-            android:textSize="18sp"
-            android:textColor="#aaaaaa"
-            app:layout_constraintBottom_toBottomOf="@+id/emailLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/emailLabel" />
+            android:textColor="#ffffff"
+            android:letterSpacing="-0.06"
+            android:gravity="center_horizontal"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toTopOf="@+id/view_info2"
+            app:layout_constraintStart_toStartOf="@+id/view_info2"
+            app:layout_constraintTop_toTopOf="@+id/edge_info" />
 
         <EditText
             android:id="@+id/ageTextEdit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="10dp"
-            android:inputType="numberSigned"
-            android:text="age"
-            android:textSize="18sp"
-            android:textColor="#aaaaaa"
-            app:layout_constraintBottom_toBottomOf="@+id/ageLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ageLabel" />
-
-        <Button
-            android:id="@+id/updateProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:inputType="numberSigned"
+            android:text="age"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toTopOf="@+id/view_info1"
+            app:layout_constraintStart_toStartOf="@+id/emailTextEdit"
+            app:layout_constraintTop_toBottomOf="@+id/view_info2" />
+
+        <ImageButton
+            android:id="@+id/updateProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
             android:layout_marginTop="20dp"
-            android:text="Atualizar"
-            android:textColor="#ffffff"
-            android:background="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordConfirmationTextEdit" />
+            android:src="@mipmap/check_mdpi"
+            android:tint="#ffffff"
+            android:background="#2E2E2E"
+            android:backgroundTint="#2E2E2E"
+            app:layout_constraintEnd_toEndOf="@+id/edge_password"
+            app:layout_constraintTop_toBottomOf="@+id/edge_password" />
 
         <TextView
             android:id="@+id/passwordLabel"
             android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Senha:"
+            android:layout_height="15dp"
+            android:layout_marginTop="210dp"
+            android:text="Senha"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/emailLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
+            android:textSize="9sp"
+            app:layout_constraintStart_toStartOf="@+id/clubName"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <EditText
             android:id="@+id/passwordTextEdit"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="60dp"
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:textColor="#aaaaaa"
+            android:textColor="#ffffff"
+            android:letterSpacing="-0.02"
+            android:gravity="center_horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/passwordLabel" />
+            app:layout_constraintStart_toEndOf="@+id/passwordLabel"
+            app:layout_constraintTop_toTopOf="@+id/passwordLabel" />
+
 
         <TextView
             android:id="@+id/passwordConfirmationLabel"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Confirma:"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/passwordLabel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+            android:layout_width="70dp"
+            android:layout_height="21dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center_horizontal"
+            android:letterSpacing="-0.02"
+            android:text="Confirmação"
+            android:textColor="#ffffff"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edge_password"
+            app:layout_constraintEnd_toStartOf="@+id/passwordConfirmationTextEdit"
+            app:layout_constraintStart_toStartOf="@+id/clubName"
+            app:layout_constraintTop_toBottomOf="@+id/view_password" />
 
         <EditText
             android:id="@+id/passwordConfirmationTextEdit"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/passwordConfirmationLabel"
             app:layout_constraintEnd_toEndOf="@+id/passwordTextEdit"
-            app:layout_constraintStart_toStartOf="@+id/passwordTextEdit" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/passwordTextEdit"
+            app:layout_constraintTop_toTopOf="@+id/passwordConfirmationLabel" />
 
         <TextView
             android:id="@+id/passwordValidationTextView"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="290dp"
             android:textColor="@android:color/white"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordLabel"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/passwordLabel"
             app:layout_constraintTop_toTopOf="@+id/passwordLabel" />
 
         <TextView
@@ -209,10 +178,110 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
             android:textColor="@android:color/holo_red_dark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/updateProfileButton" />
 
+        <View
+            android:id="@+id/view_password"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/edge_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edge_password" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/edge_password"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edge_info"
+            app:layout_constraintTop_toBottomOf="@+id/edge_info" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/edge_info"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/passwordTextEdit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/view_info1"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="55dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="9dp"
+            android:background="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/edge_info"
+            app:layout_constraintEnd_toEndOf="@+id/edge_info"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="@+id/edge_info" />
+
+        <View
+            android:id="@+id/view_info2"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edge_info" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/edge_nme"
+            android:layout_width="140dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/edge_text_edit_profile"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edge_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     </android.support.constraint.ConstraintLayout>
 
