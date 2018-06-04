@@ -8,6 +8,8 @@ import com.nexte.nexte.R
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.nexte.nexte.Entities.Like.LikeManager
+import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import kotlinx.android.synthetic.main.row_likes.view.*
 
@@ -30,6 +32,9 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
 
     var interactor: LikeListInteractor? = null
     var likesListRecyclerView: RecyclerView? = null
+    var likeManager: LikeManager? = null
+    var storyManager: StoryManager? = null
+    var userManager: UserManager? = null
 
     fun getInstance(): LikeListFragment{
         val likeListFragment = LikeListFragment()
@@ -48,6 +53,9 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
         likesListRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
         this.setUpLikeListScene()
         this.createFetchDataRequest()
+        this.likeManager = LikeManager()
+        this.userManager = UserManager()
+        this.storyManager = StoryManager()
 
         return newView
     }
@@ -58,14 +66,14 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
      * Method responsible for creating the fetch data to list request and passing it to the interactor
      */
     fun createFetchDataRequest(){
-        val request = LikeListModel.Request("1")
+        val request = LikeListModel.Request("12312312", "123123")
         interactor?.fetchDataToList(request)
     }
 
     /**
      * Method responsible to setup all the references of this scene
      */
-    fun setUpLikeListScene(manager: UserManager = UserManager()) {
+    fun setUpLikeListScene() {
 
         val view = this
         val interactor = LikeListInteractor()
@@ -73,8 +81,10 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker.likeManager = likeManager
         interactor.worker.updateLogic = interactor
-        interactor.worker.userManager = manager
+        interactor.worker.userManager = userManager
+        interactor.worker.storyManager = storyManager
         presenter.viewList = view
     }
 
