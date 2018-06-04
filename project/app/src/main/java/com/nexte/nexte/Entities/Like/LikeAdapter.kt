@@ -5,4 +5,5 @@ interface LikeAdapter {
     fun get(identifier: String): Like?
     fun updateOrInsert(like: Like): Like?
     fun delete(identifier: String): Like?
+    fun getLikesFromStory(likesIds: List<String>): List<Like>?
 }

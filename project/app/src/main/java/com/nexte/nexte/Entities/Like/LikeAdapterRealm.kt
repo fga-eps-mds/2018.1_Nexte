@@ -33,6 +33,16 @@ class LikeAdapterRealm : LikeAdapter {
         return null
     }
 
+    override fun getLikesFromStory(likesIds: List<String>): List<Like>? {
+        var likesMutable = mutableListOf<Like>()
+        for(likeId in likesIds){
+            val likeRealm = realm.where<LikeRealm>().equalTo("id", likeId).findFirst()
+            val like = convertLikeRealmToLike(likeRealm!!)
+            likesMutable.add(like)
+        }
+        return likesMutable.toList()
+    }
+
 
     private fun convertLikeRealmToLike(likeRealm: LikeRealm) : Like {
 

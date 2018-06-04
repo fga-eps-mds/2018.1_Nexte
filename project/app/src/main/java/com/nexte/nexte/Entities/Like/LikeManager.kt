@@ -49,4 +49,8 @@ class LikeManager (private val likeAdapter: LikeAdapter = LikeAdapterRealm()) {
     fun createLikesIds(amount: Int): List<String>{
         return LikeMocker.generateLikes(amount)
     }
+
+    fun getLikesFromStory(likesIds: List<String>) : List<Like> {
+        return likeAdapter.getLikesFromStory(likesIds)!!
+    }
 }
