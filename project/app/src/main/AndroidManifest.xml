@@ -65,7 +65,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EditProfileScene.EditProfileView"
+            android:name=".EditProfileScene.EditProfileFragment"
             android:screenOrientation="portrait" />
         <activity android:name=".PlayersListScene.ChallengeTabsFragment"
             android:screenOrientation="portrait"

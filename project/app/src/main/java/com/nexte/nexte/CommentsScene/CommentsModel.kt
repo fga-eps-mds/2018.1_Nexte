@@ -114,9 +114,9 @@ class CommentsModel {
 
         /**
          * Class responsible to define the standar format of the information that will
-         * be displayed on view
+         * be displayed on fragment
          *
-         * @param delCommentsFormatted list of formatted comments that will be shown on view
+         * @param delCommentsFormatted list of formatted comments that will be shown on fragment
          */
         class ViewModel (var delCommentsFormatted: MutableList<CommentFormatted>)
     }

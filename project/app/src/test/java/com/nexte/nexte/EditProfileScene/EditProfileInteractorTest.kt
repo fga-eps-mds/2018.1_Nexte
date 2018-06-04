@@ -1,5 +1,7 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Player
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Test
 
@@ -8,7 +10,7 @@ import org.junit.Before
 
 class EditProfileInteractorTest {
 
-    var interactor: EditProfileInteractor?= null
+    var interactor: EditProfileInteractor? = null
 
     @Before
     fun setUp(){
@@ -60,10 +62,6 @@ class EditProfileInteractorTest {
     fun setEditedProfile() {
     }
 
-    @After
-    fun tearDown(){
-        interactor = null
-    }
 
     class EditProfilePresenterMock: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic
     {
@@ -76,5 +74,4 @@ class EditProfileInteractorTest {
             passedHere = true
         }
     }
-
 }

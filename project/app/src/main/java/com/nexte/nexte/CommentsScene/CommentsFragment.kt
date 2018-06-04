@@ -183,7 +183,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     }
 
     /**
-     * Adapter Class to control recycler view on ListLike
+     * Adapter Class to control recycler fragment on ListLike
      *
      * @property comments It's a list of all comments
      * @property fragment Context that will show this adapter
@@ -265,9 +265,9 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         }
 
         /**
-         * View Holder Class to control items that will show on Recycler view
+         * View Holder Class to control items that will show on Recycler fragment
          *
-         * @property itemView View that contains properties to show on recycler view
+         * @property itemView View that contains properties to show on recycler fragment
          */
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

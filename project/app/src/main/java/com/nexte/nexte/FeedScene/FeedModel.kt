@@ -27,7 +27,7 @@ class FeedModel {
         class Response(var feedActivities: MutableList<FeedActivity>)
 
         /**
-         * Class responsible to define how the list view will display the formatted data passed to view
+         * Class responsible to define how the list fragment will display the formatted data passed to fragment
          *
          * @property feedActivities MutableList that hold informations to show in screen
          */
@@ -97,7 +97,7 @@ class FeedModel {
                        var likes: MutableList<FeedModel.FeedPlayer>)
 
     /**
-     * Class responsible to define how the list view will display the formatted data
+     * Class responsible to define how the list fragment will display the formatted data
      *
      * @property identifier String identifier for this activity
      * @property challengerName String that contains name of challenger player

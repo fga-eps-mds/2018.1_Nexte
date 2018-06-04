@@ -1,6 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
-import android.content.Intent
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
@@ -17,7 +17,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.nexte.nexte.EditProfileScene.EditProfileView
+import com.nexte.nexte.EditProfileScene.EditProfileFragment
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
@@ -84,8 +84,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
         buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
         buttonEditProfile?.setOnClickListener {
-            val intent = Intent(activity, EditProfileView::class.java)
-            startActivity(intent)
+            val editProfileFragment = EditProfileFragment().getInstance()
+            val fragmentManager = activity.fragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame_layout, editProfileFragment, "editProfile")
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
         this.createShowProfileRequest()
@@ -193,7 +197,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         private  fun customizeChart(chart: LineChart) {
 
-            val timeToAnimate = 2000
             val left = 0f
             val right = 0f
             val bottom = 0f
@@ -283,6 +286,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         this.createShowProfileRequest()
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        this.createShowProfileRequest()
+    }
+
     /**
      * Method responsible to set all the references on this scene
      */
@@ -306,6 +314,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
+
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
@@ -317,6 +326,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         const val lineWidth = 4.0f
         const val top = 15f
         const val textSize = 12.0f
+        const val timeToAnimate = 2000
+
     }
 }
 
