@@ -40,24 +40,21 @@
 ### **1.1. Resumo da Sprint**
 
 // Trocar imagem
-
 ![Resumo da Sprint](https://i.imgur.com/f5Cnid5.png)
 
 Como pode-se observar a equipe concluiu nessa _Sprint_, 17 das 19 histórias planejadas, sendo que duas delas foram débitos da Sprint 11, totalizando uma pontuação total de 72 de 85 pontos possíveis.
 
 #### 1.2.1. Burndown
 
-![Burndown](https://i.imgur.com/qSltkjE.png)
-
 // Trocar imagem
+![Burndown](https://i.imgur.com/qSltkjE.png)
 
 O *Burndown* caiu somente no final da semana. Os primeiros *Pull Requests* foram aceitos na quinta-feira, e muitos outros no sábado. Entretanto, devido a muitas refatorações em código  algumas outras *user stories* foram fechadas somente no domingo pela necessidade de resolver conflitos e corrigir testes.
 
 ### 1.2.2. *Commits* por dia
 
-![Commits por dia](https://i.imgur.com/7vrlEIG.png)
-
 //  Trocar  Imgaem
+![Commits por dia](https://i.imgur.com/7vrlEIG.png)
 
 O número de *commits* por dia foi mais irregular em relação a *sprint* anterior, entretanto houveram contribuições significativas todos os dias da semana. Nesta perspectiva, na terça e quinta-feira a equipe se mostrou mais ativa em relação ao número de *commits*.
 
@@ -66,7 +63,6 @@ O número de *commits* por dia foi mais irregular em relação a *sprint* anteri
 #### 1.3.1. Velocity
 
 // Trocar imagem
-
 ![Velocity](https://i.imgur.com/gFMCSS0.png)
 
 Como pode-se observar a equipe fechou a *sprint* com 7 pontos acima da última *sprint*. Entretanto, o velocity dessa *sprint* teve um valor inferior a última média inferida no valor de 75.4. 
@@ -155,23 +151,24 @@ A quantidade de pontos realizados nessa *sprint* foi de 65 pontos,houve uma entr
 
 ## **4. Análise de código**
 
+// Trocar imagem
 ![Detekt](https://i.imgur.com/XbwBsfn.png)
 
 **Quantidade de linhas por método**
 
-Dois métodos estão diagnosticados como longos, eles vêm das classes de tipo Mocker, em uma sprint que haverá refatoração de código ele será alocado para adequar à métrica proposta.  
+Dois métodos estão diagnosticados como longos, eles vêm das classes de tipo Mocker, em uma sprint que haverá refatoração de código ele será alocado para adequar à métrica proposta. Entretanto, esta não é uma das prioridades do momento e o projeto está sob controle em relação às suas métricas de código. 
 
 **Quantidade de métodos por classe**
 
-Não houve classes que ferissem esta métrica, todas estão dentro do parâmetro aceitável.
+Houve uma classe identificada com muitos métodos, no caso esta tem o papel de view, mais precisamente a MatchFragment. Em futuras refatoracões alguma medida será tomada em relação a isto.
 
 **Complexidade ciclomática**
 
-Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 675 e temos 406 métodos, o que dá uma média de 1,66 de complexidade por método, o que está bom, porém é necessário averiguar o que há no método que foi relatado com complexidade 27, pois o limite definido é 10.
+Apenas um método foi relatado como muito complexo pela ferramenta de análise estática, e a complexidade ciclomática geral do projeto está em 779 e temos 4448 métodos, o que dá uma média de 1,73 de complexidade por método, o que está bom. Entretanto na cena MatchFragment existe um método(validateSetResults) com complexidde bastante elevada, e em futuras refatorações alguma medida será tomada.
 
 **Quantidade de code smells**
 
-6 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, melhor que a *sprint* anterior, dentre os motivos, pode-se destacar alguns deles:
+8 code Smells foram encontrados pela ferramenta de análise estática, dado que o limite são 10, piorou em relação a *sprint* anterior, muito em virtude dos code smells provenientes da refatoração da MatchFragment.
 
  - Um método está com a complexidade ciclomática acima de 10, o que não é recomendado nem aceitável, loco a análise estática relatou esta ocorrência.
  - Nome de variável
