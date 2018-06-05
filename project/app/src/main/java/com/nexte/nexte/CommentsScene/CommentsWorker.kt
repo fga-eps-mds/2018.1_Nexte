@@ -1,8 +1,16 @@
 package com.nexte.nexte.CommentsScene
 
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
 import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
 
 interface CommentsWorkerUpdateLogic {
@@ -21,6 +29,7 @@ class CommentsWorker {
 
     var updateLogic: CommentsWorkerUpdateLogic? = null
     var commentsManager: CommentManager? = null
+    var storyManager: StoryManager? = null
     /**
      * Variable created to simulate mocked data to be implemented on Package mocker
      */
@@ -32,10 +41,57 @@ class CommentsWorker {
      * @param completion Method to call on parent class
      */
     fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request) {
-
-        val commentManager= commentsManager?.getAll()
-        val response = CommentsModel.GetCommentsRequest.Response(commentManager!!.toMutableList())
+        val story = storyManager?.get(request.storyId)
+        val commentsIdsMutable = mutableListOf<String>()
+        for (commentId in story?.commentsId!!) {
+            commentsIdsMutable.add(commentId)
+        }
+        val comments = commentsManager?.getCommentsFromStory(commentsIdsMutable.toList())
+        val response = CommentsModel.GetCommentsRequest.Response(comments!!.toMutableList())
         updateLogic?.updateComment(response)
+
+        if (UserSingleton.userType != UserType.MOCKED) {
+            val url = "http://10.0.2.2:3000/comments/" + request.storyId
+            url.httpGet().responseJson { _, _, result ->
+                when(result){
+                    is Result.Failure -> {
+                        println(result.getException())
+                    }
+
+                    is Result.Success -> {
+                        val json = result.get()
+                        var commentsList = convertJsonToListOfComments(json.obj())
+                        commentsManager?.updateMany(commentsList)
+                        val newResponse = CommentsModel.GetCommentsRequest.Response(
+                                commentsList.toMutableList())
+                        updateLogic?.updateComment(newResponse)
+                    }
+                }
+            }
+        } else {
+            //Do nothing
+        }
+    }
+
+    /**
+     * Method resposible for tranforming a jsonObject, that contains the response of the api request,
+     * into a list of comments
+     *
+     * @param jsonObject jsonObject that contains the response data from the api
+     *
+     * @return list of comments
+     */
+    fun convertJsonToListOfComments(jsonObject: JSONObject) : List<Comment> {
+        val dataJson = jsonObject["data"] as JSONObject
+        val commentsJsonArray = dataJson["comments"] as JSONArray
+
+        val commentsMutableList = mutableListOf<Comment>()
+        for (counter in 0 until commentsJsonArray.length()){
+            val jsonComment = commentsJsonArray.getJSONObject(counter)
+            val comment = Comment.createCommentFromJsonObject(jsonComment)
+            commentsMutableList.add(comment)
+        }
+        return commentsMutableList.toList()
     }
 
     /**
