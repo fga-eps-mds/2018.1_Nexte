@@ -3,6 +3,7 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 03/05/2018| 0.1 | Criação do Documento | Miguel Pimentel|
+| 05/05/2018| 0.2 | Atualização de Riscos, EVM e Análise do Scrum Master| Miguel Pimentel|
 
 **Número da Sprint:** 12
 
@@ -112,10 +113,12 @@ Portanto, a nova média do velocity ficou em **75,36** *sprint points*
 
 #### 2.1. Riscos priorizados
 
+// Mudar imagem
 ![Gestão de Risco](https://i.imgur.com/3lFw00t.png)
 
 #### 2.2. _Burndown risk_
 
+// Mudar imagem
 ![Burndow Risk do Projeto](https://i.imgur.com/O3IeVWj.png)
 
 Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
@@ -124,26 +127,28 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 
 | ID | Status | Por que mudou? |
 |---|---|---|
-| RN15 | diminuiu | Os integrantes do times tiveram crescimento técnico em áreas que poucos integrantes dominavam. Dessa forma, o conhecimento está mais homegêneo. |
-| RN23 | diminuiu | Na última sprint, o foco nos testes, possibilitou que muitos integrantes tivessem maior conhecimento sobre testes unitários e de integração. |
-| RN25 | diminuiu | O servidor de imagem está em processo de finalização |
-
+| RN01 | diminuiu | Crescimento técnico, tanto que o time optou pela retirada do quadro de conhecimento |
+| RN01 | diminuiu | Reuniões de confraternização/trabalho em conjunto foram realizadas |
+| RN25 | diminuiu | O servidor está sendo implementado e esta história ficou em cargo de EPS |
+| RN23 | diminuiu | O time se sente mais confiante em relação a testes unitários |
 
 #### 2.4 Ações para riscos atuais
 
 | ID | Como mitigar |
 |---|---|
 | RN01 | O pareamento entre membros de EPS e MDS vai continuar. |
-| RN02 | vai haver uma reunião específica com a membro Larissa para averiguar porque ela deixou a história para fazer entre sábado de madrugada, além disse me relação aos outros membros pois aconteceu parecido com a maioria do time. Além disso o período da copa do mundo vai ser organizado para que os membros trabalhem em conjunto. |
+| RN02 | Realização de "maratonas" para trabalhar no projeto |
 | RN03 | E dito que a qualquer problema, qualquer membro deve tentar resolver, caso não consigam, deve-se pedir ajuda o mais rápido possível |
 | RN04 | Os membros de EPS trabalharão no servidor juntamente com o cliente. Segundo o planejamento da equipe esse servidor estará disponível para a aplicação a partir da sprint 10. |
-| RN06 | Alguns membros já têm viagens marcadas, como os membros Larrisa e Geovanni, para que no período de ausência seja compensado ou antes ou depois da viagem, assim cumprindo mais tarefas. |
+| RN06 | Alguns membros já têm viagens marcadas, como os membros Guilherme e Geovanni, para que o período de ausência seja compensado, antes ou depois da viagem os membros devem realizar suas tarefas com empenho e dedicação |
 | RN07 | O Scrum Master, será mais presente no papel de fazer com que todos integrantes estejam ativos na implementação de histórias e participação do rituais do SCRUM. |
 
 ## **3. EVM**
 
+// Trocar Imagem
 ![EVM Gráfico](https://i.imgur.com/8vbjbLh.png) 
 
+// Trocar Imagem
 ![EVM](https://i.imgur.com/pRtGfgG.png)
 
 A quantidade de pontos realizados nessa *sprint* foi de 65 pontos,houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
@@ -179,15 +184,13 @@ Não houve relatos pela ferramenta de análise estática sobre fugas ao padrão 
 
 ## **5. Análise do Scrum Master**
 
-Nesta Sprint, houve como impecílio a greve do caminhoneiros, impossibilitando a reunião presencial. Dessa forma, este fator atrapalhou a comunicação e assiduidade de alguns membros em rituais do SCRUM. 
+Nesta Sprint, ocorreram decisões importantes acerca do projeto. Primeiro, definiu-se de de retirar os testes de activities/fragments por não existir como testar esse componente, visto que ele é provido pela própria SDK do Android. Todos os grupos de Android nativo de semestres anteriores nunca testaram esse componente.
 
-Não obstante, houve um replanejamento que ocorreu devido a dificuldade de comunicação com o cliente e  utilização de uma versão incompleta do *Roadmap*, entretanto este replanejamento foi feito antes da equipe iniciar suas histórias, não comprometendo muito o desempenho nessa *sprint*. 
+Com objetivo de conseguir terminar o projeto da melhor forma possível o time se reuniu no feriado do dia 31 para trabalhar e descontrair, promovendo um momento de descontração em meio ao caos do final do semestre.
 
-Como ponto negativo, novamente a história de testar view com testes unitários ficou como dívida técnica, e na próxima sprint ela deve ser fechada sem falta.
+Os pareamentos da *sprint* funcionaram, houveram refatoramentos e optou-se pela retirada do quadro de pareamento visto que os integrantes já se consideravam maduros técnicamente. 
 
-Apesar dessa *sprint* o velocity ter caído, e imprevistos terem aparecidos, a equipe se mostrou proativa em começar e terminar suas histórias antecipadas. Nosso servidor de imagens, teve grande progresso, assim como a arquitetura com de micro serviços. 
-
-Como forma de resolver esses problemas de comunicação e consequência da greve de caminhoneiro, o time irá realizar uma reunião/confraternização/hackathon na quinta-feira, 31 de maio. O time está ciente dos novos riscos como a chegada da copa e a crise do combustíveis, mas está apto a terminar o projeto da melhor forma possível.
+O time está comprometido com o projeto e tem como desafio conseguir associar o fim do semestre com as poucas tarefas restantes do projeto.  Apesar do *velocity* ter caído, muito em virtude de dificudade técnicas de ferramentas necessárias para realização da sprint o desempenho melhorou em relação as últimas *sprints* de maneira geral.
 
 
 
