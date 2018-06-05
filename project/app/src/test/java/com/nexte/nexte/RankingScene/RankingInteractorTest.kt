@@ -42,21 +42,21 @@ class RankingInteractorTest {
         assertEquals(interactor.worker, newWorker)
     }
 
-//    @Test
-//    fun testGetPlayersRanksForScene(){
-//        //prepare
-//        val newWorker = RankingWorker()
-//        val request = RankingModel.Request()
-//
-//        //call
-//        val interactor = RankingInteractor()
-//        val oldWorker = interactor.worker
-//        interactor.worker = newWorker
-//        thread { this.interactor?.getPlayersRanksForScene(request = request) }.join()
-//
-//        //assert
-//        assertEquals(this.mock?.passedHere, true)
-//    }
+    @Test
+    fun testGetPlayersRanksForScene(){
+        //prepare
+        val newWorker = RankingWorker()
+        val request = RankingModel.Request()
+
+        //call
+        val interactor = RankingInteractor()
+        val oldWorker = interactor.worker
+        interactor.worker = newWorker
+        thread { this.interactor?.getPlayersRanksForScene(request = request) }.join()
+
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+    }
 
     @Test
     fun successInteractor(){
