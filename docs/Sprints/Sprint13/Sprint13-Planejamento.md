@@ -29,7 +29,7 @@
 | Nome                  | Papel |
 |-----------------------|-------------|
 | Miguel Pimentel | Scrum Master |
-| Guilherme Baldissera | Time de Desenvolvimento |
+| Guilherme Baldissera | PO |
 | Luis Gustavo | Time de Desenvolvimento |
 | Geovanni Oliveira | Time de Desenvolvimento |
 | Alexandre Miguel | Time de Desenvolvimento |
