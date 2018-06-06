@@ -43,12 +43,16 @@ class RankingWorkerTest : HelpForRealm() {
         val request = RankingModel.Request()
         mock?.response = null
         //call
-        worker?.getUsersInRanking(request)
+        thread{
+            worker?.getUsersInRanking(request)
+        }.join()
         //assert
         assertNull(mock?.response)
         //backup
         worker?.updateLogic = backup
     }
+
+
 //    @Test
 //    fun testGetUsersInRanking(){
 //        //prepare
