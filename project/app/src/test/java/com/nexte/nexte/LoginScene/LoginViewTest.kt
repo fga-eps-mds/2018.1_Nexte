@@ -8,11 +8,11 @@ import org.junit.Test
 
 class LoginViewTest {
 
-    var view: LoginFragment? = null
+    var view: LoginView? = null
 
     @Before
     fun setUp() {
-        this.view = LoginFragment()
+        this.view = LoginView()
     }
 
     @Test
