@@ -45,12 +45,15 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
+        this.userManager = UserManager()
+        this.storyManager = StoryManager()
         this.setupFeedScene()
         val newView = inflater?.inflate(R.layout.activity_feed_view, container, false)
         this.feedRecyclerView = newView?.findViewById(R.id.feedRecyclerView)
         this.feedViewAdapter = FeedAdapter(mutableListOf(), this)
         feedRecyclerView?.adapter = this.feedViewAdapter
         feedRecyclerView?.layoutManager = LinearLayoutManager(activity)
+
 
         this.createGetActivitiesRequest()
         return newView

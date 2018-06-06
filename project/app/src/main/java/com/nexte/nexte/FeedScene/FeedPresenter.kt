@@ -1,6 +1,8 @@
 package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.Story.Story
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
@@ -72,8 +74,21 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 userIsOnLikeList = true
             }
 
-            val challenger = userManager?.get(activity.winner?.userId!!)
-            val challenged = userManager?.get(activity.loser?.userId!!)
+            val emptyUser = User("", "", "", "", null, -1,
+                    "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                    User.Status.UNAVAILABLE,null, null, null)
+            var challenger = userManager?.get(activity.winner?.userId!!)
+            challenger = if (challenger == null) {
+                emptyUser
+            } else {
+                challenger
+            }
+            var challenged = userManager?.get(activity.loser?.userId!!)
+            challenged = if (challenged == null) {
+                emptyUser
+            } else {
+                challenged
+            }
 
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.id!!,

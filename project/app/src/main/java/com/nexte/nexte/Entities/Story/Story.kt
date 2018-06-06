@@ -1,5 +1,6 @@
 package com.nexte.nexte.Entities.Story
 import android.annotation.SuppressLint
+import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,16 +28,25 @@ open class Story(var id: String? = null,
                  */
         fun createStoryFromJsonObject(jsonStory: JSONObject): Story {
             val id = jsonStory["id"] as String
-            val winnerJson = jsonStory["winner"] as JSONObject
+            val challengeJson = jsonStory["challenge"] as JSONObject
+            val winnerJson = challengeJson["winner"] as JSONObject
             val winnerId = winnerJson["userID"] as String
-            val winnerSetResult = (winnerJson["setResult"] as String).toInt()
+            val winnerSetResult = winnerJson["setResult"] as Int
             val winner = StoryPlayer(userId = winnerId, setResult = winnerSetResult)
-            val loserJson = jsonStory["loser"] as JSONObject
+            val loserJson = challengeJson["loser"] as JSONObject
             val loserId = loserJson["userID"] as String
-            val loserSetResult = (loserJson["setResult"] as String).toInt()
+            val loserSetResult = loserJson["setResult"] as Int
             val loser = StoryPlayer(userId = loserId, setResult = loserSetResult)
-            val commentsIds = jsonStory["comments"] as List<String>
-            val likesIds = jsonStory["comments"] as List<String>
+            val commentsIdsJsonArray = jsonStory["comments"] as JSONArray
+            var commentsIds = mutableListOf<String>()
+            for (counter in 0 until commentsIdsJsonArray.length()){
+                commentsIds.add(commentsIdsJsonArray.getString(counter))
+            }
+            val likesIdsJsonArray = jsonStory["likes"] as JSONArray
+            var likesIds = mutableListOf<String>()
+            for (counter in 0 until likesIdsJsonArray.length()){
+                likesIds.add(likesIdsJsonArray.getString(counter))
+            }
             val date = SimpleDateFormat("yyyy-mm-dd")
                     .parse(jsonStory["date"] as String)
 

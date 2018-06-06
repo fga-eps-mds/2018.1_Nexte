@@ -38,14 +38,20 @@ class FeedWorker {
      */
     fun fetchFeedData(request: FeedModel.GetFeedActivities.Request) {
 
-        val allStories = storyManager?.getAll()
-        val response = FeedModel.GetFeedActivities.Response(allStories!!)
+        var allStories = storyManager?.getAll()
+        allStories = if (allStories == null) {
+            listOf()
+        } else {
+            allStories
+        }
+        val response = FeedModel.GetFeedActivities.Response(allStories)
         updateLogic?.updateFeed(response)
 
 
         if (UserSingleton.userType != UserType.MOCKED){
-            val url = "http://10.0.2.2:3000/feed"
-            url.httpGet().responseJson { _, _, result ->
+            val header = mapOf("accept-version" to "0.1.0")
+            val url = "http://10.0.2.2:3000/stories"
+            url.httpGet().header(header).responseJson { _, _, result ->
                 when(result){
                     is Result.Failure -> {
                         println(result.getException())
@@ -54,7 +60,7 @@ class FeedWorker {
                     is Result.Success -> {
                         val json = result.get()
                         val stories = convertJsonStoryToStories(json.obj())
-
+                        storyManager?.updateMany(stories)
                         val newResponse = FeedModel.GetFeedActivities
                                 .Response(stories)
                         updateLogic?.updateFeed(newResponse)
