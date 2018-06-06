@@ -75,7 +75,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         this.setActionToCloseKeyboard(newView)
 
         val request = CommentsModel.GetCommentsRequest
-                .Request("1", "1")
+                .Request("1", "d2c02630-b20d-45fc-a5f3-41c399dbd075")
         interactor?.recentComments(request)
 
         checkButton?.setOnClickListener(sendCommentAction)

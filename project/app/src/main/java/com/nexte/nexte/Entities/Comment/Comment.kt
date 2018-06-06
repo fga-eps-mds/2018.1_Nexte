@@ -36,7 +36,7 @@ open class Comment(var id: String? = null,
                  */
         fun createCommentFromJsonObject(jsonComment: JSONObject): Comment {
             val id = jsonComment["id"] as String
-            val userId = jsonComment["userID"] as String
+            val userId = jsonComment["user"] as String
             val date = SimpleDateFormat("dd-MM-yyyy")
                     .parse(jsonComment["date"] as String)
             val comment = jsonComment["comment"] as String

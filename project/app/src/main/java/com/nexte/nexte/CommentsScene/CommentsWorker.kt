@@ -6,6 +6,7 @@ import com.github.kittinunf.result.Result
 import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
@@ -41,9 +42,15 @@ class CommentsWorker {
      * @param completion Method to call on parent class
      */
     fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request) {
-        val story = storyManager?.get(request.storyId)
+        var story = storyManager?.get(request.storyId)
+        val emptyStory = Story()
+        story = if (story == null) {
+            emptyStory
+        } else {
+            story
+        }
         val commentsIdsMutable = mutableListOf<String>()
-        for (commentId in story?.commentsId!!) {
+        for (commentId in story.commentsId) {
             commentsIdsMutable.add(commentId)
         }
         val comments = commentsManager?.getCommentsFromStory(commentsIdsMutable.toList())
@@ -51,8 +58,9 @@ class CommentsWorker {
         updateLogic?.updateComment(response)
 
         if (UserSingleton.userType != UserType.MOCKED) {
-            val url = "http://10.0.2.2:3000/comments/" + request.storyId
-            url.httpGet().responseJson { _, _, result ->
+            val header = mapOf("accept-version" to "0.1.0")
+            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
+            url.httpGet().header(header).responseJson { _, _, result ->
                 when(result){
                     is Result.Failure -> {
                         println(result.getException())
