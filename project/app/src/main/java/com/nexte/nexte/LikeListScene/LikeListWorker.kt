@@ -5,6 +5,7 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Like.Like
 import com.nexte.nexte.Entities.Like.LikeManager
+import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
@@ -44,19 +45,31 @@ class LikeListWorker {
      * @param request
      */
     fun getListLikesPlayers(request: LikeListModel.Request){
-        val story = storyManager?.get(request.storyId)
+        var story = storyManager?.get(request.storyId)
+        val emptyStory = Story()
+        story = if (story == null) {
+            emptyStory
+        } else {
+            story
+        }
         val likesIdsMutable = mutableListOf<String>()
         for(likeId in story?.likesId!!){
             likesIdsMutable.add(likeId)
         }
-        val likes = likeManager?.getLikesFromStory(likesIdsMutable.toList())
-        val allUsers = getUserFromLikes(likes!!)
+        var likes = likeManager?.getLikesFromStory(likesIdsMutable.toList())
+        likes = if (likes == null) {
+            listOf()
+        } else{
+            likes
+        }
+        val allUsers = getUserFromLikes(likes)
         val response = LikeListModel.Response(allUsers)
         this.updateLogic?.updateUsers(response)
 
         if (UserSingleton.userType != UserType.MOCKED) {
-            val url = "http://10.0.2.2:3000/likes/" + request.storyId
-            url.httpGet().responseJson { _, _, result ->
+            val header = mapOf("accept-version" to "0.1.0")
+            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/likes"
+            url.httpGet().header(header).responseJson { _, _, result ->
                 when(result){
                     is Result.Failure -> {
                         println(result.getException())
@@ -89,7 +102,7 @@ class LikeListWorker {
      */
     fun convertJsonToListOfLikes(jsonObject: JSONObject): List<Like>{
         val dataJson = jsonObject["data"] as JSONObject
-        val likesJsonArray = dataJson["users"] as JSONArray
+        val likesJsonArray = dataJson["likes"] as JSONArray
 
         val likesMutableList = mutableListOf<Like>()
         for (counter in 0 until likesJsonArray.length()){
@@ -112,7 +125,11 @@ class LikeListWorker {
 
         for(like in likes){
             val user = userManager?.get(like.userId!!)
-            usersMutable.add(user!!)
+            if (user != null) {
+                usersMutable.add(user)
+            } else {
+                //Do nothing
+            }
         }
 
         return usersMutable.toList()

@@ -37,8 +37,12 @@ class LikeAdapterRealm : LikeAdapter {
         var likesMutable = mutableListOf<Like>()
         for(likeId in likesIds){
             val likeRealm = realm.where<LikeRealm>().equalTo("id", likeId).findFirst()
-            val like = convertLikeRealmToLike(likeRealm!!)
-            likesMutable.add(like)
+            if (likeRealm != null) {
+                val like = convertLikeRealmToLike(likeRealm!!)
+                likesMutable.add(like)
+            } else {
+                //Do nothing
+            }
         }
         return likesMutable.toList()
     }

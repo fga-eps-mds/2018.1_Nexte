@@ -27,7 +27,7 @@ open class Like(var id: String? = null,
                  */
         fun createLikeFromJsonObject(jsonLike: JSONObject): Like {
             val id = jsonLike["id"] as String
-            val userId = jsonLike["userID"] as String
+            val userId = jsonLike["user"] as String
             val date = SimpleDateFormat("dd-MM-yyyy")
                     .parse(jsonLike["date"] as String)
 

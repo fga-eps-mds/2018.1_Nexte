@@ -51,11 +51,11 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
         val newView = inflater?.inflate(R.layout.activity_list_like, container, false)
         likesListRecyclerView = newView?.findViewById(R.id.likesListRecyclerView)
         likesListRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
-        this.setUpLikeListScene()
-        this.createFetchDataRequest()
         this.likeManager = LikeManager()
         this.userManager = UserManager()
         this.storyManager = StoryManager()
+        this.setUpLikeListScene()
+        this.createFetchDataRequest()
 
         return newView
     }
@@ -66,7 +66,8 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
      * Method responsible for creating the fetch data to list request and passing it to the interactor
      */
     fun createFetchDataRequest(){
-        val request = LikeListModel.Request("12312312", "123123")
+        val request = LikeListModel.Request("12312312",
+                "d2c02630-b20d-45fc-a5f3-41c399dbd075")
         interactor?.fetchDataToList(request)
     }
 
