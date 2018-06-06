@@ -39,22 +39,19 @@
 
 ### **1.1. Resumo da Sprint**
 
-// Trocar imagem
-![Resumo da Sprint](https://i.imgur.com/f5Cnid5.png)
+![Resumo da Sprint](https://i.imgur.com/mnY1s5j.png)
 
 Como pode-se observar a equipe concluiu nessa _Sprint_, 17 das 19 histórias planejadas, sendo que duas delas foram débitos da Sprint 11, totalizando uma pontuação total de 72 de 85 pontos possíveis.
 
 #### 1.2.1. Burndown
 
-// Trocar imagem
-![Burndown](https://i.imgur.com/qSltkjE.png)
+![Burndown](https://i.imgur.com/mVBUuvT.png)
 
 O *Burndown* caiu somente no final da semana. Os primeiros *Pull Requests* foram aceitos na quinta-feira, e muitos outros no sábado. Entretanto, devido a muitas refatorações em código  algumas outras *user stories* foram fechadas somente no domingo pela necessidade de resolver conflitos e corrigir testes.
 
 ### 1.2.2. *Commits* por dia
 
-//  Trocar  Imgaem
-![Commits por dia](https://i.imgur.com/7vrlEIG.png)
+![Commits por dia](https://i.imgur.com/YKQToZA.png)
 
 O número de *commits* por dia foi mais irregular em relação a *sprint* anterior, entretanto houveram contribuições significativas todos os dias da semana. Nesta perspectiva, na terça e quinta-feira a equipe se mostrou mais ativa em relação ao número de *commits*.
 
@@ -62,8 +59,7 @@ O número de *commits* por dia foi mais irregular em relação a *sprint* anteri
 
 #### 1.3.1. Velocity
 
-// Trocar imagem
-![Velocity](https://i.imgur.com/gFMCSS0.png)
+![Velocity](https://i.imgur.com/fv0Kz05.png)
 
 Como pode-se observar a equipe fechou a *sprint* com 7 pontos acima da última *sprint*. Entretanto, o velocity dessa *sprint* teve um valor inferior a última média inferida no valor de 75.4. 
 
@@ -109,13 +105,11 @@ Portanto, a nova média do velocity ficou em **75,36** *sprint points*
 
 #### 2.1. Riscos priorizados
 
-// Mudar imagem
-![Gestão de Risco](https://i.imgur.com/3lFw00t.png)
+![Gestão de Risco](https://i.imgur.com/dTusze2.png)
 
 #### 2.2. _Burndown risk_
 
-// Mudar imagem
-![Burndow Risk do Projeto](https://i.imgur.com/O3IeVWj.png)
+![Burndow Risk do Projeto](https://i.imgur.com/QpUSnHN.png)
 
 Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
@@ -141,18 +135,15 @@ Para acessar o burndown risk de cada risco sepadamente clique [aqui](https://doc
 
 ## **3. EVM**
 
-// Trocar Imagem
-![EVM Gráfico](https://i.imgur.com/8vbjbLh.png) 
+![EVM Gráfico](https://i.imgur.com/WeJRDz8.png) 
 
-// Trocar Imagem
-![EVM](https://i.imgur.com/pRtGfgG.png)
+![EVM](https://i.imgur.com/p2tR1yQ.png)
 
 A quantidade de pontos realizados nessa *sprint* foi de 65 pontos,houve uma entrega de valor maior para o cliente e novamente o valor agregado foi maior que o planejado.
 
 ## **4. Análise de código**
 
-// Trocar imagem
-![Detekt](https://i.imgur.com/XbwBsfn.png)
+![Detekt](https://i.imgur.com/MsCDUzz.png)
 
 **Quantidade de linhas por método**
 
@@ -187,7 +178,7 @@ Com objetivo de conseguir terminar o projeto da melhor forma possível o time se
 
 Os pareamentos da *sprint* funcionaram, houveram refatoramentos e optou-se pela retirada do quadro de pareamento visto que os integrantes já se consideravam maduros técnicamente. 
 
-O time está comprometido com o projeto e tem como desafio conseguir associar o fim do semestre com as poucas tarefas restantes do projeto.  Apesar do *velocity* ter caído, muito em virtude de dificudade técnicas de ferramentas necessárias para realização da sprint o desempenho melhorou em relação as últimas *sprints* de maneira geral.
+O time está comprometido com o projeto e tem como desafio conseguir associar o fim do semestre com as poucas tarefas restantes do projeto.  Apesar do *velocity* ter caído, muito em virtude de dificudade técnicas de ferramentas necessárias para realização da *sprint* o desempenho melhorou em relação as últimas *sprints* de maneira geral.
 
 
 
