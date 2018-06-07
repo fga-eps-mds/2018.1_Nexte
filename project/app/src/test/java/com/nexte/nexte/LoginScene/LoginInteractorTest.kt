@@ -17,6 +17,7 @@ class LoginInteractorTest {
 
     private var mock: MockLoginPresentationLogic? = null
     private var interactor: LoginInteractor? = null
+    private var worker: LoginPresentationLogic? = null
 
     @Before
     fun setUp() {
@@ -31,6 +32,62 @@ class LoginInteractorTest {
         this.mock = null
         this.interactor = null
     }
+
+    @Test
+    fun testGetWorker() {
+        // prepare and call
+        val worker = interactor?.worker
+
+        assertEquals(interactor?.worker, worker)
+    }
+
+    @Test
+    fun testGetPresenter() {
+        // prepare and call
+        val presenter = interactor?.presenter
+
+        assertEquals(interactor?.presenter, presenter)
+    }
+
+    @Test
+    fun testSetWorker() {
+        //prepare and call
+        val worker = worker
+
+        assertEquals(interactor?.worker, worker)
+    }
+
+    @Test
+    fun testAccountKitAuth() {
+        // prepare
+        var email = "helenaHtona@nexte.com"
+        var phone = "123456"
+        val value = LoginModel.AccountKit.StatusCode.SUCESSED
+        var request = LoginModel.AccountKit.Request(email, phone)
+       // var response = LoginModel.AccountKit.Response(value)
+
+        // call
+        interactor?.worker?.requestForAuth(request) { response ->
+            // search
+            assertEquals(interactor?.presenter?.presentAccountKit(response), response)
+        }
+    }
+//
+//    @Test
+//    fun testDoAuthentication() {
+//        // prepare
+//        val user = "fulano"
+//        val password = "123456"
+//        val request = LoginModel.Authentication.Request(user, password)
+//        val tokenID = "123456"
+//        val value1 = LoginModel.Authentication.StatusCode.AUTHORIZED
+//        val response = LoginModel.Authentication.Response(tokenID, value1)
+//        val responseStatus = response.authenticateStatusCode
+//
+//        // call
+//        interactor?.worker.au
+//    }
+
 }
 
 private class MockLoginPresentationLogic: LoginPresentationLogic{
