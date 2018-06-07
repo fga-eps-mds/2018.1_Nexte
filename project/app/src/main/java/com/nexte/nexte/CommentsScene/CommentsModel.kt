@@ -18,7 +18,7 @@ class CommentsModel {
          * Class responsible to pass data from View to Interactor and then to worker,
          * so it can request data
          */
-        class Request
+        class Request(val tokenId: String, val storyId: String)
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter

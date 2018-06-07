@@ -16,6 +16,7 @@ import android.support.constraint.ConstraintLayout
 import android.widget.EditText
 import android.widget.ImageButton
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.UserSingleton
 
@@ -45,6 +46,8 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     var checkButton : ImageButton? = null
     var commentEditText: EditText? = null
     var mainLayout: ConstraintLayout? = null
+    var commentManager: CommentManager? = null
+    var storyManager: StoryManager? = null
 
     /**
      * On Create method that will setup this scene and call first Request for Interactor
@@ -65,11 +68,14 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         mainLayout = newView?.findViewById(R.id.mainLayout)
 
         commentsRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
+        this.commentManager = CommentManager()
+        this.storyManager = StoryManager()
         this.setUpCommentsScene()
 
         this.setActionToCloseKeyboard(newView)
 
-        val request = CommentsModel.GetCommentsRequest.Request()
+        val request = CommentsModel.GetCommentsRequest
+                .Request("1", "d2c02630-b20d-45fc-a5f3-41c399dbd075")
         interactor?.recentComments(request)
 
         checkButton?.setOnClickListener(sendCommentAction)
@@ -94,7 +100,8 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
         view.interactor = interactor
         interactor.worker.updateLogic = interactor
-        interactor.worker.commentsManager = CommentManager()
+        interactor.worker.commentsManager = commentManager
+        interactor.worker.storyManager = storyManager
         interactor.presenter = presenter
         presenter.viewController = view
     }
