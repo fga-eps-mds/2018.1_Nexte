@@ -37,28 +37,22 @@ class ShowProfileWorker {
      * and generate an [ShowProfileModel.Response] with user information
      *
      * @param request Contains the username and TokenID that will be used to recover the user
-     * @param completion Unformatted activity sent to Interactor
      */
     fun getUserProfile(request: ShowProfileModel.Request) {
 
         val userId = request.userId
-        val user = userManager?.get(userId)
 
         val emptyUser = User("", "", "", "", null, -1,
                 "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
                 User.Status.UNAVAILABLE,null, null, null)
-        var returnedUser: User? = null
+        val returnedUser: User?
 
-        if (user != null){
-            returnedUser = user
-        }else{
-            returnedUser = emptyUser
-        }
+        returnedUser = userManager?.get(userId) ?: emptyUser
 
         val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
         updateLogic?.updateUserProfile(response)
 
-        if(!returnedUser?.id.isEmpty()) {
+        if(!returnedUser.id.isEmpty()) {
             val url = "http://10.0.2.2:3000/users/" + returnedUser.id
             url.httpGet().responseJson { _, _, result ->
                 when(result){
@@ -92,9 +86,7 @@ class ShowProfileWorker {
     fun convertJsonUserToUser(jsonObject: JSONObject): User {
         val dataJson = jsonObject["data"] as JSONObject
         val userJson = dataJson["user"] as JSONObject
-        val jsonUser = userJson
-        val user = User.createUserFromJsonObject(jsonUser)
 
-        return user
+        return User.createUserFromJsonObject(userJson)
     }
 }
