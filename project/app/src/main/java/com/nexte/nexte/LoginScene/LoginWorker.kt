@@ -61,7 +61,7 @@ class LoginWorker {
      * @completion task to be completed at Interactor
      */
     fun requestForAuth(request: LoginModel.AccountKit.Request,
-                        completion: (LoginModel.AccountKit.Response) -> Unit) {
+                       completion: (LoginModel.AccountKit.Response) -> Unit) {
 
         val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
