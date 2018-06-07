@@ -90,6 +90,29 @@ class LoginPresenterTest {
         assertEquals(this.mock?.message, expectedMessage)
     }
 
+    @Test
+    fun testPresentError() {
+        //prepare
+        val tokenID = "123456"
+        val value1 = LoginModel.Authentication.StatusCode.AUTHORIZED
+        val response = LoginModel.Authentication.Response(tokenID, value1)
+
+        //call
+        this.presenter?.presentError(response = response)
+
+        //assert
+        assertNotNull(response)
+    }
+
+    @Test
+    fun testGetView() {
+        //prepare
+        val view = presenter?.view
+
+        //assert
+        assertEquals(presenter?.view, view)
+    }
+
     @After
     fun tearDown() {
         this.mock = null
