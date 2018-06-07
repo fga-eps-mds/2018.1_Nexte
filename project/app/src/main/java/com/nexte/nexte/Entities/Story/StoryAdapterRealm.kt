@@ -22,7 +22,7 @@ class StoryAdapterRealm: StoryAdapter{
         val storyRealm = realm.where<StoryRealm>().equalTo("id", identifier).findFirst()
         return if (storyRealm == null) {
             null
-        } else {
+        }else{
             convertStoryRealmToStory(storyRealm)
         }
     }

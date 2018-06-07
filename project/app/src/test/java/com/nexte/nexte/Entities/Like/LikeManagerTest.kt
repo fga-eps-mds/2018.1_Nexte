@@ -31,7 +31,7 @@ class LikeManagerTest {
         val like = likeManager?.get(identifier)
 
         Assert.assertEquals(like?.id, "1")
-        Assert.assertEquals(like?.userId, "2")
+        Assert.assertEquals(like?.userId, "1")
     }
 
     @Test
@@ -52,12 +52,12 @@ class LikeManagerTest {
 
     @Test
     fun testUpdate(){
-        val likes = Like(id = "1", userId = "2", date = Date())
+        val likes = Like(id = "1", userId = "1", date = Date())
 
         val likeUpdated = likeManager?.update(like = likes)
 
         Assert.assertEquals(likeUpdated?.id, "1")
-        Assert.assertEquals(likeUpdated?.userId, "2")
+        Assert.assertEquals(likeUpdated?.userId, "1")
     }
 
     @Test
@@ -71,12 +71,12 @@ class LikeManagerTest {
 
     @Test
     fun testUpdateMany(){
-        val likes = listOf(Like(id = "1", userId = "2", date = Date()))
+        val likes = listOf(Like(id = "1", userId = "1", date = Date()))
 
         val likeList = likeManager?.updateMany(likes = likes)
 
         Assert.assertEquals(likeList!![0].id, "1")
-        Assert.assertEquals(likeList[0].userId, "2")
+        Assert.assertEquals(likeList[0].userId, "1")
     }
 
     @Test
