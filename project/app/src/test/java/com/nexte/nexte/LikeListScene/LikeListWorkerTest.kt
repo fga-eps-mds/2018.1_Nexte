@@ -1,7 +1,9 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
 
@@ -12,6 +14,7 @@ class LikeListWorkerTest {
 
     var worker: LikeListWorker? = null
     var mock: MockWorkersUpdateLogic? = null
+    var userManager: UserManager? = null
 
     @Before
     fun setUp() {
@@ -35,7 +38,19 @@ class LikeListWorkerTest {
         assertEquals(this.mock?.response?.players!![0].name, "User test")
     }
 
-    @After
+//    @Test
+//    fun getUpdate() {
+//
+//        val request = "bla"
+//        val player = userManager?.get(request)
+//
+//        val response = LikeListModel.Response(this.convertUserToLikeListPlayer(user = player))
+//
+//        assertEquals(this.mock?.updateUsers(response = response), response)
+//
+//    }
+
+        @After
     fun tearDown() {
         this.worker = null
     }

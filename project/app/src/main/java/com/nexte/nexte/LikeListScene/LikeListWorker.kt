@@ -1,4 +1,4 @@
-package com.nexte.nexte.LikeListScene
+    package com.nexte.nexte.LikeListScene
 
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
