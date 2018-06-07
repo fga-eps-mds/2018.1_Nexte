@@ -1,5 +1,6 @@
 package com.nexte.nexte.RankingScene
 
+import android.util.Log
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
 import com.nexte.nexte.Entities.Challenge.Challenge
@@ -49,9 +50,12 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return an array of [RankingModel.FormattedPlayerInfo]
      */
-    fun formatPlayers(users: Array<User>): List<RankingModel.FormattedPlayerInfo> {
+    fun formatPlayers(users: Array<User>?): List<RankingModel.FormattedPlayerInfo> {
         val rankingModelPlayersMutable = mutableListOf<RankingModel.FormattedPlayerInfo>()
 
+        if(users == null){
+            return listOf()
+        }
         for (user in users){
             val name = user.name
             val rankingPosition = user.rankingPosition
@@ -59,7 +63,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val losses = user.loses
             val efficiency = calculatePlayerEfficiency(wins, losses)
             user.latestGames = challengeManager?.getLastFiveChallenges(user.id)
-            val lastGame = calculatePlayerLastGame(user.latestGames)
+            val lastGame = calculatePlayerLastGame(user.latestGames, Date())
             var playerCategory = ""
             if (user.category != null){
                 playerCategory = user.category.name
@@ -98,13 +102,12 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return a string that represents a player last game
      */
-    fun calculatePlayerLastGame(latestGames: List<Challenge>?): String{
+    fun calculatePlayerLastGame(latestGames: List<Challenge>?, today: Date): String{
         if (latestGames == null || latestGames.isEmpty()){
             return "Nenhum jogo"
         }
 
         val latestGameDate = latestGames.first().challengeDate
-        val today = Date()
 
         return if(today.year == latestGameDate.year){
             if (today.month == latestGameDate.month){

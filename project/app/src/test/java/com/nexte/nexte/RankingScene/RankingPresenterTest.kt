@@ -1,5 +1,6 @@
 package com.nexte.nexte.RankingScene
 
+
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
@@ -76,11 +77,24 @@ class RankingPresenterTest {
     }
 
     @Test
+    fun successTestFormatPlayerWithoutList(){
+        //prepare
+
+        val list: Array<User>? = arrayOf()
+        //call
+        val returnedValue = presenter?.formatPlayers(list)
+
+        //assert
+        assertEquals(returnedValue?.size, 0)
+
+    }
+
+    @Test
     fun successCalculatePlayerLastGameCase1(){
         //prepare
         val lastestGame: List<Challenge>? = null
         //call
-        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame)
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, Date())
         //assert
         assertEquals(returnedValue, "Nenhum jogo")
     }
@@ -95,7 +109,7 @@ class RankingPresenterTest {
         )
 
         //call
-        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame)
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, Date())
         //assert
         assertEquals(returnedValue, "hoje")
     }
@@ -104,7 +118,8 @@ class RankingPresenterTest {
     fun successCalculatePlayerLastGameCase3(){
         //prepare
         val todayDate = Date()
-        val yesterdayDate = Date(todayDate.year, todayDate.month, todayDate.day-1)
+        val yesterdayDate = Date(todayDate.year, todayDate.month, todayDate.day+4)
+
         val lastestGame = listOf(
                 Challenge("1", "1", "2", yesterdayDate,
                         Challenge.Status.CONFIRMED, Challenge.Stage.Canceled("sla bixo",
@@ -112,9 +127,10 @@ class RankingPresenterTest {
         )
 
         //call
-        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame)
+
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
-        assertEquals(returnedValue, "" + (todayDate.day - yesterdayDate.day) + " days")
+        assertEquals(returnedValue, "ontem")
     }
 
     @Test
@@ -129,9 +145,9 @@ class RankingPresenterTest {
         )
 
         //call
-        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame)
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
-        assertEquals(returnedValue, "" + (todayDate.month - twoDaysAgo.month) + " months")
+        assertEquals(returnedValue, "" + (todayDate.day - twoDaysAgo.day) + " days")
     }
 
     @Test
@@ -146,7 +162,7 @@ class RankingPresenterTest {
         )
 
         //call
-        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame)
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
         assertEquals(returnedValue, "" + (todayDate.month - lastMonth.month) + " months")
     }
@@ -163,9 +179,19 @@ class RankingPresenterTest {
         )
 
         //call
-        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame)
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
         assertEquals(returnedValue,  "" + (todayDate.year - lastYear.year) + " years")
+    }
+
+    @Test
+    fun successCalculatePlayerLastGameCase7(){
+        //prepare
+        val lastestGame:List<Challenge>? = listOf()
+        //call
+        val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, Date())
+        //assert
+        assertEquals(returnedValue, "Nenhum jogo")
     }
 
     @Test

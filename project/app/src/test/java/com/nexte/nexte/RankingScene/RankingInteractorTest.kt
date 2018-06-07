@@ -56,6 +56,37 @@ class RankingInteractorTest {
 
         //assert
         assertEquals(this.mock?.passedHere, true)
+
+        //backup
+        interactor.worker = oldWorker
+    }
+
+    @Test
+    fun successUpdateUsersInRanking(){
+        //prepare
+        val response= RankingModel.Response(arrayOf())
+
+        //call
+        interactor?.updateUsersInRanking(response)
+
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
+    fun successUpdateUsersInRankingWithNullPresenter(){
+        //prepare
+        val response= RankingModel.Response(arrayOf())
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        //call
+        interactor?.updateUsersInRanking(response)
+
+        //assert
+        assertEquals(this.mock?.passedHere, false)
+
+        //backup
+        interactor?.presenter = backup
     }
 
     @Test

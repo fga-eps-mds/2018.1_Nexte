@@ -51,8 +51,42 @@ class RankingWorkerTest : HelpForRealm() {
         //backup
         worker?.updateLogic = backup
     }
+/*
+    @Test
+    fun successConvertJsonToListOfUsers(){
+        //prepare
+        val jsonUser = JSONObject()
+        jsonUser.put("id", "1")
+        jsonUser.put("name", "teste")
+        jsonUser.put("profileImageURL", "www.lol.com.br")
+        jsonUser.put("nickname", "biel")
+        jsonUser.put("rankPosition", 1)
+        jsonUser.put("email", "biel@poc.br")
+        jsonUser.put("phone", "3232323232")
+        jsonUser.put("wins", 1)
+        jsonUser.put("loses", 1)
+        jsonUser.put("birthDate", Date())
+        jsonUser.put("gender", "M")
+        jsonUser.put("category", 1)
+        jsonUser.put("status", 1)
 
+        val usersJsonArray = JSONArray()
+        usersJsonArray.put(jsonUser)
 
+        val dataJson = JSONObject()
+        dataJson.put("users", usersJsonArray)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("data", dataJson)
+        var users: List<User>? = null
+        //call
+        thread {
+            users = worker?.convertJsonToListOfUsers(jsonObject)
+        }.join()
+        //assert
+        assertNotNull(users)
+    }
+*/
 //    @Test
 //    fun testGetUsersInRanking(){
 //        //prepare
