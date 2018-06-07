@@ -11,6 +11,8 @@ import org.junit.Before
 class EditProfileInteractorTest {
 
     var interactor: EditProfileInteractor? = null
+    var mocker: MockerEditPresentationLogic? = null
+
 
     @Before
     fun setUp(){
@@ -21,11 +23,18 @@ class EditProfileInteractorTest {
 
     @Test
     fun getFormatUserDataPresenter() {
-
+        //prepare
+        var requestTest = EditProfileModel.RecoverUserRequest.Request("Aleronupe", "1234f")
+        //call
+        this.interactor?.formatUserDataPresenter
+        this.interactor?.getProfileToEdit(requestTest)
+        //assert
+        assertEquals(mocker?.passedHere, true)
     }
 
     @Test
     fun setFormatUserDataPresenter() {
+
     }
 
     @Test
@@ -65,13 +74,22 @@ class EditProfileInteractorTest {
 
     class EditProfilePresenterMock: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic
     {
-        var  passedHere = false;
+        var  passedHere = false
         override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
             passedHere = true
         }
 
         override fun sendEditedProfileStatus(response: EditProfileModel.EditProfileRequest.Response) {
             passedHere = true
+        }
+    }
+
+   class MockerEditPresentationLogic: EditProfileDisplayLogic {
+
+        var passedHere = false
+
+        override fun displayEditedProfile(viewModel: EditProfileModel.EditProfileRequest.ViewModel) {
+            this.passedHere = true
         }
     }
 }
