@@ -22,6 +22,16 @@ class MatchPresenterTest {
     }
 
     @Test
+    fun testMatchPresenter() {
+        //prepare
+        //call
+        val testClass = MatchPresenter()
+
+        //assert
+        assertNotNull(testClass)
+    }
+
+    @Test
     fun testPresentMatch() {
         //prepare
         val testFormattedMatchData = MatchModel.FormattedMatchData("Lele", 1, "Ale", 2)

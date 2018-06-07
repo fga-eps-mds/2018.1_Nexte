@@ -140,7 +140,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ["clean", "testDebugUnitTes
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*',
+                       'android/**/*.*', '**/*Fragment*.*', '**/*View*.*']
     )
 
     additionalSourceDirs = files(coverageSourceDirs)
