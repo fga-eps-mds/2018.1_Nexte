@@ -35,6 +35,16 @@ class LikeListPresenterTest {
         assertEquals(this.mock?.playersFormatted!![0].photo, photo)
     }
 
+    @Test
+    fun testConstructorLikeListPresenter() {
+        //prepare and call
+        val presenter = LikeListPresenter()
+
+        //assert
+        assertNotNull(presenter)
+    }
+
+
     @After
     fun tearDown() {
         this.mock = null

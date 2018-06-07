@@ -1,7 +1,9 @@
 package com.nexte.nexte.LikeListScene
 
+import com.facebook.accountkit.LoginModel
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.Player
 import org.junit.After
 import org.junit.Before
 
@@ -50,6 +52,15 @@ class LikeListInteractorTest {
 
         //assert
         assertEquals(this.mock?.passedHere, true)
+    }
+    @Test
+    fun testConstructorInteractor() {
+        //prepare and call
+        val interactor = LikeListInteractor()
+
+        //assert
+            assertNotNull(interactor)
+
     }
 
     @After
