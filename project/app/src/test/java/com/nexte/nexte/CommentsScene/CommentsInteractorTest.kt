@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
@@ -8,6 +9,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class CommentsInteractorTest {
 
@@ -38,8 +40,14 @@ class CommentsInteractorTest {
     @Test
     fun successPublishNewComment() {
         //prepare
-        val request = CommentsModel.PublishCommentRequest.Request(commentToPost = "Jogo Sensacional!")
+        val id: String? = "1"
+        val userId: String? = "2"
+        val comment: String? = ""
+        val date: Date? = Date()
+        val comments = Comment(id, userId, comment, date)
 
+        val request = CommentsModel.PublishCommentRequest.Request(commentToPost = "Jogo Sensacional!")
+        val response = CommentsModel.PublishCommentRequest.Response(comments)
         //call
         this.interactor?.publishNewComment(request)
 
@@ -83,26 +91,36 @@ class CommentsInteractorTest {
         val request = CommentsModel.ComplaintRequest.Request(
                 3
         )
+        val response = CommentsModel.ComplaintRequest.Response(1)
 
         //call
         this.interactor?.sendComplaint(request)
 
         //assert
         assertEquals(true, mock?.passedHere)
+        assertNotNull(response)
     }
 
     @Test
     fun successDeleteComment(){
         //prepare
+        val id: String? = "1"
+        val userId: String? = "2"
+        val comment: String? = ""
+        val date: Date? = Date()
+        val comments = Comment(id, userId, comment, date)
+
         val request = CommentsModel.DeleteCommentRequest.Request(
                 108
         )
+        val response = CommentsModel.DeleteCommentRequest.Response(comments)
 
         //call
         this.interactor?.deleteComment(request)
 
         //assert
         assertEquals(true, mock?.passedHere)
+        assertNotNull(response)
     }
     
     @After
