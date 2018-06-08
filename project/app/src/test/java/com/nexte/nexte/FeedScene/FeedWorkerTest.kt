@@ -16,6 +16,8 @@ class FeedWorkerTest: HelpForRealm() {
     var worker: FeedWorker? = null
     var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
     var mock: MockFeedUpdateLogic? = null
+    var storyManager: StoryManager? = null
+    var updateLogicFeed: FeedWorkerUpdateLogic? = null
 
     @Before
     fun setUp() {
@@ -27,13 +29,25 @@ class FeedWorkerTest: HelpForRealm() {
         this.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
+//    @Test
+//    fun testUpdateFeed(){
+//        var
+//    }
     @Test
     fun testFetchData(){
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
+        var allStories = storyManager?.getAll()
+        allStories = if (allStories == null) {
+        listOf()
+        } else {
+        allStories
+    }
+    val response = FeedModel.GetFeedActivities.Response(allStories)
 
         //call
-        this.worker?.fetchFeedData(request = request)
+        worker?.fetchFeedData(request)
+        updateLogicFeed?.updateFeed(response)
 
         assertNotNull(this.mock?.response)
         assertEquals(this.mock?.response?.feedActivities?.size, 4)

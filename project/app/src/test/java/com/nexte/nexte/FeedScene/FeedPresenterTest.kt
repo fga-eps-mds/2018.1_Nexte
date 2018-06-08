@@ -38,7 +38,7 @@ class FeedPresenterTest {
         // Call
         val story = Story(id, winner, loser, date, comments, likes)
         val response = FeedModel.GetFeedActivities.Response(listOf(story))
-        response.feedActivities
+        response.feedActivities= listOf(story)
 
         //call
         this.presenter?.formatFeed(response = response)
