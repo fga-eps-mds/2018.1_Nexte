@@ -60,14 +60,15 @@ class LikeListInteractorTest {
 
         //assert
             assertNotNull(interactor)
-
     }
 
     @Test
     fun testSetWorkerLikeList() {
         val setWorker = interactor?.worker?.updateLogic
+        val worker = interactor?.worker?.userManager
 
         assertEquals(interactor?.worker?.updateLogic, setWorker)
+        assertEquals(interactor?.worker?.userManager, worker)
     }
 
     @After
