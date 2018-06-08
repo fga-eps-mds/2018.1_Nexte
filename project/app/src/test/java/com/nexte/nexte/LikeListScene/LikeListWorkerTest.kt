@@ -14,7 +14,7 @@ class LikeListWorkerTest {
 
     var worker: LikeListWorker? = null
     var mock: MockWorkersUpdateLogic? = null
-    var userManager: UserManager? = null
+
 
     @Before
     fun setUp() {
@@ -36,19 +36,19 @@ class LikeListWorkerTest {
 
         assertEquals(this.mock?.response?.players?.size, 1)
         assertEquals(this.mock?.response?.players!![0].name, "User test")
+        assertNotNull(request)
     }
 
-//    @Test
-//    fun getUpdate() {
-//
-//        val request = "bla"
-//        val player = userManager?.get(request)
-//
-//        val response = LikeListModel.Response(this.convertUserToLikeListPlayer(user = player))
-//
-//        assertEquals(this.mock?.updateUsers(response = response), response)
-//
-//    }
+    @Test
+    fun getUpdate() {
+        //prepare and call
+        val userManager = worker?.userManager
+        val updateLogic = worker?.updateLogic
+        //assert
+        assertEquals(worker?.updateLogic, updateLogic)
+        assertEquals(worker?.userManager, userManager)
+
+    }
 
         @After
     fun tearDown() {
