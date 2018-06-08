@@ -38,7 +38,7 @@ class FeedModelTest {
         // Call
         val story = Story(id, winner, loser, date, comments, likes)
         val response = FeedModel.GetFeedActivities.Response(listOf(story))
-        response.feedActivities
+        response.feedActivities = listOf((story))
 
         //assert
         assertEquals(id, response.feedActivities[0].id)
@@ -233,6 +233,10 @@ class FeedModelTest {
 
     @Test
     fun successCreateViewModelLikeAndUnlike(){
+        //prepare
+        val testLikeUnlike = FeedModel.LikeAndUnlike()
+        //call
+        assertNotNull(testLikeUnlike)
 
     }
 

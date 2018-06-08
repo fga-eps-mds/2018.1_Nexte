@@ -22,6 +22,7 @@ class FeedPresenterTest {
         this.mock = MockFeedDisplayLogic()
         this.presenter = FeedPresenter(viewController = mock)
         this.presenter?.userManager = UserManager(UserAdapterSpy())
+        this.presenter?.viewController = mock
     }
 
     @Test
@@ -46,6 +47,15 @@ class FeedPresenterTest {
         assertNotNull(this.mock?.formattedGetFeedActivities)
         assertEquals(id, this.mock?.formattedGetFeedActivities?.identifier)
         assertEquals(likes.size.toString(), this.mock?.formattedGetFeedActivities?.numberOfLikes)
+    }
+
+    @Test
+    fun successGetViewController(){
+        //assert and call
+        val viewController = presenter?.viewController
+
+        //assert
+        assertEquals(viewController, presenter?.viewController)
     }
 
     @Test
