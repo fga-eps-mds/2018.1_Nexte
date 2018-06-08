@@ -45,10 +45,14 @@ class EditProfilePresenterTest {
 
 
         //call
+        val testViewToShowUser = this.presenter?.viewToShowUserInformation
+
         this.presenter?.presentProfileToEdit(testResponse)
 
         //assert
         assertEquals(true, this.mock?.hasBeenHere)
+        assertEquals(this.presenter?.viewToShowUserInformation, testViewToShowUser)
+
 
     }
 
@@ -75,10 +79,12 @@ class EditProfilePresenterTest {
 
 
         //call
+        val testViewToShowEdit = this.presenter?.viewToShowEditProfileError
         this.presenter?.sendEditedProfileStatus(testResponse)
 
         //assert
         assertEquals(true, this.mock?.hasBeenHere)
+        assertEquals(this.presenter?.viewToShowEditProfileError, testViewToShowEdit)
 
     }
 
