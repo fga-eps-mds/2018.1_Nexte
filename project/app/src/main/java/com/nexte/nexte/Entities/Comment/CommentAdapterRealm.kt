@@ -31,8 +31,23 @@ class CommentAdapterRealm : CommentAdapter {
     }
 
     override fun delete(identifier: String): Comment? {
+        val commentRealm = realm.where<CommentRealm>().equalTo("id", identifier).findAll()
+        realm.beginTransaction()
+        val comment = convertCommentRealmToComment(commentRealm.first()!!)
+        commentRealm.deleteAllFromRealm()
+        realm.commitTransaction()
+        return comment
+    }
 
-        return null
+    override fun getCommentsFromStory(commentsIds: List<String>): List<Comment>? {
+        var commentsMutable = mutableListOf<Comment>()
+        for (commentId in commentsIds) {
+            val commentRealm = realm.where<CommentRealm>().equalTo("id", commentId)
+                    .findFirst()
+            val comment = convertCommentRealmToComment(commentRealm!!)
+            commentsMutable.add(comment)
+        }
+        return commentsMutable.toList()!!
     }
 
     private fun convertCommentRealmToComment(commentRealm: CommentRealm) : Comment {

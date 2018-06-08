@@ -20,7 +20,11 @@ class StoryAdapterRealm: StoryAdapter{
 
     override fun get(identifier: String): Story? {
         val storyRealm = realm.where<StoryRealm>().equalTo("id", identifier).findFirst()
-        return convertStoryRealmToStory(storyRealm!!)
+        return if (storyRealm == null) {
+            null
+        }else{
+            convertStoryRealmToStory(storyRealm)
+        }
     }
 
     override fun getAll(): List<Story> {

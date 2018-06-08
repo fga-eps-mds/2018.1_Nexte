@@ -29,8 +29,26 @@ class LikeAdapterRealm : LikeAdapter {
 
 
     override fun delete(identifier: String): Like? {
+        val likeRealm = realm.where<LikeRealm>().equalTo("id", identifier).findAll()
+        realm.beginTransaction()
+        val like = convertLikeRealmToLike(likeRealm.first()!!)
+        likeRealm.deleteAllFromRealm()
+        realm.commitTransaction()
+        return like
+    }
 
-        return null
+    override fun getLikesFromStory(likesIds: List<String>): List<Like>? {
+        var likesMutable = mutableListOf<Like>()
+        for(likeId in likesIds){
+            val likeRealm = realm.where<LikeRealm>().equalTo("id", likeId).findFirst()
+            if (likeRealm != null) {
+                val like = convertLikeRealmToLike(likeRealm!!)
+                likesMutable.add(like)
+            } else {
+                //Do nothing
+            }
+        }
+        return likesMutable.toList()
     }
 
 

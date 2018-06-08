@@ -29,8 +29,8 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 7
-        versionName "0.7"
+        versionCode 8
+        versionName "0.8"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -171,5 +171,3 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
-
-
