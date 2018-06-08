@@ -70,11 +70,11 @@
 
     <View
         android:id="@+id/loginline_left_email"
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="1dp"
         android:layout_marginBottom="100dp"
         android:layout_marginEnd="400dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="62dp"
         android:layout_marginTop="260dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
@@ -85,10 +85,10 @@
 
     <View
         android:id="@+id/loginline_email_right"
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="1dp"
         android:layout_marginBottom="250dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="62dp"
         android:layout_marginStart="275dp"
         android:layout_marginTop="260dp"
         android:background="#ffff"
@@ -100,11 +100,11 @@
 
     <View
         android:id="@+id/loginline_password_right"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="1dp"
         android:layout_marginBottom="120dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="230dp"
+        android:layout_marginStart="235dp"
         android:layout_marginTop="340dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
@@ -115,11 +115,11 @@
 
     <View
         android:id="@+id/loginline_password_left"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="1dp"
         android:layout_marginBottom="120dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="340dp"
         android:background="#ffff"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
@@ -187,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="320dp"
-        android:layout_marginEnd="190dp"
+        android:layout_marginEnd="185dp"
         android:layout_marginTop="5dp"
         android:text="Senha"
         android:textColor="#c5c5c5"
