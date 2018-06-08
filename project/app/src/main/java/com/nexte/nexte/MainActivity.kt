@@ -26,11 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavView?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         bottomNavView?.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
-        bottomNavView?.selectedItemId = R.id.profile
-        loginButton?.setOnClickListener {
-            val intent = Intent(this, LoginView::class.java)
-            startActivity(intent)
-        }
+        bottomNavView?.selectedItemId = R.id.feed
+        val feedFragment = FeedFragment().getInstance()
+        openFragment(feedFragment, "feed")
+        val intent = Intent(this, LoginView::class.java)
+        startActivity(intent)
+
+
     }
 
     private val mOnNavigationItemReselectedListener = BottomNavigationView.OnNavigationItemReselectedListener { item ->
