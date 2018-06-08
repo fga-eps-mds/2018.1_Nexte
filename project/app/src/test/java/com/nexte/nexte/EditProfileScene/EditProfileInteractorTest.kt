@@ -1,5 +1,6 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.Player
 import com.nexte.nexte.UserSingleton
@@ -8,38 +9,61 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.*
 
 class EditProfileInteractorTest: HelpForRealm() {
 
     var interactor: EditProfileInteractor? = null
-    var mockerTest: MockerEditPresentationLogic? = null
+    var mocker: EditProfilePresenterMock? = null
 
 
     @Before
     fun setUp(){
         super.setUpWithUser()
         interactor = EditProfileInteractor()
-        interactor?.formatUserDataPresenter = EditProfilePresenterMock()
-        interactor?.formatErrorCodePresenter = EditProfilePresenterMock()
+        mocker = EditProfilePresenterMock()
+        interactor?.formatUserDataPresenter = mocker
+        interactor?.formatErrorCodePresenter = mocker
     }
 
     @Test
-    fun getFormatUserDataPresenter() {
+    fun testGetProfileToEdit() {
         //prepare
         var requestTest = EditProfileModel.RecoverUserRequest.Request("Aleronupe", "1234f")
+
         //call
-        this.interactor?.formatUserDataPresenter
         this.interactor?.getProfileToEdit(requestTest)
+
         //assert
-        assertEquals( true, this.mockerTest?.passedHere)
+        assertEquals( true, this.mocker?.passedHere)
     }
 
     @Test
-    fun getFormatErrorCodePresenter() {
-    }
+    fun testSetEditedProfile() {
+        //prepare
+        val testUser = User("1",
+                "André Rede",
+                null,
+                "André",
+                Date(1987, 5, 15),
+                3,
+                "andre@nexte.com",
+                "130",
+                162,
+                69,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList())
+        val requestTest = EditProfileModel.EditProfileRequest.Request(testUser,"654321")
 
-    @Test
-    fun setFormatErrorCodePresenter() {
+        //call
+        this.interactor?.setEditedProfile(requestTest)
+
+        //assert
+        assertEquals( true, this.mocker?.passedHere)
     }
 
     @Test
@@ -56,23 +80,12 @@ class EditProfileInteractorTest: HelpForRealm() {
         assertNotNull(worker)
     }
 
-    @Test
-    fun getProfileToEdit() {
-        //prepare
-
-        //call
-
-    }
-
-    @Test
-    fun setEditedProfile() {
-    }
 
     @After
     fun tearDown(){
         super.tearDownRealm()
 
-        this.mockerTes = null
+        this.mocker = null
         this.interactor = null
     }
 
@@ -89,13 +102,5 @@ class EditProfileInteractorTest: HelpForRealm() {
         }
     }
 
-   class MockerEditPresentationLogic: EditProfileDisplayLogic {
-
-        var passedHere = false
-
-        override fun displayEditedProfile(viewModel: EditProfileModel.EditProfileRequest.ViewModel) {
-            this.passedHere = true
-        }
-    }
 
 }
