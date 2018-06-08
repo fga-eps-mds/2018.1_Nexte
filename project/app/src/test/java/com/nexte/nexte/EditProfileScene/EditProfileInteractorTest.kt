@@ -72,7 +72,7 @@ class EditProfileInteractorTest: HelpForRealm() {
     fun tearDown(){
         super.tearDownRealm()
 
-        this.mockerTest = null
+        this.mockerTes = null
         this.interactor = null
     }
 
