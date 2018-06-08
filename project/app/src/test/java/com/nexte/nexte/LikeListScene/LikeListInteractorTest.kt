@@ -63,6 +63,13 @@ class LikeListInteractorTest {
 
     }
 
+    @Test
+    fun testSetWorkerLikeList() {
+        val setWorker = interactor?.worker?.updateLogic
+
+        assertEquals(interactor?.worker?.updateLogic, setWorker)
+    }
+
     @After
     fun tearDown() {
         this.mock = null

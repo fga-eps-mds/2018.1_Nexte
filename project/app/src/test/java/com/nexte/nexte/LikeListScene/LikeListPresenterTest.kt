@@ -44,6 +44,14 @@ class LikeListPresenterTest {
         assertNotNull(presenter)
     }
 
+    @Test
+    fun testGetViewList() {
+        //prepare
+        val viewList = presenter?.viewList
+
+        //assert
+        assertEquals(presenter?.viewList, viewList)
+    }
 
     @After
     fun tearDown() {
