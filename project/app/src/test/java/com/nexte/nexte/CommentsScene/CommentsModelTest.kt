@@ -276,7 +276,7 @@ class CommentsModelTest {
         )
         viewModel.commentsFormatted = newComments
 
-        //assert
+        //assertF
         assertEquals(viewModel.commentsFormatted, newComments)
     }
 
@@ -503,7 +503,7 @@ class CommentsModelTest {
     }
 
     @Test
-    fun DeleteCommentResponse() {
+    fun DeleteComgimentResponse() {
         //prepare
 
         val comment1 = Comment("hahaha",

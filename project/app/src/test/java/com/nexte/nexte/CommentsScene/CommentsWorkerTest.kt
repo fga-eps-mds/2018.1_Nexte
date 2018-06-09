@@ -63,8 +63,6 @@ class CommentsWorkerTest {
 
         assertEquals(comment1.comment, this.mock?.response1?.comments!![0].comment)
         assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
-
-
     }
 
     @Test
