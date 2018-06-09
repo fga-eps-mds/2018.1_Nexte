@@ -18,10 +18,12 @@ class CommentsModelTest {
         //prepare
 
         //call
-        val request = CommentsModel.GetCommentsRequest.Request()
+        val request = CommentsModel.GetCommentsRequest.Request("1", "1")
 
         //assert
         assertNotNull(request)
+        assertEquals(request.storyId, "1")
+        assertEquals(request.tokenId, "1")
     }
 
     @Test

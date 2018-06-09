@@ -1,6 +1,7 @@
 package com.nexte.nexte.LikeListScene
 
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -26,30 +27,15 @@ class LikeListModelTest {
     @Test
     fun testRequest(){
         //prepare
-        val requestMessage = "123"
 
         //call
-        val request = LikeListModel.Request(request = requestMessage)
-        request.request = requestMessage
+        val request = LikeListModel.Request("1", "2")
+        request.tokenId = "1"
+        request.storyId = "2"
 
         //assert
-        assertEquals(requestMessage, request.request)
-    }
-
-    @Test
-    fun testPlayer(){
-        //prepare
-        val name = "luis"
-        val photo = 1
-
-        //call
-        val player = LikeListModel.Players(name = name, photo = photo)
-        player.name = name
-        player.photo = photo
-
-        //assert
-        assertEquals(name, player.name)
-        assertEquals(photo, player.photo)
+        assertEquals(request.tokenId, "1")
+        assertEquals(request.storyId, "2")
     }
 
     @Test
@@ -71,17 +57,13 @@ class LikeListModelTest {
     @Test
     fun testResponse(){
         //prepare
-        val name = "luis"
-        val photo = 1
-        val player = LikeListModel.Players(name = name, photo = photo)
 
         //call
-        val response = LikeListModel.Response(players = mutableListOf(player))
-        response.players = mutableListOf(player)
+        val response = LikeListModel.Response(listOf())
+        response.players = listOf()
 
         //assert
-        assertEquals(response.players.size, 1)
-        assertEquals(player, response.players[0])
+        assertEquals(response.players.size, 0)
     }
 
     @Test
