@@ -106,7 +106,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
             view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
             view?.name?.text = UserSingleton.loggedUser.name
-            view?.picture_img_view?.setBackgroundResource(UserSingleton.loggedUser.profilePicture!!.toInt())
+            view?.picture_img_view?.setImageResource(UserSingleton.loggedUser.profilePicture!!.toInt())
             view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
