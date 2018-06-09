@@ -286,8 +286,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedWins?.text = ""
     }
 
-
-
     /**
      * Adapter Class to control recycler view of users that can be challenged
      *
@@ -315,8 +313,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
             (fragment as PlayersListFragment).sendChallengeButton?.isEnabled = true
 
             holder.bindView(challenged[position])
-
-
             holder.view.userPicture.setOnClickListener {
                 if (expandedPlayer >= 0) {
                     notifyItemChanged(expandedPlayer)
@@ -347,11 +343,10 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
                 fragment.removePlayerDetailedInfo()
                 fragment.sendChallengeButton?.isEnabled = false
             }
+
             if(fragment.hasMatch!!){
                 fragment.sendChallengeButton?.isEnabled = false
             }
-
-
         }
 
         override fun getItemCount(): Int {

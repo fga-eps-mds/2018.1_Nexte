@@ -10,16 +10,24 @@ import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import java.util.*
 
+interface PlayerListUpdateLogic{
 
+    /**
+     * * Method that will be used to pass response data for the presenter
+     *
+     * @param response Response model of list that contains data to pass for Presenter
+     */
+    fun getPlayersToChallenge(request: PlayersListModel.ShowRankingPlayersRequest.Request)
+}
 /**
  * Class responsible to do request for anywhere, format Response and
  * call completion to send data for called class
  */
 class PlayersListWorker {
 
-
     var userManager: UserManager = UserManager()
     var challengeManager: ChallengeManager = ChallengeManager()
+
     /**
      * Function to get players 5 rank positions above the logged player
      *
@@ -52,12 +60,11 @@ class PlayersListWorker {
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-        fun fetchChallengedDetails (request: PlayersListModel.SelectPlayerForChallengeRequest.Request,
-                                    completion: (PlayersListModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
+    fun fetchChallengedDetails (request: PlayersListModel.SelectPlayerForChallengeRequest.Request,
+                                completion: (PlayersListModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
+
         val challengedPosition = request.challengedRankingPosition
-
         var selectedPlayer: User?= null
-
         val players = userManager?.getAll()
 
         players?.forEach {
@@ -81,7 +88,6 @@ class PlayersListWorker {
                           completion: (PlayersListModel.ChallengeButtonRequest.Response) -> Unit) {
 
         var challengedUser = userManager.get(request.userChallenged)
-
         challengedUser?.let {
             val challenge = Challenge(UUID.randomUUID().toString(),
                     UserSingleton.loggedUserID,
@@ -92,20 +98,14 @@ class PlayersListWorker {
 
             challengeManager.update(challenge)
 
-
             val challenged = MatchModel.MatchPlayer(challengedUser.name, R.mipmap.ic_launcher_round)
             val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
             val match = MatchModel.MatchData(challenged, challenger)
-
             val response = PlayersListModel.ChallengeButtonRequest.Response(challengedUser.name, match)
 
             completion(response)
         }
     }
 
-    companion object {
-
-        const val rankingGap = 5
-    }
-
+    companion object {  const val rankingGap = 5 }
 }

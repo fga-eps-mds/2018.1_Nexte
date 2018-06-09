@@ -37,10 +37,14 @@ interface ChallengeBusinessLogic {
  * @property worker Reference to worker [PlayersListWorker]
  * @property presenter Reference to presenter [PlayersListPresenter]
  */
-class PlayersListInteractor : ChallengeBusinessLogic {
+class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
 
     var worker = PlayersListWorker()
     var presenter: PlayersListPresentationLogic? = null
+
+    override fun getPlayersToChallenge(request: PlayersListModel.ShowRankingPlayersRequest.Request) {
+//        this.worker.fetchPlayersToChallenge(request)
+    }
 
     /**
      * Method that pass the request to Worker and send the response to Presenter for the request
@@ -56,7 +60,6 @@ class PlayersListInteractor : ChallengeBusinessLogic {
             else {
                 this.presenter?.formatNoPlayersMessage()
             }
-
         }
     }
 
