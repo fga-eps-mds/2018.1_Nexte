@@ -63,8 +63,26 @@ class CommentsWorkerTest {
 
         assertEquals(comment1.comment, this.mock?.response1?.comments!![0].comment)
         assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
+        assertNull(null, mock)
 
+    }
 
+    @Test
+    fun testGetUpdateLogic() {
+        //prepare and call
+        val updateLogic = worker?.updateLogic
+
+        //assert
+        assertEquals(updateLogic, this.mock)
+    }
+
+    @Test
+    fun testGetCommentsManager() {
+        //prepare and call
+        val commentsMan = worker?.commentsManager
+
+        //assert
+        assertEquals(commentsMan, this.mock)
     }
 
     @Test
