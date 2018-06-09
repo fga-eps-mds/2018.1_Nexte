@@ -1,5 +1,6 @@
 package com.nexte.nexte.CommentsScene
 
+import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
@@ -8,6 +9,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class CommentsInteractorTest {
 
@@ -102,6 +104,48 @@ class CommentsInteractorTest {
         this.interactor?.deleteComment(request)
 
         //assert
+        assertEquals(true, mock?.passedHere)
+    }
+
+    @Test
+    fun updateSendComplain() {
+        val serverResponse = 1
+        val response= CommentsModel.ComplaintRequest.Response(serverResponse)
+
+        this.interactor?.updateSendComplaint(response)
+
+        assertEquals(true, mock?.passedHere)
+    }
+
+    @Test
+    fun updateNewComment() {
+        //prepare
+        val id: String? = "1"
+        val userId: String? = "2"
+        val comment: String? = ""
+        val date: Date? = Date()
+        val comments = Comment(id, userId, comment, date)
+
+        val response = CommentsModel.PublishCommentRequest.Response(comments)
+
+        this.interactor?.updateNewComment(response)
+
+        assertEquals(true, mock?.passedHere)
+    }
+
+    @Test
+    fun updateDeleteComment() {
+        //prepare
+        val id: String? = "1"
+        val userId: String? = "2"
+        val comment: String? = ""
+        val date: Date? = Date()
+        val comments = Comment(id, userId, comment, date)
+
+        val response = CommentsModel.DeleteCommentRequest.Response(comments)
+
+        this.interactor?.updateDeleteComment(response)
+
         assertEquals(true, mock?.passedHere)
     }
 
