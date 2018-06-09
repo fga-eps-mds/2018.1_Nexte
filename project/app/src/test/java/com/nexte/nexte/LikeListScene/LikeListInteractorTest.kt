@@ -64,10 +64,15 @@ class LikeListInteractorTest {
     }
 
     @Test
-    fun testSetWorkerLikeList() {
-        val setWorker = interactor?.worker?.updateLogic
+    fun successSetWorkerTest(){
+        //prepare
+        val newWorker = LikeListWorker()
 
-        assertEquals(interactor?.worker?.updateLogic, setWorker)
+        //call
+        this.interactor?.worker = newWorker
+
+        //assert
+        assertEquals(newWorker, interactor?.worker)
     }
 
     @After
