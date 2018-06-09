@@ -65,7 +65,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
                 playerCategory = user.category.name
             }
             val playerFormatted = RankingModel.FormattedPlayer(name,
-                    R.mipmap.ic_launcher, String.format("Vitórias: %d", wins),
+                    R.drawable.nexte, String.format("Vitórias: %d", wins),
                     String.format("%d", rankingPosition), String.format("Último Jogo: %s", lastGame),
                     String.format("Aproveitamento: %s", efficiency), playerCategory)
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)

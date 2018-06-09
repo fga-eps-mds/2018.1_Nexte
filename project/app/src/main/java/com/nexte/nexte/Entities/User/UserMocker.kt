@@ -12,7 +12,7 @@ object UserMocker {
         users.add(
                 User("1",
                         "André Rede",
-                        null,
+                        "profileImage1",
                         "André",
                         Date(1987, 5, 15),
                         3,
@@ -32,7 +32,7 @@ object UserMocker {
         users.add(
                 User("2",
                         "Nova Jucá",
-                        null,
+                        "profileImage2",
                         "Nova",
                         Date(1987, 5, 22),
                         4,
@@ -52,7 +52,7 @@ object UserMocker {
         users.add(
                 User("3",
                         "Milô Ray",
-                        null,
+                        "profileImage3",
                         "Milô",
                         Date(1985, 4, 28),
                         6,
@@ -72,7 +72,7 @@ object UserMocker {
         users.add(
                 User("4",
                         "Samantha Hale",
-                        null,
+                        "profileImage4",
                         "Samantha",
                         Date(1990, 12, 27),
                         5,
@@ -92,7 +92,7 @@ object UserMocker {
         users.add(
                 User("5",
                         "Keito Van",
-                        null,
+                        "profileImage5",
                         "Keito",
                         Date(1989, 10, 12),
                         1,
@@ -112,7 +112,7 @@ object UserMocker {
         users.add(
                 User("6",
                         "Marina Williams",
-                        null,
+                        "profileImage6",
                         "Marina",
                         Date(1984, 5, 2),
                         9,
@@ -132,7 +132,7 @@ object UserMocker {
         users.add(
                 User("7",
                         "Gael Montila",
-                        null,
+                        "profileImage7",
                         "Gael",
                         Date(1986, 2, 28),
                         8,
@@ -152,7 +152,7 @@ object UserMocker {
         users.add(
                 User("8",
                         "Dominio Khan",
-                        null,
+                        "profileImage8",
                         "Dominio",
                         Date(1992, 3, 1),
                         7,
@@ -173,7 +173,7 @@ object UserMocker {
         users.add(
                 User("9",
                         "Rafael Pardal",
-                        null,
+                        "profileImage9",
                         "Pardal",
                         Date(1990, 10, 12),
                         10,
@@ -193,7 +193,7 @@ object UserMocker {
         users.add(
                 User("10",
                         "Tomas Bento",
-                        null,
+                        "profileImage10",
                         "Bento",
                         Date(1988, 7, 22),
                         11,
@@ -213,7 +213,7 @@ object UserMocker {
         users.add(
                 User("11",
                         "Davi Goró",
-                        null,
+                        "profileImage11",
                         "Goró",
                         Date(1991, 10, 4),
                         16,
@@ -234,7 +234,7 @@ object UserMocker {
         users.add(
                 User("12",
                         "João Godofredo",
-                        null,
+                        "profileImage12",
                         "Godofredo",
                         Date(1987, 2, 9),
                         13,
@@ -254,7 +254,7 @@ object UserMocker {
         users.add(
                 User("13",
                         "Nick Cairo",
-                        null,
+                        "profileImage13",
                         "Cairo",
                         Date(1993, 3, 13),
                         12,
@@ -274,7 +274,7 @@ object UserMocker {
         users.add(
                 User("14",
                         "Robert Baptist",
-                        null,
+                        "profileImage14",
                         "Baptist",
                         Date(1989, 12, 4),
                         14,
@@ -294,7 +294,7 @@ object UserMocker {
         users.add(
                 User("15",
                         "Lucas DelPulo",
-                        null,
+                        "profileImage15",
                         "DelPulo",
                         Date(1992, 11, 6),
                         2,
@@ -314,7 +314,7 @@ object UserMocker {
         users.add(
                 User("16",
                         "Róger Frederico",
-                        null,
+                        "profileImage16",
                         "Frederico",
                         Date(1990, 9, 27),
                         15,
@@ -334,7 +334,7 @@ object UserMocker {
         users.add(
                 User("17",
                         "Grego Dimas",
-                        null,
+                        "profileImage17",
                         "Dimas",
                         Date(1990, 4, 19),
                         17,
@@ -354,7 +354,7 @@ object UserMocker {
         users.add(
                 User("18",
                         "Enrique Grasgo",
-                        null,
+                        "profileImage18",
                         "Grasgo",
                         Date(1995, 1, 23),
                         19,
@@ -374,7 +374,7 @@ object UserMocker {
         users.add(
                 User("19",
                         "João Isnenn",
-                        null,
+                        "profileImage19",
                         "Isnenn",
                         Date(1992, 8, 14),
                         17,
@@ -394,7 +394,7 @@ object UserMocker {
         users.add(
                 User("20",
                         "Gustavo Kartner",
-                        null,
+                        "profileImage20",
                         "Kartner",
                         Date(1993, 4, 1),
                         20,
