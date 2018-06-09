@@ -1,6 +1,7 @@
 package com.nexte.nexte
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,9 @@ import android.widget.Button
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.RankingScene.RankingFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import android.support.design.internal.BottomNavigationItemView
+import android.support.design.internal.BottomNavigationMenuView
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         bottom_navigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         bottom_navigation?.selectedItemId = R.id.feedNavigation
+        disableShiftMode(bottom_navigation)
         loginButton?.setOnClickListener {
             val intent = Intent(this, LoginView::class.java)
             startActivity(intent)
@@ -69,5 +74,27 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.main_frame_layout,fragment, tag)
         transaction.disallowAddToBackStack()
         transaction.commit()
+    }
+
+    @SuppressLint("RestrictedApi")
+    fun disableShiftMode(view: BottomNavigationView) {
+        val menuView = view.getChildAt(0) as BottomNavigationMenuView
+        try {
+            val shiftingMode = menuView.javaClass.getDeclaredField("mShiftingMode")
+            shiftingMode.isAccessible = true
+            shiftingMode.setBoolean(menuView, false)
+            shiftingMode.isAccessible = false
+            for (i in 0 until menuView.childCount) {
+                val item = menuView.getChildAt(i) as BottomNavigationItemView
+
+                item.setShiftingMode(false)
+                item.setChecked(item.itemData.isChecked)
+            }
+        } catch (e: NoSuchFieldException) {
+            Log.e("BNVHelper", "Unable to get shift mode field", e)
+        } catch (e: IllegalAccessException) {
+            Log.e("BNVHelper", "Unable to change value of shift mode", e)
+        }
+
     }
 }
