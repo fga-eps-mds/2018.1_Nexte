@@ -9,7 +9,6 @@ import com.nexte.nexte.LoginScene.*
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.widget.Button
 import com.nexte.nexte.FeedScene.FeedFragment
 import com.nexte.nexte.RankingScene.RankingFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,8 +17,6 @@ import android.support.design.internal.BottomNavigationMenuView
 import android.util.Log
 
 class MainActivity : AppCompatActivity() {
-
-    private var loginButton: Button?= null
 
     private val feedFragment = FeedFragment().getInstance()
     private val challengeFragment = ChallengeTabsFragment().getInstance()
@@ -30,15 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loginButton = this.findViewById(R.id.loginButton)
 
         bottom_navigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         bottom_navigation?.selectedItemId = R.id.feedNavigation
         disableShiftMode(bottom_navigation)
-        loginButton?.setOnClickListener {
-            val intent = Intent(this, LoginView::class.java)
-            startActivity(intent)
-        }
+
+        val intent = Intent(this, LoginView::class.java)
+        startActivity(intent)
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->
@@ -71,13 +66,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun openFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.main_frame_layout,fragment, tag)
+        transaction.replace(R.id.main_frame_layout, fragment, tag)
         transaction.disallowAddToBackStack()
         transaction.commit()
     }
 
     @SuppressLint("RestrictedApi")
-    fun disableShiftMode(view: BottomNavigationView) {
+    private fun disableShiftMode(view: BottomNavigationView) {
         val menuView = view.getChildAt(0) as BottomNavigationMenuView
         try {
             val shiftingMode = menuView.javaClass.getDeclaredField("mShiftingMode")
