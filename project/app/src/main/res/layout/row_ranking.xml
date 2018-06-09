@@ -9,7 +9,7 @@
     android:minWidth="@dimen/activity_horizontal_margin"
     android:visibility="visible">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/picture_img_view"
         android:layout_width="38dp"
         android:layout_height="38dp"
@@ -22,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
 
     <TextView
         android:id="@+id/name"
