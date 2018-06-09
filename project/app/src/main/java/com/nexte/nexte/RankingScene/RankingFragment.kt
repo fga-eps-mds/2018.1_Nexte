@@ -18,6 +18,7 @@ import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 
 /**
@@ -105,6 +106,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
             view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
             view?.name?.text = UserSingleton.loggedUser.name
+            view?.picture_img_view?.setImageResource(UserSingleton.loggedUser.profilePicture!!.toInt())
             view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
@@ -154,11 +156,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      * Class responsible to control recycler fragment scrolling
      *
      * @param playerRanking indicates the position of the logged user
-<<<<<<< HEAD:project/app/src/main/java/com/nexte/nexte/RankingScene/RankingView.kt
-     * @param context indicates the context that the recycler fragment is inserted in
-=======
      * @param fragment indicates the fragment that the recycler view is inserted in
->>>>>>> 436a600ad1d3c7d13e15052cb43dcd9891439e3f:project/app/src/main/java/com/nexte/nexte/RankingScene/RankingFragment.kt
      */
     private class OnScrollRankingRecyclerView(val playerRanking: Int, val fragment: Fragment) : RecyclerView.OnScrollListener() {
 
@@ -267,6 +265,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
             itemHolder?.efficiency?.text = item.player.userEfficiency
+            itemHolder?.profileImage?.setImageResource(item.player.userPictureURL)
             itemHolder?.profileButton?.setOnClickListener{
                 (fragment as RankingFragment).goToShowProfileView(item.player.userName)
             }
@@ -276,14 +275,12 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             } else {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
-
         }
 
         /**
-         * Method responsible to return size of ranking
+         * Method responsible to return sma ize of ranking
          */
         override fun getItemCount(): Int {
-
             return this.playerInformation.size
         }
 
@@ -300,6 +297,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             var efficiency = v.efficiency!!
             var profileButton = v.profileButton!!
             var playerCategory = v.playerCategory!!
+            var profileImage = v.picture_img_view!!
         }
     }
 }
