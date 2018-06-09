@@ -263,7 +263,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.victory?.text = item.player.userWins
             itemHolder?.lastGame?.text = item.player.userLastGame
             itemHolder?.efficiency?.text = item.player.userEfficiency
-            itemHolder?.profileImage?.setImageResource(R.drawable.temp)
+            itemHolder?.profileImage?.setImageResource(item.player.userPictureURL)
             itemHolder?.profileButton?.setOnClickListener{
                 (fragment as RankingFragment).goToShowProfileView(item.player.userName)
             }
