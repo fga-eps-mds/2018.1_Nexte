@@ -63,8 +63,19 @@ class CommentsWorkerTest {
 
         assertEquals(comment1.comment, this.mock?.response1?.comments!![0].comment)
         assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
-        assertNull(null, mock)
 
+    }
+
+    @Test
+    fun testNullStoryInComments() {
+        // prepare
+        val request = CommentsModel.GetCommentsRequest.Request("kk", "-1")
+
+        // cal
+        this.worker?.getCommentsData(request)
+
+        // assert
+        assertEquals(this.mock?.response1?.comments?.size, 0)
     }
 
     @Test
@@ -73,7 +84,7 @@ class CommentsWorkerTest {
         val updateLogic = worker?.updateLogic
 
         //assert
-        assertEquals(updateLogic, this.mock)
+        assertEquals(updateLogic, worker?.updateLogic)
     }
 
     @Test
@@ -82,7 +93,17 @@ class CommentsWorkerTest {
         val commentsMan = worker?.commentsManager
 
         //assert
-        assertEquals(commentsMan, this.mock)
+        assertEquals(commentsMan, worker?.commentsManager)
+    }
+
+
+    @Test
+    fun testGetStoryManager() {
+        //prepare and call
+        val storyMan = worker?.storyManager
+
+        //assert
+        assertEquals(storyMan, worker?.storyManager)
     }
 
     @Test
@@ -138,9 +159,30 @@ class CommentsWorkerTest {
         assertEquals(comment1.id, this.mock?.response4?.delComments?.id)
         assertEquals(comment1.userId, this.mock?.response4?.delComments?.userId)
         assertEquals(comment1.comment, this.mock?.response4?.delComments?.comment)
-
-
     }
+
+    @Test
+    fun getCommentsDeleteWithNullUpdateLogic() {
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+
+        val comment1 = Comment("1",
+                "2",
+                "", Date())
+
+        val requestToDel = CommentsModel.DeleteCommentRequest.Request(1)
+
+        //call
+        thread {this.worker?.getToDeleteComment(requestToDel)}.join()
+
+        //assert
+        assertNull(mock?.response4)
+
+        //backup
+        worker?.updateLogic = backup
+    }
+
     @After
     fun tearDown() {
         this.worker = null
