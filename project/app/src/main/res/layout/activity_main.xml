@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nexte.nexte.MainActivity"
     android:background="#2E2E2E">
-
 
     <Button
         android:id="@+id/loginButton"
@@ -21,31 +19,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <FrameLayout
+        android:id="@+id/main_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:layout_above="@id/bottom_navigation"/>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
+        style="@style/NexteBottomNavigation"
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bottomNavigationBackground"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@color/iconTint"
+        app:menu="@menu/bottom_navigation"/>
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_above="@+id/bottom_nav_view"
-        android:layout_marginBottom="0dp"
-        android:animateLayoutChanges="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-    </FrameLayout>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

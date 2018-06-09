@@ -86,7 +86,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
     private fun goToShowProfileView(name: String?) {
         val fragment = ShowProfileFragment().getInstance(name)
-        fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
+        fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
     }
 
 

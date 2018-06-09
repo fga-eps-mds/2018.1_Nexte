@@ -2,38 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <item
-            android:id="@+id/feed"
-            android:enabled="true"
-            android:icon="@drawable/ic_feed"
-            android:iconTint="@color/iconTint"
-            android:title="Feed"
-            app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/feedNavigation"
+        android:icon="@drawable/icon_feed"
+        android:title="@string/feedNavigation"/>
 
-        <item
-            android:id="@+id/challenge"
-            android:enabled="true"
-            android:tint="#fff"
-            android:icon="@drawable/ic_challenge"
-            android:iconTint="@color/iconTint"
-            android:title="Challenge"
-            app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/challengeNavigation"
+        android:icon="@drawable/icon_challenge"
+        android:title="@string/challengeNavigation"/>
 
-        <item
-            android:id="@+id/ranking"
-            android:enabled="true"
-            android:tint="#fff"
-            android:icon="@drawable/ic_ranking"
-            android:iconTint="@color/iconTint"
-            android:title="Ranking"
-            app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/profile"
-            android:enabled="true"
-            android:tint="#fff"
-            android:icon="@drawable/ic_ranking"
-            android:title="Profile"
-            android:iconTint="@color/iconTint"
-            app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/rankingNavigation"
+        android:icon="@drawable/icon_ranking"
+        android:title="@string/rankingNavigation"/>
+
+    <item
+        android:id="@+id/profileNavigation"
+        android:icon="@drawable/icon_profile"
+        android:title="@string/profileNavigation"/>
 
 </menu>
