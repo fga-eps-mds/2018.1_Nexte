@@ -30,17 +30,49 @@ class FeedWorkerTest: HelpForRealm() {
     }
 
     @Test
-    fun testFetchData(){
+    fun testFetchDataCase1(){
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
-        FeedModel.GetFeedActivities.Request()
         //call
         worker?.fetchFeedData(request)
+
         //assert
         assertNotNull(this.mock?.response)
         assertEquals(this.mock?.response?.feedActivities?.size, 4)
     }
 
+    @Test
+    fun testFetchDataCase2(){
+        //prepare
+        val request = FeedModel.GetFeedActivities.Request()
+        val backup = worker?.storyManager
+        //call
+        worker?.storyManager = null
+        worker?.fetchFeedData(request)
+
+        //assert
+        assertNotNull(this.mock?.response)
+        assertEquals(this.mock?.response?.feedActivities?.size, 0)
+
+        //backup
+        worker?.storyManager = backup
+    }
+
+    @Test
+    fun testFetchDataCase3(){
+        //prepare
+        val request = FeedModel.GetFeedActivities.Request()
+        val backup = worker?.updateLogic
+        //call
+        worker?.updateLogic = null
+        worker?.fetchFeedData(request)
+
+        //assert
+        assertNull(this.mock?.response)
+
+        //backup
+        worker?.updateLogic = backup
+    }
     @Test
     fun testManageLikes(){
         //prepare

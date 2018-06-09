@@ -47,7 +47,6 @@ class FeedWorker {
         val response = FeedModel.GetFeedActivities.Response(allStories)
         updateLogic?.updateFeed(response)
 
-
         if (UserSingleton.userType != UserType.MOCKED){
             val header = mapOf("accept-version" to "0.1.0")
             val url = "http://10.0.2.2:3000/stories"
