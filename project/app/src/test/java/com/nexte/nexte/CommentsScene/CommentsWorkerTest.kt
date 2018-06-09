@@ -53,16 +53,16 @@ class CommentsWorkerTest {
         val request = CommentsModel.GetCommentsRequest.Request("1", "1")
 
         //call
-         this.worker?.getCommentsData(request)
+        this.worker?.getCommentsData(request)
 
-            assertEquals(comment1.id, this.mock?.response1?.comments!![0].id)
-            assertEquals(comment2.id, this.mock?.response1?.comments!![1].id)
+        assertEquals(comment1.id, this.mock?.response1?.comments!![0].id)
+        assertEquals(comment2.id, this.mock?.response1?.comments!![1].id)
 
-            assertEquals(comment1.userId, this.mock?.response1?.comments!![0].userId)
-            assertEquals(comment2.userId, this.mock?.response1?.comments!![1].userId)
+        assertEquals(comment1.userId, this.mock?.response1?.comments!![0].userId)
+        assertEquals(comment2.userId, this.mock?.response1?.comments!![1].userId)
 
-            assertEquals(comment1.comment, this.mock?.response1?.comments!![0].comment)
-            assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
+        assertEquals(comment1.comment, this.mock?.response1?.comments!![0].comment)
+        assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
 
 
     }
@@ -79,10 +79,10 @@ class CommentsWorkerTest {
 
         //call
         worker?.setNewComment(request)
-            //assert
-            assertEquals(this.mock?.response2?.newComment?.id, newComment.id)
-            assertEquals(this.mock?.response2?.newComment?.userId, newComment.userId)
-            assertEquals(this.mock?.response2?.newComment?.comment, newComment.comment)
+        //assert
+        assertEquals(this.mock?.response2?.newComment?.id, newComment.id)
+        assertEquals(this.mock?.response2?.newComment?.userId, newComment.userId)
+        assertEquals(this.mock?.response2?.newComment?.comment, newComment.comment)
 
 
     }
@@ -94,7 +94,7 @@ class CommentsWorkerTest {
         )
 
         //call
-         worker?.sendComplaint(request)
+        worker?.sendComplaint(request)
 
         //assert
         assertEquals(this.mock?.response3?.serverResponse,200)
@@ -116,42 +116,42 @@ class CommentsWorkerTest {
         thread {this.worker?.getToDeleteComment(requestToDel)}.join()
 
 
-            //assert
-            assertEquals(comment1.id, this.mock?.response4?.delComments?.id)
-            assertEquals(comment1.userId, this.mock?.response4?.delComments?.userId)
-            assertEquals(comment1.comment, this.mock?.response4?.delComments?.comment)
+        //assert
+        assertEquals(comment1.id, this.mock?.response4?.delComments?.id)
+        assertEquals(comment1.userId, this.mock?.response4?.delComments?.userId)
+        assertEquals(comment1.comment, this.mock?.response4?.delComments?.comment)
 
 
     }
-            @After
-            fun tearDown() {
-                this.worker = null
-            }
-
-            class MockCommentsWorkerUpdateLogic : CommentsWorkerUpdateLogic {
-                var response1: CommentsModel.GetCommentsRequest.Response? = null
-                var response2: CommentsModel.PublishCommentRequest.Response? = null
-                var response3: CommentsModel.ComplaintRequest.Response? = null
-                var response4: CommentsModel.DeleteCommentRequest.Response? = null
-
-                override fun updateComment(response: CommentsModel.GetCommentsRequest.Response) {
-                    this.response1 = response
-                }
-
-                override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
-                    this.response2 = response
-                println(response)
-                    println(response.newComment.id)
-                }
-
-
-                override fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response) {
-                    this.response3 = response
-                }
-
-                override fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response) {
-                    this.response4 = response
-                }
-            }
-
+    @After
+    fun tearDown() {
+        this.worker = null
     }
+
+    class MockCommentsWorkerUpdateLogic : CommentsWorkerUpdateLogic {
+        var response1: CommentsModel.GetCommentsRequest.Response? = null
+        var response2: CommentsModel.PublishCommentRequest.Response? = null
+        var response3: CommentsModel.ComplaintRequest.Response? = null
+        var response4: CommentsModel.DeleteCommentRequest.Response? = null
+
+        override fun updateComment(response: CommentsModel.GetCommentsRequest.Response) {
+            this.response1 = response
+        }
+
+        override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
+            this.response2 = response
+            println(response)
+            println(response.newComment.id)
+        }
+
+
+        override fun updateSendComplaint(response: CommentsModel.ComplaintRequest.Response) {
+            this.response3 = response
+        }
+
+        override fun updateDeleteComment(response: CommentsModel.DeleteCommentRequest.Response) {
+            this.response4 = response
+        }
+    }
+
+}
