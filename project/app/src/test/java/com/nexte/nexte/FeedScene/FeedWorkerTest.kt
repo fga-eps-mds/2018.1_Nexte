@@ -29,26 +29,14 @@ class FeedWorkerTest: HelpForRealm() {
         this.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
-//    @Test
-//    fun testUpdateFeed(){
-//        var
-//    }
     @Test
     fun testFetchData(){
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
-        var allStories = storyManager?.getAll()
-        allStories = if (allStories == null) {
-        listOf()
-        } else {
-        allStories
-    }
-    val response = FeedModel.GetFeedActivities.Response(allStories)
-
+        FeedModel.GetFeedActivities.Request()
         //call
         worker?.fetchFeedData(request)
-        updateLogicFeed?.updateFeed(response)
-
+        //assert
         assertNotNull(this.mock?.response)
         assertEquals(this.mock?.response?.feedActivities?.size, 4)
     }
@@ -73,6 +61,23 @@ class FeedWorkerTest: HelpForRealm() {
             assertEquals(identifier, response.likedActivity.identifier)
 
         })
+    }
+
+    @Test
+    fun successGetUpdateLogic(){
+        //prepare and call
+        val updateLogic = this.worker?.updateLogic
+
+        //assert
+        assertNotNull(updateLogic)
+    }
+
+    @Test
+    fun successStoryManager(){
+        //prepare and call
+        val storyManager = this.storyManager
+        //assert
+        assertNotNull(storyManager)
     }
 
     @After
