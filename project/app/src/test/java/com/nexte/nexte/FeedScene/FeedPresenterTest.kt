@@ -84,6 +84,14 @@ class FeedPresenterTest {
         assertEquals(likes.size.toString(), this.mock?.formattedGetFeedActivities?.numberOfLikes)
     }
 
+    @Test
+    fun getUserManager(){
+        //prepare and call
+        val userManagerTest = this.presenter?.userManager
+        //assert
+        assertNotNull(userManagerTest)
+    }
+
     @After
     fun tearDown() {
         this.mock = null

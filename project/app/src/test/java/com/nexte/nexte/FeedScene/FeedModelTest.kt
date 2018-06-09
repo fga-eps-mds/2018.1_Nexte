@@ -253,6 +253,14 @@ class FeedModelTest {
         assertNotNull(model)
     }
 
+    @Test
+    fun successGetFeedActivities(){
+        //prepare and call
+        val getFeed = FeedModel.GetFeedActivities()
+        //assert
+        assertNotNull(getFeed)
+    }
+
     @After
     fun tearDown() {
     }

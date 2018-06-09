@@ -75,7 +75,7 @@ class FeedWorkerTest: HelpForRealm() {
     @Test
     fun successStoryManager(){
         //prepare and call
-        val storyManager = this.storyManager
+        val storyManager = this.worker?.storyManager
         //assert
         assertNotNull(storyManager)
     }
