@@ -77,16 +77,16 @@ class ShowProfileWorkerTest : HelpForRealm() {
         val phone = "5561999999999"
         val wins = 3
         val loses = 2
-        val birthDate = Date(1987, 5, 15)
+        val birthDate = "2018-01-07T00:00:00.000Z"
         val genderString = "M"
         val categoryInt = 1
         val statusInt = 0
 
         jsonUser.put("id", id)
         jsonUser.put("name", name)
-        jsonUser.put("profilePicture", profilePicture)
+        jsonUser.put("profileImageURL", profilePicture)
         jsonUser.put("nickname", nickname)
-        jsonUser.put("rankingPosition", rankingPosition)
+        jsonUser.put("rankPosition", rankingPosition)
         jsonUser.put("email", email)
         jsonUser.put("phone", phone)
         jsonUser.put("wins", wins)
@@ -103,23 +103,21 @@ class ShowProfileWorkerTest : HelpForRealm() {
         jsonObject.put("data", dataJson)
         var user: User? = null
         var userToCompare: User? = null
-        thread{
+
             //call
-            user = worker?.convertJsonUserToUser(jsonObject)
-        }.join()
+            thread{ user = worker?.convertJsonUserToUser(jsonObject)}.join()
+
         //assert
         assertEquals(jsonUser["id"] as String, user?.id)
         assertEquals(jsonUser["name"] as String, user?.name)
-        assertEquals(jsonUser["profilePicture"] as String, user?.profilePicture)
+        assertEquals(jsonUser["profileImageURL"] as String, user?.profilePicture)
         assertEquals(jsonUser["nickname"] as String, user?.nickname)
-        assertEquals(jsonUser["rankingPosition"] as Int, user?.rankingPosition)
+        assertEquals(jsonUser["rankPosition"] as Int, user?.rankingPosition)
         assertEquals(jsonUser["email"] as String, user?.email)
         assertEquals(jsonUser["phone"] as String, user?.phone)
         assertEquals(jsonUser["wins"] as Int, user?.wins)
         assertEquals(jsonUser["loses"] as Int, user?.loses)
-        assertEquals(jsonUser["birthDate"] as String, user?.birthDate.toString())
         assertEquals(jsonUser["gender"] as String, User.Gender.MALE)
-        assertEquals(jsonUser["category"] as String, "Primeira Classe")
         assertEquals(jsonUser["status"] as String, User.Status.AVAILABLE)
     }
 
