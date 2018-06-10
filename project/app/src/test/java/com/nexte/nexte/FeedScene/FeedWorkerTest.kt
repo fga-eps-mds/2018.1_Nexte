@@ -94,10 +94,10 @@ class FeedWorkerTest: HelpForRealm() {
         challengeJson.put("loser", loser)
 
         val commentsIdsJsonArray = JSONArray()
-        commentsIdsJsonArray.put(4)
+        commentsIdsJsonArray.put(0, "comentario")
 
         val likesIdsJsonArray = JSONArray()
-        likesIdsJsonArray.put(3)
+        likesIdsJsonArray.put(0, "curti")
 
         val feedJson = JSONObject()
         feedJson.put("id", "Ohooh")
@@ -119,10 +119,11 @@ class FeedWorkerTest: HelpForRealm() {
 
         val feed = this.worker?.convertJsonStoryToStories(jsonObject)
 
+        val getChallenge = feedJson["challenge"] as JSONObject
 
-        assertEquals(feed!![0].id, feedJson["id"] as JSONObject)
-        assertEquals(feed!![0].winner, feedJson["winner"] as JSONObject)
-        assertEquals(feed!![0].loser, feedJson["loser"] as JSONObject)
+        assertEquals(feed!![0].id, feedJson["id"] as String)
+        assertEquals(feed!![0].winner, getChallenge["winner"] as JSONObject)
+        assertEquals(feed!![0].loser, getChallenge["loser"] as JSONObject)
         assertEquals(feed!![0].commentsId, feedJson["comments"] as JSONArray)
         assertEquals(feed!![0].likesId, feedJson["likes"] as JSONArray)
 
