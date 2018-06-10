@@ -5,6 +5,7 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapter
 import com.nexte.nexte.Entities.User.UserManager
 import org.json.JSONObject
 
@@ -83,10 +84,10 @@ class ShowProfileWorker {
      *
      * @return users
      */
-    fun convertJsonUserToUser(jsonObject: JSONObject): User {
+    fun convertJsonUserToUser(jsonObject: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): User {
         val dataJson = jsonObject["data"] as JSONObject
         val userJson = dataJson["user"] as JSONObject
 
-        return User.createUserFromJsonObject(userJson)
+        return User.createUserFromJsonObject(userJson, userCategoryManagerArgument)
     }
 }
