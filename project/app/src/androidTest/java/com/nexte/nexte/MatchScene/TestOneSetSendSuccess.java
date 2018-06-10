@@ -42,12 +42,40 @@ public class TestOneSetSendSuccess {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void testOneSetSendChallengeSuccess() {
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(ViewMatchers.withId(R.id.challenge),
+    public void testOneSetSendSuccess() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatButton = onView(
+                allOf(ViewMatchers.withId(R.id.navigationLogin), withText("Navegar pelo NEXTE!"),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.bottom_nav_view),
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.challengeNavigation),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.bottom_navigation),
                                         0),
                                 1),
                         isDisplayed()));
@@ -63,22 +91,22 @@ public class TestOneSetSendSuccess {
                         isDisplayed()));
         appCompatImageView.perform(click());
 
-        ViewInteraction appCompatButton = onView(
+        ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.sendChallengeButton), withText("Enviar Desafio"),
                         childAtPosition(
                                 withParent(withId(R.id.challengerviewpager)),
                                 5),
                         isDisplayed()));
-        appCompatButton.perform(click());
+        appCompatButton2.perform(click());
 
-        ViewInteraction appCompatButton2 = onView(
+        ViewInteraction appCompatButton3 = onView(
                 allOf(withId(android.R.id.button1), withText("Ok"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));
-        appCompatButton2.perform(scrollTo(), click());
+        appCompatButton3.perform(scrollTo(), click());
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.challengerResult),
@@ -102,22 +130,22 @@ public class TestOneSetSendSuccess {
                         isDisplayed()));
         appCompatEditText2.perform(replaceText("7"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton3 = onView(
+        ViewInteraction appCompatButton4 = onView(
                 allOf(withId(R.id.sendButton), withText("Send  Challenge"),
                         childAtPosition(
                                 withParent(withId(R.id.challengerviewpager)),
                                 1),
                         isDisplayed()));
-        appCompatButton3.perform(click());
+        appCompatButton4.perform(click());
 
-        ViewInteraction appCompatButton4 = onView(
+        ViewInteraction appCompatButton5 = onView(
                 allOf(withId(android.R.id.button1), withText("Ok"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));
-        appCompatButton4.perform(scrollTo(), click());
+        appCompatButton5.perform(scrollTo(), click());
 
     }
 
