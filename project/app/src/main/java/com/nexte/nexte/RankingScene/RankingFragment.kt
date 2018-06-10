@@ -154,11 +154,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      * Class responsible to control recycler fragment scrolling
      *
      * @param playerRanking indicates the position of the logged user
-<<<<<<< HEAD:project/app/src/main/java/com/nexte/nexte/RankingScene/RankingView.kt
-     * @param context indicates the context that the recycler fragment is inserted in
-=======
      * @param fragment indicates the fragment that the recycler view is inserted in
->>>>>>> 436a600ad1d3c7d13e15052cb43dcd9891439e3f:project/app/src/main/java/com/nexte/nexte/RankingScene/RankingFragment.kt
      */
     private class OnScrollRankingRecyclerView(val playerRanking: Int, val fragment: Fragment) : RecyclerView.OnScrollListener() {
 

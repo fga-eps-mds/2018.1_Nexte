@@ -132,6 +132,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         view.interactor = interactor
         interactor.presenter = presenter
         interactor.worker.userManager = userManager!!
+        interactor.worker.updateLogic = interactor
         presenter.viewChallenge = view
     }
 

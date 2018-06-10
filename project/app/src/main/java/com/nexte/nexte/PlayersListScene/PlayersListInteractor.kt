@@ -42,10 +42,6 @@ class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
     var worker = PlayersListWorker()
     var presenter: PlayersListPresentationLogic? = null
 
-    override fun getPlayersToChallenge(request: PlayersListModel.ShowRankingPlayersRequest.Request) {
-//        this.worker.fetchPlayersToChallenge(request)
-    }
-
     /**
      * Method that pass the request to Worker and send the response to Presenter for the request
      * responsible to get first list of players
@@ -53,14 +49,11 @@ class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
      * @param request variable equals to the server response due to the challenged response
      */
     override fun requestPlayersToChallenge(request: PlayersListModel.ShowRankingPlayersRequest.Request) {
-        worker.fetchPlayersToChallenge(request) { response ->
-            if(response.usersAbove.isNotEmpty()) {
-                this.presenter?.formatPlayersToChallenge(response)
-            }
-            else {
-                this.presenter?.formatNoPlayersMessage()
-            }
-        }
+        this.worker.fetchPlayersToChallenge(request)
+    }
+
+    override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
+        this.presenter?.formatPlayersToChallenge(response)
     }
 
     /**
