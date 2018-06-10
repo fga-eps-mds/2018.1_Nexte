@@ -2,6 +2,8 @@ package com.nexte.nexte.CommentsScene
 
 
 import com.nexte.nexte.Entities.Comment.Comment
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import java.text.SimpleDateFormat
@@ -124,9 +126,18 @@ class CommentsPresenter : CommentsPresentationLogic {
             MutableList<CommentsModel.CommentFormatted> {
 
         val commentsFormatted: MutableList<CommentsModel.CommentFormatted> = mutableListOf()
+        val emptyUser = User("", "", "", "", null, -1,
+                "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                User.Status.UNAVAILABLE,null, null, null)
 
         for (gameComment in gameComments) {
-            val user = userManager?.get(gameComment.userId!!)
+            var user = userManager?.get(gameComment.userId!!)
+            user = if (user == null) {
+                emptyUser
+            } else {
+                user
+            }
+
             val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
             val time = dateToShow.format(gameComment.date)
 

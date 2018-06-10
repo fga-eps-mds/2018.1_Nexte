@@ -1,6 +1,6 @@
 package com.nexte.nexte.RankingScene
 
-import android.util.Log
+
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
 import com.nexte.nexte.Entities.Challenge.Challenge
@@ -64,12 +64,16 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val efficiency = calculatePlayerEfficiency(wins, losses)
             user.latestGames = challengeManager?.getLastFiveChallenges(user.id)
             val lastGame = calculatePlayerLastGame(user.latestGames, Date())
+            var image = R.drawable.temp
+            if (user.profilePicture != null) {
+                image = user.profilePicture.toInt()
+            }
             var playerCategory = ""
             if (user.category != null){
                 playerCategory = user.category.name
             }
             val playerFormatted = RankingModel.FormattedPlayer(name,
-                    R.mipmap.ic_launcher, String.format("Vitórias: %d", wins),
+                    image, String.format("Vitórias: %d", wins),
                     String.format("%d", rankingPosition), String.format("Último Jogo: %s", lastGame),
                     String.format("Aproveitamento: %s", efficiency), playerCategory)
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
@@ -119,7 +123,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             }else{
                 "" + (today.month - latestGameDate.month) + " months"
             }
-        }else{
+        } else {
             "" + (today.year - latestGameDate.year) + " years"
         }
     }

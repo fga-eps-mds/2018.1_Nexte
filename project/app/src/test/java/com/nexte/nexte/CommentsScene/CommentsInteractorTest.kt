@@ -2,6 +2,8 @@ package com.nexte.nexte.CommentsScene
 
 import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -19,12 +21,13 @@ class CommentsInteractorTest {
         this.interactor?.presenter = mock
         this.interactor?.worker?.updateLogic = mock
         this.interactor?.worker?.commentsManager = CommentManager(CommentAdapterSpy())
+        this.interactor?.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test
     fun successRecentComments() {
         //prepare
-        val request = CommentsModel.GetCommentsRequest.Request()
+        val request = CommentsModel.GetCommentsRequest.Request("1", "1")
 
         //call
         this.interactor?.recentComments(request)

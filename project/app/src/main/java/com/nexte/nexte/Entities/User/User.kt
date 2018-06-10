@@ -110,8 +110,5 @@ class User(val id: String,
         UPDATE_USER(hashMapOf("route" to "user", "method" to "update")),
         LOGIN(hashMapOf("route" to "login", "method" to "post"))
     }
-
-
-
 }
 

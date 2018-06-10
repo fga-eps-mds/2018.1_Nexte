@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginScene.LoginView"
+            android:name=".LoginScene.LoginFragment"
             android:label="Login" />
         <activity
             android:name=".RankingScene.RankingFragment"
@@ -78,6 +78,7 @@
             android:name=".MatchScene.MatchFragment"
             android:label="MatchActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".LoginScene.LoginView" />
     </application>
 
 </manifest>

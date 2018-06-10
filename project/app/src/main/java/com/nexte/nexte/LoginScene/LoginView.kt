@@ -1,17 +1,14 @@
 package com.nexte.nexte.LoginScene
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
 import com.facebook.accountkit.*
 import kotlinx.android.synthetic.main.activity_login_view.*
-import com.facebook.accountkit.ui.AccountKitConfiguration
-import com.facebook.accountkit.ui.AccountKitActivity
-import com.facebook.accountkit.ui.LoginType
-
+import kotlinx.android.synthetic.main.row_feed.*
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -37,7 +34,7 @@ interface LoginDisplayLogic {
 /**
  * Class that implements [LoginDisplayLogic] and its responsible to control feed screen
  *
- * @property interactor Interactor layer for send requests [FeedInteractor]
+ * @property interactor Interactor layer
  */
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
@@ -46,35 +43,31 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
      *
-     * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        AccountKit.initialize(this)
         setContentView(R.layout.activity_login_view)
+
         this.setup()
-
-        btnLoginPhonenumber.setOnClickListener {
-            this.loginPhoneNumber()
-        }
-
-        btnLoginFacebook.setOnClickListener {
-            this.loginByEmail()
-        }
+        this.createAuthenticationRequest()
+//
+//        btnLoginPhonenumber.setOnClickListener {
+//            this.loginPhoneNumber()
+//        }
+//
+//        btnLoginFacebook.setOnClickListener {
+//            this.loginByEmail()
+//        }
 
         login.setOnClickListener {
             createAuthenticationRequest()
         }
+        navigationLogin.setOnClickListener{
+            this.finish()
+        }
     }
-    /**
-     * On Acitvity Results is a method manager request and results provided
-     *
-     * @param savedInstanceState
-     */   /**
-     * On Create is a method that will setup this scene and call first Request and actions from UI
-     *
-     * @param savedInstanceState
-     */
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -100,7 +93,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Method responsible for creating the authetication request an passing it to the interactor
      */
-    fun createAuthenticationRequest(){
+    private fun createAuthenticationRequest(){
         val account = userField.text.toString()
         val password = passwordField.text.toString()
 
@@ -114,7 +107,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     private fun getAccount() {
         AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
             override fun onSuccess(account: Account) {
-                val phoneNumber = account.getPhoneNumber()
+                val phoneNumber = account.phoneNumber
                 val phoneNumberString = phoneNumber.toString()
 
                 if(phoneNumberString !=  "") {
@@ -133,24 +126,24 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Request login by phone - AccountKit
      */
-    fun loginPhoneNumber() {
-        val intent = Intent(this, AccountKitActivity::class.java)
-        val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
-                AccountKitActivity.ResponseType.TOKEN)
-        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
-        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
-    }
+//    fun loginPhoneNumber() {
+//        val intent = Intent(this, AccountKitActivity::class.java)
+//        val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
+//                AccountKitActivity.ResponseType.TOKEN)
+//        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
+//        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
+//    }
 
     /**
      * Request login by email - AccountKit
      */
-    fun loginByEmail() {
-        val intent  = Intent(this, AccountKitActivity::class.java)
-        val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
-                AccountKitActivity.ResponseType.TOKEN)
-        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
-        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
-    }
+//    fun loginByEmail() {
+//        val intent  = Intent(this, AccountKitActivity::class.java)
+//        val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
+//                AccountKitActivity.ResponseType.TOKEN)
+//        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
+//        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
+//    }
 
     /**
      * Method responsible for setup protocol between scenes

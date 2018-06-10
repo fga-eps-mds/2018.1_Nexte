@@ -28,6 +28,14 @@ class CommentAdapterSpy: CommentAdapter {
         return commentList.toList()
     }
 
+    override fun getCommentsFromStory(commentsIds: List<String>): List<Comment>? {
+        if (commentsIds.size < 10) {
+            return listOf(mockComment(), mockComment())
+        } else {
+            return null
+        }
+    }
+
     override fun updateOrInsert(challenge: Comment): Comment? {
         if (challenge.id == "1") {
             return mockComment()
