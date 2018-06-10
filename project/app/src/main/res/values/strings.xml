@@ -52,4 +52,11 @@
     <string name="challenge">Challenge</string>
     <string name="feed">Feed</string>
     <string name="rankingMenu">Ranking</string>
+
+    <!-- Navigation Bottom -->
+    <string name="feedNavigation">Feed</string>
+    <string name="rankingNavigation">Ranking</string>
+    <string name="profileNavigation">Perfil</string>
+    <string name="challengeNavigation">Desafio</string>
+
 </resources>

@@ -8,7 +8,8 @@
     <color name="green">#50e3c2</color>
     <color name="hint_color_pattern">#535151</color>
     <color name="lightGrey">#595959</color>
-    <color name="bottomBackground">#1d1d1d</color>
-    <color name="iconTint">#9d9d9d</color>
+    <color name="iconTint">#9D9D9D</color>
+    <color name="iconTintSelected">#FE8A2D</color>
+    <color name="bottomNavigationBackground">#1D1D1D</color>
     <color name="darker_gray">#aaa</color>
 </resources>
