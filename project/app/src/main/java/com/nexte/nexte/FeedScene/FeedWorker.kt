@@ -102,7 +102,7 @@ class FeedWorker {
      */
     fun convertJsonStoryToStories(jsonObject: JSONObject) : List<Story> {
         val dataJson = jsonObject["data"] as JSONObject
-        val storiesJsonArray = dataJson["stories"] as JSONArray
+        val storiesJsonArray = dataJson["feed"] as JSONArray
 
         val storiesMutableList = mutableListOf<Story>()
         for (counter in 0 until storiesJsonArray.length()){

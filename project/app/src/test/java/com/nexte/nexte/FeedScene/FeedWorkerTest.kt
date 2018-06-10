@@ -85,12 +85,14 @@ class FeedWorkerTest: HelpForRealm() {
         feedJson.put("date", "12/04")
         feedJson.put("commentsId", "isso ai!")
         feedJson.put("likeId", "124")
+        feedJson.put("challenge", "124")
+
 
         val feedJsonArray = JSONArray()
         feedJsonArray.put(feedJson)
 
         val dataObject = JSONObject()
-        dataObject.put("feed", feedJson)
+        dataObject.put("feed", feedJsonArray)
 
         val jsonObject = JSONObject()
         jsonObject.put("data", dataObject)
@@ -104,6 +106,7 @@ class FeedWorkerTest: HelpForRealm() {
         assertEquals(feed!![0].likesId, feedJson["likeId"] as String)
         assertEquals(feed!![0].loser, feedJson["loser"] as String)
         assertEquals(feed!![0].winner, feedJson["winner"] as String)
+
     }
 
     @Test
