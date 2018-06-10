@@ -93,7 +93,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         val likeListFragment = LikeListFragment().getInstance()
         val fragmentManager = activity.fragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, likeListFragment, "like")
+        fragmentTransaction.replace(R.id.main_frame_layout, likeListFragment, "like")
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
@@ -104,7 +104,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         val commentsFragment = CommentsFragment().getInstance()
         val fragmentManager = activity.fragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, commentsFragment, "comments")
+        fragmentTransaction.replace(R.id.main_frame_layout, commentsFragment, "comments")
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
