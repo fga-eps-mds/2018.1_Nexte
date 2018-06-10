@@ -5,6 +5,8 @@ import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
+import org.json.JSONArray
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 
@@ -73,6 +75,37 @@ class FeedWorkerTest: HelpForRealm() {
         //backup
         worker?.updateLogic = backup
     }
+
+    @Test
+    fun testJsonConvertJsonFeed(){
+        val feedJson = JSONObject()
+        feedJson.put("id", "123")
+        feedJson.put("winner", "233")
+        feedJson.put("loser", "l099")
+        feedJson.put("date", "12/04")
+        feedJson.put("commentsId", "isso ai!")
+        feedJson.put("likeId", "124")
+
+        val feedJsonArray = JSONArray()
+        feedJsonArray.put(feedJson)
+
+        val dataObject = JSONObject()
+        dataObject.put("feed", feedJson)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("data", dataObject)
+
+        println(jsonObject)
+
+        val feed = this.worker?.convertJsonStoryToStories(jsonObject)
+
+        assertEquals(feed!![0].commentsId, feedJson["commentsId"] as String)
+        assertEquals(feed!![0].id, feedJson["id"] as String)
+        assertEquals(feed!![0].likesId, feedJson["likeId"] as String)
+        assertEquals(feed!![0].loser, feedJson["loser"] as String)
+        assertEquals(feed!![0].winner, feedJson["winner"] as String)
+    }
+
     @Test
     fun testManageLikes(){
         //prepare
