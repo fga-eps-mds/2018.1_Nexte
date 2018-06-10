@@ -1,12 +1,17 @@
 package com.nexte.nexte.RankingScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
+import org.json.JSONArray
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 import kotlin.concurrent.thread
 
 class RankingWorkerTest : HelpForRealm() {
@@ -51,7 +56,7 @@ class RankingWorkerTest : HelpForRealm() {
         //backup
         worker?.updateLogic = backup
     }
-/*
+
     @Test
     fun successConvertJsonToListOfUsers(){
         //prepare
@@ -65,7 +70,7 @@ class RankingWorkerTest : HelpForRealm() {
         jsonUser.put("phone", "3232323232")
         jsonUser.put("wins", 1)
         jsonUser.put("loses", 1)
-        jsonUser.put("birthDate", Date())
+        jsonUser.put("birthDate", "2018-01-07T00:00:00.000Z")
         jsonUser.put("gender", "M")
         jsonUser.put("category", 1)
         jsonUser.put("status", 1)
@@ -78,15 +83,12 @@ class RankingWorkerTest : HelpForRealm() {
 
         val jsonObject = JSONObject()
         jsonObject.put("data", dataJson)
-        var users: List<User>? = null
         //call
-        thread {
-            users = worker?.convertJsonToListOfUsers(jsonObject)
-        }.join()
+        val users = worker?.convertJsonToListOfUsers(jsonObject, UserCategoryAdapterSpy())
         //assert
         assertNotNull(users)
     }
-*/
+
 //    @Test
 //    fun testGetUsersInRanking(){
 //        //prepare

@@ -4,6 +4,7 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapter
 import com.nexte.nexte.Entities.User.UserManager
 import org.json.JSONArray
 import org.json.JSONObject
@@ -68,14 +69,14 @@ class RankingWorker {
      *
      * @return list of users
      */
-    fun convertJsonToListOfUsers(jsonObject: JSONObject): List<User>{
+    fun convertJsonToListOfUsers(jsonObject: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): List<User>{
         val dataJson = jsonObject["data"] as JSONObject
         val usersJsonArray = dataJson["users"] as JSONArray
 
         val usersMutableList = mutableListOf<User>()
         for (counter in 0 until usersJsonArray.length()){
             val jsonUser = usersJsonArray.getJSONObject(counter)
-            val user = User.createUserFromJsonObject(jsonUser)
+            val user = User.createUserFromJsonObject(jsonUser, userCategoryManagerArgument)
             usersMutableList.add(user)
 
         }

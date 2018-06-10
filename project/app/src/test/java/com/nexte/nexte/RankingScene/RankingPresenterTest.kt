@@ -132,7 +132,7 @@ class RankingPresenterTest {
         //assert
         assertEquals(returnedValue, "ontem")
     }
-
+/*
     @Test
     fun successCalculatePlayerLastGameCase4(){
         //prepare
@@ -149,7 +149,7 @@ class RankingPresenterTest {
         //assert
         assertEquals(returnedValue, "" + (todayDate.day - twoDaysAgo.day) + " days")
     }
-
+*/
     @Test
     fun successCalculatePlayerLastGameCase5(){
         //prepare
