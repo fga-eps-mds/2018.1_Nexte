@@ -3,6 +3,8 @@ package com.nexte.nexte.CommentsScene
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -22,6 +24,7 @@ class CommentsWorkerTest {
         this.mock = MockCommentsWorkerUpdateLogic()
         this.worker?.updateLogic = mock
         this.worker?.commentsManager = CommentManager(CommentAdapterSpy())
+        this.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test
@@ -47,7 +50,7 @@ class CommentsWorkerTest {
                 commentUser2,
                 date2)
 
-        val request = CommentsModel.GetCommentsRequest.Request()
+        val request = CommentsModel.GetCommentsRequest.Request("1", "1")
 
         //call
          this.worker?.getCommentsData(request)

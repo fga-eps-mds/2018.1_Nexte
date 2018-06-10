@@ -1,5 +1,10 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Entities.Story.Story
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 
 /**
@@ -31,6 +36,8 @@ interface FeedPresentationLogic {
  */
 class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresentationLogic {
 
+    var userManager: UserManager? = null
+
     override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
 
         val viewModel = FeedModel.GetFeedActivities.ViewModel(
@@ -52,30 +59,47 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
      * @param activities MutableList of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: MutableList<FeedModel.FeedActivity>):
+    private fun formatFeedActivities(activities: List<Story>):
             MutableList<FeedModel.FeedActivityFormatted> {
 
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
 
+
         for (activity in activities) {
 
-            val matchingUser = activity.likes.find { it.name == UserSingleton.loggedUser.name }
+            val matchingUser = activity.likesId.find { it == UserSingleton.loggedUserID }
             var userIsOnLikeList = false
 
             if(matchingUser != null) {
                 userIsOnLikeList = true
             }
 
+            val emptyUser = User("", "", "", "", null, -1,
+                    "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                    User.Status.UNAVAILABLE,null, null, null)
+            var challenger = userManager?.get(activity.winner?.userId!!)
+            challenger = if (challenger == null) {
+                emptyUser
+            } else {
+                challenger
+            }
+            var challenged = userManager?.get(activity.loser?.userId!!)
+            challenged = if (challenged == null) {
+                emptyUser
+            } else {
+                challenged
+            }
+
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
-                    activity.identifier,
-                    activity.challenge.challenger.name,
-                    activity.challenge.challenger.photo,
-                    activity.challenge.challenger.set.toString(),
-                    activity.challenge.challenged.name,
-                    activity.challenge.challenged.photo,
-                    activity.challenge.challenged.set.toString(),
-                    activity.feedDate.toString(),
-                    activity.likes.size.toString(),
+                    activity.id!!,
+                    challenger?.name!!,
+                    R.mipmap.ic_launcher,
+                    activity.winner?.setResult.toString(),
+                    challenged?.name!!,
+                    R.mipmap.ic_launcher,
+                    activity.loser?.setResult.toString(),
+                    activity.date.toString(),
+                    activity.likesId.size.toString(),
                     userIsOnLikeList)
 
             feedActivitiesFormatted.add(feedActivityFormatted)

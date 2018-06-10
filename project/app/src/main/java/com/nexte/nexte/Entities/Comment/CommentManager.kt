@@ -52,6 +52,10 @@ class CommentManager(private val commentAdapter: CommentAdapter = CommentAdapter
         return CommentMocker.generateComments(amount = amount)
     }
 
+    fun getCommentsFromStory(commentsIds: List<String>) : List<Comment> {
+        return commentAdapter.getCommentsFromStory(commentsIds)!!
+    }
+
 
 
 }

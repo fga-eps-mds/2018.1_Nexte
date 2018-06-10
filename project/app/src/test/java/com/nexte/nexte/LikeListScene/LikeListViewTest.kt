@@ -1,5 +1,9 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.Like.LikeAdapterSpy
+import com.nexte.nexte.Entities.Like.LikeManager
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
@@ -15,12 +19,15 @@ class LikeListViewTest {
     @Before
     fun setUp() {
         this.fragment = LikeListFragment()
+        this.fragment?.userManager = UserManager(UserAdapterSpy())
+        this.fragment?.likeManager = LikeManager(LikeAdapterSpy())
+        this.fragment?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test
     fun testSetUpLikeListScene(){
         //prepare
-        this.fragment?.setUpLikeListScene(manager = UserManager(userAdapter = UserAdapterSpy()))
+        this.fragment?.setUpLikeListScene()
 
         //assert
         assertNotNull(this.fragment?.interactor)

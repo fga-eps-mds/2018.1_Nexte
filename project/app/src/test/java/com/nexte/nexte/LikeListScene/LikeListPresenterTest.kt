@@ -20,19 +20,14 @@ class LikeListPresenterTest {
     @Test
     fun testFormatLikeList(){
         //prepare
-        val name = "luis"
-        val photo = 1
-        val time = "AASC"
-        val player = LikeListModel.Players(name = name, photo = photo)
-        val response = LikeListModel.Response(players = mutableListOf(player))
+        val response = LikeListModel.Response(listOf())
 
         //call
         this.presenter?.formatLikeList(response = response)
 
+
         //assert
-        assertEquals(this.mock?.playersFormatted?.size, 1)
-        assertEquals(this.mock?.playersFormatted!![0].name, name)
-        assertEquals(this.mock?.playersFormatted!![0].photo, photo)
+        assertEquals(this.mock?.playersFormatted?.size, 0)
     }
 
     @Test

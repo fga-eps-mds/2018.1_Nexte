@@ -1,5 +1,9 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Before
@@ -31,7 +35,10 @@ class FeedViewTest: HelpForRealm() {
     @Test
     fun testCreateGetActivitiesRequest(){
         //prepare
+        this.view?.userManager = UserManager(UserAdapterSpy())
+        this.view?.storyManager = StoryManager(StoryAdapterSpy())
         this.view?.setupFeedScene()
+
         val mock = MockFeedsPresentationLogic()
         this.view?.interactor?.presenter = mock
 
@@ -62,7 +69,7 @@ class FeedViewTest: HelpForRealm() {
     }
 }
 
-private class MockFeedsPresentationLogic: FeedPresentationLogic{
+private class MockFeedsPresentationLogic: FeedPresentationLogic, FeedWorkerUpdateLogic{
     var getActivitiesResponse: FeedModel.GetFeedActivities.Response? = null
     var likeAndUnlikeResponse: FeedModel.LikeAndUnlike.Response? = null
 
@@ -72,5 +79,9 @@ private class MockFeedsPresentationLogic: FeedPresentationLogic{
 
     override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
         this.likeAndUnlikeResponse = response
+    }
+
+    override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
+
     }
 }
