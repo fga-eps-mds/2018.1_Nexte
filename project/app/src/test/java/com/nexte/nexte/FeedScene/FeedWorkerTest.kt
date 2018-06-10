@@ -120,12 +120,21 @@ class FeedWorkerTest: HelpForRealm() {
         val feed = this.worker?.convertJsonStoryToStories(jsonObject)
 
         val getChallenge = feedJson["challenge"] as JSONObject
+        val getWinner = getChallenge["winner"] as JSONObject
+        val getLoser = getChallenge["loser"] as JSONObject
+        val getComments = feedJson["comments"] as JSONArray
+        val getLikes = feedJson["likes"] as JSONArray
 
         assertEquals(feed!![0].id, feedJson["id"] as String)
-        assertEquals(feed!![0].winner, getChallenge["winner"] as JSONObject)
-        assertEquals(feed!![0].loser, getChallenge["loser"] as JSONObject)
-        assertEquals(feed!![0].commentsId, feedJson["comments"] as JSONArray)
-        assertEquals(feed!![0].likesId, feedJson["likes"] as JSONArray)
+
+        assertEquals(feed[0].winner?.userId, getWinner["userID"] as String)
+        assertEquals(feed[0].winner?.setResult, getWinner["setResult"] as Int)
+
+        assertEquals(feed[0].loser?.userId, getLoser["userID"] as String)
+        assertEquals(feed[0].loser?.setResult, getLoser["setResult"] as Int)
+
+        assertEquals(feed[0].commentsId[0], getComments.getString(0))
+        assertEquals(feed[0].likesId[0], getLikes.getString(0))
 
     }
 
