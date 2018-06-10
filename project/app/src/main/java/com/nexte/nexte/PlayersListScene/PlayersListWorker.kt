@@ -82,7 +82,18 @@ class PlayersListWorker {
                                 completion: (PlayersListModel.SelectPlayerForChallengeRequest.Response) -> Unit) {
 
         val challengedPosition = request.challengedRankingPosition
+        var selectedPlayer: User?= null
 
+        val players = userManager?.getAll()
+
+        players?.forEach {
+            if (it.rankingPosition == challengedPosition){
+                selectedPlayer = it
+            }
+        }
+
+        val response = PlayersListModel.SelectPlayerForChallengeRequest.Response(selectedPlayer!!)
+        completion(response)
     }
 
     /**
@@ -135,5 +146,5 @@ class PlayersListWorker {
         return usersMutableList.toList()
     }
 
-    companion object {  const val rankingGap = 5 }
+    companion object { const val rankingGap = 5 }
 }

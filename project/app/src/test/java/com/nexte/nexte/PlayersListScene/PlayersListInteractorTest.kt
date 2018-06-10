@@ -1,6 +1,7 @@
 package com.nexte.nexte.PlayersListScene
 
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
@@ -32,7 +33,48 @@ class PlayersListInteractorTest: HelpForRealm() {
         this.interactor = null
     }
 
-    private class MockPlayersListPresentationLogic : PlayersListPresentationLogic{
+//    @Test
+//    fun successRequestPlayersToChallenge(){
+//        //prepare
+//        val testRequest = PlayersListModel.ShowRankingPlayersRequest.Request(1)
+//
+//        //call
+//        this.interactor?.requestPlayersToChallenge(testRequest)
+//
+//        //assert
+//        assertEquals(true, this.mocker?.passedHere)
+//    }
+
+    @Test
+    fun getPlayersToChallengeTest() {
+        // prepare
+        val users: List<User> = listOf()
+        val response = PlayersListModel.ShowRankingPlayersRequest.Response(users)
+
+        // call
+        this.mocker?.formatPlayersToChallenge(response)
+
+        // assert
+        assertEquals(true, this.mocker?.passedHere)
+    }
+
+    @Test
+    fun successRequestChallengedUser(){
+        //prepare
+        val worker = PlayersListWorker()
+        worker.userManager = UserManager(UserAdapterSpy())
+        this.interactor?.worker = worker
+        val testRequest = PlayersListModel.SelectPlayerForChallengeRequest.Request(1)
+
+        //call
+        this.interactor?.requestChallengedUser(testRequest)
+
+        //assert
+        assertEquals(true, this.mocker?.passedHere)
+    }
+
+    private class MockPlayersListPresentationLogic : PlayersListPresentationLogic {
+
         var passedHere = false
 
         override fun formatExpandedChallengedInfo(response: PlayersListModel.SelectPlayerForChallengeRequest.Response) {
@@ -51,7 +93,4 @@ class PlayersListInteractorTest: HelpForRealm() {
             passedHere = true
         }
     }
-
-
-
 }

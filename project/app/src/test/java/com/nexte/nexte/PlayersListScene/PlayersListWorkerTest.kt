@@ -9,18 +9,21 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.util.*
+import kotlin.concurrent.thread
 
 class PlayersListWorkerTest: HelpForRealm() {
 
     private var worker: PlayersListWorker? = null
+    private var updateLogicMocker: PlayerListUpdateLogicMocker? = null
 
     @Before
     fun setUp(){
         super.setUpWithUser()
+        this.updateLogicMocker = PlayerListUpdateLogicMocker()
         this.worker = PlayersListWorker()
+        this.worker?.updateLogic = updateLogicMocker
         this.worker?.userManager = UserManager(UserAdapterSpy())
     }
-
 
     @Test
     fun successFetchChallengedDetails(){
@@ -35,6 +38,18 @@ class PlayersListWorkerTest: HelpForRealm() {
 
     }
 
+    @Test
+    fun successFetchPlayersChallenge(){
+        //prepare
+        val request = PlayersListModel.ShowRankingPlayersRequest.Request(1)
+
+        //call
+        thread { this.worker?.fetchPlayersToChallenge(request = request) }.join()
+
+        //assert
+        assertEquals(true, this.updateLogicMocker?.hasBeenHere)
+    }
+    
     @Test
     fun successGenerateChallenge(){
         //prepare
@@ -53,6 +68,14 @@ class PlayersListWorkerTest: HelpForRealm() {
         super.tearDownRealm()
         this.worker = null
 
+    }
+    class PlayerListUpdateLogicMocker: PlayerListUpdateLogic {
+
+        var hasBeenHere = false
+
+        override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
+            this.hasBeenHere = true
+        }
     }
 
 }

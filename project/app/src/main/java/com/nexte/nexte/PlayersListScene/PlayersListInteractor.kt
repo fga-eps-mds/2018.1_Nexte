@@ -52,6 +52,11 @@ class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
         this.worker.fetchPlayersToChallenge(request)
     }
 
+    /**
+     * Method responsible to request a list of players provided from database response
+     *
+     * @param response response from a request provided from worker
+     */
     override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
         this.presenter?.formatPlayersToChallenge(response)
     }
@@ -68,6 +73,8 @@ class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
             this.presenter?.formatExpandedChallengedInfo(response)
         }
     }
+
+    // ok
 
     /**
      * Method that pass the request to worker and send the response to the presenter for the request
