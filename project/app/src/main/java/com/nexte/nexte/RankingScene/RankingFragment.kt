@@ -18,7 +18,6 @@ import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
-import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 
 /**
@@ -87,7 +86,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
     private fun goToShowProfileView(name: String?) {
         val fragment = ShowProfileFragment().getInstance(name)
-        fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
+        fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
     }
 
 
@@ -106,7 +105,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
             view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
             view?.name?.text = UserSingleton.loggedUser.name
-            view?.picture_img_view?.setImageResource(UserSingleton.loggedUser.profilePicture!!.toInt())
+            UserSingleton.loggedUser.profilePicture?.let {
+                view?.picture_img_view?.setImageResource(it.toInt())
+            }
             view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
