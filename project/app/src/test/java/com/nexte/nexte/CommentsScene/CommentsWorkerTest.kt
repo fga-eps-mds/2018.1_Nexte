@@ -5,6 +5,8 @@ import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
+import org.json.JSONArray
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -121,6 +123,34 @@ class CommentsWorkerTest {
 
 
     }
+
+    @Test
+    fun testJsonConvertToListOfComments() {
+        val commentJson = JSONObject()
+        commentJson.put("id", "mbsid")
+        commentJson.put("user", "mbslet")
+        commentJson.put("date", "01-03-2018T00:00:00.000Z")
+        commentJson.put("comment", "Boa!")
+
+        val commentJsonArray = JSONArray()
+        commentJsonArray.put(commentJson)
+
+        val dataObject = JSONObject()
+        dataObject.put("comments",commentJsonArray)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("data", dataObject)
+
+        println(jsonObject)
+
+        val comments = this.worker?.convertJsonToListOfComments(jsonObject)
+
+        assertEquals(comments!![0].id, commentJson["id"] as String)
+        assertEquals(comments!![0].userId, commentJson["user"] as String)
+        assertEquals(comments!![0].comment, commentJson["comment"] as String)
+
+    }
+
     @After
     fun tearDown() {
         this.worker = null
