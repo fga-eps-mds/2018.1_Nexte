@@ -24,49 +24,6 @@ class PlayersListInteractorTest: HelpForRealm() {
         this.interactor?.presenter = mocker
     }
 
-    @Test
-    fun successRequestPlayersToChallenge(){
-        //prepare
-        val testRequest = PlayersListModel.ShowRankingPlayersRequest.Request(1)
-
-        //call
-        this.interactor?.requestPlayersToChallenge(testRequest)
-
-        //assert
-        assertEquals(true, this.mocker?.passedHere)
-
-    }
-
-    @Test
-    fun successRequestChallengedUser(){
-        //prepare
-        var worker = PlayersListWorker()
-        worker?.userManager = UserManager(UserAdapterSpy())
-        this.interactor?.worker = worker
-        val testRequest = PlayersListModel.SelectPlayerForChallengeRequest.Request(1)
-
-        //call
-        this.interactor?.requestChallengedUser(testRequest)
-
-        //assert
-        assertEquals(true, this.mocker?.passedHere)
-
-    }
-
-    @Test
-    fun successRequestChallenger(){
-        //prepare
-
-        val testRequest = PlayersListModel.ChallengeButtonRequest.Request("Lorrany Freire")
-
-        //call
-        this.interactor?.requestChallenger(testRequest)
-
-        //assert
-        assertEquals(true, this.mocker?.passedHere)
-
-    }
-
     @After
     fun tearDown(){
         super.tearDownRealm()

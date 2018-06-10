@@ -21,18 +21,6 @@ class PlayersListWorkerTest: HelpForRealm() {
         this.worker?.userManager = UserManager(UserAdapterSpy())
     }
 
-    @Test
-    fun successFetchPlayersChallenge(){
-        //prepare
-        val request = PlayersListModel.ShowRankingPlayersRequest.Request(1)
-
-        //call
-        this.worker?.fetchPlayersToChallenge(request, { response ->
-            //assert
-            assertNotNull(response)
-        })
-
-    }
 
     @Test
     fun successFetchChallengedDetails(){
