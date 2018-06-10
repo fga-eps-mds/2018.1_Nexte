@@ -38,12 +38,24 @@ class LikeListWorkerTest {
 
         //call
         this.worker?.getListLikesPlayers(request = request)
-        //assert
 
+        //assert
         assertEquals(this.mock?.response?.players?.size, 1)
         assertEquals(this.mock?.response?.players!![0].name, "User test")
         assertNotNull(request)
     }
+//
+//    @Test
+//    fun testNullStoryInLikes() {
+//        //prepare
+//        val request = LikeListWorker.GetListLikesPlayers.Request("1", "1")
+//
+//        //call
+//        this.worker?.getListLikesPlayers(request)
+//
+//        //assert
+//        assertEquals(this.mock?.response?.players, 0)
+//    }
 
     @Test
     fun getUpdate() {
@@ -56,7 +68,44 @@ class LikeListWorkerTest {
 
     }
 
-        @After
+    @Test
+    fun testGetUpdateLogic() {
+        //prepare and call
+        val update = worker?.updateLogic
+
+        //assert
+        assertEquals(update, worker?.updateLogic)
+    }
+
+    @Test
+    fun testGetCommentManager() {
+        //prepare and call
+        val userManager = worker?.userManager
+
+        //assert
+        assertEquals(userManager, worker?.userManager)
+    }
+
+    @Test
+    fun testGetLikeManager() {
+        //prepare and call
+        val likeManager = worker?.likeManager
+
+        //assert
+        assertEquals(likeManager, worker?.likeManager)
+    }
+
+    @Test
+    fun testGetStoryManager() {
+        //prepare and call
+        val storyManager = worker?.storyManager
+
+        //assert
+        assertEquals(storyManager, worker?.userManager)
+    }
+
+
+    @After
     fun tearDown() {
         this.worker = null
     }
