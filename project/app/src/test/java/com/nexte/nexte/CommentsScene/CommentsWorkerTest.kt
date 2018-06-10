@@ -13,6 +13,8 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
 import kotlin.concurrent.thread
+import com.github.kittinunf.result.Result
+
 
 
 class CommentsWorkerTest {
@@ -67,6 +69,39 @@ class CommentsWorkerTest {
         assertEquals(comment2.comment, this.mock?.response1?.comments!![1].comment)
 
 
+    }
+
+    @Test
+    fun djns() {
+        val tokenID = ""
+        val storyId = ""
+
+        val request = CommentsModel.GetCommentsRequest.Request(tokenID, storyId)
+        val story = this.worker?.storyManager?.get(request.storyId)
+
+        assertNull(story)
+    }
+
+    @Test
+    fun fsfsfs() {
+        val id1 = "dhh"
+        val userId1 = "uhfuf"
+        val date1 = Date()
+        val comments1 = "jeije"
+        val id2 = "dhh"
+        val userId2 = "uhfuf"
+        val date2 = Date()
+        val comments2 = "jeije"
+
+        val com1 = Comment(id1, userId1,comments1, date1)
+        val com2 = Comment(id2, userId2, comments2, date2)
+
+        val comment = mutableListOf(com1, com2)
+
+        val newResponse = CommentsModel.GetCommentsRequest.Response(comment)
+        this.worker?.updateLogic?.updateComment(newResponse)
+
+        assertEquals(this.mock?.response1, newResponse)
     }
 
     @Test
