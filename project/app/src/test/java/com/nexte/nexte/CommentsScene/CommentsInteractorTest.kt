@@ -149,6 +149,14 @@ class CommentsInteractorTest {
         assertEquals(true, mock?.passedHere)
     }
 
+    @Test
+    fun testGetPresenter() {
+        val presenter = this.interactor?.presenter
+
+        //assert
+        assertNotNull(presenter)
+    }
+
     @After
     fun tearDown() {
         this.mock = null
