@@ -31,6 +31,7 @@ class CommentsWorker {
     var updateLogic: CommentsWorkerUpdateLogic? = null
     var commentsManager: CommentManager? = null
     var storyManager: StoryManager? = null
+
     /**
      * Variable created to simulate mocked data to be implemented on Package mocker
      */
