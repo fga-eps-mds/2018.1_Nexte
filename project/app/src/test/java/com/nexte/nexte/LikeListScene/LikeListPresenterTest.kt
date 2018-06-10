@@ -20,6 +20,7 @@ class LikeListPresenterTest {
     @Test
     fun testFormatLikeList(){
         //prepare
+
         val response = LikeListModel.Response(listOf())
 
         //call
