@@ -87,7 +87,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val editProfileFragment = EditProfileFragment().getInstance()
             val fragmentManager = activity.fragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_layout, editProfileFragment, "editProfile")
+            fragmentTransaction.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
