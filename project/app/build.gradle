@@ -134,6 +134,9 @@ dependencies {
 
     // It makes the ImageViews rounded
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    // Json
+    testImplementation 'org.json:json:20180130'
 }
 
 
