@@ -20,7 +20,6 @@ import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.UserSingleton
 
-
 /**
  * Interface to define Display Logic to CommentsFragment Class that will
  * receive information from Presenter
@@ -52,7 +51,6 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     /**
      * On Create method that will setup this scene and call first Request for Interactor
      */
-
     fun getInstance(): CommentsFragment{
         val commentsFragment = CommentsFragment()
         return commentsFragment
@@ -230,8 +228,6 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 })
                 val alert = builder.create()
                 alert.show() }
-
-
 
             val messageDel = "Tem certeza que deseja excluir esse comentário?"
             holder.itemView.deleteButton.setOnClickListener {
