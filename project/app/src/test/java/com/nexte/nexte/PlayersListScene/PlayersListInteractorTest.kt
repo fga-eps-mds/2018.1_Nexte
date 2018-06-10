@@ -59,6 +59,13 @@ class PlayersListInteractorTest: HelpForRealm() {
     }
 
     @Test
+    fun getWorkerTest() {
+        // prepare and call
+        val worker = PlayersListWorker()
+        assertNotNull(worker)
+    }
+
+    @Test
     fun successRequestChallengedUser(){
         //prepare
         val worker = PlayersListWorker()
