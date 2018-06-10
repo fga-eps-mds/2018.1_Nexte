@@ -3,6 +3,7 @@ package com.nexte.nexte.FeedScene
 import com.nexte.nexte.Entities.FeedMocker
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
 import org.json.JSONArray
@@ -78,15 +79,32 @@ class FeedWorkerTest: HelpForRealm() {
 
     @Test
     fun testJsonConvertJsonFeed(){
-        val feedJson = JSONObject()
-        feedJson.put("id", "123")
-        feedJson.put("winner", "233")
-        feedJson.put("loser", "l099")
-        feedJson.put("date", "12/04")
-        feedJson.put("commentsId", "isso ai!")
-        feedJson.put("likeId", "124")
-        feedJson.put("challenge", "124")
 
+        val winner = JSONObject()
+        winner.put("userID", "aleale")
+        winner.put("setResult", 1)
+
+        val loser = JSONObject()
+        loser.put("userID", "aleEEE")
+        loser.put("setResult", 2)
+
+        val challengeJson = JSONObject()
+        challengeJson.put("challengeID", "Mito")
+        challengeJson.put("winner", winner)
+        challengeJson.put("loser", loser)
+
+        val commentsIdsJsonArray = JSONArray()
+        commentsIdsJsonArray.put(4)
+
+        val likesIdsJsonArray = JSONArray()
+        likesIdsJsonArray.put(3)
+
+        val feedJson = JSONObject()
+        feedJson.put("id", "Ohooh")
+        feedJson.put("challenge", challengeJson)
+        feedJson.put("comments", commentsIdsJsonArray)
+        feedJson.put("likes", likesIdsJsonArray)
+        feedJson.put("date", "2008-12-12T0000:00:00.0")
 
         val feedJsonArray = JSONArray()
         feedJsonArray.put(feedJson)
@@ -101,11 +119,12 @@ class FeedWorkerTest: HelpForRealm() {
 
         val feed = this.worker?.convertJsonStoryToStories(jsonObject)
 
-        assertEquals(feed!![0].commentsId, feedJson["commentsId"] as String)
-        assertEquals(feed!![0].id, feedJson["id"] as String)
-        assertEquals(feed!![0].likesId, feedJson["likeId"] as String)
-        assertEquals(feed!![0].loser, feedJson["loser"] as String)
-        assertEquals(feed!![0].winner, feedJson["winner"] as String)
+
+        assertEquals(feed!![0].id, feedJson["id"] as JSONObject)
+        assertEquals(feed!![0].winner, feedJson["winner"] as JSONObject)
+        assertEquals(feed!![0].loser, feedJson["loser"] as JSONObject)
+        assertEquals(feed!![0].commentsId, feedJson["comments"] as JSONArray)
+        assertEquals(feed!![0].likesId, feedJson["likes"] as JSONArray)
 
     }
 
