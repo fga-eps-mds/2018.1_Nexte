@@ -15,4 +15,6 @@
     <color name="text_description_thin">#9B9B9B</color>
     <color name="text_focus_thin">#FFFFFF</color>
     <color name="text_focus_regular">#FFFFFF</color>
+    <color name="second_color">#393939</color>
+    <color name="divider">#777777</color>
 </resources>

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="8dp"
-    android:background="#2E2E2E">
+    android:background="@color/second_color">
 
     <TextView
         android:id="@+id/challengeArreadyMessage"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/roboto_thin"
+        android:fontFamily="@font/roboto_light"
         android:text="@string/challengeAlreadyDescription"
         android:textColor="@color/text_description_thin"
         android:textSize="12sp"/>

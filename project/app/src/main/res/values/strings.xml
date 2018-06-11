@@ -67,5 +67,7 @@
     <string name="challengeImageChallengedDescription">Foto do desafiado</string>
     <string name="challengeVsX">X</string>
     <string name="challengeAlreadyDescription">Você já jogou? Informe o resultado!</string>
+    <string name="challengeSetDescription">Resultado do Set</string>
+    <string name="challengeSetPlaceholder">GP</string>
 
 </resources>
