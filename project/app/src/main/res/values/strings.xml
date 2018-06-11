@@ -76,8 +76,10 @@
     <string name="challengeWOSelectChallenged">Desafiado</string>
     <string name="challengeDateDescription">Data</string>
     <string name="challengeTimeDescription">Hora</string>
-
     <string name="challengeButtonCancel">Cancelar Desafio</string>
+
+    <string name="challengeNotReceived">Que pena, você ainda não recebeu um desafio!</string>
+    <string name="challengeNotSended">Você ainda não tem desafios enviados, desafie alguém.</string>
 
     <!-- Challenge Tabs -->
     <string name="tabChallengeSended">Enviados</string>
