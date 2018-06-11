@@ -54,9 +54,18 @@
     <string name="rankingMenu">Ranking</string>
 
     <!-- Navigation Bottom -->
-    <string name="feedNavigation">Feed</string>
-    <string name="rankingNavigation">Ranking</string>
-    <string name="profileNavigation">Perfil</string>
-    <string name="challengeNavigation">Desafio</string>
+    <string name="feedNavigation">FEED</string>
+    <string name="rankingNavigation">RANKING</string>
+    <string name="profileNavigation">PERFIL</string>
+    <string name="challengeNavigation">DESAFIO</string>
+
+    <!-- Challenge Scene -->
+    <string name="challengeBestOf">Melhor De:</string>
+    <string name="challengeDefaultChallenger">Challenger</string>
+    <string name="challengeDefaultChallenged">Challenged</string>
+    <string name="challengeImageChallengerDescription">Foto do desafiante</string>
+    <string name="challengeImageChallengedDescription">Foto do desafiado</string>
+    <string name="challengeVsX">X</string>
+    <string name="challengeAlreadyDescription">Você já jogou? Informe o resultado!</string>
 
 </resources>

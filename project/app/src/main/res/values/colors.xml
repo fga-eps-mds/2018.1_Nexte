@@ -12,4 +12,7 @@
     <color name="iconTintSelected">#FE8A2D</color>
     <color name="bottomNavigationBackground">#1D1D1D</color>
     <color name="darker_gray">#aaa</color>
+    <color name="text_description_thin">#9B9B9B</color>
+    <color name="text_focus_thin">#FFFFFF</color>
+    <color name="text_focus_regular">#FFFFFF</color>
 </resources>
