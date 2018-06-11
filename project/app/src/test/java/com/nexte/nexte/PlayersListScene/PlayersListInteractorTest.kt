@@ -104,6 +104,31 @@ class PlayersListInteractorTest: HelpForRealm() {
     }
 
     @Test
+    fun requestChallenger(){
+        //prepare
+        val request = PlayersListModel.ChallengeButtonRequest.Request("1")
+
+        //call
+        this.interactor?.requestChallenger(request)
+
+        //assert
+        assertEquals(true, this.mocker?.passedHere)
+    }
+
+    @Test
+    fun requestChallengedUserTest() {
+
+        // prepare
+        val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(1)
+
+        //call
+        this.interactor?.requestChallengedUser(request = request)
+
+        //assert
+        assertEquals(this.mocker?.passedHere, true)
+    }
+
+    @Test
     fun successRequestChallengedUser(){
         //prepare
         val worker = PlayersListWorker()

@@ -74,8 +74,6 @@ class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
         }
     }
 
-    // ok
-
     /**
      * Method that pass the request to worker and send the response to the presenter for the request
      * responsible to get the message
