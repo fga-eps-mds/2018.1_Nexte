@@ -60,7 +60,7 @@
     <string name="challengeNavigation">DESAFIO</string>
 
     <!-- Challenge Scene -->
-    <string name="challengeBestOf">Melhor De:</string>
+    <string name="challengeBestOf">Melhor De</string>
     <string name="challengeDefaultChallenger">Challenger</string>
     <string name="challengeDefaultChallenged">Challenged</string>
     <string name="challengeImageChallengerDescription">Foto do desafiante</string>
@@ -69,5 +69,11 @@
     <string name="challengeAlreadyDescription">Você já jogou? Informe o resultado!</string>
     <string name="challengeSetDescription">Resultado do Set</string>
     <string name="challengeSetPlaceholder">GP</string>
+    <string name="challengeWODescription">Quem desistiu?</string>
+    <string name="challengeWOSelect">SELECIONE</string>
+    <string name="challengeWOSelectChallenger">Desafiante</string>
+    <string name="challengeWOSelectChallenged">Desafiado</string>
+    <string name="challengeDateDescription">Data</string>
+    <string name="challengeTimeDescription">Hora</string>
 
 </resources>

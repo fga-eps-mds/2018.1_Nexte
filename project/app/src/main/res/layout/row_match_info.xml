@@ -6,7 +6,6 @@
     android:id="@+id/matchActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="8dp"
     android:background="@color/second_color">
 
     <TextView
@@ -24,7 +23,7 @@
 
     <TextView
         android:id="@+id/challengeVsX"
-        android:layout_width="10dp"
+        android:layout_width="15dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,13 +31,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageChallenger"
         android:text="@string/challengeVsX"
         android:textColor="@color/text_focus_regular"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:fontFamily="@font/roboto_regular"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageChallenger"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         app:layout_constraintEnd_toStartOf="@id/challengeVsX"
@@ -59,13 +58,13 @@
         android:text="@string/challengeDefaultChallenger"
         android:textAlignment="center"
         android:textColor="@color/text_focus_thin"
-        android:textSize="9.5sp"
+        android:textSize="14sp"
         android:fontFamily="@font/roboto_light" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageChallenged"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:layout_marginStart="50dp"
         app:layout_constraintStart_toEndOf="@id/challengeVsX"
         app:layout_constraintTop_toTopOf="@id/imageChallenger"
@@ -85,7 +84,7 @@
         android:text="@string/challengeDefaultChallenged"
         android:textAlignment="center"
         android:textColor="@color/text_focus_thin"
-        android:textSize="9.5sp"
+        android:textSize="14sp"
         android:fontFamily="@font/roboto_light" />
 
     <TextView
@@ -99,7 +98,7 @@
         android:text="@string/challengeBestOf"
         android:textAlignment="center"
         android:textColor="@color/text_description_thin"
-        android:textSize="8sp"
+        android:textSize="12sp"
         android:fontFamily="@font/roboto_light"
         android:textAllCaps="true" />
 
@@ -107,7 +106,7 @@
         android:id="@+id/buttonGroup"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +127,8 @@
             android:layout_height="wrap_content"
             app:rrb_checked="false"
             app:rrb_text="1"
-            app:rrb_textColor="@color/text_focus_regular"/>
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="16sp"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:id="@+id/buttonThree"
@@ -136,7 +136,8 @@
             android:layout_height="wrap_content"
             app:rrb_checked="false"
             app:rrb_text="3"
-            app:rrb_textColor="@color/text_focus_regular"/>
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="16sp"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:id="@+id/buttonFive"
@@ -144,7 +145,8 @@
             android:layout_height="wrap_content"
             app:rrb_checked="false"
             app:rrb_text="5"
-            app:rrb_textColor="@color/text_focus_regular"/>
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="16sp"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:id="@+id/buttonWO"
@@ -152,7 +154,8 @@
             android:layout_height="wrap_content"
             app:rrb_checked="false"
             app:rrb_text="WO"
-            app:rrb_textColor="@color/text_focus_regular"/>
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="16sp"/>
     </co.ceryle.radiorealbutton.RadioRealButtonGroup>
 
 </android.support.constraint.ConstraintLayout>
