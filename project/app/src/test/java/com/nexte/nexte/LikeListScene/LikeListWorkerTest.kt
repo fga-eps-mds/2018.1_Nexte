@@ -120,7 +120,6 @@ class LikeListWorkerTest {
         assertEquals(userManager, worker?.userManager)
     }
 
-
     @Test
     fun testGetLikeManager() {
         //prepare and call
@@ -139,10 +138,11 @@ class LikeListWorkerTest {
         assertEquals(storyManager, worker?.storyManager)
     }
 
-        @After
-        fun tearDown() {
-            this.worker = null
-        }
+
+
+    @After
+    fun tearDown() {
+        this.worker = null
     }
 
 class MockWorkersUpdateLogic: WorkerUpdateLogic {
