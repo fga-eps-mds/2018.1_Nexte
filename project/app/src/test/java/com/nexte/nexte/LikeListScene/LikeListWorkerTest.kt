@@ -120,22 +120,15 @@ class LikeListWorkerTest {
 
         //assert
         assertEquals(userManager, worker?.userManager)
-        fun testGetCommentManager() {
-            //prepare and call
-            val userManager = worker?.userManager
+    }
+     @Test
+     fun testGetCommentManager() {
+         //prepare and call
+         val userManager = worker?.userManager
 
-            //assert
-            assertEquals(userManager, worker?.userManager)
-        }
-
-        @Test
-        fun testGetLikeManager() {
-            //prepare and call
-            val likeManager = worker?.likeManager
-
-            //assert
-            assertEquals(likeManager, worker?.likeManager)
-        }
+         //assert
+         assertEquals(userManager, worker?.userManager)
+     }
 
         @Test
         fun testGetStoryManager() {
@@ -148,10 +141,11 @@ class LikeListWorkerTest {
         }
 
 
-        @After
-        fun tearDown() {
-            this.worker = null
-        }
+
+
+    @After
+    fun tearDown() {
+        this.worker = null
     }
 }
 class MockWorkersUpdateLogic: WorkerUpdateLogic {
