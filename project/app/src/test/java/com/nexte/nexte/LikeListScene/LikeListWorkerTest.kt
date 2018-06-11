@@ -1,5 +1,6 @@
 package com.nexte.nexte.LikeListScene
 
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.core.FuelError
 import com.nexte.nexte.Entities.User.UserAdapterSpy
@@ -158,6 +159,16 @@ class LikeListWorkerTest {
         this.worker?.handleResultLikeList?.invoke(request, response, result)
 
         assertNotNull(result)
+    }
+
+    @Test
+    fun testInvokeSucess() {
+    var url = URL("http://www.forever21.com/")
+    var request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
+    var response = Response(url)
+    val json = result.get()
+
+    var result: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.of()
     }
 
     @After
