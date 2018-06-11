@@ -29,6 +29,26 @@ class LoginInteractorTest {
         this.interactor?.presenter = mock
 
     }
+
+    @Test
+    fun successSetWorkerTest(){
+        //prepare
+        val newWorker = LoginWorker()
+
+        //call
+        this.interactor?.worker = newWorker
+
+        //assert
+        assertEquals(newWorker, interactor?.worker)
+    }
+
+    @Test
+    fun testDoAuthentication() {
+        //prepare
+
+        val request: LoginModel.Authentication.Request
+
+    }
     
     @After
     fun tearDown() {

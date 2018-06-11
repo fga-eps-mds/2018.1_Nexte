@@ -71,7 +71,7 @@ class LoginWorkerTest {
 
             val mockRequest = LoginModel.AccountKit.Request(email, phone)
 
-            val request: LoginModel.AccountKit.Request
+
 
             json.put("phone", phone)
             json.put("password", "bla")
