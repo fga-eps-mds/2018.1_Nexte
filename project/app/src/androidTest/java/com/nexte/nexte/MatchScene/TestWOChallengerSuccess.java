@@ -126,23 +126,6 @@ public class TestWOChallengerSuccess {
                         isDisplayed()));
         radioRealButton2.perform(click());
 
-        ViewInteraction appCompatButton4 = onView(
-                allOf(withId(R.id.sendButton), withText("Send  Challenge"),
-                        childAtPosition(
-                                withParent(withId(R.id.challengerviewpager)),
-                                1),
-                        isDisplayed()));
-        appCompatButton4.perform(click());
-
-        ViewInteraction appCompatButton5 = onView(
-                allOf(withId(android.R.id.button1), withText("Ok"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton5.perform(scrollTo(), click());
-
     }
 
     private static Matcher<View> childAtPosition(

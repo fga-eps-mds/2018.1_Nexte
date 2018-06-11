@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
@@ -121,85 +122,58 @@ public class TestThreeSetsSendSuccess {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.challengerResult),
                         childAtPosition(
-                                allOf(withId(R.id.matchActivity),
-                                        childAtPosition(
-                                                withId(R.id.matchRecyclerView),
-                                                1)),
-                                5),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText("7"), closeSoftKeyboard());
+                                childAtPosition(
+                                        withId(R.id.matchRecyclerView),
+                                        1),
+                                5)));
+        appCompatEditText.perform(scrollTo(), replaceText("7"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.challengedResult),
                         childAtPosition(
-                                allOf(withId(R.id.matchActivity),
-                                        childAtPosition(
-                                                withId(R.id.matchRecyclerView),
-                                                1)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText("6"), closeSoftKeyboard());
+                                childAtPosition(
+                                        withId(R.id.matchRecyclerView),
+                                        1),
+                                4)));
+        appCompatEditText2.perform(scrollTo(), replaceText("6"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.challengerResult),
                         childAtPosition(
-                                allOf(withId(R.id.matchActivity),
-                                        childAtPosition(
-                                                withId(R.id.matchRecyclerView),
-                                                1)),
-                                5),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText("6"), closeSoftKeyboard());
+                                childAtPosition(
+                                        withId(R.id.matchRecyclerView),
+                                        2),
+                                5)));
+        appCompatEditText3.perform(scrollTo(), replaceText("6"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.challengedResult),
                         childAtPosition(
-                                allOf(withId(R.id.matchActivity),
-                                        childAtPosition(
-                                                withId(R.id.matchRecyclerView),
-                                                1)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText4.perform(replaceText("7"), closeSoftKeyboard());
+                                childAtPosition(
+                                        withId(R.id.matchRecyclerView),
+                                        2),
+                                4)));
+        appCompatEditText4.perform(scrollTo(), replaceText("7"), closeSoftKeyboard());
+
+        pressBack();
 
         ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.challengerResult),
                         childAtPosition(
-                                allOf(withId(R.id.matchActivity),
-                                        childAtPosition(
-                                                withId(R.id.matchRecyclerView),
-                                                1)),
-                                5),
-                        isDisplayed()));
-        appCompatEditText5.perform(replaceText("10"), closeSoftKeyboard());
+                                childAtPosition(
+                                        withId(R.id.matchRecyclerView),
+                                        3),
+                                5)));
+        appCompatEditText5.perform(scrollTo(), replaceText("10"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText6 = onView(
                 allOf(withId(R.id.challengedResult),
                         childAtPosition(
-                                allOf(withId(R.id.matchActivity),
-                                        childAtPosition(
-                                                withId(R.id.matchRecyclerView),
-                                                1)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText6.perform(replaceText("8"), closeSoftKeyboard());
-
-        ViewInteraction appCompatButton4 = onView(
-                allOf(withId(R.id.sendButton), withText("Send  Challenge"),
-                        childAtPosition(
-                                withParent(withId(R.id.challengerviewpager)),
-                                1),
-                        isDisplayed()));
-        appCompatButton4.perform(click());
-
-        ViewInteraction appCompatButton5 = onView(
-                allOf(withId(android.R.id.button1), withText("Ok"),
-                        childAtPosition(
                                 childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        appCompatButton5.perform(scrollTo(), click());
+                                        withId(R.id.matchRecyclerView),
+                                        3),
+                                4)));
+        appCompatEditText6.perform(scrollTo(), replaceText("8"), closeSoftKeyboard());
 
     }
 
