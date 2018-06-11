@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CommentsFeedTest {
+public class Atest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -55,25 +55,6 @@ public class CommentsFeedTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(700);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.comments), withText("comentários"),
-                        childAtPosition(
-                                allOf(withId(R.id.feedActivity),
-                                        childAtPosition(
-                                                withId(R.id.feedRecyclerView),
-                                                1)),
-                                12),
-                        isDisplayed()));
-        appCompatTextView.perform(click());
 
     }
 
