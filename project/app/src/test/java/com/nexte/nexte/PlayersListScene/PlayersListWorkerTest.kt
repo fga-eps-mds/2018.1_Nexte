@@ -104,7 +104,7 @@ class PlayersListWorkerTest: HelpForRealm() {
 //    }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         super.tearDownRealm()
         this.worker = null
     }
@@ -117,5 +117,4 @@ class PlayersListWorkerTest: HelpForRealm() {
             this.hasBeenHere = true
         }
     }
-
 }
