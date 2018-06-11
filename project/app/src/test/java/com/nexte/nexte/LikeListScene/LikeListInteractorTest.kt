@@ -49,9 +49,7 @@ class LikeListInteractorTest {
     @Test
     fun testGetUsers(){
         //prepare
-        val name = "luis"
-        val photo = 1
-        val response = LikeListModel.Response(listOf<User>())
+        val response = LikeListModel.Response(listOf())
 
         //call
         this.interactor?.updateUsers(response = response)

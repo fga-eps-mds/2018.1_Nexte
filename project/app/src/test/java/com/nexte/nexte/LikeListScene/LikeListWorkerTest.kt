@@ -15,26 +15,26 @@ import org.junit.Test
 
 class LikeListWorkerTest {
 
-    var worker: LikeListWorker? = null
-    var mock: MockWorkersUpdateLogic? = null
+    var worker: LikeListWorker?=null
+    var mock: MockWorkersUpdateLogic?=null
 
     @Before
     fun setUp() {
-        this.worker = LikeListWorker()
-        this.mock = MockWorkersUpdateLogic()
-        this.worker?.updateLogic = mock
-        this.worker?.userManager = UserManager(userAdapter = UserAdapterSpy())
-        this.worker?.storyManager = StoryManager(StoryAdapterSpy())
-        this.worker?.likeManager = LikeManager(LikeAdapterSpy())
+        this.worker=LikeListWorker()
+        this.mock=MockWorkersUpdateLogic()
+        this.worker?.updateLogic=mock
+        this.worker?.userManager=UserManager(userAdapter=UserAdapterSpy())
+        this.worker?.storyManager=StoryManager(StoryAdapterSpy())
+        this.worker?.likeManager=LikeManager(LikeAdapterSpy())
     }
 
     @Test
     fun testGetListLikesPlayers() {
         //prepare
-        val request = LikeListModel.Request("1", "1")
+        val request=LikeListModel.Request("1", "1")
 
         //call
-        this.worker?.getListLikesPlayers(request = request)
+        this.worker?.getListLikesPlayers(request=request)
 
         //assert
         assertEquals(this.mock?.response?.players?.size, 1)
@@ -45,8 +45,8 @@ class LikeListWorkerTest {
     @Test
     fun getUpdate() {
         //prepare and call
-        val userManager = worker?.userManager
-        val updateLogic = worker?.updateLogic
+        val userManager=worker?.userManager
+        val updateLogic=worker?.updateLogic
         //assert
         assertEquals(worker?.updateLogic, updateLogic)
         assertEquals(worker?.userManager, userManager)
@@ -54,23 +54,23 @@ class LikeListWorkerTest {
 
     @Test
     fun testJsonConvertJsonToListOfLikes() {
-        val likeJson = JSONObject()
+        val likeJson=JSONObject()
         likeJson.put("date", "2018-01-07T00:00:00.000Z")
         likeJson.put("id", "asdasd")
         likeJson.put("user", "asdasd")
 
-        val likesJsonArray = JSONArray()
+        val likesJsonArray=JSONArray()
         likesJsonArray.put(likeJson)
 
-        val dataObject = JSONObject()
+        val dataObject=JSONObject()
         dataObject.put("likes", likesJsonArray)
 
-        val jsonObject = JSONObject()
+        val jsonObject=JSONObject()
         jsonObject.put("data", dataObject)
 
         println(jsonObject)
 
-        val likes = this.worker?.convertJsonToListOfLikes(jsonObject)
+        val likes=this.worker?.convertJsonToListOfLikes(jsonObject)
 
         assertEquals(likes!![0].id, likeJson["id"] as String)
         assertEquals(likes!![0].userId, likeJson["user"] as String)
@@ -79,9 +79,9 @@ class LikeListWorkerTest {
     @Test
     fun testNullStoryInLikes() {
         //prepare
-        val tokenId = "1"
-        val storyId = "2"
-        val request = LikeListModel.Request(tokenId, storyId)
+        val tokenId="1"
+        val storyId="2"
+        val request=LikeListModel.Request(tokenId, storyId)
 
         //call
         this.worker?.getListLikesPlayers(request)
@@ -93,7 +93,7 @@ class LikeListWorkerTest {
     @Test
     fun testNullListOfLikes() {
         //prepare
-        val likes = mutableListOf<String>()
+        val likes=mutableListOf<String>()
 
         //call
         this.worker?.likeManager?.getLikesFromStory(likes)
@@ -105,7 +105,7 @@ class LikeListWorkerTest {
     @Test
     fun testGetUpdateLogic() {
         //prepare and call
-        val update = worker?.updateLogic
+        val update=worker?.updateLogic
 
         //assert
         assertEquals(update, worker?.updateLogic)
@@ -114,7 +114,7 @@ class LikeListWorkerTest {
     @Test
     fun testGetUserManager() {
         //prepare and call
-        val userManager = worker?.userManager
+        val userManager=worker?.userManager
 
         //assert
         assertEquals(userManager, worker?.userManager)
@@ -123,7 +123,7 @@ class LikeListWorkerTest {
     @Test
     fun testGetLikeManager() {
         //prepare and call
-        val likeManager = worker?.likeManager
+        val likeManager=worker?.likeManager
 
         //assert
         assertEquals(likeManager, worker?.likeManager)
@@ -132,24 +132,25 @@ class LikeListWorkerTest {
     @Test
     fun testGetStoryManager() {
         //prepare and call
-        val storyManager = worker?.storyManager
+        val storyManager=worker?.storyManager
 
         //assert
         assertEquals(storyManager, worker?.storyManager)
     }
 
 
-
     @After
     fun tearDown() {
-        this.worker = null
+        this.worker=null
     }
 
-class MockWorkersUpdateLogic: WorkerUpdateLogic {
+    class MockWorkersUpdateLogic : WorkerUpdateLogic {
 
-    var response: LikeListModel.Response? = null
+        var response: LikeListModel.Response?=null
 
-    override fun updateUsers(response: LikeListModel.Response) {
-        this.response = response
+        override fun updateUsers(response: LikeListModel.Response) {
+            this.response=response
+        }
     }
+
 }
