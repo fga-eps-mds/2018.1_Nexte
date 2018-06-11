@@ -1,5 +1,7 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Entities.Story.Story
+import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
@@ -25,25 +27,27 @@ class FeedModelTest {
 
     @Test
     fun testCreateResponseGetFeedActivities(){
-        //prepare
-        val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
-        val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
+        // Prepare
+        val id = "1234567890"
+        val winner = StoryPlayer("1", 0)
+        val loser = StoryPlayer("2", 1)
         val date = Date()
-        val identifier = "id"
-        val activity1 = FeedModel.FeedActivity(challenge = FeedModel.FeedChallenge(challenger = challenger1, challenged = challenged1, challengeDate = date), feedDate = date, identifier = identifier, likes = mutableListOf(challenger1))
+        val likes = listOf("1", "2", "3")
+        val comments = listOf("1", "2", "3")
 
-        //call
-        val response = FeedModel.GetFeedActivities.Response(feedActivities = mutableListOf(activity1))
+        // Call
+        val story = Story(id, winner, loser, date, comments, likes)
+        val response = FeedModel.GetFeedActivities.Response(listOf(story))
         response.feedActivities
 
         //assert
-        assertEquals(challenged1, response.feedActivities[0].challenge.challenged)
-        assertEquals(challenger1, response.feedActivities[0].challenge.challenger)
-        assertEquals(date, response.feedActivities[0].feedDate)
-        assertEquals(identifier, response.feedActivities[0].identifier)
-        assertEquals(challenger1, response.feedActivities[0].likes[0])
+        assertEquals(id, response.feedActivities[0].id)
+        assertEquals(winner, response.feedActivities[0].winner)
+        assertEquals(date, response.feedActivities[0].date)
+        assertEquals(loser, response.feedActivities[0].loser)
+        assertEquals(likes, response.feedActivities[0].likesId)
         assertEquals(1, response.feedActivities.size)
-        assertEquals(response.feedActivities.size, 1)
+        assertEquals(comments, response.feedActivities[0].commentsId)
     }
 
     @Test

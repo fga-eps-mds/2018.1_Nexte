@@ -32,9 +32,17 @@ class LikeAdapterSpy: LikeAdapter {
         }
     }
 
+    override fun getLikesFromStory(likesIds: List<String>): List<Like>? {
+        if (likesIds.size < 10){
+            return listOf(mockLike())
+        } else {
+            return null
+        }
+    }
+
     private fun mockLike(): Like {
         val id: String? = "1"
-        val userId: String? = "2"
+        val userId: String? = "1"
         val date: Date? = Date()
 
         val like = Like(id, userId, date)

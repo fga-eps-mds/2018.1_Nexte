@@ -1,5 +1,10 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.Like.LikeAdapterSpy
+import com.nexte.nexte.Entities.Like.LikeManager
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
@@ -21,17 +26,20 @@ class LikeListInteractorTest {
         this.interactor = LikeListInteractor(presenter = mock)
         this.mockUpdateResponseLogic?.mock = mock
         this.interactor?.worker?.updateLogic = this.mockUpdateResponseLogic
-        this.interactor?.worker?.userManager = UserManager(userAdapter = UserAdapterSpy())
+        this.interactor?.worker?.userManager = UserManager(UserAdapterSpy())
+        this.interactor?.worker?.likeManager = LikeManager(LikeAdapterSpy())
+        this.interactor?.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test
     fun testFetchDataToList(){
         //prepare
-        val request = LikeListModel.Request(request = "1")
+        val request = LikeListModel.Request("1", "1")
 
         //call
         this.interactor?.fetchDataToList(request = request)
-        request.request
+        request.storyId
+        request.tokenId
 
         //assert
         assertEquals(this.mock?.passedHere, true)
@@ -42,8 +50,7 @@ class LikeListInteractorTest {
         //prepare
         val name = "luis"
         val photo = 1
-        val player = LikeListModel.Players(name = name, photo = photo)
-        val response = LikeListModel.Response(players = mutableListOf(player))
+        val response = LikeListModel.Response(listOf<User>())
 
         //call
         this.interactor?.updateUsers(response = response)
