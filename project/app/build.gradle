@@ -35,8 +35,8 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 8
-        versionName "0.8"
+        versionCode 9
+        versionName "0.9"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -134,6 +134,9 @@ dependencies {
 
     // It makes the ImageViews rounded
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    // Json
+    testImplementation 'org.json:json:20180130'
 }
 
 

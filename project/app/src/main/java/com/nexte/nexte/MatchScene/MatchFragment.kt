@@ -335,9 +335,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             this.declineButton = view?.findViewById(R.id.declineButton)
 
             val match = MatchModel.FormattedMatchData(challenged,
-                    R.mipmap.ic_launcher_round,
+                    R.drawable.profile_image1,
                     challenger,
-                    R.mipmap.ic_launcher_round)
+                    R.drawable.profile_image2)
 
             this.sendButton?.isEnabled = false
 
@@ -346,8 +346,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             recyclerView?.layoutManager = LinearLayoutManager(activity)
 
             val request = MatchModel.InitScene.Request(MatchModel.MatchData(
-                    MatchModel.MatchPlayer(challenged, R.mipmap.ic_launcher_round),
-                    MatchModel.MatchPlayer(challenger, R.mipmap.ic_launcher_round)
+                    MatchModel.MatchPlayer(challenged, R.drawable.profile_image1),
+                    MatchModel.MatchPlayer(challenger, R.drawable.profile_image2)
             ))
             interactor?.getInfoMatches(request)
 
