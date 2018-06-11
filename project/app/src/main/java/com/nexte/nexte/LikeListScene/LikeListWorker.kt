@@ -1,6 +1,10 @@
     package com.nexte.nexte.LikeListScene
 
+import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Like.Like
@@ -39,6 +43,24 @@ class LikeListWorker {
     var likeManager: LikeManager? = null
     var storyManager: StoryManager? = null
 
+
+    var handleResultLikeList: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+        when(result){
+            is Result.Failure -> {
+                println(result.getException())
+            }
+
+            is Result.Success -> {
+                val json = result.get()
+                var likesList = convertJsonToListOfLikes(json.obj())
+                likeManager?.updateMany(likesList)
+                val users = getUserFromLikes(likesList)
+                val newResponse = LikeListModel.Response(users)
+                updateLogic?.updateUsers(newResponse)
+            }
+        }
+    }
+
     /**
      * Function to fetch like list data of server
      *
@@ -69,22 +91,8 @@ class LikeListWorker {
         if (UserSingleton.userType != UserType.MOCKED) {
             val header = mapOf("accept-version" to "0.1.0")
             val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/likes"
-            url.httpGet().header(header).responseJson { _, _, result ->
-                when(result){
-                    is Result.Failure -> {
-                        println(result.getException())
-                    }
+            url.httpGet().header(header).responseJson(handleResultLikeList)
 
-                    is Result.Success -> {
-                        val json = result.get()
-                        var likesList = convertJsonToListOfLikes(json.obj())
-                        likeManager?.updateMany(likesList)
-                        val users = getUserFromLikes(likesList)
-                        val newResponse = LikeListModel.Response(users)
-                        updateLogic?.updateUsers(newResponse)
-                    }
-                }
-            }
         } else {
             // Do nothing
         }

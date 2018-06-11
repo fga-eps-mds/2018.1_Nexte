@@ -21,7 +21,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -30,22 +29,40 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LikeListTest {
+public class LikeListInstrumentationTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void likeListTest() {
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(ViewMatchers.withId(R.id.feed),
+    public void likeListInstrumentationTest() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatButton = onView(
+                allOf(ViewMatchers.withId(R.id.navigationLogin), withText("Navegar pelo NEXTE!"),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.bottom_nav_view),
+                                        withId(android.R.id.content),
                                         0),
-                                0),
+                                3),
                         isDisplayed()));
-        bottomNavigationItemView.perform(click());
+        appCompatButton.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withId(R.id.likesButton),
@@ -53,7 +70,7 @@ public class LikeListTest {
                                 allOf(withId(R.id.feedActivity),
                                         childAtPosition(
                                                 withId(R.id.feedRecyclerView),
-                                                1)),
+                                                2)),
                                 11),
                         isDisplayed()));
         appCompatImageButton.perform(click());
@@ -64,34 +81,10 @@ public class LikeListTest {
                                 allOf(withId(R.id.feedActivity),
                                         childAtPosition(
                                                 withId(R.id.feedRecyclerView),
-                                                1)),
+                                                2)),
                                 11),
                         isDisplayed()));
         appCompatImageButton2.perform(click());
-
-        ViewInteraction appCompatImageButton3 = onView(
-                allOf(withId(R.id.likesButton),
-                        childAtPosition(
-                                allOf(withId(R.id.feedActivity),
-                                        childAtPosition(
-                                                withId(R.id.feedRecyclerView),
-                                                2)),
-                                11),
-                        isDisplayed()));
-        appCompatImageButton3.perform(click());
-
-        ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.numberOfLikes), withText("1 curtidas"),
-                        childAtPosition(
-                                allOf(withId(R.id.feedActivity),
-                                        childAtPosition(
-                                                withId(R.id.feedRecyclerView),
-                                                2)),
-                                10),
-                        isDisplayed()));
-        appCompatTextView.perform(click());
-
-        pressBack();
 
     }
 

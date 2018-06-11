@@ -1,5 +1,7 @@
 package com.nexte.nexte.LikeListScene
 
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.core.FuelError
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.Entities.Like.LikeAdapterSpy
@@ -12,6 +14,13 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
+import java.lang.reflect.Method
+import java.net.URL
+import javax.xml.transform.Result
 
 class LikeListWorkerTest {
 
@@ -82,24 +91,25 @@ class LikeListWorkerTest {
         val tokenId="1"
         val storyId="2"
         val request=LikeListModel.Request(tokenId, storyId)
-
+        val value = 1
         //call
         this.worker?.getListLikesPlayers(request)
 
         //assert
-        assertEquals(this.mock?.response?.players?.size, 1)
+        assertEquals(this.mock?.response?.players?.size, value)
     }
 
     @Test
     fun testNullListOfLikes() {
         //prepare
         val likes=mutableListOf<String>()
+        val value = null
 
         //call
         this.worker?.likeManager?.getLikesFromStory(likes)
 
         //assert
-        assertEquals(this.mock?.response?.players?.size, 1)
+        assertEquals(this.mock?.response?.players?.size, value)
     }
 
     @Test
@@ -138,6 +148,17 @@ class LikeListWorkerTest {
         assertEquals(storyManager, worker?.storyManager)
     }
 
+    @Test
+    fun testInvoke() {
+        var url = URL("http://www.forever21.com/")
+        var request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
+        var response = Response(url)
+
+        var result: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.error(FuelError(Exception("teste")))
+        this.worker?.handleResultLikeList?.invoke(request, response, result)
+
+        assertNotNull(result)
+    }
 
     @After
     fun tearDown() {
