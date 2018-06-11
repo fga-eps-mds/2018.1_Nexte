@@ -80,25 +80,31 @@ class FeedWorkerTest: HelpForRealm() {
     @Test
     fun testJsonConvertJsonFeed(){
 
+        //set winner attributes
         val winner = JSONObject()
         winner.put("userID", "aleale")
         winner.put("setResult", 1)
 
+        //set loser attributes
         val loser = JSONObject()
         loser.put("userID", "aleEEE")
         loser.put("setResult", 2)
 
+        //use winner and loser to set challenge
         val challengeJson = JSONObject()
         challengeJson.put("challengeID", "Mito")
         challengeJson.put("winner", winner)
         challengeJson.put("loser", loser)
 
+        //set array of comments with one comment
         val commentsIdsJsonArray = JSONArray()
         commentsIdsJsonArray.put(0, "comentario")
 
+        //set array of likes with one like
         val likesIdsJsonArray = JSONArray()
         likesIdsJsonArray.put(0, "curti")
 
+        //set feed with its attributes
         val feedJson = JSONObject()
         feedJson.put("id", "Ohooh")
         feedJson.put("challenge", challengeJson)
@@ -125,6 +131,7 @@ class FeedWorkerTest: HelpForRealm() {
         val getComments = feedJson["comments"] as JSONArray
         val getLikes = feedJson["likes"] as JSONArray
 
+        //assert attributes after building Json objects
         assertEquals(feed!![0].id, feedJson["id"] as String)
 
         assertEquals(feed[0].winner?.userId, getWinner["userID"] as String)
@@ -159,6 +166,8 @@ class FeedWorkerTest: HelpForRealm() {
 
         })
     }
+
+
 
     @Test
     fun successGetUpdateLogic(){
