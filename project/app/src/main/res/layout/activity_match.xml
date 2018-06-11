@@ -1,48 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E"
-    tools:context=".MatchScene.MatchFragment">
+    tools:context=".MatchScene.MatchFragment"
+    android:background="@color/second_color">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/matchRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/matchRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        android:layout_marginBottom="75dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        </android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="128dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/green"
+            android:text="Send  Challenge"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="128dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:text="Send  Challenge"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matchRecyclerView" />
+        <Button
+            android:id="@+id/declineButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintTop_toBottomOf="@id/matchRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@android:color/transparent"
+            android:textColor="@color/text_focus_regular"
+            android:text="@string/challengeButtonCancel"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_light" />
 
-    <Button
-        android:id="@+id/declineButton"
-        android:layout_width="128dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/red"
-        android:text="Decline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matchRecyclerView" />
+    </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
