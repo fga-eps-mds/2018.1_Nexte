@@ -77,10 +77,59 @@ class RankingPresenterTest {
     }
 
     @Test
+    fun successTestFormatPlayerWithNullCategory(){
+        //prepare
+        val user1 = User(id = "1", name = "test1", status = User.Status.AVAILABLE, challengeSended = null,
+                challengeReceived = null, latestGames = listOf(), birthDate = Date(), email = "teste@email.com",
+                rankingPosition = 1, nickname = "test1", category = null , loses = 0, gender = User.Gender.MALE,
+                profilePicture = null, phone = "123456", wins = 1)
+        val list = listOf(user1)
+        //call
+        val returnedValue = presenter?.formatPlayers(list.toTypedArray())
+
+        //assert
+        assertEquals(returnedValue?.get(0)?.player?.userCategory, "")
+
+    }
+
+    @Test
+    fun successTestFormatPlayerWithNullManager(){
+        //prepare
+        val user1 = User(id = "1", name = "test1", status = User.Status.AVAILABLE, challengeSended = null,
+                challengeReceived = null, latestGames = listOf(), birthDate = Date(), email = "teste@email.com",
+                rankingPosition = 1, nickname = "test1", category = null , loses = 0, gender = User.Gender.MALE,
+                profilePicture = null, phone = "123456", wins = 1)
+        val list = listOf(user1)
+        val backup = presenter?.challengeManager
+        presenter?.challengeManager = null
+        //call
+        val returnedValue = presenter?.formatPlayers(list.toTypedArray())
+
+        //assert
+        assertEquals(returnedValue?.get(0)?.player?.userLastGame, "Último Jogo: Nenhum jogo")
+        //backup
+        presenter?.challengeManager = backup
+    }
+
+
+    @Test
     fun successTestFormatPlayerWithoutList(){
         //prepare
 
         val list: Array<User>? = arrayOf()
+        //call
+        val returnedValue = presenter?.formatPlayers(list)
+
+        //assert
+        assertEquals(returnedValue?.size, 0)
+
+    }
+
+    @Test
+    fun successTestFormatPlayerWithNullList(){
+        //prepare
+
+        val list: Array<User>? = null
         //call
         val returnedValue = presenter?.formatPlayers(list)
 

@@ -62,6 +62,18 @@ class RankingInteractorTest {
     }
 
     @Test
+    fun successGetPlayer(){
+        //prepare
+        val request = RankingModel.Request()
+        //call
+        thread {
+            interactor?.getPlayersRanksForScene(request)
+        }.join()
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
     fun successUpdateUsersInRanking(){
         //prepare
         val response= RankingModel.Response(arrayOf())
