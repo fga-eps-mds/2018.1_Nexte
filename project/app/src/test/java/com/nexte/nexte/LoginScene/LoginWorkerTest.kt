@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 
@@ -31,7 +32,7 @@ class LoginWorkerTest {
 //        })
 //    }
 
-//    @Test
+    //    @Test
 //    fun testAuthenticateUserTokenEmpty(){
 //        //prepare
 //        val userName = "luis-gustavo"
@@ -48,7 +49,7 @@ class LoginWorkerTest {
 //    }
 //
 //    @Test
-//    fun testRequestForAuth(){
+//    fun testRequestForAuth() {
 //        //prepare
 //        val email = "helenaHtona@nexte.com"
 //        val phone = "123456"
@@ -56,16 +57,33 @@ class LoginWorkerTest {
 //        val request = LoginModel.AccountKit.Request(email = email, phone = phone)
 //
 //        //call
-//        this.worker?.requestForAuth(request= request, completion= { response ->
+//        this.worker?.requestForAuth(request = request, completion = { response ->
 //
 //            //assert
 //            assertEquals(response.statusCode, statusCode)
 //        })
-//    }
+
+        @Test
+        fun testDefineBodyForAccountKitAuth() {
+            val json = JSONObject()
+            val phone = "333"
+            val email = "eai.com"
+
+            val mockRequest = LoginModel.AccountKit.Request(email, phone)
+
+            val request: LoginModel.AccountKit.Request
+
+            json.put("phone", phone)
+            json.put("password", "bla")
 
 
-    @After
-    fun tearDown() {
-        worker = null
+            assertEquals(mockRequest.email, email )
+
+
+        @After
+        fun tearDown() {
+            worker = null
+        }
     }
+
 }
