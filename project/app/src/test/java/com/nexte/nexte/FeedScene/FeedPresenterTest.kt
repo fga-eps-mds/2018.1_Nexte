@@ -4,7 +4,9 @@ import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Before
 
@@ -12,13 +14,14 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
 
-class FeedPresenterTest {
+class FeedPresenterTest: HelpForRealm() {
 
     private var mock: MockFeedDisplayLogic? = null
     private var presenter: FeedPresenter? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
         this.mock = MockFeedDisplayLogic()
         this.presenter = FeedPresenter(viewController = mock)
         this.presenter?.userManager = UserManager(UserAdapterSpy())
@@ -85,6 +88,26 @@ class FeedPresenterTest {
     }
 
     @Test
+    fun testUserIsOnLikeList() {
+        //prepare
+        val userLogged = FeedModel.FeedPlayer(UserSingleton.loggedUser.name, 1, 2)
+        val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
+        val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
+        val identifier = "1"
+        val likes = mutableListOf(userLogged)
+        val date = Date()
+        val activity1 = FeedModel.FeedActivity(challenge = FeedModel.FeedChallenge(challenger = challenger1, challenged = challenged1, challengeDate = date), feedDate = date, identifier = identifier, likes = likes)
+        val response = FeedModel.LikeAndUnlike.Response(likedActivity = activity1)
+
+        //call
+        this.presenter?.updateViewActivity(response = response)
+
+        //assert
+        assertTrue(this.mock?.formattedGetFeedActivities?.currentUserLiked!!)
+
+    }
+
+    @Test
     fun getUserManager(){
         //prepare and call
         val userManagerTest = this.presenter?.userManager
@@ -94,6 +117,7 @@ class FeedPresenterTest {
 
     @After
     fun tearDown() {
+        super.tearDownRealm()
         this.mock = null
         this.presenter = null
     }

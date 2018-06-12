@@ -6,10 +6,8 @@ import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.FeedMocker
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
-import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
-import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -17,17 +15,16 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
-import org.junit.runner.Request
-import java.lang.reflect.Method
 import java.net.URL
 
 class FeedWorkerTest: HelpForRealm() {
 
     var worker: FeedWorker? = null
-    var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
+    private var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
     var mock: MockFeedUpdateLogic? = null
     var storyManager: StoryManager? = null
     var updateLogicFeed: FeedWorkerUpdateLogic? = null
+    val jsonObject = JSONObject()
 
     @Before
     fun setUp() {
@@ -37,6 +34,45 @@ class FeedWorkerTest: HelpForRealm() {
         this.mock = MockFeedUpdateLogic()
         this.worker?.updateLogic = mock
         this.worker?.storyManager = StoryManager(StoryAdapterSpy())
+
+        //set winner attributes
+        val winner = JSONObject()
+        winner.put("userID", "aleale")
+        winner.put("setResult", 1)
+
+        //set loser attributes
+        val loser = JSONObject()
+        loser.put("userID", "aleEEE")
+        loser.put("setResult", 2)
+
+        //use winner and loser to set challenge
+        val challengeJson = JSONObject()
+        challengeJson.put("challengeID", "Mito")
+        challengeJson.put("winner", winner)
+        challengeJson.put("loser", loser)
+
+        //set array of comments with one comment
+        val commentsIdsJsonArray = JSONArray()
+        commentsIdsJsonArray.put(0, "comentario")
+
+        //set array of likes with one like
+        val likesIdsJsonArray = JSONArray()
+        likesIdsJsonArray.put(0, "curti")
+
+        //set feed with its attributes
+        val feedJson = JSONObject()
+        feedJson.put("id", "Ohooh")
+        feedJson.put("challenge", challengeJson)
+        feedJson.put("comments", commentsIdsJsonArray)
+        feedJson.put("likes", likesIdsJsonArray)
+        feedJson.put("date", "2008-12-12T0000:00:00.0")
+
+        val feedJsonArray = JSONArray()
+        feedJsonArray.put(feedJson)
+
+        val dataObject = JSONObject()
+        dataObject.put("feed", feedJsonArray)
+        jsonObject.put("data", dataObject)
     }
 
     @Test
@@ -87,51 +123,11 @@ class FeedWorkerTest: HelpForRealm() {
     @Test
     fun testJsonConvertJsonFeed(){
 
-        //set winner attributes
-        val winner = JSONObject()
-        winner.put("userID", "aleale")
-        winner.put("setResult", 1)
-
-        //set loser attributes
-        val loser = JSONObject()
-        loser.put("userID", "aleEEE")
-        loser.put("setResult", 2)
-
-        //use winner and loser to set challenge
-        val challengeJson = JSONObject()
-        challengeJson.put("challengeID", "Mito")
-        challengeJson.put("winner", winner)
-        challengeJson.put("loser", loser)
-
-        //set array of comments with one comment
-        val commentsIdsJsonArray = JSONArray()
-        commentsIdsJsonArray.put(0, "comentario")
-
-        //set array of likes with one like
-        val likesIdsJsonArray = JSONArray()
-        likesIdsJsonArray.put(0, "curti")
-
-        //set feed with its attributes
-        val feedJson = JSONObject()
-        feedJson.put("id", "Ohooh")
-        feedJson.put("challenge", challengeJson)
-        feedJson.put("comments", commentsIdsJsonArray)
-        feedJson.put("likes", likesIdsJsonArray)
-        feedJson.put("date", "2008-12-12T0000:00:00.0")
-
-        val feedJsonArray = JSONArray()
-        feedJsonArray.put(feedJson)
-
-        val dataObject = JSONObject()
-        dataObject.put("feed", feedJsonArray)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("data", dataObject)
-
-        println(jsonObject)
-
         val feed = this.worker?.convertJsonStoryToStories(jsonObject)
 
+        val getDataJson = jsonObject["data"] as JSONObject
+        val getFeedJson = getDataJson["feed"] as JSONArray
+        val feedJson = getFeedJson.getJSONObject(0)
         val getChallenge = feedJson["challenge"] as JSONObject
         val getWinner = getChallenge["winner"] as JSONObject
         val getLoser = getChallenge["loser"] as JSONObject
@@ -194,18 +190,18 @@ class FeedWorkerTest: HelpForRealm() {
     fun testInvokeSuccess(){
         this.mock?.response = null
 
-        var url = URL("http://www.youtube.com")
-        var request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
+        val url = URL("http://www.youtube.com")
+        val request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
                 "",
                 url)
-        var response = com.github.kittinunf.fuel.core.Response(url)
+        val response = com.github.kittinunf.fuel.core.Response(url)
 
-
-        var result: Result<Json, FuelError> = Result.Success()
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
 
         this.worker?.httpRequestHandler?.invoke(request, response, result)
 
-        assertNull(this.mock?.response)
+        assertNotNull(this.mock?.response)
     }
 
 
