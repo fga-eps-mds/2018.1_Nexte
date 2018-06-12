@@ -90,13 +90,14 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 challenged
             }
 
+
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.id!!,
                     challenger?.name!!,
-                    R.mipmap.ic_launcher,
+                    challenger?.profilePicture!!.toInt(),
                     activity.winner?.setResult.toString(),
                     challenged?.name!!,
-                    R.mipmap.ic_launcher,
+                    challenged?.profilePicture!!.toInt(),
                     activity.loser?.setResult.toString(),
                     activity.date.toString(),
                     activity.likesId.size.toString(),

@@ -251,8 +251,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
                     (fragment as FeedFragment).goToCommentsList()
                 }
 
-                itemView.challengerPhoto.setImageResource(R.drawable.profile_image1)
-                itemView.challengedPhoto.setImageResource(R.drawable.profile_image10)
+                itemView.challengerPhoto.setImageResource(activity.challengerPhoto)
+                itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
             }
         }
     }
