@@ -1,5 +1,11 @@
 package com.nexte.nexte.RankingScene
 
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Method
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
+import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapterSpy
@@ -11,6 +17,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
+import java.net.URL
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -38,6 +45,35 @@ class RankingWorkerTest : HelpForRealm() {
         assertEquals(worker?.updateLogic, updateLogic)
         assertEquals(worker?.userManager, userManager)
 
+    }
+
+    @Test
+    fun testHttpGetWithFailure(){
+        mock?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
+
+        worker?.httpGetHandler?.invoke(request, response, result)
+
+        assertNull(mock?.response)
+    }
+
+    @Test
+    fun testHttpGetWithSuccess(){
+        mock?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+
+        val json = Json("carai bixo que treta tio")
+        json.obj()
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        worker?.httpGetHandler?.invoke(request, response, result)
+
+        assertNotNull(mock?.response)
     }
 
     @Test
