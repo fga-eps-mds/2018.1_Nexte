@@ -1,5 +1,10 @@
 package com.nexte.nexte.CommentsScene
 
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Method
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -14,13 +19,14 @@ import org.junit.Test
 import java.util.*
 import kotlin.concurrent.thread
 import com.github.kittinunf.result.Result
-
+import java.net.URL
 
 
 class CommentsWorkerTest {
 
     private var worker: CommentsWorker? = null
     var mock: MockCommentsWorkerUpdateLogic? = null
+    val jsonObject = JSONObject()
 
     @Before
     fun setUp() {
@@ -29,6 +35,20 @@ class CommentsWorkerTest {
         this.worker?.updateLogic = mock
         this.worker?.commentsManager = CommentManager(CommentAdapterSpy())
         this.worker?.storyManager = StoryManager(StoryAdapterSpy())
+
+        val commentJson = JSONObject()
+        commentJson.put("id", "mbsid")
+        commentJson.put("user", "mbslet")
+        commentJson.put("date", "01-03-2018T00:00:00.000Z")
+        commentJson.put("comment", "Boa!")
+
+        val commentJsonArray = JSONArray()
+        commentJsonArray.put(commentJson)
+
+        val dataObject = JSONObject()
+        dataObject.put("comments",commentJsonArray)
+
+        jsonObject.put("data", dataObject)
     }
 
     @Test
@@ -223,29 +243,46 @@ class CommentsWorkerTest {
 
     @Test
     fun testJsonConvertToListOfComments() {
-        val commentJson = JSONObject()
-        commentJson.put("id", "mbsid")
-        commentJson.put("user", "mbslet")
-        commentJson.put("date", "01-03-2018T00:00:00.000Z")
-        commentJson.put("comment", "Boa!")
-
-        val commentJsonArray = JSONArray()
-        commentJsonArray.put(commentJson)
-
-        val dataObject = JSONObject()
-        dataObject.put("comments",commentJsonArray)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("data", dataObject)
 
         println(jsonObject)
 
         val comments = this.worker?.convertJsonToListOfComments(jsonObject)
 
-        assertEquals(comments!![0].id, commentJson["id"] as String)
-        assertEquals(comments!![0].userId, commentJson["user"] as String)
-        assertEquals(comments!![0].comment, commentJson["comment"] as String)
+        assertNotNull(comments)
+    }
 
+    @Test
+    fun testInvokeFail() {
+        mock?.response1 = null
+
+        var url = URL("http://www.forever21.com/")
+        var request = Request(Method.GET, "", url)
+        var response = Response(url)
+
+        var result: Result<Json, FuelError> = Result.error(FuelError(Exception("Erro")))
+
+        this.worker?.handleResulComments?.invoke(request, response, result)
+
+        assertNull(mock?.response1)
+    }
+
+    @Test
+    fun testInvokeSuccess() {
+        mock?.response1
+
+        var url = URL("http://www.forever21.com/")
+        val request = Request(Method.GET, "", url)
+        val response = Response(url)
+
+        val json = Json(jsonObject.toString())
+
+        var resultSuccess: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        thread {worker?.handleResulComments?.invoke(request, response, resultSuccess) }.join()
+
+        //assert
+        assertNotNull(mock?.response1)
     }
 
 

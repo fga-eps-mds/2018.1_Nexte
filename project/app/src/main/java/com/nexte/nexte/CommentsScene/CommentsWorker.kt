@@ -1,6 +1,9 @@
 package com.nexte.nexte.CommentsScene
 
+import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
@@ -31,7 +34,22 @@ class CommentsWorker {
     var updateLogic: CommentsWorkerUpdateLogic? = null
     var commentsManager: CommentManager? = null
     var storyManager: StoryManager? = null
+    var handleResulComments: (Request, com.github.kittinunf.fuel.core.Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+        when(result){
+            is Result.Failure -> {
+                println(result.getException())
+            }
 
+            is Result.Success -> {
+                val json = result.get()
+                var commentsList = convertJsonToListOfComments(json.obj())
+                commentsManager?.updateMany(commentsList)
+                val newResponse = CommentsModel.GetCommentsRequest.Response(
+                        commentsList.toMutableList())
+                updateLogic?.updateComment(newResponse)
+            }
+        }
+    }
     /**
      * Variable created to simulate mocked data to be implemented on Package mocker
      */
@@ -61,22 +79,7 @@ class CommentsWorker {
         if (UserSingleton.userType != UserType.MOCKED) {
             val header = mapOf("accept-version" to "0.1.0")
             val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
-            url.httpGet().header(header).responseJson { _, _, result ->
-                when(result){
-                    is Result.Failure -> {
-                        println(result.getException())
-                    }
-
-                    is Result.Success -> {
-                        val json = result.get()
-                        var commentsList = convertJsonToListOfComments(json.obj())
-                        commentsManager?.updateMany(commentsList)
-                        val newResponse = CommentsModel.GetCommentsRequest.Response(
-                                commentsList.toMutableList())
-                        updateLogic?.updateComment(newResponse)
-                    }
-                }
-            }
+            url.httpGet().header(header).responseJson(handleResulComments)
         } else {
             //Do nothing
         }
