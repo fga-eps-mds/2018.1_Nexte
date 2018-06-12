@@ -54,7 +54,6 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         feedRecyclerView?.adapter = this.feedViewAdapter
         feedRecyclerView?.layoutManager = LinearLayoutManager(activity)
 
-
         this.createGetActivitiesRequest()
         return newView
     }
@@ -251,6 +250,9 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                     (fragment as FeedFragment).goToCommentsList()
                 }
+
+                itemView.challengerPhoto.setImageResource(R.drawable.profile_image1)
+                itemView.challengedPhoto.setImageResource(R.drawable.profile_image10)
             }
         }
     }
