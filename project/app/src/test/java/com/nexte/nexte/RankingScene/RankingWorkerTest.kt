@@ -25,6 +25,7 @@ class RankingWorkerTest : HelpForRealm() {
 
     var worker: RankingWorker? = null
     var mock: MockRankingWorkerUpdateLogic? = null
+    val jsonObject = JSONObject()
 
     @Before
     fun setUp() {
@@ -33,6 +34,30 @@ class RankingWorkerTest : HelpForRealm() {
         this.mock = MockRankingWorkerUpdateLogic()
         this.worker?.updateLogic = mock
         this.worker?.userManager = UserManager(UserAdapterSpy())
+
+        val jsonUser = JSONObject()
+        jsonUser.put("id", "1")
+        jsonUser.put("name", "teste")
+        jsonUser.put("profileImageURL", "www.lol.com.br")
+        jsonUser.put("nickname", "biel")
+        jsonUser.put("rankPosition", 1)
+        jsonUser.put("email", "biel@poc.br")
+        jsonUser.put("phone", "3232323232")
+        jsonUser.put("wins", 1)
+        jsonUser.put("loses", 1)
+        jsonUser.put("birthDate", "2018-01-07T00:00:00.000Z")
+        jsonUser.put("gender", "M")
+        jsonUser.put("category", 1)
+        jsonUser.put("status", 1)
+
+        val usersJsonArray = JSONArray()
+        usersJsonArray.put(jsonUser)
+
+        val dataJson = JSONObject()
+        dataJson.put("users", usersJsonArray)
+
+
+        jsonObject.put("data", dataJson)
     }
 
     @Test
@@ -67,11 +92,11 @@ class RankingWorkerTest : HelpForRealm() {
         val request = Request(Method.GET, "",url)
         val response = Response(url)
 
-        val json = Json("carai bixo que treta tio")
-        json.obj()
+        val json = Json(jsonObject.toString())
         val result: Result<Json, FuelError> = Result.Success(json)
 
-        worker?.httpGetHandler?.invoke(request, response, result)
+        thread { worker?.httpGetHandler?.invoke(request, response, result) }.join()
+
 
         assertNotNull(mock?.response)
     }
@@ -96,29 +121,7 @@ class RankingWorkerTest : HelpForRealm() {
     @Test
     fun successConvertJsonToListOfUsers(){
         //prepare
-        val jsonUser = JSONObject()
-        jsonUser.put("id", "1")
-        jsonUser.put("name", "teste")
-        jsonUser.put("profileImageURL", "www.lol.com.br")
-        jsonUser.put("nickname", "biel")
-        jsonUser.put("rankPosition", 1)
-        jsonUser.put("email", "biel@poc.br")
-        jsonUser.put("phone", "3232323232")
-        jsonUser.put("wins", 1)
-        jsonUser.put("loses", 1)
-        jsonUser.put("birthDate", "2018-01-07T00:00:00.000Z")
-        jsonUser.put("gender", "M")
-        jsonUser.put("category", 1)
-        jsonUser.put("status", 1)
 
-        val usersJsonArray = JSONArray()
-        usersJsonArray.put(jsonUser)
-
-        val dataJson = JSONObject()
-        dataJson.put("users", usersJsonArray)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("data", dataJson)
         //call
         val users = worker?.convertJsonToListOfUsers(jsonObject, UserCategoryAdapterSpy())
         //assert

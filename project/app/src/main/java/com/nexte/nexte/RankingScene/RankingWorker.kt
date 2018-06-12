@@ -38,17 +38,16 @@ class RankingWorker {
     var userManager: UserManager? = null
 
     val httpGetHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-        Log.d("result: ", result.toString())
+
         when (result) {
             is Result.Failure -> {
-                Log.e("EEE CARAI", "PUTA QUE PARIU FALHO DESGRAÇA")
+
                 println(result.getException())
             }
 
             is Result.Success -> {
-                Log.e("EEE CARAI", "PUTA QUE PARIU FOI DESGRAÇA")
+
                 val json = result.get()
-                Log.e("json", json.toString())
                 var usersList = convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
                 usersList = userManager?.updateMany(usersList)!!
                 val newResponse = RankingModel.Response(usersList.toTypedArray())
