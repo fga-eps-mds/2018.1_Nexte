@@ -1,11 +1,15 @@
 package com.nexte.nexte.FeedScene
 
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.FeedMocker
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
+import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -13,6 +17,9 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import org.junit.runner.Request
+import java.lang.reflect.Method
+import java.net.URL
 
 class FeedWorkerTest: HelpForRealm() {
 
@@ -167,6 +174,39 @@ class FeedWorkerTest: HelpForRealm() {
         })
     }
 
+    @Test
+    fun testInvokeFailure(){
+        this.mock?.response = null
+
+        var url = URL("http://www.youtube.com")
+        var request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
+                                                             "",
+                                                             url)
+        var response = com.github.kittinunf.fuel.core.Response(url)
+        var result: Result<Json, FuelError> = Result.error(FuelError(Exception("An error occurred")))
+
+        this.worker?.httpRequestHandler?.invoke(request, response, result)
+
+        assertNull(this.mock?.response)
+    }
+
+    @Test
+    fun testInvokeSuccess(){
+        this.mock?.response = null
+
+        var url = URL("http://www.youtube.com")
+        var request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
+                "",
+                url)
+        var response = com.github.kittinunf.fuel.core.Response(url)
+
+
+        var result: Result<Json, FuelError> = Result.Success()
+
+        this.worker?.httpRequestHandler?.invoke(request, response, result)
+
+        assertNull(this.mock?.response)
+    }
 
 
     @Test

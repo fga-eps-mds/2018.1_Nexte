@@ -1,12 +1,16 @@
 package com.nexte.nexte.FeedScene
 
+import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelError
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
+import okhttp3.Request
+import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -33,6 +37,25 @@ class FeedWorker {
     var updateLogic: FeedWorkerUpdateLogic? = null
     var storyManager: StoryManager? = null
 
+    var httpRequestHandler: (com.github.kittinunf.fuel.core.Request,
+                             com.github.kittinunf.fuel.core.Response,
+                             Result<Json, FuelError>) -> Unit = { _, _, result ->
+        when(result){
+            is Result.Failure -> {
+                println(result.getException())
+            }
+
+            is Result.Success -> {
+                val json = result.get()
+                val stories = convertJsonStoryToStories(json.obj())
+                storyManager?.updateMany(stories)
+                val newResponse = FeedModel.GetFeedActivities
+                        .Response(stories)
+                updateLogic?.updateFeed(newResponse)
+            }
+        }
+    }
+
     /**
      * Function to fetch feed data of server
      */
@@ -50,22 +73,7 @@ class FeedWorker {
         if (UserSingleton.userType != UserType.MOCKED){
             val header = mapOf("accept-version" to "0.1.0")
             val url = "http://10.0.2.2:3000/stories"
-            url.httpGet().header(header).responseJson { _, _, result ->
-                when(result){
-                    is Result.Failure -> {
-                        println(result.getException())
-                    }
-
-                    is Result.Success -> {
-                        val json = result.get()
-                        val stories = convertJsonStoryToStories(json.obj())
-                        storyManager?.updateMany(stories)
-                        val newResponse = FeedModel.GetFeedActivities
-                                .Response(stories)
-                        updateLogic?.updateFeed(newResponse)
-                    }
-                }
-            }
+            url.httpGet().header(header).responseJson(httpRequestHandler)
         } else {
             //Do nothing
         }
