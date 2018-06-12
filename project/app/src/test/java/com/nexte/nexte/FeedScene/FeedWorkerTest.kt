@@ -230,7 +230,7 @@ class FeedWorkerTest: HelpForRealm() {
         val challenged1 = FeedModel.FeedPlayer("Pedro", R.mipmap.ic_launcher, 352)
         val likesList1: MutableList<FeedModel.FeedPlayer> = mutableListOf()
         val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
-        val feedActivity1 = FeedModel.FeedActivity("246", challenge1, Date(), likesList1)
+        val feedActivity1 = FeedModel.FeedActivity("246 F", challenge1, Date(), likesList1)
 
         //call
         assertNotNull(FeedManager.feedList)
