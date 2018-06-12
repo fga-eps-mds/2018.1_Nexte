@@ -16,6 +16,7 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import java.net.URL
+import java.util.*
 
 class FeedWorkerTest: HelpForRealm() {
 
@@ -220,6 +221,30 @@ class FeedWorkerTest: HelpForRealm() {
         val storyManager = this.worker?.storyManager
         //assert
         assertNotNull(storyManager)
+    }
+
+    @Test
+    fun setListFeedManager(){
+        //prepare
+        val challenger1 = FeedModel.FeedPlayer("Rafael", R.mipmap.ic_launcher, 234)
+        val challenged1 = FeedModel.FeedPlayer("Pedro", R.mipmap.ic_launcher, 352)
+        val likesList1: MutableList<FeedModel.FeedPlayer> = mutableListOf()
+        val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
+        val feedActivity1 = FeedModel.FeedActivity("32", challenge1, Date(), likesList1)
+
+        //call
+        assertNotNull(FeedManager.feedList)
+        FeedManager.feedList.set(0, feedActivity1)
+
+        //assert
+        assertEquals(feedActivity1.identifier, FeedManager.feedList[0].identifier)
+        assertEquals(feedActivity1.challenge.challenged.name, FeedManager.feedList[0].challenge.challenged.name)
+        assertEquals(feedActivity1.challenge.challenger.name, FeedManager.feedList[0].challenge.challenger.name)
+        assertEquals(feedActivity1.challenge.challenged.set, FeedManager.feedList[0].challenge.challenged.set)
+        assertEquals(feedActivity1.challenge.challenger.set, FeedManager.feedList[0].challenge.challenger.set)
+        assertEquals(feedActivity1.challenge.challenged.photo, FeedManager.feedList[0].challenge.challenged.photo)
+        assertEquals(feedActivity1.challenge.challenger.photo, FeedManager.feedList[0].challenge.challenger.photo)
+
     }
 
     @After
