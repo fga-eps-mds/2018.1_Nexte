@@ -44,4 +44,5 @@ class UserManager(val userAdapter: UserAdapter = UserAdapterRealm()) {
         return insertedUsers.toList()
     }
 
+
 }
