@@ -22,11 +22,13 @@ import com.nexte.nexte.UserType
 import java.lang.reflect.Method
 import java.net.URL
 import javax.xml.transform.Result
+import kotlin.concurrent.thread
 
 class LikeListWorkerTest {
 
     var worker: LikeListWorker?=null
     var mock: MockWorkersUpdateLogic?=null
+    val jsonObject=JSONObject()
 
     @Before
     fun setUp() {
@@ -36,6 +38,19 @@ class LikeListWorkerTest {
         this.worker?.userManager=UserManager(userAdapter=UserAdapterSpy())
         this.worker?.storyManager=StoryManager(StoryAdapterSpy())
         this.worker?.likeManager=LikeManager(LikeAdapterSpy())
+
+        val likeJson=JSONObject()
+        likeJson.put("date", "2018-01-07T00:00:00.000Z")
+        likeJson.put("id", "asdasd")
+        likeJson.put("user", "asdasd")
+
+        val likesJsonArray=JSONArray()
+        likesJsonArray.put(likeJson)
+
+        val dataObject=JSONObject()
+        dataObject.put("likes", likesJsonArray)
+
+        jsonObject.put("data", dataObject)
     }
 
     @Test
@@ -64,26 +79,13 @@ class LikeListWorkerTest {
 
     @Test
     fun testJsonConvertJsonToListOfLikes() {
-        val likeJson=JSONObject()
-        likeJson.put("date", "2018-01-07T00:00:00.000Z")
-        likeJson.put("id", "asdasd")
-        likeJson.put("user", "asdasd")
-
-        val likesJsonArray=JSONArray()
-        likesJsonArray.put(likeJson)
-
-        val dataObject=JSONObject()
-        dataObject.put("likes", likesJsonArray)
-
-        val jsonObject=JSONObject()
-        jsonObject.put("data", dataObject)
 
         println(jsonObject)
 
         val likes=this.worker?.convertJsonToListOfLikes(jsonObject)
 
-        assertEquals(likes!![0].id, likeJson["id"] as String)
-        assertEquals(likes!![0].userId, likeJson["user"] as String)
+        assertNotNull(likes)
+
     }
 
     @Test
@@ -151,6 +153,7 @@ class LikeListWorkerTest {
 
     @Test
     fun testInvoke() {
+        mock?.response = null
         var url = URL("http://www.forever21.com/")
         var request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
         var response = Response(url)
@@ -158,17 +161,25 @@ class LikeListWorkerTest {
         var result: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.error(FuelError(Exception("teste")))
         this.worker?.handleResultLikeList?.invoke(request, response, result)
 
-        assertNotNull(result)
+        assertNull(mock?.response)
     }
 
     @Test
-    fun testInvokeSucess() {
-    var url = URL("http://www.forever21.com/")
-    var request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
-    var response = Response(url)
-    val json = result.get()
+    fun testInvokeSuccess() {
+        //prepare
+    mock?.response
+    val url = URL("http://www.forever21.com/")
+    val request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
+    val response = Response(url)
 
-    var result: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.of()
+    val json = Json(jsonObject.toString())
+
+    var resultSuccess: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.Success(json)
+    //call
+    thread {worker?.handleResultLikeList?.invoke(request, response, resultSuccess) }.join()
+    //assert
+    assertNotNull(mock?.response)
+
     }
 
     @After
