@@ -12,7 +12,7 @@ enum class UserType { REAL, MOCKED }
 object UserSingleton {
 
     var userType: UserType = UserType.MOCKED
-    var loggedUserID: String = "6"
+    var loggedUserID: String = "9"
         private set
     val loggedUser: User
         get() {

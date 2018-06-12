@@ -68,9 +68,11 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             if (user.category != null){
                 playerCategory = user.category.name
             }
-            var id = ""
-            user.id.let { userID ->
-                id = userID
+
+            var id = if (user.id != null) {
+                user.id
+            } else {
+                ""
             }
 
             val playerFormatted = RankingModel.FormattedPlayer(name,
