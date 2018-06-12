@@ -17,6 +17,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
+import com.nexte.nexte.RankingScene.RankingModel
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
 import java.lang.reflect.Method
@@ -92,7 +93,7 @@ class LikeListWorkerTest {
     fun testNullStoryInLikes() {
         //prepare
         val tokenId="1"
-        val storyId="2"
+        val storyId="-2"
         val request=LikeListModel.Request(tokenId, storyId)
         val value = 1
         //call
@@ -100,6 +101,69 @@ class LikeListWorkerTest {
 
         //assert
         assertEquals(this.mock?.response?.players?.size, value)
+    }
+
+    @Test
+    fun testGetListWithNullStoryManager() {
+        //prepare
+        val backup = worker?.storyManager
+        worker?.storyManager = null
+        val request = LikeListModel.Request("1", "1")
+        mock?.response = null
+
+        //call
+        thread {
+            worker?.getListLikesPlayers(request)
+        }.join()
+
+        //assert
+        assertNotNull(mock?.response)
+
+        //prepare
+        worker?.storyManager = backup
+
+    }
+
+    @Test
+    fun testGetListWithNullLikeManager() {
+        //prepare
+        val backup = worker?.likeManager
+        worker?.likeManager = null
+        val request = LikeListModel.Request("1", "1")
+        mock?.response = null
+
+        //call
+        thread {
+            worker?.getListLikesPlayers(request)
+        }.join()
+
+        //assert
+        assertNotNull(mock?.response)
+
+        //prepare
+        worker?.likeManager = backup
+
+    }
+
+    @Test
+    fun testGetListWithNullUpdateLogic() {
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        val request = LikeListModel.Request("1", "1")
+        mock?.response = null
+
+        //call
+        thread {
+            worker?.getListLikesPlayers(request)
+        }.join()
+
+        //assert
+        assertNull(mock?.response)
+
+        //prepare
+        worker?.updateLogic = backup
+
     }
 
     @Test
