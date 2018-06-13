@@ -44,7 +44,7 @@ class LikeListWorker {
     var storyManager: StoryManager? = null
 
 
-    var handleResultLikeList: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+    val handleResultLikeList: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
         when(result){
             is Result.Failure -> {
                 println(result.getException())

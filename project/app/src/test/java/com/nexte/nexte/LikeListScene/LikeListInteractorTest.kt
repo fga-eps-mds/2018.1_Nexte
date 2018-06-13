@@ -57,6 +57,14 @@ class LikeListInteractorTest {
         //assert
         assertEquals(this.mock?.passedHere, true)
     }
+
+    @Test
+    fun testNullPresenter() {
+        //prepare and call
+        this.interactor?.presenter = null
+        this.mock?.passedHere = false
+    }
+
     @Test
     fun testConstructorInteractor() {
         //prepare and call
@@ -77,6 +85,7 @@ class LikeListInteractorTest {
         //assert
         assertEquals(newWorker, interactor?.worker)
     }
+
     @After
     fun tearDown() {
         this.mock = null
