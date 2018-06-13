@@ -118,17 +118,49 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         /**
          * Method responsible to define the data of Y axis.
          */
-        fun setYAxisValues(): ArrayList<Entry> {
+        fun setYAxisValuesVictories(): ArrayList<Entry> {
 
-            val yVals = ArrayList<Entry>()
-            yVals.add(Entry(0f, 2f))
-            yVals.add(Entry(1f, 3f))
-            yVals.add(Entry(2f, 4f))
-            yVals.add(Entry(3f, 2f))
-            yVals.add(Entry(4f, 1f))
-            yVals.add(Entry(5f, 5f))
+            val yValsVictories = ArrayList<Entry>()
+            yValsVictories.add(Entry(0f, 2f))
+            yValsVictories.add(Entry(1f, 3f))
+            yValsVictories.add(Entry(2f, 4f))
+            yValsVictories.add(Entry(3f, 2f))
+            yValsVictories.add(Entry(4f, 1f))
+            yValsVictories.add(Entry(5f, 5f))
 
-            return yVals
+            return yValsVictories
+        }
+
+        /**
+         * Method responsible to define the data of Y axis.
+         */
+        fun setYAxisValuesLosses(): ArrayList<Entry> {
+
+            val yValsLosses = ArrayList<Entry>()
+            yValsLosses.add(Entry(0f, 4f))
+            yValsLosses.add(Entry(1f, 3f))
+            yValsLosses.add(Entry(2f, 4f))
+            yValsLosses.add(Entry(3f, 1f))
+            yValsLosses.add(Entry(4f, 3f))
+            yValsLosses.add(Entry(5f, 2f))
+
+            return yValsLosses
+        }
+
+        /**
+         * Method responsible to define the data of Y axis.
+         */
+        fun setYAxisValuesMatches(): ArrayList<Entry> {
+
+            val yValsMatches = ArrayList<Entry>()
+            yValsMatches.add(Entry(0f, 7f))
+            yValsMatches.add(Entry(1f, 3f))
+            yValsMatches.add(Entry(2f, 6f))
+            yValsMatches.add(Entry(3f, 5f))
+            yValsMatches.add(Entry(4f, 2f))
+            yValsMatches.add(Entry(5f, 2f))
+
+            return yValsMatches
         }
 
         /**
@@ -243,18 +275,19 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createGraph() {
 
-            val victoryResults = setYAxisValues() //responsible to access the method setYAxisValues
-            val losesResults = setYAxisValuesRanking()
-            val matchesResults = setYAxisValues()
+            val victoryResults = setYAxisValuesVictories() //responsible to access the method setYAxisValues
+            val losesResults = setYAxisValuesLosses()
+            val matchesResults = setYAxisValuesMatches()
             val red = Color.RED
             val green = Color.GREEN
             val blue = Color.BLUE
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", red)
-            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", green)
+            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", green)
+            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", red)
             val matchesLine = this.customizeChartLine(matchesResults, "Partidas", blue)
             dataSets.add(victoryLine)
             dataSets.add(losesLine)
+            dataSets.add(matchesLine)
 
             val lineData = LineData(dataSets) // Added data to chart
             val description = Description()
