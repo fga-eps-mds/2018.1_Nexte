@@ -129,22 +129,6 @@ class ShowProfileFragmentTest: HelpForRealm() {
     }
 
     @Test
-    fun testGraphManagerSetYAxisValuesMatches(){
-        //prepare
-        val graphManager = ShowProfileFragment.GraphManager(view!!)
-
-        //call
-        val yVals = graphManager.setYAxisValuesMatches()
-
-        //assert
-        assertEquals(yVals.size, 6)
-        assertEquals(yVals[0].x, 0f)
-        assertEquals(yVals[0].y, 7f)
-        assertEquals(yVals[3].x, 3f)
-        assertEquals(yVals[3].y, 5f)
-    }
-
-    @Test
     fun testGraphManagerSetYAxisValuesRanking(){
         //prepare
         val graphManager = ShowProfileFragment.GraphManager(view!!)
