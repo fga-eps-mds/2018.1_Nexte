@@ -36,8 +36,9 @@ class FeedWorker {
 
     var updateLogic: FeedWorkerUpdateLogic? = null
     var storyManager: StoryManager? = null
+    var senderHTTP: Boolean? = null
 
-    var httpRequestHandler: (com.github.kittinunf.fuel.core.Request,
+    val httpRequestHandler: (com.github.kittinunf.fuel.core.Request,
                              com.github.kittinunf.fuel.core.Response,
                              Result<Json, FuelError>) -> Unit = { _, _, result ->
         when(result){
@@ -71,11 +72,12 @@ class FeedWorker {
         updateLogic?.updateFeed(response)
 
         if (UserSingleton.userType != UserType.MOCKED){
+            senderHTTP = true
             val header = mapOf("accept-version" to "0.1.0")
             val url = "http://10.0.2.2:3000/stories"
             url.httpGet().header(header).responseJson(httpRequestHandler)
         } else {
-            //Do nothing
+            senderHTTP = false
         }
 
     }

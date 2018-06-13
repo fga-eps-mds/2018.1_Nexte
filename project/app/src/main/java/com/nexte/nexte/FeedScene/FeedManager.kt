@@ -13,7 +13,7 @@ import com.nexte.nexte.UserSingleton
  */
 object FeedManager {
 
-    private var feedListMutable: MutableList<FeedModel.FeedActivity> = mutableListOf()
+    var feedListMutable: MutableList<FeedModel.FeedActivity> = mutableListOf()
 
     var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
         get() {

@@ -8,6 +8,8 @@ import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -17,6 +19,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.net.URL
 import java.util.*
+import kotlin.concurrent.thread
 
 class FeedWorkerTest: HelpForRealm() {
 
@@ -77,9 +80,10 @@ class FeedWorkerTest: HelpForRealm() {
     }
 
     @Test
-    fun testFetchDataCase1(){
+    fun testFetchDataSuccess(){
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
+
         //call
         worker?.fetchFeedData(request)
 
@@ -89,10 +93,11 @@ class FeedWorkerTest: HelpForRealm() {
     }
 
     @Test
-    fun testFetchDataCase2(){
+    fun testFetchStoryManagerNull(){
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
         val backup = worker?.storyManager
+
         //call
         worker?.storyManager = null
         worker?.fetchFeedData(request)
@@ -110,6 +115,7 @@ class FeedWorkerTest: HelpForRealm() {
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
         val backup = worker?.updateLogic
+
         //call
         worker?.updateLogic = null
         worker?.fetchFeedData(request)
@@ -120,6 +126,35 @@ class FeedWorkerTest: HelpForRealm() {
         //backup
         worker?.updateLogic = backup
     }
+
+    @Test
+    fun testFetchFailHTTP(){
+        //prepare
+        val request = FeedModel.GetFeedActivities.Request()
+
+        //call
+        worker?.fetchFeedData(request)
+
+        //assert
+        assertFalse(worker?.senderHTTP!!)
+    }
+
+    @Test
+    fun testFetchSuccessHTTP(){
+        //prepare
+        val request = FeedModel.GetFeedActivities.Request()
+        UserSingleton.userType = UserType.REAL
+
+        //call
+       thread {
+           worker?.fetchFeedData(request)
+       }.join()
+
+        //assert
+        assertTrue(worker?.senderHTTP!!)
+    }
+
+
 
     @Test
     fun testJsonConvertJsonFeed(){
@@ -146,6 +181,7 @@ class FeedWorkerTest: HelpForRealm() {
 
         assertEquals(feed[0].commentsId[0], getComments.getString(0))
         assertEquals(feed[0].likesId[0], getLikes.getString(0))
+
 
     }
 
@@ -175,12 +211,12 @@ class FeedWorkerTest: HelpForRealm() {
     fun testInvokeFailure(){
         this.mock?.response = null
 
-        var url = URL("http://www.youtube.com")
-        var request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
+        val url = URL("http://www.youtube.com")
+        val request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
                                                              "",
                                                              url)
-        var response = com.github.kittinunf.fuel.core.Response(url)
-        var result: Result<Json, FuelError> = Result.error(FuelError(Exception("An error occurred")))
+        val response = com.github.kittinunf.fuel.core.Response(url)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("An error occurred")))
 
         this.worker?.httpRequestHandler?.invoke(request, response, result)
 
@@ -224,6 +260,23 @@ class FeedWorkerTest: HelpForRealm() {
     }
 
     @Test
+    fun setListFeedManagerEmpty(){
+        //prepare
+        val testList =  mutableListOf<FeedModel.FeedActivity>()
+        val listToCompare = FeedMocker.createFeedList()
+
+        //call
+        FeedManager.feedListMutable = testList
+
+        //assert
+        assertEquals(listToCompare[0].challenge.challenged.name, FeedManager.feedList[0].challenge.challenged.name)
+        assertEquals(listToCompare[0].challenge.challenger.name, FeedManager.feedList[0].challenge.challenger.name)
+        assertEquals(listToCompare[0].identifier, FeedManager.feedList[0].identifier)
+
+
+    }
+
+    @Test
     fun setListFeedManager(){
         //prepares
         val challenger1 = FeedModel.FeedPlayer("Rafael", R.mipmap.ic_launcher, 234)
@@ -232,19 +285,56 @@ class FeedWorkerTest: HelpForRealm() {
         val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
         val feedActivity1 = FeedModel.FeedActivity("246 F", challenge1, Date(), likesList1)
 
+        val challenger2 = FeedModel.FeedPlayer("Rafael", R.mipmap.ic_launcher, 234)
+        val challenged2 = FeedModel.FeedPlayer("Pedro", R.mipmap.ic_launcher, 352)
+        val likesList2: MutableList<FeedModel.FeedPlayer> = mutableListOf()
+        val challenge2 = FeedModel.FeedChallenge(challenger2, challenged2, Date())
+        val feedActivity2 = FeedModel.FeedActivity("212 F", challenge2, Date(), likesList2)
+
+        val listToTest = mutableListOf(feedActivity1, feedActivity2)
+
         //call
-        assertNotNull(FeedManager.feedList)
-        FeedManager.feedList.set(0, feedActivity1)
+        FeedManager.feedListMutable = listToTest
+        FeedManager.feedList
 
         //assert
-        assertEquals(feedActivity1.identifier, FeedManager.feedList[0].identifier)
-        assertEquals(feedActivity1.challenge.challenged.name, FeedManager.feedList[0].challenge.challenged.name)
-        assertEquals(feedActivity1.challenge.challenger.name, FeedManager.feedList[0].challenge.challenger.name)
-        assertEquals(feedActivity1.challenge.challenged.set, FeedManager.feedList[0].challenge.challenged.set)
-        assertEquals(feedActivity1.challenge.challenger.set, FeedManager.feedList[0].challenge.challenger.set)
-        assertEquals(feedActivity1.challenge.challenged.photo, FeedManager.feedList[0].challenge.challenged.photo)
-        assertEquals(feedActivity1.challenge.challenger.photo, FeedManager.feedList[0].challenge.challenger.photo)
+        assertEquals(listToTest, FeedManager.feedList)
 
+
+    }
+
+    @Test
+    fun addUserManager(){
+        //prepare
+        val challenger1 = FeedModel.FeedPlayer("Rafael", R.mipmap.ic_launcher, 234)
+        val challenged1 = FeedModel.FeedPlayer("Pedro", R.mipmap.ic_launcher, 352)
+        val likesList1: MutableList<FeedModel.FeedPlayer> = mutableListOf()
+        val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
+        val feedActivity1 = FeedModel.FeedActivity("246 F", challenge1, Date(), likesList1)
+
+        //call
+        val testActivity = FeedManager.addAndRemoveUser(feedActivity1)
+
+        //assert
+        assertNotNull(testActivity?.likes?.find { it.name.equals(UserSingleton.loggedUser.name) })
+    }
+
+    @Test
+    fun removeUserManager(){
+        //prepare
+        val challenger1 = FeedModel.FeedPlayer("Rafael", R.mipmap.ic_launcher, 234)
+        val challenged1 = FeedModel.FeedPlayer("Pedro", R.mipmap.ic_launcher, 352)
+
+        val currentUser = FeedModel.FeedPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher, 3)
+        val likesList1 = mutableListOf(currentUser)
+        val challenge1 = FeedModel.FeedChallenge(challenger1, challenged1, Date())
+        val feedActivity1 = FeedModel.FeedActivity("246 F", challenge1, Date(), likesList1)
+
+        //call
+        val testActivity = FeedManager.addAndRemoveUser(feedActivity1)
+
+        //assert
+        assertNull(testActivity?.likes?.find { it.name.equals(UserSingleton.loggedUser.name) })
     }
 
     @After
