@@ -97,12 +97,12 @@ class ShowProfileFragmentTest: HelpForRealm() {
     }
 
     @Test
-    fun testGraphManagerSetYAxisValues(){
+    fun testGraphManagerSetYAxisValuesVictories(){
         //prepare
         val graphManager = ShowProfileFragment.GraphManager(view!!)
 
         //call
-        val yVals = graphManager.setYAxisValues()
+        val yVals = graphManager.setYAxisValuesVictories()
 
         //assert
         assertEquals(yVals.size, 6)
@@ -110,6 +110,38 @@ class ShowProfileFragmentTest: HelpForRealm() {
         assertEquals(yVals[0].y, 2f)
         assertEquals(yVals[3].x, 3f)
         assertEquals(yVals[3].y, 2f)
+    }
+
+    @Test
+    fun testGraphManagerSetYAxisValuesLosses(){
+        //prepare
+        val graphManager = ShowProfileFragment.GraphManager(view!!)
+
+        //call
+        val yVals = graphManager.setYAxisValuesLosses()
+
+        //assert
+        assertEquals(yVals.size, 6)
+        assertEquals(yVals[0].x, 0f)
+        assertEquals(yVals[0].y, 4f)
+        assertEquals(yVals[3].x, 3f)
+        assertEquals(yVals[3].y, 1f)
+    }
+
+    @Test
+    fun testGraphManagerSetYAxisValuesMatches(){
+        //prepare
+        val graphManager = ShowProfileFragment.GraphManager(view!!)
+
+        //call
+        val yVals = graphManager.setYAxisValuesMatches()
+
+        //assert
+        assertEquals(yVals.size, 6)
+        assertEquals(yVals[0].x, 0f)
+        assertEquals(yVals[0].y, 7f)
+        assertEquals(yVals[3].x, 3f)
+        assertEquals(yVals[3].y, 5f)
     }
 
     @Test
