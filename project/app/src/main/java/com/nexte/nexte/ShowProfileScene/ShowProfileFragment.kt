@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -259,9 +260,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val victoryResults = setYAxisValuesVictories() //responsible to access the method setYAxisValues
             val losesResults = setYAxisValuesLosses()
             val matchesResults = setYAxisValuesRanking()
-            val orange = Color.RED
-            val green = Color.GREEN
-            val blue = Color.BLUE
+            val orange = ContextCompat.getColor(showProfileFragment?.context!!, R.color.orange_chart)
+            val green = ContextCompat.getColor(showProfileFragment?.context!!, R.color.green_chart)
+            val blue = ContextCompat.getColor(showProfileFragment?.context!!, R.color.blue_chart)
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
             val victoryLine = this.customizeChartLine(losesResults, "Vitoria", green)
             val losesLine = this.customizeChartLine(victoryResults, "Derrotas", orange)
@@ -282,7 +283,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createRankingGraph() {
 
-            val yellow = Color.YELLOW
+            val yellow = ContextCompat.getColor(showProfileFragment?.context!!, R.color.yellow_chart)
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
             val line = this.customizeChartLine(yAxesRanking, "Ranking", yellow)
