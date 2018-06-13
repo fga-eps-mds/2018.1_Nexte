@@ -74,6 +74,25 @@ class FeedPresenterTest {
         assertEquals(likes.size.toString(), this.mock?.formattedGetFeedActivities?.numberOfLikes)
     }
 
+    @Test
+    fun validateUserImageOnSucess() {
+        //prepare and call
+        val number = this.presenter?.validateUserPhoto("10")
+
+        //assert
+        assertEquals(10, number)
+    }
+
+    @Test
+    fun validateUserImageOnFailure() {
+        //prepare and call
+        val number = this.presenter?.validateUserPhoto("")
+        val defaultImage = R.mipmap.ic_launcher
+
+        //assert
+        assertEquals(defaultImage, number)
+    }
+
     @After
     fun tearDown() {
         this.mock = null
@@ -84,6 +103,7 @@ class FeedPresenterTest {
 private class MockFeedDisplayLogic: FeedDisplayLogic{
 
     var formattedGetFeedActivities: FeedModel.FeedActivityFormatted? = null
+    var passedHere = false
 
     override fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel) {
         formattedGetFeedActivities = null
@@ -93,5 +113,6 @@ private class MockFeedDisplayLogic: FeedDisplayLogic{
     override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
         formattedGetFeedActivities = null
         formattedGetFeedActivities = viewModel.feedActivities[0]
+        this.passedHere = true
     }
 }
