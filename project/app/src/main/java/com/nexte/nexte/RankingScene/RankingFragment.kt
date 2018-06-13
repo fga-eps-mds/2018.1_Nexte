@@ -270,6 +270,10 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.profileButton?.setOnClickListener{
                 (fragment as RankingFragment).goToShowProfileView(item.player.userName)
             }
+            itemHolder?.expandedView?.currentUser?.setImageResource(item.player.userPictureURL)
+            UserSingleton.loggedUser.profilePicture?.let {
+                itemHolder?.expandedView?.loggedUser?.setImageResource(it.toInt())
+            }
 
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
