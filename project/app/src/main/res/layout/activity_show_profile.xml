@@ -15,10 +15,10 @@
 
         <View
             android:id="@+id/barBlue"
-            android:layout_width="20dp"
-            android:layout_height="1dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginEnd="5dp"
-            android:background="@color/blue"
+            android:background="@drawable/chart_matches_legend"
             app:layout_constraintBottom_toBottomOf="@+id/legendMatches"
             app:layout_constraintEnd_toStartOf="@+id/legendMatches"
             app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
@@ -280,24 +280,23 @@
             app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
 
         <View
-            android:id="@+id/barGreen"
-            android:layout_width="20dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="5dp"
-            android:background="@android:color/darker_gray"
+            android:id="@+id/legendGreen"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/chart_victory_legend"
             app:layout_constraintBottom_toTopOf="@+id/legendDefeats"
             app:layout_constraintEnd_toStartOf="@+id/legendVictories"
-            app:layout_constraintTop_toTopOf="@+id/legendVictories"
-            tools:background="@color/green" />
+            app:layout_constraintTop_toTopOf="@+id/legendVictories" />
 
         <View
-            android:id="@+id/barRed"
-            android:layout_width="20dp"
-            android:layout_height="1dp"
+            android:id="@+id/legendRed"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginTop="8dp"
-            android:background="@color/red"
+            android:background="@drawable/chart_loses_legend"
             app:layout_constraintBottom_toTopOf="@+id/legendMatches"
             app:layout_constraintEnd_toStartOf="@+id/legendDefeats"
             app:layout_constraintTop_toTopOf="@+id/legendDefeats" />

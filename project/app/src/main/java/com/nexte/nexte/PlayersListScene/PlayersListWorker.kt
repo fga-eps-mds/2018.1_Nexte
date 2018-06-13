@@ -10,7 +10,6 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.R
-import com.nexte.nexte.RankingScene.RankingModel
 import com.nexte.nexte.UserSingleton
 import org.json.JSONArray
 import org.json.JSONObject

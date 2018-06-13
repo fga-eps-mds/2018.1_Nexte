@@ -119,7 +119,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * Method responsible to define the data of Y axis.
          */
         fun setYAxisValuesVictories(): ArrayList<Entry> {
-
             val yValsVictories = ArrayList<Entry>()
             yValsVictories.add(Entry(0f, 2f))
             yValsVictories.add(Entry(1f, 3f))
@@ -135,7 +134,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * Method responsible to define the data of Y axis.
          */
         fun setYAxisValuesLosses(): ArrayList<Entry> {
-
             val yValsLosses = ArrayList<Entry>()
             yValsLosses.add(Entry(0f, 4f))
             yValsLosses.add(Entry(1f, 3f))
@@ -232,7 +230,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val left = 0f
             val right = 0f
             val bottom = 0f
-            //chart.animateX(timeToAnimate)
             chart.invalidate()
             chart.setExtraOffsets(left,top,right,bottom)
         }
@@ -249,7 +246,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             leftAxis.setDrawAxisLine(false)
             leftAxis.setDrawGridLines(false)
             leftAxis.setAxisMaxValue(8f)
-            leftAxis.setAxisMinValue(0f)
+            leftAxis.setAxisMinValue(2f)
             leftAxis.granularity = granularity
         }
 
@@ -278,12 +275,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val victoryResults = setYAxisValuesVictories() //responsible to access the method setYAxisValues
             val losesResults = setYAxisValuesLosses()
             val matchesResults = setYAxisValuesMatches()
-            val red = Color.RED
-            val green = Color.GREEN
-            val blue = Color.BLUE
+            val orange = R.color.orange_chart
+            val green = R.color.green_chart
+            val blue = R.color.blue_chart
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
             val victoryLine = this.customizeChartLine(losesResults, "Vitoria", green)
-            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", red)
+            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", orange)
             val matchesLine = this.customizeChartLine(matchesResults, "Partidas", blue)
             dataSets.add(victoryLine)
             dataSets.add(losesLine)
@@ -301,7 +298,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createRankingGraph() {
 
-            val yellow = Color.YELLOW
+            val yellow = R.color.yellow_chart
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
             val line = this.customizeChartLine(yAxesRanking, "Ranking", yellow)
@@ -362,8 +359,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         const val lineWidth = 4.0f
         const val top = 15f
         const val textSize = 12.0f
-        const val timeToAnimate = 2000
-
     }
 }
 
