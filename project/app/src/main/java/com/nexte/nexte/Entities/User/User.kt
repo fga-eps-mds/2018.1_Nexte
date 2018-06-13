@@ -3,7 +3,6 @@ package com.nexte.nexte.Entities.User
 import android.annotation.SuppressLint
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
-import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapter
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import org.json.JSONObject
 import java.text.SimpleDateFormat

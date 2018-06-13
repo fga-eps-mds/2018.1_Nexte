@@ -6,7 +6,6 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
-import com.google.gson.JsonObject
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
@@ -121,7 +120,7 @@ class RankingWorkerTest : HelpForRealm() {
         thread { worker?.httpGetHandler?.invoke(request, response, result) }.join()
 
         //assert
-        assertNotNull(mock?.response)
+        assertNull(mock?.response)
 
         //backup
         worker?.updateLogic = backup
