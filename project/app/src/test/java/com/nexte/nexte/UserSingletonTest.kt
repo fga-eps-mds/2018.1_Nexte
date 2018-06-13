@@ -11,6 +11,12 @@ class UserSingletonTest: HelpForRealm() {
         super.setUpWithUser()
     }
 
+
+    @After
+    fun tearDown() {
+        super.tearDownRealm()
+    }
+
     @Test
     fun successEnum() {
         //prepare
@@ -31,10 +37,5 @@ class UserSingletonTest: HelpForRealm() {
         //assert
         assertEquals("9", userInfo.id)
         assertEquals(UserType.MOCKED, UserSingleton.userType)
-    }
-
-    @After
-    fun tearDown() {
-        super.tearDownRealm()
     }
 }
