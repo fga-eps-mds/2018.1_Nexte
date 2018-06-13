@@ -5,7 +5,8 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
-open class UserRealm(@PrimaryKey var id: String = "",
+open class
+UserRealm(@PrimaryKey var id: String = "",
                      var name: String = "",
                      var profilePicture: String? = null,
                      var nickname: String = "",
