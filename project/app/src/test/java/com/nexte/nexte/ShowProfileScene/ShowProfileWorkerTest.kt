@@ -1,5 +1,11 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Method
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
+import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapterSpy
@@ -11,6 +17,7 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.net.URL
 import kotlin.concurrent.thread
 
 class ShowProfileWorkerTest : HelpForRealm() {
@@ -18,11 +25,41 @@ class ShowProfileWorkerTest : HelpForRealm() {
     private var worker: ShowProfileWorker? = null
     private var mock: MockShowProfileWorker? = null
 
+    private val jsonObject = JSONObject()
+
     @Before
     fun setUp() {
         this.worker = ShowProfileWorker()
         this.mock = MockShowProfileWorker()
-        super.setUpRealm()
+        super.setUpWithUser()
+
+        val jsonUser = JSONObject()
+        jsonUser.put("id", "1")
+        jsonUser.put("name", "teste")
+        jsonUser.put("profileImageURL", "www.lol.com.br")
+        jsonUser.put("nickname", "biel")
+        jsonUser.put("rankPosition", 1)
+        jsonUser.put("email", "biel@poc.br")
+        jsonUser.put("phone", "3232323232")
+        jsonUser.put("wins", 1)
+        jsonUser.put("loses", 1)
+        jsonUser.put("birthDate", "2018-01-07T00:00:00.000Z")
+        jsonUser.put("gender", "M")
+        jsonUser.put("category", 1)
+        jsonUser.put("status", 1)
+
+        val dataJson = JSONObject()
+        dataJson.put("user", jsonUser)
+        jsonObject.put("data", dataJson)
+    }
+
+    @Test
+    fun successConvertJsonToUser(){
+        //call
+        val user: User? = worker?.convertJsonUserToUser(jsonObject)
+        println(user)
+        //assert
+        assertNotNull(user)
     }
 
     @Test
@@ -32,14 +69,73 @@ class ShowProfileWorkerTest : HelpForRealm() {
         val userManager = worker?.userManager
         worker?.updateLogic = mock
         val updateLogic = worker?.updateLogic
-        val request = ShowProfileModel.Request("Robert Baptist")
+        val request = ShowProfileModel.Request("1")
 
         //call
-        thread { this.worker?.getUserProfile(request = request) }.join()
-
+        thread {
+            this.worker?.getUserProfile(request = request)
+        }.join()
         assertNotNull(updateLogic)
         assertNotNull(userManager)
         assertNotNull(this.mock?.response)
+    }
+
+    @Test
+    fun testHttpGetWithFailure(){
+        //prepare
+        mock?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
+
+        //call
+        worker?.httpRequestHandler?.invoke(request, response, result)
+
+        //assert
+        assertNull(mock?.response)
+    }
+
+    @Test
+    fun testHttpGetWithSuccess(){
+        //prepare
+        mock?.response = null
+        worker?.updateLogic = mock
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        worker?.httpRequestHandler?.invoke(request, response, result)
+
+        //assert
+        assertNotNull(mock?.response)
+    }
+
+    @Test
+    fun testHttpGetWithoutUpdateLogic(){
+        //prepare
+        mock?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        thread { worker?.httpRequestHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNull(mock?.response)
+
+        //backup
+        worker?.updateLogic = backup
     }
 
     @Test
@@ -57,6 +153,11 @@ class ShowProfileWorkerTest : HelpForRealm() {
         assertNotNull(updateLogic)
         assertNotNull(userManager)
         assertNotNull(this.mock?.response)
+    }
+
+    @Test
+    fun successHttpRequestHandler(){
+
     }
 
     @Test
