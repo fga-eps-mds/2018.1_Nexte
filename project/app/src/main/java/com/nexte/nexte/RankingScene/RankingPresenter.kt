@@ -50,9 +50,12 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return an array of [RankingModel.FormattedPlayerInfo]
      */
-    private fun formatPlayers(users: Array<User>): List<RankingModel.FormattedPlayerInfo> {
+        fun formatPlayers(users: Array<User>?): List<RankingModel.FormattedPlayerInfo> {
         val rankingModelPlayersMutable = mutableListOf<RankingModel.FormattedPlayerInfo>()
 
+        if(users == null){
+            return listOf()
+        }
         for (user in users){
             val name = user.name
             val rankingPosition = user.rankingPosition
@@ -60,7 +63,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val losses = user.loses
             val efficiency = calculatePlayerEfficiency(wins, losses)
             user.latestGames = challengeManager?.getLastFiveChallenges(user.id)
-            val lastGame = calculatePlayerLastGame(user.latestGames)
+            val lastGame = calculatePlayerLastGame(user.latestGames, Date())
             var image = R.drawable.temp
             if (user.profilePicture != null) {
                 image = user.profilePicture.toInt()
@@ -87,7 +90,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return a string that represents player efficiency
      */
-    private fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
+    fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
         val allGames = wins + losses
         val efficiency: String?
         efficiency = if (allGames != 0){
@@ -104,13 +107,12 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return a string that represents a player last game
      */
-    private fun calculatePlayerLastGame(latestGames: List<Challenge>?): String{
+    fun calculatePlayerLastGame(latestGames: List<Challenge>?, today: Date): String{
         if (latestGames == null || latestGames.isEmpty()){
             return "Nenhum jogo"
         }
 
         val latestGameDate = latestGames.first().challengeDate
-        val today = Date()
 
         return if(today.year == latestGameDate.year){
             if (today.month == latestGameDate.month){
