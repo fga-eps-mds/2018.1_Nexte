@@ -6,9 +6,8 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
-import com.nexte.nexte.Entities.User.User
+import com.google.gson.JsonObject
 import com.nexte.nexte.Entities.User.UserAdapterSpy
-import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
 import org.json.JSONArray
@@ -18,14 +17,13 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import java.net.URL
-import java.util.*
 import kotlin.concurrent.thread
 
 class RankingWorkerTest : HelpForRealm() {
 
     var worker: RankingWorker? = null
     var mock: MockRankingWorkerUpdateLogic? = null
-    val jsonObject = JSONObject()
+    private val jsonObject = JSONObject()
 
     @Before
     fun setUp() {
@@ -74,19 +72,23 @@ class RankingWorkerTest : HelpForRealm() {
 
     @Test
     fun testHttpGetWithFailure(){
+        //prepare
         mock?.response = null
         val url = URL("http://www.randomsite.com/")
         val request = Request(Method.GET, "",url)
         val response = Response(url)
         val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
+        //call
         worker?.httpGetHandler?.invoke(request, response, result)
 
+        //assert
         assertNull(mock?.response)
     }
 
     @Test
     fun testHttpGetWithSuccess(){
+        //prepare
         mock?.response = null
         val url = URL("http://www.randomsite.com/")
         val request = Request(Method.GET, "",url)
@@ -95,10 +97,34 @@ class RankingWorkerTest : HelpForRealm() {
         val json = Json(jsonObject.toString())
         val result: Result<Json, FuelError> = Result.Success(json)
 
+        //call
         thread { worker?.httpGetHandler?.invoke(request, response, result) }.join()
 
-
+        //assert
         assertNotNull(mock?.response)
+    }
+
+    @Test
+    fun testHttpGetWithoutUpdateLogic(){
+        //prepare
+        mock?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        thread { worker?.httpGetHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNotNull(mock?.response)
+
+        //backup
+        worker?.updateLogic = backup
     }
 
     @Test
@@ -119,44 +145,37 @@ class RankingWorkerTest : HelpForRealm() {
     }
 
     @Test
-    fun successConvertJsonToListOfUsers(){
-        //prepare
-
+    fun successConvertJsonToListOfUsersCase1(){
         //call
-        val users = worker?.convertJsonToListOfUsers(jsonObject, UserCategoryAdapterSpy())
+        val users = worker?.convertJsonToListOfUsers(jsonObject)
         //assert
         assertNotNull(users)
     }
 
-//    @Test
-//    fun testGetUsersInRanking(){
-//        //prepare
-//        val request = RankingModel.Request()
-//
-//        //call
-//        thread { this.worker?.getUsersInRanking(request = request) }.join()
-//
-//        //assert
-//        assertEquals(this.mock?.response?.users?.size, 9)
-//        assertEquals(this.mock?.response?.users!![0].name, "User test")
-//        assertEquals(this.mock?.response?.users!![3].wins, 0)
-//        assertEquals(this.mock?.response?.users!![1].rankingPosition, 1)
-//        assertEquals(this.mock?.response?.users!![4].category, null)
-//        assertEquals(this.mock?.response?.users!![5].latestGames?.size, 0)
-//        assertEquals(this.mock?.response?.users!![6].loses, 0)
-//
-//    }
+    @Test
+    fun successConvertJsonToListOfUsersCase2(){
+        //prepare
+        val usersJsonArray = JSONArray()
+        val dataJson = JSONObject()
+        dataJson.put("users", usersJsonArray)
+        val jsonObj = JSONObject()
+        jsonObj.put("data", dataJson)
+        //call
+        val users = worker?.convertJsonToListOfUsers(jsonObject)
+        //assert
+        assertNotNull(users)
+    }
+
+    class MockRankingWorkerUpdateLogic: RankingWorkerUpdateLogic{
+        var response: RankingModel.Response? = null
+
+        override fun updateUsersInRanking(response: RankingModel.Response) {
+            this.response = response
+        }
+    }
 
     @After
     fun tearDown() {
         this.worker = null
-    }
-}
-
-class MockRankingWorkerUpdateLogic: RankingWorkerUpdateLogic{
-    var response: RankingModel.Response? = null
-
-    override fun updateUsersInRanking(response: RankingModel.Response) {
-        this.response = response
     }
 }

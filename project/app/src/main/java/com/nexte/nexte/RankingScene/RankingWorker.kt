@@ -1,6 +1,5 @@
 package com.nexte.nexte.RankingScene
 
-import android.util.Log
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
@@ -41,12 +40,10 @@ class RankingWorker {
 
         when (result) {
             is Result.Failure -> {
-
                 println(result.getException())
             }
 
             is Result.Success -> {
-
                 val json = result.get()
                 var usersList = convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
                 usersList = userManager?.updateMany(usersList)!!
@@ -79,16 +76,15 @@ class RankingWorker {
      *
      * @return list of users
      */
-    fun convertJsonToListOfUsers(jsonObject: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): List<User>{
+    fun convertJsonToListOfUsers(jsonObject: JSONObject): List<User>{
         val dataJson = jsonObject["data"] as JSONObject
         val usersJsonArray = dataJson["users"] as JSONArray
 
         val usersMutableList = mutableListOf<User>()
         for (counter in 0 until usersJsonArray.length()){
             val jsonUser = usersJsonArray.getJSONObject(counter)
-            val user = User.createUserFromJsonObject(jsonUser, userCategoryManagerArgument)
+            val user = User.createUserFromJsonObject(jsonUser)
             usersMutableList.add(user)
-
         }
         return usersMutableList.toList()
     }

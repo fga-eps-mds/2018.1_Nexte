@@ -50,7 +50,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return an array of [RankingModel.FormattedPlayerInfo]
      */
-    fun formatPlayers(users: Array<User>?): List<RankingModel.FormattedPlayerInfo> {
+        fun formatPlayers(users: Array<User>?): List<RankingModel.FormattedPlayerInfo> {
         val rankingModelPlayersMutable = mutableListOf<RankingModel.FormattedPlayerInfo>()
 
         if(users == null){

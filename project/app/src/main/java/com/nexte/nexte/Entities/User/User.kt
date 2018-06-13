@@ -37,14 +37,10 @@ class User(val id: String,
          *
          * @return user created from json
          */
-        fun createUserFromJsonObject(jsonUser: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): User {
+        fun createUserFromJsonObject(jsonUser: JSONObject): User {
             val userCategoryManager: UserCategoryManager?
-            if(userCategoryManagerArgument == null) {
-                userCategoryManager = UserCategoryManager()
-            }
-            else{
-                userCategoryManager = UserCategoryManager(userCategoryManagerArgument)
-            }
+            userCategoryManager = UserCategoryManager()
+
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
             val profilePicture = jsonUser["profileImageURL"] as String
