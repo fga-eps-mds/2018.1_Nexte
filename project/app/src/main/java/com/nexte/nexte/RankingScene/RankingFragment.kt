@@ -17,6 +17,7 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
+import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 
@@ -270,6 +271,11 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.profileButton?.setOnClickListener{
                 (fragment as RankingFragment).goToShowProfileView(item.player.userName)
             }
+            setUserGameCircle(itemHolder?.itemView?.circulo1, item.player.userLastGames[0])
+            setUserGameCircle(itemHolder?.itemView?.circulo2, item.player.userLastGames[1])
+            setUserGameCircle(itemHolder?.itemView?.circulo3, item.player.userLastGames[2])
+            setUserGameCircle(itemHolder?.itemView?.circulo4, item.player.userLastGames[3])
+            setUserGameCircle(itemHolder?.itemView?.circulo5, item.player.userLastGames[4])
 
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
@@ -277,6 +283,27 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
         }
+
+        /**
+         * Method responsible for setting the apropriate resource to the plaeyr game circle
+         *
+         * @param imageView imageView that will display the player result
+         * @param lastGame data that will indicate the player game status
+         */
+        fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
+            val circleResource = if (lastGame == Color.GREEN) {
+                R.drawable.circle_victory_ranking
+            } else if (lastGame == Color.GRAY) {
+                R.drawable.circle_empty_ranking
+            } else if (lastGame == Color.RED){
+                R.drawable.circle_defeat_ranking
+            } else {
+                R.drawable.circle_undefeated_ranking
+            }
+
+            imageView?.setBackgroundResource(circleResource)
+        }
+
 
         /**
          * Method responsible to return sma ize of ranking
