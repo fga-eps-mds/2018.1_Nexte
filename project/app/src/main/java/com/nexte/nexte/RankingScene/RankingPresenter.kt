@@ -1,5 +1,6 @@
 package com.nexte.nexte.RankingScene
 
+import android.graphics.Color
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
 import com.nexte.nexte.Entities.Challenge.Challenge
@@ -68,10 +69,11 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             if (user.category != null){
                 playerCategory = user.category.name
             }
+            val latestGamesColors = getPlayerLastFiveGamesArray(user.latestGames, user.id)
             val playerFormatted = RankingModel.FormattedPlayer(name,
                     image, String.format("Vitórias: %d", wins),
                     String.format("%d", rankingPosition), String.format("Último Jogo: %s", lastGame),
-                    String.format("Aproveitamento: %s", efficiency), playerCategory)
+                    String.format("Aproveitamento: %s", efficiency), playerCategory, latestGamesColors)
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
 
             rankingModelPlayersMutable.add(playerFormattedInfo)
@@ -125,7 +127,76 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
         }
     }
 
+    /**
+     *  Method responsible for creating the array with the corresponding colors
+     *  to the player last five games
+     *
+     *  @param latestGames list with user last games
+     *  @param userId id of the user
+     *
+     *  @return list with the colors arrays
+     */
+    private fun getPlayerLastFiveGamesArray(latestGames: List<Challenge>?, userId: String) :
+            List<Int> {
+        var gamesMutable = mutableListOf<Int>()
+
+        if (latestGames != null) {
+
+            for (counter in firstGameIndex..fifthGameindex) {
+
+                if (latestGames.getOrNull(counter) == null) {
+                    gamesMutable.add(Color.GRAY)
+                }else if (latestGames[counter].winner == userId) {
+                    gamesMutable.add(Color.GREEN)
+                } else {
+                    gamesMutable.add(Color.RED)
+                }
+            }
+
+        } else {
+            for(counter in firstGameIndex..fifthGameindex) {
+                gamesMutable.add(Color.GRAY)
+            }
+        }
+
+        gamesMutable = checkIfUserWonAllLatestFiveGames(gamesMutable)
+        return gamesMutable.toList()
+
+    }
+
+    /**
+     * Method responsible to check if the user have won the last five games
+     * and if he has all colors of the array will be changed to yellow
+     *
+     * @param latestGames list with the colors of the games
+     *
+     * @return list with yellow colors if the user has won the last five games, and if he has not
+     *         this will be the same list passed
+     */
+    private fun checkIfUserWonAllLatestFiveGames(latestGames: MutableList<Int>) :
+            MutableList<Int> {
+        var wonAll = true
+
+        for (counter in firstGameIndex..fifthGameindex) {
+            if (latestGames[counter] != Color.GREEN) {
+                wonAll = false
+            }
+        }
+
+        if (wonAll)  {
+            for (counter in firstGameIndex..fifthGameindex) {
+                latestGames[counter] = Color.YELLOW
+            }
+        } else {
+            // Do nothing
+        }
+
+        return latestGames
+    }
+
     companion object {
+        const val firstGameIndex = 0
+        const val fifthGameindex = 4
         const val oneHundredPercent = 100
     }
 }
