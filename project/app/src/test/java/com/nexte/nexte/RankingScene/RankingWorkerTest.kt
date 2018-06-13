@@ -6,9 +6,11 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
+import com.nexte.nexte.R
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -16,6 +18,7 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import java.net.URL
+import java.util.*
 import kotlin.concurrent.thread
 
 class RankingWorkerTest : HelpForRealm() {
@@ -67,6 +70,49 @@ class RankingWorkerTest : HelpForRealm() {
         assertEquals(worker?.updateLogic, updateLogic)
         assertEquals(worker?.userManager, userManager)
 
+    }
+
+    @Test
+    fun testSorting(){
+        val user1 = User("1",
+                "André Rede",
+                R.drawable.profile_image1.toString(),
+                "André",
+                Date(1987, 5, 15),
+                3,
+                "andre@nexte.com",
+                "130",
+                162,
+                69,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+        val user2 = User("2",
+        "Nova Jucá",
+        R.drawable.profile_image2.toString(),
+        "Nova",
+        Date(1987, 5, 22),
+        4,
+        "nova@nexte.com",
+        "130",
+        165,
+        63,
+        User.Gender.MALE,
+        null,
+        User.Status.AVAILABLE,
+        null,
+        null,
+        emptyList()
+        )
+        var unorderedList: List<User>? = listOf(user2, user1)
+        unorderedList = worker?.sortListByRanking(unorderedList)
+
+        assertEquals(unorderedList!![0].rankingPosition, 3)
+        assertEquals(unorderedList[1].rankingPosition, 4)
     }
 
     @Test
