@@ -1,10 +1,15 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class LikeListPresenterTest {
 
@@ -47,6 +52,13 @@ class LikeListPresenterTest {
 
         //assert
         assertEquals(presenter?.viewList, viewList)
+    }
+
+    @Test
+    fun testPlayerFormattedNotNull() {
+        this.mock?.playersFormatted
+
+        assertNotNull(this.mock?.playersFormatted)
     }
 
     @After
