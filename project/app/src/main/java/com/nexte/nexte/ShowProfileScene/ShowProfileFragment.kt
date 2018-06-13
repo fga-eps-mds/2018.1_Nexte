@@ -185,7 +185,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * @param label chart label
          * @color chart lineColor
          */
-        private  fun customizeChartLine(yAxes: ArrayList<Entry>, label: String, color: Int): LineDataSet {
+        private fun customizeChartLine(yAxes: ArrayList<Entry>, label: String, color: Int): LineDataSet {
 
             val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
@@ -255,7 +255,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
         /**
          * Method responsible to create Main Chart
-         * @param axisX axis x propertie from chart
+         * @param axisX axis x property from chart
          */
         private fun customizeAxisX(axisX: XAxis) {
 
