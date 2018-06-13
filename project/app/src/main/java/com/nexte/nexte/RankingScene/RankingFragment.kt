@@ -257,10 +257,10 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             }
 
             if(item.player.id.equals(UserSingleton.loggedUserID)) {
-                itemHolder?.itemView?.background = ColorDrawable(Color.GRAY)
+                itemHolder?.itemView?.setBackgroundResource(R.drawable.cell_border_light)
                 hideOrShowLoggedUserExpandedInformation(true, itemHolder)
             } else {
-                itemHolder?.itemView?.background = ColorDrawable(Color.DKGRAY)
+                itemHolder?.itemView?.setBackgroundResource(R.drawable.cell_border)
                 hideOrShowLoggedUserExpandedInformation(false, itemHolder)
             }
 
