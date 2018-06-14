@@ -72,10 +72,17 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             if (user.category != null){
                 playerCategory = user.category.name
             }
+
+            var id = if (user.id != null) {
+                user.id
+            } else {
+                ""
+            }
+
             val playerFormatted = RankingModel.FormattedPlayer(name,
                     image, String.format("Vitórias: %d", wins),
                     String.format("%d", rankingPosition), String.format("Último Jogo: %s", lastGame),
-                    String.format("Aproveitamento: %s", efficiency), playerCategory)
+                    String.format("Aproveitamento: %s", efficiency), playerCategory, id)
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
 
             rankingModelPlayersMutable.add(playerFormattedInfo)

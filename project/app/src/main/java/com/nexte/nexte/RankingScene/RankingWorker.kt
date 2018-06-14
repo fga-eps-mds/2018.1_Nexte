@@ -9,6 +9,8 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -68,8 +70,14 @@ class RankingWorker {
         val response = RankingModel.Response(users!!.toTypedArray())
         updateLogic?.updateUsersInRanking(response)
 
-        val url = "http://10.0.2.2:3000/users"
-        url.httpGet().responseJson(httpGetHandler)
+        if (UserSingleton.userType != UserType.MOCKED) {
+
+            val url = "http://10.0.2.2:3000/users"
+            url.httpGet().responseJson(httpGetHandler)
+
+        } else {
+            // Do nothing
+        }
     }
 
     /**
