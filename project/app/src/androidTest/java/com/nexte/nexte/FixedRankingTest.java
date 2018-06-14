@@ -33,10 +33,10 @@ public class FixedRankingTest {
     @Test
     public void fixedRankingTest() {
         ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.ranking),
+                allOf(withId(R.id.rankingNavigation),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.bottom_nav_view),
+                                        withId(R.id.bottom_navigation),
                                         0),
                                 2),
                         isDisplayed()));
