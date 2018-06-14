@@ -85,8 +85,9 @@ class FeedWorkerTest: HelpForRealm() {
         val request = FeedModel.GetFeedActivities.Request()
 
         //call
-        worker?.fetchFeedData(request)
-
+        thread {
+            worker?.fetchFeedData(request)
+        }.join()
         //assert
         assertNotNull(this.mock?.response)
         assertEquals(this.mock?.response?.feedActivities?.size, 4)
@@ -97,11 +98,11 @@ class FeedWorkerTest: HelpForRealm() {
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
         val backup = worker?.storyManager
-
-        //call
         worker?.storyManager = null
-        worker?.fetchFeedData(request)
-
+        //call
+        thread {
+            worker?.fetchFeedData(request)
+        }.join()
         //assert
         assertNotNull(this.mock?.response)
         assertEquals(this.mock?.response?.feedActivities?.size, 0)
@@ -115,11 +116,11 @@ class FeedWorkerTest: HelpForRealm() {
         //prepare
         val request = FeedModel.GetFeedActivities.Request()
         val backup = worker?.updateLogic
-
-        //call
         worker?.updateLogic = null
-        worker?.fetchFeedData(request)
-
+        //call
+        thread {
+            worker?.fetchFeedData(request)
+        }.join()
         //assert
         assertNull(this.mock?.response)
 
@@ -133,8 +134,9 @@ class FeedWorkerTest: HelpForRealm() {
         val request = FeedModel.GetFeedActivities.Request()
 
         //call
-        worker?.fetchFeedData(request)
-
+        thread {
+            worker?.fetchFeedData(request)
+        }.join()
         //assert
         assertFalse(worker?.senderHTTP!!)
     }
@@ -202,7 +204,7 @@ class FeedWorkerTest: HelpForRealm() {
         val request = FeedModel.LikeAndUnlike.Request(identifier)
 
         //call
-        this.worker?.manageLikes(request, { response ->
+        this.worker?.manageLikes(request) { response ->
             //assert
             assertEquals(challenger1.name, response.likedActivity.challenge.challenger.name)
             assertEquals(challenger1.set, response.likedActivity.challenge.challenger.set)
@@ -212,7 +214,7 @@ class FeedWorkerTest: HelpForRealm() {
             assertEquals(challenged1.photo, response.likedActivity.challenge.challenged.photo)
             assertEquals(identifier, response.likedActivity.identifier)
 
-        })
+        }
     }
 
     @Test
