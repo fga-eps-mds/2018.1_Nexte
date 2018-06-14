@@ -71,7 +71,22 @@ class LikeListInteractorTest {
         val interactor = LikeListInteractor()
 
         //assert
-            assertNotNull(interactor)
+        assertNotNull(interactor)
+    }
+
+    @Test
+    fun testUpdateUsersWithNullPresenter(){
+        //prepare
+        mock?.passedHere = false
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        val response = LikeListModel.Response(listOf())
+        //call
+        interactor?.updateUsers(response)
+        //assert
+        assertFalse(mock?.passedHere!!)
+        //backup
+        interactor?.presenter = backup
     }
 
     @Test

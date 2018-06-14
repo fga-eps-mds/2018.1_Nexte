@@ -1,6 +1,8 @@
 package com.nexte.nexte.LikeListScene
 
 
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
 
@@ -8,6 +10,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
 
+@Suppress("DEPRECATION")
 class LikeListPresenterTest {
 
     private var mock: MockLikeListDisplayLogic? = null
@@ -34,6 +37,33 @@ class LikeListPresenterTest {
     }
 
     @Test
+    fun testFormatPlayersCase1(){
+        //prepare
+        val userList = mutableListOf(User("1",
+                "André Rede",
+                R.drawable.profile_image1.toString(),
+                "André",
+                Date(1987, 5, 15),
+                3,
+                "andre@nexte.com",
+                "130",
+                162,
+                69,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        ))
+        //call
+        val returnedValue = presenter?.formatPlayers(userList)
+
+        //assert
+        assertEquals(returnedValue?.size, 1)
+    }
+
+    @Test
     fun testConstructorLikeListPresenter() {
         //prepare and call
         val presenter = LikeListPresenter()
@@ -49,6 +79,36 @@ class LikeListPresenterTest {
 
         //assert
         assertEquals(presenter?.viewList, viewList)
+    }
+
+    @Test
+    fun testFormatLikeListWithNullViewList(){
+        //prepare
+        mock?.playersFormatted = mutableListOf()
+        val backup = presenter?.viewList
+        presenter?.viewList = null
+        val response = LikeListModel.Response(listOf(User("1",
+                "André Rede",
+                R.drawable.profile_image1.toString(),
+                "André",
+                Date(1987, 5, 15),
+                3,
+                "andre@nexte.com",
+                "130",
+                162,
+                69,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )))
+        //call
+        presenter?.formatLikeList(response)
+
+        //backup
+        presenter?.viewList = backup
     }
 
     @Test

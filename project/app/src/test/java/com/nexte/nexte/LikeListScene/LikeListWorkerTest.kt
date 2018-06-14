@@ -1,6 +1,5 @@
 package com.nexte.nexte.LikeListScene
 
-import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.core.FuelError
 import com.nexte.nexte.Entities.User.UserAdapterSpy
@@ -17,19 +16,18 @@ import org.junit.Assert.*
 import org.junit.Test
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
-import com.nexte.nexte.RankingScene.RankingModel
+import com.nexte.nexte.Entities.Like.Like
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
-import java.lang.reflect.Method
 import java.net.URL
-import javax.xml.transform.Result
+import java.util.*
 import kotlin.concurrent.thread
 
 class LikeListWorkerTest {
 
     var worker: LikeListWorker?=null
     var mock: MockWorkersUpdateLogic?=null
-    val jsonObject=JSONObject()
+    private val jsonObject=JSONObject()
 
     @Before
     fun setUp() {
@@ -55,12 +53,40 @@ class LikeListWorkerTest {
     }
 
     @Test
+    fun testGetUserFromLikesWithNullUserManager(){
+        //prepare
+        val backup = worker?.userManager
+        worker?.userManager = null
+        val likes = listOf(Like("1", "1", Date()))
+        //call
+        val returnedValue = worker?.getUserFromLikes(likes)
+        //assert
+        assertEquals(returnedValue?.size, 0)
+        //backup
+        worker?.userManager = backup
+    }
+
+    @Test
     fun testGetListLikesPlayers() {
         //prepare
         val request=LikeListModel.Request("1", "1")
 
         //call
         this.worker?.getListLikesPlayers(request=request)
+
+        //assert
+        assertEquals(this.mock?.response?.players?.size, 1)
+        assertEquals(this.mock?.response?.players!![0].name, "User test")
+        assertNotNull(request)
+    }
+
+    @Test
+    fun testGetListLikesPlayersWithoutMock() {
+        //prepare
+        val request=LikeListModel.Request("1", "1")
+        UserSingleton.userType = UserType.REAL
+        //call
+        thread {this.worker?.getListLikesPlayers(request=request)}.join()
 
         //assert
         assertEquals(this.mock?.response?.players?.size, 1)
@@ -218,11 +244,11 @@ class LikeListWorkerTest {
     @Test
     fun testInvoke() {
         mock?.response = null
-        var url = URL("http://www.forever21.com/")
-        var request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
-        var response = Response(url)
+        val url = URL("http://www.forever21.com/")
+        val request = Request(com.github.kittinunf.fuel.core.Method.GET, "", url)
+        val response = Response(url)
 
-        var result: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.error(FuelError(Exception("teste")))
+        val result: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.error(FuelError(Exception("teste")))
         this.worker?.handleResultLikeList?.invoke(request, response, result)
 
         assertNull(mock?.response)
@@ -238,7 +264,7 @@ class LikeListWorkerTest {
 
     val json = Json(jsonObject.toString())
 
-    var resultSuccess: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.Success(json)
+    val resultSuccess: com.github.kittinunf.result.Result<Json, FuelError> = com.github.kittinunf.result.Result.Success(json)
     //call
     thread {worker?.handleResultLikeList?.invoke(request, response, resultSuccess) }.join()
     //assert

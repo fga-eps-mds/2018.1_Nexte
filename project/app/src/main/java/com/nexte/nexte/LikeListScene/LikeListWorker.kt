@@ -52,7 +52,7 @@ class LikeListWorker {
 
             is Result.Success -> {
                 val json = result.get()
-                var likesList = convertJsonToListOfLikes(json.obj())
+                val likesList = convertJsonToListOfLikes(json.obj())
                 likeManager?.updateMany(likesList)
                 val users = getUserFromLikes(likesList)
                 val newResponse = LikeListModel.Response(users)
@@ -67,37 +67,25 @@ class LikeListWorker {
      * @param request
      */
     fun getListLikesPlayers(request: LikeListModel.Request){
-        var story = storyManager?.get(request.storyId)
+        var story = storyManager?.get(request.storyId) //testado
         val emptyStory = Story()
-        story = if (story == null) {
-            emptyStory
-        } else {
-            story
-        }
+        story = story ?: emptyStory //testado
         val likesIdsMutable = mutableListOf<String>()
-        for(likeId in story?.likesId!!){
+        for(likeId in story.likesId){
             likesIdsMutable.add(likeId)
         }
         var likes = likeManager?.getLikesFromStory(likesIdsMutable.toList())
-        likes = if (likes == null) {
-            listOf()
-        } else{
-            likes
-        }
+        likes = likes ?: listOf()
         val allUsers = getUserFromLikes(likes)
         val response = LikeListModel.Response(allUsers)
         this.updateLogic?.updateUsers(response)
-
         if (UserSingleton.userType != UserType.MOCKED) {
             val header = mapOf("accept-version" to "0.1.0")
             val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/likes"
             url.httpGet().header(header).responseJson(handleResultLikeList)
-
         } else {
             // Do nothing
         }
-
-
     }
 
     /**
