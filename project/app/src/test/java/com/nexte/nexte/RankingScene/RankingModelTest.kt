@@ -70,6 +70,7 @@ class RankingModelTest {
         val userCategory = "profissional"
         val userEfficiency = "90%"
         val userLastGame = "ontem"
+        val id = "1"
 
         //call
         val formattedPlayer = RankingModel.FormattedPlayer(userName = userName,
@@ -79,7 +80,9 @@ class RankingModelTest {
                 userCategory = userCategory,
                 userEfficiency = userEfficiency,
                 userLastGame = userLastGame,
-                userLastGames = listOf())
+                userLastGames = listOf(),
+                id = id)
+
         formattedPlayer.userName = userName
         formattedPlayer.userPictureURL = userPictureURL
         formattedPlayer.userRankingPosition = userRankingPosition
@@ -112,7 +115,9 @@ class RankingModelTest {
                 userLastGame = userLastGame,
                 userEfficiency = userEfficiency,
                 userCategory = userCategory,
-                userLastGames = listOf())
+                userLastGames = listOf(),
+                id = "1")
+
         val shouldDrawChild = true
 
         //call
@@ -137,7 +142,9 @@ class RankingModelTest {
                 userCategory = "profissional",
                 userEfficiency = "90%",
                 userLastGame = "ontem",
-                userLastGames = listOf())
+                userLastGames = listOf(),
+                id = "1")
+
         val formattedPlayer2 = RankingModel.FormattedPlayer(userName = "teste",
                 userPictureURL = 2,
                 userWins = "2",
@@ -145,7 +152,9 @@ class RankingModelTest {
                 userEfficiency = "80%",
                 userLastGame = "hoje",
                 userCategory = "intermediario",
-                userLastGames = listOf())
+                userLastGames = listOf(),
+                id = "1")
+
         val formattedPlayerInfo1 = RankingModel.FormattedPlayerInfo(player = formattedPlayer1, shouldDrawChild = true)
         val formattedPlayerInfo2 = RankingModel.FormattedPlayerInfo(player = formattedPlayer2, shouldDrawChild = false)
 

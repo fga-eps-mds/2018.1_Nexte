@@ -35,8 +35,8 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 9
-        versionName "0.9"
+        versionCode 10
+        versionName "0.11"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -152,8 +152,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ["clean", "testDebugUnitTes
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*',
-                       '**/*Fragment*.*', '**/*View*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 
+                       'android/**/*.*', '**/*View*.*', '**/*Fragment*.*']
+
     )
 
     additionalSourceDirs = files(coverageSourceDirs)
@@ -183,5 +184,3 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
-
-

@@ -73,10 +73,14 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
                 playerCategory = user.category.name
             }
             val latestGamesColors = getPlayerLastFiveGamesArray(user.latestGames, user.id)
+
+            val id = user.id
+
             val playerFormatted = RankingModel.FormattedPlayer(name,
                     image, String.format("Vitórias: %d", wins),
                     String.format("%d", rankingPosition), String.format("Último Jogo: %s", lastGame),
-                    String.format("Aproveitamento: %s", efficiency), playerCategory, latestGamesColors)
+                    String.format("Aproveitamento: %s", efficiency), playerCategory, latestGamesColors, id)
+
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
 
             rankingModelPlayersMutable.add(playerFormattedInfo)
@@ -138,7 +142,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      *  @return list with the colors arrays
      */
-    private fun getPlayerLastFiveGamesArray(latestGames: List<Challenge>?, userId: String) :
+    fun getPlayerLastFiveGamesArray(latestGames: List<Challenge?>?, userId: String) :
             List<Int> {
         var gamesMutable = mutableListOf<Int>()
 
@@ -148,7 +152,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
 
                 if (latestGames.getOrNull(counter) == null) {
                     gamesMutable.add(Color.GRAY)
-                }else if (latestGames[counter].winner == userId) {
+                }else if (latestGames[counter]?.winner == userId) {
                     gamesMutable.add(Color.GREEN)
                 } else {
                     gamesMutable.add(Color.RED)
@@ -175,7 +179,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      * @return list with yellow colors if the user has won the last five games, and if he has not
      *         this will be the same list passed
      */
-    private fun checkIfUserWonAllLatestFiveGames(latestGames: MutableList<Int>) :
+    fun checkIfUserWonAllLatestFiveGames(latestGames: MutableList<Int>) :
             MutableList<Int> {
         var wonAll = true
 

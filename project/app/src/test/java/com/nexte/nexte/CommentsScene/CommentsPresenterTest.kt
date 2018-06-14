@@ -5,6 +5,7 @@ import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.LikeListScene.LikeListPresenter
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
@@ -23,6 +24,24 @@ class CommentsPresenterTest {
         this.presenter?.viewController = mock
         this.presenter?.userManager = UserManager(UserAdapterSpy())
 
+    }
+
+    @Test
+    fun testGetViewController() {
+        //prepare and call
+        val viewController = presenter?.viewController
+
+        //assert
+        assertEquals(viewController, presenter?.viewController)
+    }
+
+    @Test
+    fun testGetUserManager() {
+        //prepare and call
+        val userManager = presenter?.userManager
+
+        //assert
+        assertEquals(userManager, presenter?.userManager)
     }
 
     @Test
@@ -76,6 +95,8 @@ class CommentsPresenterTest {
         //assert
         assertEquals(this.mock?.passedHere,true)
     }
+
+
 
     @After
     fun tearDown() {
