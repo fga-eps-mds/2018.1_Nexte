@@ -10,7 +10,6 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.R
-import com.nexte.nexte.RankingScene.RankingModel
 import com.nexte.nexte.UserSingleton
 import org.json.JSONArray
 import org.json.JSONObject
@@ -39,7 +38,6 @@ class PlayersListWorker {
      * Function to get players 5 rank positions above the logged player
      *
      * @param request Challenge Model request that contains needed information to send to server
-     * @param completion Method to call on parent class
      */
     fun fetchPlayersToChallenge (request: PlayersListModel.ShowRankingPlayersRequest.Request) {
 
@@ -105,7 +103,7 @@ class PlayersListWorker {
     fun generateChallenge(request: PlayersListModel.ChallengeButtonRequest.Request,
                           completion: (PlayersListModel.ChallengeButtonRequest.Response) -> Unit) {
 
-        var challengedUser = userManager?.get(request.userChallenged)
+        val challengedUser = userManager?.get(request.userChallenged)
         challengedUser?.let {
             val challenge = Challenge(UUID.randomUUID().toString(),
                     UserSingleton.loggedUserID,

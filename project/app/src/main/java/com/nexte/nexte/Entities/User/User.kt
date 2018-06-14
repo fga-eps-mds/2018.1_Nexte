@@ -38,12 +38,10 @@ class User(val id: String,
          * @return user created from json
          */
         fun createUserFromJsonObject(jsonUser: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): User {
-            val userCategoryManager: UserCategoryManager?
-            if(userCategoryManagerArgument == null){
-                userCategoryManager = UserCategoryManager()
-            }
-            else{
-                userCategoryManager = UserCategoryManager(userCategoryManagerArgument)
+            val userCategoryManager: UserCategoryManager? = if(userCategoryManagerArgument == null){
+                UserCategoryManager()
+            } else{
+                UserCategoryManager(userCategoryManagerArgument)
             }
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
@@ -64,7 +62,7 @@ class User(val id: String,
                 Gender.FEMALE
             }
             val categoryInt = jsonUser["category"] as Int
-            val category = userCategoryManager.get(categoryInt.toString())
+            val category = userCategoryManager?.get(categoryInt.toString())
             val statusInt = jsonUser["status"] as Int
             val status: Status?
             status = when (statusInt) {
