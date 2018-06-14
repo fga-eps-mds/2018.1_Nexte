@@ -43,22 +43,22 @@ class RankingModelTest {
         response.users = arrayOf(user1, user2)
 
         //assert
-        assertEquals(response.users.size, 2)
-        assertEquals(response.users[0].name, "test1")
-        assertEquals(response.users[0].profilePicture, "1")
-        assertEquals(response.users[0].wins, 1)
-        assertEquals(response.users[0].rankingPosition, 1)
-        assertEquals(response.users[0].latestGames?.size, 0)
-        assertEquals(response.users[0].category, null)
-        assertEquals(response.users[0].phone, "123456")
+        assertEquals(response.users?.size, 2)
+        assertEquals(response.users?.get(0)?.name, "test1")
+        assertEquals(response.users?.get(0)?.profilePicture, "1")
+        assertEquals(response.users?.get(0)?.wins, 1)
+        assertEquals(response.users?.get(0)?.rankingPosition, 1)
+        assertEquals(response.users?.get(0)?.latestGames?.size, 0)
+        assertEquals(response.users?.get(0)?.category, null)
+        assertEquals(response.users?.get(0)?.phone, "123456")
 
-        assertEquals(response.users[1].name, "test2")
-        assertEquals(response.users[1].profilePicture, "2")
-        assertEquals(response.users[1].wins, 1)
-        assertEquals(response.users[1].rankingPosition, 2)
-        assertEquals(response.users[1].latestGames?.size, 0)
-        assertEquals(response.users[1].category, null)
-        assertEquals(response.users[1].phone, "1234567")
+        assertEquals(response.users?.get(1)?.name, "test2")
+        assertEquals(response.users?.get(1)?.profilePicture, "2")
+        assertEquals(response.users?.get(1)?.wins, 1)
+        assertEquals(response.users?.get(1)?.rankingPosition, 2)
+        assertEquals(response.users?.get(1)?.latestGames?.size, 0)
+        assertEquals(response.users?.get(1)?.category, null)
+        assertEquals(response.users?.get(1)?.phone, "1234567")
     }
 
     @Test fun successFormattedPlayer(){
