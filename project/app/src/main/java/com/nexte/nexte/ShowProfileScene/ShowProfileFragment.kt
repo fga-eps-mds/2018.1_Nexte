@@ -76,7 +76,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
-        this.anotherPlayerName = arguments.getString("anotherPlayerName")
+        this.anotherPlayerName = arguments.getString("9")
     }
 
 
