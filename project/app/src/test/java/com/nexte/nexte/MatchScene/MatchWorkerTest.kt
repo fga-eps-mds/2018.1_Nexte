@@ -20,6 +20,16 @@ class MatchWorkerTest {
     }
 
     @Test
+    fun testMatchWorker() {
+        //prepare
+        //call
+        val testClass = MatchWorker()
+
+        //assert
+        assertNotNull(testClass)
+    }
+
+    @Test
     fun testFetchMatchDatas() {
         //prepare
         val match  = MatchModel.MatchData(
@@ -106,6 +116,7 @@ class MatchWorkerTest {
 
         assertEquals(MatchModel.DeclineChallengeRequest
                 .Status.SUCCESS, this.mock?.responseDecline?.status)
+
     }
 
     @Test
