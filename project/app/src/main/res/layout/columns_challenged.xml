@@ -33,6 +33,16 @@
         app:layout_constraintStart_toStartOf="@id/userPicture"
         app:layout_constraintTop_toBottomOf="@id/userPicture" />
 
+    <ImageView
+        android:id="@+id/circulo3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/circle_defeat_ranking"
+        app:layout_constraintEnd_toEndOf="@+id/userPicture"
+        app:layout_constraintTop_toTopOf="@+id/userPicture" />
+
     <LinearLayout
         android:layout_width="28dp"
         android:layout_height="27dp"
@@ -40,14 +50,16 @@
         app:layout_constraintEnd_toEndOf="@+id/userPicture"
         app:layout_constraintTop_toTopOf="@+id/userPicture">
 
+
+
         <TextView
             android:id="@+id/rankingTextView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="monospace"
-            android:textColor="@color/darkGrey"
-            android:text="@string/_2"
+            android:textColor="#FFFF"
+            android:text="2"
             android:textAlignment="center"
             android:textStyle="bold" />
     </LinearLayout>
@@ -59,7 +71,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/check"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="#FFFF"
         android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="invisible"

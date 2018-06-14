@@ -25,8 +25,8 @@
 
     <string name="user_picture">User picture</string>
     <string name="nome">nome</string>
-    <string name="_2">#2</string>
-    <string name="r">#R</string>
+    <string name="_2">2</string>
+    <string name="r">R</string>
     <string name="vitorias_x">Vitorias: X</string>
     <string name="derrotas_x">Derrotas: X</string>
     <string name="check">✓</string>
