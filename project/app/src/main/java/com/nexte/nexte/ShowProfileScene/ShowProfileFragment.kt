@@ -1,9 +1,12 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +26,9 @@ import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
+import android.content.DialogInterface
+
+
 
 /**
  * This interface will be responsible to define the methods that
@@ -50,6 +56,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var anotherPlayerName: String = ""
     var userManager: UserManager? = null
     val graphManager = GraphManager(this)
+    val buttonC: Button? = null
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -92,6 +99,13 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
+
+        buttonC?.setOnClickListener {
+            val contact = ContactDialogFragment()
+            contact.show(this.fragmentManager, "Contact")
+        }
+
+
 
         this.createShowProfileRequest()
         newLineChart = newView?.findViewById(R.id.lineChart)
@@ -346,5 +360,18 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         const val top = 15f
         const val textSize = 12.0f
     }
+}
+
+
+class ContactDialogFragment: DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Contatos")
+                .setItems(R.array.contactArray, DialogInterface.OnClickListener { dialog, which ->
+                    print("hahahahah")
+                })
+        return builder.create()
+    }
+
 }
 

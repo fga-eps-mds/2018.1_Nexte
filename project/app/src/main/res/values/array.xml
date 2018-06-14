@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="contactArray">
+        <item>
+            Ligar
+        </item>
+        <item>
+            Enviar Email
+        </item>
+        <item>
+            Adicionar Contato
+        </item>
+        <item>
+            WhatsApp
+        </item>
+    </string-array>
+
+</resources>
