@@ -199,10 +199,10 @@ class FeedWorkerTest: HelpForRealm() {
         val identifier = "1"
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
-        val request = FeedModel.LikeAndUnlike.Request(identifier = identifier)
+        val request = FeedModel.LikeAndUnlike.Request(identifier)
 
         //call
-        this.worker?.manageLikes(request, {response ->
+        this.worker?.manageLikes(request, { response ->
             //assert
             assertEquals(challenger1.name, response.likedActivity.challenge.challenger.name)
             assertEquals(challenger1.set, response.likedActivity.challenge.challenger.set)
