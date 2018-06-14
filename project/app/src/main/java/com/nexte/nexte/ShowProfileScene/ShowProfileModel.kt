@@ -31,7 +31,7 @@ class ShowProfileModel {
      *
      * @property playerInfo attribute already processed by [ShowProfilePresenter] class for display on screen
      **/
-    class ViewModel(var playerInfo: FormattedPlayer, formattedChallenges: List<FormattedChallenge>)
+    class ViewModel(var playerInfo: FormattedPlayer, var formattedChallenges: List<FormattedChallenge>)
 
     //-------------- Aux Classes --------------
 

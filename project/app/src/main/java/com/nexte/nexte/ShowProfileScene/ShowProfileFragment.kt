@@ -51,6 +51,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     private var newLineChart: LineChart? = null // First chart view
     var anotherPlayerName: String = ""
     var userManager: UserManager? = null
+    var showProfileRecyclerView: RecyclerView? = null
     val graphManager = GraphManager(this)
 
     /*
@@ -85,6 +86,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
+
+        showProfileRecyclerView = newView?.findViewById(R.id.challengesShowRecyclerView)
+
         buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
         buttonEditProfile?.setOnClickListener {
             val editProfileFragment = EditProfileFragment().getInstance()
@@ -320,6 +324,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
 
+        showProfileRecyclerView?.adapter = ShowProfileAdapter(viewModel.formattedChallenges,this)
+
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
@@ -328,15 +334,44 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     class ShowProfileAdapter(private val challengesFormatted: List<ShowProfileModel.FormattedChallenge>,
                              private val fragment: Fragment) : RecyclerView.Adapter<ShowProfileAdapter.ViewHolder>(){
 
+        /**
+         *
+         */
         override fun getItemCount(): Int {
+
              return this.challengesFormatted.size
         }
 
+        /**
+         *
+         */
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+            holder.bindView(challengesFormatted[position])
 
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): {
+        /**
+         *
+         */
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShowProfileAdapter.ViewHolder{
+            val view = LayoutInflater.from(fragment.activity).inflate(R.layout.columns_challenges_show, parent,
+                    false)
+            return ShowProfileAdapter.ViewHolder(view)
+        }
+
+        class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+
+            /**
+             *
+             */
+            fun bindView(challengeFormatted: ShowProfileModel.FormattedChallenge){
+                /**
+                 *
+                 *
+                 */
+
+            }
 
         }
 
