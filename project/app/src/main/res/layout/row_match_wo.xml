@@ -1,83 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#2E2E2E">
+    android:background="@color/second_color">
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="11dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/setLabel"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0.7dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:id="@+id/challengeWODescription"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="111dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="24dp"
-        android:text="Quem desistiu?"
-        android:textAlignment="center"
-        android:textColor="@color/hint_color_pattern"
-        android:textSize="17sp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/challengeWODescription"
+        android:textAlignment="center"
+        android:textColor="@color/text_description_thin"
+        android:textSize="12sp"
+        android:textAllCaps="true"
+        android:fontFamily="@font/roboto_light" />
 
     <co.ceryle.radiorealbutton.RadioRealButtonGroup
         android:id="@+id/buttonGroupWO"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/challengeWODescription"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:rrbg_animate="true"
         app:rrbg_animateSelector="2"
         app:rrbg_animateSelector_duration="100"
-        app:rrbg_animateTexts_enter="overshoot"
-        app:rrbg_backgroundColor="#2E2E2E"
-        app:rrbg_dividerColor="#2E2E2E"
-        app:rrbg_dividerSize="1dp"
-        app:rrbg_radius="10dp"
-        app:rrbg_selectorColor="#fa3f42"
-        app:rrbg_selectorSize="4dp">
+        app:rrbg_backgroundColor="@android:color/transparent"
+        app:rrbg_dividerSize="0dp"
+        app:rrbg_radius="19dp"
+        app:rrbg_selectorColor="@color/red"
+        app:rrbg_selectorFullSize="true"
+        app:rrbg_selectorRadius="19dp"
+        app:rrbg_borderSize="1dp"
+        app:rrbg_borderColor="@color/red">
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:id="@+id/buttonChallenger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/actionModeSplitBackground"
-            android:backgroundTint="@color/darkGrey"
-            android:foreground="@color/background"
-            android:foregroundTint="@android:color/transparent"
-            app:rrb_text="Desafiante"
-            app:rrb_textColor="@color/hint_color_pattern" />
+            app:rrb_text="@string/challengeWOSelectChallenger"
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="12sp"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:id="@+id/buttonSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rrb_text="Selecione "
-            app:rrb_textColor="#FFFFFF"
+            app:rrb_text="@string/challengeWOSelect"
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="12sp"
             app:rrb_checked="true"/>
 
         <co.ceryle.radiorealbutton.RadioRealButton
             android:id="@+id/buttonChallenged"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rrb_text="Desafiado"
-            app:rrb_textColor="@color/hint_color_pattern" />
+            app:rrb_text="@string/challengeWOSelectChallenged"
+            app:rrb_textColor="@color/text_focus_regular"
+            app:rrb_textSize="12sp"/>
 
     </co.ceryle.radiorealbutton.RadioRealButtonGroup>
 

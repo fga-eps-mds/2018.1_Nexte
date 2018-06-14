@@ -1,5 +1,8 @@
 package com.nexte.nexte.LikeListScene
 
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.R
+
 /**
  * Interface to define Presentation Logic to LikeList Class that will be used
  * to call this Interactor on other class layer
@@ -35,19 +38,17 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
      * @param likePlayers MutableList of unformatted players
      * @return MutableList of formatted players
      */
-    private fun formatPlayers(likePlayers: MutableList<LikeListModel.Players>):
+    fun formatPlayers(likePlayers: List<User>):
             MutableList<LikeListModel.PlayersFormatted> {
 
         val playersFormatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
+        for (likePlayer in likePlayers) {
+            val likePlayerFormatted = LikeListModel.PlayersFormatted(
+                    likePlayer.name,
+                    R.mipmap.ic_launcher)
 
-    for (likePlayer in likePlayers) {
-        val likePlayerFormatted = LikeListModel.PlayersFormatted(
-                likePlayer.name,
-                likePlayer.photo)
-
-        playersFormatted.add(likePlayerFormatted)
-    }
-
-            return playersFormatted
+            playersFormatted.add(likePlayerFormatted)
+        }
+        return playersFormatted
     }
 }

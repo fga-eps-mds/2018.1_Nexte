@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nexte.nexte.CommentsScene.CommentsFragment
+import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.LikeListScene.LikeListFragment
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.row_feed.view.*
@@ -23,15 +25,6 @@ interface FeedDisplayLogic {
 }
 
 /**
- * Test for the Realm Database
- */
-//open class Person: RealmObject() {
-//    @PrimaryKey
-//    var id: Long = 0
-//    var name: String? = null
-//}
-
-/**
  * Class that implements [FeedDisplayLogic] and is responsible to control feed screen
  *
  * @property interactor Interactor layer for send requests [FeedInteractor]
@@ -42,6 +35,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     var interactor: FeedInteractor? = null
     var feedViewAdapter: FeedAdapter? = null
     var feedRecyclerView : RecyclerView? = null
+    var storyManager: StoryManager? = null
+    var userManager: UserManager? = null
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
@@ -50,6 +45,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
+        this.userManager = UserManager()
+        this.storyManager = StoryManager()
         this.setupFeedScene()
         val newView = inflater?.inflate(R.layout.activity_feed_view, container, false)
         this.feedRecyclerView = newView?.findViewById(R.id.feedRecyclerView)
@@ -72,6 +69,9 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         val interactor = FeedInteractor()
 
         view.interactor = interactor
+        interactor.worker.updateLogic = interactor
+        interactor.worker.storyManager = storyManager
+        presenter.userManager = userManager
         interactor.presenter = presenter
         presenter.viewController = view
     }
@@ -92,7 +92,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         val likeListFragment = LikeListFragment().getInstance()
         val fragmentManager = activity.fragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, likeListFragment, "like")
+        fragmentTransaction.replace(R.id.main_frame_layout, likeListFragment, "like")
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
@@ -103,7 +103,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         val commentsFragment = CommentsFragment().getInstance()
         val fragmentManager = activity.fragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, commentsFragment, "comments")
+        fragmentTransaction.replace(R.id.main_frame_layout, commentsFragment, "comments")
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
@@ -250,6 +250,9 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                     (fragment as FeedFragment).goToCommentsList()
                 }
+
+                itemView.challengerPhoto.setImageResource(activity.challengerPhoto)
+                itemView.challengedPhoto.setImageResource(activity.challengedPhoto)
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.nexte.nexte.FeedScene
 
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
+import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Before
@@ -17,6 +19,8 @@ class FeedInteractorTest: HelpForRealm() {
         super.setUpWithUser()
         this.mock = MockFeedPresentationLogic()
         this.interactor = FeedInteractor(presenter = mock)
+        this.interactor?.worker?.updateLogic = this.interactor
+        this.interactor?.worker?.storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test
@@ -53,16 +57,18 @@ class FeedInteractorTest: HelpForRealm() {
     }
 }
 
-private class MockFeedPresentationLogic: FeedPresentationLogic{
+private class MockFeedPresentationLogic: FeedPresentationLogic, FeedWorkerUpdateLogic{
     var passedHere: Boolean? = null
 
     override fun updateViewActivity(response: FeedModel.LikeAndUnlike.Response) {
-        passedHere = null
         passedHere = true
     }
 
     override fun formatFeed(response: FeedModel.GetFeedActivities.Response) {
-        passedHere = null
+        passedHere = true
+    }
+
+    override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
         passedHere = true
     }
 }

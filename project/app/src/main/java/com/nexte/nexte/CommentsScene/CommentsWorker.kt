@@ -1,8 +1,19 @@
 package com.nexte.nexte.CommentsScene
 
-import com.nexte.nexte.CommentsScene.CommentsModel.GetCommentsRequest.Response
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Story.Story
+import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
 
 interface CommentsWorkerUpdateLogic {
@@ -21,6 +32,23 @@ class CommentsWorker {
 
     var updateLogic: CommentsWorkerUpdateLogic? = null
     var commentsManager: CommentManager? = null
+    var storyManager: StoryManager? = null
+    var handleResulComments: (Request, com.github.kittinunf.fuel.core.Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+        when(result){
+            is Result.Failure -> {
+                println(result.getException())
+            }
+
+            is Result.Success -> {
+                val json = result.get()
+                val commentsList = convertJsonToListOfComments(json.obj())
+                commentsManager?.updateMany(commentsList)
+                val newResponse = CommentsModel.GetCommentsRequest.Response(
+                        commentsList.toMutableList())
+                updateLogic?.updateComment(newResponse)
+            }
+        }
+    }
     /**
      * Variable created to simulate mocked data to be implemented on Package mocker
      */
@@ -29,13 +57,45 @@ class CommentsWorker {
      * Function to get comments data of server
      *
      * @param request Comments model request that contains needed information to send to server
-     * @param completion Method to call on parent class
      */
     fun getCommentsData (request: CommentsModel.GetCommentsRequest.Request) {
-
-        val commentManager= commentsManager?.getAll()
-        val response = CommentsModel.GetCommentsRequest.Response(commentManager!!.toMutableList())
+        var story = storyManager?.get(request.storyId)
+        val emptyStory = Story()
+        story = story ?: emptyStory
+        val commentsIdsMutable = mutableListOf<String>()
+        for (commentId in story.commentsId) {
+            commentsIdsMutable.add(commentId)
+        }
+        val comments = commentsManager?.getCommentsFromStory(commentsIdsMutable.toList())
+        val response = CommentsModel.GetCommentsRequest.Response(comments!!.toMutableList())
         updateLogic?.updateComment(response)
+        if (UserSingleton.userType != UserType.MOCKED) {
+            val header = mapOf("accept-version" to "0.1.0")
+            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
+            url.httpGet().header(header).responseJson(handleResulComments)
+        } else {
+        }
+    }
+
+    /**
+     * Method resposible for tranforming a jsonObject, that contains the response of the api request,
+     * into a list of comments
+     *
+     * @param jsonObject jsonObject that contains the response data from the api
+     *
+     * @return list of comments
+     */
+    fun convertJsonToListOfComments(jsonObject: JSONObject) : List<Comment> {
+        val dataJson = jsonObject["data"] as JSONObject
+        val commentsJsonArray = dataJson["comments"] as JSONArray
+
+        val commentsMutableList = mutableListOf<Comment>()
+        for (counter in 0 until commentsJsonArray.length()){
+            val jsonComment = commentsJsonArray.getJSONObject(counter)
+            val comment = Comment.createCommentFromJsonObject(jsonComment)
+            commentsMutableList.add(comment)
+        }
+        return commentsMutableList.toList()
     }
 
     /**
@@ -43,7 +103,6 @@ class CommentsWorker {
      * and passed the new comment to response
      * @param request Comments model from PublishCommentRequest that contains need information to
      * send to server
-     * @param completion Method to call on parent class
      */
 
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request) {
@@ -63,7 +122,6 @@ class CommentsWorker {
      * and passed the message to response.
      * @param request Comments model from ComplaintRequest that contains need information to
      * send to server
-     * @param completion Method to call on parent class
      */
 
     fun sendComplaint (request: CommentsModel.ComplaintRequest.Request) {
@@ -77,10 +135,9 @@ class CommentsWorker {
 
     /**
      * Function responsible to delete the comment at the position set by request
-     * and to send the list [commentsMockedData] after deletion as the response to interactor
+     * and to send the list after deletion as the response to interactor
      *
      * @param request Position of the comment to be deleted
-     * @param completion List of unformatted list of comments after deletion
      */
     fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request){
 

@@ -3,6 +3,7 @@ package com.nexte.nexte.Entities.User
 import android.annotation.SuppressLint
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapter
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -36,7 +37,12 @@ class User(val id: String,
          *
          * @return user created from json
          */
-        fun createUserFromJsonObject(jsonUser: JSONObject): User {
+        fun createUserFromJsonObject(jsonUser: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): User {
+            val userCategoryManager: UserCategoryManager? = if(userCategoryManagerArgument == null){
+                UserCategoryManager()
+            } else{
+                UserCategoryManager(userCategoryManagerArgument)
+            }
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
             val profilePicture = jsonUser["profileImageURL"] as String
@@ -56,7 +62,7 @@ class User(val id: String,
                 Gender.FEMALE
             }
             val categoryInt = jsonUser["category"] as Int
-            val category = UserCategoryManager().get(categoryInt.toString())
+            val category = userCategoryManager?.get(categoryInt.toString())
             val statusInt = jsonUser["status"] as Int
             val status: Status?
             status = when (statusInt) {
@@ -102,8 +108,5 @@ class User(val id: String,
         UPDATE_USER(hashMapOf("route" to "user", "method" to "update")),
         LOGIN(hashMapOf("route" to "login", "method" to "post"))
     }
-
-
-
 }
 

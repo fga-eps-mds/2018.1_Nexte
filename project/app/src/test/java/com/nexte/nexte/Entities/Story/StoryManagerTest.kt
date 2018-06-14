@@ -33,7 +33,7 @@ class StoryManagerTest {
         val stories = storyManager?.createInitialMocker()
 
         assertEquals(stories is List<Story>, true)
-        assertTrue("User manager have size between 0 and 20", stories!!.size >= 0 && stories!!.size <= 20)
+        assertTrue("User manager have size between 0 and 20", stories!!.size >= 0 && stories.size <= 20)
     }
 
     @Test
@@ -89,7 +89,6 @@ class StoryManagerTest {
 
     @Test
     fun testUpdateMany(){
-        val identifier = "1"
         val stories = listOf(Story(id = "1", date = Date(), likesId = listOf(), loser = StoryPlayer(), winner = StoryPlayer(), commentsId = listOf()))
 
         val storyList = storyManager?.updateMany(stories = stories)
