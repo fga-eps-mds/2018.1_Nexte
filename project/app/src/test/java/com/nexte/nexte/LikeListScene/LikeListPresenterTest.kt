@@ -1,10 +1,6 @@
 package com.nexte.nexte.LikeListScene
 
-import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Entities.Challenge.Challenge
-import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Entities.User.UserCategory.UserCategory
-import com.nexte.nexte.R
+
 import org.junit.After
 import org.junit.Before
 
