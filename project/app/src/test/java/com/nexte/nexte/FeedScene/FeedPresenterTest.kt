@@ -26,7 +26,7 @@ class FeedPresenterTest {
     }
 
     @Test
-    fun testFormatFeed(){
+    fun testFormatFeed() {
         // Prepare
         val id = "1234567890"
         val winner = StoryPlayer("1", 0)
@@ -38,7 +38,7 @@ class FeedPresenterTest {
         // Call
         val story = Story(id, winner, loser, date, comments, likes)
         val response = FeedModel.GetFeedActivities.Response(listOf(story))
-        response.feedActivities= listOf(story)
+        response.feedActivities = listOf(story)
 
         //call
         this.presenter?.formatFeed(response = response)
@@ -50,7 +50,7 @@ class FeedPresenterTest {
     }
 
     @Test
-    fun successGetViewController(){
+    fun successGetViewController() {
         //assert and call
         val viewController = presenter?.viewController
 
@@ -59,7 +59,7 @@ class FeedPresenterTest {
     }
 
     @Test
-    fun testUpdateViewActivity(){
+    fun testUpdateViewActivity() {
         //prepare
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
@@ -85,31 +85,51 @@ class FeedPresenterTest {
     }
 
     @Test
-    fun getUserManager(){
+    fun getUserManager() {
         //prepare and call
         val userManagerTest = this.presenter?.userManager
         //assert
         assertNotNull(userManagerTest)
+        @Test
+        fun validateUserImageOnSucess() {
+            //prepare and call
+            val number = this.presenter?.validateUserPhoto("10")
+
+            //assert
+            assertEquals(10, number)
+        }
+
+        @Test
+        fun validateUserImageOnFailure() {
+            //prepare and call
+            val number = this.presenter?.validateUserPhoto("")
+            val defaultImage = R.mipmap.ic_launcher
+
+            //assert
+            assertEquals(defaultImage, number)
+        }
+
+        @After
+        fun tearDown() {
+            this.mock = null
+            this.presenter = null
+        }
     }
 
-    @After
-    fun tearDown() {
-        this.mock = null
-        this.presenter = null
-    }
-}
+    private class MockFeedDisplayLogic : FeedDisplayLogic {
 
-private class MockFeedDisplayLogic: FeedDisplayLogic{
+        var formattedGetFeedActivities: FeedModel.FeedActivityFormatted? = null
+        var passedHere = false
 
-    var formattedGetFeedActivities: FeedModel.FeedActivityFormatted? = null
+        override fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel) {
+            formattedGetFeedActivities = null
+            formattedGetFeedActivities = viewModel.formattedLikedActivities
+        }
 
-    override fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel) {
-        formattedGetFeedActivities = null
-        formattedGetFeedActivities = viewModel.formattedLikedActivities
-    }
-
-    override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
-        formattedGetFeedActivities = null
-        formattedGetFeedActivities = viewModel.feedActivities[0]
+        override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
+            formattedGetFeedActivities = null
+            formattedGetFeedActivities = viewModel.feedActivities[0]
+            this.passedHere = true
+        }
     }
 }
