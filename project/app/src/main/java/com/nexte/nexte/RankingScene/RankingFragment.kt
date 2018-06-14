@@ -17,6 +17,7 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
+import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 
@@ -40,6 +41,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
     var rankingConstraintLayout: ConstraintLayout?= null
     var userManager: UserManager? = null
     var challengeManager: ChallengeManager?= null
+    var loggedPlayer: RankingModel.FormattedPlayerInfo? = null
 
     fun getInstance() : RankingFragment{
         return RankingFragment()
@@ -126,6 +128,18 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         val rankingView = fragment as RankingFragment
         val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
 
+        rankingView.fixedFragment?.setBackgroundResource(R.drawable.cell_border_light)
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo1,
+                rankingView.loggedPlayer?.player?.userLastGames!![0])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo2,
+                rankingView.loggedPlayer?.player?.userLastGames!![1])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo3,
+                rankingView.loggedPlayer?.player?.userLastGames!![2])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo4,
+                rankingView.loggedPlayer?.player?.userLastGames!![3])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo5,
+                rankingView.loggedPlayer?.player?.userLastGames!![4])
+
         if(layoutManager.findFirstCompletelyVisibleItemPosition() <= playerRanking - 1
                 && playerRanking - 1 <= layoutManager.findLastCompletelyVisibleItemPosition()) {
 
@@ -199,7 +213,28 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      */
     override fun displayRankingInScreen(viewModel: RankingModel.ViewModel) {
 
+        this.loggedPlayer = viewModel.formattedPlayers.find { it.player.id == UserSingleton.loggedUserID }
         rankingRecyclerView?.adapter = RankingAdapter(viewModel.formattedPlayers, this)
+    }
+
+    /**
+     * Method responsible for setting the apropriate resource to the plaeyr game circle
+     *
+     * @param imageView imageView that will display the player result
+     * @param lastGame data that will indicate the player game status
+     */
+    fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
+        val circleResource = if (lastGame == Color.GREEN) {
+            R.drawable.circle_victory_ranking
+        } else if (lastGame == Color.GRAY) {
+            R.drawable.circle_empty_ranking
+        } else if (lastGame == Color.RED) {
+            R.drawable.circle_defeat_ranking
+        } else {
+            R.drawable.circle_undefeated_ranking
+        }
+
+        imageView?.setBackgroundResource(circleResource)
     }
 
     /**
@@ -274,6 +309,14 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.profileButton?.setOnClickListener{
                 (fragment as RankingFragment).goToShowProfileView(item.player.userName)
             }
+
+            val rankingFragment = fragment as RankingFragment
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo1, item.player.userLastGames[0])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo2, item.player.userLastGames[1])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo3, item.player.userLastGames[2])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo4, item.player.userLastGames[3])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo5, item.player.userLastGames[4])
+
             itemHolder?.expandedView?.currentUser?.setImageResource(item.player.userPictureURL)
             UserSingleton.loggedUser.profilePicture?.let {
                 itemHolder?.expandedView?.loggedUser?.setImageResource(it.toInt())
@@ -313,7 +356,6 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 itemHolder?.expandedView?.gamesCurrentUser?.visibility = View.VISIBLE
                 itemHolder?.expandedView?.profileButton?.visibility = View.VISIBLE
             }
-
         }
 
 

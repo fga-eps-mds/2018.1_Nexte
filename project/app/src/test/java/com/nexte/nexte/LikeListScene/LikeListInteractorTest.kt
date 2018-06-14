@@ -39,7 +39,7 @@ class LikeListInteractorTest {
         val request = LikeListModel.Request("1", "1")
 
         //call
-        thread{ this.interactor?.fetchDataToList(request = request) }.join()
+        thread { this.interactor?.fetchDataToList(request = request) }.join()
         request.storyId
         request.tokenId
 

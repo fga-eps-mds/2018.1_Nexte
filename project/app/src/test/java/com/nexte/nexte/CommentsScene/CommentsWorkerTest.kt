@@ -242,7 +242,7 @@ class CommentsWorkerTest {
         worker?.updateLogic = null
         mock?.response1 = null
         //call
-        thread {worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))}.join()
+        thread { worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("","")) }.join()
         //assert
         assertNull(mock?.response1)
         //backup
