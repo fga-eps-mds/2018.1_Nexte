@@ -117,7 +117,6 @@ class FeedPresenterTest: HelpForRealm() {
     }
 
     @Test
-<<<<<<< HEAD
     fun testUserIsOnLikeList() {
         //prepare
         val userLogged = FeedModel.FeedPlayer(UserSingleton.loggedUser.name, 1, 2)
@@ -138,12 +137,15 @@ class FeedPresenterTest: HelpForRealm() {
     }
 
     @Test
-    fun getUserManager(){
+    fun getUserManager() {
         //prepare and call
         val userManagerTest = this.presenter?.userManager
         //assert
         assertNotNull(userManagerTest)
-=======
+
+    }
+
+    @Test
     fun validateUserImageOnSucess() {
         //prepare and call
         val number = this.presenter?.validateUserPhoto("10")
@@ -160,7 +162,6 @@ class FeedPresenterTest: HelpForRealm() {
 
         //assert
         assertEquals(defaultImage, number)
->>>>>>> 98f2431caed9a1235e196cdd41da5775d8809bc1
     }
 
     @After
