@@ -36,7 +36,7 @@ class FeedWorker {
 
     var updateLogic: FeedWorkerUpdateLogic? = null
     var storyManager: StoryManager? = null
-    var senderHTTP: Boolean? = null
+    var senderHTTP = false
 
     val httpRequestHandler: (com.github.kittinunf.fuel.core.Request,
                              com.github.kittinunf.fuel.core.Response,

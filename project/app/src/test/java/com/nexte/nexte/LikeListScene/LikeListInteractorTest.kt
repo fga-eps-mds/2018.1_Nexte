@@ -1,5 +1,6 @@
 package com.nexte.nexte.LikeListScene
 
+import com.facebook.accountkit.LoginModel
 import com.nexte.nexte.Entities.Like.LikeAdapterSpy
 import com.nexte.nexte.Entities.Like.LikeManager
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
@@ -12,6 +13,7 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.concurrent.thread
 
 class LikeListInteractorTest {
 
@@ -37,7 +39,7 @@ class LikeListInteractorTest {
         val request = LikeListModel.Request("1", "1")
 
         //call
-        this.interactor?.fetchDataToList(request = request)
+        thread{ this.interactor?.fetchDataToList(request = request) }.join()
         request.storyId
         request.tokenId
 
@@ -48,15 +50,56 @@ class LikeListInteractorTest {
     @Test
     fun testGetUsers(){
         //prepare
-        val name = "luis"
-        val photo = 1
-        val response = LikeListModel.Response(listOf<User>())
+        val response = LikeListModel.Response(listOf())
 
         //call
         this.interactor?.updateUsers(response = response)
 
         //assert
         assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
+    fun testNullPresenter() {
+        //prepare and call
+        this.interactor?.presenter = null
+        this.mock?.passedHere = false
+    }
+
+    @Test
+    fun testConstructorInteractor() {
+        //prepare and call
+        val interactor = LikeListInteractor()
+
+        //assert
+        assertNotNull(interactor)
+    }
+
+    @Test
+    fun testUpdateUsersWithNullPresenter(){
+        //prepare
+        mock?.passedHere = false
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        val response = LikeListModel.Response(listOf())
+        //call
+        interactor?.updateUsers(response)
+        //assert
+        assertFalse(mock?.passedHere!!)
+        //backup
+        interactor?.presenter = backup
+    }
+
+    @Test
+    fun successSetWorkerTest() {
+        //prepare
+        val newWorker = LikeListWorker()
+
+        //call
+        this.interactor?.worker = newWorker
+
+        //assert
+        assertEquals(newWorker, interactor?.worker)
     }
 
     @After
