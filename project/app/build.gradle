@@ -177,12 +177,11 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*','**/*Fragment*.*', '**/*View*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Fragment*.*', '**/*View*.*', '**/*Test*.*',
+                       '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
 
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
-
-

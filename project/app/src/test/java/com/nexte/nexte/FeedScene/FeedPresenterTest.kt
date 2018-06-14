@@ -117,6 +117,7 @@ class FeedPresenterTest: HelpForRealm() {
     }
 
     @Test
+<<<<<<< HEAD
     fun testUserIsOnLikeList() {
         //prepare
         val userLogged = FeedModel.FeedPlayer(UserSingleton.loggedUser.name, 1, 2)
@@ -142,6 +143,24 @@ class FeedPresenterTest: HelpForRealm() {
         val userManagerTest = this.presenter?.userManager
         //assert
         assertNotNull(userManagerTest)
+=======
+    fun validateUserImageOnSucess() {
+        //prepare and call
+        val number = this.presenter?.validateUserPhoto("10")
+
+        //assert
+        assertEquals(10, number)
+    }
+
+    @Test
+    fun validateUserImageOnFailure() {
+        //prepare and call
+        val number = this.presenter?.validateUserPhoto("")
+        val defaultImage = R.mipmap.ic_launcher
+
+        //assert
+        assertEquals(defaultImage, number)
+>>>>>>> 98f2431caed9a1235e196cdd41da5775d8809bc1
     }
 
     @After
@@ -156,6 +175,7 @@ class FeedPresenterTest: HelpForRealm() {
 private class MockFeedDisplayLogic: FeedDisplayLogic{
 
     var formattedGetFeedActivities: FeedModel.FeedActivityFormatted? = null
+    var passedHere = false
 
     override fun updateLike(viewModel: FeedModel.LikeAndUnlike.ViewModel) {
         formattedGetFeedActivities = null
@@ -165,5 +185,6 @@ private class MockFeedDisplayLogic: FeedDisplayLogic{
     override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
         formattedGetFeedActivities = null
         formattedGetFeedActivities = viewModel.feedActivities[0]
+        this.passedHere = true
     }
 }
