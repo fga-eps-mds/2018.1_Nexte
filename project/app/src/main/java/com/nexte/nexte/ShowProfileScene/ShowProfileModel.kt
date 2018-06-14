@@ -31,7 +31,7 @@ class ShowProfileModel {
      *
      * @property playerInfo attribute already processed by [ShowProfilePresenter] class for display on screen
      **/
-    class ViewModel(var playerInfo: FormattedPlayer)
+    class ViewModel(var playerInfo: FormattedPlayer, formattedChallenges: List<FormattedChallenge>)
 
     //-------------- Aux Classes --------------
 
@@ -48,4 +48,19 @@ class ShowProfileModel {
             var name: String?,
             var rank: String?,
             var email: String?)
+
+    /**
+     *
+     */
+    class FormattedChallenge(
+            var challengeDates: String,
+            var setsResult: String,
+            var gamesResults: String,
+            var headToHeadResults: String,
+            var opponentName: String?,
+            var opponentPictureUrl: String?,
+            var opponentColor: Int)
+
+
+
 }

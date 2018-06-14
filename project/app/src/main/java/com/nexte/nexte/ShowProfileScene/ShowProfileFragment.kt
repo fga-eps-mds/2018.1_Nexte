@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileFragment
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
@@ -301,6 +302,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
         interactor.presenter = presenter
         presenter.viewScene = viewScene
+        presenter.challengeManager = ChallengeManager()
+        presenter.userManager = UserManager()
         viewScene.showProfileInteractor = interactor
         interactor.worker.updateLogic = interactor
         interactor.worker.userManager = userManager
