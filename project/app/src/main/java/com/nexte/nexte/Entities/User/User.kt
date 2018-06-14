@@ -37,6 +37,9 @@ class User(val id: String,
          * @return user created from json
          */
         fun createUserFromJsonObject(jsonUser: JSONObject): User {
+            val userCategoryManager: UserCategoryManager?
+            userCategoryManager = UserCategoryManager()
+
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
             val profilePicture = jsonUser["profileImageURL"] as String
@@ -56,7 +59,7 @@ class User(val id: String,
                 Gender.FEMALE
             }
             val categoryInt = jsonUser["category"] as Int
-            val category = UserCategoryManager().get(categoryInt.toString())
+            val category = userCategoryManager.get(categoryInt.toString())
             val statusInt = jsonUser["status"] as Int
             val status: Status?
             status = when (statusInt) {
