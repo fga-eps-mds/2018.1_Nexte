@@ -1,6 +1,7 @@
 package com.nexte.nexte.ShowProfileScene
 
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
 
@@ -42,7 +43,7 @@ class ShowProfilePresenterTest {
             null,
             emptyList()
         ))
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com")
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com",  profileImage = R.drawable.profile_image9)
 
         //call
         this.presenter?.presentUserProfile(response = response)

@@ -60,9 +60,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         val showProfileFragment = ShowProfileFragment()
 
         if (playerToShowName != null) {
-            bundle.putString("anotherPlayerName", playerToShowName)
+            bundle.putString("9", playerToShowName)
         } else {
-            bundle.putString("anotherPlayerName", "")
+            bundle.putString("9", "")
         }
 
         showProfileFragment.arguments = bundle
@@ -77,7 +77,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
-        this.anotherPlayerName = arguments.getString("anotherPlayerName")
+        this.anotherPlayerName = arguments.getString("9")
     }
 
 
@@ -107,7 +107,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest() {
-        val showUserProfileRequest = ShowProfileModel.Request(anotherPlayerName)
+        val showUserProfileRequest = ShowProfileModel.Request(UserSingleton.loggedUserID)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
     }
 
@@ -332,6 +332,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
+        imageView?.setImageResource(viewModel.playerInfo.profileImage!!)
 
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
