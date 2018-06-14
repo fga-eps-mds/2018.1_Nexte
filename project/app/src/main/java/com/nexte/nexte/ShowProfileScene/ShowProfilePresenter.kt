@@ -44,7 +44,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
             photo = response.user?.profilePicture!!.toInt()
         } else {
-            photo = R.drawable.ic_launcher_background
+            photo = R.mipmap.ic_launcher
         }
 
         val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(

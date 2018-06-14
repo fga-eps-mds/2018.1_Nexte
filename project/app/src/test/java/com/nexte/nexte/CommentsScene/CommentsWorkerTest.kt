@@ -227,7 +227,7 @@ class CommentsWorkerTest {
         val backup = worker?.storyManager
         worker?.storyManager = null
         //call
-        worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))
+        thread { worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("","")) }.join()
         //assert
         assertNotNull(mock?.response1)
         //backup
@@ -242,7 +242,7 @@ class CommentsWorkerTest {
         worker?.updateLogic = null
         mock?.response1 = null
         //call
-        worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))
+        thread {worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))}.join()
         //assert
         assertNull(mock?.response1)
         //backup

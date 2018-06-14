@@ -13,6 +13,7 @@ import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.concurrent.thread
 
 class LikeListInteractorTest {
 
@@ -38,7 +39,7 @@ class LikeListInteractorTest {
         val request = LikeListModel.Request("1", "1")
 
         //call
-        this.interactor?.fetchDataToList(request = request)
+        thread{ this.interactor?.fetchDataToList(request = request) }.join()
         request.storyId
         request.tokenId
 
