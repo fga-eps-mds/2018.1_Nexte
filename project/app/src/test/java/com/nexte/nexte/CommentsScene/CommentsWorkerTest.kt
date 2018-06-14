@@ -19,6 +19,8 @@ import org.junit.Test
 import java.util.*
 import kotlin.concurrent.thread
 import com.github.kittinunf.result.Result
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import java.net.URL
 
 
@@ -92,7 +94,7 @@ class CommentsWorkerTest {
     }
 
     @Test
-    fun djns() {
+    fun testGetStoryManagerWithEmptyTokenId() {
         val tokenID = ""
         val storyId = ""
 
@@ -103,7 +105,7 @@ class CommentsWorkerTest {
     }
 
     @Test
-    fun fsfsfs() {
+    fun testUpdateComment() {
         val id1 = "dhh"
         val userId1 = "uhfuf"
         val date1 = Date()
@@ -220,14 +222,51 @@ class CommentsWorkerTest {
     }
 
     @Test
+    fun getCommentDataCase1(){
+        //prepare
+        val backup = worker?.storyManager
+        worker?.storyManager = null
+        //call
+        worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))
+        //assert
+        assertNotNull(mock?.response1)
+        //backup
+        worker?.storyManager = backup
+    }
+
+
+    @Test
+    fun getCommentDataCase2(){
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        mock?.response1 = null
+        //call
+        worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))
+        //assert
+        assertNull(mock?.response1)
+        //backup
+        worker?.updateLogic = backup
+    }
+
+
+    @Test
+    fun getCommentDataCase3(){
+        //prepare
+        UserSingleton.userType = UserType.REAL
+        //call
+        thread {worker?.getCommentsData(CommentsModel.GetCommentsRequest.Request("",""))}.join()
+        //assert
+        assertNotNull(mock?.response1)
+        //backup
+        UserSingleton.userType = UserType.MOCKED
+    }
+
+    @Test
     fun getCommentsDeleteWithNullUpdateLogic() {
         //prepare
         val backup = worker?.updateLogic
         worker?.updateLogic = null
-
-        val comment1 = Comment("1",
-                "2",
-                "", Date())
 
         val requestToDel = CommentsModel.DeleteCommentRequest.Request(1)
 
@@ -255,11 +294,11 @@ class CommentsWorkerTest {
     fun testInvokeFail() {
         mock?.response1 = null
 
-        var url = URL("http://www.forever21.com/")
-        var request = Request(Method.GET, "", url)
-        var response = Response(url)
+        val url = URL("http://www.forever21.com/")
+        val request = Request(Method.GET, "", url)
+        val response = Response(url)
 
-        var result: Result<Json, FuelError> = Result.error(FuelError(Exception("Erro")))
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("Erro")))
 
         this.worker?.handleResulComments?.invoke(request, response, result)
 
@@ -270,13 +309,13 @@ class CommentsWorkerTest {
     fun testInvokeSuccess() {
         mock?.response1
 
-        var url = URL("http://www.forever21.com/")
+        val url = URL("http://www.forever21.com/")
         val request = Request(Method.GET, "", url)
         val response = Response(url)
 
         val json = Json(jsonObject.toString())
 
-        var resultSuccess: Result<Json, FuelError> = Result.Success(json)
+        val resultSuccess: Result<Json, FuelError> = Result.Success(json)
 
         //call
         thread {worker?.handleResulComments?.invoke(request, response, resultSuccess) }.join()
@@ -303,8 +342,6 @@ class CommentsWorkerTest {
 
         override fun updateNewComment(response: CommentsModel.PublishCommentRequest.Response) {
             this.response2 = response
-            println(response)
-            println(response.newComment.id)
         }
 
 

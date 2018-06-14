@@ -50,6 +50,52 @@ class CommentsInteractorTest {
     }
 
     @Test
+    fun failedUpdateComment(){
+        //prepare
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        //call
+        interactor?.updateComment(CommentsModel.GetCommentsRequest.Response(mutableListOf()))
+        //assert
+        assertEquals(mock?.passedHere, false)
+        //backup
+        interactor?.presenter = backup
+    }
+
+    @Test
+    fun failedUpdateNewComment(){
+        //prepare
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        //call
+        interactor?.updateNewComment(CommentsModel.PublishCommentRequest.Response(Comment("", "", "", Date())))
+        //assert
+        assertEquals(mock?.passedHere, false)
+        //backup
+        interactor?.presenter = backup
+    }
+    @Test
+    fun failedUpdateDeleteComment(){
+        //prepare
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        //call
+        interactor?.updateDeleteComment(CommentsModel.DeleteCommentRequest.Response(Comment("", "", "", Date())))
+        //assert
+        assertEquals(mock?.passedHere, false)
+        //backup
+        interactor?.presenter = backup
+    }
+
+    @Test
+    fun successUpdateComment(){
+        //prepare and call
+        interactor?.updateComment(CommentsModel.GetCommentsRequest.Response(mutableListOf()))
+        //assert
+        assertEquals(mock?.passedHere, true)
+    }
+
+    @Test
     fun successGetWorkerTest(){
         //prepare and call
         val expectedWorker = this.interactor?.worker
