@@ -1,8 +1,12 @@
 package com.nexte.nexte.EditProfileScene
 
 
+import com.nexte.nexte.Entities.User.User
 import org.junit.After
 import org.junit.Before
+import org.junit.Test
+import java.util.*
+import org.junit.Assert.*
 
 
 class EditProfilePresenterTest {
@@ -16,6 +20,72 @@ class EditProfilePresenterTest {
         this.presenter = EditProfilePresenter()
         this.presenter?.viewToShowEditProfileError = mock
         this.presenter?.viewToShowUserInformation = mock
+    }
+
+    @Test
+    fun testPresentProfileToEdit() {
+        //prepare
+        val testUser = User("1",
+                "André Rede",
+                null,
+                "André",
+                Date(1987, 5, 15),
+                3,
+                "andre@nexte.com",
+                "130",
+                162,
+                69,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList())
+        val testResponse = EditProfileModel.RecoverUserRequest.Response(testUser)
+
+
+        //call
+        val testViewToShowUser = this.presenter?.viewToShowUserInformation
+
+        this.presenter?.presentProfileToEdit(testResponse)
+
+        //assert
+        assertEquals(true, this.mock?.hasBeenHere)
+        assertEquals(this.presenter?.viewToShowUserInformation, testViewToShowUser)
+
+
+    }
+
+    @Test
+    fun testSendEditedProfileStatus() {
+        //prepare
+        val testUser = User("1",
+                "André Rede",
+                null,
+                "André",
+                Date(1987, 5, 15),
+                3,
+                "andre@nexte.com",
+                "130",
+                162,
+                69,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList())
+        val testResponse = EditProfileModel.EditProfileRequest.Response(1, testUser)
+
+
+        //call
+        val testViewToShowEdit = this.presenter?.viewToShowEditProfileError
+        this.presenter?.sendEditedProfileStatus(testResponse)
+
+        //assert
+        assertEquals(true, this.mock?.hasBeenHere)
+        assertEquals(this.presenter?.viewToShowEditProfileError, testViewToShowEdit)
+
     }
 
     @After
