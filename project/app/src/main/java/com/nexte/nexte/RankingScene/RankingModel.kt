@@ -58,6 +58,7 @@ class RankingModel {
                           var userRankingPosition: String,
                           var userLastGame: String,
                           var userEfficiency: String,
-                          var userCategory: String)
+                          var userCategory: String,
+                          var id: String)
 }
 
