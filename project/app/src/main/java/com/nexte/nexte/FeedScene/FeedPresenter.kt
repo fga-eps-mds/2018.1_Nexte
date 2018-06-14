@@ -59,7 +59,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
      * @param activities MutableList of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: List<Story>):
+   private fun formatFeedActivities(activities: List<Story>):
             MutableList<FeedModel.FeedActivityFormatted> {
 
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()

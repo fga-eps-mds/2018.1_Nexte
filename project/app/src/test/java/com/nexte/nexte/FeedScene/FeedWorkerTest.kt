@@ -154,6 +154,13 @@ class FeedWorkerTest: HelpForRealm() {
         assertTrue(worker?.senderHTTP!!)
     }
 
+    @Test
+    fun setSenderSuccess(){
+        this.worker?.senderHTTP = false
+
+        assertEquals(false, this.worker?.senderHTTP)
+    }
+
 
 
     @Test
@@ -164,6 +171,7 @@ class FeedWorkerTest: HelpForRealm() {
         val getDataJson = jsonObject["data"] as JSONObject
         val getFeedJson = getDataJson["feed"] as JSONArray
         val feedJson = getFeedJson.getJSONObject(0)
+
         val getChallenge = feedJson["challenge"] as JSONObject
         val getWinner = getChallenge["winner"] as JSONObject
         val getLoser = getChallenge["loser"] as JSONObject

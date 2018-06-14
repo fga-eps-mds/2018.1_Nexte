@@ -2,11 +2,14 @@ package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryPlayer
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import org.junit.After
 import org.junit.Before
 
@@ -19,6 +22,7 @@ class FeedPresenterTest: HelpForRealm() {
     private var mock: MockFeedDisplayLogic? = null
     private var presenter: FeedPresenter? = null
 
+
     @Before
     fun setUp() {
         super.setUpWithUser()
@@ -26,6 +30,7 @@ class FeedPresenterTest: HelpForRealm() {
         this.presenter = FeedPresenter(viewController = mock)
         this.presenter?.userManager = UserManager(UserAdapterSpy())
         this.presenter?.viewController = mock
+
     }
 
     @Test
@@ -50,6 +55,30 @@ class FeedPresenterTest: HelpForRealm() {
         assertNotNull(this.mock?.formattedGetFeedActivities)
         assertEquals(id, this.mock?.formattedGetFeedActivities?.identifier)
         assertEquals(likes.size.toString(), this.mock?.formattedGetFeedActivities?.numberOfLikes)
+    }
+
+    @Test
+    fun testFormatFeedEmpty(){
+        // Prepare
+        val winner = StoryPlayer("", 0)
+        val loser = StoryPlayer("", 1)
+        val story = Story("", winner, loser, Date(), listOf("1", "2", "3"), listOf("1", "2", "3"))
+
+        // Call
+        val response = FeedModel.GetFeedActivities.Response(listOf(story))
+        response.feedActivities= listOf(story)
+
+        //call
+        this.presenter?.formatFeed(response = response)
+
+        //assert
+        assertNotNull(this.mock?.formattedGetFeedActivities)
+        assertEquals(story.id, this.mock?.formattedGetFeedActivities?.identifier)
+        assertEquals(winner.userId, this.mock?.formattedGetFeedActivities?.challengedName)
+        assertEquals(winner.userId, this.mock?.formattedGetFeedActivities?.challengerName)
+
+
+
     }
 
     @Test
@@ -117,6 +146,7 @@ class FeedPresenterTest: HelpForRealm() {
 
     @After
     fun tearDown() {
+
         super.tearDownRealm()
         this.mock = null
         this.presenter = null
