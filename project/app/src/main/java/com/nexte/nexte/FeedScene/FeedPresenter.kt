@@ -109,7 +109,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
     }
 
     /**
-     * Auxiliary function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     * Auxiliary function to really convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
      *
      * @param activity Unformatted activity
      * @return Formatted activity
