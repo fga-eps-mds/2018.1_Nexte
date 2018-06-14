@@ -37,8 +37,8 @@ class StoryAdapterSpy: StoryAdapter{
         val winner: StoryPlayer? = StoryPlayer(userId = "1", setResult = 5)
         val loser: StoryPlayer? = StoryPlayer(userId = "2", setResult = 4)
         val date: Date? = Date()
-        val commentsId: List<String> = listOf()
-        val likesId: List<String> = listOf("1")
+        val commentsId: List<String> = listOf("1")
+        val likesId: List<String> = listOf()
 
         val story = Story(id, winner, loser, date, commentsId, likesId)
 

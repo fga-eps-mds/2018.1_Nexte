@@ -35,8 +35,8 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 8
-        versionName "0.8"
+        versionCode 9
+        versionName "0.9"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -152,7 +152,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ["clean", "testDebugUnitTes
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*', '**/*View*.*', '**/*Fragment*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 
+                       'android/**/*.*', '**/*View*.*', '**/*Fragment*.*']
 
     )
 
@@ -176,12 +177,10 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Fragment*.*', '**/*View*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
 
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
-
-

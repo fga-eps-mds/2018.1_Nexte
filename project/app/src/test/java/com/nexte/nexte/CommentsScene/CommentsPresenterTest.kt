@@ -27,6 +27,24 @@ class CommentsPresenterTest {
     }
 
     @Test
+    fun testGetViewController() {
+        //prepare and call
+        val viewController = presenter?.viewController
+
+        //assert
+        assertEquals(viewController, presenter?.viewController)
+    }
+
+    @Test
+    fun testGetUserManager() {
+        //prepare and call
+        val userManager = presenter?.userManager
+
+        //assert
+        assertEquals(userManager, presenter?.userManager)
+    }
+
+    @Test
     fun successPresentComment() {
         //prepare
         val comment1 = Comment("1", "1", "", Date())
