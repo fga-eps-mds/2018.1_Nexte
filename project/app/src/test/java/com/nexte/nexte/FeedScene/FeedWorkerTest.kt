@@ -202,7 +202,7 @@ class FeedWorkerTest: HelpForRealm() {
         val request = FeedModel.LikeAndUnlike.Request(identifier = identifier)
 
         //call
-        this.worker?.manageLikes(request = request, completion = {response ->
+        this.worker?.manageLikes(request, {response ->
             //assert
             assertEquals(challenger1.name, response.likedActivity.challenge.challenger.name)
             assertEquals(challenger1.set, response.likedActivity.challenge.challenger.set)
