@@ -256,8 +256,12 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 notifyItemChanged(expandedId)
             }
 
-            if(itemHolder?.layoutPosition == UserSingleton.loggedUser.rankingPosition-1){
-                itemHolder.itemView?.background = ColorDrawable(Color.GRAY)
+            if(item.player.id.equals(UserSingleton.loggedUserID)) {
+                itemHolder?.itemView?.setBackgroundResource(R.drawable.cell_border_light)
+                hideOrShowLoggedUserExpandedInformation(true, itemHolder)
+            } else {
+                itemHolder?.itemView?.setBackgroundResource(R.drawable.cell_border)
+                hideOrShowLoggedUserExpandedInformation(false, itemHolder)
             }
 
             itemHolder?.nameText?.text = item.player.userName
@@ -275,12 +279,43 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 itemHolder?.expandedView?.loggedUser?.setImageResource(it.toInt())
             }
 
+
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
             } else {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
         }
+
+        /**
+         * Method responsible for hiding or showing the information about 1x1 game in raking recycler view
+         * of the logged user
+         *
+         * @param hide boolean that will be used to hide or show the content
+         * @param itemHolder cell to show or hide the content
+         */
+        fun hideOrShowLoggedUserExpandedInformation(hide: Boolean, itemHolder: ItemHolder?){
+
+            if (hide) {
+                itemHolder?.expandedView?.profileButton?.visibility = View.GONE
+                itemHolder?.expandedView?.currentUser?.visibility = View.GONE
+                itemHolder?.expandedView?.loggedUser?.visibility = View.GONE
+                itemHolder?.expandedView?.versus?.visibility = View.GONE
+                itemHolder?.expandedView?.gamesLoggedUser?.visibility = View.GONE
+                itemHolder?.expandedView?.gamesCurrentUser?.visibility = View.GONE
+                itemHolder?.expandedView?.profileButton?.visibility = View.GONE
+            } else {
+                itemHolder?.expandedView?.profileButton?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.currentUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.loggedUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.versus?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.gamesLoggedUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.gamesCurrentUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.profileButton?.visibility = View.VISIBLE
+            }
+
+        }
+
 
         /**
          * Method responsible to return sma ize of ranking

@@ -13,6 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <View
+            android:id="@+id/barBlue"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/chart_matches_legend"
+            app:layout_constraintBottom_toBottomOf="@+id/legendMatches"
+            app:layout_constraintEnd_toStartOf="@+id/legendMatches"
+            app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
             android:layout_width="110dp"
@@ -200,11 +210,9 @@
             android:id="@+id/Stats"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:gravity="top"
-            android:layout_marginEnd="145dp"
-            android:layout_marginStart="146dp"
             android:layout_marginTop="30dp"
             android:fontFamily="roboto_thin"
+            android:gravity="top"
             android:text="Estatísticas"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toTopOf="@+id/lineChart"
@@ -217,8 +225,6 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="165dp"
-            android:layout_marginStart="163dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto_thin"
             android:text="Vitórias/Derrotas"
@@ -232,16 +238,70 @@
             android:id="@+id/rankingLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="163dp"
-            android:layout_marginStart="163dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/roboto_thin"
+            android:text="Posições por tempo"
             android:textAlignment="center"
             android:textColor="#9b9b9b"
-            android:text="Posições por tempo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lineChart" />
+
+        <TextView
+            android:id="@+id/legendVictories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Vitórias"
+            android:textColor="#9b9b9b"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
+
+        <TextView
+            android:id="@+id/legendDefeats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Derrotas"
+            android:textColor="#9b9b9b"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/legendVictories" />
+
+        <TextView
+            android:id="@+id/legendMatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partidas"
+            android:textColor="#9b9b9b"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
+
+        <View
+            android:id="@+id/legendGreen"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/chart_victory_legend"
+            app:layout_constraintBottom_toTopOf="@+id/legendDefeats"
+            app:layout_constraintEnd_toStartOf="@+id/legendVictories"
+            app:layout_constraintTop_toTopOf="@+id/legendVictories" />
+
+        <View
+            android:id="@+id/legendRed"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/chart_loses_legend"
+            app:layout_constraintBottom_toTopOf="@+id/legendMatches"
+            app:layout_constraintEnd_toStartOf="@+id/legendDefeats"
+            app:layout_constraintTop_toTopOf="@+id/legendDefeats" />
 
 
     </android.support.constraint.ConstraintLayout>

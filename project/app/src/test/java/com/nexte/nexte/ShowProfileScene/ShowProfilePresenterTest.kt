@@ -55,6 +55,18 @@ class ShowProfilePresenterTest {
     }
 
     @Test
+    fun testPresentUserProfileWithNullResponse() {
+        //prepare
+        val response = ShowProfileModel.Response(user = null)
+
+        //call
+        this.presenter?.presentUserProfile(response = response)
+
+        //assert
+        assertNotNull(mock?.formattedPlayer)
+    }
+
+    @Test
     fun failedPresentUserProfile() {
         //prepare
         val response = ShowProfileModel.Response(user = User("13",
