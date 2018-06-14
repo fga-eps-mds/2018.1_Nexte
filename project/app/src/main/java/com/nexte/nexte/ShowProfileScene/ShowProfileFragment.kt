@@ -4,9 +4,11 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.Button
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
@@ -321,6 +323,24 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
+    }
+
+    class ShowProfileAdapter(private val challengesFormatted: List<ShowProfileModel.FormattedChallenge>,
+                             private val fragment: Fragment) : RecyclerView.Adapter<ShowProfileAdapter.ViewHolder>(){
+
+        override fun getItemCount(): Int {
+             return this.challengesFormatted.size
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): {
+
+        }
+
+
     }
 
     companion object {
