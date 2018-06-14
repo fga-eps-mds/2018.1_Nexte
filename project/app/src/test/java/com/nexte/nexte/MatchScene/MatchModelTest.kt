@@ -197,4 +197,18 @@ class MatchModelTest {
         assertEquals(MatchModel.DeclineChallengeRequest.Status
                 .SUCCESS, status)
     }
+
+    @Test
+    fun testSetsNumber(){
+        val setsOne = MatchModel.SetsNumber.One
+        val setsThree = MatchModel.SetsNumber.Three
+        val setsFive = MatchModel.SetsNumber.Five
+        val setsWO = MatchModel.SetsNumber.WO
+
+        assertEquals(MatchModel.SetsNumber.One.number, setsOne.number)
+        assertEquals(MatchModel.SetsNumber.Three.number, setsThree.number)
+        assertEquals(MatchModel.SetsNumber.Five.number, setsFive.number)
+        assertEquals(MatchModel.SetsNumber.WO.number, setsWO.number)
+
+    }
 }
