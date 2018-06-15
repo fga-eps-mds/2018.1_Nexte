@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
+
 /**
  * Interface to define Presentation Logic to Show Profile Class that
  * will be used to call this Interactor on other class layer
@@ -53,12 +54,10 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val ranking: String? = "#" + response.user?.rankingPosition.toString()
         val email: String? = response.user?.email
 
-        var photo: Int? = null
-
-        if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
-            photo = response.user?.profilePicture!!.toInt()
+        val photo: Int? = if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
+            response.user?.profilePicture!!.toInt()
         } else {
-            photo = R.mipmap.ic_launcher
+            R.mipmap.ic_launcher
         }
 
         val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(

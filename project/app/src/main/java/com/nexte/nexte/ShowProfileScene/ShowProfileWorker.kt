@@ -68,6 +68,7 @@ class ShowProfileWorker {
         val emptyUser = User("", "", "", "", null, -1,
                 "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
                 User.Status.UNAVAILABLE,null, null, null)
+
         val returnedUser = userManager?.get(userId) ?: emptyUser
 
         val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)

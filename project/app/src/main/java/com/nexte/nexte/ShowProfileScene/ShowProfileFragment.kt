@@ -24,7 +24,9 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.nexte.nexte.EditProfileScene.EditProfileFragment
+
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
@@ -54,7 +56,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var buttonEditProfile: Button? = null
     var rankingChart: LineChart? = null
     private var newLineChart: LineChart? = null // First chart view
-    var anotherPlayerName: String = ""
+    var playerIdToShow: String = ""
     var userManager: UserManager? = null
     var showProfileRecyclerView: RecyclerView? = null
     val graphManager = GraphManager(this)
@@ -68,9 +70,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         val showProfileFragment = ShowProfileFragment()
 
         if (playerToShowName != null) {
-            bundle.putString("9", playerToShowName)
+            bundle.putString("id", playerToShowName)
         } else {
-            bundle.putString("9", "")
+            bundle.putString("id", "")
         }
 
         showProfileFragment.arguments = bundle
@@ -85,7 +87,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
-        this.anotherPlayerName = arguments.getString("9")
+        this.playerIdToShow = arguments.getString("id")
     }
 
 
@@ -114,11 +116,35 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         return newView
     }
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(this.playerIdToShow == UserSingleton.loggedUserID){
+            //todo: setar action listener
+        }
+        else {
+            val player = userManager?.get(playerIdToShow)
+            statusButton.isEnabled = false
+            when (player?.status) {
+                User.Status.AVAILABLE -> {
+                    this.statusButton.background = resources.getDrawable(R.drawable.edge_text_profile_green)
+                    this.statusButton.text = getString(R.string.disponivel)
+                    this.statusButton.setTextColor(resources.getColor(R.color.profile_green))
+                }
+                else -> {
+                    this.statusButton.background = resources.getDrawable(R.drawable.edge_text_profile_gray)
+                    this.statusButton.text = getString(R.string.afastado)
+                    this.statusButton.setTextColor(resources.getColor(R.color.profile_gray))
+                }
+            }
+        }
+    }
+
+
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest() {
-        val showUserProfileRequest = ShowProfileModel.Request(UserSingleton.loggedUserID)
+        val showUserProfileRequest = ShowProfileModel.Request(playerIdToShow)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
     }
 
@@ -185,7 +211,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             line.setDrawCircles(false) // Circle for important values
             line.setDrawCircleHole(true) // Draw Circles
             line.setDrawValues(false)// Hide values from a point in chart
-            line.setMode(LineDataSet.Mode.CUBIC_BEZIER) // Make it curves
+            line.mode = LineDataSet.Mode.CUBIC_BEZIER // Make it curves
             line.cubicIntensity = cubicIntensity// Line curves intensity
             line.fillAlpha = houndredLine
             line.color = color // Line color
@@ -271,9 +297,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val victoryResults = setYAxisValuesVictories() //responsible to access the method setYAxisValues
             val losesResults = setYAxisValuesLosses()
             val matchesResults = setYAxisValuesRanking()
-            val orange = ContextCompat.getColor(showProfileFragment?.context!!, R.color.orange_chart)
-            val green = ContextCompat.getColor(showProfileFragment?.context!!, R.color.green_chart)
-            val blue = ContextCompat.getColor(showProfileFragment?.context!!, R.color.blue_chart)
+            val orange = ContextCompat.getColor(showProfileFragment.context!!, R.color.orange_chart)
+            val green = ContextCompat.getColor(showProfileFragment.context!!, R.color.green_chart)
+            val blue = ContextCompat.getColor(showProfileFragment.context!!, R.color.blue_chart)
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
             val victoryLine = this.customizeChartLine(losesResults, "Vitoria", green)
             val losesLine = this.customizeChartLine(victoryResults, "Derrotas", orange)
@@ -294,7 +320,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createRankingGraph() {
 
-            val yellow = ContextCompat.getColor(showProfileFragment?.context!!, R.color.yellow_chart)
+            val yellow = ContextCompat.getColor(showProfileFragment.context!!, R.color.yellow_chart)
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
             val line = this.customizeChartLine(yAxesRanking, "Ranking", yellow)
