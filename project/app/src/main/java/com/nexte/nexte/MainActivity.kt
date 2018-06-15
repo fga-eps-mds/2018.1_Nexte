@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val feedFragment = FeedFragment().getInstance()
     private val challengeFragment = ChallengeTabsFragment().getInstance()
     private val rankingFragment = RankingFragment().getInstance()
-    private val showProfileFragment = ShowProfileFragment().getInstance(UserSingleton.loggedUser.name)
+    private val showProfileFragment = ShowProfileFragment().getInstance(UserSingleton.loggedUserID)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
