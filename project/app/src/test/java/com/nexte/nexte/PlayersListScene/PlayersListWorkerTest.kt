@@ -6,9 +6,11 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
+import com.nexte.nexte.R
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -16,6 +18,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.net.URL
+import java.util.*
 import kotlin.concurrent.thread
 
 class PlayersListWorkerTest: HelpForRealm() {
@@ -31,6 +34,7 @@ class PlayersListWorkerTest: HelpForRealm() {
         this.worker = PlayersListWorker()
         this.worker?.updateLogic = updateLogicMocker
         this.worker?.userManager = UserManager(UserAdapterSpy())
+        this.jsonToUserListTest()
     }
 
     @Test
@@ -43,32 +47,112 @@ class PlayersListWorkerTest: HelpForRealm() {
             //assert
             assertNotNull(response.challengedPersonalDetails)
         })
-
     }
 
+    // When update logic is null and is realizes a request
     @Test
     fun httpRequestTest(){
         //prepare
-//        updateLogicMocker?. = null
-//        val url = URL("http://www.randomsite.com/")
-//        val request = Request(Method.GET, "",url)
-//        val response = Response(url)
-//        val backup = worker?.updateLogic
-//        worker?.updateLogic = null
-//
-//        val json = Json(jsonObject.toString())
-//        val result: Result<Json, FuelError> = Result.Success(json)
-//
-//        //call
-//        thread { worker?.httpGetHandler?.invoke(request, response, result) }.join()
-//
-//        //assert
-//        assertNull(mock?.response)
-//
-//        //backup
-//        worker?.updateLogic = backup
+        updateLogicMocker?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        thread { worker?.httpHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNull(updateLogicMocker?.response)
+
+        //backup
+        worker?.updateLogic = backup
     }
 
+    @Test
+    fun testFetchUsersOnFailure() {
+        //prepare
+        updateLogicMocker?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
+
+        //call
+        worker?.httpHandler?.invoke(request, response, result)
+
+        //assert
+        assertNull(updateLogicMocker?.response)
+    }
+
+    @Test fun testGetters() {
+        val updateLogic = worker?.updateLogic
+        val userManager = worker?.userManager
+
+        //assert
+        assertEquals(worker?.updateLogic, updateLogic)
+        assertEquals(worker?.userManager, userManager)
+    }
+
+    @Test
+    fun testFetchUsersOnSucess() {
+        //prepare
+        updateLogicMocker?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        thread { worker?.httpHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNotNull(updateLogicMocker?.response)
+    }
+
+    @Test
+    fun updateLogicNullTest() {
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        val request = PlayersListModel.ShowRankingPlayersRequest.Request(1)
+        updateLogicMocker?.response = null
+
+        thread{ worker?.fetchPlayersToChallenge(request) }.join()  //call
+
+        assertNull(updateLogicMocker?.response) //assert
+
+        worker?.updateLogic = backup //backup
+    }
+
+    @Test
+    fun httpRequestWhenUpdateLogicIsNull() {
+        //prepare
+        updateLogicMocker?.response = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+
+        val json = Json(jsonObject.toString())
+        val result: Result<Json, FuelError> = Result.Success(json)
+
+        //call
+        thread { worker?.httpHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNull(updateLogicMocker?.response)
+
+        //backup
+        worker?.updateLogic = backup
+    }
 
     @Test
     fun successFetchPlayersChallenge(){
@@ -148,6 +232,7 @@ class PlayersListWorkerTest: HelpForRealm() {
 
         override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
             this.hasBeenHere = true
+            this.response = response
         }
     }
 }
