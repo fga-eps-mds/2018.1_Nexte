@@ -7,7 +7,6 @@ import java.util.*
 
 import org.junit.Assert.*
 import org.junit.Test
-import java.util.*
 
 class RankingModelTest {
 
@@ -90,12 +89,19 @@ class RankingModelTest {
         formattedPlayer.userCategory = userCategory
         formattedPlayer.userLastGame = userLastGame
         formattedPlayer.userEfficiency = userEfficiency
-
+        val oldLastGame = formattedPlayer.userLastGame
+        formattedPlayer.userLastGame = "lastGame"
+        val oldId = formattedPlayer.id
+        formattedPlayer.id = "2"
         //assert
         assertEquals(userName, formattedPlayer.userName)
         assertEquals(userPictureURL, formattedPlayer.userPictureURL)
         assertEquals(userWins, formattedPlayer.userWins)
         assertEquals(userRankingPosition, formattedPlayer.userRankingPosition)
+        assertEquals(oldLastGame, userLastGame)
+        assertEquals(oldId, id)
+        assertEquals(formattedPlayer.userLastGame, "lastGame")
+        assertEquals(formattedPlayer.id, "2")
     }
 
     @Test
