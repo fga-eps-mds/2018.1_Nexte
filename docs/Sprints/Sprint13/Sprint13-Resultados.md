@@ -3,7 +3,7 @@
 | Data | Versão | Descrição | Autor(es)|
 | -----|--------|-----------|-----------|
 | 13/06/2018| 0.1 | Criação do Documento | Guilherme Baldissera |
-
+| 14/06/2018| 0.2 | Conclusão do Documento | Guilherme Baldissera |
 ----------------------------------------------------------------------
 
 **Número da Sprint:** 13
@@ -80,15 +80,27 @@ Essa diminuição do *velocity* possivelmente voltará ao normal da equipe após
 ### **1.4. Retrospectiva**
 <h4> Pontos Positivos:</h4>
 
-* 
+* EPS se preocupou em gerenciar os pontos da sprint pelas dificuldades do semestre de MDS;
+* Luis entregou tudo e foi aceito tudo até quarta;
+* Pareamentos deram certo.
 
 <h4> Pontos A Melhorar: </h4>
 
-* 
+
+* O gerenciamento não serviu de muita coisa pq ninguém de MDS conseguiu terminar as histórias de testes, todos pelos mesmos motivos (Json, versão do teste de instrumentação);
+* Equipe também atrasou muito, não sabemos exatamente os motivos, mas o atraso foi grande (No dia da Retrospectiva, ainda existiam 60 pontos a serem concluídos);
+* A maioria do time só teve tempo de pegar nas histórias na quarta feira. Isso ocorreu devido ao pessoal ter dado prioridade à outras matérias da faculdade, tentando não reprovar nelas.
+* MDS teve muito problema com o teste unitário de JSON;
+* Larissa se sentiu muito "fraca" em testes unitários;
+* MDS ficou muito dependente de EPS para resolver problemas nos testes, deveriam ser mais independentes;
+* Miguel/Baldissera poderiam ter focado nas histórias de menor complexidade primeiro, e depois ter continuado as histórias de maior complexidade.
 
 <h4> Como Melhorar: </h4>
 
-* 
+* MDS depender menos de EPS e pesquisar mais sozinhos para resolverem suas dúvidas;
+* Estudar mais sobre testes unitários em kotlin;
+* Fazer/Entregar as histórias fáceis primeiro;
+* **Acabar o semestre.**
 
 ## **2. Gestão de Risco**
 
@@ -127,9 +139,13 @@ Para acessar o burndown risk de cada risco separamente clique [aqui](https://doc
 | RN23 | Fazer uma ação conjunta para que todos entendam como solucionar os problemas no teste unitário e de instrumentação. |
 
 ## **3. EVM**
-Como a sprint foi mais em relação às outras, dado que a Release foi na quinta feira (19/04) e todo o escopo foi planejado para ser entregue até quarta feira, logo a quantidade de pontos entregues foi menor do que o ocorrido nas outras, e isso reflete na planilha de valor agregado, foi bem menor do que as outras sprints.
-Foi analisádo que o planejamento de pontos para a Release foi super estimado, o que foi concretisado na entrega da primeira Release, na quarta feira. A figura abaixo mostra como ficou a planilha de EVM para a primeira release.  
-![](https://i.imgur.com/FuCQQfn.png)  
+Gráfico de progressão:
+![](https://i.imgur.com/ql3kbfV.png)
+
+Informações detalhadas:
+![](https://i.imgur.com/0fAi1bm.png)
+
+Conforme o gráfico, podemos chegar a conclusão de que o valor Agregado, pela primeira vez após várias Sprints, teve queda, principalmente pelo fato da grande quantidade de dívidas técnicas.
 
 ## **4. Análise de código**
 
@@ -150,3 +166,10 @@ As outras métricas que não foram pontuadas nesta análise, não houveram diagn
 
 ## **5. Análise do Scrum Master**
 
+Analisando todas as informações da Sprint 13, não é possível ter orgulho do time. Foi a Sprint que mais tiveram dívidas técnicas, que mais se penou para sair de um ponto qualquer, e que mais se gastou tempo com teste sem efetivação em elevar a cobertura.
+
+Infelizmente esses problemas afetam o planejamento do projeto, e possivelmente na Sprint seguinte, deverá ser feito mais pontos do que o normal para que se consiga elevar o velocity e mantê-lo na média normal.
+
+Como Scrum Master, não foi possível contornar a situação durante a Sprint porque todos estavam atarefados e sem condições de focar no projeto. A verdade é que esperava-se que os testes fossem mais fáceis de se fazer, e bem no fim não foi o que aconteceu.
+
+Todos da equipe tiveram problemas e tentarão reverter a situação na semana seguinte.
