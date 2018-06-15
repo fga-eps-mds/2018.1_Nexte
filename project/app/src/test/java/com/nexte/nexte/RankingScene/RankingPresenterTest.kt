@@ -1,6 +1,7 @@
 package com.nexte.nexte.RankingScene
 
 
+import android.graphics.Color
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
@@ -317,6 +318,98 @@ class RankingPresenterTest {
         assertEquals(mock?.players?.size, 0)
         //backup
         presenter?.viewScene = backup
+    }
+
+    @Test
+    fun testGetPlayerLastFiveGamesArray(){
+
+        val userId = "5"
+        val challenge1 = Challenge("19","5","6",Date(2017, 11, 27),
+                                    Challenge.Status.CONFIRMED, Challenge.Stage.Played(2,1,
+                                    Date(2017, 11, 30),
+                                    Challenge.Stage.Played.Game(6, 4),
+                                    Challenge.Stage.Played.Game(1, 6),
+                                    Challenge.Stage.Played.Game(10, 7),
+                                    null, null, null))
+        val challenge2 = Challenge("19","6","5",Date(2017, 11, 27),
+                Challenge.Status.CONFIRMED, Challenge.Stage.Played(2,1,
+                Date(2017, 11, 30),
+                Challenge.Stage.Played.Game(6, 4),
+                Challenge.Stage.Played.Game(1, 6),
+                Challenge.Stage.Played.Game(10, 7),
+                null, null, null))
+        val challenge3 = null
+        val challenge4 = Challenge("19","6","5",Date(2017, 11, 27),
+                Challenge.Status.CONFIRMED, Challenge.Stage.Played(2,1,
+                Date(2017, 11, 30),
+                Challenge.Stage.Played.Game(6, 4),
+                Challenge.Stage.Played.Game(1, 6),
+                Challenge.Stage.Played.Game(10, 7),
+                null, null, null))
+        val challenge5 = Challenge("19","6","5",Date(2017, 11, 27),
+                Challenge.Status.CONFIRMED, Challenge.Stage.Played(2,1,
+                Date(2017, 11, 30),
+                Challenge.Stage.Played.Game(6, 4),
+                Challenge.Stage.Played.Game(1, 6),
+                Challenge.Stage.Played.Game(10, 7),
+                null, null, null))
+        val latestGames = listOf(challenge1, challenge2, challenge3, challenge4, challenge5)
+
+        val colors = this.presenter?.getPlayerLastFiveGamesArray(latestGames, userId)
+
+        assertEquals(Color.GREEN, colors!![0])
+        assertEquals(Color.RED, colors[1])
+        assertEquals(Color.GRAY, colors[2])
+        assertEquals(Color.RED, colors[3])
+        assertEquals(Color.RED, colors[4])
+
+
+    }
+
+    @Test
+    fun testGetPlayerLastFiveGamesArrayAllNull(){
+
+        val userId = "5"
+
+        val colors = this.presenter?.getPlayerLastFiveGamesArray(null, userId)
+
+        assertEquals(Color.GRAY, colors!![0])
+        assertEquals(Color.GRAY, colors[1])
+        assertEquals(Color.GRAY, colors[2])
+        assertEquals(Color.GRAY, colors[3])
+        assertEquals(Color.GRAY, colors[4])
+
+
+    }
+
+    @Test
+    fun testCheckIfUserWonAllLatestFiveGamesWonAll(){
+
+        val latestGames = mutableListOf(Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN)
+
+        val colors = this.presenter?.checkIfUserWonAllLatestFiveGames(latestGames)
+
+        assertEquals(Color.YELLOW, colors!![0])
+        assertEquals(Color.YELLOW, colors[1])
+        assertEquals(Color.YELLOW, colors[2])
+        assertEquals(Color.YELLOW, colors[3])
+        assertEquals(Color.YELLOW, colors[4])
+
+    }
+
+    @Test
+    fun testCheckIfUserWonAllLatestFiveGamesNotWolAll(){
+
+        val latestGames = mutableListOf(Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN, Color.RED)
+
+        val colors = this.presenter?.checkIfUserWonAllLatestFiveGames(latestGames)
+
+        assertEquals(Color.GREEN, colors!![0])
+        assertEquals(Color.GREEN, colors[1])
+        assertEquals(Color.GREEN, colors[2])
+        assertEquals(Color.GREEN, colors[3])
+        assertEquals(Color.RED, colors[4])
+
     }
 
     companion object {

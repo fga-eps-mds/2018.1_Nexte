@@ -13,7 +13,7 @@ import com.nexte.nexte.UserSingleton
  */
 object FeedManager {
 
-    private var feedListMutable: MutableList<FeedModel.FeedActivity> = mutableListOf()
+    var feedListMutable: MutableList<FeedModel.FeedActivity> = mutableListOf()
 
     var feedList: MutableList<FeedModel.FeedActivity> = mutableListOf()
         get() {
@@ -41,9 +41,8 @@ object FeedManager {
      * @param activity New data for store in specific feed activity
      * @return Activity that is updated
      */
-    fun updateFeedActivity(identifier: String?, activity: FeedModel.FeedActivity?): FeedModel.FeedActivity {
+    fun updateFeedActivity(identifier: String?, activity: FeedModel.FeedActivity): FeedModel.FeedActivity {
         val activityOfFeed = feedList.find { it.identifier == identifier }
-        activity as FeedModel.FeedActivity
 
         if (activityOfFeed == null) {
             this.feedListMutable.add(activity)
@@ -74,12 +73,10 @@ object FeedManager {
         val matchingUser = activity?.likes?.find { it.name.equals(UserSingleton.loggedUser.name) }
         val indexToChange = activity?.likes?.indexOf(matchingUser)
 
-        indexToChange as Int
-
         if(matchingUser == null) {
-            activity.likes.add(currentUser)
+            activity?.likes?.add(currentUser)
         }
-        else {
+        else if(indexToChange != null) {
             activity.likes.removeAt(indexToChange)
         }
 
