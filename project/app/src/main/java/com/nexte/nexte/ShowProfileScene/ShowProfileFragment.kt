@@ -29,6 +29,7 @@ import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
+import kotlinx.android.synthetic.main.columns_challenges_show.view.*
 
 /**
  * This interface will be responsible to define the methods that
@@ -388,10 +389,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
              *
              */
             fun bindView(challengeFormatted: ShowProfileModel.FormattedChallenge){
-                /**
-                 *
-                 *
-                 */
+
+
 
             }
 

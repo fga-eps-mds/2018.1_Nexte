@@ -60,7 +60,6 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(
                 name,
                 ranking,
-
                 email,
                 photo)
         val formattedChallenges = if (response.user != null) {
@@ -70,10 +69,6 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         }
         val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer,
                 formattedChallenges)
-
-                email,
-                photo)
-        val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer)
 
         viewScene?.displayProfile(viewModel)
     }

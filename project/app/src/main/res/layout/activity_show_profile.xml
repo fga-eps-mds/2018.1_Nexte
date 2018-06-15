@@ -14,21 +14,34 @@
         android:layout_height="wrap_content">
 
 
+        <TextView
+            android:id="@+id/MyGames"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="roboto_thin"
+            android:gravity="top"
+            android:text="Meus Jogos"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/challengesShowRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="MEUS JOGOS" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/challengesShowRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="60dp"
             android:orientation="horizontal"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonA"
             tools:listitem="@layout/columns_challenges_show" />
-
-        <ImageView
 
         <View
             android:id="@+id/barBlue"
@@ -41,7 +54,6 @@
             app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-
             android:id="@+id/imageView"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -236,7 +248,7 @@
             app:layout_constraintBottom_toTopOf="@+id/lineChart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonA"
+            app:layout_constraintTop_toBottomOf="@+id/challengesShowRecyclerView"
             tools:text="ESTATÍSTICAS" />
 
         <TextView
