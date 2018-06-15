@@ -80,7 +80,9 @@ class RankingModelTest {
                 userCategory = userCategory,
                 userEfficiency = userEfficiency,
                 userLastGame = userLastGame,
+                userLastGames = listOf(),
                 id = id)
+
         formattedPlayer.userName = userName
         formattedPlayer.userPictureURL = userPictureURL
         formattedPlayer.userRankingPosition = userRankingPosition
@@ -113,7 +115,9 @@ class RankingModelTest {
                 userLastGame = userLastGame,
                 userEfficiency = userEfficiency,
                 userCategory = userCategory,
+                userLastGames = listOf(),
                 id = "1")
+
         val shouldDrawChild = true
 
         //call
@@ -138,7 +142,9 @@ class RankingModelTest {
                 userCategory = "profissional",
                 userEfficiency = "90%",
                 userLastGame = "ontem",
+                userLastGames = listOf(),
                 id = "1")
+
         val formattedPlayer2 = RankingModel.FormattedPlayer(userName = "teste",
                 userPictureURL = 2,
                 userWins = "2",
@@ -146,7 +152,9 @@ class RankingModelTest {
                 userEfficiency = "80%",
                 userLastGame = "hoje",
                 userCategory = "intermediario",
+                userLastGames = listOf(),
                 id = "1")
+
         val formattedPlayerInfo1 = RankingModel.FormattedPlayerInfo(player = formattedPlayer1, shouldDrawChild = true)
         val formattedPlayerInfo2 = RankingModel.FormattedPlayerInfo(player = formattedPlayer2, shouldDrawChild = false)
 

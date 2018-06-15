@@ -1,10 +1,15 @@
 package com.nexte.nexte.ShowProfileScene
 
+
 import android.graphics.Color
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
+
+import com.nexte.nexte.R
+import kotlinx.android.synthetic.main.row_likes.view.*
+
 
 /**
  * Interface to define Presentation Logic to Show Profile Class that
@@ -43,10 +48,21 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val name: String? = response.user?.name
         val ranking: String? = "#" + response.user?.rankingPosition.toString()
         val email: String? = response.user?.email
+
+        var photo: Int? = null
+
+        if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
+            photo = response.user?.profilePicture!!.toInt()
+        } else {
+            photo = R.mipmap.ic_launcher
+        }
+
         val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(
                 name,
                 ranking,
-                email)
+
+                email,
+                photo)
         val formattedChallenges = if (response.user != null) {
             formatChallenges(response.user!!)
         } else {
@@ -54,6 +70,11 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         }
         val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer,
                 formattedChallenges)
+
+                email,
+                photo)
+        val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer)
+
         viewScene?.displayProfile(viewModel)
     }
 

@@ -12,6 +12,7 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import kotlin.concurrent.thread
+import com.nexte.nexte.R
 
 class ShowProfileFragmentTest: HelpForRealm() {
 
@@ -80,13 +81,13 @@ class ShowProfileFragmentTest: HelpForRealm() {
     fun testCreateShowProfileRequest(){
         //prepare
         view?.showProfileInteractor = mock
-        view?.anotherPlayerName = "123"
+        view?.anotherPlayerName = "9"
 
         //call
         view?.createShowProfileRequest()
 
         //assert
-        assertEquals(this.mock?.request?.userId, "123")
+        assertEquals(this.mock?.request?.userId, "9")
     }
 
     @Test
@@ -97,12 +98,12 @@ class ShowProfileFragmentTest: HelpForRealm() {
     }
 
     @Test
-    fun testGraphManagerSetYAxisValues(){
+    fun testGraphManagerSetYAxisValuesVictories(){
         //prepare
         val graphManager = ShowProfileFragment.GraphManager(view!!)
 
         //call
-        val yVals = graphManager.setYAxisValues()
+        val yVals = graphManager.setYAxisValuesVictories()
 
         //assert
         assertEquals(yVals.size, 6)
@@ -110,6 +111,22 @@ class ShowProfileFragmentTest: HelpForRealm() {
         assertEquals(yVals[0].y, 2f)
         assertEquals(yVals[3].x, 3f)
         assertEquals(yVals[3].y, 2f)
+    }
+
+    @Test
+    fun testGraphManagerSetYAxisValuesLosses(){
+        //prepare
+        val graphManager = ShowProfileFragment.GraphManager(view!!)
+
+        //call
+        val yVals = graphManager.setYAxisValuesLosses()
+
+        //assert
+        assertEquals(yVals.size, 6)
+        assertEquals(yVals[0].x, 0f)
+        assertEquals(yVals[0].y, 4f)
+        assertEquals(yVals[3].x, 3f)
+        assertEquals(yVals[3].y, 1f)
     }
 
     @Test
@@ -167,13 +184,13 @@ class ShowProfileFragmentTest: HelpForRealm() {
     fun testOnResume(){
         //prepare
         view?.showProfileInteractor = mock
-        view?.anotherPlayerName = "teste123"
+        view?.anotherPlayerName = "9"
 
         //call
         view?.onResume()
 
         //assert
-        assertEquals(mock?.request?.userId, "teste123")
+        assertEquals(mock?.request?.userId, "9")
     }
 
     @Test
@@ -186,7 +203,7 @@ class ShowProfileFragmentTest: HelpForRealm() {
     fun testDisplayProfileEqualsUserSingleton(){
         //prepare
         val viewModel = ShowProfileModel.ViewModel(ShowProfileModel.
-                FormattedPlayer(email = "pardal@nexte.com", name = "Rafael Pardal", rank = "10"))
+                FormattedPlayer(email = "pardal@nexte.com", name = "Rafael Pardal", rank = "10", profileImage = R.drawable.profile_image9))
 
         thread {
             view?.displayProfile(viewModel)
@@ -201,7 +218,7 @@ class ShowProfileFragmentTest: HelpForRealm() {
     fun testDisplayProfileDifferentUserSingleton(){
         //prepare
         val viewModel = ShowProfileModel.ViewModel(ShowProfileModel.
-                FormattedPlayer(email = "12", name = "luis", rank = "2"))
+                FormattedPlayer(email = "12", name = "luis", rank = "2", profileImage = R.drawable.profile_image9))
 
         thread {
             view?.displayProfile(viewModel)

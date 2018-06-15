@@ -4,7 +4,11 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
+
 import android.support.v7.widget.RecyclerView
+
+import android.support.v4.content.ContextCompat
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,9 +67,9 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         val showProfileFragment = ShowProfileFragment()
 
         if (playerToShowName != null) {
-            bundle.putString("anotherPlayerName", playerToShowName)
+            bundle.putString("9", playerToShowName)
         } else {
-            bundle.putString("anotherPlayerName", "")
+            bundle.putString("9", "")
         }
 
         showProfileFragment.arguments = bundle
@@ -80,7 +84,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
-        this.anotherPlayerName = arguments.getString("anotherPlayerName")
+        this.anotherPlayerName = arguments.getString("9")
     }
 
 
@@ -113,7 +117,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
      * Method responsible for creating the show profile request and passing it to the interactor
      */
     fun createShowProfileRequest() {
-        val showUserProfileRequest = ShowProfileModel.Request(anotherPlayerName)
+        val showUserProfileRequest = ShowProfileModel.Request(UserSingleton.loggedUserID)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
     }
 
@@ -125,17 +129,31 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         /**
          * Method responsible to define the data of Y axis.
          */
-        fun setYAxisValues(): ArrayList<Entry> {
+        fun setYAxisValuesVictories(): ArrayList<Entry> {
+            val yValsVictories = ArrayList<Entry>()
+            yValsVictories.add(Entry(0f, 2f))
+            yValsVictories.add(Entry(1f, 3f))
+            yValsVictories.add(Entry(2f, 4f))
+            yValsVictories.add(Entry(3f, 2f))
+            yValsVictories.add(Entry(4f, 1f))
+            yValsVictories.add(Entry(5f, 5f))
 
-            val yVals = ArrayList<Entry>()
-            yVals.add(Entry(0f, 2f))
-            yVals.add(Entry(1f, 3f))
-            yVals.add(Entry(2f, 4f))
-            yVals.add(Entry(3f, 2f))
-            yVals.add(Entry(4f, 1f))
-            yVals.add(Entry(5f, 5f))
+            return yValsVictories
+        }
 
-            return yVals
+        /**
+         * Method responsible to define the data of Y axis.
+         */
+        fun setYAxisValuesLosses(): ArrayList<Entry> {
+            val yValsLosses = ArrayList<Entry>()
+            yValsLosses.add(Entry(0f, 4f))
+            yValsLosses.add(Entry(1f, 3f))
+            yValsLosses.add(Entry(2f, 4f))
+            yValsLosses.add(Entry(3f, 1f))
+            yValsLosses.add(Entry(4f, 3f))
+            yValsLosses.add(Entry(5f, 2f))
+
+            return yValsLosses
         }
 
         /**
@@ -160,7 +178,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          * @param label chart label
          * @color chart lineColor
          */
-        private  fun customizeChartLine(yAxes: ArrayList<Entry>, label: String, color: Int): LineDataSet {
+        private fun customizeChartLine(yAxes: ArrayList<Entry>, label: String, color: Int): LineDataSet {
 
             val line = LineDataSet(yAxes, label) // Access the data of yAxes, introduce a legend and customize the graphic
             line.setDrawCircles(false) // Circle for important values
@@ -207,7 +225,6 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             val left = 0f
             val right = 0f
             val bottom = 0f
-            chart.animateX(timeToAnimate)
             chart.invalidate()
             chart.setExtraOffsets(left,top,right,bottom)
         }
@@ -230,7 +247,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
         /**
          * Method responsible to create Main Chart
-         * @param axisX axis x propertie from chart
+         * @param axisX axis x property from chart
          */
         private fun customizeAxisX(axisX: XAxis) {
 
@@ -250,15 +267,19 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createGraph() {
 
-            val victoryResults = setYAxisValues() //responsible to access the method setYAxisValues
-            val losesResults = setYAxisValuesRanking()
-            val red = Color.RED
-            val green = Color.GREEN
+            val victoryResults = setYAxisValuesVictories() //responsible to access the method setYAxisValues
+            val losesResults = setYAxisValuesLosses()
+            val matchesResults = setYAxisValuesRanking()
+            val orange = ContextCompat.getColor(showProfileFragment?.context!!, R.color.orange_chart)
+            val green = ContextCompat.getColor(showProfileFragment?.context!!, R.color.green_chart)
+            val blue = ContextCompat.getColor(showProfileFragment?.context!!, R.color.blue_chart)
             val dataSets = ArrayList<ILineDataSet>() // Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", red)
-            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", green)
+            val victoryLine = this.customizeChartLine(losesResults, "Vitoria", green)
+            val losesLine = this.customizeChartLine(victoryResults, "Derrotas", orange)
+            val matchesLine = this.customizeChartLine(matchesResults, "Partidas", blue)
             dataSets.add(victoryLine)
             dataSets.add(losesLine)
+            dataSets.add(matchesLine)
 
             val lineData = LineData(dataSets) // Added data to chart
             val description = Description()
@@ -272,10 +293,10 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
          */
         fun createRankingGraph() {
 
-            val blue = Color.BLUE
+            val yellow = ContextCompat.getColor(showProfileFragment?.context!!, R.color.yellow_chart)
             val yAxesRanking = setYAxisValuesRanking() //responsible to access the method setYAxisValuesRanking
             val dataSetsRanking = ArrayList<ILineDataSet>()//Created an array which has type ILineDataSet(Type defined by MPAndroidChart)
-            val line = this.customizeChartLine(yAxesRanking, "Ranking", blue)
+            val line = this.customizeChartLine(yAxesRanking, "Ranking", yellow)
             dataSetsRanking.add(line)
             val lineData = LineData(dataSetsRanking) // Added data to chart
             val description = Description()
@@ -323,6 +344,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
+        imageView?.setImageResource(viewModel.playerInfo.profileImage!!)
 
         showProfileRecyclerView?.adapter = ShowProfileAdapter(viewModel.formattedChallenges,this)
 
@@ -384,8 +406,5 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         const val lineWidth = 4.0f
         const val top = 15f
         const val textSize = 12.0f
-        const val timeToAnimate = 2000
-
     }
 }
-

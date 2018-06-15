@@ -43,11 +43,14 @@ class ShowProfileModel {
      * @property club User club displayed
      * @property email User email displayed
      * @property age User age displayed
+     * @property profileImage User profile Image
      */
     class FormattedPlayer(
             var name: String?,
             var rank: String?,
-            var email: String?)
+
+            var email: String?,
+            var profileImage: Int?)
 
     /**
      *

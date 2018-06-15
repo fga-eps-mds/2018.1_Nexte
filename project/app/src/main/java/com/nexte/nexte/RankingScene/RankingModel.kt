@@ -59,6 +59,7 @@ class RankingModel {
                           var userLastGame: String,
                           var userEfficiency: String,
                           var userCategory: String,
+                          var userLastGames: List<Int>,
                           var id: String)
 }
 
