@@ -110,7 +110,7 @@ Essa diminuição do *velocity* possivelmente voltará ao normal da equipe após
 
 #### 2.2. _Burndown risk_
 
-![Burndow Risk do Projeto](https://i.imgur.com/TwMcTm2.png)
+![Burndow Risk do Projeto](https://i.imgur.com/x9LVxmt.png)
 
 Para acessar o burndown risk de cada risco separamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
