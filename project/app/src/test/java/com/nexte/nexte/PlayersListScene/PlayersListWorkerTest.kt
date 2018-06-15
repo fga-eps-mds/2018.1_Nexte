@@ -1,5 +1,11 @@
 package com.nexte.nexte.PlayersListScene
 
+import com.github.kittinunf.fuel.android.core.Json
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Method
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
+import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
@@ -9,12 +15,14 @@ import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import java.net.URL
 import kotlin.concurrent.thread
 
 class PlayersListWorkerTest: HelpForRealm() {
 
     private var worker: PlayersListWorker? = null
     private var updateLogicMocker: PlayerListUpdateLogicMocker? = null
+    private val jsonObject = JSONObject()
 
     @Before
     fun setUp(){
@@ -37,6 +45,30 @@ class PlayersListWorkerTest: HelpForRealm() {
         })
 
     }
+
+    @Test
+    fun httpRequestTest(){
+        //prepare
+//        updateLogicMocker?. = null
+//        val url = URL("http://www.randomsite.com/")
+//        val request = Request(Method.GET, "",url)
+//        val response = Response(url)
+//        val backup = worker?.updateLogic
+//        worker?.updateLogic = null
+//
+//        val json = Json(jsonObject.toString())
+//        val result: Result<Json, FuelError> = Result.Success(json)
+//
+//        //call
+//        thread { worker?.httpGetHandler?.invoke(request, response, result) }.join()
+//
+//        //assert
+//        assertNull(mock?.response)
+//
+//        //backup
+//        worker?.updateLogic = backup
+    }
+
 
     @Test
     fun successFetchPlayersChallenge(){
@@ -69,39 +101,39 @@ class PlayersListWorkerTest: HelpForRealm() {
 
     }
 
-//    @Test
-//    fun jsonToUserListTest() {
-//        //prepare
-//        val userJson = JSONObject()
-//        userJson.put("id", "1")
-//        userJson.put("name", "Rafael Pardal")
-//        userJson.put("profileImageURL", "9842u349h")
-//        userJson.put("nickname", "100")
-//        userJson.put("birthDate", "22-05-1987")
-//        userJson.put("rankPosition", 100)
-//        userJson.put("email", "5454623")
-//        userJson.put("phone", "436453")
-//        userJson.put("wins", 2)
-//        userJson.put("loses", 3)
-//        userJson.put("gender", "M")
-//        userJson.put("category", 1)
-//        userJson.put("status", 1)
-//
-//        val usersJson = JSONArray()
-//        usersJson.put(userJson)
-//
-//        val dataObject = JSONObject()
-//        dataObject.put("users", usersJson)
-//
-//        val jsonObject = JSONObject()
-//        jsonObject.put("data", dataObject)
-//
-//        //call
-//        val users = this.worker?.convertJsonToListOfUsers(jsonObject)
-//
-//        //assert
-//        assertNotNull(users)
-//    }
+    @Test
+    fun jsonToUserListTest() {
+        //prepare
+        val jsonUser = JSONObject()
+        jsonUser.put("id", "1")
+        jsonUser.put("name", "teste")
+        jsonUser.put("profileImageURL", "www.lol.com.br")
+        jsonUser.put("nickname", "biel")
+        jsonUser.put("rankPosition", 1)
+        jsonUser.put("email", "biel@poc.br")
+        jsonUser.put("phone", "3232323232")
+        jsonUser.put("wins", 1)
+        jsonUser.put("loses", 1)
+        jsonUser.put("birthDate", "2018-01-07T00:00:00.000Z")
+        jsonUser.put("gender", "M")
+        jsonUser.put("category", 1)
+        jsonUser.put("status", 1)
+
+        val usersJsonArray = JSONArray()
+        usersJsonArray.put(jsonUser)
+
+        val dataJson = JSONObject()
+        dataJson.put("users", usersJsonArray)
+
+
+        jsonObject.put("data", dataJson)
+
+        // call
+        val users = worker?.convertJsonToListOfUsers(jsonObject)
+
+        //assert
+        assertNotNull(users)
+    }
 
     @After
     fun tearDown() {
@@ -111,6 +143,7 @@ class PlayersListWorkerTest: HelpForRealm() {
 
     class PlayerListUpdateLogicMocker: PlayerListUpdateLogic {
 
+        var response: PlayersListModel.ShowRankingPlayersRequest.Response? = null
         var hasBeenHere = false
 
         override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
