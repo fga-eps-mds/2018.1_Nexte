@@ -44,6 +44,10 @@
         <activity
             android:name=".LoginScene.LoginView"
             android:label="Login" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3a8c65b90611c0a78eed68be4f668129f7e38b34" />
     </application>
 
 </manifest>
