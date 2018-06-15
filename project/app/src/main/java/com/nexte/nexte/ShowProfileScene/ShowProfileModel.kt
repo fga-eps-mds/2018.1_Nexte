@@ -62,8 +62,12 @@ class ShowProfileModel {
             var headToHeadResults: String,
             var opponentName: String?,
             var opponentPictureUrl: String?,
-            var opponentColor: Int)
+            var opponentPictureAdress: Int,
+            var opponentColor: Int,
+            var challengeResult: ChallengeResult)
 
-
+    enum class ChallengeResult{
+            WON, LOST, WO
+    }
 
 }

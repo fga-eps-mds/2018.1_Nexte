@@ -389,8 +389,26 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
              *
              */
             fun bindView(challengeFormatted: ShowProfileModel.FormattedChallenge){
+                itemView.challengedPhoto.setImageResource(challengeFormatted.opponentPictureAdress)
+                itemView.nameLabel.text = challengeFormatted.opponentName
+                itemView.dateLabel.text = challengeFormatted.challengeDates
+                itemView.setsLabel.text = challengeFormatted.setsResult
+                itemView.gamesLabel.text =  challengeFormatted.gamesResults
+                itemView.headsLabel.text = challengeFormatted.headToHeadResults
 
+                if(challengeFormatted.challengeResult == ShowProfileModel.ChallengeResult.WON) {
+                    itemView.wonCard.visibility = View.VISIBLE
+                    itemView.lostCard.visibility = View.INVISIBLE
+                }
+                else if(challengeFormatted.challengeResult == ShowProfileModel.ChallengeResult.LOST){
+                    itemView.wonCard.visibility = View.INVISIBLE
+                    itemView.lostCard.visibility = View.VISIBLE
+                }
+                else{
+                    itemView.wonCard.visibility = View.INVISIBLE
+                    itemView.lostCard.visibility = View.INVISIBLE
 
+                }
 
             }
 

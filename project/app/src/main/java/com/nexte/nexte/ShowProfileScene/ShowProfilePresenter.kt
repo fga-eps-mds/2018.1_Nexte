@@ -8,7 +8,11 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import kotlinx.android.synthetic.main.row_likes.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -73,6 +77,10 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         viewScene?.displayProfile(viewModel)
     }
 
+
+    /**
+     * Function that formats the challenge to be displayed on fragment
+     */
     fun formatChallenges(user: User) : List<ShowProfileModel.FormattedChallenge> {
         var formattedChallengesMutable = mutableListOf<ShowProfileModel.FormattedChallenge>()
         var challenges = challengeManager?.getPlayedChallengesFromUser(user.id)
@@ -84,21 +92,30 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
         for (challenge in challenges!!) {
             val stage = challenge.stage as Challenge.Stage.Played
-            val dateResults = "Desafio: " + stage.date
+
+            val dateToShow = SimpleDateFormat("dd/MM/yyy")
+            val time = dateToShow.format(stage.date)
+
+            val dateResults = "Desafio: " + time
             val setResult = "SET: " + stage.setChallenger + " x " + stage.setChallenged
-            val gamesResult = "JOGOS: " + stage.firstGame.gameChallenger + "/" +
-                    stage.firstGame.gameChallenged + " " + stage.secondGame?.gameChallenger + "/" +
-                    stage.secondGame?.gameChallenged + " " + stage.thirdGame?.gameChallenger + "/" +
-                    stage.thirdGame?.gameChallenged
+            val gamesResult = "JOGOS: " + getNumberOfSets(stage.firstGame)  +
+                                          getNumberOfSets(stage.secondGame) +
+                                          getNumberOfSets(stage.thirdGame) +
+                                          getNumberOfSets(stage.fourthGame) +
+                                          getNumberOfSets(stage.fifthGame)
+
             val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
                     challenge.challengedId, challenge.challengerId)
-            val opponent = userManager?.get(challenge.challengerId)
+
+            val opponent = getOponent(challenge, user)
             val opponentName = opponent?.name
             val opponentPictureUrl = opponent?.profilePicture
+            val opponentAddress = validateUserPhoto(opponentPictureUrl)
             val opponentColor = Color.BLUE
-
+            val challengeResult = getChallengeResult(challenge, user)
             val formattedChallenge = ShowProfileModel.FormattedChallenge(dateResults,
-                    setResult, gamesResult, headToHeadResult, opponentName, opponentPictureUrl, opponentColor)
+                    setResult, gamesResult, headToHeadResult, opponentName, opponentPictureUrl,
+                    opponentAddress, opponentColor, challengeResult)
 
             formattedChallengesMutable.add(formattedChallenge)
 
@@ -108,6 +125,37 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     }
 
+    fun getChallengeResult(challenge: Challenge, user: User) : ShowProfileModel.ChallengeResult{
+        val result: ShowProfileModel.ChallengeResult
+        if(challenge.winner == user.id){
+            result = ShowProfileModel.ChallengeResult.WON
+        }
+        else {
+            result = ShowProfileModel.ChallengeResult.LOST
+        }
+
+        return result
+    }
+
+    /**
+     * Decides wether if the opponent is the challenger or the challenged
+     */
+    fun getOponent(challenge: Challenge, user: User) : User? {
+        val opponentId : String?
+        if(challenge.challengedId == user.id){
+            opponentId = challenge.challengerId
+        }
+        else{
+            opponentId = challenge.challengedId
+        }
+
+        val realOponent = userManager?.get(opponentId)
+        return realOponent
+    }
+
+    /**
+     *
+     */
     fun calculateHeadToHead(challenges: List<Challenge>, challenged: String, challenger: String) :
                             String {
 
@@ -134,6 +182,32 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         }
 
         return challengerPoints.toString() + " x " + challengedPoints.toString()
+    }
+
+    /**
+     *
+     */
+    fun getNumberOfSets(gamePlayed: Challenge.Stage.Played.Game?): String?{
+        val res : String?
+        if (gamePlayed?.gameChallenged ==  null && gamePlayed?.gameChallenger == null) {
+            res = ""
+        }
+        else{
+            res = gamePlayed.gameChallenger.toString() + "/" + gamePlayed.gameChallenged.toString() + "  "
+        }
+        return res;
+    }
+
+    /**
+     *
+     */
+    fun validateUserPhoto(imageIdentifier: String?) : Int {
+
+        if(imageIdentifier != null && imageIdentifier != "") {
+            return imageIdentifier.toInt()
+        } else {
+            return R.mipmap.ic_launcher
+        }
     }
 
 }
