@@ -28,6 +28,8 @@ import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Contacts
 import android.provider.ContactsContract
@@ -392,7 +394,15 @@ class ContactDialogFragment: DialogFragment() {
                             contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, "130")
                             startActivity(contactIntent)
                         }
-                        3 -> Log.e("Chama no zap", "1")
+                        3 -> {
+
+                            val whatsIntent = Intent(Intent.ACTION_SEND)
+                            whatsIntent.setType("text/plain")
+                            whatsIntent.setPackage("com.whatsapp")
+                            whatsIntent.putExtra(Intent.EXTRA_TEXT, "YOUR TEXT")
+                            whatsIntent.setPackage("com.whatsapp")
+                            startActivity(whatsIntent)
+                            }
                     }
                     Log.e("hahahahah", "1")
                 }).setIcon(R.drawable.icon_date)
