@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#2E2E2E"
+    android:background="#393939"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/userPicture"
-        android:layout_width="78dp"
-        android:layout_height="80dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/user_picture"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
@@ -24,45 +25,51 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:text="@string/nome"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/userPicture"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/userPicture"
-        app:layout_constraintTop_toBottomOf="@id/userPicture" />
+        app:layout_constraintTop_toBottomOf="@id/userPicture"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+
+
+    <View
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/like_list_round"
+        app:layout_constraintStart_toStartOf="@+id/userPicture"
+        app:layout_constraintTop_toTopOf="@+id/userPicture"
+        app:layout_constraintEnd_toEndOf="@+id/userPicture"/>
 
     <ImageView
         android:id="@+id/circulo3"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:background="@drawable/circle_defeat_ranking"
         app:layout_constraintEnd_toEndOf="@+id/userPicture"
+        app:layout_constraintStart_toEndOf="@+id/userPicture"
         app:layout_constraintTop_toTopOf="@+id/userPicture" />
 
-    <LinearLayout
-        android:layout_width="28dp"
-        android:layout_height="27dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/userPicture"
-        app:layout_constraintTop_toTopOf="@+id/userPicture">
-
-
-
-        <TextView
-            android:id="@+id/rankingTextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="monospace"
-            android:textColor="#FFFF"
-            android:text="2"
-            android:textAlignment="center"
-            android:textStyle="bold" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/rankingTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fontFamily="monospace"
+        android:textColor="#FFFF"
+        android:text="@string/_2"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/circulo3"
+        app:layout_constraintTop_toTopOf="@+id/circulo3"
+        app:layout_constraintBottom_toBottomOf="@+id/circulo3"
+        app:layout_constraintStart_toStartOf="@+id/circulo3"/>
 
     <TextView
         android:id="@+id/checkTextView"

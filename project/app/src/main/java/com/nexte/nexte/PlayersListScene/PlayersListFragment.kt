@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.UserSingleton
+import kotlinx.android.synthetic.main.activity_challenger_sent.*
 
 
 /**
@@ -147,7 +148,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.recyclerView = newView?.findViewById(R.id.challengeRecyclerView)
         this.expandedLosses = newView?.findViewById(R.id.expandedLosses)
         this.expandedName = newView?.findViewById(R.id.expandedName)
-        this.expandedRankingTextView = newView?.findViewById(R.id.expandedRankingTextView)
+//        this.expandedRankingTextView = newView?.findViewById(R.id.expandedRankingTextView)
         this.expandedWins = newView?.findViewById(R.id.expandedWins)
         this.noPlayersText = newView?.findViewById(R.id.noPlayersText)
         this.message = newView?.findViewById(R.id.message)
@@ -217,6 +218,8 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedRankingTextView?.text = currentPlayer.rankingPosition
         this.expandedWins?.visibility = View.VISIBLE
         this.expandedWins?.text = currentPlayer.wins
+        this.linearLayout?.visibility = View.VISIBLE
+
     }
 
     /**
