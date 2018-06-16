@@ -1,7 +1,11 @@
 package com.nexte.nexte.PlayersListScene
 
 
+import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Challenge.Challenge
@@ -33,6 +37,22 @@ class PlayersListWorker {
     var userManager: UserManager? = null
     var challengeManager: ChallengeManager = ChallengeManager()
     var updateLogic: PlayerListUpdateLogic? = null
+    val httpHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+        when (result) {
+            is Result.Failure -> {
+                println(result.getException())
+            }
+            is Result.Success -> {
+                val json = result.get()
+                var usersList = this.convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
+                usersList = userManager?.updateMany(usersList)!!
+                usersList = usersList.take(5) // First 5 players
+                val newResponse = PlayersListModel.ShowRankingPlayersRequest.Response(usersList)
+                updateLogic?.getPlayersToChallenge(newResponse)
+            }
+        }
+    }
+
 
     /**
      * Function to get players 5 rank positions above the logged player
@@ -55,19 +75,7 @@ class PlayersListWorker {
         updateLogic?.getPlayersToChallenge(response)
 
         val url = "http://10.0.2.2:3000/users/"
-        url.httpGet().responseJson { _, _, result ->
-            when(result){
-                is Result.Failure -> { println(result.getException()) }
-                is Result.Success -> {
-                    val json = result.get()
-                    var usersList = convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
-                    usersList = userManager?.updateMany(usersList)!!
-                    usersList = usersList.take(5) // First 5 players
-                    val newResponse = PlayersListModel.ShowRankingPlayersRequest.Response(usersList)
-                    updateLogic?.getPlayersToChallenge(newResponse)
-                }
-            }
-        }
+        url.httpGet().responseJson(this.httpHandler)
     }
 
     /**
