@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E"
+    android:background="#393939"
     tools:context="com.nexte.nexte.MainActivity">
 
 
@@ -22,52 +22,105 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/columns_challenged" />
 
-    <TextView
-        android:id="@+id/expandedRankingTextView"
-        android:layout_width="49dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="22dp"
-        android:text="@string/r"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/background_light"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginBottom="50dp"
+        android:background="#2d2d2d"
+        android:backgroundTint="#2d2d2d"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/sendChallengeButton"
 
-    <TextView
-        android:id="@+id/expandedWins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/vitorias_x"
-        android:textColor="@android:color/background_light"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
-        app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView" />
+        app:layout_constraintTop_toBottomOf="@id/challengeRecyclerView"
+        tools:layout_editor_absoluteX="8dp">
 
-    <TextView
-        android:id="@+id/expandedLosses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/derrotas_x"
-        android:textColor="@android:color/background_light"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"
-        app:layout_constraintStart_toEndOf="@+id/expandedWins" />
+        <TextView
+            android:id="@+id/expandedName"
+            android:layout_width="124dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/nome"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/background_light"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/linearLayout" />
+        <!--app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" -->
 
-    <TextView
-        android:id="@+id/expandedName"
-        android:layout_width="124dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/nome"
-        android:textColor="@android:color/background_light"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"
-        app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/expandedRankingTextView"-->
+        <!--android:layout_width="49dp"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:layout_marginTop="22dp"-->
+        <!--android:text="@string/r"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
+        <!--android:textColor="@android:color/background_light"-->
+        <!--android:visibility="invisible"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />-->
+
+        <TextView
+            android:id="@+id/expandedWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/vitorias_x"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/background_light"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/expandedName" />
+        <!--app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView" -->
+
+
+        <TextView
+            android:id="@+id/expandedLosses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/derrotas_x"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/background_light"
+            android:visibility="invisible" />
+        <!--app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/expandedWins" -->
+
+
+        <TextView
+            android:id="@+id/noPlayersText"
+            android:layout_width="233dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="164dp"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/sem_jogadores_dispon_veis"
+            android:textColor="@color/hint_color_pattern"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/voc_j_enviou_um_desafio"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/background_light"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sendChallengeButton" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/sendChallengeButton"
@@ -75,7 +128,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="125dp"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/darkGrey"
         android:elevation="0dp"
         android:text="@string/enviar_desafio"
@@ -83,38 +137,8 @@
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expandedWins" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <TextView
-        android:id="@+id/noPlayersText"
-        android:layout_width="233dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="164dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/sem_jogadores_dispon_veis"
-        android:textColor="@color/hint_color_pattern"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView" />
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/voc_j_enviou_um_desafio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textColor="@android:color/background_light"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendChallengeButton" />
 
 </android.support.constraint.ConstraintLayout>
 
