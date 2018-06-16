@@ -7,6 +7,7 @@ import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
 import com.facebook.accountkit.*
+import com.nexte.nexte.UserOnBoardingActivity
 import kotlinx.android.synthetic.main.activity_login_view.*
 import kotlinx.android.synthetic.main.row_feed.*
 
@@ -51,6 +52,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         this.setup()
         this.createAuthenticationRequest()
+
+//        val intent = Intent(this, UserOnBoardingActivity::class.java)
+//        startActivity(intent)
+
 //
 //        btnLoginPhonenumber.setOnClickListener {
 //            this.loginPhoneNumber()

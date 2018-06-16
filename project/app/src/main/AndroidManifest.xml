@@ -46,7 +46,7 @@
         <activity
             android:name=".LoginScene.LoginView"
             android:label="Login" />
-        <activity android:name=".UserOnBoardingActivity"></activity>
+        <activity android:name=".UserOnBoardingActivity"/>
     </application>
 
 </manifest>
