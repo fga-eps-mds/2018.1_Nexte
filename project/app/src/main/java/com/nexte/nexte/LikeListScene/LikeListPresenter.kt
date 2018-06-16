@@ -38,19 +38,17 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
      * @param likePlayers MutableList of unformatted players
      * @return MutableList of formatted players
      */
-    private fun formatPlayers(likePlayers: List<User>):
+    fun formatPlayers(likePlayers: List<User>):
             MutableList<LikeListModel.PlayersFormatted> {
 
         val playersFormatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
+        for (likePlayer in likePlayers) {
+            val likePlayerFormatted = LikeListModel.PlayersFormatted(
+                    likePlayer.name,
+                    R.mipmap.ic_launcher)
 
-    for (likePlayer in likePlayers) {
-        val likePlayerFormatted = LikeListModel.PlayersFormatted(
-                likePlayer.name,
-                R.mipmap.ic_launcher)
-
-        playersFormatted.add(likePlayerFormatted)
-    }
-
-            return playersFormatted
+            playersFormatted.add(likePlayerFormatted)
+        }
+        return playersFormatted
     }
 }

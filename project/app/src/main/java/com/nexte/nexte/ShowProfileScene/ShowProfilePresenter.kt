@@ -1,5 +1,7 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.R
+
 /**
  * Interface to define Presentation Logic to Show Profile Class that
  * will be used to call this Interactor on other class layer
@@ -35,10 +37,18 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val name: String? = response.user?.name
         val ranking: String? = "#" + response.user?.rankingPosition.toString()
         val email: String? = response.user?.email
+
+        val photo: Int? = if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
+            response.user?.profilePicture!!.toInt()
+        } else {
+            R.mipmap.ic_launcher
+        }
+
         val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(
                 name,
                 ranking,
-                email)
+                email,
+                photo)
         val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer)
         viewScene?.displayProfile(viewModel)
     }

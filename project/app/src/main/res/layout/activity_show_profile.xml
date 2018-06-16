@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toStartOf="@+id/legendMatches"
             app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -31,7 +31,9 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            app:civ_border_color="#ffffff"
+            app:civ_border_width="1dp"/>
 
         <TextView
             android:id="@+id/username"
@@ -40,7 +42,7 @@
             android:layout_marginStart="75dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="username"
+            android:text="@string/profileusername"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="21sp"
@@ -55,7 +57,7 @@
             android:layout_marginStart="70dp"
             android:background="@drawable/circle_ranking_profile"
             android:gravity="center"
-            android:text="R"
+            android:text="@string/prifler"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="15sp"
@@ -80,7 +82,7 @@
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rankingLabel"></com.github.mikephil.charting.charts.LineChart>
+            app:layout_constraintTop_toBottomOf="@+id/rankingLabel" />
 
         <Button
             android:id="@+id/editProfileButton"
@@ -89,8 +91,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/edge_text_edit_profile"
-            android:text="editar"
+            android:background="@drawable/edge_text_profile_red"
+            android:text="@string/editarperfil"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +106,7 @@
             android:layout_marginStart="31dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto"
-            android:text="Cinta Liga de Tênis"
+            android:text="@string/cinta_liga_de_t_nis"
             android:textAlignment="center"
             android:textColor="#9b9b9b"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +121,7 @@
             android:layout_marginStart="37dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto"
-            android:text="N"
+            android:text="@string/profilen"
             android:textColor="#e94345"
             app:layout_constraintEnd_toStartOf="@+id/numb_victory"
             app:layout_constraintStart_toEndOf="@+id/RankingID"
@@ -135,11 +137,12 @@
             android:fontFamily="@font/roboto"
             android:gravity="center_horizontal"
             android:letterSpacing="-0.02"
-            android:text="Jogos"
+            android:text="@string/jogos"
             android:textColor="#9b9b9b"
             app:layout_constraintEnd_toStartOf="@+id/victorys"
             app:layout_constraintStart_toEndOf="@+id/RankingID"
-            app:layout_constraintTop_toBottomOf="@+id/numb_games" />
+            app:layout_constraintTop_toBottomOf="@+id/numb_games"
+            tools:targetApi="lollipop" />
 
         <TextView
             android:id="@+id/numb_victory"
@@ -148,7 +151,7 @@
             android:layout_marginEnd="69dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto"
-            android:text="N"
+            android:text="@string/profilen"
             android:textColor="#e94345"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -163,28 +166,31 @@
             android:fontFamily="@font/roboto"
             android:gravity="center_horizontal"
             android:letterSpacing="-0.02"
-            android:text="Vitórias"
+            android:text="@string/vit_rias"
             android:textColor="#9b9b9b"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.897"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/numb_victory" />
+            app:layout_constraintTop_toBottomOf="@+id/numb_victory"
+            tools:targetApi="lollipop" />
 
         <Button
-            android:id="@+id/buttonA"
+            android:id="@+id/statusButton"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/edge_text_edit_profile"
+            android:background="@drawable/edge_text_profile_red"
             android:fontFamily="@font/roboto"
-            android:text="Afastar-se"
+            android:gravity="center"
+            android:text="@string/afastar_se"
             android:textAlignment="center"
             android:textColor="#e94345"
             android:textSize="9dp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            tools:ignore="SpUsage" />
 
         <Button
             android:id="@+id/buttonC"
@@ -193,16 +199,18 @@
             android:layout_marginEnd="26dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/edge_text_edit_profile"
+            android:background="@drawable/edge_text_profile_red"
             android:fontFamily="@font/roboto"
-            android:text="Contato"
+            android:gravity="center"
+            android:text="@string/contato"
             android:textAlignment="center"
             android:textColor="#e94345"
             android:textSize="9dp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/buttonA"
-            app:layout_constraintTop_toBottomOf="@+id/games" />
+            app:layout_constraintStart_toEndOf="@+id/statusButton"
+            app:layout_constraintTop_toBottomOf="@+id/games"
+            tools:ignore="SpUsage" />
 
         <TextView
             android:id="@+id/Stats"
@@ -211,12 +219,12 @@
             android:layout_marginTop="30dp"
             android:fontFamily="roboto_thin"
             android:gravity="top"
-            android:text="Estatísticas"
+            android:text="@string/estat_sticas"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toTopOf="@+id/lineChart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonA"
+            app:layout_constraintTop_toBottomOf="@+id/statusButton"
             tools:text="ESTATÍSTICAS" />
 
         <TextView
@@ -225,7 +233,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto_thin"
-            android:text="Vitórias/Derrotas"
+            android:text="@string/vit_rias_derrotas"
             android:textAlignment="center"
             android:textColor="#9b9b9b"
             app:layout_constraintEnd_toEndOf="parent"
@@ -238,7 +246,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:fontFamily="@font/roboto_thin"
-            android:text="Posições por tempo"
+            android:text="@string/posi_es_por_tempo"
             android:textAlignment="center"
             android:textColor="#9b9b9b"
             app:layout_constraintEnd_toEndOf="parent"
@@ -250,34 +258,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Vitórias"
+            android:text="@string/vit_rias"
             android:textColor="#9b9b9b"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
+            app:layout_constraintTop_toBottomOf="@+id/lineChart"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/legendDefeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Derrotas"
+            android:text="@string/derrotas"
             android:textColor="#9b9b9b"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/legendVictories" />
+            app:layout_constraintTop_toBottomOf="@+id/legendVictories"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/legendMatches"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Partidas"
+            android:text="@string/partidas"
             android:textColor="#9b9b9b"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/legendDefeats" />
+            app:layout_constraintTop_toBottomOf="@+id/legendDefeats"
+            tools:ignore="SmallSp" />
 
         <View
             android:id="@+id/legendGreen"

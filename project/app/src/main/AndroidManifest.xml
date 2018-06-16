@@ -12,9 +12,9 @@
     <application
         android:name=".NexteApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_app_dark"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_app_dark"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -44,6 +44,10 @@
         <activity
             android:name=".LoginScene.LoginView"
             android:label="Login" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3a8c65b90611c0a78eed68be4f668129f7e38b34" />
     </application>
 
 </manifest>
