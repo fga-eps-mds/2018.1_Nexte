@@ -8,11 +8,7 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 
 import com.nexte.nexte.R
-import com.nexte.nexte.UserSingleton
-import com.nexte.nexte.UserType
-import kotlinx.android.synthetic.main.row_likes.view.*
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 
@@ -80,8 +76,8 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     /**
      * Function that formats the challenge to be displayed on fragment
      */
-    fun formatChallenges(user: User) : List<ShowProfileModel.FormattedChallenge> {
-        var formattedChallengesMutable = mutableListOf<ShowProfileModel.FormattedChallenge>()
+    private fun formatChallenges(user: User) : List<ShowProfileModel.FormattedChallenge> {
+        val formattedChallengesMutable = mutableListOf<ShowProfileModel.FormattedChallenge>()
         var challenges = challengeManager?.getPlayedChallengesFromUser(user.id)
         if (challenges == null) {
             challenges = listOf()
@@ -89,7 +85,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
             // Do nothing
         }
 
-        for (challenge in challenges!!) {
+        for (challenge in challenges) {
             val stage = challenge.stage as Challenge.Stage.Played
 
             val dateToShow = SimpleDateFormat("dd/MM/yyy")
@@ -124,7 +120,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     }
 
-    fun getChallengeResult(challenge: Challenge, user: User) : ShowProfileModel.ChallengeResult{
+    private fun getChallengeResult(challenge: Challenge, user: User) : ShowProfileModel.ChallengeResult{
         val result: ShowProfileModel.ChallengeResult
         if(challenge.winner == user.id){
             result = ShowProfileModel.ChallengeResult.WON
@@ -139,7 +135,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     /**
      * Decides wether if the opponent is the challenger or the challenged
      */
-    fun getOponent(challenge: Challenge, user: User) : User? {
+    private fun getOponent(challenge: Challenge, user: User) : User? {
         val opponentId : String?
         if(challenge.challengedId == user.id){
             opponentId = challenge.challengerId
@@ -155,7 +151,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     /**
      *
      */
-    fun calculateHeadToHead(challenges: List<Challenge>, challenged: String, challenger: String) :
+    private fun calculateHeadToHead(challenges: List<Challenge>, challenged: String, challenger: String) :
                             String {
 
         var challengerPoints = 0
@@ -163,21 +159,24 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
         for (challenge in challenges) {
 
-            if ((challenge.challengerId == challenger && challenge.challengerId == challenged) ||
-                    (challenge.challengedId == challenger && challenge.challengedId == challenged)) {
+            if (challenge.challengerId == challenger && challenge.challengerId == challenged){
+                if (challenge.challengedId == challenger && challenge.challengedId == challenged) {
 
-                val gamePlayed = challenge.stage as Challenge.Stage.Played?
-                if (gamePlayed != null) {
-                    if (gamePlayed.setChallenger > gamePlayed.setChallenged) {
-                        challengerPoints++
+                    val gamePlayed = challenge.stage as Challenge.Stage.Played?
+                    if (gamePlayed != null) {
+                        if (gamePlayed.setChallenger > gamePlayed.setChallenged) {
+                            challengerPoints++
+                        } else {
+                            challengedPoints++
+                        }
+
                     } else {
-                        challengedPoints++
+                        //Do nothing
                     }
-
-                } else {
-                    //Do nothing
                 }
+
             }
+
         }
 
         return challengerPoints.toString() + " x " + challengedPoints.toString()
@@ -186,7 +185,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     /**
      *
      */
-    fun getNumberOfSets(gamePlayed: Challenge.Stage.Played.Game?): String?{
+    private fun getNumberOfSets(gamePlayed: Challenge.Stage.Played.Game?): String?{
         val res : String?
         if (gamePlayed?.gameChallenged ==  null && gamePlayed?.gameChallenger == null) {
             res = ""
@@ -200,7 +199,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     /**
      *
      */
-    fun validateUserPhoto(imageIdentifier: String?) : Int {
+    private fun validateUserPhoto(imageIdentifier: String?) : Int {
 
         if(imageIdentifier != null && imageIdentifier != "") {
             return imageIdentifier.toInt()

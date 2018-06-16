@@ -74,6 +74,9 @@ class CommentsWorker {
             val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
             url.httpGet().header(header).responseJson(handleResulComments)
         } else {
+            /*
+            Does Nothing
+             */
         }
     }
 
@@ -146,6 +149,7 @@ class CommentsWorker {
 
        updateLogic?.updateDeleteComment(response)
     }
+
     companion object {
         const val okMessage = 200
         const val idComment = "108"
