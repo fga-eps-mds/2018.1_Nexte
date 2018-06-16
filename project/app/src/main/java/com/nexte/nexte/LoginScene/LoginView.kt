@@ -45,22 +45,14 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
 
         this.setup()
         this.createAuthenticationRequest()
-//
-//        btnLoginPhonenumber.setOnClickListener {
-//            this.loginPhoneNumber()
-//        }
-//
-//        btnLoginFacebook.setOnClickListener {
-//            this.loginByEmail()
-//        }
 
         login.setOnClickListener {
+            Log.i("HEEEERE", "Login")
             createAuthenticationRequest()
         }
         navigationLogin.setOnClickListener{
@@ -96,6 +88,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     private fun createAuthenticationRequest(){
         val account = userField.text.toString()
         val password = passwordField.text.toString()
+
+        Log.i("username:", account)
+        Log.i("password:", password)
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
