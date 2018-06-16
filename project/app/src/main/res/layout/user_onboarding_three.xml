@@ -64,7 +64,7 @@
 
         <EditText
             android:id="@+id/phoneField"
-            android:layout_width="317"
+            android:layout_width="317dp"
             android:layout_height="27dp"
             android:layout_marginEnd="60dp"
             android:layout_marginStart="60dp"
@@ -124,7 +124,7 @@
 
         <Button
             android:id="@+id/sentRequestButton"
-            android:layout_width="317"
+            android:layout_width="317dp"
             android:layout_height="21dp"
             android:layout_marginEnd="60dp"
             android:layout_marginStart="60dp"
