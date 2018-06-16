@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.UserSingleton
+import kotlinx.android.synthetic.main.activity_challenger_sent.*
 
 
 /**
@@ -217,6 +218,8 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedRankingTextView?.text = currentPlayer.rankingPosition
         this.expandedWins?.visibility = View.VISIBLE
         this.expandedWins?.text = currentPlayer.wins
+        this.linearLayout?.visibility = View.VISIBLE
+
     }
 
     /**

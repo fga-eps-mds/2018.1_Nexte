@@ -31,7 +31,7 @@
         android:backgroundTint="#2d2d2d"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/sendChallengeButton"
-
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/challengeRecyclerView"
         tools:layout_editor_absoluteX="8dp">
 
