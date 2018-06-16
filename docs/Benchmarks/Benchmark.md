@@ -8,7 +8,7 @@ Com o objetivo de obter métricas e compreender *gaps* de desempenho da aplicaç
 
 ### 2. iOS
 
-A medição da aplicação iOS foi realizada por meio do *instruments*, e os arquivos com os *benchmarks* encontram-se disponíveis neste resposiório. Além disso, foram realizados *benchmarks* para casa uma das tarefas citadas a seguir, sendo que para cada uma categoria geral foi gerado um relatório. [Clique aqui para acessar o benchmars referentes ao iOS]()
+A medição da aplicação iOS foi realizada por meio do *instruments*, e os arquivos com os *benchmarks* encontram-se disponíveis em nosso Google Drive. Além disso, foram realizados *benchmarks* para casa uma das tarefas citadas a seguir, sendo que para cada uma categoria geral foi gerado um relatório. [Clique aqui para acessar o benchmars referentes ao iOS](https://drive.google.com/drive/folders/1nhNff6rZr_pc9mGPFH-lXtjwPxksNDfx?usp=sharing)
 
 ### 2.1 Login
 
