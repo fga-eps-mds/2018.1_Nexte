@@ -31,19 +31,19 @@
         android:backgroundTint="#2d2d2d"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/sendChallengeButton"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/challengeRecyclerView"
-        tools:layout_editor_absoluteX="8dp">
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/challengeRecyclerView">
 
         <TextView
             android:id="@+id/expandedName"
-            android:layout_width="124dp"
+            android:layout_width="121dp"
             android:layout_height="21dp"
             android:layout_marginStart="16dp"
             android:text="@string/nome"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@android:color/background_light"
-            android:visibility="invisible"
+
             app:layout_constraintStart_toEndOf="@id/linearLayout" />
         <!--app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"-->
         <!--app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" -->
@@ -69,7 +69,7 @@
             android:text="@string/vitorias_x"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@android:color/background_light"
-            android:visibility="invisible"
+
             app:layout_constraintTop_toBottomOf="@id/expandedName" />
         <!--app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView" -->
 
@@ -83,7 +83,7 @@
             android:text="@string/derrotas_x"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@android:color/background_light"
-            android:visibility="invisible" />
+             />
         <!--app:layout_constraintBottom_toBottomOf="@+id/expandedRankingTextView"-->
         <!--app:layout_constraintStart_toEndOf="@+id/expandedWins" -->
 

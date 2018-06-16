@@ -113,8 +113,10 @@ class PlayersListModel {
     class FormattedRankingDetails(var name: String, //player name
                                   var wins: String, //player wins
                                   var loses: String, //player loses
-                                  var rankingPosition: String) //player position in ranking
-
+                                  var rankingPosition: String,
+                                  var category: String,
+                                  var efficienty: String,
+                                  var lastGame: String)
     /**
      *  Class that contains the detailed information about player ranking
      *
@@ -126,5 +128,8 @@ class PlayersListModel {
     class PlayerRankingDetails(var name: String,
                                var wins: Int,
                                var loses: Int,
-                               var rankingPosition: Int)
+                               var rankingPosition: Int,
+                               var category: String,
+                               var efficienty: Int,
+                               var lastGame: String)
 }

@@ -50,7 +50,7 @@ open class Story(var id: String? = null,
             val date = SimpleDateFormat("yyyy-mm-dd")
                     .parse(jsonStory["date"] as String)
 
-            return Story(id, winner, loser, date, commentsIds, likesIds, challengeJson)
+            return Story(id, winner, loser, date, commentsIds, likesIds)
         }
     }
 }
