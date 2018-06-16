@@ -36,8 +36,6 @@ class LoginWorker {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
                 val status = LoginModel.Authentication.StatusCode.AUTHORIZED
                 val response = LoginModel.Authentication.Response(token, status)
-
-                // TODO: Add more user to server to authenticate with
                 val player = UserSingleton.loggedUser
                 UserSingleton.setLoggedUser(player.id)
 

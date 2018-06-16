@@ -56,7 +56,11 @@ class LoginPresenter: LoginPresentationLogic {
         this.view?.displayAuthenticateState(viewModel)
     }
 
-    override fun presentError(response: LoginModel.Authentication.Response) { }
+    override fun presentError(response: LoginModel.Authentication.Response) {
+
+        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel("Ops, tente de novo")
+        this.view?.displayAuthenticateState(viewModel)
+    }
 
     override fun presentAccountKit(response: LoginModel.AccountKit.Response) {
 
