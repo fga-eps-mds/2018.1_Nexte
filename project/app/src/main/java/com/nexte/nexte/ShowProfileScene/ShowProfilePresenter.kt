@@ -108,6 +108,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
             val opponentAddress = validateUserPhoto(opponentPictureUrl)
             val opponentColor = Color.BLUE
             val challengeResult = getChallengeResult(challenge, user)
+
             val formattedChallenge = ShowProfileModel.FormattedChallenge(dateResults,
                     setResult, gamesResult, headToHeadResult, opponentName, opponentPictureUrl,
                     opponentAddress, opponentColor, challengeResult)
@@ -134,8 +135,13 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     /**
      * Decides wether if the opponent is the challenger or the challenged
+     *
+     * @param challenge analysed challenge to be matched to user
+     * @param user user owner of the profile to be shown
+     *
+     * @return opponent of the challenge, the one that is not the owner (between challenged and challenger)
      */
-    private fun getOponent(challenge: Challenge, user: User) : User? {
+    fun getOponent(challenge: Challenge, user: User) : User? {
         val opponentId : String?
         if(challenge.challengedId == user.id){
             opponentId = challenge.challengerId
@@ -201,9 +207,13 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
 
     /**
+     * Function that defines the printed form of the sets played by each payer
      *
+     * @param gamePlayed actual game that need to be analysed
+     *
+     * @return string containing the number of sets on the "challenger/challenged" form
      */
-    private fun getNumberOfSets(gamePlayed: Challenge.Stage.Played.Game?): String?{
+    fun getNumberOfSets(gamePlayed: Challenge.Stage.Played.Game?): String?{
         val res : String?
         if (gamePlayed?.gameChallenged ==  null && gamePlayed?.gameChallenger == null) {
             res = ""

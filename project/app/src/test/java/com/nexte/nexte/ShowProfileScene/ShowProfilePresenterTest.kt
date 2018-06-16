@@ -1,6 +1,9 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
@@ -17,9 +20,11 @@ class ShowProfilePresenterTest {
 
     @Before
     fun setUp() {
+
         this.mock = MockShowProfileDisplayLogic()
         this.presenter = ShowProfilePresenter()
         this.presenter?.viewScene = mock
+        this.presenter?.userManager = UserManager(UserAdapterSpy())
     }
 
 
@@ -136,6 +141,149 @@ class ShowProfilePresenterTest {
 
         //assert
         assertEquals(viewScene, this.presenter?.viewScene)
+    }
+
+    @Test
+    fun getOpponentChallengedSuccess(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "1",
+                "13",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+        val userTest =  User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+
+        val returnTest = this.presenter?.userManager?.get("1")
+
+        //call
+        val testReturn = this.presenter?.getOponent(challengeTest, userTest)
+
+        //assert
+        assertEquals(returnTest?.name, testReturn?.name)
+        assertEquals(returnTest?.id, testReturn?.id)
+        assertEquals(returnTest?.birthDate, testReturn?.birthDate)
+    }
+
+    @Test
+    fun getOpponentChallengerSuccess(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "13",
+                "1",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+
+        val userTest =  User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+
+        val returnTest = this.presenter?.userManager?.get("1")
+
+        //call
+        val testReturn = this.presenter?.getOponent(challengeTest, userTest)
+
+        //assert
+        assertEquals(returnTest?.name, testReturn?.name)
+        assertEquals(returnTest?.id, testReturn?.id)
+        assertEquals(returnTest?.birthDate, testReturn?.birthDate)
+    }
+
+    @Test
+    fun getNumberOfSetsNull(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "13",
+                "15",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(null, null),
+                        null, null, null, null, null
+                )
+        )
+        val gamePlayedTest = challengeTest.stage as Challenge.Stage.Played
+
+        //call
+        val testReturn = this.presenter?.getNumberOfSets(gamePlayedTest.firstGame)
+
+        //assert
+        assertEquals(testReturn, "")
+
+    }
+
+    @Test
+    fun getNumberOfSetsSuccess(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "13",
+                "15",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+        val gamePlayedTest = challengeTest.stage as Challenge.Stage.Played
+
+        //call
+        val testReturn = this.presenter?.getNumberOfSets(gamePlayedTest.firstGame)
+
+        //assert
+        assertEquals(testReturn, "8/4  ")
+
     }
 
     @After
