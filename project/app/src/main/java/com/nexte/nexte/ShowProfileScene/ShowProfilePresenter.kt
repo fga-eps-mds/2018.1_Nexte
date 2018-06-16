@@ -88,10 +88,11 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         for (challenge in challenges) {
             val stage = challenge.stage as Challenge.Stage.Played
 
-            val dateToShow = SimpleDateFormat("dd/MM/yyy")
+            val dateToShow = SimpleDateFormat("dd/MM/yyyy")
+
             val time = dateToShow.format(stage.date)
 
-            val dateResults = "Desafio: " + time
+            val dateResults = "Desafio: " + stage.date.toString()
             val setResult = "SET: " + stage.setChallenger + " x " + stage.setChallenged
             val gamesResult = "JOGOS: " + getNumberOfSets(stage.firstGame)  +
                                           getNumberOfSets(stage.secondGame) +
@@ -99,10 +100,9 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
                                           getNumberOfSets(stage.fourthGame) +
                                           getNumberOfSets(stage.fifthGame)
 
-            val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
-                    challenge.challengedId, challenge.challengerId)
-
             val opponent = getOponent(challenge, user)
+            val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
+                    user.id, opponent!!.id)
             val opponentName = opponent?.name
             val opponentPictureUrl = opponent?.profilePicture
             val opponentAddress = validateUserPhoto(opponentPictureUrl)
@@ -149,38 +149,56 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     }
 
     /**
+     * Method that calculates head to head - How many time each player won against another
      *
+     * @param challenges all challenges from the user
+     * @param user user that will have its profile shown
+     * @param opponent opponent to calculate head to head
+     *
+     * @return head to head formatted
      */
-    private fun calculateHeadToHead(challenges: List<Challenge>, challenged: String, challenger: String) :
+    private fun calculateHeadToHead(challenges: List<Challenge>, user: String, opponent: String) :
                             String {
 
-        var challengerPoints = 0
-        var challengedPoints = 0
+        var points = mutableListOf(0, 0) //0 - user //1 - opponent
 
         for (challenge in challenges) {
-
-            if (challenge.challengerId == challenger && challenge.challengerId == challenged){
-                if (challenge.challengedId == challenger && challenge.challengedId == challenged) {
-
-                    val gamePlayed = challenge.stage as Challenge.Stage.Played?
-                    if (gamePlayed != null) {
-                        if (gamePlayed.setChallenger > gamePlayed.setChallenged) {
-                            challengerPoints++
-                        } else {
-                            challengedPoints++
-                        }
-
-                    } else {
-                        //Do nothing
-                    }
-                }
-
-            }
-
+            points = calculateWinnerInHeadToHead(points, challenge, user, opponent)
         }
 
-        return challengerPoints.toString() + " x " + challengedPoints.toString()
+        return points[0].toString() + " x " + points[1].toString()
     }
+
+    /**
+     *
+     */
+    fun calculateWinnerInHeadToHead(points: MutableList<Int>, challenge: Challenge, user: String, opponent: String):
+            MutableList<Int>{
+
+        if (challenge.challengerId == user && challenge.challengedId == opponent){
+            val gamePlayed = challenge.stage as Challenge.Stage.Played?
+            if (gamePlayed != null) {
+                if (gamePlayed.setChallenger > gamePlayed.setChallenged) {
+                    points[0]++
+                } else {
+                    points[1]++
+                }
+            }
+
+        } else if (challenge.challengerId == opponent && challenge.challengedId == user){
+            val gamePlayed = challenge.stage as Challenge.Stage.Played?
+            if (gamePlayed != null) {
+                if (gamePlayed.setChallenger > gamePlayed.setChallenged) {
+                    points[1]++
+                } else {
+                    points[0]++
+                }
+            }
+        }
+
+        return points
+    }
+
 
     /**
      *

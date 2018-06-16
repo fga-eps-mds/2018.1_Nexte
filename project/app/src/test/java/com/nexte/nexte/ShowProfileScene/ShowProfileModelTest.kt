@@ -77,7 +77,7 @@ class ShowProfileModelTest {
         val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", email = "luis@email.com",  profileImage = R.drawable.profile_image9)
 
         //call
-        val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer)
+        val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer, formattedChallenges = listOf())
         val img = formattedPlayer.profileImage
         formattedPlayer.profileImage = 2
         viewModel.playerInfo = formattedPlayer

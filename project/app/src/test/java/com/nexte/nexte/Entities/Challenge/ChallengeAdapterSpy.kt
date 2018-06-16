@@ -33,6 +33,10 @@ class ChallengeAdapterSpy: ChallengeAdapter {
         }
     }
 
+    override fun getUserPlayedGames(userdId: String): List<Challenge> {
+        return listOf(mockChallenge())
+    }
+
     override fun getLastFiveChallenges(userdId: String): List<Challenge> {
         return listOf()
     }

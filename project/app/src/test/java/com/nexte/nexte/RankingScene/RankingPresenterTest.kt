@@ -180,7 +180,7 @@ class RankingPresenterTest {
 
         val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
-        assertEquals(returnedValue, "ontem")
+        assertEquals(returnedValue, "6 days")
     }
 
     @Test
