@@ -286,6 +286,72 @@ class ShowProfilePresenterTest {
 
     }
 
+    @Test
+    fun testCalculateWinnerInHeadToHead(){
+        var points = mutableListOf(0, 0)
+        val challenge = Challenge(id = "1", challengeDate = Date(), challengedId = "2", challengerId = "1",
+                status = Challenge.Status.CONFIRMED, stage = Challenge.Stage.Played(setChallenger = 1,
+                setChallenged = 0, detail = "", date = Date(), firstGame = Challenge.Stage.Played.Game(
+                gameChallenger = 1, gameChallenged = 0),
+                secondGame = null,thirdGame = null, fourthGame = null, fifthGame = null))
+        val user = "1"
+        val opponent = "2"
+
+        points = presenter?.calculateWinnerInHeadToHead(points, challenge, user, opponent)!!
+
+        assertEquals(points, mutableListOf(1, 0))
+    }
+
+    @Test
+    fun testCalculateWinnerInHeadToHeadCase2(){
+        var points = mutableListOf(0, 0)
+        val challenge = Challenge(id = "1", challengeDate = Date(), challengedId = "2", challengerId = "1",
+                status = Challenge.Status.CONFIRMED, stage = Challenge.Stage.Played(setChallenger = 0,
+                setChallenged = 1, detail = "", date = Date(), firstGame = Challenge.Stage.Played.Game(
+                gameChallenger = 1, gameChallenged = 0),
+                secondGame = null,thirdGame = null, fourthGame = null, fifthGame = null))
+        val user = "1"
+        val opponent = "2"
+
+        points = presenter?.calculateWinnerInHeadToHead(points, challenge, user, opponent)!!
+
+        assertEquals(points[0], 0)
+        assertEquals(points[1], 1)
+    }
+
+    @Test
+    fun testCalculateWinnerInHeadToHeadCase3(){
+        var points = mutableListOf(0, 0)
+        val challenge = Challenge(id = "1", challengeDate = Date(), challengedId = "1", challengerId = "2",
+                status = Challenge.Status.CONFIRMED, stage = Challenge.Stage.Played(setChallenger = 0,
+                setChallenged = 1, detail = "", date = Date(), firstGame = Challenge.Stage.Played.Game(
+                gameChallenger = 1, gameChallenged = 0),
+                secondGame = null,thirdGame = null, fourthGame = null, fifthGame = null))
+        val user = "1"
+        val opponent = "2"
+
+        points = presenter?.calculateWinnerInHeadToHead(points, challenge, user, opponent)!!
+
+        assertEquals(points, mutableListOf(1, 0))
+    }
+
+    @Test
+    fun testCalculateWinnerInHeadToHeadCase4(){
+        var points = mutableListOf(0, 0)
+        val challenge = Challenge(id = "1", challengeDate = Date(), challengedId = "1", challengerId = "2",
+                status = Challenge.Status.CONFIRMED, stage = Challenge.Stage.Played(setChallenger = 1,
+                setChallenged = 0, detail = "", date = Date(), firstGame = Challenge.Stage.Played.Game(
+                gameChallenger = 1, gameChallenged = 0),
+                secondGame = null,thirdGame = null, fourthGame = null, fifthGame = null))
+        val user = "1"
+        val opponent = "2"
+
+        points = presenter?.calculateWinnerInHeadToHead(points, challenge, user, opponent)!!
+
+        assertEquals(points, mutableListOf(0, 1))
+
+    }
+
     @After
     fun tearDown() {
         this.mock = null
