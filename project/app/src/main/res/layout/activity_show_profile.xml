@@ -7,7 +7,7 @@
     android:layout_height="fill_parent"
     android:background="#2E2E2E"
     android:fillViewport="true"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical">edge_text_edit_profile
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
