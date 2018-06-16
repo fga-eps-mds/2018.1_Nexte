@@ -27,7 +27,12 @@ import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
 import android.content.DialogInterface
-
+import android.content.Intent
+import android.net.Uri
+import android.provider.Contacts
+import android.provider.ContactsContract
+import android.telephony.TelephonyManager
+import android.util.Log
 
 
 /**
@@ -56,7 +61,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var anotherPlayerName: String = ""
     var userManager: UserManager? = null
     val graphManager = GraphManager(this)
-    val buttonC: Button? = null
+    var buttonC: Button? = null
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -100,12 +105,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             fragmentTransaction.commit()
         }
 
+        buttonC = newView?.findViewById(R.id.buttonC)
         buttonC?.setOnClickListener {
             val contact = ContactDialogFragment()
             contact.show(this.fragmentManager, "Contact")
         }
-
-
 
         this.createShowProfileRequest()
         newLineChart = newView?.findViewById(R.id.lineChart)
@@ -368,8 +372,30 @@ class ContactDialogFragment: DialogFragment() {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Contatos")
                 .setItems(R.array.contactArray, DialogInterface.OnClickListener { dialog, which ->
-                    print("hahahahah")
-                })
+                    when (which) {
+                        0 -> {
+                            val number = Uri.parse("tel:130")
+                            val callIntent = Intent(Intent.ACTION_DIAL, number)
+                            startActivity(callIntent)
+                        }
+                        1 -> {
+                            val emailIntent = Intent(Intent.CATEGORY_APP_EMAIL)
+                            emailIntent.setType("*/*");
+                            emailIntent.putExtra(Intent.EXTRA_EMAIL, "leticia@geo.com")
+                            startActivity(emailIntent)
+                        }
+                        2 -> {
+                            val contactIntent = Intent(Intent.ACTION_INSERT)
+                            contactIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
+                            contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, "Letícia")
+                            contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, "leticia@geo.com")
+                            contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, "130")
+                            startActivity(contactIntent)
+                        }
+                        3 -> Log.e("Chama no zap", "1")
+                    }
+                    Log.e("hahahahah", "1")
+                }).setIcon(R.drawable.icon_date)
         return builder.create()
     }
 
