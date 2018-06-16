@@ -79,10 +79,10 @@ class PlayersListPresenter : PlayersListPresentationLogic {
 
         val formattedPlayer = PlayersListModel.FormattedRankingDetails(
                 selectedChallenged.name,
-                String.format("VITÓRIAS: %d", selectedChallenged.wins),
-                String.format("DERROTAS: %d", selectedChallenged.loses),
+                String.format("VITÓRIAS: %d / %d", selectedChallenged.wins, selectedChallenged.loses),
                 String.format("%d", selectedChallenged.rankingPosition),
-                selectedChallenged.category
+                selectedChallenged.categ
+                        String.format("%d", selectedChallenged.ef)
                 String.format("Aproveitamento: %d", selectedChallenged.category)
 
         )

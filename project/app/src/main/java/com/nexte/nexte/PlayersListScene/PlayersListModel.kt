@@ -1,4 +1,5 @@
 package com.nexte.nexte.PlayersListScene
+import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MatchScene.MatchModel
 
@@ -114,9 +115,7 @@ class PlayersListModel {
                                   var wins: String, //player wins
                                   var loses: String, //player loses
                                   var rankingPosition: String,
-                                  var category: String,
-                                  var efficienty: String,
-                                  var lastGame: String)
+                                  var category: String)
     /**
      *  Class that contains the detailed information about player ranking
      *
@@ -129,7 +128,5 @@ class PlayersListModel {
                                var wins: Int,
                                var loses: Int,
                                var rankingPosition: Int,
-                               var category: String,
-                               var efficienty: Int,
-                               var lastGame: String)
+                               )
 }
