@@ -89,9 +89,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val account = userField.text.toString()
         val password = passwordField.text.toString()
 
-        Log.i("username:", account)
-        Log.i("password:", password)
-
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
     }

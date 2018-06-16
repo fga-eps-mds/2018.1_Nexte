@@ -1,9 +1,14 @@
 package com.nexte.nexte.LoginScene
 
 import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.UserSingleton
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import org.json.JSONObject
 
 /**
@@ -30,10 +35,13 @@ class LoginWorker {
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
 
-        Fuel.post(authentication).header(headers).body(json.toString()).responseString { _, _, result ->
+
+        Fuel.post(authentication).header(headers).body(json.toString()).responseJson() { _, _, result ->
 
             result.success {
                 val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+                var json = result.get().obj()
+                val user = User.createUserFromJsonObject(json)
                 val status = LoginModel.Authentication.StatusCode.AUTHORIZED
                 val response = LoginModel.Authentication.Response(token, status)
                 val player = UserSingleton.loggedUser
@@ -103,6 +111,17 @@ class LoginWorker {
         }
 
         return json.toString()
+    }
+
+
+    private fun updateUserLoggedStatus() {
+
+
+        // User Singleton
+
+        // Realm instance
+        val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
+        Realm.setDefaultConfiguration(config)
     }
 }
 
