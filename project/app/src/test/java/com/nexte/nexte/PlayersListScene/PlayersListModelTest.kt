@@ -100,6 +100,22 @@ class PlayersListModelTest {
     ///////////////////////////////////////////////
 
     @Test
+    fun formatteUserGet() {
+
+        //prepare and call
+        var user: PlayersListModel.FormattedPlayer? = null
+        user = PlayersListModel.FormattedPlayer("1",
+                "Miguel Pimentel",
+                "1",
+                "1")
+        user.identifier = "23232"
+        assertNotNull(user)
+    }
+
+
+
+
+    @Test
     fun successSelectPlayerRequest(){
         //prepare
         val testInt = 2
