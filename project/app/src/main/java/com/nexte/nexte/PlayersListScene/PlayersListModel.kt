@@ -2,6 +2,7 @@ package com.nexte.nexte.PlayersListScene
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MatchScene.MatchModel
+import java.util.*
 
 
 /**
@@ -113,7 +114,6 @@ class PlayersListModel {
      */
     class FormattedRankingDetails(var name: String, //player name
                                   var wins: String, //player wins
-                                  var loses: String, //player loses
                                   var rankingPosition: String,
                                   var category: String)
     /**
@@ -126,7 +126,6 @@ class PlayersListModel {
      */
     class PlayerRankingDetails(var name: String,
                                var wins: Int,
-                               var loses: Int,
                                var rankingPosition: Int,
-                               )
+                               var category: Optional<String>)
 }

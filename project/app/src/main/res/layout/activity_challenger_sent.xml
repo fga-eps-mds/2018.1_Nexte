@@ -22,18 +22,30 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/columns_challenged" />
 
+    <ImageView
+        android:id="@+id/imageBackground"
+        android:layout_width="459dp"
+        android:layout_height="208dp"
+        android:layout_marginTop="85dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView"
+        app:srcCompat="?android:attr/tooltipFrameBackground" />
 
     <TextView
         android:id="@+id/expandedName"
         android:layout_width="121dp"
         android:layout_height="21dp"
+        android:visibility="invisible"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="200dp"
         android:text="@string/nome"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
-
+        app:layout_constraintBottom_toTopOf="@+id/expandedLosses"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="204dp" />
+        app:layout_constraintTop_toTopOf="parent" />
         <!--app:layout_constraintStart_toEndOf="@+id/expandedRankingTextView"-->
         <!--app:layout_constraintTop_toTopOf="@+id/expandedRankingTextView" -->
 
@@ -44,6 +56,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:text="categoria"
+        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +77,7 @@
         android:id="@+id/expandedExploitation"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
+        android:visibility="invisible"
         android:layout_marginBottom="250dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
@@ -79,6 +93,7 @@
         android:id="@+id/expandedWins"
         android:layout_width="100dp"
         android:layout_height="41dp"
+        android:visibility="invisible"
         android:layout_marginStart="20dp"
         android:text="@string/vitorias_x"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
@@ -93,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="último jogo: x"
+        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +120,7 @@
         android:layout_height="15sp"
         android:layout_marginStart="300dp"
         android:layout_marginTop="205dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_undefeated_ranking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -114,12 +131,24 @@
         android:layout_height="15sp"
         android:layout_marginStart="280dp"
         android:layout_marginTop="205dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_victory_ranking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <!--app:layout_constraintEnd_toStartOf="@+id/circulo3"-->
 
     <!--app:layout_constraintEnd_toStartOf="@+id/circulo4"-->
+
+    <ImageView
+        android:id="@+id/circulo3"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="205dp"
+        android:visibility="invisible"
+        android:background="@drawable/circle_defeat_ranking"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -128,6 +157,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="260dp"
         android:layout_marginTop="205dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_victory_ranking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -139,13 +169,24 @@
         android:layout_height="15sp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="205dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_empty_ranking"
         app:layout_constraintStart_toEndOf="@+id/circulo1"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
+    <Button
+        android:id="@+id/expanded_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="24dp"
+        android:text="Perfil"
+        android:visibility="invisible"
+        android:textColor="#e94345"
+        android:background="#2d2d2d"
+        app:layout_constraintStart_toEndOf="@+id/expandedExploitation"
+        app:layout_constraintTop_toBottomOf="@+id/circulo1" />
 
     <TextView
         android:id="@+id/noPlayersText"
@@ -198,27 +239,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <ImageView
-        android:id="@+id/circulo3"
-        android:layout_width="15sp"
-        android:layout_height="15sp"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="205dp"
-        android:background="@drawable/circle_defeat_ranking"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="24dp"
-        android:text="Perfil"
-        android:textColor="#e94345"
-        android:background="#2d2d2d"
-        app:layout_constraintStart_toEndOf="@+id/expandedExploitation"
-        app:layout_constraintTop_toBottomOf="@+id/circulo1" />
 
 
 </android.support.constraint.ConstraintLayout>

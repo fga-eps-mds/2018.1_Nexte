@@ -81,10 +81,7 @@ class PlayersListPresenter : PlayersListPresentationLogic {
                 selectedChallenged.name,
                 String.format("VITÓRIAS: %d / %d", selectedChallenged.wins, selectedChallenged.loses),
                 String.format("%d", selectedChallenged.rankingPosition),
-                selectedChallenged.categ
-                        String.format("%d", selectedChallenged.ef)
-                String.format("Aproveitamento: %d", selectedChallenged.category)
-
+                selectedChallenged.category.toString()
         )
 
         val viewModel = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
