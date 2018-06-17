@@ -49,5 +49,6 @@ class ShowProfileModel {
             var name: String?,
             var rank: String?,
             var email: String?,
+            var number: String?,
             var profileImage: Int?)
 }

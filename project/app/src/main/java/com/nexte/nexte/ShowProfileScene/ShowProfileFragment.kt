@@ -357,6 +357,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
+        buttonC?.setOnClickListener {
+            val contact = ContactDialogFragment()
+            contact.playerInfo = viewModel.playerInfo
+            contact.show(this.fragmentManager, "Contact")
+        }
+
     }
 
     companion object {
@@ -370,41 +376,57 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
 
 class ContactDialogFragment: DialogFragment() {
+
+    var playerInfo: ShowProfileModel.FormattedPlayer? = null
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Contatos")
-                .setItems(R.array.contactArray, DialogInterface.OnClickListener { dialog, which ->
+                .setItems(R.array.contactArray, DialogInterface.OnClickListener { _, which ->
                     when (which) {
                         0 -> {
-                            val number = Uri.parse("tel:130")
+                            val number = Uri.parse("tel:${playerInfo?.number}")
                             val callIntent = Intent(Intent.ACTION_DIAL, number)
                             startActivity(callIntent)
                         }
                         1 -> {
-                            val emailIntent = Intent(Intent.CATEGORY_APP_EMAIL)
-                            emailIntent.setType("*/*");
-                            emailIntent.putExtra(Intent.EXTRA_EMAIL, "leticia@geo.com")
-                            startActivity(emailIntent)
+                            val emailIntent = Intent(android.content.Intent.ACTION_SEND)
+                            emailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            emailIntent.type = "vnd.android.cursor.item/email"
+                            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(playerInfo?.email))
+                            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Nexte Notification")
+                            startActivity(Intent.createChooser(emailIntent, "Enviando email..."))
                         }
                         2 -> {
                             val contactIntent = Intent(Intent.ACTION_INSERT)
                             contactIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
-                            contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, "Letícia")
-                            contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, "leticia@geo.com")
-                            contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, "130")
+                            contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, playerInfo?.name)
+                            contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, playerInfo?.email)
+                            contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, playerInfo?.number)
                             startActivity(contactIntent)
                         }
                         3 -> {
 
                             val whatsIntent = Intent(Intent.ACTION_SEND)
+                            val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
+                            whatsIntent.setData(Uri.parse(url))
                             whatsIntent.setType("text/plain")
                             whatsIntent.setPackage("com.whatsapp")
-                            whatsIntent.putExtra(Intent.EXTRA_TEXT, "YOUR TEXT")
-                            whatsIntent.setPackage("com.whatsapp")
+                            whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+                            whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
                             startActivity(whatsIntent)
                             }
+
+                        4 -> {
+
+                            val telegramIntent = Intent(Intent.ACTION_SEND)
+                            telegramIntent.setType("text/plain")
+                            telegramIntent.setPackage("org.telegram.messenger")
+                            telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+                            telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+                            startActivity(telegramIntent)
+                        }
                     }
-                    Log.e("hahahahah", "1")
                 }).setIcon(R.drawable.icon_date)
         return builder.create()
     }

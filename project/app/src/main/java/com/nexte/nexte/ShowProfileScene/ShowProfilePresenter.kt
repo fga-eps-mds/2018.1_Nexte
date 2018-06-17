@@ -38,6 +38,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val name: String? = response.user?.name
         val ranking: String? = "#" + response.user?.rankingPosition.toString()
         val email: String? = response.user?.email
+        val number: String? = response.user?.phone
 
         var photo: Int? = null
 
@@ -51,6 +52,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
                 name,
                 ranking,
                 email,
+                number,
                 photo)
         val viewModel : ShowProfileModel.ViewModel = ShowProfileModel.ViewModel(formattedPlayer)
         viewScene?.displayProfile(viewModel)
