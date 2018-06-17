@@ -1,7 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
 import com.nexte.nexte.R
-import kotlinx.android.synthetic.main.row_likes.view.*
 
 /**
  * Interface to define Presentation Logic to Show Profile Class that
@@ -40,12 +39,10 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val email: String? = response.user?.email
         val number: String? = response.user?.phone
 
-        var photo: Int? = null
-
-        if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
-            photo = response.user?.profilePicture!!.toInt()
+        val photo: Int? = if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
+            response.user?.profilePicture!!.toInt()
         } else {
-            photo = R.mipmap.ic_launcher_round
+            R.mipmap.ic_launcher
         }
 
         val formattedPlayer : ShowProfileModel.FormattedPlayer = ShowProfileModel.FormattedPlayer(

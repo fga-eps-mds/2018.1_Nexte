@@ -23,25 +23,58 @@ class ShowProfilePresenterTest {
     }
 
 
+
     @Test
     fun successPresentUserProfile(){
         //prepare
         val response = ShowProfileModel.Response(user = User("13",
-            "Nick Cairo",
-            null,
-            "Cairo",
-            Date(1993, 3, 13),
-            12,
-            "cairo@nexte.com",
-            "130",
-            68,
-            96,
-            User.Gender.MALE,
-            null,
-            User.Status.AVAILABLE,
-            null,
-            null,
-            emptyList()
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        ))
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com",  profileImage = R.drawable.profile_image9)
+
+        //call
+        this.presenter?.presentUserProfile(response = response)
+
+        //assert
+        assertEquals(formattedPlayer.name, this.mock?.formattedPlayer?.name)
+        assertEquals(formattedPlayer.rank, this.mock?.formattedPlayer?.rank)
+        assertEquals(formattedPlayer.email, this.mock?.formattedPlayer?.email)
+    }
+
+
+    @Test
+    fun successPresentUserProfileCase2(){
+        //prepare
+        val response = ShowProfileModel.Response(user = User("13",
+                "Nick Cairo",
+                "1",
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
         ))
         val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com", number = "130",  profileImage = R.drawable.profile_image9)
 

@@ -85,5 +85,21 @@
     <string name="tabChallengeSended">Enviados</string>
     <string name="tabChallengeReceived">Recebidos</string>
     <string name="tabChallengePlayers">Tenistas</string>
+    <string name="disponivel">Disponível</string>
+    <string name="afastado">Afastado</string>
+    <string name="cinta_liga_de_t_nis">Cinta Liga de Tênis</string>
+    <string name="editarperfil">editar</string>
+    <string name="prifler">R</string>
+    <string name="profileusername">username</string>
+    <string name="jogos">Jogos</string>
+    <string name="profilen">N</string>
+    <string name="vit_rias">Vitórias</string>
+    <string name="afastar_se">Afastar-se</string>
+    <string name="contato">Contato</string>
+    <string name="estat_sticas">Estatísticas</string>
+    <string name="vit_rias_derrotas">Vitórias/Derrotas</string>
+    <string name="posi_es_por_tempo">Posições por tempo</string>
+    <string name="partidas">Partidas</string>
+    <string name="derrotas">Derrotas</string>
 
 </resources>

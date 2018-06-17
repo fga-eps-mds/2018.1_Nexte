@@ -10,6 +10,7 @@ import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
+import kotlin.concurrent.thread
 
 class CommentsInteractorTest {
 
@@ -32,7 +33,7 @@ class CommentsInteractorTest {
         val request = CommentsModel.GetCommentsRequest.Request("1", "1")
 
         //call
-        this.interactor?.recentComments(request)
+        thread{this.interactor?.recentComments(request )}.join()
 
         //assert
         assertEquals(this.mock?.passedHere, true)

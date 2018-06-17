@@ -17,6 +17,7 @@
 [4. Custom Application Class](#4-custom-application-class)  
 [5. Enum Class com Sealed Class](#5-enum-class-com-sealed-class)  
 [6. Realm Database](#6-realm-database) 
+[7. Executar relatório de cobertura de testes Intrumentais](#7-Relatorio-Cobertura-de-Testes)
 
 
 ## 0. Boas Práticas para Kotlin
@@ -347,3 +348,11 @@ Artigo do medium usado para isso, usado na entidade Challenge.
 
 Documentação do Realm Database utilizado para a adição da Database local esscolhida para o nosso app.
 - [Realm Database](https://realm.io/docs/java/latest)
+
+## 7. Relatorio Cobertura de Testes
+
+Para executar o relatório de cobertura de testes é necesário acessar a pasta project do projeto e executar o seguinte comando no termina:
+
+./gradlew createDebugCoverageReport
+
+E então, será criado (se não existir) uma pasta reports dentro, com o caminho: app/build/reports/coverage/debug e então um arquivo index.html estará disponível para consultar a cobertura de testes Instrumentais do projeto. 

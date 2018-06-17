@@ -29,24 +29,33 @@ open class Story(var id: String? = null,
         fun createStoryFromJsonObject(jsonStory: JSONObject): Story {
             val id = jsonStory["id"] as String
             val challengeJson = jsonStory["challenge"] as JSONObject
+
+            //Winner and its attributes
             val winnerJson = challengeJson["winner"] as JSONObject
             val winnerId = winnerJson["userID"] as String
             val winnerSetResult = winnerJson["setResult"] as Int
             val winner = StoryPlayer(userId = winnerId, setResult = winnerSetResult)
+
+            //Loser and its attributes
             val loserJson = challengeJson["loser"] as JSONObject
             val loserId = loserJson["userID"] as String
             val loserSetResult = loserJson["setResult"] as Int
             val loser = StoryPlayer(userId = loserId, setResult = loserSetResult)
+
+            //Loop to build list from comments array
             val commentsIdsJsonArray = jsonStory["comments"] as JSONArray
             var commentsIds = mutableListOf<String>()
             for (counter in 0 until commentsIdsJsonArray.length()){
                 commentsIds.add(commentsIdsJsonArray.getString(counter))
             }
+
+            //Loop to build list from likes array
             val likesIdsJsonArray = jsonStory["likes"] as JSONArray
             var likesIds = mutableListOf<String>()
             for (counter in 0 until likesIdsJsonArray.length()){
                 likesIds.add(likesIdsJsonArray.getString(counter))
             }
+
             val date = SimpleDateFormat("yyyy-mm-dd")
                     .parse(jsonStory["date"] as String)
 
