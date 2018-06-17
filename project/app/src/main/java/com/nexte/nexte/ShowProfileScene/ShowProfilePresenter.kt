@@ -92,7 +92,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
             val time = dateToShow.format(stage.date)
 
-            val dateResults = "Desafio: " + stage.date.toString()
+            val dateResults = "Desafio: " + time
             val setResult = "SET: " + stage.setChallenger + " x " + stage.setChallenged
             val gamesResult = "JOGOS: " + getNumberOfSets(stage.firstGame)  +
                                           getNumberOfSets(stage.secondGame) +
@@ -121,7 +121,14 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     }
 
-    private fun getChallengeResult(challenge: Challenge, user: User) : ShowProfileModel.ChallengeResult{
+    /**
+     * This function get the result of the challenge, which defines if the owner of the profile
+     * won or lost the challenge
+     *
+     * @param challenge the analysed challenge to be shown on screen
+     * @param user current user owner of the profile shown
+     */
+    fun getChallengeResult(challenge: Challenge, user: User) : ShowProfileModel.ChallengeResult{
         val result: ShowProfileModel.ChallengeResult
         if(challenge.winner == user.id){
             result = ShowProfileModel.ChallengeResult.WON
@@ -134,7 +141,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     }
 
     /**
-     * Decides wether if the opponent is the challenger or the challenged
+     * Decides whether if the opponent is the challenger or the challenged
      *
      * @param challenge analysed challenge to be matched to user
      * @param user user owner of the profile to be shown

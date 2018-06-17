@@ -144,6 +144,51 @@ class ShowProfilePresenterTest {
     }
 
     @Test
+    fun getOpponentChallengedFail(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "15",
+                "13",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+        val userTest =  User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+
+        val returnTest = this.presenter?.userManager?.get("1")
+
+        //call
+        val testReturn = this.presenter?.getOponent(challengeTest, userTest)
+
+        //assert
+        assertNull(testReturn)
+
+
+    }
+
+    @Test
     fun getOpponentChallengedSuccess(){
         //prepare
         val challengeTest = Challenge("1",
@@ -349,6 +394,92 @@ class ShowProfilePresenterTest {
         points = presenter?.calculateWinnerInHeadToHead(points, challenge, user, opponent)!!
 
         assertEquals(points, mutableListOf(0, 1))
+
+    }
+
+    @Test
+    fun getChallengeResultWinner(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "13",
+                "15",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+
+        val userTest =  User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+
+        //call
+        val returnResult = this.presenter?.getChallengeResult(challengeTest, userTest)
+
+        //assert
+        assertEquals(ShowProfileModel.ChallengeResult.WON, returnResult)
+
+    }
+
+    @Test
+    fun getChallengeResultLost(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "15",
+                "13",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+
+        val userTest =  User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+
+        //call
+        val returnResult = this.presenter?.getChallengeResult(challengeTest, userTest)
+
+        //assert
+        assertEquals(ShowProfileModel.ChallengeResult.LOST, returnResult)
 
     }
 
