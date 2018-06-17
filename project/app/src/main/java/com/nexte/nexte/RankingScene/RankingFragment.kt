@@ -86,8 +86,8 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         return view
     }
 
-    private fun goToShowProfileView(name: String?) {
-        val fragment = ShowProfileFragment().getInstance(name)
+    private fun goToShowProfileView(id: String) {
+        val fragment = ShowProfileFragment().getInstance(id)
         fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
     }
 
@@ -307,7 +307,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.efficiency?.text = item.player.userEfficiency
             itemHolder?.profileImage?.setImageResource(item.player.userPictureURL)
             itemHolder?.profileButton?.setOnClickListener{
-                (fragment as RankingFragment).goToShowProfileView(item.player.userName)
+                (fragment as RankingFragment).goToShowProfileView(item.player.id)
             }
 
             val rankingFragment = fragment as RankingFragment

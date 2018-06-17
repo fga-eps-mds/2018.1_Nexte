@@ -78,10 +78,8 @@ class ShowProfileModelTest {
 
         //call
         val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer)
-        viewModel.playerInfo.rank
-        viewModel.playerInfo.name
-        viewModel.playerInfo.email
-
+        val img = formattedPlayer.profileImage
+        formattedPlayer.profileImage = 2
         viewModel.playerInfo = formattedPlayer
 
         //assert
@@ -90,6 +88,8 @@ class ShowProfileModelTest {
         assertEquals(formattedPlayer.name, viewModel.playerInfo.name)
         assertEquals(formattedPlayer.rank, viewModel.playerInfo.rank)
         assertEquals(formattedPlayer.email, viewModel.playerInfo.email)
+        assertEquals(img, R.drawable.profile_image9)
+        assertEquals(formattedPlayer.profileImage, 2)
     }
 
     @Test
