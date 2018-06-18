@@ -103,8 +103,8 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
             val opponent = getOponent(challenge, user)
             val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
                     user.id, opponent!!.id)
-            val opponentName = opponent?.name
-            val opponentPictureUrl = opponent?.profilePicture
+            val opponentName = opponent.nickname
+            val opponentPictureUrl = opponent.profilePicture
             val opponentAddress = validateUserPhoto(opponentPictureUrl)
             val opponentColor = Color.BLUE
             val challengeResult = getChallengeResult(challenge, user)
