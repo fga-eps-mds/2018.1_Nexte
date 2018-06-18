@@ -60,7 +60,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var playerIdToShow: String = ""
     var userManager: UserManager? = null
     val graphManager = GraphManager(this)
-    var buttonC: Button? = null
+    var contactButton: Button? = null
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -104,8 +104,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             fragmentTransaction.commit()
         }
 
-        buttonC = newView?.findViewById(R.id.buttonC)
-        buttonC?.setOnClickListener {
+        contactButton = newView?.findViewById(R.id.contactButton)
+        contactButton?.setOnClickListener {
             val contact = ContactDialogFragment()
             contact.show(this.fragmentManager, "Contact")
         }
@@ -378,7 +378,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
-        buttonC?.setOnClickListener {
+        contactButton?.setOnClickListener {
             val contact = ContactDialogFragment()
             contact.playerInfo = viewModel.playerInfo
             contact.show(this.fragmentManager, "Contact")
