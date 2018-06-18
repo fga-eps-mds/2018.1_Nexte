@@ -1,6 +1,8 @@
 package com.nexte.nexte.ShowProfileScene
 
 import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.Challenge.ChallengeAdapterSpy
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
@@ -25,6 +27,7 @@ class ShowProfilePresenterTest {
         this.presenter = ShowProfilePresenter()
         this.presenter?.viewScene = mock
         this.presenter?.userManager = UserManager(UserAdapterSpy())
+
     }
 
 
@@ -480,6 +483,56 @@ class ShowProfilePresenterTest {
 
         //assert
         assertEquals(ShowProfileModel.ChallengeResult.LOST, returnResult)
+
+    }
+
+    @Test
+    fun setAndGetChallengeManager(){
+        //prepare
+        this.presenter?.challengeManager = ChallengeManager(ChallengeAdapterSpy())
+        val testChallengeManager = ChallengeManager(ChallengeAdapterSpy())
+        val testGet = testChallengeManager.get("1")
+
+        //call
+        this.presenter?.challengeManager = testChallengeManager
+        val testGetChallenge =  this.presenter?.challengeManager?.get("1")
+
+        //assert
+        assertNotNull(this.presenter?.challengeManager)
+        assertEquals(testGet?.winner, testGetChallenge?.winner)
+        assertEquals(testGet?.challengedId, testGetChallenge?.challengedId)
+        assertEquals(testGet?.challengerId, testGetChallenge?.challengerId)
+
+    }
+
+    @Test
+    fun validateUserPhotoSuccess(){
+        //prepare
+        val testIdentifier = "2"
+        val expectedReturn = 2
+
+        //call
+        val resultTest = this.presenter?.validateUserPhoto(testIdentifier)
+
+        //assert
+        assertEquals(expectedReturn, resultTest)
+    }
+
+    @Test
+    fun validateUserPhotoFail(){
+        //prepare
+        val testIdentifier1 = null
+        val testIdentifier2 = ""
+
+        val expectedReturn = R.mipmap.ic_launcher
+
+        //call
+        val resultTest1 = this.presenter?.validateUserPhoto(testIdentifier1)
+        val resultTest2 = this.presenter?.validateUserPhoto(testIdentifier2)
+
+        //assert
+        assertEquals(expectedReturn, resultTest1)
+        assertEquals(expectedReturn, resultTest2)
 
     }
 

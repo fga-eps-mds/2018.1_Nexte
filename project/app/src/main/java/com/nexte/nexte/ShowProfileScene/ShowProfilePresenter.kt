@@ -232,9 +232,14 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     }
 
     /**
+     * Function that get the string with the id of the User photo and returns a valid integer if the user
+     * is valid, which means it exists
      *
+     * @param imageIdentifier string containing the identifier of the profile image
+     *
+     * @return valid integer or standard ic_launcher
      */
-    private fun validateUserPhoto(imageIdentifier: String?) : Int {
+    fun validateUserPhoto(imageIdentifier: String?) : Int {
 
         if(imageIdentifier != null && imageIdentifier != "") {
             return imageIdentifier.toInt()
