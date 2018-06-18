@@ -29,13 +29,9 @@ import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.provider.Contacts
 import android.provider.ContactsContract
-import android.telephony.TelephonyManager
-import android.util.Log
+
 
 
 /**

@@ -197,9 +197,8 @@ class RankingPresenterTest {
         //call
         val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
-        assertEquals(returnedValue, "" + (todayDate.day - twoDaysAgo.day) + " days")
+        assertEquals(returnedValue, "" + (todayDate.month - twoDaysAgo.month) + " months")
     }
-
     @Test
     fun successCalculatePlayerLastGameCase5(){
         //prepare
