@@ -47,6 +47,9 @@ class UserOnBoardingView : AppCompatActivity() {
                 sentRequestButton.setOnClickListener {
                     this.activity.finish()
                 }
+                closeView.setOnClickListener{
+                    this.activity.finish()
+                }
             }
         }
     }
@@ -73,7 +76,7 @@ class UserOnBoardingView : AppCompatActivity() {
     class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
         companion object {
-            const val NUM_PAGES = 3
+            const val numPages = 3
         }
 
         override fun getItem(position: Int): Fragment {
@@ -81,7 +84,7 @@ class UserOnBoardingView : AppCompatActivity() {
         }
 
         override fun getCount(): Int {
-            return NUM_PAGES
+            return numPages
         }
     }
 

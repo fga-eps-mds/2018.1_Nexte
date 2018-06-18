@@ -75,6 +75,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         startActivity(intent)
     }
 
+    override fun onBackPressed() {
+        this.finishAffinity()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
