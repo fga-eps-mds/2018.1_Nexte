@@ -380,39 +380,44 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         }
     }
 
+    /**
+     * Adapter Class to control recycler fragment on Show Profile
+     *
+     * @property challengesFormatted It's a latest played games of the user formatted
+     * @property fragment Fragment that will show this adapter
+     */
     class ShowProfileAdapter(private val challengesFormatted: List<ShowProfileModel.FormattedChallenge>,
                              private val fragment: Fragment) : RecyclerView.Adapter<ShowProfileAdapter.ViewHolder>(){
 
-        /**
-         *
-         */
         override fun getItemCount(): Int {
 
              return this.challengesFormatted.size
         }
 
-        /**
-         *
-         */
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
             holder.bindView(challengesFormatted[position])
 
         }
 
-        /**
-         *
-         */
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShowProfileAdapter.ViewHolder{
             val view = LayoutInflater.from(fragment.activity).inflate(R.layout.columns_challenges_show, parent,
                     false)
             return ShowProfileAdapter.ViewHolder(view)
         }
 
+
+        /**
+         * View Holder Class to control items that will show on Recycler fragment
+         *
+         * @property itemView View that contains properties to show on recycler fragment
+         */
         class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
             /**
+             * Function to bind all information about last played games of the user
              *
+             * @param challengeFormatted Formatted data to show last played games
              */
             fun bindView(challengeFormatted: ShowProfileModel.FormattedChallenge){
                 itemView.challengedPhoto.setImageResource(challengeFormatted.opponentPictureAdress)

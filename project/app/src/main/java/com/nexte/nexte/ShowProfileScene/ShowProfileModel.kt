@@ -53,7 +53,16 @@ class ShowProfileModel {
             var profileImage: Int?)
 
     /**
+     * This class hold the latest played games of the user formatted
      *
+     * @property challengeDates date of the played challenge
+     * @property setsResult sets information of the games
+     * @property gamesResults the final result of the games
+     * @property headToHeadResults the information of who won more against each other
+     * @property opponentName the name of the opponent player
+     * @property opponentPictureUrl the picture url of the opponent player
+     * @property opponentPictureUrl the color to show of the opponent player
+     * @property challengeResult the information about the result for the player
      */
     class FormattedChallenge(
             var challengeDates: String,
@@ -66,6 +75,9 @@ class ShowProfileModel {
             var opponentColor: Int,
             var challengeResult: ChallengeResult)
 
+    /**
+     * Enum to represent the result of the challenge for the player
+     */
     enum class ChallengeResult{
             WON, LOST, WO
     }
