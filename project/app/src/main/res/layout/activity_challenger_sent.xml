@@ -22,25 +22,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/columns_challenged" />
 
-    <ImageView
-        android:id="@+id/imageBackground"
-        android:layout_width="459dp"
-        android:layout_height="208dp"
-        android:layout_marginTop="85dp"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/challengeRecyclerView"
-        app:srcCompat="?android:attr/tooltipFrameBackground" />
 
     <TextView
         android:id="@+id/expandedName"
         android:layout_width="121dp"
         android:layout_height="21dp"
-        android:visibility="invisible"
+
         android:layout_marginStart="20dp"
         android:layout_marginTop="200dp"
         android:text="@string/nome"
-
+        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/expandedLosses"

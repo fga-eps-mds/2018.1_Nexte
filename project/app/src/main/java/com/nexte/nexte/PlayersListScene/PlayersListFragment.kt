@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
 import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.MainActivity
@@ -79,6 +80,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     var expandedWins: TextView?= null
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
+    //var imageExpanded: ImageView?= null
     var noPlayersText: TextView?= null
     var message: TextView?= null
     var interactor: ChallengeBusinessLogic?= null
@@ -153,6 +155,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.noPlayersText = newView?.findViewById(R.id.noPlayersText)
         this.message = newView?.findViewById(R.id.message)
 
+
             if(hasMatch!!) {
                 this.message?.visibility = View.VISIBLE
             }
@@ -211,14 +214,13 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         val currentPlayer = viewModel.challengedRankingDetails
 
         this.expandedLosses?.visibility = View.VISIBLE
-        this.expandedLosses?.text = currentPlayer.loses
         this.expandedName?.visibility = View.VISIBLE
         this.expandedName?.text = currentPlayer.name
         this.expandedRankingTextView?.visibility = View.VISIBLE
         this.expandedRankingTextView?.text = currentPlayer.rankingPosition
         this.expandedWins?.visibility = View.VISIBLE
         this.expandedWins?.text = currentPlayer.wins
-        this.linearLayout?.visibility = View.VISIBLE
+        //this.imageExpanded?.visibility = View.VISIBLE
 
     }
 
