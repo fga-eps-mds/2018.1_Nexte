@@ -75,8 +75,12 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
     /**
      * Function that formats the challenge to be displayed on fragment
+     *
+     * @param user user that need to be formatted
+     *
+     * @return formatted user
      */
-    private fun formatChallenges(user: User) : List<ShowProfileModel.FormattedChallenge> {
+    fun formatChallenges(user: User) : List<ShowProfileModel.FormattedChallenge> {
         val formattedChallengesMutable = mutableListOf<ShowProfileModel.FormattedChallenge>()
         var challenges = challengeManager?.getPlayedChallengesFromUser(user.id)
         if (challenges == null) {
@@ -102,9 +106,9 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
 
             val opponent = getOponent(challenge, user)
             val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
-                    user.id, opponent!!.id)
-            val opponentName = opponent.nickname
-            val opponentPictureUrl = opponent.profilePicture
+                    user.id, opponent?.id)
+            val opponentName = opponent?.nickname
+            val opponentPictureUrl = opponent?.profilePicture
             val opponentAddress = validateUserPhoto(opponentPictureUrl)
             val opponentColor = Color.BLUE
             val challengeResult = getChallengeResult(challenge, user)
@@ -170,7 +174,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
      *
      * @return head to head formatted
      */
-    private fun calculateHeadToHead(challenges: List<Challenge>, user: String, opponent: String) :
+    fun calculateHeadToHead(challenges: List<Challenge>, user: String, opponent: String?) :
                             String {
 
         var points = mutableListOf(0, 0) //0 - user //1 - opponent
@@ -183,9 +187,19 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
     }
 
     /**
+     * This function is responsible to calculate whether the winner on a challenge is the
+     * owner of the profile or the opponent and set a list to the correct number of game won
+     * by each of them
      *
+     * @param points mutable list with the number of matches won by the owner on position 0 and
+     * number of matches won by opponent on position 1
+     * @param challenge challenge analysed at the moment
+     * @param user id of the owner of the profile
+     * @param opponent id of the opponent
+     *
+     * @return mutable list with the correct number of games won by opponent or owner against each other
      */
-    fun calculateWinnerInHeadToHead(points: MutableList<Int>, challenge: Challenge, user: String, opponent: String):
+    fun calculateWinnerInHeadToHead(points: MutableList<Int>, challenge: Challenge, user: String, opponent: String?):
             MutableList<Int>{
 
         if (challenge.challengerId == user && challenge.challengedId == opponent){

@@ -536,6 +536,83 @@ class ShowProfilePresenterTest {
 
     }
 
+    @Test
+    fun calculateHeadToHead(){
+        //prepare
+        val challengeTest = Challenge("1",
+                "15",
+                "13",
+                Date(2017, 11, 19),
+                Challenge.Status.CONFIRMED,
+                Challenge.Stage.Played(
+                        1,
+                        0,
+                        Date(2017, 11, 25),
+                        Challenge.Stage.Played.Game(8, 4),
+                        null, null, null, null, null
+                )
+        )
+
+        val listTest = listOf(challengeTest)
+
+        //call
+        val testPoints = this.presenter?.calculateHeadToHead(listTest, "15", "13")
+
+        //assert
+        assertEquals("1 x 0", testPoints)
+    }
+
+    @Test
+    fun testFormatChallengesSuccess(){
+        //prepare
+        val testUser = UserAdapterSpy().get("1")
+        this.presenter?.challengeManager = ChallengeManager(ChallengeAdapterSpy())
+
+        //call
+        val testReturn = this.presenter?.formatChallenges(testUser!!)
+
+        //assert
+        assertEquals(testReturn!![0].headToHeadResults, "Head to Head: 1 x 0")
+        assertEquals(testReturn!![0].setsResult, "SET: 1 x 0")
+        assertEquals(testReturn[0].gamesResults, "JOGOS: 8/4  ")
+        assertEquals(testReturn[0].challengeResult , ShowProfileModel.ChallengeResult.WON)
+        assertEquals(testReturn[0].opponentName , "uset2yay")
+
+    }
+
+    @Test
+    fun testFormatChallengesFail(){
+        //prepare
+        val testUser = User("13",
+                "Nick Cairo",
+                null,
+                "Cairo",
+                Date(1993, 3, 13),
+                12,
+                "cairo@nexte.com",
+                "130",
+                68,
+                96,
+                User.Gender.MALE,
+                null,
+                User.Status.AVAILABLE,
+                null,
+                null,
+                emptyList()
+        )
+        this.presenter?.challengeManager = ChallengeManager(ChallengeAdapterSpy())
+
+        //call
+        val testReturn = this.presenter?.formatChallenges(testUser)
+
+        //assert
+        assertNotNull(testReturn)
+        assertEquals(1, testReturn?.size)
+
+    }
+
+
+
     @After
     fun tearDown() {
         this.mock = null

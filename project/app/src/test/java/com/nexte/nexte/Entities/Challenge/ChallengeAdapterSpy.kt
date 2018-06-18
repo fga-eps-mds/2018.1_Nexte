@@ -44,10 +44,16 @@ class ChallengeAdapterSpy: ChallengeAdapter {
     private fun mockChallenge(): Challenge {
         val id = "1"
         val challengerId = "1"
-        val challengedId = "1"
+        val challengedId = "2"
         val challengeDate = Date()
         val status = Challenge.Status.CONFIRMED
-        val stage = Challenge.Stage.Scheduled()
+        val stage = Challenge.Stage.Played(
+                1,
+                0,
+                Date(2017, 11, 25),
+                Challenge.Stage.Played.Game(8, 4),
+                null, null, null, null, null
+        )
 
         // Call
         val challenge = Challenge(id, challengerId, challengedId, challengeDate, status, stage)
