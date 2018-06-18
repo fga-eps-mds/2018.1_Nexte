@@ -31,7 +31,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
-
+import android.widget.Toast
 
 
 /**
@@ -395,6 +395,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     }
 }
 
+/**
+ * This class implements DialogFragment, and it is responsible for implementing the functionality of
+ * creating an Alertdialog, which brings 4 interaction options to users
+ *
+ * @property playerInfo responsible to access information from a formatted player of Model
+ */
 
 class ContactDialogFragment: DialogFragment() {
 
@@ -427,25 +433,35 @@ class ContactDialogFragment: DialogFragment() {
                             startActivity(contactIntent)
                         }
                         3 -> {
+                            try {
 
-                            val whatsIntent = Intent(Intent.ACTION_SEND)
-                            val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
-                            whatsIntent.setData(Uri.parse(url))
-                            whatsIntent.setType("text/plain")
-                            whatsIntent.setPackage("com.whatsapp")
-                            whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
-                            whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
-                            startActivity(whatsIntent)
+                                val whatsIntent = Intent(Intent.ACTION_SEND)
+                                val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
+                                whatsIntent.setData(Uri.parse(url))
+                                whatsIntent.setType("text/plain")
+                                whatsIntent.setPackage("com.whatsapp")
+                                whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+                                whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+                                startActivity(whatsIntent)
+
+                                } catch (e: Exception){
+                                Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show();
+                                    }
+
                             }
 
                         4 -> {
+                            try {
 
-                            val telegramIntent = Intent(Intent.ACTION_SEND)
-                            telegramIntent.setType("text/plain")
-                            telegramIntent.setPackage("org.telegram.messenger")
-                            telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
-                            telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
-                            startActivity(telegramIntent)
+                                val telegramIntent = Intent(Intent.ACTION_SEND)
+                                telegramIntent.setType("text/plain")
+                                telegramIntent.setPackage("org.telegram.messenger")
+                                telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+                                telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+
+                                } catch (e: Exception){
+                                    Toast.makeText(activity,"Você não possui o aplicativo Telegram instalado" + e.toString(),Toast.LENGTH_SHORT).show();
+                                    }
                         }
                     }
                 }).setIcon(R.drawable.icon_date)
