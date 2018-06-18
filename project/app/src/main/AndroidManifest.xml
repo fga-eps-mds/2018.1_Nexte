@@ -47,7 +47,7 @@
             android:name=".LoginScene.LoginView"
             android:label="Login" />
 
-        <activity android:name=".UserOnBoardingActivity"/>
+        <activity android:name=".UserOnBoardingView"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"

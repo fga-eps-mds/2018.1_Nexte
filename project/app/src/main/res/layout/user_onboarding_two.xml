@@ -16,44 +16,40 @@
             android:id="@+id/textOnTop"
             android:layout_width="232dp"
             android:layout_height="77dp"
+            android:layout_marginTop="48dp"
             android:gravity="center"
-            android:text="Estes são os clubes que estão participando do Nexte até o momento"
+            android:text="@string/estes_s_o_os_clubes_que_est_o_participando_do_nexte_at_o_momento"
             android:textColor="#ffffff"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/imageView3"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/textOnEnd"
             android:layout_width="149dp"
             android:layout_height="40dp"
+            android:layout_marginTop="28dp"
             android:gravity="center"
-            android:text="Cinta Liga de Tênis"
+            android:text="@string/cinta_liga_de_t_nis"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView3"/>
+            app:layout_constraintTop_toBottomOf="@id/imageView3" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="262dp"
+            android:layout_width="0dp"
             android:layout_height="242dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.498"
-            app:srcCompat="@mipmap/user_onboarding_clt" />
+            app:layout_constraintTop_toBottomOf="@+id/textOnTop"
+            app:srcCompat="@mipmap/user_onboarding_clt"
+            android:contentDescription="@string/imagem" />
 
     </android.support.constraint.ConstraintLayout>
 

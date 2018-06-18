@@ -7,9 +7,8 @@ import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
 import com.facebook.accountkit.*
-import com.nexte.nexte.UserOnBoardingActivity
+import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
-import kotlinx.android.synthetic.main.row_feed.*
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -53,7 +52,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         this.setup()
         this.createAuthenticationRequest()
 
-//        val intent = Intent(this, UserOnBoardingActivity::class.java)
+//        val intent = Intent(this, UserOnBoardingView::class.java)
 //        startActivity(intent)
 
 //
@@ -71,6 +70,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         navigationLogin.setOnClickListener{
             this.finish()
         }
+
+        val intent = Intent(this, UserOnBoardingView::class.java)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
