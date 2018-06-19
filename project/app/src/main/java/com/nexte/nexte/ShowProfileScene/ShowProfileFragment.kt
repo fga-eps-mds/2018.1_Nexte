@@ -133,11 +133,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val player = userManager?.get(playerIdToShow)
         if(this.playerIdToShow == UserSingleton.loggedUserID){
             //todo: setar action listener
         }
         else {
-            val player = userManager?.get(playerIdToShow)
             statusButton.isEnabled = false
             when (player?.status) {
                 User.Status.AVAILABLE -> {
@@ -152,6 +152,11 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
                 }
             }
         }
+        if(player != null){
+            this.numb_games.text = (player.wins + player.loses).toString()
+            this.numb_victory.text = player.wins.toString()
+        }
+
     }
 
 
