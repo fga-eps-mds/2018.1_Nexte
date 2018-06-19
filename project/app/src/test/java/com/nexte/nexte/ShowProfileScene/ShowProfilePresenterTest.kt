@@ -44,7 +44,7 @@ class ShowProfilePresenterTest {
                 null,
                 emptyList()
         ))
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com",  profileImage = R.drawable.profile_image9)
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com", number = "130", profileImage = R.drawable.profile_image9)
 
         //call
         this.presenter?.presentUserProfile(response = response)
@@ -53,6 +53,7 @@ class ShowProfilePresenterTest {
         assertEquals(formattedPlayer.name, this.mock?.formattedPlayer?.name)
         assertEquals(formattedPlayer.rank, this.mock?.formattedPlayer?.rank)
         assertEquals(formattedPlayer.email, this.mock?.formattedPlayer?.email)
+        assertEquals(formattedPlayer.number, this.mock?.formattedPlayer?.number)
     }
 
 
@@ -76,7 +77,7 @@ class ShowProfilePresenterTest {
                 null,
                 emptyList()
         ))
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com",  profileImage = R.drawable.profile_image9)
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Nick Cairo", rank = "#12", email = "cairo@nexte.com", number = "130",  profileImage = R.drawable.profile_image9)
 
         //call
         this.presenter?.presentUserProfile(response = response)
@@ -85,6 +86,7 @@ class ShowProfilePresenterTest {
         assertEquals(formattedPlayer.name, this.mock?.formattedPlayer?.name)
         assertEquals(formattedPlayer.rank, this.mock?.formattedPlayer?.rank)
         assertEquals(formattedPlayer.email, this.mock?.formattedPlayer?.email)
+        assertEquals(formattedPlayer.number, this.mock?.formattedPlayer?.number)
     }
 
     @Test

@@ -59,7 +59,7 @@ class ChallengeAdapterRealm: ChallengeAdapter {
     }
 
     private fun getChallengesOfUser(allChallenges: List<Challenge>, userId: String): List<Challenge>{
-        if(allChallenges.size > five){
+        if(allChallenges.size <= five){
             return allChallenges
         }
 
