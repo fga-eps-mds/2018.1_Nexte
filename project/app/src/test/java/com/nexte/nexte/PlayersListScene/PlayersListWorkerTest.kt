@@ -11,6 +11,7 @@ import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -169,19 +170,16 @@ class PlayersListWorkerTest: HelpForRealm() {
     @Test
     fun successGenerateChallenge(){
         //prepare
-        val request = PlayersListModel.ChallengeButtonRequest.Request("Mendelson")
+        val request = PlayersListModel.ChallengeButtonRequest.Request("1")
 
         //call
-        this.worker?.generateChallenge(request, { response ->
-            //prepare
-            val username = response.username
-            val match = response.challenge
+        this.worker?.generateChallenge(request)
 
-            //assert
-            assertNotNull(match)
-            assertNotNull(response)
-            assertEquals(username,"Mendelson")
-        })
+        //assert
+        assertNotNull(this.updateLogicMocker?.response2?.challenge)
+        assertNotNull(this.updateLogicMocker?.response2)
+        assertEquals(this.updateLogicMocker?.response2?.challenge?.challenged?.name,"User test")
+        assertEquals(this.updateLogicMocker?.response2?.challenge?.challenger?.name,UserSingleton.loggedUser.name)
 
     }
 
@@ -229,10 +227,15 @@ class PlayersListWorkerTest: HelpForRealm() {
 
         var response: PlayersListModel.ShowRankingPlayersRequest.Response? = null
         var hasBeenHere = false
+        var response2: PlayersListModel.ChallengeButtonRequest.Response? = null
 
         override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
             this.hasBeenHere = true
             this.response = response
+        }
+
+        override fun generateChallengeReponse(response: PlayersListModel.ChallengeButtonRequest.Response) {
+            this.response2 = response
         }
     }
 }

@@ -15,7 +15,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
-import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.R

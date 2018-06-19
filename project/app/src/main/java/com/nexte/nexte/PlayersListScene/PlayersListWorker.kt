@@ -49,7 +49,6 @@ class PlayersListWorker {
     val httpHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
         when (result) {
             is Result.Failure -> {
-                result.get()
                 println(result.getException())
             }
             is Result.Success -> {
