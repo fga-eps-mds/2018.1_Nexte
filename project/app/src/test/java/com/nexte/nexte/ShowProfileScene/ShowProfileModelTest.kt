@@ -74,7 +74,7 @@ class ShowProfileModelTest {
     @Test
     fun successViewModel(){
         //prepare
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", email = "luis@email.com",  profileImage = R.drawable.profile_image9)
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", email = "luis@email.com", number = "130",  profileImage = R.drawable.profile_image9)
 
         //call
         val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer)
@@ -100,7 +100,7 @@ class ShowProfileModelTest {
         val email = "luis@email.com"
 
         //call
-        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", email = "luis@email.com",  profileImage = R.drawable.profile_image9)
+        val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", email = "luis@email.com", number = "130",  profileImage = R.drawable.profile_image9)
 
         formattedPlayer.email = email
         formattedPlayer.name = name
