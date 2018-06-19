@@ -84,6 +84,10 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     var noPlayersText: TextView?= null
     var message: TextView?= null
     var interactor: ChallengeBusinessLogic?= null
+    var expandedExploitation: TextView? = null
+    var expandedLastestGame: TextView? = null
+    var expandedCategory: TextView? = null
+
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
 
@@ -154,6 +158,9 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedWins = newView?.findViewById(R.id.expandedWins)
         this.noPlayersText = newView?.findViewById(R.id.noPlayersText)
         this.message = newView?.findViewById(R.id.message)
+        this.expandedExploitation = newView?.findViewById(R.id.expandedExploitation)
+        this.expandedLastestGame = newView?.findViewById(R.id.expandedLastestGame)
+        this.expandedCategory = newView?.findViewById(R.id.expandedCategory)
 
 
             if(hasMatch!!) {
@@ -220,6 +227,13 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedRankingTextView?.text = currentPlayer.rankingPosition
         this.expandedWins?.visibility = View.VISIBLE
         this.expandedWins?.text = currentPlayer.wins
+        this.expandedLastestGame?.text = "12/04/2018"
+        this.expandedLastestGame?.visibility = View.VISIBLE
+        this.expandedExploitation?.text = "Aproveitamento:40%"
+        this.expandedExploitation?.visibility = View.VISIBLE
+        this.expandedCategory?.visibility = View.VISIBLE
+        this.expandedCategory?.text = "Tenista profissional"
+
         //this.imageExpanded?.visibility = View.VISIBLE
 
     }
@@ -290,6 +304,10 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedRankingTextView?.text = ""
         this.expandedWins?.visibility = View.INVISIBLE
         this.expandedWins?.text = ""
+        this.expandedLastestGame?.text = ""
+        this.expandedLastestGame?.visibility = View.INVISIBLE
+        this.expandedExploitation?.text = ""
+        this.expandedExploitation?.visibility = View.INVISIBLE
     }
 
     /**
