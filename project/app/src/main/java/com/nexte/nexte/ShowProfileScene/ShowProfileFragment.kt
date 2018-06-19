@@ -2,6 +2,7 @@ package com.nexte.nexte.ShowProfileScene
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
@@ -412,60 +413,79 @@ class ContactDialogFragment: DialogFragment() {
                 .setItems(R.array.contactArray, DialogInterface.OnClickListener { _, which ->
                     when (which) {
                         0 -> {
-                            val number = Uri.parse("tel:${playerInfo?.number}")
-                            val callIntent = Intent(Intent.ACTION_DIAL, number)
-                            startActivity(callIntent)
+                            callContactDialog()
                         }
                         1 -> {
-                            val emailIntent = Intent(android.content.Intent.ACTION_SEND)
-                            emailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            emailIntent.type = "vnd.android.cursor.item/email"
-                            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(playerInfo?.email))
-                            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Nexte Notification")
-                            startActivity(Intent.createChooser(emailIntent, "Enviando email..."))
+                            addContactDialog()
                         }
                         2 -> {
-                            val contactIntent = Intent(Intent.ACTION_INSERT)
-                            contactIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
-                            contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, playerInfo?.name)
-                            contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, playerInfo?.email)
-                            contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, playerInfo?.number)
-                            startActivity(contactIntent)
+                            emailDialog()
                         }
                         3 -> {
-                            try {
-
-                                val whatsIntent = Intent(Intent.ACTION_SEND)
-                                val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
-                                whatsIntent.setData(Uri.parse(url))
-                                whatsIntent.setType("text/plain")
-                                whatsIntent.setPackage("com.whatsapp")
-                                whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
-                                whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
-                                startActivity(whatsIntent)
-
-                                } catch (e: Exception){
-                                Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show();
-                                    }
-
+                                whatsAppDialog()
                             }
 
                         4 -> {
-                            try {
-
-                                val telegramIntent = Intent(Intent.ACTION_SEND)
-                                telegramIntent.setType("text/plain")
-                                telegramIntent.setPackage("org.telegram.messenger")
-                                telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
-                                telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
-
-                                } catch (e: Exception){
-                                    Toast.makeText(activity,"Você não possui o aplicativo Telegram instalado" + e.toString(),Toast.LENGTH_SHORT).show();
-                                    }
+                            telegramDialog()
                         }
                     }
                 }).setIcon(R.drawable.icon_date)
         return builder.create()
+    }
+
+    fun callContactDialog() {
+        val number = Uri.parse("tel:${playerInfo?.number}")
+        val callIntent = Intent(Intent.ACTION_DIAL, number)
+        startActivity(callIntent)
+    }
+
+    fun addContactDialog() {
+        val emailIntent = Intent(android.content.Intent.ACTION_SEND)
+        emailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        emailIntent.type = "vnd.android.cursor.item/email"
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(playerInfo?.email))
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Nexte Notification")
+        startActivity(Intent.createChooser(emailIntent, "Enviando email..."))
+    }
+
+    fun emailDialog() {
+        val contactIntent = Intent(Intent.ACTION_INSERT)
+        contactIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
+        contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, playerInfo?.name)
+        contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, playerInfo?.email)
+        contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, playerInfo?.number)
+        startActivity(contactIntent)
+    }
+
+    fun whatsAppDialog() {
+        try {
+
+            val whatsIntent = Intent(Intent.ACTION_SEND)
+            val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
+            whatsIntent.setData(Uri.parse(url))
+            whatsIntent.setType("text/plain")
+            whatsIntent.setPackage("com.whatsapp")
+            whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+            whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+            startActivity(whatsIntent)
+
+        } catch (e: ActivityNotFoundException.){
+            Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    fun telegramDialog() {
+        try {
+
+            val telegramIntent = Intent(Intent.ACTION_SEND)
+            telegramIntent.setType("text/plain")
+            telegramIntent.setPackage("org.telegram.messenger")
+            telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+            telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+
+        } catch (e: ActivityNotFoundException){
+            Toast.makeText(activity,"Você não possui o aplicativo Telegram instalado" + e.toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
