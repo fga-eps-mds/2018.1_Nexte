@@ -50,6 +50,7 @@ class ShowProfileModel {
             var rank: String?,
 
             var email: String?,
+            var number: String?,
             var profileImage: Int?)
 
     /**
