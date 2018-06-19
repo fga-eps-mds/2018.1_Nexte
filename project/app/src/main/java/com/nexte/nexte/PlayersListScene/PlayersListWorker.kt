@@ -46,6 +46,7 @@ class PlayersListWorker {
     var userManager: UserManager? = null
     var challengeManager: ChallengeManager = ChallengeManager()
     var updateLogic: PlayerListUpdateLogic? = null
+    var httpBool: Boolean? = null
     val httpHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
         when (result) {
             is Result.Failure -> {
@@ -53,11 +54,8 @@ class PlayersListWorker {
             }
             is Result.Success -> {
                 val json = result.get()
-                var usersList = this.convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
-                usersList = userManager?.updateMany(usersList)!!
-                usersList = usersList.take(5) // First 5 players
-                val newResponse = PlayersListModel.ShowRankingPlayersRequest.Response(usersList)
-                updateLogic?.getPlayersToChallenge(newResponse)
+                createNewResponseFromServer(json.obj())
+
             }
         }
     }
@@ -65,13 +63,26 @@ class PlayersListWorker {
 
         when (result) {
             is Result.Failure -> {
+                httpBool = false
                 println(result.getException())
             }
 
             is Result.Success -> {
+                httpBool = true
                 println(result.get())
             }
         }
+    }
+
+    /**
+     * Method that will create the new response from data that came from server
+     */
+    fun createNewResponseFromServer(json: JSONObject){
+        var usersList = this.convertJsonToListOfUsers(json).sortedBy { it.rankingPosition }
+        usersList = userManager?.updateMany(usersList)!!
+        usersList = usersList.take(5) // First 5 players
+        val newResponse = PlayersListModel.ShowRankingPlayersRequest.Response(usersList)
+        updateLogic?.getPlayersToChallenge(newResponse)
     }
 
 
