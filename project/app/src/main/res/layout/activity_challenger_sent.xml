@@ -30,6 +30,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="#2d2d2d"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/sendChallengeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -117,6 +118,7 @@
         android:layout_height="15sp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_undefeated_ranking"
         app:layout_constraintEnd_toStartOf="@+id/circulo5"
         app:layout_constraintStart_toEndOf="@+id/circulo2"
@@ -128,6 +130,7 @@
         android:layout_height="15sp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_victory_ranking"
         app:layout_constraintEnd_toStartOf="@+id/circulo1"
         app:layout_constraintStart_toEndOf="@+id/circulo4"
@@ -142,6 +145,7 @@
         android:layout_height="15sp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="144dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_defeat_ranking"
         app:layout_constraintEnd_toStartOf="@+id/circulo4"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -155,6 +159,7 @@
         android:layout_height="15dp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_victory_ranking"
         app:layout_constraintEnd_toStartOf="@+id/circulo2"
         app:layout_constraintStart_toEndOf="@+id/circulo3"
@@ -167,10 +172,12 @@
         android:layout_height="15sp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="4dp"
+        android:visibility="invisible"
         android:background="@drawable/circle_empty_ranking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/circulo1"
         app:layout_constraintTop_toTopOf="@+id/expandedName" />
+
 
 
     <Button
@@ -181,6 +188,7 @@
         android:layout_marginTop="50dp"
         android:background="#2d2d2d"
         android:text="Perfil"
+        android:visibility="invisible"
         android:textColor="#e94345"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circulo1" />

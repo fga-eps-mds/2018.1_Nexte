@@ -13,6 +13,7 @@ import android.app.AlertDialog
 import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.MainActivity
@@ -87,6 +88,14 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     var expandedExploitation: TextView? = null
     var expandedLastestGame: TextView? = null
     var expandedCategory: TextView? = null
+    var backgroundExpanded: LinearLayout? = null
+    var circulo1: ImageView? = null
+    var circulo2: ImageView? = null
+    var circulo3: ImageView? = null
+    var circulo4: ImageView? = null
+    var circulo5: ImageView? = null
+    var expanded_perfil: Button? = null
+
 
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
@@ -154,13 +163,19 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.recyclerView = newView?.findViewById(R.id.challengeRecyclerView)
         this.expandedLosses = newView?.findViewById(R.id.expandedLosses)
         this.expandedName = newView?.findViewById(R.id.expandedName)
-//        this.expandedRankingTextView = newView?.findViewById(R.id.expandedRankingTextView)
         this.expandedWins = newView?.findViewById(R.id.expandedWins)
         this.noPlayersText = newView?.findViewById(R.id.noPlayersText)
         this.message = newView?.findViewById(R.id.message)
         this.expandedExploitation = newView?.findViewById(R.id.expandedExploitation)
         this.expandedLastestGame = newView?.findViewById(R.id.expandedLastestGame)
         this.expandedCategory = newView?.findViewById(R.id.expandedCategory)
+        this.backgroundExpanded = newView?.findViewById(R.id.backgroundExpanded)
+        this.expanded_perfil = newView?.findViewById(R.id.expanded_perfil)
+        this.circulo1 = newView?.findViewById(R.id.circulo1)
+        this.circulo2 = newView?.findViewById(R.id.circulo2)
+        this.circulo3 = newView?.findViewById(R.id.circulo3)
+        this.circulo4 = newView?.findViewById(R.id.circulo4)
+        this.circulo5 = newView?.findViewById(R.id.circulo5)
 
 
             if(hasMatch!!) {
@@ -233,6 +248,13 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedExploitation?.visibility = View.VISIBLE
         this.expandedCategory?.visibility = View.VISIBLE
         this.expandedCategory?.text = "Tenista profissional"
+        this.backgroundExpanded?.visibility = View.VISIBLE
+        this.expanded_perfil?.visibility = View.VISIBLE
+        this.circulo1?.visibility = View.VISIBLE
+        this.circulo2?.visibility = View.VISIBLE
+        this.circulo3?.visibility = View.VISIBLE
+        this.circulo4?.visibility = View.VISIBLE
+        this.circulo5?.visibility = View.VISIBLE
 
         //this.imageExpanded?.visibility = View.VISIBLE
 
