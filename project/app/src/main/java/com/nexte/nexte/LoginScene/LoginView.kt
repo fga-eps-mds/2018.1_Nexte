@@ -9,6 +9,11 @@ import android.util.Log
 import com.facebook.accountkit.*
 import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+
+
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -71,8 +76,15 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             this.finish()
         }
 
-        val intent = Intent(this, UserOnBoardingView::class.java)
-        startActivity(intent)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
+        val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
+        if (!previouslyStarted) {
+            val edit = prefs.edit()
+            edit.putBoolean(getString(R.string.pref_previously_started), java.lang.Boolean.TRUE)
+            edit.apply()
+            val intent = Intent(this, UserOnBoardingView::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onBackPressed() {

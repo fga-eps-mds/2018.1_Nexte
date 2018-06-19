@@ -109,5 +109,6 @@
     <string name="e_mail_ou_telefone">E-mail ou telefone</string>
     <string name="solicita_o_de_registro">Solicitação de registro</string>
     <string name="x_uob">X</string>
+    <string name="pref_previously_started">isFirstRun</string>
 
 </resources>
