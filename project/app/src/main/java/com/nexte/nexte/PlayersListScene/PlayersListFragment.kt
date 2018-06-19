@@ -17,6 +17,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.MainActivity
+import com.nexte.nexte.RankingScene.RankingFragment
+import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
 
@@ -226,6 +228,11 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.interactor?.requestChallengedUser(request)
     }
 
+    private fun goToShowProfileView(name: String?) {
+        val fragment = ShowProfileFragment().getInstance(name)
+        fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
+    }
+
     /**
      * Method responsible for showing the clicked player detailed info
      *
@@ -242,21 +249,25 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedRankingTextView?.text = currentPlayer.rankingPosition
         this.expandedWins?.visibility = View.VISIBLE
         this.expandedWins?.text = currentPlayer.wins
-        this.expandedLastestGame?.text = "12/04/2018"
+        this.expandedLastestGame?.text = currentPlayer.latestGame
         this.expandedLastestGame?.visibility = View.VISIBLE
-        this.expandedExploitation?.text = "Aproveitamento:40%"
+        this.expandedExploitation?.text = currentPlayer.efficiency
         this.expandedExploitation?.visibility = View.VISIBLE
         this.expandedCategory?.visibility = View.VISIBLE
-        this.expandedCategory?.text = "Tenista profissional"
+        this.expandedCategory?.text = currentPlayer.category
         this.backgroundExpanded?.visibility = View.VISIBLE
         this.expanded_perfil?.visibility = View.VISIBLE
+        this.expanded_perfil?.setOnClickListener{
+            val fragment = ShowProfileFragment().getInstance(currentPlayer.name)
+            fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
+        }
         this.circulo1?.visibility = View.VISIBLE
         this.circulo2?.visibility = View.VISIBLE
         this.circulo3?.visibility = View.VISIBLE
         this.circulo4?.visibility = View.VISIBLE
         this.circulo5?.visibility = View.VISIBLE
 
-        //this.imageExpanded?.visibility = View.VISIBLE
+
 
     }
 

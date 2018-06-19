@@ -115,7 +115,9 @@ class PlayersListModel {
     class FormattedRankingDetails(var name: String, //player name
                                   var wins: String, //player wins
                                   var rankingPosition: String,
-                                  var category: String)
+                                  var category: String,
+                                  var efficiency: String,
+                                  var latestGame: String)
     /**
      *  Class that contains the detailed information about player ranking
      *

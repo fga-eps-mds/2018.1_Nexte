@@ -1,5 +1,9 @@
 package com.nexte.nexte.PlayersListScene
 
+import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.RankingScene.RankingPresenter
+import java.util.*
+
 /**
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
@@ -69,6 +73,49 @@ class PlayersListPresenter : PlayersListPresentationLogic {
     }
 
     /**
+     * Method used to get player efficiency based on his wins and losses
+     *
+     * @return a string that represents player efficiency
+     */
+    fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
+        val allGames = wins + losses
+        val efficiency: String?
+        efficiency = if (allGames != 0){
+            "" + (wins/allGames* RankingPresenter.oneHundredPercent).toString() + "%"
+        }else{
+            "0%"
+        }
+
+        return efficiency
+    }
+
+    /**
+     * Method that is calculate when was the user last game
+     *
+     * @return a string that represents a player last game
+     */
+    fun calculatePlayerLastGame(latestGames: List<Challenge>?, today: Date): String{
+        if (latestGames == null || latestGames.isEmpty()){
+            return "Nenhum jogo"
+        }
+
+        val latestGameDate = latestGames.first().challengeDate
+
+        return if(today.year == latestGameDate.year){
+            if (today.month == latestGameDate.month){
+                when {
+                    today.day == latestGameDate.day -> "hoje"
+                    today.day == latestGameDate.day - 1 -> "ontem"
+                    else -> "" + (today.day - latestGameDate.day) + " days"
+                }
+            }else{
+                "" + (today.month - latestGameDate.month) + " months"
+            }
+        } else {
+            "" + (today.year - latestGameDate.year) + " years"
+        }
+    }
+    /**
      * This method is responsible for formatting data contained on
      * [PlayersListModel.SelectPlayerForChallengeRequest.Response] and send it to View
      *
@@ -76,12 +123,17 @@ class PlayersListPresenter : PlayersListPresentationLogic {
      */
     override fun formatExpandedChallengedInfo(response: PlayersListModel.SelectPlayerForChallengeRequest.Response) {
         val selectedChallenged = response.challengedPersonalDetails
-
+        val totalGames = selectedChallenged.wins.toFloat()+selectedChallenged.loses
+        val efficiency = (selectedChallenged.wins /totalGames) * 100
+        val lastGame = calculatePlayerLastGame(selectedChallenged.latestGames,Date())
+        val percent = "%"
         val formattedPlayer = PlayersListModel.FormattedRankingDetails(
                 selectedChallenged.name,
-                String.format("VITÓRIAS: %d / %d", selectedChallenged.wins, selectedChallenged.loses),
+                String.format("VITÓRIAS: %d / %d", selectedChallenged.wins,(selectedChallenged.wins+selectedChallenged.loses)),
                 String.format("%d", selectedChallenged.rankingPosition),
-                selectedChallenged.category.toString()
+                selectedChallenged.category.toString(),
+                String.format("Aproveitamento: %.2f %s",efficiency,percent),
+                String.format("Último Jogo: %s",lastGame)
         )
 
         val viewModel = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
