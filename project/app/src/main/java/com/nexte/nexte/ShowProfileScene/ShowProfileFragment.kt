@@ -469,7 +469,7 @@ class ContactDialogFragment: DialogFragment() {
             whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
             startActivity(whatsIntent)
 
-        } catch (e: ActivityNotFoundException.){
+        } catch (e: ActivityNotFoundException){
             Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show();
         }
     }
