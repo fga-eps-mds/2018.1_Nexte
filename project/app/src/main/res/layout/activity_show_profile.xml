@@ -193,7 +193,7 @@
             tools:ignore="SpUsage" />
 
         <Button
-            android:id="@+id/buttonC"
+            android:id="@+id/contactButton"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginEnd="26dp"

@@ -1,9 +1,13 @@
 package com.nexte.nexte.ShowProfileScene
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +28,12 @@ import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_show_profile.*
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
+import android.provider.ContactsContract
+import android.widget.Toast
+
 
 /**
  * This interface will be responsible to define the methods that
@@ -51,6 +61,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var playerIdToShow: String = ""
     var userManager: UserManager? = null
     val graphManager = GraphManager(this)
+    var contactButton: Button? = null
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -92,6 +103,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             fragmentTransaction.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
+        }
+
+        contactButton = newView?.findViewById(R.id.contactButton)
+        contactButton?.setOnClickListener {
+            val contact = ContactDialogFragment()
+            contact.show(this.fragmentManager, "Contact")
         }
 
         this.createShowProfileRequest()
@@ -362,6 +379,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         if(viewModel.playerInfo.name != UserSingleton.loggedUser.name){
             buttonEditProfile?.visibility = View.INVISIBLE
         }
+        contactButton?.setOnClickListener {
+            val contact = ContactDialogFragment()
+            contact.playerInfo = viewModel.playerInfo
+            contact.show(this.fragmentManager, "Contact")
+        }
+
     }
 
     companion object {
@@ -371,5 +394,99 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         const val top = 15f
         const val textSize = 12.0f
     }
+}
+
+/**
+ * This class implements DialogFragment, and it is responsible for implementing the functionality of
+ * creating an Alertdialog, which brings 4 interaction options to users
+ *
+ * @property playerInfo responsible to access information from a formatted player of Model
+ */
+
+class ContactDialogFragment: DialogFragment() {
+
+    var playerInfo: ShowProfileModel.FormattedPlayer? = null
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Contatos")
+                .setItems(R.array.contactArray, DialogInterface.OnClickListener { _, which ->
+                    when (which) {
+                        0 -> {
+                            callContactDialog()
+                        }
+                        1 -> {
+                            addContactDialog()
+                        }
+                        2 -> {
+                            emailDialog()
+                        }
+                        3 -> {
+                                whatsAppDialog()
+                            }
+
+                        4 -> {
+                            telegramDialog()
+                        }
+                    }
+                }).setIcon(R.drawable.icon_date)
+        return builder.create()
+    }
+
+    fun callContactDialog() {
+        val number = Uri.parse("tel:${playerInfo?.number}")
+        val callIntent = Intent(Intent.ACTION_DIAL, number)
+        startActivity(callIntent)
+    }
+
+    fun addContactDialog() {
+        val emailIntent = Intent(android.content.Intent.ACTION_SEND)
+        emailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        emailIntent.type = "vnd.android.cursor.item/email"
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(playerInfo?.email))
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Nexte Notification")
+        startActivity(Intent.createChooser(emailIntent, "Enviando email..."))
+    }
+
+    fun emailDialog() {
+        val contactIntent = Intent(Intent.ACTION_INSERT)
+        contactIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
+        contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, playerInfo?.name)
+        contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, playerInfo?.email)
+        contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, playerInfo?.number)
+        startActivity(contactIntent)
+    }
+
+    fun whatsAppDialog() {
+        try {
+
+            val whatsIntent = Intent(Intent.ACTION_SEND)
+            val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
+            whatsIntent.setData(Uri.parse(url))
+            whatsIntent.setType("text/plain")
+            whatsIntent.setPackage("com.whatsapp")
+            whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+            whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+            startActivity(whatsIntent)
+
+        } catch (e: ActivityNotFoundException){
+            Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    fun telegramDialog() {
+        try {
+
+            val telegramIntent = Intent(Intent.ACTION_SEND)
+            telegramIntent.setType("text/plain")
+            telegramIntent.setPackage("org.telegram.messenger")
+            telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
+            telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
+
+        } catch (e: ActivityNotFoundException){
+            Toast.makeText(activity,"Você não possui o aplicativo Telegram instalado" + e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
 

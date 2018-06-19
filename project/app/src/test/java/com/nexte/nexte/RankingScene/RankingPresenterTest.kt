@@ -199,7 +199,6 @@ class RankingPresenterTest {
         //assert
         assertEquals(returnedValue, "" + (todayDate.month - twoDaysAgo.month) + " months")
     }
-
     @Test
     fun successCalculatePlayerLastGameCase5(){
         //prepare
