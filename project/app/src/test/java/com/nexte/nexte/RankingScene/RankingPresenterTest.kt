@@ -186,7 +186,7 @@ class RankingPresenterTest {
     @Test
     fun successCalculatePlayerLastGameCase4(){
         //prepare
-        val todayDate = Date()
+        val todayDate = Date(2018, 5, 20)
         val twoDaysAgo = Date(todayDate.year, todayDate.month, todayDate.day-2)
         val lastestGame = listOf(
                 Challenge("1", "1", "2", twoDaysAgo,

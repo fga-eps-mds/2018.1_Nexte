@@ -112,7 +112,7 @@ class PlayersListInteractorTest: HelpForRealm() {
         this.interactor?.requestChallenger(request)
 
         //assert
-        assertEquals(true, this.mocker?.passedHere)
+        assertEquals(true, this.playerListUpdateLogicMock?.passedHere)
     }
 
     @Test
@@ -173,5 +173,9 @@ private class PlayerListUpdateLogicMock: PlayerListUpdateLogic {
     override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
         this.passedHere = true
         this.mock?.formatPlayersToChallenge(response)
+    }
+
+    override fun generateChallengeReponse(response: PlayersListModel.ChallengeButtonRequest.Response) {
+        this.passedHere = true
     }
 }
