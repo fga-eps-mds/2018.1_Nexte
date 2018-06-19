@@ -77,7 +77,7 @@ class ShowProfileModelTest {
         val formattedPlayer = ShowProfileModel.FormattedPlayer(name = "Luis Gustavo", rank = "1", email = "luis@email.com", number = "130",  profileImage = R.drawable.profile_image9)
 
         //call
-        val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer)
+        val viewModel = ShowProfileModel.ViewModel(playerInfo = formattedPlayer, formattedChallenges = listOf())
         val img = formattedPlayer.profileImage
         formattedPlayer.profileImage = 2
         viewModel.playerInfo = formattedPlayer
@@ -121,6 +121,57 @@ class ShowProfileModelTest {
 
         //assert
         assertNotNull(model)
+    }
+
+    @Test
+    fun testChallengeResult(){
+        var challengeResultWO = ShowProfileModel.ChallengeResult.WO
+        challengeResultWO = ShowProfileModel.ChallengeResult.WO
+        var challengeResultLost = ShowProfileModel.ChallengeResult.LOST
+        challengeResultLost = ShowProfileModel.ChallengeResult.LOST
+        var challengeResultWON = ShowProfileModel.ChallengeResult.WON
+        challengeResultWON = ShowProfileModel.ChallengeResult.WON
+
+        assertEquals(challengeResultWO, ShowProfileModel.ChallengeResult.WO)
+        assertEquals(challengeResultWON, ShowProfileModel.ChallengeResult.WON)
+        assertEquals(challengeResultLost, ShowProfileModel.ChallengeResult.LOST)
+
+    }
+
+    @Test
+    fun testFormattedChallenge(){
+        val challengeDates = "12/03/2014"
+        val setResult = "2x1"
+        var gamesResults = "2x1"
+        var headToHeadResults = "1x0"
+        var opponentName = "luis"
+        var opponentPictureUrl = "1"
+        var opponentPictureAdress = 1
+        var opponentColor = 2
+        var challengeResult = ShowProfileModel.ChallengeResult.WO
+        var formattedChallenge = ShowProfileModel.FormattedChallenge(
+                challengeDates,setResult,gamesResults,headToHeadResults, opponentName,
+                opponentPictureUrl, opponentPictureAdress, opponentColor, challengeResult
+        )
+        formattedChallenge.challengeDates = challengeDates
+        formattedChallenge.setsResult = setResult
+        formattedChallenge.gamesResults = gamesResults
+        formattedChallenge.headToHeadResults = headToHeadResults
+        formattedChallenge.opponentName = opponentName
+        formattedChallenge.opponentPictureUrl = opponentPictureUrl
+        formattedChallenge.opponentPictureAdress = opponentPictureAdress
+        formattedChallenge.opponentColor = opponentColor
+        formattedChallenge.challengeResult = challengeResult
+
+        assertEquals(formattedChallenge.challengeDates, challengeDates)
+        assertEquals(formattedChallenge.setsResult, setResult)
+        assertEquals(formattedChallenge.gamesResults, gamesResults)
+        assertEquals(formattedChallenge.headToHeadResults, headToHeadResults)
+        assertEquals(formattedChallenge.opponentColor, opponentColor)
+        assertEquals(formattedChallenge.opponentPictureAdress, opponentPictureAdress)
+        assertEquals(formattedChallenge.opponentPictureUrl, opponentPictureUrl)
+        assertEquals(formattedChallenge.opponentName, opponentName)
+        assertEquals(formattedChallenge.challengeResult, challengeResult)
     }
 
     @After

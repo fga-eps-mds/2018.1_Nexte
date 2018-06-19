@@ -145,6 +145,7 @@ class CommentsWorker {
 
        updateLogic?.updateDeleteComment(response)
     }
+
     companion object {
         const val okMessage = 200
         const val idComment = "108"
