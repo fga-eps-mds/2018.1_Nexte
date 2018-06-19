@@ -28,6 +28,15 @@ class PlayerTest {
         //call
         val player = Player(name = "Luis Gustavo", rankingPosition = 1, pictureAddress = "", email = "luis@email.com", gender = "Masculino",
                 club = "Tenis House", age = 21, password = "123456", category = "profissional")
+        player.name = name
+        player.rankingPosition = rankingPosition
+        player.pictureAddress = pictureAdress
+        player.email = email
+        player.gender = gender
+        player.club = club
+        player.age = age
+        player.password = password
+        player.category = category
 
         //assert
         assertEquals(name, player.name)

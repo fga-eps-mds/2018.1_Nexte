@@ -33,6 +33,10 @@ class ChallengeManager(val challengeAdapter: ChallengeAdapter = ChallengeAdapter
             return challengeAdapter.getLastFiveChallenges(userId)
         }
 
+        fun getPlayedChallengesFromUser(userId: String): List<Challenge> {
+            return challengeAdapter.getUserPlayedGames(userId)
+        }
+
         fun createInitialMocker(): List<Challenge> {
             val challengesInMocker = ChallengeMocker.generateChalleges()
             val insertedChallenges: MutableList<Challenge> = mutableListOf()
