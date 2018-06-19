@@ -1,5 +1,7 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.Challenge
+
 /**
  * Created by leticia on 30/04/18.
  */
