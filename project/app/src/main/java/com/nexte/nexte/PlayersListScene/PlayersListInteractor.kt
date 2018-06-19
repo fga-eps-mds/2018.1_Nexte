@@ -81,9 +81,10 @@ class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
      * @param request
      */
     override fun requestChallenger(request: PlayersListModel.ChallengeButtonRequest.Request) {
+        worker.generateChallenge(request)
+    }
 
-        worker.generateChallenge(request) { response ->
-            this.presenter?.formatMatch(response)
-        }
+    override fun generateChallengeReponse(response: PlayersListModel.ChallengeButtonRequest.Response) {
+        this.presenter?.formatMatch(response)
     }
 }
