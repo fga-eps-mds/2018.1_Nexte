@@ -47,7 +47,8 @@
         </activity>
         <activity
             android:name=".LoginScene.LoginView"
-            android:label="Login" />
+            android:label="Login"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".UserOnBoardingView"/>
 
