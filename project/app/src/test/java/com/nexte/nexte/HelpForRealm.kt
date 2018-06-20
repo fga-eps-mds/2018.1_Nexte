@@ -7,6 +7,7 @@ import com.nexte.nexte.Entities.User.UserCategory.UserCategoryRealm
 import com.nexte.nexte.Entities.User.UserRealm
 import com.nexte.nexte.FeedScene.FeedFragment
 import io.realm.Realm
+import io.realm.RealmModel
 import io.realm.RealmQuery
 import io.realm.RealmResults
 import io.realm.internal.RealmCore

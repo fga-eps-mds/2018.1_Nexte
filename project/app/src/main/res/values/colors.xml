@@ -28,4 +28,6 @@
     <color name="profile_gray">#9B9B9B</color>
     <color name="profile_green">#459C88</color>
     <color name="profile_red">#E94345</color>
+    <color name="uob_red">#fa3f42</color>
+    <color name="uob_dark_red">#57fa3f42</color>
 </resources>

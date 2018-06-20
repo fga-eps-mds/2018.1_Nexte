@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#2E2E2E"
+    android:fillViewport="true"
+    android:scrollbars="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/phone_left_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textOnTop"
+            android:layout_width="226dp"
+            android:layout_height="77dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="48dp"
+            android:gravity="center"
+            android:text="@string/seu_clube_n_o_est_registrado_entre_em_contato_conosco"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/email_and_phone"
+            android:layout_width="120dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/e_mail_ou_telefone"
+            android:textColor="#c5c5c5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textOnTop" />
+
+        <View
+            android:id="@+id/phone_line_left"
+            android:layout_width="85dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="17dp"
+            android:background="#ffff"
+            app:layout_constraintEnd_toStartOf="@+id/email_and_phone"
+            app:layout_constraintTop_toTopOf="@+id/email_and_phone" />
+
+        <View
+            android:id="@+id/phone_line_right"
+            android:layout_width="85dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:background="#ffff"
+            app:layout_constraintStart_toEndOf="@+id/email_and_phone"
+            app:layout_constraintTop_toTopOf="@+id/phone_line_left" />
+
+        <EditText
+            android:id="@+id/contactField"
+            android:layout_width="300dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edge_onboard"
+            android:ems="10"
+            android:inputType="text"
+            android:labelFor="@+id/email_and_phone"
+            android:textColor="#FFF"
+            android:textColorHint="#DDD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_and_phone"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/requestField"
+            android:layout_width="300dp"
+            android:layout_height="155dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edge_onboard"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:labelFor="@+id/requestText"
+            android:singleLine="false"
+            android:textColor="#fff"
+            android:textColorHint="#ddd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requestText"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/requestText"
+            android:layout_width="151dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/solicita_o_de_registro"
+            android:textColor="#c5c5c5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contactField" />
+
+        <View
+            android:id="@+id/request_line_left"
+            android:layout_width="72dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:background="#ffff"
+            app:layout_constraintStart_toEndOf="@+id/requestText"
+            app:layout_constraintTop_toTopOf="@+id/request_line_right" />
+
+        <View
+            android:id="@+id/request_line_right"
+            android:layout_width="75dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="17dp"
+            android:background="#ffff"
+            app:layout_constraintEnd_toStartOf="@+id/requestText"
+            app:layout_constraintTop_toTopOf="@+id/requestText" />
+
+        <Button
+            android:id="@+id/sentRequestButton"
+            android:layout_width="300dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edge_onboard"
+            android:text="@string/enviar"
+            android:textColor="#ffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requestField" />
+
+        <TextView
+            android:id="@+id/closeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/x_uob"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
