@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/loginBackgroundDescription"/>
 
     <Button
         android:id="@+id/navigationLogin"
@@ -27,7 +28,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginBottom="22dp"
         android:background="@android:color/transparent"
-        android:text="Navegar pelo NEXTE!"
+        android:text="@string/loginButtonNavegate"
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
         android:fontFamily="@font/roboto_regular"
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="ou"
+        android:text="@string/loginOrDescription"
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
         android:fontFamily="@font/roboto_regular"
@@ -74,7 +75,7 @@
         android:layout_marginEnd="29dp"
         android:layout_marginStart="29dp"
         android:layout_marginBottom="24dp"
-        android:text="Entrar"
+        android:text="@string/loginButtonLogin"
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
         android:fontFamily="@font/roboto_regular"
@@ -105,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Senha"
+        android:text="@string/loginPasswordDescription"
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
         android:fontFamily="@font/roboto_regular"
@@ -143,7 +144,6 @@
         android:textAlignment="center"
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
-        android:focusedByDefault="true"
         android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="E-mail ou telefone"
+        android:text="@string/loginEmailOrPhoneDescription"
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
         android:fontFamily="@font/roboto_regular"
@@ -188,6 +188,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/email_and_phone"
-        app:srcCompat="@drawable/login_logo" />
+        app:srcCompat="@drawable/login_logo"
+        android:contentDescription="@string/loginLogoDescription"/>
 
 </android.support.constraint.ConstraintLayout>

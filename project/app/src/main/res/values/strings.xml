@@ -111,4 +111,14 @@
     <string name="x_uob">X</string>
     <string name="pref_previously_started">isFirstRun</string>
 
+    <!-- Login Scene -->
+    <string name="loginButtonNavegate">Navegar pelo NEXTE!</string>
+    <string name="loginOrDescription">ou</string>
+    <string name="loginButtonLogin">Entrar</string>
+    <string name="loginPasswordDescription">Senha</string>
+    <string name="loginEmailOrPhoneDescription">E-mail ou Telefone</string>
+    <string name="loginLogoDescription">Logo of Nexte</string>
+    <string name="loginBackgroundDescription">Background of Nexte</string>
+
+
 </resources>
