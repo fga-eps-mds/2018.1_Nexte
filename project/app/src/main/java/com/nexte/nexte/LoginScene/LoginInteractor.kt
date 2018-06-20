@@ -28,31 +28,32 @@ interface LoginBusinessLogic {
  * @property worker Request model of feed that contains data to pass for Worker
  * @property presenter
  */
-class LoginInteractor : LoginBusinessLogic {
+class LoginInteractor : LoginBusinessLogic, LoginWorkerUpdateLogic {
 
     var worker = LoginWorker()
     var presenter: LoginPresentationLogic? =  null
 
 
     override fun doAuthentication(request: LoginModel.Authentication.Request) {
+        worker.authenticateUser(request)
+    }
 
-        worker.authenticateUser(request) { response ->
-
-            val responseStatus = response.authenticateStatusCode
-            when(responseStatus) {
-                LoginModel.Authentication.StatusCode.AUTHORIZED -> {
-                    this.presenter?.presentLogin(response)
-                } else -> {
-                    this.presenter?.presentError(response)
-                }
+    override fun authenticateUser(response: LoginModel.Authentication.Response) {
+        val responseStatus = response.authenticateStatusCode
+        when(responseStatus) {
+            LoginModel.Authentication.StatusCode.AUTHORIZED -> {
+                this.presenter?.presentLogin(response)
+            } else -> {
+                this.presenter?.presentError(response)
             }
         }
     }
 
     override fun accountKitAuthentication(request: LoginModel.AccountKit.Request) {
+        worker.requestForAuth(request)
+    }
 
-        worker.requestForAuth(request) { response ->
-            this.presenter?.presentAccountKit(response)
-        }
+    override fun requestAuth(response: LoginModel.AccountKit.Response) {
+        this.presenter?.presentAccountKit(response)
     }
 }
