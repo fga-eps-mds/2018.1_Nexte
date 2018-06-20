@@ -2,6 +2,7 @@ package com.nexte.nexte.Entities.Challenge
 
 import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
 import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
+import com.nexte.nexte.PlayersListScene.PlayersListModel
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
@@ -62,6 +63,14 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return playedChallengesFromUser
     }
 
+    override fun getSendChallengeFromRealm(userdId: String): Challenge {
+        val sendChallengesFromRealm = realm.where<ChallengeRealm>().equalTo(
+                "SendChallengerId", userdId).or().equalTo("SendChallengedId", userdId).isNotNull(
+                "stageSendChallengeRealm").findAll()
+
+        val challengeFromUser = convertChallengeRealmToChallenge(sendChallengesFromRealm)
+        return challengeFromUser
+    }
     companion object {
         const val five = 5
     }

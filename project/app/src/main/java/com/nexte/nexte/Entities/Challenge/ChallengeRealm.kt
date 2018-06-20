@@ -12,4 +12,6 @@ open class ChallengeRealm(@PrimaryKey var id: String = "",
                           var challegeDate: Date = Date(),
                           var status: String = "",
                           var stageCancelledRealm: CancelledRealm? = null,
-                          var stagePlayedRealm: PlayedRealm? = null): RealmObject()
+                          var stagePlayedRealm: PlayedRealm? = null,
+                          var stageSendChallenge: Challenge): RealmObject()
+

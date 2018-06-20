@@ -37,6 +37,10 @@ class ChallengeManager(val challengeAdapter: ChallengeAdapter = ChallengeAdapter
             return challengeAdapter.getUserPlayedGames(userId)
         }
 
+        fun getSendChallengeFRomRealm(userId: String): Challenge{
+            return challengeAdapter.getSendChallengeFromRealm(userId)
+        }
+
         fun createInitialMocker(): List<Challenge> {
             val challengesInMocker = ChallengeMocker.generateChalleges()
             val insertedChallenges: MutableList<Challenge> = mutableListOf()
