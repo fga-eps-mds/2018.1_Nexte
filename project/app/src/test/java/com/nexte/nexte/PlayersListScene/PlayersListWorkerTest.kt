@@ -26,9 +26,9 @@ import kotlin.concurrent.thread
     @Suppress("DEPRECATION")
     class PlayersListWorkerTest: HelpForRealm() {
 
-        private var worker: PlayersListWorker? = null
-        private var updateLogicMocker: PlayerListUpdateLogicMocker? = null
-        private val jsonObject = JSONObject()
+        var worker: PlayersListWorker? = null
+        var updateLogicMocker: PlayerListUpdateLogicMocker? = null
+        val jsonObject = JSONObject()
 
         @Before
         fun setUp(){
@@ -186,7 +186,7 @@ import kotlin.concurrent.thread
         }
 
         @Test
-        private fun jsonToUserListTest() {
+        fun jsonToUserListTest() {
             //prepare
             val jsonUser = JSONObject()
             jsonUser.put("id", "1")
@@ -301,7 +301,7 @@ import kotlin.concurrent.thread
 
         // ESTE MÉTODO NÃO É UM TESTE
         // APENAS SEPAREI O PREPARE DE UM TESTE NESSE MÉTODO
-        private fun generateJSONUser(rankingPosition: Int) : JSONObject {
+        fun generateJSONUser(rankingPosition: Int) : JSONObject {
             val challengeReceived = JSONObject()
             challengeReceived.put("sended", false)
             challengeReceived.put("id", "2")
