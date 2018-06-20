@@ -17,6 +17,7 @@ import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
 import android.support.v7.widget.DividerItemDecoration
+import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 
@@ -40,6 +41,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
     var rankingConstraintLayout: ConstraintLayout?= null
     var userManager: UserManager? = null
     var challengeManager: ChallengeManager?= null
+    var loggedPlayer: RankingModel.FormattedPlayerInfo? = null
 
     fun getInstance() : RankingFragment{
         return RankingFragment()
@@ -84,8 +86,8 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         return view
     }
 
-    private fun goToShowProfileView(name: String?) {
-        val fragment = ShowProfileFragment().getInstance(name)
+    private fun goToShowProfileView(id: String) {
+        val fragment = ShowProfileFragment().getInstance(id)
         fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
     }
 
@@ -125,6 +127,18 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         val constraintSet = ConstraintSet()
         val rankingView = fragment as RankingFragment
         val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
+
+        rankingView.fixedFragment?.setBackgroundResource(R.drawable.cell_border_light)
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo1,
+                rankingView.loggedPlayer?.player?.userLastGames!![0])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo2,
+                rankingView.loggedPlayer?.player?.userLastGames!![1])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo3,
+                rankingView.loggedPlayer?.player?.userLastGames!![2])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo4,
+                rankingView.loggedPlayer?.player?.userLastGames!![3])
+        rankingView.setUserGameCircle(rankingView.fixedFragment?.circulo5,
+                rankingView.loggedPlayer?.player?.userLastGames!![4])
 
         if(layoutManager.findFirstCompletelyVisibleItemPosition() <= playerRanking - 1
                 && playerRanking - 1 <= layoutManager.findLastCompletelyVisibleItemPosition()) {
@@ -199,7 +213,28 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      */
     override fun displayRankingInScreen(viewModel: RankingModel.ViewModel) {
 
+        this.loggedPlayer = viewModel.formattedPlayers.find { it.player.id == UserSingleton.loggedUserID }
         rankingRecyclerView?.adapter = RankingAdapter(viewModel.formattedPlayers, this)
+    }
+
+    /**
+     * Method responsible for setting the apropriate resource to the plaeyr game circle
+     *
+     * @param imageView imageView that will display the player result
+     * @param lastGame data that will indicate the player game status
+     */
+    fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
+        val circleResource = if (lastGame == Color.GREEN) {
+            R.drawable.circle_victory_ranking
+        } else if (lastGame == Color.GRAY) {
+            R.drawable.circle_empty_ranking
+        } else if (lastGame == Color.RED) {
+            R.drawable.circle_defeat_ranking
+        } else {
+            R.drawable.circle_undefeated_ranking
+        }
+
+        imageView?.setBackgroundResource(circleResource)
     }
 
     /**
@@ -256,8 +291,12 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 notifyItemChanged(expandedId)
             }
 
-            if(itemHolder?.layoutPosition == UserSingleton.loggedUser.rankingPosition-1){
-                itemHolder.itemView?.background = ColorDrawable(Color.GRAY)
+            if(item.player.id.equals(UserSingleton.loggedUserID)) {
+                itemHolder?.itemView?.setBackgroundResource(R.drawable.cell_border_light)
+                hideOrShowLoggedUserExpandedInformation(true, itemHolder)
+            } else {
+                itemHolder?.itemView?.setBackgroundResource(R.drawable.cell_border)
+                hideOrShowLoggedUserExpandedInformation(false, itemHolder)
             }
 
             itemHolder?.nameText?.text = item.player.userName
@@ -268,8 +307,21 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             itemHolder?.efficiency?.text = item.player.userEfficiency
             itemHolder?.profileImage?.setImageResource(item.player.userPictureURL)
             itemHolder?.profileButton?.setOnClickListener{
-                (fragment as RankingFragment).goToShowProfileView(item.player.userName)
+                (fragment as RankingFragment).goToShowProfileView(item.player.id)
             }
+
+            val rankingFragment = fragment as RankingFragment
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo1, item.player.userLastGames[0])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo2, item.player.userLastGames[1])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo3, item.player.userLastGames[2])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo4, item.player.userLastGames[3])
+            rankingFragment.setUserGameCircle(itemHolder?.itemView?.circulo5, item.player.userLastGames[4])
+
+            itemHolder?.expandedView?.currentUser?.setImageResource(item.player.userPictureURL)
+            UserSingleton.loggedUser.profilePicture?.let {
+                itemHolder?.expandedView?.loggedUser?.setImageResource(it.toInt())
+            }
+
 
             if(expandedId == itemHolder?.layoutPosition) {
                 itemHolder.expandedView.visibility = View.VISIBLE
@@ -277,6 +329,35 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
                 itemHolder?.expandedView?.visibility = View.GONE
             }
         }
+
+        /**
+         * Method responsible for hiding or showing the information about 1x1 game in raking recycler view
+         * of the logged user
+         *
+         * @param hide boolean that will be used to hide or show the content
+         * @param itemHolder cell to show or hide the content
+         */
+        fun hideOrShowLoggedUserExpandedInformation(hide: Boolean, itemHolder: ItemHolder?){
+
+            if (hide) {
+                itemHolder?.expandedView?.profileButton?.visibility = View.GONE
+                itemHolder?.expandedView?.currentUser?.visibility = View.GONE
+                itemHolder?.expandedView?.loggedUser?.visibility = View.GONE
+                itemHolder?.expandedView?.versus?.visibility = View.GONE
+                itemHolder?.expandedView?.gamesLoggedUser?.visibility = View.GONE
+                itemHolder?.expandedView?.gamesCurrentUser?.visibility = View.GONE
+                itemHolder?.expandedView?.profileButton?.visibility = View.GONE
+            } else {
+                itemHolder?.expandedView?.profileButton?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.currentUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.loggedUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.versus?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.gamesLoggedUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.gamesCurrentUser?.visibility = View.VISIBLE
+                itemHolder?.expandedView?.profileButton?.visibility = View.VISIBLE
+            }
+        }
+
 
         /**
          * Method responsible to return sma ize of ranking

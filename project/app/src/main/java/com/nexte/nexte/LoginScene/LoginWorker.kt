@@ -92,7 +92,7 @@ class LoginWorker {
      * @param phone Phone from a user - used in Account Kit auth
      * @param phone Email from a user - used in Account Kit auth
      */
-    private fun defineBodyForAccountKitAuth(phone: String?, email: String?): String {
+    fun defineBodyForAccountKitAuth(phone: String?, email: String?): String {
         val json = JSONObject()
 
         if(phone != null) {

@@ -77,13 +77,41 @@ class LoginWorkerTest {
             json.put("password", "bla")
 
 
-            assertEquals(mockRequest.email, email )
+            assertEquals(mockRequest.email, email)
 
 
-        @After
-        fun tearDown() {
-            worker = null
         }
+    @Test
+    fun testDefineBodyForAccountKitAuthPhoneNotNull(){
+        val phone = "123456789"
+        val email = "email@email.com"
+
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("phone", phone)
+        jsonObject.put("password", "test-nexte-ramires")
+
+        assertEquals(json.toString(), jsonObject.toString())
+    }
+
+    @Test
+    fun testDefineBodyForAccountKitAuthPhoneNull(){
+        val phone = null
+        val email = "email@email.com"
+
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("email", email)
+        jsonObject.put("password", "test-nexte-ramires")
+
+        assertEquals(json.toString(), jsonObject.toString())
+    }
+
+    @After
+    fun tearDown() {
+        worker = null
     }
 
 }

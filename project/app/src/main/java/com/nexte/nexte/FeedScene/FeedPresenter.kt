@@ -59,7 +59,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
      * @param activities MutableList of not formatted activities
      * @return list of formatted activities
      */
-    private fun formatFeedActivities(activities: List<Story>):
+   private fun formatFeedActivities(activities: List<Story>):
             MutableList<FeedModel.FeedActivityFormatted> {
 
         val feedActivitiesFormatted: MutableList<FeedModel.FeedActivityFormatted> = mutableListOf()
@@ -90,13 +90,16 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 challenged
             }
 
+            val challengerPhoto: Int = validateUserPhoto(challenger?.profilePicture)
+            val challengedPhoto: Int = validateUserPhoto(challenged?.profilePicture)
+            
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.id!!,
                     challenger?.name!!,
-                    R.mipmap.ic_launcher,
+                    challengerPhoto,
                     activity.winner?.setResult.toString(),
                     challenged?.name!!,
-                    R.mipmap.ic_launcher,
+                    challengedPhoto,
                     activity.loser?.setResult.toString(),
                     activity.date.toString(),
                     activity.likesId.size.toString(),
@@ -109,7 +112,7 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
     }
 
     /**
-     * Auxiliary function to convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
+     * Auxiliary function to really convert [FeedModel.FeedActivity] to [FeedModel.FeedActivityFormatted]
      *
      * @param activity Unformatted activity
      * @return Formatted activity
@@ -135,5 +138,14 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 activity.feedDate.toString(),
                 activity.likes.size.toString(),
                 userIsOnLikeList)
+    }
+
+     fun validateUserPhoto(imageIdentifier: String?) : Int {
+
+        if(imageIdentifier != null && imageIdentifier != "") {
+            return imageIdentifier.toInt()
+        } else {
+            return R.mipmap.ic_launcher
+        }
     }
 }

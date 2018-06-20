@@ -37,7 +37,7 @@ interface ChallengeBusinessLogic {
  * @property worker Reference to worker [PlayersListWorker]
  * @property presenter Reference to presenter [PlayersListPresenter]
  */
-class PlayersListInteractor : ChallengeBusinessLogic {
+class PlayersListInteractor : ChallengeBusinessLogic, PlayerListUpdateLogic {
 
     var worker = PlayersListWorker()
     var presenter: PlayersListPresentationLogic? = null
@@ -49,15 +49,16 @@ class PlayersListInteractor : ChallengeBusinessLogic {
      * @param request variable equals to the server response due to the challenged response
      */
     override fun requestPlayersToChallenge(request: PlayersListModel.ShowRankingPlayersRequest.Request) {
-        worker.fetchPlayersToChallenge(request) { response ->
-            if(response.usersAbove.isNotEmpty()) {
-                this.presenter?.formatPlayersToChallenge(response)
-            }
-            else {
-                this.presenter?.formatNoPlayersMessage()
-            }
+        this.worker.fetchPlayersToChallenge(request)
+    }
 
-        }
+    /**
+     * Method responsible to request a list of players provided from database response
+     *
+     * @param response response from a request provided from worker
+     */
+    override fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response) {
+        this.presenter?.formatPlayersToChallenge(response)
     }
 
     /**
@@ -80,9 +81,10 @@ class PlayersListInteractor : ChallengeBusinessLogic {
      * @param request
      */
     override fun requestChallenger(request: PlayersListModel.ChallengeButtonRequest.Request) {
+        worker.generateChallenge(request)
+    }
 
-        worker.generateChallenge(request) { response ->
-            this.presenter?.formatMatch(response)
-        }
+    override fun generateChallengeReponse(response: PlayersListModel.ChallengeButtonRequest.Response) {
+        this.presenter?.formatMatch(response)
     }
 }

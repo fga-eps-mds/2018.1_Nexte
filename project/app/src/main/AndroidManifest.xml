@@ -8,13 +8,15 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
         android:name=".NexteApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_app_dark"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_app_dark"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -34,7 +36,9 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,43 +46,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginScene.LoginFragment"
+            android:name=".LoginScene.LoginView"
             android:label="Login" />
-        <activity
-            android:name=".RankingScene.RankingFragment"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".FeedScene.FeedFragment"
-            android:label="@string/title_activity_feed_view"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ShowProfileScene.ShowProfileFragment"
-            android:label="@string/title_activity_show_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity-->
-            <!--android:name="com.facebook.accountkit.ui.AccountKitActivity"-->
-            <!--android:theme="@style/AppLoginTheme"-->
-            <!--tools:replace="android:theme" />-->
-        <activity
-            android:name=".LikeListScene.LikeListFragment"
-            android:label="LikeListView"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".EditProfileScene.EditProfileFragment"
-            android:screenOrientation="portrait" />
-        <activity android:name=".PlayersListScene.ChallengeTabsFragment"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity
-            android:name=".CommentsScene.CommentsFragment"
-            android:label="CommentsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MatchScene.MatchFragment"
-            android:label="MatchActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".LoginScene.LoginView" />
+
+        <activity android:name=".UserOnBoardingView"/>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3a8c65b90611c0a78eed68be4f668129f7e38b34" />
     </application>
 
 </manifest>

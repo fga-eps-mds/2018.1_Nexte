@@ -3,9 +3,11 @@ package com.nexte.nexte
 import android.content.Context
 import com.nexte.nexte.Entities.Story.StoryRealm
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryRealm
 import com.nexte.nexte.Entities.User.UserRealm
 import com.nexte.nexte.FeedScene.FeedFragment
 import io.realm.Realm
+import io.realm.RealmModel
 import io.realm.RealmQuery
 import io.realm.RealmResults
 import io.realm.internal.RealmCore
@@ -77,6 +79,7 @@ open class HelpForRealm {
         val userResults: RealmResults<UserRealm> = mock()
 
         this.setUpRealm()
+        this.setUpWithUserCategory()
 
         val userQuery: RealmQuery<UserRealm> = mock()
 
@@ -84,6 +87,23 @@ open class HelpForRealm {
         PowerMockito.`when`(userQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(userQuery)
         PowerMockito.`when`(userQuery.findFirst()).thenReturn(userList[0])
         PowerMockito.`when`(userQuery.findAll()).thenReturn(userResults)
+    }
+
+    fun setUpWithUserCategory() {
+
+        val id = "1"
+        val name = "Primeira Classe"
+        val uc1 = UserCategoryRealm(id, name)
+
+        val userCategoryList = Arrays.asList(uc1)
+        val userCategoryResults: RealmResults<UserCategoryRealm> = mock()
+
+        val userCategoryQuery: RealmQuery<UserCategoryRealm> = mock()
+
+        PowerMockito.`when`(mockRealm!!.where(UserCategoryRealm::class.java)).thenReturn(userCategoryQuery)
+        PowerMockito.`when`(userCategoryQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(userCategoryQuery)
+        PowerMockito.`when`(userCategoryQuery.findFirst()).thenReturn(userCategoryList[0])
+        PowerMockito.`when`(userCategoryQuery.findAll()).thenReturn(userCategoryResults)
     }
 
     @Test

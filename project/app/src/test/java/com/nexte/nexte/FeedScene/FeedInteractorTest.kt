@@ -24,6 +24,16 @@ class FeedInteractorTest: HelpForRealm() {
     }
 
     @Test
+
+    fun feedInteractorTest() {
+        val testInteractor = FeedInteractor()
+
+        assertNotNull(testInteractor)
+
+
+    }
+
+    @Test
     fun testFetchFeed() {
         //prepare
         val request = FeedModel.GetFeedActivities.Request()

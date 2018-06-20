@@ -54,12 +54,20 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return lastFiveChallenges
     }
 
+    override fun getUserPlayedGames(userdId: String): List<Challenge> {
+        val challengesFromRealm = realm.where<ChallengeRealm>().equalTo(
+                "challengerId", userdId).or().equalTo("challengedId", userdId).isNotNull(
+                "stagePlayedRealm").findAll()
+        val playedChallengesFromUser = convertListChallengeRealmToChallengeList(challengesFromRealm)
+        return playedChallengesFromUser
+    }
+
     companion object {
         const val five = 5
     }
 
     private fun getChallengesOfUser(allChallenges: List<Challenge>, userId: String): List<Challenge>{
-        if(allChallenges.size > five){
+        if(allChallenges.size <= five){
             return allChallenges
         }
 

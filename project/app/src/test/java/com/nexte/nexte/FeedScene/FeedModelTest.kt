@@ -2,6 +2,7 @@ package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryPlayer
+import com.nexte.nexte.FeedScene.FeedModel.GetFeedActivities.ViewModel
 import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Before
@@ -38,7 +39,7 @@ class FeedModelTest {
         // Call
         val story = Story(id, winner, loser, date, comments, likes)
         val response = FeedModel.GetFeedActivities.Response(listOf(story))
-        response.feedActivities
+        response.feedActivities = listOf((story))
 
         //assert
         assertEquals(id, response.feedActivities[0].id)
@@ -69,8 +70,8 @@ class FeedModelTest {
                 identifier = identifier, numberOfLikes = numberOfLikes, currentUserLiked = currentUserLiked)
 
         //call
-        val viewModel = FeedModel.GetFeedActivities.ViewModel(feedActivities = mutableListOf(feedActivityFormated))
-        viewModel.feedActivities
+        val viewModel = ViewModel(feedActivities = mutableListOf(feedActivityFormated))
+        viewModel.feedActivities = mutableListOf(feedActivityFormated)
 
         //assert
         assertEquals(challengerName, viewModel.feedActivities[0].challengerName)
@@ -219,8 +220,9 @@ class FeedModelTest {
         val activity1 = FeedModel.FeedActivity(challenge = challenge, feedDate = date, identifier = identifier, likes = likes)
 
         //call
-        val response = FeedModel.LikeAndUnlike.Response(likedActivity = activity1)
-        response.likedActivity
+        val response = FeedModel.LikeAndUnlike.Response(activity1)
+       response.likedActivity  = activity1
+
 
         //assert
         assertEquals(activity1, response.likedActivity)
@@ -233,6 +235,10 @@ class FeedModelTest {
 
     @Test
     fun successCreateViewModelLikeAndUnlike(){
+        //prepare
+        val testLikeUnlike = FeedModel.LikeAndUnlike()
+        //call
+        assertNotNull(testLikeUnlike)
 
     }
 
@@ -245,6 +251,14 @@ class FeedModelTest {
 
         //assert
         assertNotNull(model)
+    }
+
+    @Test
+    fun successGetFeedActivities(){
+        //prepare and call
+        val getFeed = FeedModel.GetFeedActivities()
+        //assert
+        assertNotNull(getFeed)
     }
 
     @After

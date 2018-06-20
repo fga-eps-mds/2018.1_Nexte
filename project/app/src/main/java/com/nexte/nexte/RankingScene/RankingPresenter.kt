@@ -1,5 +1,6 @@
 package com.nexte.nexte.RankingScene
 
+import android.graphics.Color
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
 import com.nexte.nexte.Entities.Challenge.Challenge
@@ -49,9 +50,12 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return an array of [RankingModel.FormattedPlayerInfo]
      */
-    private fun formatPlayers(users: Array<User>): List<RankingModel.FormattedPlayerInfo> {
+        fun formatPlayers(users: Array<User>?): List<RankingModel.FormattedPlayerInfo> {
         val rankingModelPlayersMutable = mutableListOf<RankingModel.FormattedPlayerInfo>()
 
+        if(users == null){
+            return listOf()
+        }
         for (user in users){
             val name = user.name
             val rankingPosition = user.rankingPosition
@@ -59,7 +63,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val losses = user.loses
             val efficiency = calculatePlayerEfficiency(wins, losses)
             user.latestGames = challengeManager?.getLastFiveChallenges(user.id)
-            val lastGame = calculatePlayerLastGame(user.latestGames)
+            val lastGame = calculatePlayerLastGame(user.latestGames, Date())
             var image = R.drawable.temp
             if (user.profilePicture != null) {
                 image = user.profilePicture.toInt()
@@ -68,10 +72,15 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             if (user.category != null){
                 playerCategory = user.category.name
             }
+            val latestGamesColors = getPlayerLastFiveGamesArray(user.latestGames, user.id)
+
+            val id = user.id
+
             val playerFormatted = RankingModel.FormattedPlayer(name,
                     image, String.format("Vitórias: %d", wins),
                     String.format("%d", rankingPosition), String.format("Último Jogo: %s", lastGame),
-                    String.format("Aproveitamento: %s", efficiency), playerCategory)
+                    String.format("Aproveitamento: %s", efficiency), playerCategory, latestGamesColors, id)
+
             val playerFormattedInfo = RankingModel.FormattedPlayerInfo(playerFormatted,false)
 
             rankingModelPlayersMutable.add(playerFormattedInfo)
@@ -85,7 +94,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return a string that represents player efficiency
      */
-    private fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
+    fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
         val allGames = wins + losses
         val efficiency: String?
         efficiency = if (allGames != 0){
@@ -102,13 +111,12 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
      *
      * @return a string that represents a player last game
      */
-    private fun calculatePlayerLastGame(latestGames: List<Challenge>?): String{
+    fun calculatePlayerLastGame(latestGames: List<Challenge>?, today: Date): String{
         if (latestGames == null || latestGames.isEmpty()){
             return "Nenhum jogo"
         }
 
         val latestGameDate = latestGames.first().challengeDate
-        val today = Date()
 
         return if(today.year == latestGameDate.year){
             if (today.month == latestGameDate.month){
@@ -125,7 +133,76 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
         }
     }
 
+    /**
+     *  Method responsible for creating the array with the corresponding colors
+     *  to the player last five games
+     *
+     *  @param latestGames list with user last games
+     *  @param userId id of the user
+     *
+     *  @return list with the colors arrays
+     */
+    fun getPlayerLastFiveGamesArray(latestGames: List<Challenge?>?, userId: String) :
+            List<Int> {
+        var gamesMutable = mutableListOf<Int>()
+
+        if (latestGames != null) {
+
+            for (counter in firstGameIndex..fifthGameindex) {
+
+                if (latestGames.getOrNull(counter) == null) {
+                    gamesMutable.add(Color.GRAY)
+                }else if (latestGames[counter]?.winner == userId) {
+                    gamesMutable.add(Color.GREEN)
+                } else {
+                    gamesMutable.add(Color.RED)
+                }
+            }
+
+        } else {
+            for(counter in firstGameIndex..fifthGameindex) {
+                gamesMutable.add(Color.GRAY)
+            }
+        }
+
+        gamesMutable = checkIfUserWonAllLatestFiveGames(gamesMutable)
+        return gamesMutable.toList()
+
+    }
+
+    /**
+     * Method responsible to check if the user have won the last five games
+     * and if he has all colors of the array will be changed to yellow
+     *
+     * @param latestGames list with the colors of the games
+     *
+     * @return list with yellow colors if the user has won the last five games, and if he has not
+     *         this will be the same list passed
+     */
+    fun checkIfUserWonAllLatestFiveGames(latestGames: MutableList<Int>) :
+            MutableList<Int> {
+        var wonAll = true
+
+        for (counter in firstGameIndex..fifthGameindex) {
+            if (latestGames[counter] != Color.GREEN) {
+                wonAll = false
+            }
+        }
+
+        if (wonAll)  {
+            for (counter in firstGameIndex..fifthGameindex) {
+                latestGames[counter] = Color.YELLOW
+            }
+        } else {
+            // Do nothing
+        }
+
+        return latestGames
+    }
+
     companion object {
+        const val firstGameIndex = 0
+        const val fifthGameindex = 4
         const val oneHundredPercent = 100
     }
 }

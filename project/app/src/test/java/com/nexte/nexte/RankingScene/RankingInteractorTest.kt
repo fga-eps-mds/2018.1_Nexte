@@ -42,21 +42,64 @@ class RankingInteractorTest {
         assertEquals(interactor.worker, newWorker)
     }
 
-//    @Test
-//    fun testGetPlayersRanksForScene(){
-//        //prepare
-//        val newWorker = RankingWorker()
-//        val request = RankingModel.Request()
-//
-//        //call
-//        val interactor = RankingInteractor()
-//        val oldWorker = interactor.worker
-//        interactor.worker = newWorker
-//        thread { this.interactor?.getPlayersRanksForScene(request = request) }.join()
-//
-//        //assert
-//        assertEquals(this.mock?.passedHere, true)
-//    }
+    @Test
+    fun testGetPlayersRanksForScene(){
+        //prepare
+        val newWorker = RankingWorker()
+        val request = RankingModel.Request()
+
+        //call
+        val interactor = RankingInteractor()
+        val oldWorker = interactor.worker
+        interactor.worker = newWorker
+        thread { this.interactor?.getPlayersRanksForScene(request = request) }.join()
+
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+
+        //backup
+        interactor.worker = oldWorker
+    }
+
+    @Test
+    fun successGetPlayer(){
+        //prepare
+        val request = RankingModel.Request()
+        //call
+        thread {
+            interactor?.getPlayersRanksForScene(request)
+        }.join()
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
+    fun successUpdateUsersInRanking(){
+        //prepare
+        val response= RankingModel.Response(arrayOf())
+
+        //call
+        interactor?.updateUsersInRanking(response)
+
+        //assert
+        assertEquals(this.mock?.passedHere, true)
+    }
+
+    @Test
+    fun successUpdateUsersInRankingWithNullPresenter(){
+        //prepare
+        val response= RankingModel.Response(arrayOf())
+        val backup = interactor?.presenter
+        interactor?.presenter = null
+        //call
+        interactor?.updateUsersInRanking(response)
+
+        //assert
+        assertEquals(this.mock?.passedHere, false)
+
+        //backup
+        interactor?.presenter = backup
+    }
 
     @Test
     fun successInteractor(){

@@ -20,7 +20,7 @@ class RankingModel {
      *
      * @property players it's a array of all Players
      */
-    class Response(var users: Array<User>)
+    class Response(var users: Array<User>?)
 
     /**
      * Class responsible to define how the list fragment will display the formatted data
@@ -58,6 +58,8 @@ class RankingModel {
                           var userRankingPosition: String,
                           var userLastGame: String,
                           var userEfficiency: String,
-                          var userCategory: String)
+                          var userCategory: String,
+                          var userLastGames: List<Int>,
+                          var id: String)
 }
 
