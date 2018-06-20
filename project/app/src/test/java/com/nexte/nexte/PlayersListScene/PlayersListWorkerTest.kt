@@ -9,11 +9,9 @@ import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeAdapterSpy
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
-import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
-import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import org.json.JSONArray
 import org.json.JSONObject
@@ -25,6 +23,7 @@ import java.net.URL
 import java.util.*
 import kotlin.concurrent.thread
 
+    @Suppress("DEPRECATION")
     class PlayersListWorkerTest: HelpForRealm() {
 
         private var worker: PlayersListWorker? = null
@@ -47,10 +46,10 @@ import kotlin.concurrent.thread
             val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(1)
 
             //call
-            this.worker?.fetchChallengedDetails(request, { response ->
+            this.worker?.fetchChallengedDetails(request) { response ->
                 //assert
                 assertNotNull(response.challengedPersonalDetails)
-            })
+            }
         }
 
         // When update logic is null and is realizes a request
@@ -187,7 +186,7 @@ import kotlin.concurrent.thread
         }
 
         @Test
-        fun jsonToUserListTest() {
+        private fun jsonToUserListTest() {
             //prepare
             val jsonUser = JSONObject()
             jsonUser.put("id", "1")
@@ -302,7 +301,7 @@ import kotlin.concurrent.thread
 
         // ESTE MÉTODO NÃO É UM TESTE
         // APENAS SEPAREI O PREPARE DE UM TESTE NESSE MÉTODO
-        fun generateJSONUser(rankingPosition: Int) : JSONObject {
+        private fun generateJSONUser(rankingPosition: Int) : JSONObject {
             val challengeReceived = JSONObject()
             challengeReceived.put("sended", false)
             challengeReceived.put("id", "2")

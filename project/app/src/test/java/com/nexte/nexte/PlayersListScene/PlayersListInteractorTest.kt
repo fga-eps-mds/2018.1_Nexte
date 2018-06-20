@@ -5,8 +5,6 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
-import com.nexte.nexte.RankingScene.RankingInteractor
-import com.nexte.nexte.RankingScene.RankingWorker
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
