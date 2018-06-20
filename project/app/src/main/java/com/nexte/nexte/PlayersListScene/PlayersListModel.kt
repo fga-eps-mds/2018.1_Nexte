@@ -117,7 +117,9 @@ class PlayersListModel {
                                   var rankingPosition: String,
                                   var category: String,
                                   var efficiency: String,
-                                  var latestGame: String)
+                                  var latestGame: String,
+                                  var userLastGames: List<Int>,
+                                  var id: String)
     /**
      *  Class that contains the detailed information about player ranking
      *

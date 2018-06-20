@@ -10,17 +10,20 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import android.graphics.Color
 import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.RankingScene.RankingFragment
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_challenger_sent.*
+import kotlinx.android.synthetic.main.row_ranking.view.*
 
 
 /**
@@ -258,7 +261,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.backgroundExpanded?.visibility = View.VISIBLE
         this.expanded_perfil?.visibility = View.VISIBLE
         this.expanded_perfil?.setOnClickListener{
-            val fragment = ShowProfileFragment().getInstance(currentPlayer.name)
+            val fragment = ShowProfileFragment().getInstance(currentPlayer.id)
             fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
         }
         this.circulo1?.visibility = View.VISIBLE
@@ -267,10 +270,35 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.circulo4?.visibility = View.VISIBLE
         this.circulo5?.visibility = View.VISIBLE
 
+        setUserGameCircle(this?.circulo1, currentPlayer.userLastGames[0])
+        setUserGameCircle(this?.circulo2, currentPlayer.userLastGames[1])
+        setUserGameCircle(this?.circulo3, currentPlayer.userLastGames[2])
+        setUserGameCircle(this?.circulo4, currentPlayer.userLastGames[3])
+        setUserGameCircle(this?.circulo5, currentPlayer.userLastGames[4])
+
 
 
     }
 
+    /**
+     * Method responsible for setting the apropriate resource to the plaeyr game circle
+     *
+     * @param imageView imageView that will display the player result
+     * @param lastGame data that will indicate the player game status
+     */
+    fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
+        val circleResource = if (lastGame == Color.GREEN) {
+            R.drawable.circle_victory_ranking
+        } else if (lastGame == Color.GRAY) {
+            R.drawable.circle_empty_ranking
+        } else if (lastGame == Color.RED) {
+            R.drawable.circle_defeat_ranking
+        } else {
+            R.drawable.circle_undefeated_ranking
+        }
+
+        imageView?.setBackgroundResource(circleResource)
+    }
     /**
      * Method responsible for showing the a alert button with a message about the
      * challenge sended
@@ -341,6 +369,15 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedLastestGame?.visibility = View.INVISIBLE
         this.expandedExploitation?.text = ""
         this.expandedExploitation?.visibility = View.INVISIBLE
+        this.expandedCategory?.text = ""
+        this.expandedCategory?.visibility = View.INVISIBLE
+        this.backgroundExpanded?.visibility = View.INVISIBLE
+        this.expanded_perfil?.visibility = View.INVISIBLE
+        this.circulo1?.visibility = View.INVISIBLE
+        this.circulo2?.visibility = View.INVISIBLE
+        this.circulo3?.visibility = View.INVISIBLE
+        this.circulo4?.visibility = View.INVISIBLE
+        this.circulo5?.visibility = View.INVISIBLE
     }
 
     /**

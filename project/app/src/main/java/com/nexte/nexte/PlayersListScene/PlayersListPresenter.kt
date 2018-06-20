@@ -1,6 +1,8 @@
 package com.nexte.nexte.PlayersListScene
 
+import android.graphics.Color
 import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.RankingScene.RankingPresenter
 import java.util.*
 
@@ -49,6 +51,7 @@ interface PlayersListPresentationLogic {
 class PlayersListPresenter : PlayersListPresentationLogic {
 
     var viewChallenge: PlayersListDisplayLogic? = null // reference of the view
+    var challengeManager: ChallengeManager = ChallengeManager()
 
     /**
      * This method is responsible for formatting data contained on
@@ -70,23 +73,6 @@ class PlayersListPresenter : PlayersListPresentationLogic {
 
         val viewModel = PlayersListModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
         viewChallenge?.displayPlayersToChallenge(viewModel)
-    }
-
-    /**
-     * Method used to get player efficiency based on his wins and losses
-     *
-     * @return a string that represents player efficiency
-     */
-    fun calculatePlayerEfficiency(wins: Int, losses: Int): String{
-        val allGames = wins + losses
-        val efficiency: String?
-        efficiency = if (allGames != 0){
-            "" + (wins/allGames* RankingPresenter.oneHundredPercent).toString() + "%"
-        }else{
-            "0%"
-        }
-
-        return efficiency
     }
 
     /**
@@ -115,6 +101,74 @@ class PlayersListPresenter : PlayersListPresentationLogic {
             "" + (today.year - latestGameDate.year) + " years"
         }
     }
+
+    /**
+     *  Method responsible for creating the array with the corresponding colors
+     *  to the player last five games
+     *
+     *  @param latestGames list with user last games
+     *  @param userId id of the user
+     *
+     *  @return list with the colors arrays
+     */
+    fun getPlayerLastFiveGamesArray(latestGames: List<Challenge?>?, userId: String) :
+            List<Int> {
+        var gamesMutable = mutableListOf<Int>()
+
+        if (latestGames != null) {
+
+            for (counter in RankingPresenter.firstGameIndex..RankingPresenter.fifthGameindex) {
+
+                if (latestGames.getOrNull(counter) == null) {
+                    gamesMutable.add(Color.GRAY)
+                }else if (latestGames[counter]?.winner == userId) {
+                    gamesMutable.add(Color.GREEN)
+                } else {
+                    gamesMutable.add(Color.RED)
+                }
+            }
+
+        } else {
+            for(counter in RankingPresenter.firstGameIndex..RankingPresenter.fifthGameindex) {
+                gamesMutable.add(Color.GRAY)
+            }
+        }
+
+        gamesMutable = checkIfUserWonAllLatestFiveGames(gamesMutable)
+        return gamesMutable.toList()
+
+    }
+
+    /**
+     * Method responsible to check if the user have won the last five games
+     * and if he has all colors of the array will be changed to yellow
+     *
+     * @param latestGames list with the colors of the games
+     *
+     * @return list with yellow colors if the user has won the last five games, and if he has not
+     *         this will be the same list passed
+     */
+    fun checkIfUserWonAllLatestFiveGames(latestGames: MutableList<Int>) :
+            MutableList<Int> {
+        var wonAll = true
+
+        for (counter in RankingPresenter.firstGameIndex..RankingPresenter.fifthGameindex) {
+            if (latestGames[counter] != Color.GREEN) {
+                wonAll = false
+            }
+        }
+
+        if (wonAll)  {
+            for (counter in RankingPresenter.firstGameIndex..RankingPresenter.fifthGameindex) {
+                latestGames[counter] = Color.YELLOW
+            }
+        } else {
+            // Do nothing
+        }
+
+        return latestGames
+    }
+
     /**
      * This method is responsible for formatting data contained on
      * [PlayersListModel.SelectPlayerForChallengeRequest.Response] and send it to View
@@ -125,15 +179,18 @@ class PlayersListPresenter : PlayersListPresentationLogic {
         val selectedChallenged = response.challengedPersonalDetails
         val totalGames = selectedChallenged.wins.toFloat()+selectedChallenged.loses
         val efficiency = (selectedChallenged.wins /totalGames) * 100
-        val lastGame = calculatePlayerLastGame(selectedChallenged.latestGames,Date())
         val percent = "%"
+        val latestChallenges = challengeManager?.getLastFiveChallenges(selectedChallenged.id)
+        val lastGame = calculatePlayerLastGame(latestChallenges,Date())
         val formattedPlayer = PlayersListModel.FormattedRankingDetails(
                 selectedChallenged.name,
                 String.format("VITÓRIAS: %d / %d", selectedChallenged.wins,(selectedChallenged.wins+selectedChallenged.loses)),
                 String.format("%d", selectedChallenged.rankingPosition),
                 selectedChallenged.category.toString(),
                 String.format("Aproveitamento: %.2f %s",efficiency,percent),
-                String.format("Último Jogo: %s",lastGame)
+                String.format("Último Jogo: %s",lastGame),
+                getPlayerLastFiveGamesArray(latestChallenges,selectedChallenged.id),
+                selectedChallenged.id
         )
 
         val viewModel = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)

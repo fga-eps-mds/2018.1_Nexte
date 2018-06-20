@@ -178,5 +178,5 @@ private class MockFeedDisplayLogic: FeedDisplayLogic{
             formattedGetFeedActivities = viewModel.feedActivities[0]
             this.passedHere = true
         }
-    }
 }
+
