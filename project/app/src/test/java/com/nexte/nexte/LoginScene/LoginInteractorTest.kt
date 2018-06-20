@@ -1,26 +1,15 @@
 package com.nexte.nexte.LoginScene
 
-import com.facebook.accountkit.AccountKitLoginResult
-import io.reactivex.Scheduler
-import io.reactivex.disposables.Disposable
-import io.reactivex.internal.schedulers.RxThreadFactory
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Assert.*
-import org.junit.BeforeClass
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import kotlin.concurrent.thread
 
-//@RunWith(RobolectricTestRunner::class)
 class LoginInteractorTest {
 
     private var mock: MockLoginPresentationLogic? = null
     private var interactor: LoginInteractor? = null
-    private var worker: LoginPresentationLogic? = null
 
     @Before
     fun setUp() {
@@ -40,14 +29,6 @@ class LoginInteractorTest {
 
         //assert
         assertEquals(newWorker, interactor?.worker)
-    }
-
-    @Test
-    fun testDoAuthentication() {
-        //prepare
-
-        val request: LoginModel.Authentication.Request
-
     }
     
     @After
@@ -70,6 +51,56 @@ class LoginInteractorTest {
         val presenter = interactor?.presenter
 
         assertEquals(interactor?.presenter, presenter)
+    }
+
+    @Test
+    fun testAuthenticateUserAuthorized(){
+        val responseStatus = LoginModel.Authentication.StatusCode.AUTHORIZED
+        val response = LoginModel.Authentication.Response("1", responseStatus)
+
+
+        this.interactor?.authenticateUser(response)
+
+        assertTrue(this.mock?.passedHere!!)
+    }
+
+    @Test
+    fun testAuthenticateUserNotAuthorized(){
+        val responseStatus = LoginModel.Authentication.StatusCode.UNAUTHORIZED
+        val response = LoginModel.Authentication.Response("1", responseStatus)
+
+
+        this.interactor?.authenticateUser(response)
+
+        assertTrue(this.mock?.passedHere!!)
+    }
+
+    @Test
+    fun testRequestAuth(){
+        val responseStatus = LoginModel.AccountKit.StatusCode.SUCESSED
+        val response = LoginModel.AccountKit.Response(responseStatus)
+
+        this.interactor?.requestAuth(response)
+
+        assertTrue(this.mock?.passedHere!!)
+    }
+
+    @Test
+    fun testDoAuthentication(){
+        val request = LoginModel.Authentication.Request("123", "123")
+
+        thread { this.interactor?.doAuthentication(request)}.join()
+
+        assertNull(this.mock?.passedHere)
+    }
+
+    @Test
+    fun testAccountKitAuthentication(){
+        val request = LoginModel.AccountKit.Request("123", "123")
+
+        thread{this.interactor?.accountKitAuthentication(request)}.join()
+
+        assertNull(this.mock?.passedHere)
     }
 
 //    @Test
@@ -114,20 +145,17 @@ class LoginInteractorTest {
 }
 
 private class MockLoginPresentationLogic: LoginPresentationLogic{
-    var passedHere = false
+    var passedHere: Boolean? = null
 
     override fun presentLogin(response: LoginModel.Authentication.Response){
         this.passedHere = true
-        print(passedHere)
     }
 
     override fun presentError(response: LoginModel.Authentication.Response) {
         this.passedHere = true
-        print(passedHere)
     }
 
     override fun presentAccountKit(response: LoginModel.AccountKit.Response) {
         this.passedHere = true
-        print(passedHere)
     }
 }
