@@ -85,5 +85,30 @@
     <string name="tabChallengeSended">Enviados</string>
     <string name="tabChallengeReceived">Recebidos</string>
     <string name="tabChallengePlayers">Tenistas</string>
+    <string name="disponivel">Disponível</string>
+    <string name="afastado">Afastado</string>
+    <string name="cinta_liga_de_t_nis">Cinta Liga de Tênis</string>
+    <string name="editarperfil">editar</string>
+    <string name="prifler">R</string>
+    <string name="profileusername">username</string>
+    <string name="jogos">Jogos</string>
+    <string name="profilen">N</string>
+    <string name="vit_rias">Vitórias</string>
+    <string name="afastar_se">Afastar-se</string>
+    <string name="contato">Contato</string>
+    <string name="estat_sticas">Estatísticas</string>
+    <string name="vit_rias_derrotas">Vitórias/Derrotas</string>
+    <string name="posi_es_por_tempo">Posições por tempo</string>
+    <string name="partidas">Partidas</string>
+    <string name="derrotas">Derrotas</string>
+    <string name="a_cada_partida_de_t_nis_salve_a_sua_pontua_o">A cada partida de tênis salve a sua pontuação</string>
+    <string name="mas_voc_precisa_estar_registrado_em_algum_clube_para_poder_participar_do_nexte">Mas você precisa estar registrado em algum clube para poder participar do Nexte!</string>
+    <string name="estes_s_o_os_clubes_que_est_o_participando_do_nexte_at_o_momento">Estes são os clubes que estão participando do Nexte até o momento</string>
+    <string name="imagem">imagem</string>
+    <string name="seu_clube_n_o_est_registrado_entre_em_contato_conosco">Seu clube não está registrado? Entre em contato conosco!</string>
+    <string name="e_mail_ou_telefone">E-mail ou telefone</string>
+    <string name="solicita_o_de_registro">Solicitação de registro</string>
+    <string name="x_uob">X</string>
+    <string name="pref_previously_started">isFirstRun</string>
 
 </resources>

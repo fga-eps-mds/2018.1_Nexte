@@ -27,6 +27,16 @@ class MatchInteractorTest {
     }
 
     @Test
+    fun testMatchInteractor() {
+        //prepare
+        //call
+        val testClass = MatchInteractor()
+
+        //assert
+        assertNotNull(testClass)
+    }
+
+    @Test
     fun testSetWorker(){
         //prepare
         val worker = MatchWorker()
@@ -157,6 +167,7 @@ class MatchInteractorTest {
         this.interactor?.declineMatchResult(request)
 
         assertEquals(this.mockk?.response?.status, MatchModel.DeclineChallengeRequest.Status.SUCCESS)
+        assertNotNull(this.interactor?.worker?.challengeManager)
     }
 
     @After

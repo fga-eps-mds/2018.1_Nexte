@@ -189,6 +189,7 @@ class RankingWorkerTest : HelpForRealm() {
         worker?.updateLogic = backup
     }
 
+
     @Test
     fun successConvertJsonToListOfUsersCase1(){
         //call

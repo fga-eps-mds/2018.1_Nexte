@@ -7,7 +7,6 @@ import java.util.*
 
 import org.junit.Assert.*
 import org.junit.Test
-import java.util.*
 
 class RankingModelTest {
 
@@ -80,7 +79,9 @@ class RankingModelTest {
                 userCategory = userCategory,
                 userEfficiency = userEfficiency,
                 userLastGame = userLastGame,
+                userLastGames = listOf(),
                 id = id)
+
         formattedPlayer.userName = userName
         formattedPlayer.userPictureURL = userPictureURL
         formattedPlayer.userRankingPosition = userRankingPosition
@@ -88,12 +89,19 @@ class RankingModelTest {
         formattedPlayer.userCategory = userCategory
         formattedPlayer.userLastGame = userLastGame
         formattedPlayer.userEfficiency = userEfficiency
-
+        val oldLastGame = formattedPlayer.userLastGame
+        formattedPlayer.userLastGame = "lastGame"
+        val oldId = formattedPlayer.id
+        formattedPlayer.id = "2"
         //assert
         assertEquals(userName, formattedPlayer.userName)
         assertEquals(userPictureURL, formattedPlayer.userPictureURL)
         assertEquals(userWins, formattedPlayer.userWins)
         assertEquals(userRankingPosition, formattedPlayer.userRankingPosition)
+        assertEquals(oldLastGame, userLastGame)
+        assertEquals(oldId, id)
+        assertEquals(formattedPlayer.userLastGame, "lastGame")
+        assertEquals(formattedPlayer.id, "2")
     }
 
     @Test
@@ -113,7 +121,9 @@ class RankingModelTest {
                 userLastGame = userLastGame,
                 userEfficiency = userEfficiency,
                 userCategory = userCategory,
+                userLastGames = listOf(),
                 id = "1")
+
         val shouldDrawChild = true
 
         //call
@@ -138,7 +148,9 @@ class RankingModelTest {
                 userCategory = "profissional",
                 userEfficiency = "90%",
                 userLastGame = "ontem",
+                userLastGames = listOf(),
                 id = "1")
+
         val formattedPlayer2 = RankingModel.FormattedPlayer(userName = "teste",
                 userPictureURL = 2,
                 userWins = "2",
@@ -146,7 +158,9 @@ class RankingModelTest {
                 userEfficiency = "80%",
                 userLastGame = "hoje",
                 userCategory = "intermediario",
+                userLastGames = listOf(),
                 id = "1")
+
         val formattedPlayerInfo1 = RankingModel.FormattedPlayerInfo(player = formattedPlayer1, shouldDrawChild = true)
         val formattedPlayerInfo2 = RankingModel.FormattedPlayerInfo(player = formattedPlayer2, shouldDrawChild = false)
 

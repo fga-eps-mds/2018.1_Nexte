@@ -71,12 +71,10 @@ class RankingWorker {
         updateLogic?.updateUsersInRanking(response)
 
         if (UserSingleton.userType != UserType.MOCKED) {
-
             val url = "http://10.0.2.2:3000/users"
             url.httpGet().responseJson(httpGetHandler)
-
         } else {
-            // Do nothing
+            //Do nothing
         }
     }
 

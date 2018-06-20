@@ -1,7 +1,12 @@
 package com.nexte.nexte.PlayersListScene
 
 
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Challenge.Challenge
@@ -11,6 +16,7 @@ import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MatchScene.MatchModel
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
@@ -23,6 +29,13 @@ interface PlayerListUpdateLogic{
      * @param response Response model of list that contains data to pass for Presenter
      */
     fun getPlayersToChallenge(response: PlayersListModel.ShowRankingPlayersRequest.Response)
+
+    /**
+     * Method that will be used to pass response of challenge for the presenter
+     *
+     * @param response Response model of list that contains data to pass for Presenter
+     */
+    fun generateChallengeReponse(response: PlayersListModel.ChallengeButtonRequest.Response)
 }
 /**
  * Class responsible to do request for anywhere, format Response and
@@ -33,6 +46,45 @@ class PlayersListWorker {
     var userManager: UserManager? = null
     var challengeManager: ChallengeManager = ChallengeManager()
     var updateLogic: PlayerListUpdateLogic? = null
+    var httpBool: Boolean? = null
+    val httpHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+        when (result) {
+            is Result.Failure -> {
+                println(result.getException())
+            }
+            is Result.Success -> {
+                val json = result.get()
+                createNewResponseFromServer(json.obj())
+
+            }
+        }
+    }
+    val httpPostHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
+
+        when (result) {
+            is Result.Failure -> {
+                httpBool = false
+                println(result.getException())
+            }
+
+            is Result.Success -> {
+                httpBool = true
+                println(result.get())
+            }
+        }
+    }
+
+    /**
+     * Method that will create the new response from data that came from server
+     */
+    fun createNewResponseFromServer(json: JSONObject){
+        var usersList = this.convertJsonToListOfUsers(json).sortedBy { it.rankingPosition }
+        usersList = userManager?.updateMany(usersList)!!
+        usersList = usersList.take(5) // First 5 players
+        val newResponse = PlayersListModel.ShowRankingPlayersRequest.Response(usersList)
+        updateLogic?.getPlayersToChallenge(newResponse)
+    }
+
 
     /**
      * Function to get players 5 rank positions above the logged player
@@ -54,20 +106,11 @@ class PlayersListWorker {
         val response = PlayersListModel.ShowRankingPlayersRequest.Response(availablePlayers)
         updateLogic?.getPlayersToChallenge(response)
 
-        val url = "http://10.0.2.2:3000/users/"
-        url.httpGet().responseJson { _, _, result ->
-            when(result){
-                is Result.Failure -> { println(result.getException()) }
-                is Result.Success -> {
-                    val json = result.get()
-                    var usersList = convertJsonToListOfUsers(json.obj()).sortedBy { it.rankingPosition }
-                    usersList = userManager?.updateMany(usersList)!!
-                    usersList = usersList.take(5) // First 5 players
-                    val newResponse = PlayersListModel.ShowRankingPlayersRequest.Response(usersList)
-                    updateLogic?.getPlayersToChallenge(newResponse)
-                }
-            }
+        if (UserSingleton.userType != UserType.MOCKED) {
+            val url = "http://10.0.2.2:3000/users/"
+            url.httpGet().responseJson(this.httpHandler)
         }
+
     }
 
     /**
@@ -100,8 +143,7 @@ class PlayersListWorker {
      * @param request Challenge Model request that contains needed information to send to server
      * @param completion Method to call on parent class
      */
-    fun generateChallenge(request: PlayersListModel.ChallengeButtonRequest.Request,
-                          completion: (PlayersListModel.ChallengeButtonRequest.Response) -> Unit) {
+    fun generateChallenge(request: PlayersListModel.ChallengeButtonRequest.Request) {
 
         val challengedUser = userManager?.get(request.userChallenged)
         challengedUser?.let {
@@ -119,8 +161,36 @@ class PlayersListWorker {
             val match = MatchModel.MatchData(challenged, challenger)
             val response = PlayersListModel.ChallengeButtonRequest.Response(challengedUser.name, match)
 
-            completion(response)
+            this.updateLogic?.generateChallengeReponse(response)
+
+            if(UserSingleton.userType != UserType.MOCKED) {
+                val header = mapOf("Content-Type" to "application/json",
+                        "Accept-Version" to "0.1.0")
+                val url = "http://10.0.2.2:3000/challenges"
+                val challengeJSON = createChallengeJson(challenge)
+                Fuel.post(url).header(header).body(challengeJSON.toString()).responseJson(httpPostHandler)
+
+            }
         }
+    }
+
+    /**
+     * Method responsible for transforming a challenge to JSON
+     *
+     * @param challenge challenge data to become json
+     *
+     * @return JSON form of the challenge
+     */
+    fun createChallengeJson(challenge: Challenge): JSONObject{
+        val jsonChallenge = JSONObject()
+        jsonChallenge.put("challenger", challenge.challengerId)
+        jsonChallenge.put("challenged", challenge.challengedId)
+        jsonChallenge.put("date", challenge.challengeDate.toString())
+
+        val returnJson = JSONObject()
+        returnJson.put("challenge", jsonChallenge)
+
+        return returnJson
     }
 
     /**

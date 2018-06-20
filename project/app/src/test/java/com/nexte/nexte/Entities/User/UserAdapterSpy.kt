@@ -12,7 +12,11 @@ class UserAdapterSpy: UserAdapter {
     override fun get(identifier: String): User? {
         if (identifier == "1") {
             return mockUser()
-        } else {
+        }
+        else if(identifier == "2"){
+            return mockAnotherUser()
+        }
+        else {
             return null
         }
     }
@@ -28,7 +32,8 @@ class UserAdapterSpy: UserAdapter {
     override fun delete(identifier: String): User? {
         if (identifier == "1") {
             return mockUser()
-        } else {
+        }
+        else {
             return null
         }
     }
@@ -47,6 +52,30 @@ class UserAdapterSpy: UserAdapter {
         val gender = User.Gender.MALE
         val category = null
         val status = User.Status.AVAILABLE
+        val challengeSended = null
+        val challengeReceived = null
+
+        // Call
+        val user = User(id, name, profilePicture, nickname, birthdate, rankingPosition, email, phone,
+                wins, loses, gender, category, status, challengeSended, challengeReceived, emptyList())
+
+        return user
+    }
+
+    private fun mockAnotherUser(): User {
+        val id = "2"
+        val name = "User New test"
+        val profilePicture = null
+        val nickname = "uset2yay"
+        val birthdate = Date()
+        val rankingPosition = 1
+        val email = "use2t@uset_2.com"
+        val phone = "321"
+        val wins = 2
+        val loses = 2
+        val gender = User.Gender.FEMALE
+        val category = null
+        val status = User.Status.INJURED
         val challengeSended = null
         val challengeReceived = null
 

@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'jacoco'
 apply plugin: 'realm-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
 
 ext {
     coverageSourceDirs = 'src/test/java'
@@ -21,6 +22,7 @@ realm {
 repositories {
     jcenter()
     maven { url "https://jitpack.io" }
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 configurations.all {
@@ -35,8 +37,8 @@ android {
         applicationId "com.nexte.nexte"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 9
-        versionName "0.9"
+        versionCode 10
+        versionName "0.11"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -73,6 +75,10 @@ android {
 }
 
 dependencies {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true;
+    }
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -153,8 +159,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ["clean", "testDebugUnitTes
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*',
-                       '**/CiMattersApplication*.*', 'android/**/*.*', '**/*Fragment*.*', '**/*View*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*',
+                       '**/*Fragment*.*', '**/*View*.*', '**/*FeedManager*.*', '**/*FeedMocker*.*']
     )
 
     additionalSourceDirs = files(coverageSourceDirs)
@@ -177,12 +183,11 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     classDirectories = fileTree(
             dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class', '**/R$*.class', '**/*$ViewBinder*.*', '**/*$InjectAdapter*.*', '**/*Injector*.*',
-                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Fragment*.*', '**/*View*.*', '**/*Test*.*', '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
+                       '**/BuildConfig.*', '**/Manifest*.*', '**/*Fragment*.*', '**/*View*.*', '**/*Test*.*',
+                       '**/*Activity*.*', '**/CiMattersApplication*.*', 'android/**/*.*']
     )
 
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
     executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
 }
-
-

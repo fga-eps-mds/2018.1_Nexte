@@ -27,6 +27,25 @@ class CommentsModelTest {
     }
 
     @Test
+    fun successSettersTest(){
+        val response1 = CommentsModel.GetCommentsRequest.Response(mutableListOf())
+        val response2 = CommentsModel.DeleteCommentRequest.Response(Comment("1", "1", "1", Date()))
+        val request = CommentsModel.DeleteCommentRequest.Request(1)
+
+        val comments = mutableListOf(Comment("1", "1", "1", Date()))
+        val comment = Comment("2", "2", "2", Date())
+        val commentId = 2
+
+        response1.comments = comments
+        response2.delComments = comment
+        request.commentIdentifier = commentId
+
+        assertEquals(response1.comments, comments)
+        assertEquals(response2.delComments, comment)
+        assertEquals(request.commentIdentifier, commentId)
+    }
+
+    @Test
     fun successSecondRequest(){
         //prepare
         val testRequest = "identifier"
@@ -276,7 +295,7 @@ class CommentsModelTest {
         )
         viewModel.commentsFormatted = newComments
 
-        //assert
+        //assertF
         assertEquals(viewModel.commentsFormatted, newComments)
     }
 
@@ -478,6 +497,8 @@ class CommentsModelTest {
         assertEquals(commentsModel.alertMessage, message)
     }
 
+
+
     @Test
     fun successDeleteComment() {
         //prepare
@@ -503,7 +524,7 @@ class CommentsModelTest {
     }
 
     @Test
-    fun DeleteCommentResponse() {
+    fun DeleteComgimentResponse() {
         //prepare
 
         val comment1 = Comment("hahaha",

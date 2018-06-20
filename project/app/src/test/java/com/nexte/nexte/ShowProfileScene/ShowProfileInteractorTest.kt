@@ -1,6 +1,8 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
 import org.junit.After
 import org.junit.Before
@@ -31,7 +33,7 @@ class ShowProfileInteractorTest {
         this.interactor?.worker?.userManager = UserManager(UserAdapterSpy())
         val request = ShowProfileModel.Request("luis")
         val expectedResult = true
-        val presenter = this?.interactor?.presenter
+        val presenter = this.interactor?.presenter
 
         //call
         thread { this.interactor?.showProfile(request = request) }.join()
@@ -39,6 +41,38 @@ class ShowProfileInteractorTest {
         //assert
         assertNotNull(presenter)
         assertEquals(expectedResult, this.mock2?.passedHere)
+    }
+
+    @Test
+    fun testUpdateUserProfile(){
+        //prepare
+        val response = ShowProfileModel.Response(User("", "", "", "", null, -1,
+                "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                User.Status.UNAVAILABLE,null, null, null))
+
+        //call
+        interactor?.updateUserProfile(response)
+
+        //assert
+        assertEquals(true, mock?.passedHere)
+    }
+
+    @Test
+    fun testUpdateUserProfileWithoutPresenter(){
+        //prepare
+        val response = ShowProfileModel.Response(User("", "", "", "", null, -1,
+                "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                User.Status.UNAVAILABLE,null, null, null))
+        val backup = this.interactor?.presenter
+        this.interactor?.presenter = null
+        //call
+        interactor?.updateUserProfile(response)
+
+        //assert
+        assertEquals(false, mock?.passedHere)
+
+        //backup
+        this.interactor?.presenter = backup
     }
 
     @After

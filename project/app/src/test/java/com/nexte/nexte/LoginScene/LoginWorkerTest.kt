@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
 
@@ -49,6 +50,34 @@ class LoginWorkerTest {
 //            assertEquals(response.tokenId, tokenId)
 //        })
 //    }
+
+    @Test
+    fun testDefineBodyForAccountKitAuthPhoneNotNull(){
+        val phone = "123456789"
+        val email = "email@email.com"
+
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("phone", phone)
+        jsonObject.put("password", "test-nexte-ramires")
+
+        assertEquals(json.toString(), jsonObject.toString())
+    }
+
+    @Test
+    fun testDefineBodyForAccountKitAuthPhoneNull(){
+        val phone = null
+        val email = "email@email.com"
+
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("email", email)
+        jsonObject.put("password", "test-nexte-ramires")
+
+        assertEquals(json.toString(), jsonObject.toString())
+    }
 
     @After
     fun tearDown() {
