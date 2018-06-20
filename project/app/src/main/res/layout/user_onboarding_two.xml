@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#2E2E2E"
-    android:fillViewport="true"
-    android:scrollbars="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E2E2E">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@mipmap/user_onboarding_clt"
+        android:contentDescription="@string/imagem" />
 
-        <TextView
-            android:id="@+id/textOnTop"
-            android:layout_width="232dp"
-            android:layout_height="77dp"
-            android:layout_marginTop="48dp"
-            android:gravity="center"
-            android:text="@string/estes_s_o_os_clubes_que_est_o_participando_do_nexte_at_o_momento"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textOnTop"
+        android:layout_width="232dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="@string/estes_s_o_os_clubes_que_est_o_participando_do_nexte_at_o_momento"
+        android:textColor="@color/text_focus_regular"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imageView3" />
 
+    <TextView
+        android:id="@+id/textOnEnd"
+        android:layout_width="149dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/cinta_liga_de_t_nis"
+        android:textColor="@color/text_focus_regular"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView3" />
 
-        <TextView
-            android:id="@+id/textOnEnd"
-            android:layout_width="149dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="28dp"
-            android:gravity="center"
-            android:text="@string/cinta_liga_de_t_nis"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView3" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="0dp"
-            android:layout_height="242dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textOnTop"
-            app:srcCompat="@mipmap/user_onboarding_clt"
-            android:contentDescription="@string/imagem" />
-
-    </android.support.constraint.ConstraintLayout>
-
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

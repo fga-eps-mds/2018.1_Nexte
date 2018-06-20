@@ -119,6 +119,8 @@
     <string name="loginEmailOrPhoneDescription">E-mail ou Telefone</string>
     <string name="loginLogoDescription">Logo of Nexte</string>
     <string name="loginBackgroundDescription">Background of Nexte</string>
+    <string name="userOnboardingPages">Página X do UserOnboarding</string>
+    <string name="userOnboardingImageOne">Primeira imagem do UserOnboarding</string>
 
 
 </resources>
