@@ -7,8 +7,13 @@ import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
 import com.facebook.accountkit.*
+import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
-import kotlinx.android.synthetic.main.row_feed.*
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+
+
 
 /**
  * Interface to define Display Logic to LoginView Class that will receive information
@@ -51,13 +56,39 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         this.setup()
         this.createAuthenticationRequest()
 
+//        val intent = Intent(this, UserOnBoardingView::class.java)
+//        startActivity(intent)
+
+//
+//        btnLoginPhonenumber.setOnClickListener {
+//            this.loginPhoneNumber()
+//        }
+//
+//        btnLoginFacebook.setOnClickListener {
+//            this.loginByEmail()
+//        }
+
         login.setOnClickListener {
-            Log.i("HEEEERE", "Login")
             createAuthenticationRequest()
         }
+
         navigationLogin.setOnClickListener{
             this.finish()
         }
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
+        val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
+        if (!previouslyStarted) {
+            val edit = prefs.edit()
+            edit.putBoolean(getString(R.string.pref_previously_started), java.lang.Boolean.TRUE)
+            edit.apply()
+            val intent = Intent(this, UserOnBoardingView::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun onBackPressed() {
+        this.finishAffinity()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -147,6 +178,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         view.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker.updateLogic = interactor
         presenter.view = view
     }
 }
