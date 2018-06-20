@@ -1,5 +1,7 @@
 package com.nexte.nexte.LoginScene
 
+import android.util.Log
+
 /**
  * Interface resposible to format request provided in Interactor to data as
  * it should be presented at fragment as viewModel
