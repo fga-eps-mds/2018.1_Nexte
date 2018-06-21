@@ -11,6 +11,7 @@ import org.junit.Before
 import org.junit.Test
 import java.util.*
 
+@Suppress("DEPRECATION")
 class PlayersListModelTest {
 
     @Before
@@ -85,7 +86,8 @@ class PlayersListModelTest {
         //prepare
         val testFormatPlayer = PlayersListModel.FormattedPlayer("2", "Gabriel Albino",
                                                              "2",
-                                                             "identifier")
+                                                             "identifier",
+                                                                    User.Status.AVAILABLE)
         val testPlayersFormattedList = listOf(testFormatPlayer)
 
         //call
@@ -103,11 +105,11 @@ class PlayersListModelTest {
     fun formatteUserGet() {
 
         //prepare and call
-        var user: PlayersListModel.FormattedPlayer? = null
+        val user: PlayersListModel.FormattedPlayer?
         user = PlayersListModel.FormattedPlayer("1",
                 "Miguel Pimentel",
                 "1",
-                "1")
+                "1", User.Status.AVAILABLE)
         user.identifier = "23232"
         assertNotNull(user)
     }
@@ -258,7 +260,7 @@ class PlayersListModelTest {
         val testPicture = "validToken"
 
         //call
-        val testFormattedPlayer = PlayersListModel.FormattedPlayer(testIdentifier, testName, testPosition, testPicture)
+        val testFormattedPlayer = PlayersListModel.FormattedPlayer(testIdentifier, testName, testPosition, testPicture, User.Status.AVAILABLE)
         testFormattedPlayer.name = testName
         testFormattedPlayer.rankingPosition = testPosition
         testFormattedPlayer.pictureAddress = testPicture
