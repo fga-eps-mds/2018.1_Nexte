@@ -105,7 +105,8 @@ class PlayersListModel {
     class FormattedPlayer(var identifier: String, // user itendifier
                           var name: String, // player name
                           var rankingPosition: String, //player position in ranking
-                          var pictureAddress: String) //player picture url
+                          var pictureAddress: String, //player picture url
+                          var status: User.Status)  //player status
 
     /**
      * Class that holds the selected player formatted information.

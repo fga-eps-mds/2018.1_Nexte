@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#2E2E2E"
-    android:fillViewport="true"
-    android:scrollbars="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E2E2E">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:contentDescription="@string/userOnboardingImageOne"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@mipmap/image_user_onboarding_one" />
 
-        <TextView
-            android:id="@+id/textOnTop"
-            android:layout_width="154dp"
-            android:layout_height="77dp"
-            android:layout_marginTop="48dp"
-            android:gravity="center"
-            android:text="@string/a_cada_partida_de_t_nis_salve_a_sua_pontua_o"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textOnTop"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="@string/a_cada_partida_de_t_nis_salve_a_sua_pontua_o"
+        android:textColor="@color/text_focus_regular"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <TextView
-            android:id="@+id/textOnEnd"
-            android:layout_width="184dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="28dp"
-            android:gravity="center"
-            android:text="@string/mas_voc_precisa_estar_registrado_em_algum_clube_para_poder_participar_do_nexte"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    <TextView
+        android:id="@+id/textOnEnd"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/mas_voc_precisa_estar_registrado_em_algum_clube_para_poder_participar_do_nexte"
+        android:textColor="@color/text_focus_regular"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="242dp"
-            android:layout_height="242dp"
-            android:layout_marginTop="28dp"
-            android:contentDescription="@string/imagem"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textOnTop"
-            app:srcCompat="@mipmap/ic_onboarding_preview" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-</ScrollView>
+</android.support.constraint.ConstraintLayout>
