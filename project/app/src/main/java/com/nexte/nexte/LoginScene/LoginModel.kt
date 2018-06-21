@@ -27,7 +27,7 @@ class LoginModel {
          * Class responsible to store received information from Presenter to View
          * @param message message according with authentication result
          */
-        class ViewModel(val message: String)
+        class ViewModel(val tokenId: String)
 
         /**
          *  Enum class to handle with error and responses from server

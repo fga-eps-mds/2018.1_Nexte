@@ -9,9 +9,8 @@ import android.util.Log
 import com.facebook.accountkit.*
 import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
-import android.R.id.edit
-import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import android.content.Context
 
 
 
@@ -52,12 +51,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
-
         this.setup()
-        this.createAuthenticationRequest()
 
-//        val intent = Intent(this, UserOnBoardingView::class.java)
-//        startActivity(intent)
 
 //
 //        btnLoginPhonenumber.setOnClickListener {
@@ -102,7 +97,16 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
-        val message: String = viewModel.message
+        val message: String
+
+        if (viewModel.tokenId != "") {
+            message = "Sucess to authenticate"
+            saveUserIdentifier(viewModel.tokenId)
+            this.finish()
+        } else {
+            message = "Error to authenticate"
+        }
+
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
     }
@@ -169,9 +173,19 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 //    }
 
     /**
+     * Persist userId when authentication is sucessfully
+     */
+    private fun saveUserIdentifier(id: String) {
+        val sharedPreferences = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("userId", id)
+        editor.apply()
+     }
+
+    /**
      * Method responsible for setup protocol between scenes
      */
-    fun setup() {
+    private fun setup() {
         val view = this
         val interactor = LoginInteractor()
         val presenter = LoginPresenter()
@@ -181,4 +195,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         interactor.worker.updateLogic = interactor
         presenter.view = view
     }
+
+
 }

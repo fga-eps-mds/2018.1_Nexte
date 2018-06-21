@@ -14,7 +14,6 @@ import com.nexte.nexte.UserType
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import org.json.JSONObject
-import android.util.Log
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 
@@ -101,11 +100,8 @@ class LoginWorker {
         val headers = mapOf("Content-Type" to "application/json",
                                     "Accept-Version" to "1.0.0")
         val json = JSONObject()
-
-        Log.i("response name", request.userName)
-        Log.i("response password", request.password)
-        json.put("username",  request.userName) // Expected ramires
-        json.put("password",  request.password) // Expected test-nexte-ramires
+        json.put("username", "ramires") // Expected ramires
+        json.put("password",  "test-nexte-ramires") // Expected test-nexte-ramires
 
         Fuel.post(authentication).header(headers).body(json.toString()).responseJson(authenticateHandler)
     }
@@ -148,7 +144,7 @@ class LoginWorker {
     }
 
     private fun updateUserLoggedStatus(user: User) {
-        UserSingleton.setLoggedUser(user.id, UserType.REAL)   // User Singleton
+        UserSingleton.setLoggedUser(user.id, UserType.REAL) // User Singleton
 
         // Realm instance for real user
         val config =  RealmConfiguration.Builder().name("realRealm.realm").build()

@@ -1,7 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import android.util.Log
-
 /**
  * Interface resposible to format request provided in Interactor to data as
  * it should be presented at fragment as viewModel
@@ -44,22 +42,15 @@ class LoginPresenter: LoginPresentationLogic {
     var view: LoginDisplayLogic? = null
 
     override fun presentLogin(response: LoginModel.Authentication.Response) {
-        val message: String
-        val tokenId: String = response.tokenId
 
-        if(tokenId.equals("")) {
-            message = "Something is wrong. Try again"
-        } else {
-            message = "Congratz! U get it"
-        }
-
-        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(message)
+        val token: String = response.tokenId
+        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(token)
         this.view?.displayAuthenticateState(viewModel)
     }
 
     override fun presentError(response: LoginModel.Authentication.Response) {
-        val message = "Ops, tente de novo"
-        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(message)
+        val token: String = ""
+        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(token)
         this.view?.displayAuthenticateState(viewModel)
     }
 
