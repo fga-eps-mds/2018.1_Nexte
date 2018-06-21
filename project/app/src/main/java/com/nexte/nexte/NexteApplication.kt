@@ -16,9 +16,10 @@ class NexteApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
-        this.setupLoggedUser()
 
         val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
+        val config = RealmConfiguration.Builder().name("mockerRealm.realm").build()
+        Realm.setDefaultConfiguration(config)
 
         if (sharedPreference.getBoolean("FirstRun", true)) {
             UserCategoryManager().createInitialMocker()
@@ -33,8 +34,13 @@ class NexteApplication: Application() {
             ChallengeManager().createInitialMocker()
             sharedPreference.edit().putBoolean("FirstRun_v2", false).apply()
         }
+
+        this.setupLoggedUser()
     }
 
+    /*
+     * Save user Id to change app status for real data
+     */
     private fun  setupLoggedUser() {
 
         val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
@@ -43,9 +49,6 @@ class NexteApplication: Application() {
         if(token != null) {
             UserSingleton.setLoggedUser(token, UserType.REAL)
             val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
-            Realm.setDefaultConfiguration(config)
-        } else {
-            val config = RealmConfiguration.Builder().name("mockerRealm.realm").build()
             Realm.setDefaultConfiguration(config)
         }
     }

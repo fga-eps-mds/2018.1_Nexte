@@ -58,10 +58,10 @@ class LoginModelTest {
         val message = "teste funcionando"
 
         //call
-        val viewModel = LoginModel.Authentication.ViewModel(message = "teste funcionando")
+        val viewModel = LoginModel.Authentication.ViewModel(tokenId = "teste funcionando")
 
         //assert
-        assertEquals(message, viewModel.message)
+        assertEquals(message, viewModel.tokenId)
     }
 
     @Test

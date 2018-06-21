@@ -25,7 +25,7 @@ class LoginPresenterTest {
         val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
         val authorized = LoginModel.Authentication.StatusCode.AUTHORIZED
         val response = LoginModel.Authentication.Response(tokenId = token, authenticateStatusCode = authorized)
-        val expectedMessage = "Congratz! U get it"
+        val expectedMessage = token
 
         //call
         this.presenter?.presentLogin(response = response)
@@ -81,7 +81,7 @@ class LoginPresenterTest {
         //prepare
         val unauthorized = LoginModel.Authentication.StatusCode.UNAUTHORIZED
         val response = LoginModel.Authentication.Response(tokenId = "", authenticateStatusCode = unauthorized)
-        val expectedMessage = "Something is wrong. Try again"
+        val expectedMessage = ""
 
         //call
         this.presenter?.presentLogin(response = response)
@@ -126,7 +126,7 @@ private class MockLoginDisplayLogic: LoginDisplayLogic {
     var passedHere: Boolean = false
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
-        this.message = viewModel.message
+        this.message = viewModel.tokenId
         print(this.message)
     }
 

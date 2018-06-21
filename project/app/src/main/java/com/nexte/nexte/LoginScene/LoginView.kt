@@ -185,7 +185,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Method responsible for setup protocol between scenes
      */
-    private fun setup() {
+    fun setup() {
         val view = this
         val interactor = LoginInteractor()
         val presenter = LoginPresenter()
