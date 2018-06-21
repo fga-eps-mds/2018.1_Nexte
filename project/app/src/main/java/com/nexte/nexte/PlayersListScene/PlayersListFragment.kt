@@ -14,8 +14,11 @@ import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.UserSingleton
+
+
 
 
 /**
@@ -57,7 +60,7 @@ interface PlayersListDisplayLogic {
 /**
  * Class that sets the tab fragment on the screen with the 'sent' and 'received' tabs
  * @property userManager is the [UserManager] object that will be passed to the worker
- * @property fragment is the parent fragment instance ([MatchFragment]) that will be used to update tabs when user send challenge
+ * @property fragment is the parent fragment instance that will be used to update tabs when user send challenge
  * @property sendChallengeButton is the instance of the button responsible to send the challenge
  * @property expandedLosses is the instance of field that will hold player losses when expanded view is visible
  * @property expandedWins is the instance of field that will hold player wins when expanded view is visible
@@ -84,7 +87,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
 
-    var selectedUserIdentifier: String? = null
+    private var selectedUserIdentifier: String? = null
 
     /**
      * Companion Object responsible to create an instance of this fragment
@@ -110,7 +113,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
     /**
      * Method responsible to get the bundle arguments and transfer it to the class, and also call the set up function that will
-     * load the instances required by [Interactor], [Presenter] and [Worker]
+     * load the instances required by Interactor, Presenter and Worker
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -123,7 +126,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     /**
      * Method responsible to populate the references of the scene
      */
-    fun setupPlayersListScene() {
+    private fun setupPlayersListScene() {
 
         val interactor = PlayersListInteractor()
         val presenter = PlayersListPresenter()
@@ -242,10 +245,10 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
         builder.setCancelable(true)
         builder.setMessage(viewModel.messageForChallenger)
-        builder.setPositiveButton("Ok", { dialogInterface, _ ->
+        builder.setPositiveButton("Ok") { dialogInterface, _ ->
             (fragment as? ChallengeTabsFragment)?.tabs?.getTabAt(1)?.select()
             dialogInterface.cancel()
-        })
+        }
 
         val alert = builder.create()
         alert.show()
@@ -264,9 +267,9 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         val builder = AlertDialog.Builder(this.activity)
         builder.setCancelable(true)
         builder.setMessage(messageText)
-        builder.setPositiveButton("ok", { dialogInterface, _ ->
+        builder.setPositiveButton("ok") { dialogInterface, _ ->
             dialogInterface.cancel()
-        })
+        }
         val noPlayersMessage = builder.create()
         noPlayersMessage.show()
     }
@@ -287,6 +290,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedWins?.text = ""
     }
 
+    @Suppress("DEPRECATION")
     /**
      * Adapter Class to control recycler view of users that can be challenged
      *
@@ -315,23 +319,37 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
             holder.bindView(challenged[position])
             holder.view.userPicture.setOnClickListener {
-                if (expandedPlayer >= 0) {
+                if(challenged[position].status == User.Status.AVAILABLE) {
+                    if (expandedPlayer >= 0) {
+                        notifyItemChanged(expandedPlayer)
+                    }
+
+                    val shouldDrawChild = expandedPlayer != holder.layoutPosition
+
+                    expandedPlayer = if (shouldDrawChild) {
+                        holder.layoutPosition
+                    } else {
+                        -1
+                    }
+
                     notifyItemChanged(expandedPlayer)
+
+                    val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(
+                            challenged[position].rankingPosition.removeRange(0, 1).toInt())
+                    fragment.getPlayerInfo(challenged[position].identifier, request)
                 }
+                else{
+                    val builder = AlertDialog.Builder(fragment.activity)
 
-                val shouldDrawChild = expandedPlayer != holder.layoutPosition
+                    builder.setCancelable(true)
+                    builder.setMessage("Esse jogador optou por não receber desafios")
+                    builder.setPositiveButton("Ok") { dialogInterface, _ ->
+                        dialogInterface.cancel()
+                    }
 
-                expandedPlayer = if (shouldDrawChild) {
-                    holder.layoutPosition
-                } else {
-                    -1
+                    val alert = builder.create()
+                    alert.show()
                 }
-
-                notifyItemChanged(expandedPlayer)
-
-                val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(
-                        challenged[position].rankingPosition.removeRange(0, 1).toInt())
-                fragment.getPlayerInfo(challenged[position].identifier, request)
             }
             val checkTextView: TextView = holder.view.findViewById(R.id.checkTextView)
             if (expandedPlayer == holder.layoutPosition) {

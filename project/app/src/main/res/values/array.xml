@@ -17,5 +17,15 @@
             Telegram
         </item>
     </string-array>
-
+    <string-array name="departArray">
+        <item>
+            Disponível
+        </item>
+        <item>
+            Indisponível
+        </item>
+        <item>
+            Machucado
+        </item>
+    </string-array>
 </resources>

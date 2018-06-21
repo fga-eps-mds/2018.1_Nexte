@@ -1,5 +1,7 @@
 package com.nexte.nexte.PlayersListScene
 
+import com.nexte.nexte.Entities.User.User
+
 /**
  * Interface to define Presentation Logic to Challenge Class that
  * will be used to call this Interactor on other classes layer
@@ -59,7 +61,7 @@ class PlayersListPresenter : PlayersListPresentationLogic {
 
         for(player in selectedPlayers){
             val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
-                    String.format("#%d", player.rankingPosition), "")//TODO: replace picture adress
+                    String.format("#%d", player.rankingPosition), "", User.Status.AVAILABLE)//TODO: replace picture adress
 
             formattedPlayers += formattedPlayer
         }
