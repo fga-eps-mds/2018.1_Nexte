@@ -17,13 +17,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
-import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.RankingScene.RankingFragment
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
-import kotlinx.android.synthetic.main.activity_challenger_sent.*
-import kotlinx.android.synthetic.main.row_ranking.view.*
+
 
 
 /**
@@ -99,7 +97,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     var circulo3: ImageView? = null
     var circulo4: ImageView? = null
     var circulo5: ImageView? = null
-    var expanded_perfil: Button? = null
+    var expandedPerfil: Button? = null
 
 
     private var hasMatch: Boolean?= null
@@ -175,7 +173,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedLastestGame = newView?.findViewById(R.id.expandedLastestGame)
         this.expandedCategory = newView?.findViewById(R.id.expandedCategory)
         this.backgroundExpanded = newView?.findViewById(R.id.backgroundExpanded)
-        this.expanded_perfil = newView?.findViewById(R.id.expanded_perfil)
+        this.expandedPerfil = newView?.findViewById(R.id.expanded_perfil)
         this.circulo1 = newView?.findViewById(R.id.circulo1)
         this.circulo2 = newView?.findViewById(R.id.circulo2)
         this.circulo3 = newView?.findViewById(R.id.circulo3)
@@ -231,11 +229,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.interactor?.requestChallengedUser(request)
     }
 
-    private fun goToShowProfileView(name: String?) {
-        val fragment = ShowProfileFragment().getInstance(name)
-        fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
-    }
-
     /**
      * Method responsible for showing the clicked player detailed info
      *
@@ -259,8 +252,8 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedCategory?.visibility = View.VISIBLE
         this.expandedCategory?.text = currentPlayer.category
         this.backgroundExpanded?.visibility = View.VISIBLE
-        this.expanded_perfil?.visibility = View.VISIBLE
-        this.expanded_perfil?.setOnClickListener{
+        this.expandedPerfil?.visibility = View.VISIBLE
+        this.expandedPerfil?.setOnClickListener{
             val fragment = ShowProfileFragment().getInstance(currentPlayer.id)
             fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
         }
@@ -269,36 +262,16 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.circulo3?.visibility = View.VISIBLE
         this.circulo4?.visibility = View.VISIBLE
         this.circulo5?.visibility = View.VISIBLE
-
-        setUserGameCircle(this?.circulo1, currentPlayer.userLastGames[0])
-        setUserGameCircle(this?.circulo2, currentPlayer.userLastGames[1])
-        setUserGameCircle(this?.circulo3, currentPlayer.userLastGames[2])
-        setUserGameCircle(this?.circulo4, currentPlayer.userLastGames[3])
-        setUserGameCircle(this?.circulo5, currentPlayer.userLastGames[4])
-
+        val rankingFragment = RankingFragment()
+        rankingFragment.setUserGameCircle(this?.circulo1, currentPlayer.userLastGames[0])
+        rankingFragment.setUserGameCircle(this?.circulo2, currentPlayer.userLastGames[1])
+        rankingFragment.setUserGameCircle(this?.circulo3, currentPlayer.userLastGames[2])
+        rankingFragment.setUserGameCircle(this?.circulo4, currentPlayer.userLastGames[3])
+        rankingFragment.setUserGameCircle(this?.circulo5, currentPlayer.userLastGames[4])
 
 
     }
 
-    /**
-     * Method responsible for setting the apropriate resource to the plaeyr game circle
-     *
-     * @param imageView imageView that will display the player result
-     * @param lastGame data that will indicate the player game status
-     */
-    fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
-        val circleResource = if (lastGame == Color.GREEN) {
-            R.drawable.circle_victory_ranking
-        } else if (lastGame == Color.GRAY) {
-            R.drawable.circle_empty_ranking
-        } else if (lastGame == Color.RED) {
-            R.drawable.circle_defeat_ranking
-        } else {
-            R.drawable.circle_undefeated_ranking
-        }
-
-        imageView?.setBackgroundResource(circleResource)
-    }
     /**
      * Method responsible for showing the a alert button with a message about the
      * challenge sended
@@ -372,7 +345,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedCategory?.text = ""
         this.expandedCategory?.visibility = View.INVISIBLE
         this.backgroundExpanded?.visibility = View.INVISIBLE
-        this.expanded_perfil?.visibility = View.INVISIBLE
+        this.expandedPerfil?.visibility = View.INVISIBLE
         this.circulo1?.visibility = View.INVISIBLE
         this.circulo2?.visibility = View.INVISIBLE
         this.circulo3?.visibility = View.INVISIBLE

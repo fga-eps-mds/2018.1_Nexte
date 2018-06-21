@@ -1,5 +1,4 @@
 package com.nexte.nexte.PlayersListScene
-import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MatchScene.MatchModel
 import java.util.*
