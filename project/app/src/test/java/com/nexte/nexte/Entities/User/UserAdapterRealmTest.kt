@@ -30,6 +30,7 @@ class UserAdapterRealmTest: HelpForRealm() {
 
     @Test
     fun testGetAll(){
+        userAdapterRealm?.realm
         val users = userAdapterRealm?.getAll()
         Assert.assertNotNull(users)
         Assert.assertEquals(0, users!!.size)
