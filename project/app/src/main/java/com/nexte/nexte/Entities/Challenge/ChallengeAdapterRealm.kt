@@ -3,7 +3,6 @@ package com.nexte.nexte.Entities.Challenge
 import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
 import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
 import io.realm.Realm
-import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 

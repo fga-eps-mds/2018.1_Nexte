@@ -1,7 +1,6 @@
 package com.nexte.nexte.Entities.User.UserCategory
 
 import io.realm.Realm
-import io.realm.RealmResults
 import io.realm.kotlin.where
 
 class UserCategoryAdapterRealm: UserCategoryAdapter {
