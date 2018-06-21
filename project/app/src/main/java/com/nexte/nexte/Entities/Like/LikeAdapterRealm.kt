@@ -52,7 +52,7 @@ class LikeAdapterRealm : LikeAdapter {
     }
 
 
-    private fun convertLikeRealmToLike(likeRealm: LikeRealm) : Like {
+    fun convertLikeRealmToLike(likeRealm: LikeRealm) : Like {
 
         val id = likeRealm.id
 
@@ -63,7 +63,7 @@ class LikeAdapterRealm : LikeAdapter {
         return Like(id = id, userId = userId, date = date)
     }
 
-    private fun convertListLikeRealmToLikeList(likeRealm: List<LikeRealm>) : List<Like> {
+    fun convertListLikeRealmToLikeList(likeRealm: List<LikeRealm>) : List<Like> {
         val likes: MutableList<Like> = mutableListOf()
         for(currentLikeRealm in likeRealm) {
             convertLikeRealmToLike(currentLikeRealm).let {
@@ -73,7 +73,7 @@ class LikeAdapterRealm : LikeAdapter {
         return likes.toList()
     }
 
-    private fun convertLikeToLikeRealm(like: Like) : LikeRealm {
+    fun convertLikeToLikeRealm(like: Like) : LikeRealm {
 
         val id = like.id
 
