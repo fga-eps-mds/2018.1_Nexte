@@ -102,6 +102,12 @@ class ChallengeManagerTest {
         Assert.assertTrue("Challenge list need to have count > 0!", challengeList.count() > 0)
     }
 
+    @Test
+    fun testGetLastFiveChallenges(){
+        val challengeAdapter = challengeManager!!.challengeAdapter
+        Assert.assertEquals(0, challengeAdapter.getLastFiveChallenges("123").size)
+    }
+
     @After
     fun tearDown() {}
 
