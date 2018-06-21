@@ -39,7 +39,7 @@ class UserCategoryAdapterRealm: UserCategoryAdapter {
         return userCategory
     }
 
-    private fun convertUserCategoryToUserCategoryRealm(userCategory: UserCategory?): UserCategoryRealm? {
+    fun convertUserCategoryToUserCategoryRealm(userCategory: UserCategory?): UserCategoryRealm? {
 
         var userCategoryRealm: UserCategoryRealm? = null
         userCategory?.let {
@@ -52,7 +52,7 @@ class UserCategoryAdapterRealm: UserCategoryAdapter {
     }
 
 
-    private fun convertUserCategoryRealmToUserCategory(userCategoryRealm: UserCategoryRealm?): UserCategory? {
+    fun convertUserCategoryRealmToUserCategory(userCategoryRealm: UserCategoryRealm?): UserCategory? {
 
         var userCategory: UserCategory? = null
         userCategoryRealm?.let {
@@ -61,7 +61,7 @@ class UserCategoryAdapterRealm: UserCategoryAdapter {
         return userCategory
     }
 
-    private fun convertUserCategoryRealmListToUserCategoryList(userCategoryRealmResults: RealmResults<UserCategoryRealm>): List<UserCategory> {
+    fun convertUserCategoryRealmListToUserCategoryList(userCategoryRealmResults: List<UserCategoryRealm>): List<UserCategory> {
 
         val userCategories: MutableList<UserCategory> = mutableListOf()
         for (userCategoryRealm in userCategoryRealmResults) {

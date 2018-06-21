@@ -172,7 +172,7 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn:
     violationRules {
         rule {
             limit {
-                minimum = 0.50
+                minimum = 0.80
             }
         }
     }
