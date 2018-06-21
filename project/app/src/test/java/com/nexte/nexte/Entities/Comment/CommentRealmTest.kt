@@ -14,6 +14,8 @@ class StoryRealmTest {
 
     @Test
     fun testInstatiateStoryRealm(){
+        CommentRealm()
+        Comment()
         //prepare
         val id = "1"
         val userId = "1"
