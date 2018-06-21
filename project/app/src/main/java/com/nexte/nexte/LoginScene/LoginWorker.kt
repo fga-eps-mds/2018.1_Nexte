@@ -16,6 +16,7 @@ import io.realm.RealmConfiguration
 import org.json.JSONObject
 import android.util.Log
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
 
 /**
  * Interface to define Response Logic of Ranking Class
@@ -46,18 +47,19 @@ interface LoginWorkerUpdateLogic {
 class LoginWorker {
 
     var updateLogic: LoginWorkerUpdateLogic? = null
+    var userManager: UserManager? = UserManager()
 
     val authenticateHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
 
         result.success {
             val json = result.get().obj()
-            println(json)
-//            this.updateUserLoggedStatus("1")
-            val user  = User.createUserFromJsonObject(json)
-            val status = LoginModel.Authentication.StatusCode.AUTHORIZED
-            val response = LoginModel.Authentication.Response("3445", status)
-//            UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
+            val data = json["data"] as JSONObject
+            val userJson = data ["user"] as JSONObject
+            val user  = User.createUserFromJsonObject(userJson)
+            this.updateUserLoggedStatus(user)
 
+            val status = LoginModel.Authentication.StatusCode.AUTHORIZED
+            val response = LoginModel.Authentication.Response(user.id, status)
             updateLogic?.authenticateUser(response)
         }
 
@@ -65,7 +67,6 @@ class LoginWorker {
             val token = ""
             val status = LoginModel.Authentication.StatusCode.UNAUTHORIZED
             val response = LoginModel.Authentication.Response(token, status)
-            Log.i("i", "Failed")
             updateLogic?.authenticateUser(response)
         }
     }
@@ -96,7 +97,7 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "http://10.47.48.21:3000/sessions" // Local url for auth
+        val authentication = "http://192.168.100.3:3000/sessions" // Local url for auth
         val headers = mapOf("Content-Type" to "application/json",
                                     "Accept-Version" to "1.0.0")
         val json = JSONObject()
@@ -105,8 +106,6 @@ class LoginWorker {
         Log.i("response password", request.password)
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
-
-        Log.i("Worker", "Triggered")
 
         Fuel.post(authentication).header(headers).body(json.toString()).responseJson(authenticateHandler)
     }
@@ -148,12 +147,13 @@ class LoginWorker {
         return json.toString()
     }
 
-    private fun updateUserLoggedStatus(userId: String) {
-        UserSingleton.setLoggedUser(userId, UserType.REAL)   // User Singleton
+    private fun updateUserLoggedStatus(user: User) {
+        UserSingleton.setLoggedUser(user.id, UserType.REAL)   // User Singleton
 
-        // Realm instance
+        // Realm instance for real user
         val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
         Realm.setDefaultConfiguration(config)
+        this.userManager?.update(user)
     }
 }
 

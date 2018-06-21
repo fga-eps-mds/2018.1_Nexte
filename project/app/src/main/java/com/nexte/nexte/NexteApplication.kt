@@ -13,13 +13,16 @@ import io.realm.RealmConfiguration
 
 class NexteApplication: Application() {
 
+    val userManager: UserManager? = UserManager()
+    private val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
+
     override fun onCreate() {
         super.onCreate()
+
         Realm.init(this)
         val config = RealmConfiguration.Builder().name("mockerRealm.realm").build()
         Realm.setDefaultConfiguration(config)
 
-        val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
         if (sharedPreference.getBoolean("FirstRun", true)) {
             UserCategoryManager().createInitialMocker()
             UserManager().createInitialMocker()
