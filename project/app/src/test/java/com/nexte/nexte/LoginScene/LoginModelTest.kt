@@ -122,6 +122,19 @@ class LoginModelTest {
     }
 
     @Test
+    fun testAccountKitRequest() {
+        //prepare
+        val email = "lele@nexte.com"
+        val phone = "61992067115"
+        //call
+        val request = LoginModel.AccountKit.Request(email,phone)
+
+        //assert
+        assertNotNull(request.email) //Esse teste não pode ser assim
+
+    }
+
+    @Test
     fun testLoginModel() {
         //prepare
         val loginModel = LoginModel()
