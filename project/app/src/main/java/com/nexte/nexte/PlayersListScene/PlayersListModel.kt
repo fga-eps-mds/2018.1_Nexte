@@ -130,5 +130,5 @@ class PlayersListModel {
     class PlayerRankingDetails(var name: String,
                                var wins: Int,
                                var rankingPosition: Int,
-                               var category: Optional<String>)
+                               var loses: Int)
 }
