@@ -87,16 +87,6 @@ object StoryMocker{
         return listOf(winner, loser)
     }
 
-    private fun generateRandomCommentId(): String{
-        val commentIndex = randomNumber(0, commentTextMocks.size - 1)
-        return commentIds[commentIndex]
-    }
-
-    private fun generateRandomLikeId(): String{
-        val likeId = likeId++
-        return likeId.toString()
-    }
-
     private fun generateRandomStory(): Story{
         //Id
         val storyId = storiesId++
