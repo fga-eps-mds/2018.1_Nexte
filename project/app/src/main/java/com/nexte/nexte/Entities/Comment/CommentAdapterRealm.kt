@@ -50,7 +50,7 @@ class CommentAdapterRealm : CommentAdapter {
         return commentsMutable.toList()!!
     }
 
-    private fun convertCommentRealmToComment(commentRealm: CommentRealm) : Comment {
+    fun convertCommentRealmToComment(commentRealm: CommentRealm) : Comment {
 
         val commentId = commentRealm.id
 
@@ -63,7 +63,7 @@ class CommentAdapterRealm : CommentAdapter {
         return Comment(id = commentId, userId = userId, comment = comment, date = date)
     }
 
-    private fun convertListCommentRealmToCommentList(commentRealm: List<CommentRealm>) : List<Comment> {
+    fun convertListCommentRealmToCommentList(commentRealm: List<CommentRealm>) : List<Comment> {
         val comments: MutableList<Comment> = mutableListOf()
         for(currentCommentRealm in commentRealm) {
             convertCommentRealmToComment(currentCommentRealm).let {
@@ -74,7 +74,7 @@ class CommentAdapterRealm : CommentAdapter {
         return comments.toList()
     }
 
-    private fun convertCommentToCommentRealm(comment: Comment): CommentRealm {
+    fun convertCommentToCommentRealm(comment: Comment): CommentRealm {
 
         val id = comment.id
 

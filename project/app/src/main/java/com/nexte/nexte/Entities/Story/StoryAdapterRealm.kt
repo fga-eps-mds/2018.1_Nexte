@@ -41,7 +41,7 @@ class StoryAdapterRealm: StoryAdapter{
         }
     }
 
-     private fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
+    fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
         //Id
         val storyId = storyRealm.id
 
@@ -64,7 +64,7 @@ class StoryAdapterRealm: StoryAdapter{
          return Story(id = storyId, winner = winner, loser = loser, commentsId = commentsId, date = date, likesId = likesId)
     }
 
-     private fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
+    fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
         val storiesRealmMutable = storiesRealm.toMutableList()
         val storiesMutable = mutableListOf<Story>()
 
@@ -76,7 +76,7 @@ class StoryAdapterRealm: StoryAdapter{
          return storiesMutable.toList()
     }
 
-     private fun convertStoryToStoryRealm(story: Story): StoryRealm{
+    fun convertStoryToStoryRealm(story: Story): StoryRealm{
         //Id
         val id = story.id
 
