@@ -17,6 +17,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.RankingScene.RankingFragment
@@ -154,6 +155,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         interactor.worker.userManager = userManager!!
         interactor.worker.updateLogic = interactor
         presenter.viewChallenge = view
+        presenter.challengeManager = ChallengeManager()
     }
 
     /**

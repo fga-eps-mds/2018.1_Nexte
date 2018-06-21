@@ -1,10 +1,7 @@
 package com.nexte.nexte.PlayersListScene
 
-import android.os.UserManager
 import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Entities.User.UserMocker
 import com.nexte.nexte.MatchScene.MatchModel
-import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before

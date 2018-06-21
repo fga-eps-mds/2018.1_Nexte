@@ -52,7 +52,7 @@ interface PlayersListPresentationLogic {
 class PlayersListPresenter : PlayersListPresentationLogic {
 
     var viewChallenge: PlayersListDisplayLogic? = null // reference of the view
-    var challengeManager: ChallengeManager = ChallengeManager()
+    var challengeManager: ChallengeManager? = null
     var rankingPresenter: RankingPresenter = RankingPresenter()
 
     /**
