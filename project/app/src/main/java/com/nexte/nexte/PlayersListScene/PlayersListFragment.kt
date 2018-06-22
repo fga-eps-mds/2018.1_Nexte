@@ -19,11 +19,13 @@ import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.RankingScene.RankingFragment
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
-
+import kotlinx.android.synthetic.main.row_likes.view.*
+import kotlinx.android.synthetic.main.row_match_info.view.*
 
 
 /**
@@ -156,6 +158,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         interactor.worker.updateLogic = interactor
         presenter.viewChallenge = view
         presenter.challengeManager = ChallengeManager()
+        presenter.userCategoryManager = UserCategoryManager()
     }
 
     /**
@@ -441,9 +444,12 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
         class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
 
+
             fun bindView(player: PlayersListModel.FormattedPlayer) {
                 view.userName.text = player.name
                 view.rankingTextView.text = player.rankingPosition
+                view.userPicture.setImageResource(player.pictureAddress.toInt())
+
             }
         }
     }

@@ -6,6 +6,7 @@ import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.RankingScene.RankingPresenter
 import java.util.*
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 
 /**
  * Interface to define Presentation Logic to Challenge Class that
@@ -54,6 +55,7 @@ class PlayersListPresenter : PlayersListPresentationLogic {
     var viewChallenge: PlayersListDisplayLogic? = null // reference of the view
     var challengeManager: ChallengeManager? = null
     var rankingPresenter: RankingPresenter = RankingPresenter()
+    var userCategoryManager: UserCategoryManager? = null
 
     /**
      * This method is responsible for formatting data contained on
@@ -68,7 +70,7 @@ class PlayersListPresenter : PlayersListPresentationLogic {
 
         for(player in selectedPlayers){
             val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
-                    String.format("#%d", player.rankingPosition), "", User.Status.AVAILABLE)//TODO: replace picture adress
+                    String.format("#%d", player.rankingPosition), player.profilePicture!!, User.Status.AVAILABLE)//TODO: replace picture adress
 
             formattedPlayers += formattedPlayer
         }
@@ -90,13 +92,14 @@ class PlayersListPresenter : PlayersListPresentationLogic {
         val totalGames = selectedChallenged.wins.toFloat()+selectedChallenged.loses
         val efficiency = selectedChallenged.wins /totalGames * oneHundredPercent
         val percent = "%"
+        val category = userCategoryManager?.get(selectedChallenged.id)?.name
         val latestChallenges = challengeManager?.getLastFiveChallenges(selectedChallenged.id)
         val lastGame = rankingPresenter.calculatePlayerLastGame(latestChallenges,Date())//calculatePlayerLastGame(latestChallenges,Date())
         val formattedPlayer = PlayersListModel.FormattedRankingDetails(
                 selectedChallenged.name,
                 String.format("VITÓRIAS: %d / %d", selectedChallenged.wins,selectedChallenged.wins+selectedChallenged.loses),
                 String.format("%d", selectedChallenged.rankingPosition),
-                selectedChallenged.category.toString(),
+                category.toString(),
                 String.format("Aproveitamento: %.2f %s",efficiency,percent),
                 String.format("Último Jogo: %s",lastGame),
                 rankingPresenter.getPlayerLastFiveGamesArray(latestChallenges,selectedChallenged.id),
