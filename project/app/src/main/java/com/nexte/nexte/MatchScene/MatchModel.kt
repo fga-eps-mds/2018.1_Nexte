@@ -1,8 +1,6 @@
 package com.nexte.nexte.MatchScene
 
-/**
- * Created by leticia on 30/04/18.
- */
+import com.nexte.nexte.Entities.Challenge.Challenge
 
 /**
  * Class that defines the attributes and types of objects that will be used on
@@ -64,7 +62,8 @@ class MatchModel {
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
-                              var challengerPhoto: Int)
+                              var challengerPhoto: Int,
+                              var sentChallenge: List<Challenge>)
 
     /**
      * Class that defines the types of sets to be used on definition by user on view
@@ -143,5 +142,4 @@ class MatchModel {
             SUCCESS, ERROR
         }
     }
-
 }

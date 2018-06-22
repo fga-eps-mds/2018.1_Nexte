@@ -1,18 +1,15 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
-
-/**
- * Created by leticia on 30/04/18.
- */
 
 /**
  * Interface to define Response Logic of Match Class
  * that will be used to make the communication between worker and interactor
  */
 interface MatchUpdateWorkerLogic {
-
 
     /**
      * Method that will be used to communicate with the presenter
@@ -92,5 +89,16 @@ class MatchWorker {
                     .Status.ERROR)
         }
         updateLogic?.declineMatchResultResponse(response)
+    }
+
+    fun sortListByChallenges(list: List<Challenge>?): List<Challenge>?{
+        return list?.sortedBy { it.id }
+    }
+
+    fun getUserChallenges(request: MatchModel.SendMatchResult.Request) {
+
+        var sentChallenges = challengeManager?.getAll()
+        sentChallenges = sortListByChallenges(sentChallenges)
+        val response = MatchModel.SendMatchResult.Response(sentChallenges!!.toTypedArray())
     }
 }

@@ -1,5 +1,8 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.UserManager
+
 /**
  * Created by leticia on 01/05/18.
  */
@@ -49,6 +52,9 @@ interface MatchPresentationLogic {
  */
 class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPresentationLogic {
 
+    var challengeManager: ChallengeManager? = null
+    var userManager: UserManager? = null
+
     override fun presentMatch(response: MatchModel.InitScene.Response) {
 
         val viewModel = MatchModel.InitScene.ViewModel(formatMatch(response.match))
@@ -62,16 +68,18 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
      * @param toFormat Data at unformatted stage that needs to be formatted
      */
     private fun formatMatch(toFormat : MatchModel.MatchData) : MatchModel.FormattedMatchData {
+
         val challengedName = toFormat.challenged.name
         val challengedPhoto = toFormat.challenged.photo
         val challengerName = toFormat.challenger.name
         val challengerPhoto = toFormat.challenger.photo
+        val sentChallenges = toFormat.
 
 
         val matchFormatted = MatchModel.FormattedMatchData(challengedName,
                                                            challengedPhoto,
                                                            challengerName,
-                                                           challengerPhoto)
+                                                           challengerPhoto, sentChallenges)
         return matchFormatted
     }
 
