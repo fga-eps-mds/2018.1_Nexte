@@ -11,7 +11,7 @@ import com.nexte.nexte.Entities.Challenge.Challenge
 class MatchModel {
 
     /**
-     * Class that define the activty flow of getting the scene started
+     * Class that define the activity flow of getting the scene started
      */
   class InitScene {
 
@@ -24,7 +24,7 @@ class MatchModel {
       class Request(var match: MatchData?)
 
       /**
-       * Class responsible to pass the unformmated elements from worker to presenter
+       * Class responsible to pass the unformatted elements from worker to presenter
        *
        * @param match informations about the match as they should be altered on program
        */
@@ -58,6 +58,7 @@ class MatchModel {
      * @param challengedPhoto profile picture of the challenged player
      * @param challengerName name of the challenger player
      * @param challengerPhoto profile picture of the challenger player
+     * @param sentChallenge list of challenges of a certain player
      */
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
@@ -134,12 +135,33 @@ class MatchModel {
         class Response(val status: Status)
 
         /**
-         * class that is responsible of formating the viewModel
+         * class that is responsible for formatting the viewModel
          */
         class ViewModel(val status: Status, val message: String)
 
         enum class Status {
             SUCCESS, ERROR
         }
+    }
+
+    /**
+     *  Class responsible to manage the challenge sent
+     */
+    class SentChallenge {
+
+        /**
+        *  class that is responsible of making a request
+        */
+        class Request (val challengeId: String)
+
+        /**
+         *  class that is responsible of making a response
+         */
+        class Response (val challenge: Challenge)
+
+        /**
+         * class that is responsible for formatting the viewModel
+         */
+        class ViewModel (val formattedMatch: List<FormattedMatchData>)
     }
 }

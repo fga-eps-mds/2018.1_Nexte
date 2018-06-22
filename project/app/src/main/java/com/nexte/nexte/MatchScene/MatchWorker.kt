@@ -95,10 +95,10 @@ class MatchWorker {
         return list?.sortedBy { it.id }
     }
 
-    fun getUserChallenges(request: MatchModel.SendMatchResult.Request) {
+    fun getUserChallenges(request: MatchModel.SentChallenge.Request) {
 
         var sentChallenges = challengeManager?.getAll()
         sentChallenges = sortListByChallenges(sentChallenges)
-        val response = MatchModel.SendMatchResult.Response(sentChallenges!!.toTypedArray())
+        val response = MatchModel.SentChallenge.Response(sentChallenges!!.toTypedArray())
     }
 }

@@ -1,5 +1,6 @@
 package com.nexte.nexte.MatchScene
 
+import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 
@@ -57,7 +58,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
 
-        val viewModel = MatchModel.InitScene.ViewModel(formatMatch(response.match))
+        val viewModel = MatchModel.InitScene.ViewModel(this.formatMatch(response.match))
 
         viewController?.displayMatch(viewModel)
     }
@@ -65,22 +66,29 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
     /**
      * Function that formats data of players to be displayed on [MatchFragment]
      *
-     * @param toFormat Data at unformatted stage that needs to be formatted
+     * @param challenge list with all challenges
      */
-    private fun formatMatch(toFormat : MatchModel.MatchData) : MatchModel.FormattedMatchData {
+    private fun formatMatch(challenge: Array<Challenge>?) : List<MatchModel.FormattedMatchData> {
 
-        val challengedName = toFormat.challenged.name
-        val challengedPhoto = toFormat.challenged.photo
-        val challengerName = toFormat.challenger.name
-        val challengerPhoto = toFormat.challenger.photo
-        val sentChallenges = toFormat.
+        val matchModelChallengesSentMutable = mutableListOf<MatchModel.FormattedMatchData>()
+
+        if(challenge == null) {
+            return listOf()
+        }
+
+        for (challenge in challenge) {
+            val challengedName = toFormat.challenge.challenged.name
+            val challengedPhoto = toFormat.challenged.photo
+            val challengerName = toFormat.challenger.name
+            val challengerPhoto = toFormat.challenger.photo
+            val sentChallenges
 
 
-        val matchFormatted = MatchModel.FormattedMatchData(challengedName,
-                                                           challengedPhoto,
-                                                           challengerName,
-                                                           challengerPhoto, sentChallenges)
-        return matchFormatted
+        }
+
+
+//        val matchFormatted = MatchModel.FormattedMatchData(challengedName, challengedPhoto, challengerName, challengerPhoto, sentChallenges)
+//        return matchFormatted
     }
 
     override fun presentSuccessMessageForMatchResult(response: MatchModel.SendMatchResult.Response) {
