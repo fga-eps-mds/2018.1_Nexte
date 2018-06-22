@@ -1,9 +1,13 @@
 package com.nexte.nexte.MatchScene
 
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.fuel.httpGet
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 
 /**
  * Interface to define Response Logic of Match Class
@@ -19,6 +23,8 @@ interface MatchUpdateWorkerLogic {
     fun getMatchResultResponse(response: MatchModel.SendMatchResult.Response)
 
     fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response)
+
+    fun updateSentChallenge(response: MatchModel.SentChallenge.Response)
 }
 
 /**
@@ -99,6 +105,17 @@ class MatchWorker {
 
         var sentChallenges = challengeManager?.getAll()
         sentChallenges = sortListByChallenges(sentChallenges)
+
         val response = MatchModel.SentChallenge.Response(sentChallenges!!.toTypedArray())
+
+        updateLogic?.updateSentChallenge(response)
+
+        //TODO
+        if (UserSingleton.userType != UserType.MOCKED) {
+            val url = "http://10.0.2.2:3000/users"
+            url.httpGet().responseJson(httpGetHandler)
+        } else {
+            //Do nothing
+        }
     }
 }

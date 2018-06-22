@@ -75,15 +75,13 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
         if(challenge == null) {
             return listOf()
         }
-
+        //TODO
         for (challenge in challenge) {
-            val challengedName = toFormat.challenge.challenged.name
+            val challengedName =
             val challengedPhoto = toFormat.challenged.photo
             val challengerName = toFormat.challenger.name
             val challengerPhoto = toFormat.challenger.photo
             val sentChallenges
-
-
         }
 
 
