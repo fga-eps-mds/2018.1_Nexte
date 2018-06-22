@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.row_match_wo.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 /**
  * Interface to define Display Logic to MatchFragment Class that will receive information
  * from Presenter
@@ -419,6 +420,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         val interactor = MatchInteractor()
         val presenter = MatchPresenter()
         val view = this
+
 
         interactor.worker.updateLogic = interactor
         interactor.worker.challengeManager = challengeManager

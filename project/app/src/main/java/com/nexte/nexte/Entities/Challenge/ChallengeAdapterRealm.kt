@@ -1,6 +1,7 @@
 package com.nexte.nexte.Entities.Challenge
 
 import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
+import com.nexte.nexte.Entities.Challenge.Helper.GameRealm
 import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
 import com.nexte.nexte.PlayersListScene.PlayersListModel
 import io.realm.Realm
@@ -63,13 +64,12 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return playedChallengesFromUser
     }
 
-    override fun getSendChallengeFromRealm(userdId: String): Challenge {
+    override fun getSendChallengeFromRealm(identifier: String): Challenge {
         val sendChallengesFromRealm = realm.where<ChallengeRealm>().equalTo(
-                "SendChallengerId", userdId).or().equalTo("SendChallengedId", userdId).isNotNull(
-                "stageSendChallengeRealm").findAll()
-
+                "challengerId", identifier).or().equalTo("challengedId", identifier).isNotNull(
+                "stageSendChallengeRealm").findFirst()
         val challengeFromUser = convertChallengeRealmToChallenge(sendChallengesFromRealm)
-        return challengeFromUser
+        return challengeFromUser!!
     }
     companion object {
         const val five = 5

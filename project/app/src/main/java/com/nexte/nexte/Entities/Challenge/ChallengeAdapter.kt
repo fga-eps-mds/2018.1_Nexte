@@ -7,5 +7,5 @@ interface ChallengeAdapter {
     fun delete(identifier: String): Challenge?
     fun getLastFiveChallenges(userdId: String): List<Challenge>
     fun getUserPlayedGames(userdId: String): List<Challenge>
-    fun getSendChallengeFromRealm(userdId: String): Challenge
+    fun getSendChallengeFromRealm(identifier: String): Challenge
 }
