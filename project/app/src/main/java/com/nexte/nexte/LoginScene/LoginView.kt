@@ -9,8 +9,6 @@ import android.util.Log
 import com.facebook.accountkit.*
 import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
-import android.R.id.edit
-import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 

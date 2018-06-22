@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="icon_app_dark_background">#313131</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
     <color name="darkGrey">#212121</color>
     <color name="black">#000000</color>
     <color name="gold">#e6ad3c</color>

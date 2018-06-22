@@ -47,9 +47,12 @@
         </activity>
         <activity
             android:name=".LoginScene.LoginView"
-            android:label="Login" />
+            android:label="Login"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".UserOnBoardingView"/>
+        <activity android:name=".UserOnBoardingView"
+            android:label="UserOnboarding"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
