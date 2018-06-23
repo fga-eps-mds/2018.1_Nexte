@@ -122,7 +122,7 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             if (today.month == latestGameDate.month){
                 when {
                     today.day == latestGameDate.day -> "hoje"
-                    today.day == latestGameDate.day - 1 -> "ontem"
+                    today.day - 1 == latestGameDate.day -> "ontem"
                     else -> "" + (today.day - latestGameDate.day) + " days"
                 }
             }else{
