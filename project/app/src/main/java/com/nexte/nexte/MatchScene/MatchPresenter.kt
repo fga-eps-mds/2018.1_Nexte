@@ -2,6 +2,8 @@ package com.nexte.nexte.MatchScene
 
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
 
 /**
@@ -58,7 +60,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
 
-        val viewModel = MatchModel.InitScene.ViewModel(this.formatMatch(response.match))
+        val viewModel = MatchModel.InitScene.ViewModel(matchFormatted(response.match))
 
         viewController?.displayMatch(viewModel)
     }
@@ -70,23 +72,21 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
      */
     private fun formatMatch(challenge: Array<Challenge>?) : List<MatchModel.FormattedMatchData> {
 
-        val matchModelChallengesSentMutable = mutableListOf<MatchModel.FormattedMatchData>()
+        val matchModelChallengesSentMutable: MutableList<MatchModel.FormattedMatchData> = mutableListOf()
+
+        val emptyUser = User("", "", "", "", null, -1,
+                "", "", -1, -1, User.Gender.FEMALE, UserCategory("",""),
+                User.Status.UNAVAILABLE,null, null, null)
 
         if(challenge == null) {
             return listOf()
         }
         //TODO
         for (challenge in challenge) {
-            val challengedName =
-            val challengedPhoto = toFormat.challenged.photo
-            val challengerName = toFormat.challenger.name
-            val challengerPhoto = toFormat.challenger.photo
-            val sentChallenges
+            val user = userManager?.get(challenge.user!!)
+
         }
 
-
-//        val matchFormatted = MatchModel.FormattedMatchData(challengedName, challengedPhoto, challengerName, challengerPhoto, sentChallenges)
-//        return matchFormatted
     }
 
     override fun presentSuccessMessageForMatchResult(response: MatchModel.SendMatchResult.Response) {

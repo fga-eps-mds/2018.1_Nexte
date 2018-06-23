@@ -157,7 +157,7 @@ class MatchModel {
         /**
          *  class that is responsible of making a response
          */
-        class Response (val challenge: Challenge)
+        class Response (val challenge: Array<Challenge>?)
 
         /**
          * class that is responsible for formatting the viewModel
