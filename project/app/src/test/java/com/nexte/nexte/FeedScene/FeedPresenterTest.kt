@@ -34,7 +34,7 @@ class FeedPresenterTest: HelpForRealm() {
     }
 
     @Test
-    fun testFormatFeed(){
+    fun testFormatFeed() {
         // Prepare
         val id = "1234567890"
         val winner = StoryPlayer("1", 0)
@@ -46,7 +46,7 @@ class FeedPresenterTest: HelpForRealm() {
         // Call
         val story = Story(id, winner, loser, date, comments, likes)
         val response = FeedModel.GetFeedActivities.Response(listOf(story))
-        response.feedActivities= listOf(story)
+        response.feedActivities = listOf(story)
 
         //call
         this.presenter?.formatFeed(response = response)
@@ -91,7 +91,7 @@ class FeedPresenterTest: HelpForRealm() {
     }
 
     @Test
-    fun testUpdateViewActivity(){
+    fun testUpdateViewActivity() {
         //prepare
         val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
         val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
@@ -154,16 +154,6 @@ class FeedPresenterTest: HelpForRealm() {
         assertEquals(10, number)
     }
 
-    @Test
-    fun validateUserImageOnFailure() {
-        //prepare and call
-        val number = this.presenter?.validateUserPhoto("")
-        val defaultImage = R.mipmap.ic_launcher
-
-        //assert
-        assertEquals(defaultImage, number)
-    }
-
     @After
     fun tearDown() {
 
@@ -183,9 +173,10 @@ private class MockFeedDisplayLogic: FeedDisplayLogic{
         formattedGetFeedActivities = viewModel.formattedLikedActivities
     }
 
-    override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
-        formattedGetFeedActivities = null
-        formattedGetFeedActivities = viewModel.feedActivities[0]
-        this.passedHere = true
-    }
+        override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
+            formattedGetFeedActivities = null
+            formattedGetFeedActivities = viewModel.feedActivities[0]
+            this.passedHere = true
+        }
 }
+

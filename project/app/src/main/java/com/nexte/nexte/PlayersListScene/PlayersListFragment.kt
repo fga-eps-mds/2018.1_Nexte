@@ -10,15 +10,22 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
+import android.graphics.Color
 import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.MainActivity
+import com.nexte.nexte.RankingScene.RankingFragment
+import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
-
-
+import kotlinx.android.synthetic.main.row_likes.view.*
+import kotlinx.android.synthetic.main.row_match_info.view.*
 
 
 /**
@@ -81,9 +88,22 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     var expandedWins: TextView?= null
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
+    //var imageExpanded: ImageView?= null
     var noPlayersText: TextView?= null
     var message: TextView?= null
     var interactor: ChallengeBusinessLogic?= null
+    var expandedExploitation: TextView? = null
+    var expandedLastestGame: TextView? = null
+    var expandedCategory: TextView? = null
+    var backgroundExpanded: LinearLayout? = null
+    var circulo1: ImageView? = null
+    var circulo2: ImageView? = null
+    var circulo3: ImageView? = null
+    var circulo4: ImageView? = null
+    var circulo5: ImageView? = null
+    var expandedPerfil: Button? = null
+
+
     private var hasMatch: Boolean?= null
     private var recyclerView: RecyclerView?= null
 
@@ -137,6 +157,8 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         interactor.worker.userManager = userManager!!
         interactor.worker.updateLogic = interactor
         presenter.viewChallenge = view
+        presenter.challengeManager = ChallengeManager()
+        presenter.userCategoryManager = UserCategoryManager()
     }
 
     /**
@@ -150,10 +172,20 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.recyclerView = newView?.findViewById(R.id.challengeRecyclerView)
         this.expandedLosses = newView?.findViewById(R.id.expandedLosses)
         this.expandedName = newView?.findViewById(R.id.expandedName)
-        this.expandedRankingTextView = newView?.findViewById(R.id.expandedRankingTextView)
         this.expandedWins = newView?.findViewById(R.id.expandedWins)
         this.noPlayersText = newView?.findViewById(R.id.noPlayersText)
         this.message = newView?.findViewById(R.id.message)
+        this.expandedExploitation = newView?.findViewById(R.id.expandedExploitation)
+        this.expandedLastestGame = newView?.findViewById(R.id.expandedLastestGame)
+        this.expandedCategory = newView?.findViewById(R.id.expandedCategory)
+        this.backgroundExpanded = newView?.findViewById(R.id.backgroundExpanded)
+        this.expandedPerfil = newView?.findViewById(R.id.expanded_perfil)
+        this.circulo1 = newView?.findViewById(R.id.circulo1)
+        this.circulo2 = newView?.findViewById(R.id.circulo2)
+        this.circulo3 = newView?.findViewById(R.id.circulo3)
+        this.circulo4 = newView?.findViewById(R.id.circulo4)
+        this.circulo5 = newView?.findViewById(R.id.circulo5)
+
 
             if(hasMatch!!) {
                 this.message?.visibility = View.VISIBLE
@@ -213,13 +245,37 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         val currentPlayer = viewModel.challengedRankingDetails
 
         this.expandedLosses?.visibility = View.VISIBLE
-        this.expandedLosses?.text = currentPlayer.loses
         this.expandedName?.visibility = View.VISIBLE
         this.expandedName?.text = currentPlayer.name
         this.expandedRankingTextView?.visibility = View.VISIBLE
         this.expandedRankingTextView?.text = currentPlayer.rankingPosition
         this.expandedWins?.visibility = View.VISIBLE
         this.expandedWins?.text = currentPlayer.wins
+        this.expandedLastestGame?.text = currentPlayer.latestGame
+        this.expandedLastestGame?.visibility = View.VISIBLE
+        this.expandedExploitation?.text = currentPlayer.efficiency
+        this.expandedExploitation?.visibility = View.VISIBLE
+        this.expandedCategory?.visibility = View.VISIBLE
+        this.expandedCategory?.text = currentPlayer.category
+        this.backgroundExpanded?.visibility = View.VISIBLE
+        this.expandedPerfil?.visibility = View.VISIBLE
+        this.expandedPerfil?.setOnClickListener{
+            val fragment = ShowProfileFragment().getInstance(currentPlayer.id)
+            fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
+        }
+        this.circulo1?.visibility = View.VISIBLE
+        this.circulo2?.visibility = View.VISIBLE
+        this.circulo3?.visibility = View.VISIBLE
+        this.circulo4?.visibility = View.VISIBLE
+        this.circulo5?.visibility = View.VISIBLE
+        val rankingFragment = RankingFragment()
+        rankingFragment.setUserGameCircle(this?.circulo1, currentPlayer.userLastGames[0])
+        rankingFragment.setUserGameCircle(this?.circulo2, currentPlayer.userLastGames[1])
+        rankingFragment.setUserGameCircle(this?.circulo3, currentPlayer.userLastGames[2])
+        rankingFragment.setUserGameCircle(this?.circulo4, currentPlayer.userLastGames[3])
+        rankingFragment.setUserGameCircle(this?.circulo5, currentPlayer.userLastGames[4])
+
+
     }
 
     /**
@@ -288,6 +344,19 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedRankingTextView?.text = ""
         this.expandedWins?.visibility = View.INVISIBLE
         this.expandedWins?.text = ""
+        this.expandedLastestGame?.text = ""
+        this.expandedLastestGame?.visibility = View.INVISIBLE
+        this.expandedExploitation?.text = ""
+        this.expandedExploitation?.visibility = View.INVISIBLE
+        this.expandedCategory?.text = ""
+        this.expandedCategory?.visibility = View.INVISIBLE
+        this.backgroundExpanded?.visibility = View.INVISIBLE
+        this.expandedPerfil?.visibility = View.INVISIBLE
+        this.circulo1?.visibility = View.INVISIBLE
+        this.circulo2?.visibility = View.INVISIBLE
+        this.circulo3?.visibility = View.INVISIBLE
+        this.circulo4?.visibility = View.INVISIBLE
+        this.circulo5?.visibility = View.INVISIBLE
     }
 
     @Suppress("DEPRECATION")
@@ -375,9 +444,12 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
         class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
 
+
             fun bindView(player: PlayersListModel.FormattedPlayer) {
                 view.userName.text = player.name
                 view.rankingTextView.text = player.rankingPosition
+                view.userPicture.setImageResource(player.pictureAddress.toInt())
+
             }
         }
     }

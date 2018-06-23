@@ -1,10 +1,7 @@
 package com.nexte.nexte.PlayersListScene
 
-import android.os.UserManager
 import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Entities.User.UserMocker
 import com.nexte.nexte.MatchScene.MatchModel
-import com.nexte.nexte.R
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -165,10 +162,15 @@ class PlayersListModelTest {
     @Test
     fun successSelectPlayerViewModel(){
         //prepare
+        val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
+        var list:List<Int> = numbers
+
         val testRankingDetails = PlayersListModel.FormattedRankingDetails("Daniel Maike",
                                                                           "4",
                                                                           "6",
-                                                                          "1")
+                                                                          "1",
+                                                                          "10%",
+                                                                          "10/03/2018",list,"2")
 
 
         //call
@@ -273,21 +275,22 @@ class PlayersListModelTest {
         val testPosition = "2"
         val testLosses = "0"
         val testWins = "3"
+        val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
+        var list:List<Int> = numbers
+        val rankingPosition = "5"
+        val userID = "10"
+
 
         //call
         val testFormattedRankingDetails = PlayersListModel.FormattedRankingDetails(testName,
-                                                                                   testPosition,
-                                                                                   testLosses,
-                                                                                   testWins)
+                testWins,rankingPosition,"Amador","50%","10/06/2018",list,userID)
         testFormattedRankingDetails.name = testName
         testFormattedRankingDetails.rankingPosition = testPosition
-        testFormattedRankingDetails.loses = testLosses
         testFormattedRankingDetails.wins = testWins
 
         //assert
         assertEquals(testName, testFormattedRankingDetails.name)
         assertEquals(testPosition, testFormattedRankingDetails.rankingPosition)
-        assertEquals(testLosses, testFormattedRankingDetails.loses)
         assertEquals(testWins, testFormattedRankingDetails.wins)
     }
 
@@ -303,7 +306,8 @@ class PlayersListModelTest {
         val testPlayerRankingDetails = PlayersListModel.PlayerRankingDetails(testName,
                                                                              testWins,
                                                                              testLosses,
-                                                                             testPosition)
+                                                                             testLosses)
+
         testPlayerRankingDetails.name = testName
         testPlayerRankingDetails.wins = testWins
         testPlayerRankingDetails.loses = testLosses
