@@ -69,10 +69,13 @@ class PlayersListPresenter : PlayersListPresentationLogic {
         var formattedPlayers: List<PlayersListModel.FormattedPlayer> = listOf()
 
         for(player in selectedPlayers){
-            val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
-                    String.format("#%d", player.rankingPosition), player.profilePicture!!, User.Status.AVAILABLE)//TODO: replace picture adress
+            if (player.profilePicture != null)  {
+                val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
+                        String.format("#%d", player.rankingPosition), player.profilePicture!!, User.Status.AVAILABLE)
 
-            formattedPlayers += formattedPlayer
+                formattedPlayers += formattedPlayer
+            }
+
         }
 
         val viewModel = PlayersListModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
