@@ -7,6 +7,9 @@ import com.nexte.nexte.R
 import android.widget.Toast
 import android.util.Log
 import com.facebook.accountkit.*
+import com.facebook.accountkit.ui.AccountKitActivity
+import com.facebook.accountkit.ui.AccountKitConfiguration
+import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
 import android.preference.PreferenceManager
@@ -94,7 +97,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         when (requestCode) {
             LoginModel.AccountKit.accountKit_code -> {
-                this.getAccount()
+                val loginResult: AccountKitLoginResult = data!!.getParcelableExtra(AccountKitLoginResult.RESULT_KEY)
+                val token = loginResult.authorizationCode
+                this.getAccount(token!!)
             }
         }
     }
@@ -125,17 +130,26 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Gets current account from Facebook Account Kit which include user's phone number
      */
-    private fun getAccount() {
+    private fun getAccount(token: String) {
         AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
             override fun onSuccess(account: Account) {
                 val phoneNumber = account.phoneNumber
+                val email = account.email
                 val phoneNumberString = phoneNumber.toString()
+                val emailString = email.toString()
 
                 if(phoneNumberString !=  "") {
                     Log.i("Phone number:", phoneNumberString)
-                    val request = LoginModel.AccountKit.Request("", phoneNumberString)
+                    val request = LoginModel.AccountKit.Request(null, phoneNumberString, "dsfsd")
                     interactor?.accountKitAuthentication(request)
                 }
+
+                if(emailString != "") {
+                    Log.i("Email: ", emailString)
+                    val request = LoginModel.AccountKit.Request(emailString, null, "dfsfd")
+                    interactor?.accountKitAuthentication(request)
+                }
+
             }
 
             override fun onError(error: AccountKitError) {
@@ -147,24 +161,24 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     /**
      * Request login by phone - AccountKit
      */
-//    fun loginPhoneNumber() {
-//        val intent = Intent(this, AccountKitActivity::class.java)
-//        val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
-//                AccountKitActivity.ResponseType.TOKEN)
-//        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
-//        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
-//    }
+    fun loginPhoneNumber() {
+        val intent = Intent(this, AccountKitActivity::class.java)
+        val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
+                AccountKitActivity.ResponseType.TOKEN)
+        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
+        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
+    }
 
     /**
      * Request login by email - AccountKit
      */
-//    fun loginByEmail() {
-//        val intent  = Intent(this, AccountKitActivity::class.java)
-//        val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
-//                AccountKitActivity.ResponseType.TOKEN)
-//        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
-//        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
-//    }
+    fun loginByEmail() {
+        val intent  = Intent(this, AccountKitActivity::class.java)
+        val builder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
+                AccountKitActivity.ResponseType.TOKEN)
+        intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
+        startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
+    }
 
     /**
      * Method responsible for setup protocol between scenes
