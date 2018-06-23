@@ -10,16 +10,16 @@ enum class UserType { REAL, MOCKED }
  * characteristics of interest for the functionality
  */
 object UserSingleton {
-
+    var userManager = UserManager()
     var userType: UserType = UserType.MOCKED
     var loggedUserID: String = "9"
         private set
     val loggedUser: User
         get() {
             return if (userType == UserType.MOCKED){
-                UserManager().get(loggedUserID)!!
+                userManager.get(loggedUserID)!!
             } else {
-                UserManager().get(loggedUserID)!!
+                userManager.get(loggedUserID)!!
             }
         }
 

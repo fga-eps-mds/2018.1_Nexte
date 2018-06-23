@@ -212,12 +212,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         private fun setYAxisValuesRanking(): ArrayList<Entry> {
 
             val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
-            yValsRanking.add(Entry(0f, 3f))
-            yValsRanking.add(Entry(1f, 2f))
-            yValsRanking.add(Entry(2f, 5f))
-            yValsRanking.add(Entry(3f, 2f))
-            yValsRanking.add(Entry(4f, 1f))
-            yValsRanking.add(Entry(5f, 4f))
+            yValsRanking.add(Entry(0f, 6f))
+            yValsRanking.add(Entry(1f, 6f))
+            yValsRanking.add(Entry(2f, 8f))
+            yValsRanking.add(Entry(3f, 3f))
+            yValsRanking.add(Entry(4f, 4f))
+            yValsRanking.add(Entry(5f, 7f))
 
             return yValsRanking
         }
@@ -610,6 +610,10 @@ class DepartDialogFragment: DialogFragment() {
     }
 
     private fun setStatus(status: User.Status) {
-        println(status)         /*todo on issue #381*/
+        val user = UserSingleton.loggedUser
+        UserSingleton.userManager.update(User(user.id, user.name, user.profilePicture,
+                user.nickname, user.birthDate, user.rankingPosition, user.email,
+                user.phone,  user.wins, user.loses, user.gender, user.category, status, user.challengeSended,
+                user.challengeReceived, user.latestGames))
     }
 }
