@@ -121,6 +121,7 @@
     <string name="loginBackgroundDescription">Background of Nexte</string>
     <string name="userOnboardingPages">Página X do UserOnboarding</string>
     <string name="userOnboardingImageOne">Primeira imagem do UserOnboarding</string>
+    <string name="meus_jogos">Meus Jogos</string>
 
 
 </resources>

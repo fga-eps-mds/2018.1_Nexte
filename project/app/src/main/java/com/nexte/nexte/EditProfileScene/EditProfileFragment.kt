@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserAdapterRealm
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.activity_edit_profile.*
@@ -50,6 +51,7 @@ class EditProfileFragment : Fragment(),
     var passwordConfirmationTextEdit: EditText? = null
     var passwordTextEdit: EditText? = null
     var updateProfileButton: ImageButton? = null
+    private var playerId = ""
     /**
      * Class responsible to define behavior of password validation (checking if password and confirmation match)
      */
@@ -83,9 +85,18 @@ class EditProfileFragment : Fragment(),
         }
     }
 
-    fun getInstance(): EditProfileFragment {
+    fun getInstance(idToEdit: String): EditProfileFragment {
+        val bundle = Bundle()
+        bundle.putString("idToEdit", idToEdit)
+
         val editProfileFragment = EditProfileFragment()
+        editProfileFragment.arguments = bundle
         return editProfileFragment
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        this.playerId = arguments.getString("idToEdit")
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -97,14 +108,10 @@ class EditProfileFragment : Fragment(),
         this.updateProfileButton = newView?.findViewById(R.id.updateProfileButton)
         super.onCreate(savedInstanceState)
         this.setupEditProfileScene()
-
         this.passwordConfirmationTextEdit?.addTextChangedListener(PasswordWatcher(this))
         this.passwordTextEdit?.addTextChangedListener(PasswordWatcher(this))
 
-
-
         return newView
-
     }
 
 
@@ -115,9 +122,9 @@ class EditProfileFragment : Fragment(),
 
             val user = UserSingleton.loggedUser
             val password: String = passwordTextEdit?.text?.trim().toString()
-            val newUser: User = User(user.id, user.name, user.profilePicture,
+            val newUser = User(user.id, user.name, user.profilePicture,
                     user.nickname, user.birthDate, user.rankingPosition, emailTextEdit.text.trim().toString(),
-                    user.phone,  user.wins, user.loses, user.gender, user.category, user.status, user.challengeSended,
+                    numberTextEdit.text.trim().toString(),  user.wins, user.loses, user.gender, user.category, user.status, user.challengeSended,
                     user.challengeReceived, user.latestGames)
 
             this.createEditProfileRequest(user = newUser, password = password)
@@ -132,9 +139,13 @@ class EditProfileFragment : Fragment(),
      */
     override fun displayProfileToEdit(viewModel: EditProfileModel.RecoverUserRequest.ViewModel) {
 
-        this.username.text = viewModel.playerToEdit.username
-        this.emailTextEdit.setText(viewModel.playerToEdit.email, TextView.BufferType.EDITABLE)
-        this.clubName.text = viewModel.playerToEdit.club
+        val user = viewModel.playerToEdit
+
+        this.username.text = user.username
+        this.emailTextEdit.setText(user.email, TextView.BufferType.EDITABLE)
+        this.clubName.text = user.club
+        this.numberTextEdit.setText(user.phone, TextView.BufferType.EDITABLE)
+        this.userProfilePic?.setImageResource(user.picture)
     }
 
     /**
@@ -158,8 +169,8 @@ class EditProfileFragment : Fragment(),
     fun createGetProfileRequest(){
         val recoverUserRequest: EditProfileModel.RecoverUserRequest.Request =
                 EditProfileModel.RecoverUserRequest.Request(
-                        "gabrielalbino",
-                        "UHDASFUHADSUHF2828HJDDJFHA")
+                        playerId,
+                        "") //todo: implement tokenId
 
         getUserInformationInteractor?.getProfileToEdit(recoverUserRequest)
     }
@@ -183,11 +194,13 @@ class EditProfileFragment : Fragment(),
         val interactor = EditProfileInteractor()
         val presenter = EditProfilePresenter()
         val view = this
+        val userAdapter = UserAdapterRealm()
 
         view.getUserInformationInteractor = interactor
         view.editUserInformationInteractor = interactor
         interactor.formatUserDataPresenter = presenter
         interactor.formatErrorCodePresenter = presenter
+        interactor.worker.userAdapter = userAdapter
         presenter.viewToShowUserInformation = view
         presenter.viewToShowEditProfileError = view
     }

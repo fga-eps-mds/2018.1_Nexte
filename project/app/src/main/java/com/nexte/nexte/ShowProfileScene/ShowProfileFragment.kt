@@ -14,7 +14,6 @@ import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Button
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
@@ -60,15 +59,16 @@ interface ShowProfileDisplayLogic {
  */
 class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
-    var showProfileInteractor: ShowProfileBusinessLogic? = null
-    var buttonEditProfile: Button? = null
+    private var showProfileInteractor: ShowProfileBusinessLogic? = null
+    private var buttonEditProfile: Button? = null
     var rankingChart: LineChart? = null
     private var newLineChart: LineChart? = null // First chart view
-    var playerIdToShow: String = ""
+    private var playerIdToShow: String = ""
     var userManager: UserManager? = null
-    var showProfileRecyclerView: RecyclerView? = null
-    val graphManager = GraphManager(this)
-    var contactButton: Button? = null
+    private var showProfileRecyclerView: RecyclerView? = null
+    private val graphManager = GraphManager(this)
+    private var contactButton: Button? = null
+    private val editProfileFragment = EditProfileFragment().getInstance(UserSingleton.loggedUserID)
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -107,7 +107,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
 
         buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
         buttonEditProfile?.setOnClickListener {
-            val editProfileFragment = EditProfileFragment().getInstance()
+
             val fragmentManager = activity.fragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
@@ -163,7 +163,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
      */
-    fun createShowProfileRequest() {
+    private fun createShowProfileRequest() {
         val showUserProfileRequest = ShowProfileModel.Request(playerIdToShow)
         this.showProfileInteractor?.showProfile(showUserProfileRequest)
     }
@@ -171,12 +171,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     /**
      * class used to manage graph data and exhibition
      */
-    class GraphManager (var showProfileFragment : ShowProfileFragment) {
+    class GraphManager (private var showProfileFragment : ShowProfileFragment) {
 
         /**
          * Method responsible to define the data of Y axis.
          */
-        fun setYAxisValuesVictories(): ArrayList<Entry> {
+        private fun setYAxisValuesVictories(): ArrayList<Entry> {
             val yValsVictories = ArrayList<Entry>()
             yValsVictories.add(Entry(0f, 2f))
             yValsVictories.add(Entry(1f, 3f))
@@ -191,7 +191,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         /**
          * Method responsible to define the data of Y axis.
          */
-        fun setYAxisValuesLosses(): ArrayList<Entry> {
+        private fun setYAxisValuesLosses(): ArrayList<Entry> {
             val yValsLosses = ArrayList<Entry>()
             yValsLosses.add(Entry(0f, 4f))
             yValsLosses.add(Entry(1f, 3f))
@@ -206,7 +206,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         /**
          * Method responsible to define the data of Y axis.
          */
-        fun setYAxisValuesRanking(): ArrayList<Entry> {
+        private fun setYAxisValuesRanking(): ArrayList<Entry> {
 
             val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
             yValsRanking.add(Entry(0f, 3f))
@@ -369,7 +369,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     /**
      * Method responsible to set all the references on this scene
      */
-    fun setupShowProfileScene() {
+    private fun setupShowProfileScene() {
         val viewScene = this
         val interactor = ShowProfileInteractor()
         val presenter = ShowProfilePresenter()
@@ -453,18 +453,20 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
                 itemView.gamesLabel.text =  challengeFormatted.gamesResults
                 itemView.headsLabel.text = challengeFormatted.headToHeadResults
 
-                if(challengeFormatted.challengeResult == ShowProfileModel.ChallengeResult.WON) {
-                    itemView.wonCard.visibility = View.VISIBLE
-                    itemView.lostCard.visibility = View.INVISIBLE
-                }
-                else if(challengeFormatted.challengeResult == ShowProfileModel.ChallengeResult.LOST){
-                    itemView.wonCard.visibility = View.INVISIBLE
-                    itemView.lostCard.visibility = View.VISIBLE
-                }
-                else{
-                    itemView.wonCard.visibility = View.INVISIBLE
-                    itemView.lostCard.visibility = View.INVISIBLE
+                when {
+                    challengeFormatted.challengeResult == ShowProfileModel.ChallengeResult.WON -> {
+                        itemView.wonCard.visibility = View.VISIBLE
+                        itemView.lostCard.visibility = View.INVISIBLE
+                    }
+                    challengeFormatted.challengeResult == ShowProfileModel.ChallengeResult.LOST -> {
+                        itemView.wonCard.visibility = View.INVISIBLE
+                        itemView.lostCard.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        itemView.wonCard.visibility = View.INVISIBLE
+                        itemView.lostCard.visibility = View.INVISIBLE
 
+                    }
                 }
 
             }
@@ -520,13 +522,13 @@ class ContactDialogFragment: DialogFragment() {
         return builder.create()
     }
 
-    fun callContactDialog() {
+    private fun callContactDialog() {
         val number = Uri.parse("tel:${playerInfo?.number}")
         val callIntent = Intent(Intent.ACTION_DIAL, number)
         startActivity(callIntent)
     }
 
-    fun addContactDialog() {
+    private fun addContactDialog() {
         val emailIntent = Intent(android.content.Intent.ACTION_SEND)
         emailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         emailIntent.type = "vnd.android.cursor.item/email"
@@ -535,43 +537,43 @@ class ContactDialogFragment: DialogFragment() {
         startActivity(Intent.createChooser(emailIntent, "Enviando email..."))
     }
 
-    fun emailDialog() {
+    private fun emailDialog() {
         val contactIntent = Intent(Intent.ACTION_INSERT)
-        contactIntent.setType(ContactsContract.Contacts.CONTENT_TYPE)
+        contactIntent.type = ContactsContract.Contacts.CONTENT_TYPE
         contactIntent.putExtra(ContactsContract.Intents.Insert.NAME, playerInfo?.name)
         contactIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, playerInfo?.email)
         contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, playerInfo?.number)
         startActivity(contactIntent)
     }
 
-    fun whatsAppDialog() {
+    private fun whatsAppDialog() {
         try {
 
             val whatsIntent = Intent(Intent.ACTION_SEND)
             val url = "https://api.whatsapp.com/send?phone=" + playerInfo?.number
-            whatsIntent.setData(Uri.parse(url))
-            whatsIntent.setType("text/plain")
+            whatsIntent.data = Uri.parse(url)
+            whatsIntent.type = "text/plain"
             whatsIntent.setPackage("com.whatsapp")
             whatsIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
             whatsIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
             startActivity(whatsIntent)
 
         } catch (e: ActivityNotFoundException){
-            Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"Você não possui o aplicativo WhatsApp instalado",Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun telegramDialog() {
+    private fun telegramDialog() {
         try {
 
             val telegramIntent = Intent(Intent.ACTION_SEND)
-            telegramIntent.setType("text/plain")
+            telegramIntent.type = "text/plain"
             telegramIntent.setPackage("org.telegram.messenger")
             telegramIntent.putExtra(Intent.EXTRA_TEXT, "Olá, está disponível para jogar?")
             telegramIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, playerInfo?.number)
 
         } catch (e: ActivityNotFoundException){
-            Toast.makeText(activity,"Você não possui o aplicativo Telegram instalado" + e.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"Você não possui o aplicativo Telegram instalado" + e.toString(),Toast.LENGTH_SHORT).show()
         }
     }
 
