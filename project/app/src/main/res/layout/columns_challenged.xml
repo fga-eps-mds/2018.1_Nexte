@@ -5,7 +5,7 @@
     android:background="#393939"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userPicture"
         android:layout_width="48dp"
         android:layout_height="48dp"
