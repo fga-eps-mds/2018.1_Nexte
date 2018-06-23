@@ -41,4 +41,8 @@ class StoryManager(val storyAdapter: StoryAdapter = StoryAdapterRealm()) {
     fun delete(identifier: String): Story? {
         return storyAdapter.delete(identifier)
     }
+
+    fun updateLike(story: Story, userId: String): Story?{
+        return storyAdapter.updateLikes(story, userId)
+    }
 }

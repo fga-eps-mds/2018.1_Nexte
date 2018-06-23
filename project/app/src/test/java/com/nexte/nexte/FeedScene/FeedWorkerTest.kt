@@ -3,7 +3,6 @@ package com.nexte.nexte.FeedScene
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.core.FuelError
 import com.github.kittinunf.result.Result
-import com.nexte.nexte.Entities.FeedMocker
 import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.HelpForRealm
