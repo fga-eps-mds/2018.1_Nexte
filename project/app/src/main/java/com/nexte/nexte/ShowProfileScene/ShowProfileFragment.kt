@@ -135,7 +135,10 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onViewCreated(view, savedInstanceState)
         val player = userManager?.get(playerIdToShow)
         if(this.playerIdToShow == UserSingleton.loggedUserID){
-            //todo: setar action listener
+            this.statusButton.setOnClickListener {
+                val depart = DepartDialogFragment()
+                depart.show(this.fragmentManager, "Depart")
+            }
         }
         else {
             statusButton.isEnabled = false
@@ -579,3 +582,34 @@ class ContactDialogFragment: DialogFragment() {
 
 }
 
+
+/**
+ * This class implements DialogFragment, and it is responsible for implementing the functionality of
+ * creating an Alertdialog, which brings 3 options of depart for user
+ *
+ */
+
+class DepartDialogFragment: DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Afastar-se")
+                .setItems(R.array.departArray, DialogInterface.OnClickListener { _, which ->
+                    when (which) {
+                        0 -> {
+                            setStatus(User.Status.AVAILABLE)
+                        }
+                        1 -> {
+                            setStatus(User.Status.UNAVAILABLE)
+                        }
+                        2 -> {
+                            setStatus(User.Status.INJURED)
+                        }
+                    }
+                }).setIcon(R.drawable.icon_time)
+        return builder.create()
+    }
+
+    private fun setStatus(status: User.Status) {
+        println(status)         /*todo on issue #381*/
+    }
+}

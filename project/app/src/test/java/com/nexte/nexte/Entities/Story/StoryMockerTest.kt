@@ -36,6 +36,18 @@ class StoryMockerTest {
         }
     }
 
+    @Test
+    fun testGetAdapters(){
+        assertNotNull(StoryMocker.commentAdapter)
+        assertNotNull(StoryMocker.likeAdapter)
+        assertNotNull(StoryMocker.userAdapter)
+    }
+
+    @Test
+    fun testGenerateRandomLikeId(){
+
+    }
+
     @After
     fun tearDown() {
     }

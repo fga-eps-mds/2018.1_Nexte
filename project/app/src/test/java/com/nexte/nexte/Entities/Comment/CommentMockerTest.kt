@@ -17,6 +17,16 @@ class CommentMockerTest {
     }
 
     @Test
+    fun testGetsAndSets(){
+        CommentMocker.commentAdapter
+        CommentMocker.userAdapter
+        val commentsIds = CommentMocker.commentsId
+        CommentMocker.commentsId = commentsIds
+        val allComments = CommentMocker.allComments
+        CommentMocker.allComments = allComments
+    }
+
+    @Test
     fun testGenerateComments(){
 
         var commentId = CommentMocker.commentsId

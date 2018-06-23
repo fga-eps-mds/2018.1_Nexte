@@ -9,11 +9,9 @@ import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeAdapterSpy
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
-import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.HelpForRealm
-import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import org.json.JSONArray
 import org.json.JSONObject
@@ -25,11 +23,12 @@ import java.net.URL
 import java.util.*
 import kotlin.concurrent.thread
 
+    @Suppress("DEPRECATION")
     class PlayersListWorkerTest: HelpForRealm() {
 
-        private var worker: PlayersListWorker? = null
-        private var updateLogicMocker: PlayerListUpdateLogicMocker? = null
-        private val jsonObject = JSONObject()
+        var worker: PlayersListWorker? = null
+        var updateLogicMocker: PlayerListUpdateLogicMocker? = null
+        val jsonObject = JSONObject()
 
         @Before
         fun setUp(){
@@ -47,10 +46,10 @@ import kotlin.concurrent.thread
             val request = PlayersListModel.SelectPlayerForChallengeRequest.Request(1)
 
             //call
-            this.worker?.fetchChallengedDetails(request, { response ->
+            this.worker?.fetchChallengedDetails(request) { response ->
                 //assert
                 assertNotNull(response.challengedPersonalDetails)
-            })
+            }
         }
 
         // When update logic is null and is realizes a request

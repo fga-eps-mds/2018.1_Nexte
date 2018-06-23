@@ -35,6 +35,15 @@ class LikeManagerTest {
     }
 
     @Test
+    fun testDelete(){
+        val like = likeManager?.delete("1")
+
+        Assert.assertEquals("1", like?.userId)
+        Assert.assertEquals("1", like?.id)
+    }
+
+
+    @Test
     fun testGetNull(){
         val identifier = "2"
 

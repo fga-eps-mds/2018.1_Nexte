@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import java.util.*
 
+@Suppress("DEPRECATION")
 class PlayersListPresenterTest{
 
     private var mock : MockPlayersListDisplayLogic? = null
