@@ -63,8 +63,7 @@ class MatchModel {
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
-                              var challengerPhoto: Int,
-                              var sentChallenge: List<Challenge>)
+                              var challengerPhoto: Int)
 
     /**
      * Class that defines the types of sets to be used on definition by user on view

@@ -1,14 +1,15 @@
 package com.nexte.nexte.MatchScene
 
+import android.provider.ContactsContract
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
-
-/**
- * Created by leticia on 01/05/18.
- */
+import com.nexte.nexte.MatchScene.MatchModel.InitScene.ViewModel
+import com.nexte.nexte.R.id.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Interface to define Presentation Logic to Match Class that
@@ -60,7 +61,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
 
-        val viewModel = MatchModel.InitScene.ViewModel(matchFormatted(response.match))
+        val viewModel = ViewModel(matchFormatted(response.match))
 
         viewController?.displayMatch(viewModel)
     }
@@ -74,19 +75,31 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
 
         val matchModelChallengesSentMutable: MutableList<MatchModel.FormattedMatchData> = mutableListOf()
 
-        val emptyUser = User("", "", "", "", null, -1,
-                "", "", -1, -1, User.Gender.FEMALE, UserCategory("",""),
-                User.Status.UNAVAILABLE,null, null, null)
-
+        val emptyUser = Challenge("","","", Date(), Challenge.Status.WAITING, Challenge.Stage.Scheduled())
         if(challenge == null) {
             return listOf()
         }
         //TODO
         for (challenge in challenge) {
-            val user = userManager?.get(challenge.user!!)
+            var sentChallengeId = challengeManager?.get(challenge.id)
+
+            sentChallengeId = if (sentChallengeId == null) {
+                emptyUser
+            } else {
+                sentChallengeId
+            }
+
+            val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
+            val time = dateToShow.format(challenge.challengeDate)
+
+            val matchFormatted = MatchModel.FormattedMatchData(
+                    challengedName.toString(),
+                    challengedPhoto,
+                    challengerName.toString(),
+                    challengerPhoto)
 
         }
-
+        return matchModelChallengesSentMutable
     }
 
     override fun presentSuccessMessageForMatchResult(response: MatchModel.SendMatchResult.Response) {
