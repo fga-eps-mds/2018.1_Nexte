@@ -28,7 +28,7 @@ A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utili
 
 ### Versão 0.3
 
-![microservice3](https://i.imgur.com/U66zAwn.pngd)
+![microservice3](https://i.imgur.com/lkbYbts.png)
 
 ### Versão 0.2
 
