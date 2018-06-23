@@ -167,8 +167,8 @@ class RankingPresenterTest {
     @Test
     fun successCalculatePlayerLastGameCase3(){
         //prepare
-        val todayDate = Date()
-        val yesterdayDate = Date(todayDate.year, todayDate.month, todayDate.day+4)
+        val todayDate = Date(2018, 3, 20)
+        val yesterdayDate = Date(2018, 3, 19)
 
         val lastestGame = listOf(
                 Challenge("1", "1", "2", yesterdayDate,
@@ -182,7 +182,7 @@ class RankingPresenterTest {
         //assert
         assertEquals(returnedValue, "ontem")
     }
-/*
+
     @Test
     fun successCalculatePlayerLastGameCase4(){
         //prepare
@@ -197,9 +197,10 @@ class RankingPresenterTest {
         //call
         val returnedValue = presenter?.calculatePlayerLastGame(lastestGame, todayDate)
         //assert
-        assertEquals(returnedValue, "" + (todayDate.date - twoDaysAgo.date) + " days")
+        assertEquals(returnedValue, "2 days")
     }
-    */
+
+
     @Test
     fun successCalculatePlayerLastGameCase5(){
         //prepare
