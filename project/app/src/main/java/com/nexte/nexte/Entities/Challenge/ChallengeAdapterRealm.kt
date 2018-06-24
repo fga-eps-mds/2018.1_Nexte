@@ -66,7 +66,7 @@ class ChallengeAdapterRealm: ChallengeAdapter {
     override fun getSentChallenge(userdId: String): List<Challenge> {
         val sentChallengesFromRealm = realm.where<ChallengeRealm>().equalTo(
                 "challengerId", userdId).or().equalTo("challengedId", userdId).isNotNull(
-                "stageSendChallengeRealm").findFirst()
+                "stageSendChallengeRealm").findAll()
         val challengeFromUser = convertListChallengeRealmToChallengeList(sentChallengesFromRealm)
         return challengeFromUser
     }
