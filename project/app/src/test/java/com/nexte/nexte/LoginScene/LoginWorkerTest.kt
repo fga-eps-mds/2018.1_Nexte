@@ -47,7 +47,8 @@ class LoginWorkerTest {
         //prepare
         val email = "helenaHtona@nexte.com"
         val phone = "123456"
-        val request = LoginModel.AccountKit.Request(email = email, phone = phone)
+        val token = "d453243gfecwg4"
+        val request = LoginModel.AccountKit.Request(email = email, phone = phone, token = token)
 
         //call
         thread { this.worker?.requestForAuth(request = request) }.join()
@@ -129,8 +130,9 @@ class LoginWorkerTest {
         val json = JSONObject()
         val phone = "333"
         val email = "eai.com"
+        val token = "2e5tn4ugnreiu"
 
-        val mockRequest = LoginModel.AccountKit.Request(email, phone)
+        val mockRequest = LoginModel.AccountKit.Request(email, phone, token = token)
 
 
 

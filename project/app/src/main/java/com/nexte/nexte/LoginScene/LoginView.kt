@@ -48,7 +48,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
-     *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,22 +62,22 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             this.finish()
         }
 
-//        val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
-//        val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
-//        if (!previouslyStarted) {
-//            val edit = prefs.edit()
-//            edit.putBoolean(getString(R.string.pref_previously_started), java.lang.Boolean.TRUE)
-//            edit.apply()
-//            val intent = Intent(this, UserOnBoardingView::class.java)
-//            startActivity(intent)
-//        }
+        val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
+        val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
+        if (!previouslyStarted) {
+            val edit = prefs.edit()
+            edit.putBoolean(getString(R.string.pref_previously_started), java.lang.Boolean.TRUE)
+            edit.apply()
+            val intent = Intent(this, UserOnBoardingView::class.java)
+            startActivity(intent)
+        }
 
-        this.loginByEmail()
+        this.loginPhoneNumber()
     }
 
-//    override fun onBackPressed() {
-//        this.finishAffinity()
-//    }
+    override fun onBackPressed() {
+        this.finishAffinity()
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -90,8 +89,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
                 this.handleLoginResult(loginResult)
             }
         }
-
-        Log.i("error", "sdsd")
     }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
@@ -156,6 +153,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
+        Log.i("sdsd", "dff")
         startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 

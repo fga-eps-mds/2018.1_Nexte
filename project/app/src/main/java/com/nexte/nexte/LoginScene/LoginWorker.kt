@@ -72,7 +72,6 @@ class LoginWorker {
 
             val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
             updateLogic?.requestAuth(response)
-
         }
 
         result.failure {
