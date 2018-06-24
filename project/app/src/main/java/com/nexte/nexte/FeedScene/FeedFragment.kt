@@ -87,7 +87,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     /**
      * Method to open LikesList scene
      */
-    private fun goToLikesList() {
+    private fun goToLikesList(identifier: String) {
 
         val likeListFragment = LikeListFragment().getInstance()
         val fragmentManager = activity.fragmentManager
@@ -98,7 +98,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     }
 
 
-    private fun goToCommentsList() {
+    private fun goToCommentsList(identifier: String) {
 
         val commentsFragment = CommentsFragment().getInstance()
         val fragmentManager = activity.fragmentManager
@@ -238,17 +238,17 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                 itemView.numberOfLikes.setOnClickListener {
 
-                    (fragment as FeedFragment).goToLikesList()
+                    (fragment as FeedFragment).goToLikesList(activity.identifier)
                 }
 
                 itemView.comments.setOnClickListener {
 
-                    (fragment as FeedFragment).goToCommentsList()
+                    (fragment as FeedFragment).goToCommentsList(activity.identifier)
                 }
 
                 itemView.commentsButton.setOnClickListener {
 
-                    (fragment as FeedFragment).goToCommentsList()
+                    (fragment as FeedFragment).goToCommentsList(activity.identifier)
                 }
 
                 itemView.challengerPhoto.setImageResource(activity.challengerPhoto)

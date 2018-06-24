@@ -162,5 +162,5 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
         } else {
             return R.mipmap.ic_launcher
         }
-    }
-}
+     }
+   }

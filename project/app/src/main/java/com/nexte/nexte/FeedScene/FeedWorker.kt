@@ -122,7 +122,7 @@ class FeedWorker {
         val response = FeedModel.LikeAndUnlike.Response(newStory)
         updateLogic?.updateLikes(response)
 
-
+//TODO
 //        if (UserSingleton.userType != UserType.MOCKED){
 //            senderHTTP = true
 //            val header = mapOf("accept-version" to "0.1.0")

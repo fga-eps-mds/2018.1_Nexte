@@ -49,8 +49,9 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) :
         presenter?.formatFeed(responseFeed)
     }
 
-    override fun updateLikes(responseLike: FeedModel.LikeAndUnlike.Response) {
-        presenter?.updateViewActivity(responseLike)
+    override fun updateLikes(responseLikes: FeedModel.LikeAndUnlike.Response) {
+        presenter?.updateViewActivity(responseLikes)
+
     }
 
 
