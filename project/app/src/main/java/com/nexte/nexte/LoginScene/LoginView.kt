@@ -1,5 +1,8 @@
 package com.nexte.nexte.LoginScene
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +16,8 @@ import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
 import android.preference.PreferenceManager
-
+import android.support.v4.app.DialogFragment
+import android.view.View
 
 
 /**
@@ -54,13 +58,16 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_login_view)
         this.setup()
 
-        login.setOnClickListener {
-            createAuthenticationRequest()
+        login.setOnClickListener { createAuthenticationRequest() }
+
+        navigationLogin.setOnClickListener{ this.finish() }
+
+        accountKitLogin.setOnClickListener {
+            var dialog = AuthenticationDialogFragment()
+            dialog.acitivity = this
+            dialog.show(supportFragmentManager, "dssdd")
         }
 
-        navigationLogin.setOnClickListener{
-            this.finish()
-        }
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
         val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
@@ -71,13 +78,9 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             val intent = Intent(this, UserOnBoardingView::class.java)
             startActivity(intent)
         }
-
-        this.loginPhoneNumber()
     }
 
-    override fun onBackPressed() {
-        this.finishAffinity()
-    }
+    override fun onBackPressed() { this.finishAffinity() }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -126,13 +129,11 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
                 val emailString = email.toString()
 
                 if(phoneNumberString !=  "") {
-                    Log.i("Phone number:", phoneNumberString)
                     val request = LoginModel.AccountKit.Request(null, phoneNumberString, "dsfsd")
                     interactor?.accountKitAuthentication(request)
                 }
 
                 if(emailString != "") {
-                    Log.i("Email: ", emailString)
                     val request = LoginModel.AccountKit.Request(emailString, null, "dfsfd")
                     interactor?.accountKitAuthentication(request)
                 }
@@ -153,7 +154,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val configBuilder = AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configBuilder.build())
-        Log.i("sdsd", "dff")
         startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 
@@ -192,6 +192,23 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         return message
     }
 
+    class AuthenticationDialogFragment: DialogFragment() {
+
+        var acitivity: LoginView? = null
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Vamos entrar com o seu email ou telefone?")
+                    .setItems(R.array.authenticationArray, DialogInterface.OnClickListener { _, which ->
+                        when (which) {
+                            0 -> { this.acitivity?.loginByEmail() }
+                            1 -> { this.acitivity?.loginPhoneNumber() }
+                        }
+                    })
+            return builder.create()
+        }
+    }
+
     /**
      * Method responsible for setup protocol between scenes
      */
@@ -205,3 +222,5 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         presenter.view = view
     }
 }
+
+

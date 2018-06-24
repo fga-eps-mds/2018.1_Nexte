@@ -108,10 +108,10 @@ class LoginWorker {
      */
     fun requestForAuth(request: LoginModel.AccountKit.Request) {
 
-        val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
+        val authentication = "http://10.0.2.2:3000:3000/auth/login" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val body = defineBodyForAccountKitAuth(request.phone, request.email)
+        val body = defineBodyForAccountKitAuth(request.phone, request.email, request.token)
 
         Fuel.post(authentication).header(headers).body(body).responseJson(requestAuthHandler)
     }
@@ -121,16 +121,16 @@ class LoginWorker {
      * @param phone Phone from a user - used in Account Kit auth
      * @param phone Email from a user - used in Account Kit auth
      */
-    fun defineBodyForAccountKitAuth(phone: String?, email: String?): String {
+    fun defineBodyForAccountKitAuth(phone: String?, email: String?, token: String): String {
         val json = JSONObject()
 
         if(phone != null) {
             json.put("phone",  phone) // Expected test-nexte-ramires
-            json.put("password",  "test-nexte-ramires")  // Expected ramires
+            json.put("tokenAccountKit",  token)  // Expected ramires
 
         } else {
             json.put("email",  email)
-            json.put("password",  "test-nexte-ramires")  // Expected ramires
+            json.put("tokenAccountKit",  token)  // Expected ramires
         }
 
         return json.toString()

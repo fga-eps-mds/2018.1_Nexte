@@ -113,7 +113,7 @@
 
     <!-- Login Scene -->
     <string name="loginButtonNavegate">Navegar pelo NEXTE!</string>
-    <string name="loginOrDescription">ou</string>
+    <string name="loginOrDescription">Entrar com e-mail ou telefone</string>
     <string name="loginButtonLogin">Entrar</string>
     <string name="loginPasswordDescription">Senha</string>
     <string name="loginEmailOrPhoneDescription">E-mail ou Telefone</string>

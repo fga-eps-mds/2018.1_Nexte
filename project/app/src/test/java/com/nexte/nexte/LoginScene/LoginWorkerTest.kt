@@ -147,12 +147,13 @@ class LoginWorkerTest {
     fun testDefineBodyForAccountKitAuthPhoneNotNull(){
         val phone = "123456789"
         val email = "email@email.com"
+        val token = "498ufj9834f"
 
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
 
         val jsonObject = JSONObject()
         jsonObject.put("phone", phone)
-        jsonObject.put("password", "test-nexte-ramires")
+        jsonObject.put("tokenAccountKit", token)
 
         assertEquals(json.toString(), jsonObject.toString())
     }
@@ -161,12 +162,13 @@ class LoginWorkerTest {
     fun testDefineBodyForAccountKitAuthPhoneNull(){
         val phone = null
         val email = "email@email.com"
+        val token = "498ufj9834f"
 
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
 
         val jsonObject = JSONObject()
         jsonObject.put("email", email)
-        jsonObject.put("password", "test-nexte-ramires")
+        jsonObject.put("tokenAccountKit", token)
 
         assertEquals(json.toString(), jsonObject.toString())
     }
