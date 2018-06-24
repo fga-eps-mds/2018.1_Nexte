@@ -2,6 +2,7 @@ package com.nexte.nexte.MatchScene
 
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.User
 
 /**
  * Class that defines the attributes and types of objects that will be used on
@@ -65,7 +66,7 @@ class MatchModel {
                               var challengedPhoto: Int,
                               var challengerName: String,
                               var challengerPhoto: Int,
-                              var challengesSent: ChallengeManager)
+                              var challengesSent: Challenge)
 
     /**
      * Class that defines the types of sets to be used on definition by user on view
