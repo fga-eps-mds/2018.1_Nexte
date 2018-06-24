@@ -25,6 +25,8 @@
 
 * [1.4 Retrospectiva](#14-retrospectiva)
 
+* [1.5 Quadro de Conhecimento](#15-quadro-de-conhecimento)
+
 [2. Gestão de Risco](#2-gestão-de-risco)
 
 [3. EVM](#2-evm)
@@ -117,15 +119,19 @@ Como dito nos resultados da sprint anterior, o velocity voltou ao normal após e
 * Lorrany e Larissa correrão atrás do prejuizo que causaram na parte de testes;
 * Os integrante só podem dar assign nas issues que estão fazendo no momento;
 
+### **1.5. Quadro de Conhecimento**
+
+![Quadro de conhecimento](https://i.imgur.com/JGstrOf.png)
+
 ## **2. Gestão de Risco**
 
 #### 2.1. Riscos priorizados
 
-![Gestão de Risco]()
+![Gestão de Risco](https://i.imgur.com/oLKlWGn.png)
 
 #### 2.2. _Burndown risk_
 
-![Burndow Risk do Projeto]()
+![Burndow Risk do Projeto](https://i.imgur.com/c4ZEQBU.png)
 
 Para acessar o burndown risk de cada risco separamente clique [aqui](https://docs.google.com/spreadsheets/d/1K6oxspA7JK-XiOPEHABS56DqX9O8WnunRu-7U4CFYZ0/edit?usp=sharing) e acesse a aba "Gráficos"
 
@@ -133,13 +139,22 @@ Para acessar o burndown risk de cada risco separamente clique [aqui](https://doc
 
 | ID | Status | Por que mudou? |
 |---|---|---|
-|  |  |  |
+| RN01 | Chegou a 0 | Como a equipe já fechou o escopo da aplicação, cobertura de testes está em 88% e há apenas dívidas técnicas para terminar e documentos para revisar não existe mais o risco de limitação técnica para o projeto. |
+| RN02 | Chegou a 0 | Devido aos mesmo motivos do RN01 não faz mais sentido considerar a produtividade dos membros da equipe um risco, visto que faltam apenas pequenas alterações e o escopo da aplicação já foi contemplado. |
+| RN04 | Chegou a 0 | O servidor já foi entregue. |
+| RN06 | Chegou a 0 | Como os integrantes da equipe já terminaram maior parte das disciplinas e agora estão completamente focados em finalizar os detalhes e dívidas técnicas do aplicativo, isso não será mais considerado um risco. |
+| RN07 | Chegou a 0 | Também será desconsiderado esse risco devido aos fatores supracitados. |
+| RN15 | Chegou a 0 | Devido aos fatores suprecitados não faz mais sentido considerar dependência de um membro da equipe um risco. |
+| RN23 | Chegou a 0 | Como faltam apenas 2% para a cobertura de testes chegar ao aceitável(90%) e a maior parte das histórias já foram finalizadas isso não é mais um risco ao projeto. |
+| RN24 | Diminuiu | Apesar de algumas métricas de código que precisam ser refatoradas, elas ainda estão dentro da quantidade aceitável e não trazem grande impacto ao projeto, visto que o código está testado. |
+| RN11 | Diminuiu | Idem ao RN06. |
 
 #### 1.5.4 Ações para riscos atuais
 
 | ID | Como mitigar |
 |---|---|
-|  |  |
+| RN24 | A equipe dedicará esforços para finalizar as refatorações de código até o final da sprint 15. |
+| RN25 | A equipe fará as dívidas técnicas finais de integração e testes do servidor de imagem. |
 
 ## **3. EVM**
 Gráfico de progressão:
