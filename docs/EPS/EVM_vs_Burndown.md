@@ -15,10 +15,12 @@ A seguir estão documentados alguns fatos importantes que fizeram com que a inco
 
 * Foi percebido que algumas histórias novas foram adicionadas ao backlog porém houve falha de comunicação entre os membros de EPS e devido a isso o total de pontos a serem concluídos durante a Release 2 não foi alterado
 
-* A quantidade de Sprints estava inconsistente na EVM, havia uma sprint a mais do que o que realmente seria feito, o que influenciava no cálculo para mostrar que o time estava adiantado em relação as entregas de valor para o cliente, assim como todos os tipos de história foram colocadas, e não somente histórias que agragavam valor para o cliente, dessa forma sempre parecei que o cliente estava recebendo mais valor do que era planejado, sem ser verdade.
+* A quantidade de pontos fechados na EVM estava incluso todos os pontos concluídos pelo time, independente se acrescentava valor para o cliente ou não, pois como o cliente era do próprio grupo o agregar valor não era ligado somente à funcionalidades, mas também para coisas técnicas, e ao fazer isso dava a impressão de estar tudo bem sem estar.
+
+
 
 ## Situação atual
 
-Após constatar a inconsistência, a EVM foi regularizada para ficar com seus dados mais consistentes, ela pode ser acessada através do [link](https://docs.google.com/spreadsheets/d/1-YfPLlNFHWocxRSZ3WpIfGgju3ALPO0iJjQ94Ivyixs/edit#gid=2121884063), e o gráfico geral de valor agregado atualizado pode ser verificado na figura abaixo ou na planilha gráficos no link acima.
+Após constatar a inconsistência, a EVM foi regularizada, a pontuação conluída foi colocada somente as histórias que agregavam valor dessa maneira ela pôde ficar com seus dados mais consistentes. Para acessa-la o seguinte [link](https://docs.google.com/spreadsheets/d/1-YfPLlNFHWocxRSZ3WpIfGgju3ALPO0iJjQ94Ivyixs/edit#gid=2121884063) deve ser utilizado, e o gráfico geral de valor agregado atualizado pode ser verificado na figura abaixo ou na planilha gráficos no link acima.
 
-![](https://i.imgur.com/a8AFhUO.png)
+![](https://i.imgur.com/DZj3mKe.png)
