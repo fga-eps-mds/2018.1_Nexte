@@ -51,57 +51,47 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
-
         this.setup()
-        this.createAuthenticationRequest()
-
-//        val intent = Intent(this, UserOnBoardingView::class.java)
-//        startActivity(intent)
-
-//
-//        btnLoginPhonenumber.setOnClickListener {
-//            this.loginPhoneNumber()
-//        }
-//
-//        btnLoginFacebook.setOnClickListener {
-//            this.loginByEmail()
-//        }
 
         login.setOnClickListener {
             createAuthenticationRequest()
         }
+
         navigationLogin.setOnClickListener{
             this.finish()
         }
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
-        val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
-        if (!previouslyStarted) {
-            val edit = prefs.edit()
-            edit.putBoolean(getString(R.string.pref_previously_started), java.lang.Boolean.TRUE)
-            edit.apply()
-            val intent = Intent(this, UserOnBoardingView::class.java)
-            startActivity(intent)
-        }
+//        val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
+//        val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
+//        if (!previouslyStarted) {
+//            val edit = prefs.edit()
+//            edit.putBoolean(getString(R.string.pref_previously_started), java.lang.Boolean.TRUE)
+//            edit.apply()
+//            val intent = Intent(this, UserOnBoardingView::class.java)
+//            startActivity(intent)
+//        }
+
+        this.loginByEmail()
     }
 
-    override fun onBackPressed() {
-        this.finishAffinity()
-    }
+//    override fun onBackPressed() {
+//        this.finishAffinity()
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
             LoginModel.AccountKit.accountKit_code -> {
+                Log.e("debug", "Here")
                 val loginResult: AccountKitLoginResult = data!!.getParcelableExtra(AccountKitLoginResult.RESULT_KEY)
-                val token = loginResult.authorizationCode
-                this.getAccount(token!!)
+                this.handleLoginResult(loginResult)
             }
         }
+
+        Log.i("error", "sdsd")
     }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
@@ -178,6 +168,30 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
                 AccountKitActivity.ResponseType.TOKEN)
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, builder.build())
         startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
+    }
+
+    /*
+     * Handle with Login Result
+     */
+    private fun handleLoginResult(loginResult: AccountKitLoginResult): String? {
+        var message: String? = null
+
+        if (loginResult.error != null) {
+            Log.e("debug", "login error")
+            message = loginResult.error?.errorType?.message
+        } else if (loginResult.wasCancelled()) {
+            Log.d("debug", "login cancelled")
+            message = "login cancel"
+        } else {
+            if (loginResult.accessToken != null) {
+                val accessToken = loginResult.authorizationCode
+                getAccount(accessToken!!)
+                Log.i("info", accessToken)
+            } else {
+                Log.e("debug", "access token null")
+            }
+        }
+        return message
     }
 
     /**
