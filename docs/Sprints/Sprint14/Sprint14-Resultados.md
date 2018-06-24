@@ -158,10 +158,15 @@ Para acessar o burndown risk de cada risco separamente clique [aqui](https://doc
 
 ## **3. EVM**
 Gráfico de progressão:
-![]()
+![](https://i.imgur.com/DZj3mKe.png)
 
 Informações detalhadas:
-![]()
+Nas sprints passadas houve um problema de inconsistência com duasm métricas utilizadas no projeto, o Burndown e a EVM, esse problema foi resolvido e justificado e está documentado no Documento **EVM_vs_Burndown.md** que está contído dentro da pasta docs/EPS [link](docs/EPS/EVM_vs_Burndown.md).
+
+A planilha de valor agregado pode ser acessádo em sua íntegra através do [link](https://docs.google.com/spreadsheets/d/1-YfPLlNFHWocxRSZ3WpIfGgju3ALPO0iJjQ94Ivyixs/edit#gid=2121884063)
+
+Foi possível verificar que o projeto está em uma situação crítica em relação à agregação de valor, diferentemente dos diagnósticos passados é visivelmente gritante o erro ao analisar as sprints passadas, dessa maneira há um grande déficit entre o planejamento e o que realmente foi feito pela equipe de forma a agregar valor para o cliente.
+
 
 
 ## **4. Análise de código**
