@@ -17,7 +17,6 @@ import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
 import android.preference.PreferenceManager
 import android.support.v4.app.DialogFragment
-import android.view.View
 
 
 /**

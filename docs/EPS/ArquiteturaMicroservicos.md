@@ -11,15 +11,13 @@ foram adotados dois *containers* até o momento:
 
 Além disso, foram adicionados muitos serviços externos, no qual cada é relacionado a uma feature específica. Desta forma, pode-se citar os seguintes serviços:
 
-* Firebase Cloud Messsaging: "*Real time server*" utilizado para notificações remotas, é possível utilizá-lo no Android e iOS.
+* Firebase Cloud Messsaging: "*Real time server*" utilizado para notificações remotas, é possível utilizá-lo no Android e iOS.  No entanto, como o escopo do Servidor principal estava em cargo do membros do Nexte, **não houve disponibilidade de tempo para implantação deste serviço**. Entretanto, em futuras evoluções, externas a disciplina, esta feature será implementada.
 
-* *Image server *(Servidor de Imagens): Servidor que irá armazenar as imagens dos usuários do Nexte, a princípio não foi decidido qual será utilizado, entretanto alguns membros do time já possuem experiência com o Cloudinary.
+* *Image server *(Servidor de Imagens): Servidor que irá armazenar as imagens dos usuários do Nexte. Este servidor foi implementado utilizando Go juntamente a API do Google Cloud. 
 
 * Neo4j: Banco de dados não relacional, orientado a grafos, que possui boa adaptabilidade as regras de negócio da aplicação.
 
-* *Cinta Liga Server* (Servidor da Cinta Liga): Servidor de clube parceiros que será integrado ao servidor principal, está estruturado em em bancos de Dados relacional. 
-
-*  *Account Kit*: Serviço de autenticação provido pelo facebook que utiliza apenas do e-mail ou telefone para realizar essa terefa. Este serviço é adicionado diretamente ao *frontend*.
+* *Account Kit*: Serviço de autenticação provido pelo facebook que utiliza apenas do e-mail ou telefone para realizar essa terefa. Este serviço é adicionado diretamente ao *frontend*.
 
 A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utilizados.
 
@@ -28,7 +26,7 @@ A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utili
 
 ### Versão 0.3
 
-![microservice3](https://i.imgur.com/U66zAwn.pngd)
+![microservice3](https://i.imgur.com/lkbYbts.png)
 
 ### Versão 0.2
 

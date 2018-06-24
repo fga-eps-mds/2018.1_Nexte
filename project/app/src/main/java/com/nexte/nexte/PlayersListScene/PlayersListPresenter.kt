@@ -1,6 +1,10 @@
 package com.nexte.nexte.PlayersListScene
 
+import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.RankingScene.RankingPresenter
+import java.util.*
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 
 /**
  * Interface to define Presentation Logic to Challenge Class that
@@ -47,6 +51,9 @@ interface PlayersListPresentationLogic {
 class PlayersListPresenter : PlayersListPresentationLogic {
 
     var viewChallenge: PlayersListDisplayLogic? = null // reference of the view
+    var challengeManager: ChallengeManager? = null
+    var rankingPresenter: RankingPresenter = RankingPresenter()
+    var userCategoryManager: UserCategoryManager? = null
 
     /**
      * This method is responsible for formatting data contained on
@@ -60,15 +67,20 @@ class PlayersListPresenter : PlayersListPresentationLogic {
         var formattedPlayers: List<PlayersListModel.FormattedPlayer> = listOf()
 
         for(player in selectedPlayers){
-            val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
-                    String.format("#%d", player.rankingPosition), "", User.Status.AVAILABLE)//TODO: replace picture adress
+            if (player.profilePicture != null)  {
+                val formattedPlayer = PlayersListModel.FormattedPlayer(player.id, player.name,
+                        String.format("#%d", player.rankingPosition), player.profilePicture!!, User.Status.AVAILABLE)
 
-            formattedPlayers += formattedPlayer
+                formattedPlayers += formattedPlayer
+            }
+
         }
 
         val viewModel = PlayersListModel.ShowRankingPlayersRequest.ViewModel(formattedPlayers)
         viewChallenge?.displayPlayersToChallenge(viewModel)
     }
+
+
 
     /**
      * This method is responsible for formatting data contained on
@@ -78,12 +90,21 @@ class PlayersListPresenter : PlayersListPresentationLogic {
      */
     override fun formatExpandedChallengedInfo(response: PlayersListModel.SelectPlayerForChallengeRequest.Response) {
         val selectedChallenged = response.challengedPersonalDetails
-
+        val totalGames = selectedChallenged.wins.toFloat()+selectedChallenged.loses
+        val efficiency = selectedChallenged.wins /totalGames * oneHundredPercent
+        val percent = "%"
+        val category = userCategoryManager?.get(selectedChallenged.id)?.name
+        val latestChallenges = challengeManager?.getLastFiveChallenges(selectedChallenged.id)
+        val lastGame = rankingPresenter.calculatePlayerLastGame(latestChallenges,Date())//calculatePlayerLastGame(latestChallenges,Date())
         val formattedPlayer = PlayersListModel.FormattedRankingDetails(
                 selectedChallenged.name,
-                String.format("VITÓRIAS: %d", selectedChallenged.wins),
-                String.format("DERROTAS: %d", selectedChallenged.loses),
-                String.format("#%d", selectedChallenged.rankingPosition)
+                String.format("VITÓRIAS: %d / %d", selectedChallenged.wins,selectedChallenged.wins+selectedChallenged.loses),
+                String.format("%d", selectedChallenged.rankingPosition),
+                category.toString(),
+                String.format("Aproveitamento: %.2f %s",efficiency,percent),
+                String.format("Último Jogo: %s",lastGame),
+                rankingPresenter.getPlayerLastFiveGamesArray(latestChallenges,selectedChallenged.id),
+                selectedChallenged.id
         )
 
         val viewModel = PlayersListModel.SelectPlayerForChallengeRequest.ViewModel(formattedPlayer)
@@ -120,5 +141,8 @@ class PlayersListPresenter : PlayersListPresentationLogic {
         val message = "Sem jogadores disponíveis.\nTente novamente mais tarde."
 
         viewChallenge?.displayNoPlayersMessage(message)
+    }
+    companion object {
+        const val oneHundredPercent = 100
     }
 }
