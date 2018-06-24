@@ -216,4 +216,8 @@ Além disso, a dificuldade excessiva de testes unitários em Kotlin, tanto pelas
 
 O lado bom é que a produtividade da equipe voltou a ester próxima do normal, mesmo com algumas dívidas técnicas. Além disso, pelo fato da equipe estar sempre adiantada em relação ao roadmap a equipe conseguirá fechar todo o escopo do aplicativo, além de entregar algumas funcionalidade a mais e correção de alguns bugs gerados durante os testes de usabilidade feito pela equipe.
 
+<<<<<<< HEAD
 Assim, mesmo essa não sendo uma sprint "sucesso", houve uma melhora muito significativa em relação a sprint anterior e os esforços da equipe durante todo o semestre compensaram muito, pois o impacto da grande falta de entregas que teve na sprint passada não comprometeu de forma alguma a entrega do escopo planejado.
+=======
+Assim, mesmo essa não sendo uma sprint "sucesso", houve uma melhora muito significativa em relação a sprint anterior e os esforços da equipe durante todo o semestre compensaram muito, pois o impacto da grande falta de entregas que teve sprint passada não comprometeu de forma alguma a entrega do escopo planejado.
+>>>>>>> 5ef481852ffebf1e25d1ec0fd35bc3521800d37f
