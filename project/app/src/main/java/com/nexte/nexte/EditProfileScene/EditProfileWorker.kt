@@ -2,7 +2,6 @@ package com.nexte.nexte.EditProfileScene
 
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserAdapter
-import com.nexte.nexte.UserSingleton
 
 /**
  * Class responsible to get a request and generate a response

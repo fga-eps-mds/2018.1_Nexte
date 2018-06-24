@@ -611,7 +611,7 @@ class DepartDialogFragment: DialogFragment() {
 
     private fun setStatus(status: User.Status) {
         val user = UserSingleton.loggedUser
-        UserSingleton.userManager.update(User(user.id, user.name, user.profilePicture,
+        UserManager().update(User(user.id, user.name, user.profilePicture,
                 user.nickname, user.birthDate, user.rankingPosition, user.email,
                 user.phone,  user.wins, user.loses, user.gender, user.category, status, user.challengeSended,
                 user.challengeReceived, user.latestGames))
