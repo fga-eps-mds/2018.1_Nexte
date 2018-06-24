@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MainActivity
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.activity_challenger.*
@@ -427,6 +428,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view
+        presenter.challengeManager = ChallengeManager()
+        presenter.userManager = UserManager()
 
     }
 
@@ -448,7 +451,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      */
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
 
-        matchViewAdapter?.updateMatchInfo(viewModel.matchFormatted)
+        matchViewAdapter?.updateMatchInfo(viewModel.)
     }
 
     /**

@@ -63,12 +63,12 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return playedChallengesFromUser
     }
 
-    override fun getSendChallengeFromRealm(identifier: String): Challenge {
-        val sendChallengesFromRealm = realm.where<ChallengeRealm>().equalTo(
-                "challengerId", identifier).or().equalTo("challengedId", identifier).isNotNull(
+    override fun getSentChallenge(userdId: String): List<Challenge> {
+        val sentChallengesFromRealm = realm.where<ChallengeRealm>().equalTo(
+                "challengerId", userdId).or().equalTo("challengedId", userdId).isNotNull(
                 "stageSendChallengeRealm").findFirst()
-        val challengeFromUser = convertChallengeRealmToChallenge(sendChallengesFromRealm)
-        return challengeFromUser!!
+        val challengeFromUser = convertListChallengeRealmToChallengeList(sentChallengesFromRealm)
+        return challengeFromUser
     }
     companion object {
         const val five = 5

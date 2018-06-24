@@ -35,7 +35,7 @@ class MatchModel {
        *
        * @param matchFormatted data ready to be displayed on screen
        */
-      class ViewModel(var matchFormatted: FormattedMatchData)
+      class ViewModel(var matchFormatted: List<FormattedMatchData>)
 
   }
     // --------- Aux classes ---------
