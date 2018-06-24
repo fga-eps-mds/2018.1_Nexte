@@ -43,18 +43,21 @@ class StoryAdapterRealm: StoryAdapter{
 
     override fun updateLikes(story: Story, userId: String): Story? {
         //verifies if the user is on list
-        val storyIndex = story.likesId.contains(userId)
-        val mutableLikes = story.likesId.toMutableList()
+        convertStoryToStoryRealm(story).let {
+            val storyIndex = story.likesId.contains(userId)
+            val mutableLikes = story.likesId.toMutableList()
 
-        if(storyIndex){
-            mutableLikes.remove(userId)
-        }
-        else{
-            mutableLikes.add(userId)
-        }
+            if(storyIndex){
+                mutableLikes.remove(userId)
+            }
+            else{
+                mutableLikes.add(userId)
+            }
 
-        story.likesId = mutableLikes.toList()
-        return updateOrInsert(story)
+            story.likesId = mutableLikes.toList()
+            realm.beginTransaction()
+            return updateOrInsert(story)
+        }
     }
 
     fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{

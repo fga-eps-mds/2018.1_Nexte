@@ -1,7 +1,7 @@
 package com.nexte.nexte.Entities.Story
 import java.util.*
 
-class StoryAdapterSpy: StoryAdapter{
+abstract class StoryAdapterSpy: StoryAdapter{
 
     override fun delete(identifier: String): Story? {
         if (identifier == "1") {
