@@ -42,6 +42,16 @@ class StoryAdapterRealm: StoryAdapter{
         }
     }
 
+    override fun addComment(story: Story, commentId: String): Story? {
+
+        convertStoryToStoryRealm(story).let {
+            val mutableComments = story.commentsId.toMutableList()
+            mutableComments.add(commentId)
+            story.commentsId = mutableComments.toList()
+            return updateOrInsert(story)
+        }
+    }
+
     override fun updateLikes(story: Story, userId: String): Story? {
         //verifies if the user is on list
         convertStoryToStoryRealm(story).let {

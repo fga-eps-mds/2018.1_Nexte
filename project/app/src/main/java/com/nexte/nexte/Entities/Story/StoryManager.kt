@@ -61,4 +61,8 @@ class StoryManager(val storyAdapter: StoryAdapter = StoryAdapterRealm()) {
     fun updateLike(story: Story, userId: String): Story?{
         return storyAdapter.updateLikes(story, userId)
     }
+
+    fun addComment(story: Story, commentId: String): Story? {
+        return storyAdapter.addComment(story, commentId)
+    }
 }

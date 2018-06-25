@@ -5,5 +5,6 @@ interface StoryAdapter {
     fun get(identifier: String): Story?
     fun updateOrInsert(story: Story): Story?
     fun updateLikes(story: Story, userId: String): Story?
+    fun addComment(story: Story, commentId: String): Story?
     fun delete(identifier: String): Story?
 }

@@ -72,7 +72,7 @@ class CommentsModel {
          * so it can request data
          * @param commentToPost contains the message of the comment that will be posted
          */
-        class Request(var commentToPost: String)
+        class Request(var commentToPost: String, var storyId: String?)
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter

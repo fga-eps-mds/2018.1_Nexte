@@ -199,8 +199,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     private val sendCommentAction = View.OnClickListener {
         if(commentEditText?.text!!.isNotEmpty()){
             val request = CommentsModel.PublishCommentRequest.Request(
-                    commentEditText?.text.toString()
-            )
+                    commentEditText?.text.toString(), this.storyID)
             interactor?.publishNewComment(request)
             commentEditText?.text?.clear()
             rollToEndOfList()

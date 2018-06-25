@@ -10,6 +10,7 @@ import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.Story.StoryMocker
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
 import org.json.JSONArray
@@ -30,6 +31,7 @@ interface CommentsWorkerUpdateLogic {
  */
 class CommentsWorker {
 
+    var numbNewComments = 9;
     var updateLogic: CommentsWorkerUpdateLogic? = null
     var commentsManager: CommentManager? = null
     var storyManager: StoryManager? = null
@@ -105,15 +107,27 @@ class CommentsWorker {
      */
 
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request) {
+        var story = storyManager?.get(request.storyId)
+        val emptyStory = Story()
+        story = story ?: emptyStory
+        val newCommentId = numbNewComments++;
 
         val message = request.commentToPost
         val today = Date()
-        val author = "1"
-        var newComment = Comment(idComment, author, message, today)
+        val author = UserSingleton.loggedUserID
+        var newComment = Comment(newCommentId.toString(), author, message, today)
         newComment = commentsManager?.update(newComment)!!
+        storyManager?.addComment(story, newComment.id!!)
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         updateLogic?.updateNewComment(response)
+
+//
+//        if (UserSingleton.userType != UserType.MOCKED) {
+//            val header = mapOf("accept-version" to "0.1.0")
+//            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
+//            url.httpGet().header(header).responseJson(handleResulComments)
+//        }
     }
 
     /**
