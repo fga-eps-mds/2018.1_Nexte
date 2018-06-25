@@ -68,6 +68,7 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
         val challengerPhoto = toFormat.challenger.photo
 
 
+
         val matchFormatted = MatchModel.FormattedMatchData(challengedName,
                                                            challengedPhoto,
                                                            challengerName,
