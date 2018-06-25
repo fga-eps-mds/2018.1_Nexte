@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import android.graphics.Color
 import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
 import android.widget.ImageView
