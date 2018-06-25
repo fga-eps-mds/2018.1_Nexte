@@ -1,6 +1,5 @@
 package com.nexte.nexte.CommentsScene
 
-import android.util.Log
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
@@ -12,7 +11,6 @@ import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Comment.CommentMocker
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
-import com.nexte.nexte.Entities.Story.StoryMocker
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
 import org.json.JSONArray
@@ -115,7 +113,7 @@ class CommentsWorker {
 
         CommentMocker.newCommentsId.add(request.commentToPost)
         val numberNewComments = CommentMocker.newCommentsId.size
-        val newCommentId = numberNewComments + 10
+        val newCommentId = numberNewComments + antComments
 
         val message = request.commentToPost
         val today = Date()
@@ -174,6 +172,7 @@ class CommentsWorker {
     }
 
     companion object {
+        const val antComments = 10
         const val okMessage = 200
         const val idComment = "108"
     }
