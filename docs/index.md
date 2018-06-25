@@ -1,16 +1,16 @@
 # Bem vindo ao Nexte
 
-### O que é Nexte?  
+## O que é Nexte?  
 
 É um aplicativo voltado para auxiliar tênistas a organizar desafios dentro de seus clubes, assim como organizar e mostrar um ranking dos jogadores, e facilitar a e visuzalização dos resultados das partidas jogadas.
 Ele permite que os tenistas acompanhem sua evolução dentre os resultados obtidos por meio de gráficos que demonstram sua performace ao longo do tempo, assim como sua posição no ranking referente aos seus adversários. 
 Há a possiblidade de acompanhar resultados de outros tenistas através do feed de notícias, e nele os usuários podem curtir e comentar os resultados que são mostrados.
 
 
-### Objetivo
-Criar experiências inovadoras para as partidas de tênis amadoras em clubes. Fortalecendo a competitividade através de um Ranking gamificado.
+<!-- ### Objetivo
+Criar experiências inovadoras para as partidas de tênis amadoras em clubes. Fortalecendo a competitividade através de um Ranking gamificado. -->
 
-### O que é possivel com o Nexte?
+## O que é possivel com o Nexte?
 
 Cansado de marcar manualmente suas partidas de tênis em seu clube? e sobre ter que ver sua posição no ranking de tenistas somente com os funcionários do clube ? e sobre desafiar outros tenistas para jogar contra, cansado do jeito cansativo de ter que procurar boca a boca alguém para jogar contra? se a resposta for sim para uma das perguntas ou até mesmo para todas o Nexte veio para solucionar seu problem!
 
