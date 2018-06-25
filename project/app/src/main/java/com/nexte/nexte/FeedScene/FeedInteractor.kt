@@ -12,7 +12,7 @@ interface FeedBusinessLogic {
      *
      * @param request Request model of feed that contains data to pass for Worker
      */
-    fun fetchFeed(requestFeed: FeedModel.GetFeedActivities.Request)
+    fun fetchFeed(request: FeedModel.GetFeedActivities.Request)
 
     /**
      * Method that defines the identifier of the activity to be altered
@@ -21,7 +21,7 @@ interface FeedBusinessLogic {
      *
      * @param request Activity identifier to fetch the activity to be altered
      */
-    fun fetchLikes(requestLike: FeedModel.LikeAndUnlike.Request)
+    fun fetchLikes(request: FeedModel.LikeAndUnlike.Request)
 }
 
 /**
@@ -36,21 +36,21 @@ class FeedInteractor(var presenter: FeedPresentationLogic? = null) :
 
     val worker: FeedWorker = FeedWorker()
 
-    override fun fetchFeed(requestFeed: FeedModel.GetFeedActivities.Request) {
-        worker.fetchFeedData(requestFeed)
+    override fun fetchFeed(request: FeedModel.GetFeedActivities.Request) {
+        worker.fetchFeedData(request)
     }
 
-    override fun fetchLikes(requestLike: FeedModel.LikeAndUnlike.Request) {
+    override fun fetchLikes(request: FeedModel.LikeAndUnlike.Request) {
 
-        worker.manageLikes(requestLike)
+        worker.manageLikes(request)
     }
 
-    override fun updateFeed(responseFeed: FeedModel.GetFeedActivities.Response) {
-        presenter?.formatFeed(responseFeed)
+    override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
+        presenter?.formatFeed(response)
     }
 
-    override fun updateLikes(responseLikes: FeedModel.LikeAndUnlike.Response) {
-        presenter?.updateViewActivity(responseLikes)
+    override fun updateLikes(response: FeedModel.LikeAndUnlike.Response) {
+        presenter?.updateViewActivity(response)
 
     }
 

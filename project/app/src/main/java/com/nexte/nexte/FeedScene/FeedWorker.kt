@@ -25,17 +25,17 @@ interface FeedWorkerUpdateLogic {
     /**
      * * Method that will be used to pass response data for the presenter
      *
-     * @param responseFeed Response model of list that contains data to pass for Presenter
+     * @param response Response model of list that contains data to pass for Presenter
      */
-    fun updateFeed(responseFeed: FeedModel.GetFeedActivities.Response)
+    fun updateFeed(response: FeedModel.GetFeedActivities.Response)
 
     /**
      * Method that will be used to pass response data for the presenter class
      *
-     * @param responseLikes Reponse model of list with the altered inner list of likes, which means
+     * @param response Reponse model of list with the altered inner list of likes, which means
      * that the actual user liked or unliked the story
      */
-    fun updateLikes(responseLikes: FeedModel.LikeAndUnlike.Response)
+    fun updateLikes(response: FeedModel.LikeAndUnlike.Response)
 }
 
 /**

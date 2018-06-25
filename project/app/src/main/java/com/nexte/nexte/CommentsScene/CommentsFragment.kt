@@ -47,13 +47,28 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     var mainLayout: ConstraintLayout? = null
     var commentManager: CommentManager? = null
     var storyManager: StoryManager? = null
+    var storyID: String? = null
 
     /**
      * On Create method that will setup this scene and call first Request for Interactor
      */
-    fun getInstance(): CommentsFragment{
+    fun getInstance(identifier: String): CommentsFragment{
         val commentsFragment = CommentsFragment()
+        val args = Bundle()
+        args.putString("storyID", identifier)
+        commentsFragment.arguments = args
         return commentsFragment
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if(arguments != null){
+            storyID = arguments.getString("storyID")
+        }
+        else{
+            storyID = ""
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,12 +84,8 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         this.commentManager = CommentManager()
         this.storyManager = StoryManager()
         this.setUpCommentsScene()
-
+        createGetCommentsRequest()
         this.setActionToCloseKeyboard(newView)
-
-        val request = CommentsModel.GetCommentsRequest
-                .Request("1", "d2c02630-b20d-45fc-a5f3-41c399dbd075")
-        interactor?.recentComments(request)
 
         checkButton?.setOnClickListener(sendCommentAction)
         commentEditText?.setOnClickListener {
@@ -83,6 +94,15 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
         return newView
 
+    }
+
+    /**
+     * This function send the request built with the identified story
+     */
+    fun createGetCommentsRequest(){
+        val request = CommentsModel.GetCommentsRequest
+                .Request("1", this.storyID)
+        interactor?.recentComments(request)
     }
 
 

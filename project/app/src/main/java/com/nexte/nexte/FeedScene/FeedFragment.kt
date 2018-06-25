@@ -100,7 +100,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
     private fun goToCommentsList(identifier: String) {
 
-        val commentsFragment = CommentsFragment().getInstance()
+        val commentsFragment = CommentsFragment().getInstance(identifier)
         val fragmentManager = activity.fragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.main_frame_layout, commentsFragment, "comments")
