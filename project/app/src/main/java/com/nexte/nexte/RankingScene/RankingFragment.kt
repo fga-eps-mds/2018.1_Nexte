@@ -2,7 +2,6 @@ package com.nexte.nexte.RankingScene
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
@@ -21,10 +20,6 @@ import android.support.v7.widget.DividerItemDecoration
 import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
-import java.net.URL
-import com.nexte.nexte.R.id.imageView
-import android.graphics.BitmapFactory
-import android.graphics.Bitmap
 import com.squareup.picasso.Picasso
 
 
