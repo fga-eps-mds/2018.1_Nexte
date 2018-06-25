@@ -89,7 +89,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
      */
     private fun goToLikesList(identifier: String) {
 
-        val likeListFragment = LikeListFragment().getInstance()
+        val likeListFragment = LikeListFragment().getInstance(identifier)
         val fragmentManager = activity.fragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.main_frame_layout, likeListFragment, "like")

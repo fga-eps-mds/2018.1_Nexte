@@ -19,6 +19,7 @@ class StoryAdapterRealm: StoryAdapter{
     }
 
     override fun get(identifier: String): Story? {
+
         val storyRealm = realm.where<StoryRealm>().equalTo("id", identifier).findFirst()
         return if (storyRealm == null) {
             null
@@ -55,7 +56,6 @@ class StoryAdapterRealm: StoryAdapter{
             }
 
             story.likesId = mutableLikes.toList()
-            realm.beginTransaction()
             return updateOrInsert(story)
         }
     }

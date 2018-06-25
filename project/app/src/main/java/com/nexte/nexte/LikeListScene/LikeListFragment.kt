@@ -35,10 +35,28 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
     var likeManager: LikeManager? = null
     var storyManager: StoryManager? = null
     var userManager: UserManager? = null
+    var storyId: String? = null
 
-    fun getInstance(): LikeListFragment{
+    fun getInstance(identifier: String): LikeListFragment{
         val likeListFragment = LikeListFragment()
+        val args = Bundle()
+        args.putString("storyRef", identifier)
+        likeListFragment.arguments = args
         return likeListFragment
+    }
+
+    /**
+     * This function will get the identifier of the Story which the list of likes must be
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if(arguments != null){
+            storyId = arguments.getString("storyRef")
+        }
+        else{
+            storyId = ""
+        }
+
     }
 
     /**
@@ -60,14 +78,12 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
         return newView
     }
 
-
-
     /**
      * Method responsible for creating the fetch data to list request and passing it to the interactor
      */
     fun createFetchDataRequest(){
         val request = LikeListModel.Request("12312312",
-                "d2c02630-b20d-45fc-a5f3-41c399dbd075")
+                storyId)
         interactor?.fetchDataToList(request)
     }
 
