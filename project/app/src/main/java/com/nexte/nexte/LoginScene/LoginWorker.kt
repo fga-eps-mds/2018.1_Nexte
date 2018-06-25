@@ -108,7 +108,7 @@ class LoginWorker {
      */
     fun requestForAuth(request: LoginModel.AccountKit.Request) {
 
-        val authentication = "http://10.0.2.2:3000:3000/auth/login" // Local route for auth
+        val authentication = "http://10.0.2.2:3000:3000/users" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val body = defineBodyForAccountKitAuth(request.phone, request.email, request.token)

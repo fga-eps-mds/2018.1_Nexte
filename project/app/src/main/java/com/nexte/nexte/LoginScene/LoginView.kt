@@ -97,12 +97,14 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val message: String = viewModel.message
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
+        this.finish()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
         val message: String  = viewModel.message
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
+        this.finish()
     }
 
     /**
