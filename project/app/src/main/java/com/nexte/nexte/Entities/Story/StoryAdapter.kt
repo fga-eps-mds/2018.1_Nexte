@@ -7,4 +7,5 @@ interface StoryAdapter {
     fun updateLikes(story: Story, userId: String): Story?
     fun addComment(story: Story, commentId: String): Story?
     fun delete(identifier: String): Story?
+    fun removeComment(story: Story, commentPos: Int): Story?
 }

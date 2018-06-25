@@ -65,4 +65,8 @@ class StoryManager(val storyAdapter: StoryAdapter = StoryAdapterRealm()) {
     fun addComment(story: Story, commentId: String): Story? {
         return storyAdapter.addComment(story, commentId)
     }
+
+    fun removeComment(story: Story, commentPos: Int): Story? {
+        return storyAdapter.removeComment(story, commentPos)
+    }
 }
