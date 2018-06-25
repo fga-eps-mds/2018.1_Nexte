@@ -6,6 +6,7 @@ import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Like.LikeManager
 import com.nexte.nexte.Entities.Story.StoryManager
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import io.realm.Realm
@@ -51,5 +52,14 @@ class NexteApplication: Application() {
             val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
             Realm.setDefaultConfiguration(config)
         }
+    }
+
+    fun updateUserLoggedStatus(user: User) {
+        UserSingleton.setLoggedUser(user.id, UserType.REAL) // User Singleton
+
+        // Realm instance for real user
+        val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
+        Realm.setDefaultConfiguration(config)
+        UserManager().update(user)
     }
 }

@@ -10,12 +10,10 @@ import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.nexte.nexte.UserSingleton
-import com.nexte.nexte.UserType
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import org.json.JSONObject
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.NexteApplication
 
 /**
  * Interface to define Response Logic of Ranking Class
@@ -55,7 +53,7 @@ class LoginWorker {
             val data = json["data"] as JSONObject
             val userJson = data ["user"] as JSONObject
             val user  = User.createUserFromJsonObject(userJson)
-            this.updateUserLoggedStatus(user)
+            NexteApplication().updateUserLoggedStatus(user)
 
             val status = LoginModel.Authentication.StatusCode.AUTHORIZED
             val response = LoginModel.Authentication.Response(user.id, status)
@@ -143,14 +141,7 @@ class LoginWorker {
         return json.toString()
     }
 
-    private fun updateUserLoggedStatus(user: User) {
-        UserSingleton.setLoggedUser(user.id, UserType.REAL) // User Singleton
 
-        // Realm instance for real user
-        val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
-        Realm.setDefaultConfiguration(config)
-        this.userManager?.update(user)
-    }
 }
 
 

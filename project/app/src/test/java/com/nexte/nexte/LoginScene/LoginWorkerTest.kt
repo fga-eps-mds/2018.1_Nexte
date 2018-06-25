@@ -6,11 +6,12 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
+import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.HelpForRealm
-import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
+import com.nexte.nexte.Entities.User.UserManager
 
 import org.junit.Assert.*
 import org.junit.Test
@@ -22,16 +23,31 @@ class LoginWorkerTest: HelpForRealm() {
     private var worker: LoginWorker? = null
     private var updateLogicMock: MockUpdateLogic? = null
     private var jsonObject = JSONObject()
+    private var userManager:  UserManager? = null
 
     @Before
     fun setUp() {
         super.setUpWithUser()
         super.setUpWithUserCategory()
         super.setUpRealm()
-        worker = LoginWorker()
+        this.userManager = UserManager(UserAdapterSpy())
         this.updateLogicMock = MockUpdateLogic()
-        this.worker?.updateLogic = updateLogicMock
+        worker = LoginWorker()
+        worker?.userManager = this.userManager
+        worker?.updateLogic = this.updateLogicMock
     }
+
+    @Test
+    fun testSettersAndGetters(){
+        //prepare  and call
+        val updateLogic = this.worker?.updateLogic
+        val userManager = this.worker?.userManager
+
+        //assert
+        assertEquals(worker?.updateLogic, updateLogic)
+        assertEquals(worker?.userManager, userManager)
+    }
+
 
     @Test
     fun testAuthenticateUserTokenEmpty(){
@@ -66,7 +82,7 @@ class LoginWorkerTest: HelpForRealm() {
         //prepare
         updateLogicMock?.response1 = null
         val url = URL("http://www.randomsite.com/")
-        val request = Request(Method.GET, "",url)
+        val request = Request(Method.POST, "", url)
         val response = Response(url)
         val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
@@ -77,21 +93,7 @@ class LoginWorkerTest: HelpForRealm() {
         assertNotNull(updateLogicMock?.response1)
     }
 
-    @Test
-    fun testRequestAuthHandlerOnFailure() {
-        //prepare
-        updateLogicMock?.response2 = null
-        val url = URL("http://www.randomsite.com/")
-        val request = Request(Method.GET, "",url)
-        val response = Response(url)
-        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
-        //call
-        worker?.requestAuthHandler?.invoke(request, response, result)
-
-        //assert
-        assertNotNull(updateLogicMock?.response2)
-    }
 
 //    @Test
 //    fun testAuthenticateHandlerOnSuccess() {
@@ -117,11 +119,11 @@ class LoginWorkerTest: HelpForRealm() {
 //        jsonUser.put("status", 1)
 //
 //        val dataJson = JSONObject()
+//
 //        dataJson.put("user", jsonUser)
 //        jsonObject.put("data", dataJson)
 //
 //        val json = Json(jsonObject.toString())
-//
 //        val result: Result<Json, FuelError> = Result.Success(json)
 //
 //        //call
@@ -135,13 +137,83 @@ class LoginWorkerTest: HelpForRealm() {
 //    }
 
     @Test
+    fun testNullUpdateLogicForAccountKit(){
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        val request = LoginModel.AccountKit.Request("miugel", "dsdvdv")
+        updateLogicMock?.response2 = null
+
+        //call
+        thread{  worker?.requestForAuth(request) }.join()
+
+        //assert
+        assertNull(updateLogicMock?.response2)
+
+        //backup
+        worker?.updateLogic = backup
+    }
+
+    @Test
+    fun testNullUpdateLogicForDefaultAuthentication(){
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        val request = LoginModel.Authentication.Request("miguel", "2343545")
+        updateLogicMock?.response1 = null
+
+        //call
+        thread{  worker?.authenticateUser(request) }.join()
+
+        //assert
+        assertNull(updateLogicMock?.response1)
+
+        //backup
+        worker?.updateLogic = backup
+    }
+
+
+    @Test
+    fun testRequestAuthenticateHandlerOnFailure() {
+        //prepare
+        updateLogicMock?.response1 = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
+
+        //call
+        thread { worker?.authenticateHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNotNull(updateLogicMock?.response1)
+    }
+
+
+    @Test
+    fun testRequestAuthHandlerOnFailure() {
+        //prepare
+        updateLogicMock?.response2 = null
+        val url = URL("http://www.randomsite.com/")
+        val request = Request(Method.GET, "",url)
+        val response = Response(url)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
+
+        //call
+        thread { worker?.requestAuthHandler?.invoke(request, response, result) }.join()
+
+        //assert
+        assertNotNull(updateLogicMock?.response2)
+    }
+
+
+    @Test
     fun testRequestAuthHandlerOnSuccess() {
         //prepare
         updateLogicMock?.response2 = null
         val url = URL("http://www.randomsite.com/")
         val request = Request(Method.GET, "",url)
         val response = Response(url)
-
         val json = Json(jsonObject.toString())
         val result: Result<Json, FuelError> = Result.Success(json)
 
@@ -160,11 +232,8 @@ class LoginWorkerTest: HelpForRealm() {
 
         val mockRequest = LoginModel.AccountKit.Request(email, phone)
 
-
-
         json.put("phone", phone)
         json.put("password", "bla")
-
 
         assertEquals(mockRequest.email, email)
     }
@@ -201,7 +270,6 @@ class LoginWorkerTest: HelpForRealm() {
     fun tearDown() {
         worker = null
     }
-
 }
 
 class MockUpdateLogic: LoginWorkerUpdateLogic {
