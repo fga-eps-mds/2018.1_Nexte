@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
-        android:layout_height="94dp"
+        android:layout_height="72dp"
         android:layout_marginEnd="8dp"
         android:background="#393939"
         android:ems="10"
