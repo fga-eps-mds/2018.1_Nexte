@@ -2,7 +2,6 @@ package com.nexte.nexte.RankingScene
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
@@ -21,10 +20,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
-import java.net.URL
-import com.nexte.nexte.R.id.imageView
-import android.graphics.BitmapFactory
-import android.graphics.Bitmap
+import com.nexte.nexte.UserType
 import com.squareup.picasso.Picasso
 
 
@@ -114,12 +110,16 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
             view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
             view?.name?.text = UserSingleton.loggedUser.name
-            UserSingleton.loggedUser.profilePicture?.let {
 
-                val url = getResources().getString(R.string.image_server_URL) +
-                        UserSingleton.loggedUser.id +
-                        ".png"
-                Picasso.get().load(url).into(view?.picture_img_view)
+            UserSingleton.loggedUser.profilePicture?.let {
+                if(UserSingleton.userType == UserType.REAL)  {
+                    val url = getResources().getString(R.string.image_server_URL) +
+                            UserSingleton.loggedUser.id +
+                            ".png"
+                    Picasso.get().load(url).into(view?.picture_img_view)
+                } else {
+                    view?.picture_img_view?.setImageResource(it.toInt())
+                }
             }
 
             view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
