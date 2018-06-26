@@ -46,7 +46,7 @@ class CommentsModel {
          *
          * @param commentID contains the identifier of the reported comment
          */
-        class Request(var commentID: Int)
+        class Request(var commentID: Int, val storyId: String?)
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
          * @param serverResponse contains the server response to the user
@@ -102,7 +102,7 @@ class CommentsModel {
          *
          * @param commentIdentifier position of the comment to be removed
          */
-        class Request (var commentIdentifier: Int)
+        class Request (var commentIdentifier: Int, val storyId: String?)
 
         /**
          * Class responsible to get the new list of comments, without the comment
@@ -110,7 +110,7 @@ class CommentsModel {
          *
          * @param delComments list of unformatted comments without deleted comment
          */
-        class Response (var delComments: Comment)
+        class Response (var delComments: MutableList<Comment>)
 
         /**
          * Class responsible to define the standar format of the information that will

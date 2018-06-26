@@ -13,6 +13,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Fragment
 import android.support.constraint.ConstraintLayout
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -131,7 +132,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
      */
     override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
-        commentsRecyclerView?.adapter = CommentsAdapter(viewModel.commentsFormatted, this)
+        commentsRecyclerView?.adapter = CommentsAdapter(viewModel.commentsFormatted, this, storyID)
     }
 
     /**
@@ -213,7 +214,8 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
      * @property fragment Context that will show this adapter
      */
     class CommentsAdapter(var comments: MutableList<CommentsModel.CommentFormatted>,
-                          private val fragment: Fragment) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+                          private val fragment: Fragment,
+                          val storyIDin: String?) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 CommentsFragment.CommentsAdapter.ViewHolder {
@@ -238,7 +240,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 builder.setCancelable(true)
                 builder.setMessage(message)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
-                    val request = CommentsModel.ComplaintRequest.Request(position)
+                    val request = CommentsModel.ComplaintRequest.Request(position, storyIDin)
                     (fragment as CommentsFragment).interactor?.sendComplaint(request)
                     dialogInterface.dismiss()
                 })
@@ -254,7 +256,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 builder.setCancelable(true)
                 builder.setMessage(messageDel)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
-                    val request = CommentsModel.DeleteCommentRequest.Request(position)
+                    val request = CommentsModel.DeleteCommentRequest.Request(position, storyIDin)
                     (fragment as CommentsFragment).interactor?.deleteComment(request)
                     dialogInterface.dismiss()
                 })
@@ -275,15 +277,18 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         /**
          * Adds item on List and notify RecycleView that have a new item.
          */
-
         fun addItem(comment: CommentsModel.CommentFormatted) {
             comments.add(comment)
             this.notifyItemInserted(comments.size -1)
         }
 
+        /**
+         * Notify the recycler view that the specified item was removed
+         */
         fun deleteComment(delComments: MutableList<CommentsModel.CommentFormatted>) {
             this.comments = delComments
             this.notifyDataSetChanged()
+            Log.e("deveria ter dado update", delComments.toString())
         }
 
         /**

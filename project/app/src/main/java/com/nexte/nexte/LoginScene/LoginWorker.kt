@@ -92,7 +92,7 @@ class LoginWorker {
 
         val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
-                                    "Accept-Version" to "1.0.0")
+                "Accept-Version" to "1.0.0")
         val json = JSONObject()
         json.put("username",  request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
@@ -137,5 +137,3 @@ class LoginWorker {
         return json.toString()
     }
 }
-
-

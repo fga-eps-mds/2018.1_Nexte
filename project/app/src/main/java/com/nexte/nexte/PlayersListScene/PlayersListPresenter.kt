@@ -1,7 +1,5 @@
 package com.nexte.nexte.PlayersListScene
 
-import android.graphics.Color
-import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.RankingScene.RankingPresenter
 import java.util.*

@@ -38,6 +38,7 @@ object CommentMocker{
     var userAdapter: UserAdapter? = null
     var commentAdapter: CommentAdapter? = null
     var allComments = mutableListOf<Comment>()
+    var newCommentsId = mutableListOf<String>()
 
     /**
      * Function to generate random numbers

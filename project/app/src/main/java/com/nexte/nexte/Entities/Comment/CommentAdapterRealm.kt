@@ -42,10 +42,11 @@ class CommentAdapterRealm : CommentAdapter {
     override fun getCommentsFromStory(commentsIds: List<String>): List<Comment>? {
         var commentsMutable = mutableListOf<Comment>()
         for (commentId in commentsIds) {
-            val commentRealm = realm.where<CommentRealm>().equalTo("id", commentId)
-                    .findFirst()
-            val comment = convertCommentRealmToComment(commentRealm!!)
-            commentsMutable.add(comment)
+            val commentRealm = realm.where<CommentRealm>().equalTo("id", commentId).findFirst()
+            if(commentRealm != null){
+                val comment = convertCommentRealmToComment(commentRealm!!)
+                commentsMutable.add(comment)
+            }
         }
         return commentsMutable.toList()!!
     }
