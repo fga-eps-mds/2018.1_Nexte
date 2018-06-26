@@ -38,6 +38,7 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
 import android.widget.Toast
+import com.nexte.nexte.UserType
 import com.squareup.picasso.Picasso
 
 
@@ -398,10 +399,14 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         RankingID?.text = viewModel.playerInfo.rank
 
         imageView?.let {
-            val url = getResources().getString(R.string.image_server_URL) +
-                    UserSingleton.loggedUser.id +
-                    ".png"
-            Picasso.get().load(url).into(imageView)
+            if(UserSingleton.userType == UserType.REAL) {
+                val url = getResources().getString(R.string.image_server_URL) +
+                        UserSingleton.loggedUser.id +
+                        ".png"
+                Picasso.get().load(url).into(imageView)
+            } else {
+                imageView?.setImageResource(viewModel.playerInfo.profileImage!!)
+            }
         }
 
         showProfileRecyclerView?.adapter = ShowProfileAdapter(viewModel.formattedChallenges,this)
