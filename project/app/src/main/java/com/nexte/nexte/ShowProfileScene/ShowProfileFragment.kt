@@ -514,9 +514,8 @@ class ContactDialogFragment: DialogFragment() {
                             emailDialog()
                         }
                         3 -> {
-                                whatsAppDialog()
-                            }
-
+                            whatsAppDialog()
+                        }
                         4 -> {
                             telegramDialog()
                         }

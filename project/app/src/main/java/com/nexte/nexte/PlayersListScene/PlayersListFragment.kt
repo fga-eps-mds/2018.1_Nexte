@@ -23,8 +23,6 @@ import com.nexte.nexte.MainActivity
 import com.nexte.nexte.RankingScene.RankingFragment
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
-import kotlinx.android.synthetic.main.row_likes.view.*
-import kotlinx.android.synthetic.main.row_match_info.view.*
 
 
 /**
