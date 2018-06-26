@@ -223,7 +223,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
      * @param imageView imageView that will display the player result
      * @param lastGame data that will indicate the player game status
      */
-    fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
+     fun setUserGameCircle(imageView: ImageView?, lastGame: Int) {
         val circleResource = if (lastGame == Color.GREEN) {
             R.drawable.circle_victory_ranking
         } else if (lastGame == Color.GRAY) {

@@ -33,17 +33,17 @@ class EditProfileModelTest: HelpForRealm() {
     @Test
     fun testRequests(){
         //prepare
-        val username = "gabrielalbino"
+        val id = "gabrielalbino123456"
         val tokenID = "123cc123s"
         val user = UserSingleton.loggedUser
         val password = "senha"
 
         //call
-        val firstRequest = EditProfileModel.RecoverUserRequest.Request(username, tokenID)
+        val firstRequest = EditProfileModel.RecoverUserRequest.Request(id, tokenID)
         val secondRequest = EditProfileModel.EditProfileRequest.Request(user, password)
 
         //assert
-        assertEquals(username, firstRequest.username)
+        assertEquals(id, firstRequest.id)
         assertEquals(tokenID, firstRequest.tokenID)
         assertEquals(user, secondRequest.user)
         assertEquals(password, secondRequest.password)
@@ -52,7 +52,7 @@ class EditProfileModelTest: HelpForRealm() {
     @Test
     fun testRequestSetter(){
         //prepare
-        val newUsername = "gabriel"
+        val newId = "gabriel"
         val newTokenID = "123cc123s"
         val newUser = UserSingleton.loggedUser
         val newPassword = "senha"
@@ -60,12 +60,12 @@ class EditProfileModelTest: HelpForRealm() {
         val secondRequest = EditProfileModel.EditProfileRequest.Request(newUser, newPassword)
         //call
         firstRequest.tokenID = newTokenID
-        firstRequest.username  = newUsername
+        firstRequest.id  = newId
         secondRequest.user = newUser
         secondRequest.password = newPassword
 
         //assert
-        assertEquals(newUsername, firstRequest.username)
+        assertEquals(newId, firstRequest.id)
         assertEquals(newTokenID, firstRequest.tokenID)
         assertEquals(newUser, secondRequest.user)
         assertEquals(newPassword, secondRequest.password)
@@ -117,21 +117,27 @@ class EditProfileModelTest: HelpForRealm() {
         val ranking = "#1"
         val club = "Ttt"
         val email = "g@g.g"
+        val phone = "130"
+        val picture = 1
 
         //call
         val formattedPlayer = EditProfileModel.RecoverUserRequest.FormattedPlayer(
-                username, ranking, club, email)
+                username, ranking, club, email, phone, picture)
 
         formattedPlayer.club = club
         formattedPlayer.email = email
         formattedPlayer.ranking = ranking
         formattedPlayer.username = username
+        formattedPlayer.phone = phone
+        formattedPlayer.picture = picture
 
         //assert
         assertEquals(formattedPlayer.club, club)
         assertEquals(formattedPlayer.email, email)
         assertEquals(formattedPlayer.ranking, ranking)
         assertEquals(formattedPlayer.username, username)
+        assertEquals(formattedPlayer.phone, phone)
+        assertEquals(formattedPlayer.picture, picture)
     }
 
     @Test
@@ -141,20 +147,26 @@ class EditProfileModelTest: HelpForRealm() {
         val ranking = "#1"
         val club = "Ttt"
         val email = "g@g.g"
+        val phone = "130"
+        val picture = 1
         val formattedPlayer = EditProfileModel.RecoverUserRequest.FormattedPlayer(
-                "", "", "", "")
+                "", "", "", "", "", 0)
 
         //call
         formattedPlayer.username = username
         formattedPlayer.ranking = ranking
         formattedPlayer.email = email
         formattedPlayer.club = club
+        formattedPlayer.phone = phone
+        formattedPlayer.picture = picture
 
         //assert
         assertEquals(formattedPlayer.club, club)
         assertEquals(formattedPlayer.email, email)
         assertEquals(formattedPlayer.ranking, ranking)
         assertEquals(formattedPlayer.username, username)
+        assertEquals(formattedPlayer.phone, phone)
+        assertEquals(formattedPlayer.picture, picture)
     }
 
     @Test
@@ -163,8 +175,10 @@ class EditProfileModelTest: HelpForRealm() {
         val ranking = "#1"
         val club = "Ttt"
         val email = "g@g.g"
+        val phone = "130"
+        val picture = 1
         val formattedPlayer = EditProfileModel.RecoverUserRequest.FormattedPlayer(
-                username, ranking, club, email)
+                username, ranking, club, email, phone, picture)
         val message = "message"
 
         //call
@@ -184,12 +198,14 @@ class EditProfileModelTest: HelpForRealm() {
         val ranking = "#1"
         val club = "Ttt"
         val email = "g@g.g"
+        val phone = "130"
+        val picture = 1
         val formattedPlayer = EditProfileModel.RecoverUserRequest.FormattedPlayer(
-                username, ranking, club, email)
+                username, ranking, club, email, phone, picture)
         val message = "message"
         val firstViewModel = EditProfileModel.RecoverUserRequest.ViewModel(
                 EditProfileModel.RecoverUserRequest.FormattedPlayer(
-                        "", "", "", "")
+                        "", "", "", "", "", -1)
         )
         val secondViewModel = EditProfileModel.EditProfileRequest.ViewModel("teste")
 

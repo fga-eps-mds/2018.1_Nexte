@@ -451,7 +451,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      */
     override fun displayMatch(viewModel: MatchModel.InitScene.ViewModel) {
 
-        matchViewAdapter?.updateMatchInfo(viewModel.)
+        matchViewAdapter?.updateMatchInfo(viewModel.matchFormatted)
     }
 
     /**

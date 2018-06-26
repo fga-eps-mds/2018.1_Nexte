@@ -70,38 +70,66 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
      *
      * @param toFormat Data at unformatted stage that needs to be formatted
      */
-    private fun formatMatch(user: User) : List<MatchModel.FormattedMatchData> {
+
+//    private fun formatMatch(user: User) : List<MatchModel.FormattedMatchData> {
+//
+//        var challengesSent = challengeManager?.getSentChallengeFromRealm(user.id)
+//        val challengeModelChallengesMutable = mutableListOf<MatchModel.FormattedMatchData>()
+//
+//        if (challengesSent == null) {
+//            challengesSent = listOf()
+//        } else {
+//            challengesSent
+//        }
+//
+//        for (challenge in challengesSent) {
+//            val userId = user.id
+//            val userName = user.name
+//            val userPhoto = user.profilePicture
+//            val challengeSent = user.challengeSended
+//            val challengeReceived = user.challengeReceived
+//
+////            val challengerId = challenge.challengerId
+////            val challengedId = challenge.challengedId
+////            val challengeDate = challenge.challengeDate
+////            val challengeStatus = challenge.status
+//
+//
+//            val matchFormatted = MatchModel.FormattedMatchData(userName,
+//                    userPhoto.toInt()
+//                                                               )
+//
+//            challengeModelChallengesMutable.add(matchFormatted)
+//        }
+//        return challengeModelChallengesMutable.toList()
+//
+    private fun formatMatch(toFormat: MatchModel.MatchData, user: User): List<MatchModel.FormattedMatchData> {
 
         var challengesSent = challengeManager?.getSentChallengeFromRealm(user.id)
         val challengeModelChallengesMutable = mutableListOf<MatchModel.FormattedMatchData>()
 
-        if (challengesSent == null) {
-            challengesSent = listOf()
-        } else {
-            challengesSent
-        }
-
-        for (challenge in challengesSent) {
-            val userId = user.id
-            val userName = user.name
-            val userPhoto = user.profilePicture
-            val challengeSent = user.challengeSended
-            val challengeReceived = user.challengeReceived
-
-//            val challengerId = challenge.challengerId
-//            val challengedId = challenge.challengedId
-//            val challengeDate = challenge.challengeDate
-//            val challengeStatus = challenge.status
+        for (challenge in challengeModelChallengesMutable){
+            if (challengesSent == null) {
+                challengesSent = listOf()
+            }
+            else {
+                // Do Nothing
+            }
+        val challengedName = toFormat.challenged.name
+        val challengedPhoto = toFormat.challenged.photo
+        val challengerName = toFormat.challenger.name
+        val challengerPhoto = toFormat.challenger.photo
 
 
-            val matchFormatted = MatchModel.FormattedMatchData(userName,
-                    userPhoto.toInt()
-                                                               )
+        val matchFormatted = MatchModel.FormattedMatchData(challengedName,
+                challengedPhoto,
+                challengerName,
+                challengerPhoto)
 
-            challengeModelChallengesMutable.add(matchFormatted)
-        }
-        return challengeModelChallengesMutable.toList()
     }
+        challengeModelChallengesMutable.add()
+        return challengeModelChallengesMutable.toList()
+}
 
     override fun presentSuccessMessageForMatchResult(response: MatchModel.SendMatchResult.Response) {
         val message = "Resultado do desafio enviado com sucesso!"

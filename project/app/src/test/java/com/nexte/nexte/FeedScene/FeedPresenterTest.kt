@@ -137,12 +137,12 @@ class FeedPresenterTest: HelpForRealm() {
     }
 
     @Test
-
     fun getUserManager() {
         //prepare and call
         val userManagerTest = this.presenter?.userManager
         //assert
         assertNotNull(userManagerTest)
+
 
         @Test
         fun validateUserImageOnFailure() {
@@ -159,7 +159,6 @@ class FeedPresenterTest: HelpForRealm() {
             this.mock = null
             this.presenter = null
         }
-
 
     }
 
@@ -197,3 +196,4 @@ class FeedPresenterTest: HelpForRealm() {
         this.presenter = null
     }
 }
+

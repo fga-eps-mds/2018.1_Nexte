@@ -61,11 +61,17 @@ Essa quantidade de dívidas técnicas não tinha ocorrido até o momento, e o mo
 
 
 ### 1.2.2. Commits por dia
+
+* Sprint 13
 ![Commits por dia](https://i.imgur.com/PnSGjqL.png)
 
 Pode-se observar que a equipe trabalhou com mais firmeza na parte inicial da semana e diminuiu a produtividade a zero de quinta a sábado. Isso deve-se ao fato da dificuldade em avançar na cobertura de testes.
 
 Vale ressaltar que essa sprint teve como foco aumentar a cobertura de testes do projeto, gerando assim uma alta quantidade de pontos com objetivos parecidos, gerando assim a grande quantidade de não entregas.
+
+* Sprint 14
+![](https://i.imgur.com/vGpjtgD.png)
+A equipe manteve ritmo de trabalho contínuo, como pode-se ver o gráfico de commits após as histórias de dívidas técnicas serem finalizadas na sprint seguinte.
 
 ### **1.3. Produtividade**
 

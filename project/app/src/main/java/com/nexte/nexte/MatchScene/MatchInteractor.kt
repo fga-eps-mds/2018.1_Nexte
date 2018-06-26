@@ -6,13 +6,7 @@ package com.nexte.nexte.MatchScene
  */
 interface MatchBusinessLogic {
 
-    /**
-     * Method that defines profile information that will be responsible to
-     * pass the request to Worker and send the response to Presenter
-     *
-     * @param request Request model of feed that contains data to pass for Worker
-     */
-    fun getInfoMatches(request: MatchModel.InitScene.Request)
+
 
     /**
      * Method that pass the request data about the match result to the worker
@@ -23,7 +17,7 @@ interface MatchBusinessLogic {
 
     fun declineMatchResult(request: MatchModel.DeclineChallengeRequest.Request)
 
-    fun getSentChallenge(request: MatchModel.SentChallenge.Request)
+    fun getSentChallenge(request: MatchModel.InitScene.Request)
 
 }
 
@@ -43,11 +37,8 @@ class MatchInteractor(var presenter : MatchPresentationLogic? = null) :
 
     var worker = MatchWorker()
 
-    override fun getInfoMatches(request: MatchModel.InitScene.Request) {
-
-        worker.fetchMatchData(request) { response ->
-            this.presenter?.presentMatch(response)
-        }
+    override fun getSentChallenge(request: MatchModel.InitScene.Request) {
+        worker.getUserChallenges(request)
     }
 
     override fun getMatchResult(request: MatchModel.SendMatchResult.Request) {
@@ -70,13 +61,8 @@ class MatchInteractor(var presenter : MatchPresentationLogic? = null) :
         this.presenter?.presentDeclineMatch(response)
     }
 
-    override fun getSentChallenge(request: MatchModel.SentChallenge.Request) {
-        this.worker?.getUserChallenges(request)
+    override fun updateSentChallenge(response: MatchModel.InitScene.Response) {
+        presenter?.presentMatch(response)
     }
-
-    override fun updateSentChallenge(response: MatchModel.SentChallenge.Response) {
-        this.presenter
-    }
-
 
 }

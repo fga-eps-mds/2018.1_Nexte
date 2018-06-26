@@ -23,21 +23,21 @@ class MatchModel {
        *
        * @param match match that will be displayed
        */
-      class Request(var match: MatchData?)
+      class Request(val matchId: String)
 
       /**
        * Class responsible to pass the unformatted elements from worker to presenter
        *
        * @param match informations about the match as they should be altered on program
        */
-      class Response(var match: MatchData)
+      class Response(var match: MutableList<Challenge>)
 
       /**
        * Class responsible to store the formatted data and use it to display on view
        *
        * @param matchFormatted data ready to be displayed on screen
        */
-      class ViewModel(var matchFormatted: List<FormattedMatchData>)
+      class ViewModel(var matchFormatted: MutableList<FormattedMatchData>)
 
   }
     // --------- Aux classes ---------
@@ -65,8 +65,7 @@ class MatchModel {
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
-                              var challengerPhoto: Int,
-                              var challengesSent: Challenge)
+                              var challengerPhoto: Int)
 
     /**
      * Class that defines the types of sets to be used on definition by user on view
@@ -144,26 +143,5 @@ class MatchModel {
         enum class Status {
             SUCCESS, ERROR
         }
-    }
-
-    /**
-     *  Class responsible to manage the challenge sent
-     */
-    class SentChallenge {
-
-        /**
-        *  class that is responsible of making a request
-        */
-        class Request (val challengeId: String)
-
-        /**
-         *  class that is responsible of making a response
-         */
-        class Response (val challenge: Array<Challenge>?)
-
-        /**
-         * class that is responsible for formatting the viewModel
-         */
-        class ViewModel (val formattedMatch: List<FormattedMatchData>)
     }
 }

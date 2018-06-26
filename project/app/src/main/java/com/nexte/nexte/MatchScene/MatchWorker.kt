@@ -5,6 +5,7 @@ import com.github.kittinunf.fuel.httpGet
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.R
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
@@ -24,7 +25,8 @@ interface MatchUpdateWorkerLogic {
 
     fun declineMatchResultResponse(response: MatchModel.DeclineChallengeRequest.Response)
 
-    fun updateSentChallenge(response: MatchModel.SentChallenge.Response)
+    fun updateSentChallenge(response: MatchModel.InitScene.Response)
+
 }
 
 /**
@@ -35,35 +37,30 @@ class MatchWorker {
 
     var updateLogic: MatchUpdateWorkerLogic? = null
     var challengeManager: ChallengeManager? = null
+    var userManager: UserManager? = null
 
-    /**
-     * Function to get Match Data from server
-     *
-     * @param request String to identify the challenge to be passed
-     * @param completion Challenge passed as a Response of the MatchData type
-     */
-    fun fetchMatchData (request: MatchModel.InitScene.Request, completion: (MatchModel.InitScene.Response) -> Unit) {
 
-        val response = if(request.match == null) {
-            MatchModel.InitScene.Response (this.generateMatchData())
-        }
-        else{
-            MatchModel.InitScene.Response(request.match!!)
-        }
-        completion(response)
+    fun sortListByChallenges(list: List<Challenge>?): List<Challenge>? {
+        return list?.sortedBy { it.id }
     }
 
-    /**
-     * Function that generates the Data to be added to Response, in order to simulate the action of
-     * the server to get actual players. The function returns the format expected on response
-     */
-     fun generateMatchData() : MatchModel.MatchData{
 
-        val challenger = MatchModel.MatchPlayer("Letícia",  R.mipmap.ic_launcher )
+    fun getUserChallenges(request: MatchModel.InitScene.Request) {
 
-        val challenged = MatchModel.MatchPlayer("Alexandre Miguel", R.mipmap.ic_launcher )
+        var sentChallenges = challengeManager?.getAll()
+        sentChallenges = sortListByChallenges(sentChallenges)
 
-        return MatchModel.MatchData(challenger, challenged)
+        val response: MatchModel.InitScene.Response = MatchModel.InitScene.Response(sentChallenges!!.toMutableList())
+
+        updateLogic?.updateSentChallenge(response)
+
+//        (?)
+        if (UserSingleton.userType != UserType.MOCKED) {
+            val url = "http://10.0.2.2:3000/users"
+            url.httpGet().responseJson()
+        } else {
+            //Do nothing
+        }
     }
 
     /**
@@ -83,39 +80,19 @@ class MatchWorker {
      *
      *  @param request the request of a challenge
      */
-    fun declineMatch(request: MatchModel.DeclineChallengeRequest.Request){
+    fun declineMatch(request: MatchModel.DeclineChallengeRequest.Request) {
         val deletedChallenge = challengeManager?.delete(request.challengeId)
         var response: MatchModel.DeclineChallengeRequest.Response? = null
 
-        if (deletedChallenge != null){
+        if (deletedChallenge != null) {
             response = MatchModel.DeclineChallengeRequest.Response(MatchModel.DeclineChallengeRequest
                     .Status.SUCCESS)
-        }else{
+        } else {
             response = MatchModel.DeclineChallengeRequest.Response(MatchModel.DeclineChallengeRequest
                     .Status.ERROR)
         }
         updateLogic?.declineMatchResultResponse(response)
     }
 
-    fun sortListByChallenges(list: List<Challenge>?): List<Challenge>?{
-        return list?.sortedBy { it.id }
-    }
-
-    fun getUserChallenges(request: MatchModel.SentChallenge.Request) {
-
-        var sentChallenges = challengeManager?.getAll()
-        sentChallenges = sortListByChallenges(sentChallenges)
-
-        val response = MatchModel.SentChallenge.Response(sentChallenges!!.toTypedArray())
-
-        updateLogic?.updateSentChallenge(response)
-
-//        (?)
-        if (UserSingleton.userType != UserType.MOCKED) {
-            val url = "http://10.0.2.2:3000/users"
-            url.httpGet().responseJson()
-        } else {
-            //Do nothing
-        }
-    }
 }
+
