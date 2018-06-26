@@ -17,6 +17,7 @@
             Telegram
         </item>
     </string-array>
+
     <string-array name="departArray">
         <item>
             Disponível
@@ -27,5 +28,14 @@
         <item>
             Machucado
         </item>
+    </string-array>
+
+    <string-array name="authenticationArray">
+    <item>
+        Entrar com email
+    </item>
+    <item>
+        Entrar com telefone
+    </item>
     </string-array>
 </resources>

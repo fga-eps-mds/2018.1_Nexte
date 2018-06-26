@@ -17,10 +17,10 @@ class EditProfileModel {
          * Class responsible to holds the information that will be passed
          * from [ViewModel] to [EditProfileInteractor]
          *
-         * @property username
-         * @property tokenID
+         * @property id Id of the logged User
+         * @property tokenID contains the token id
          */
-        class Request(var username: String, var tokenID: String)
+        class Request(var id: String, var tokenID: String)
 
         /**
          * Class responsible to holds the information that will be passed
@@ -46,11 +46,15 @@ class EditProfileModel {
          * @property ranking Ranking of the logged user
          * @property club Club of the logged user
          * @property email Email of the logged user
+         * @property phone Phone of the user
+         * @property picture Picture of user
          */
         class FormattedPlayer(var username: String,
                               var ranking: String,
                               var club: String,
-                              var email: String)
+                              var email: String,
+                              var phone: String,
+                              var picture: Int)
     }
 
     /**

@@ -3,6 +3,10 @@ site_description: 'Aplicativo que integra tenistas dentro de clubes, por meio de
 repo_url: https://github.com/fga-gpp-mds/2018.1_Nexte
 theme: readthedocs
 
+extra_css:
+  - docs/css/landing-page.min.css
+  - docs/css/landing-page.css
+  
 pages:
   - Home: index.md
   - Estudos: 
@@ -19,6 +23,7 @@ pages:
     - Gestão de Risco: EPS/GestaoDeRisco.md
     - Definição de Produtividade: EPS/DefinicaoDeProdutividade.md
     - Canvas: EPS/Canvas.md
+    - EVM vs Burndown: EPS/EVM_vs_Burndown.md
     - Plano de Qualidade:
       - Abtraction Sheet: EPS/PlanoDeQualidade/AbstractionSheet.md
       - GQM: EPS/PlanoDeQualidade/GQM.md
@@ -76,5 +81,10 @@ pages:
     - Resultados: Sprints/Sprint13/Sprint13-Resultados.md
   - Sprint14:
     - Planejamento: Sprints/Sprint14/Sprint14-Planejamento.md 
+    - Resultados: Sprints/Sprint14/Sprint14-Resultados.md 
+  - Sprint15:
+    - Planejamento: Sprints/Sprint15/Sprint15-Planejamento.md
+  - Testes:
+    - Testes de Usabilidade: Testes/TestesUsabilidade.md
   - Post Mortem:
     - Post Mortem - Release 1: PostMortem/PostMortemRelease1.md

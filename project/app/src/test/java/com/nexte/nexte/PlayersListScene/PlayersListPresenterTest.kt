@@ -1,6 +1,8 @@
 package com.nexte.nexte.PlayersListScene
 
 import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserCategory.UserCategory
+import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.MatchScene.MatchModel
 import org.junit.After
 import org.junit.Assert.*
@@ -20,6 +22,7 @@ class PlayersListPresenterTest{
         this.presenter = PlayersListPresenter()
         this.presenter?.viewChallenge = mock
 
+
     }
 
     @Test
@@ -27,7 +30,7 @@ class PlayersListPresenterTest{
         //prepare
         val testUser = User("1",
                 "André Rede",
-                null,
+                "123321",
                 "André",
                 Date(1987, 5, 15),
                 3,
@@ -36,7 +39,7 @@ class PlayersListPresenterTest{
                 162,
                 69,
                 User.Gender.MALE,
-                null,
+                UserCategory("10","Topzeira"),
                 User.Status.AVAILABLE,
                 null,
                 null,

@@ -1,6 +1,11 @@
 package com.nexte.nexte
 
 import android.content.Context
+import com.nexte.nexte.Entities.Challenge.Challenge
+import com.nexte.nexte.Entities.Challenge.ChallengeRealm
+import com.nexte.nexte.Entities.Comment.CommentRealm
+import com.nexte.nexte.Entities.Like.LikeRealm
+import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryRealm
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryRealm
@@ -31,7 +36,7 @@ import java.util.*
 @Config(constants = io.realm.BuildConfig::class, sdk = [22])
 @PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*")
 @SuppressStaticInitializationFor("io.realm.internal.Util")
-@PrepareForTest(UserRealm::class, Realm::class, RealmQuery::class, RealmResults::class, RealmCore::class)
+@PrepareForTest(UserRealm::class, Realm::class, RealmQuery::class, RealmResults::class, RealmCore::class, StoryRealm::class, ChallengeRealm::class, LikeRealm::class, CommentRealm::class)
 
 open class HelpForRealm {
 
@@ -87,6 +92,96 @@ open class HelpForRealm {
         PowerMockito.`when`(userQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(userQuery)
         PowerMockito.`when`(userQuery.findFirst()).thenReturn(userList[0])
         PowerMockito.`when`(userQuery.findAll()).thenReturn(userResults)
+    }
+
+    fun setUpWithStory() {
+        // Set up some naive stubs
+        val id = "9"
+        val winnerId = "1"
+        val winnerSetResult = 3
+        val loserId = "1"
+        val loserSetResult = 1
+        val date = Date()
+
+        val u1 = StoryRealm(id, winnerId, winnerSetResult, loserId, loserSetResult, date)
+
+        val storyList = Arrays.asList(u1)
+        val storyResults: RealmResults<StoryRealm> = mock()
+
+        this.setUpRealm()
+
+        val storyQuery: RealmQuery<StoryRealm> = mock()
+
+        PowerMockito.`when`(mockRealm!!.where(StoryRealm::class.java)).thenReturn(storyQuery)
+        PowerMockito.`when`(storyQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(storyQuery)
+        PowerMockito.`when`(storyQuery.findFirst()).thenReturn(storyList[0])
+        PowerMockito.`when`(storyQuery.findAll()).thenReturn(storyResults)
+    }
+
+    fun setUpWithChallenge() {
+        // Set up some naive stubs
+        val id = "9"
+        val challengerId = "1"
+        val challengedId = "1"
+        val date = Date()
+        val status = "WAITING"
+
+        val u1 = ChallengeRealm(id, challengerId, challengedId, date, status)
+
+        val challengeList = Arrays.asList(u1)
+        val challengeResults: RealmResults<ChallengeRealm> = mock()
+
+        this.setUpRealm()
+
+        val challengeQuery: RealmQuery<ChallengeRealm> = mock()
+
+        PowerMockito.`when`(mockRealm!!.where(ChallengeRealm::class.java)).thenReturn(challengeQuery)
+        PowerMockito.`when`(challengeQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(challengeQuery)
+        PowerMockito.`when`(challengeQuery.findFirst()).thenReturn(challengeList[0])
+        PowerMockito.`when`(challengeQuery.findAll()).thenReturn(challengeResults)
+    }
+
+    fun setUpWithLike() {
+        // Set up some naive stubs
+        val id = "9"
+        val userId = "1"
+        val date = Date()
+
+        val u1 = LikeRealm(id, userId, date)
+
+        val likeList = Arrays.asList(u1)
+        val likeResults: RealmResults<LikeRealm> = mock()
+
+        this.setUpRealm()
+
+        val likeQuery: RealmQuery<LikeRealm> = mock()
+
+        PowerMockito.`when`(mockRealm!!.where(LikeRealm::class.java)).thenReturn(likeQuery)
+        PowerMockito.`when`(likeQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(likeQuery)
+        PowerMockito.`when`(likeQuery.findFirst()).thenReturn(likeList[0])
+        PowerMockito.`when`(likeQuery.findAll()).thenReturn(likeResults)
+    }
+
+    fun setUpWithComment() {
+        // Set up some naive stubs
+        val id = "9"
+        val userId = "1"
+        val comment = "Jogo top demais"
+        val date = Date()
+
+        val u1 = CommentRealm(id, userId, comment, date)
+
+        val commentList = Arrays.asList(u1)
+        val commentResults: RealmResults<CommentRealm> = mock()
+
+        this.setUpRealm()
+
+        val commentQuery: RealmQuery<CommentRealm> = mock()
+
+        PowerMockito.`when`(mockRealm!!.where(CommentRealm::class.java)).thenReturn(commentQuery)
+        PowerMockito.`when`(commentQuery.equalTo(Matchers.anyString(), Matchers.anyString())).thenReturn(commentQuery)
+        PowerMockito.`when`(commentQuery.findFirst()).thenReturn(commentList[0])
+        PowerMockito.`when`(commentQuery.findAll()).thenReturn(commentResults)
     }
 
     fun setUpWithUserCategory() {

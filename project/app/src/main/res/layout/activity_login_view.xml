@@ -39,8 +39,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/or"
+    <Button
+        android:id="@+id/accountKitLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
@@ -48,27 +48,29 @@
         android:textColor="@color/text_focus_regular"
         android:textSize="12sp"
         android:fontFamily="@font/roboto_regular"
+        android:background="@android:color/transparent"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/navigationLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <View
-        android:id="@+id/loginline_or_left"
-        android:layout_width="126dp"
-        android:layout_height="1dp"
-        android:background="#ffff"
-        app:layout_constraintStart_toStartOf="@id/login"
-        app:layout_constraintBottom_toBottomOf="@id/or"
-        app:layout_constraintTop_toTopOf="@id/or" />
+    <!--<View-->
+        <!--android:id="@+id/loginline_or_left"-->
+        <!--android:layout_width="126dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#ffff"-->
+        <!--app:layout_constraintStart_toStartOf="@id/login"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/or"-->
+        <!--app:layout_constraintTop_toTopOf="@id/or" />-->
 
-    <View
-        android:id="@+id/loginline_or_right"
-        android:layout_width="126dp"
-        android:layout_height="1dp"
-        android:background="#ffff"
-        app:layout_constraintEnd_toEndOf="@id/login"
-        app:layout_constraintBottom_toBottomOf="@id/or"
-        app:layout_constraintTop_toTopOf="@id/or" />
+    <!--<View-->
+        <!--android:id="@+id/loginline_or_right"-->
+        <!--android:layout_width="126dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#ffff"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/login"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/or"-->
+        <!--app:layout_constraintTop_toTopOf="@id/or" />-->
 
     <Button
         android:id="@+id/login"
@@ -84,7 +86,7 @@
         android:background="@drawable/edge_onboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/or"/>
+        app:layout_constraintBottom_toTopOf="@id/accountKitLogin"/>
 
     <EditText
         android:id="@+id/passwordField"

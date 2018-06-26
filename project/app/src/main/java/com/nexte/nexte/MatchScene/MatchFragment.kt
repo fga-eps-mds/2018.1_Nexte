@@ -248,6 +248,27 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         sendButton?.isEnabled = validateSetResults()
     }
 
+    private fun checkIfSetResultIsValid(i: Int,
+                                        numberOfSets: MatchModel.SetsNumber,
+                                        iChallengerResult: Int,
+                                        iChallengedResult: Int,
+                                        isLocalResultsValid:Boolean): Boolean{
+        return when (numberOfSets) {
+            MatchModel.SetsNumber.One -> {
+                ValidateSets().validateProfessionalSet(iChallengerResult, iChallengedResult, isLocalResultsValid)
+            }
+            MatchModel.SetsNumber.Three -> {
+                ValidateSets().checkThreeSetsValid(i, iChallengerResult, iChallengedResult, isLocalResultsValid)
+            }
+            MatchModel.SetsNumber.Five -> {
+                ValidateSets().checkFiveSetsValid(i, iChallengerResult, iChallengedResult, isLocalResultsValid)
+            }
+            else -> {
+                false
+            }
+        }
+    }
+
     /**
      * This method iterates within all rows of an recycler view, grabbing the result and validating it
      *
@@ -272,20 +293,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 iChallengedResult = Integer.parseInt(challengedResult.text.toString())
                 iChallengerResult = Integer.parseInt(challengerResult.text.toString())
 
-                isLocalResultsValid = when (numberOfSets) {
-                    MatchModel.SetsNumber.One -> {
-                        ValidateSets().validateProfessionalSet(iChallengerResult, iChallengedResult, isLocalResultsValid)
-                    }
-                    MatchModel.SetsNumber.Three -> {
-                        ValidateSets().checkThreeSetsValid(i, iChallengerResult, iChallengedResult, isLocalResultsValid)
-                    }
-                    MatchModel.SetsNumber.Five -> {
-                        ValidateSets().checkFiveSetsValid(i, iChallengerResult, iChallengedResult, isLocalResultsValid)
-                    }
-                    else -> {
-                        isSetResultsValid
-                    }
-                }
+                isLocalResultsValid =
+                        checkIfSetResultIsValid(i, numberOfSets, iChallengerResult, iChallengedResult, isLocalResultsValid)
                 if(!isLocalResultsValid) {
                     isSetResultsValid = false
                 }

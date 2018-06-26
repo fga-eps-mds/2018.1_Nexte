@@ -1,5 +1,7 @@
 package com.nexte.nexte.EditProfileScene
 
+import com.nexte.nexte.R
+
 
 /**
  * Interface responsible to interpret received user information and send it to [EditProfileFragment]
@@ -48,16 +50,25 @@ class EditProfilePresenter: ShowProfileToEditPresentationLogic, SendEditedProfil
      */
     override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
 
-        val username: String = response.user.name
-        val ranking: String = String.format("#%d", response.user.rankingPosition)
-        val club: String = "UnB"
-        val email: String =  response.user.email
+        val user = response.user
+
+        val username: String = user.name
+        val ranking: String = String.format("#%d", user.rankingPosition)
+        val club = "UnB"
+        val email: String =  user.email
+        val phone: String = user.phone
+        val picture: Int = if(user.profilePicture != null && user.profilePicture != ""){
+            user.profilePicture.toInt()
+        }
+        else{
+            R.mipmap.ic_launcher_round
+        }
 
         val formattedPlayer: EditProfileModel.RecoverUserRequest.FormattedPlayer =
                 EditProfileModel.RecoverUserRequest.FormattedPlayer(username,
                     ranking,
                     club,
-                    email)
+                    email, phone, picture)
 
         val viewModel: EditProfileModel.RecoverUserRequest.ViewModel =
                 EditProfileModel.RecoverUserRequest.ViewModel(formattedPlayer)

@@ -3,7 +3,6 @@ package com.nexte.nexte.Entities.Challenge
 import com.nexte.nexte.Entities.Challenge.Helper.CancelledRealm
 import com.nexte.nexte.Entities.Challenge.Helper.PlayedRealm
 import io.realm.Realm
-import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 
@@ -85,7 +84,7 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return userChallenges.toList()
     }
 
-    private fun convertChallengeToChallengeRealm(challenge: Challenge?): ChallengeRealm? {
+    fun convertChallengeToChallengeRealm(challenge: Challenge?): ChallengeRealm? {
 
         var challengeRealm: ChallengeRealm? = null
 
@@ -111,7 +110,7 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return challengeRealm
     }
 
-    private fun convertChallengeRealmToChallenge(challengeRealm: ChallengeRealm?): Challenge? {
+    fun convertChallengeRealmToChallenge(challengeRealm: ChallengeRealm?): Challenge? {
 
         var challenge: Challenge? = null
 
@@ -159,7 +158,7 @@ class ChallengeAdapterRealm: ChallengeAdapter {
         return challenge
     }
 
-    private fun convertListChallengeRealmToChallengeList(challengeRealmResults: RealmResults<ChallengeRealm>): List<Challenge> {
+    fun convertListChallengeRealmToChallengeList(challengeRealmResults: List<ChallengeRealm>): List<Challenge> {
 
         val challenges: MutableList<Challenge> = mutableListOf()
         for(challengeRealm in challengeRealmResults) {

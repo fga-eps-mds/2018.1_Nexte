@@ -98,7 +98,7 @@ class LoginInteractorTest: HelpForRealm() {
 
     @Test
     fun testAccountKitAuthentication(){
-        val request = LoginModel.AccountKit.Request("123", "123")
+        val request = LoginModel.AccountKit.Request("123", "123", "123")
 
         thread{this.interactor?.accountKitAuthentication(request)}.join()
 

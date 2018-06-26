@@ -17,6 +17,9 @@
     <string name="title_activity_show_profile">ShowProfileActivity</string>
     <string name="title_activity_feed_view">FeedView</string>
 
+    <!-- Google Cloud url -->
+    <string name="image_server_URL">https://storage.googleapis.com/nexte-profile-images/profile_image</string>
+
     <!--Account Kit-->
 
     <string name="FACEBOOK_APP_ID">165708047598044</string>
@@ -25,8 +28,8 @@
 
     <string name="user_picture">User picture</string>
     <string name="nome">nome</string>
-    <string name="_2">#2</string>
-    <string name="r">#R</string>
+    <string name="_2">2</string>
+    <string name="r">R</string>
     <string name="vitorias_x">Vitorias: X</string>
     <string name="derrotas_x">Derrotas: X</string>
     <string name="check">✓</string>
@@ -37,7 +40,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="n">#N</string>
+    <string name="n">N</string>
     <string name="userpicture">UserPicture</string>
     <string name="tenistas">Tenistas</string>
 
@@ -47,7 +50,7 @@
     <string name="editar">Editar</string>
     <string name="age">age</string>
     <string name="e_mail">E-mail:</string>
-    <string name="ranking">#Ranking</string>
+    <string name="ranking">Ranking</string>
     <string name="username">username</string>
     <string name="profile">Profile</string>
     <string name="challenge">Challenge</string>
@@ -113,7 +116,7 @@
 
     <!-- Login Scene -->
     <string name="loginButtonNavegate">Navegar pelo NEXTE!</string>
-    <string name="loginOrDescription">ou</string>
+    <string name="loginOrDescription">Entrar com e-mail ou telefone</string>
     <string name="loginButtonLogin">Entrar</string>
     <string name="loginPasswordDescription">Senha</string>
     <string name="loginEmailOrPhoneDescription">E-mail ou Telefone</string>
@@ -121,6 +124,7 @@
     <string name="loginBackgroundDescription">Background of Nexte</string>
     <string name="userOnboardingPages">Página X do UserOnboarding</string>
     <string name="userOnboardingImageOne">Primeira imagem do UserOnboarding</string>
+    <string name="meus_jogos">Meus Jogos</string>
 
 
 </resources>

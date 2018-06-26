@@ -68,7 +68,8 @@ class LoginWorkerTest: HelpForRealm() {
         //prepare
         val email = "helenaHtona@nexte.com"
         val phone = "123456"
-        val request = LoginModel.AccountKit.Request(email = email, phone = phone)
+        val token = "d453243gfecwg4"
+        val request = LoginModel.AccountKit.Request(email = email, phone = phone, token = token)
 
         //call
         thread { this.worker?.requestForAuth(request = request) }.join()
@@ -229,8 +230,9 @@ class LoginWorkerTest: HelpForRealm() {
         val json = JSONObject()
         val phone = "333"
         val email = "eai.com"
+        val token = "2e5tn4ugnreiu"
 
-        val mockRequest = LoginModel.AccountKit.Request(email, phone)
+        val mockRequest = LoginModel.AccountKit.Request(email, phone, token = token)
 
         json.put("phone", phone)
         json.put("password", "bla")
@@ -242,12 +244,13 @@ class LoginWorkerTest: HelpForRealm() {
     fun testDefineBodyForAccountKitAuthPhoneNotNull(){
         val phone = "123456789"
         val email = "email@email.com"
+        val token = "498ufj9834f"
 
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
 
         val jsonObject = JSONObject()
         jsonObject.put("phone", phone)
-        jsonObject.put("password", "test-nexte-ramires")
+        jsonObject.put("tokenAccountKit", token)
 
         assertEquals(json.toString(), jsonObject.toString())
     }
@@ -256,12 +259,13 @@ class LoginWorkerTest: HelpForRealm() {
     fun testDefineBodyForAccountKitAuthPhoneNull(){
         val phone = null
         val email = "email@email.com"
+        val token = "498ufj9834f"
 
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email)
+        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
 
         val jsonObject = JSONObject()
         jsonObject.put("email", email)
-        jsonObject.put("password", "test-nexte-ramires")
+        jsonObject.put("tokenAccountKit", token)
 
         assertEquals(json.toString(), jsonObject.toString())
     }
