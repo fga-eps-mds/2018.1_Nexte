@@ -135,9 +135,8 @@ class FeedWorkerTest: HelpForRealm() {
         val request = FeedModel.GetFeedActivities.Request()
 
         //call
-        thread {
-            worker?.fetchFeedData(request)
-        }.join()
+        thread{worker?.fetchFeedData(request)}.join()
+
         //assert
         assertFalse(worker?.senderHTTP!!)
     }

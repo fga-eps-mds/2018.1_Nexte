@@ -5,7 +5,7 @@ import java.util.*
 
 object ChallengeMocker {
 
-    fun generateChalleges(): List<Challenge> {
+    fun generateFirstSetOfChallenges(): List<Challenge> {
         val challenges: MutableList<Challenge> = mutableListOf()
 
         challenges.add(
@@ -302,6 +302,11 @@ object ChallengeMocker {
                         )
                 )
         )
+        return challenges
+    }
+
+    fun generateSecondSetOfChallenges(): List<Challenge> {
+        val challenges: MutableList<Challenge> = mutableListOf()
 
         challenges.add(
                 Challenge(
@@ -705,6 +710,21 @@ object ChallengeMocker {
         )
 
 
+        return challenges
+    }
+
+    fun generateChalleges(): List<Challenge> {
+        val challenges: MutableList<Challenge> = mutableListOf()
+
+        val firstChallenges = generateFirstSetOfChallenges()
+        val secondChallenges = generateSecondSetOfChallenges()
+
+        for(challenge in firstChallenges){
+            challenges.add(challenge)
+        }
+        for(challenge in secondChallenges){
+            challenges.add(challenge)
+        }
         return challenges
     }
 }
