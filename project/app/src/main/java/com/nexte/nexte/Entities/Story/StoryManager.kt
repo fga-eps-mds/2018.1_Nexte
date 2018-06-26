@@ -42,18 +42,6 @@ class StoryManager(val storyAdapter: StoryAdapter = StoryAdapterRealm()) {
         return newStories.toList()
     }
 
-//    fun updateLikes(stories: Story, userId: String) : String {
-//        val storyUpdates: MutableList<Story> = mutableListOf()
-//        for (likes in stories) {
-//            val updateLikes = storyAdapter.updateLikes(likes, userId)
-//            updateLikes?.let{
-//                storyUpdates.add(it)
-//            }
-//        }
-//
-//        return updateLikes(stories, userId)
-//    }
-
     fun delete(identifier: String): Story? {
         return storyAdapter.delete(identifier)
     }

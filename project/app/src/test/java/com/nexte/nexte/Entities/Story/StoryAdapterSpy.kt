@@ -32,6 +32,27 @@ abstract class StoryAdapterSpy: StoryAdapter{
         }
     }
 
+    override fun updateLikes(story: Story, userId: String): Story? {
+        val storyIndex = story.likesId.contains(userId)
+
+        if (storyIndex) {
+            return mockStory()
+        } else {
+            return null
+        }
+
+    }
+
+    override fun addComment(story: Story, commentId: String): Story? {
+        val mutableComments = story.commentsId.contains(commentId)
+
+        if (mutableComments) {
+            return mockStory()
+        } else {
+            return null
+        }
+    }
+
     private fun mockStory(): Story{
         val id: String? = "1"
         val winner: StoryPlayer? = StoryPlayer(userId = "1", setResult = 5)
