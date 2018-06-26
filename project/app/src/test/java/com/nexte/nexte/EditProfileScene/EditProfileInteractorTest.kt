@@ -92,7 +92,8 @@ class EditProfileInteractorTest: HelpForRealm() {
 
     class EditProfilePresenterMock: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic
     {
-        var  passedHere = false
+        var  passedHere = true
+
         override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
             passedHere = true
         }

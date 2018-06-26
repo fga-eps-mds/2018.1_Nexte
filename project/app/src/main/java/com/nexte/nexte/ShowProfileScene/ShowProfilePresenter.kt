@@ -92,34 +92,40 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         }
 
         for (challenge in challenges) {
-            val stage = challenge.stage as Challenge.Stage.Played
 
-            val dateToShow = SimpleDateFormat("dd/MM/yyyy")
+            when (challenge.stage) {
+                is Challenge.Stage.Played -> {
 
-            val time = dateToShow.format(stage.date)
+                    val stage = challenge.stage
 
-            val dateResults = "Desafio: " + time
-            val setResult = "SET: " + stage.setChallenger + " x " + stage.setChallenged
-            val gamesResult = "JOGOS: " + getNumberOfSets(stage.firstGame)  +
-                                          getNumberOfSets(stage.secondGame) +
-                                          getNumberOfSets(stage.thirdGame) +
-                                          getNumberOfSets(stage.fourthGame) +
-                                          getNumberOfSets(stage.fifthGame)
+                    val dateToShow = SimpleDateFormat("dd/MM/yyyy")
 
-            val opponent = getOponent(challenge, user)
-            val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
-                    user.id, opponent?.id)
-            val opponentName = opponent?.nickname
-            val opponentPictureUrl = opponent?.profilePicture
-            val opponentAddress = validateUserPhoto(opponentPictureUrl)
-            val opponentColor = Color.BLUE
-            val challengeResult = getChallengeResult(challenge, user)
+                    val time = dateToShow.format(stage.date)
 
-            val formattedChallenge = ShowProfileModel.FormattedChallenge(dateResults,
-                    setResult, gamesResult, headToHeadResult, opponentName, opponentPictureUrl,
-                    opponentAddress, opponentColor, challengeResult)
+                    val dateResults = "Desafio: " + time
+                    val setResult = "SET: " + stage.setChallenger + " x " + stage.setChallenged
+                    val gamesResult = "JOGOS: " + getNumberOfSets(stage.firstGame)  +
+                                                  getNumberOfSets(stage.secondGame) +
+                                                  getNumberOfSets(stage.thirdGame) +
+                                                  getNumberOfSets(stage.fourthGame) +
+                                                  getNumberOfSets(stage.fifthGame)
 
-            formattedChallengesMutable.add(formattedChallenge)
+                    val opponent = getOponent(challenge, user)
+                    val headToHeadResult = "Head to Head: " + calculateHeadToHead(challenges,
+                            user.id, opponent?.id)
+                    val opponentName = opponent?.nickname
+                    val opponentPictureUrl = opponent?.profilePicture
+                    val opponentAddress = validateUserPhoto(opponentPictureUrl)
+                    val opponentColor = Color.BLUE
+                    val challengeResult = getChallengeResult(challenge, user)
+
+                    val formattedChallenge = ShowProfileModel.FormattedChallenge(dateResults,
+                            setResult, gamesResult, headToHeadResult, opponentName, opponentPictureUrl,
+                            opponentAddress, opponentColor, challengeResult)
+
+                    formattedChallengesMutable.add(formattedChallenge)
+                }
+            }
 
         }
 
