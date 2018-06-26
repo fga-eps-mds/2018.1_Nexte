@@ -86,7 +86,7 @@ class CommentsPresenterTest {
     fun testDeleteComment(){
         //prepare
         val comment2 = Comment("1", "1", "", Date())
-        val commentsList = Comment(comment2.id, comment2.userId, comment2.comment, Date())
+        val commentsList = mutableListOf(Comment(comment2.id, comment2.userId, comment2.comment, Date()))
         val response = CommentsModel.DeleteCommentRequest.Response(commentsList)
 
         //call

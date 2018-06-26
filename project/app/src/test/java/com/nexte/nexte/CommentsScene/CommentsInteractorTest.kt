@@ -41,7 +41,7 @@ class CommentsInteractorTest {
     @Test
     fun successPublishNewComment() {
         //prepare
-        val request = CommentsModel.PublishCommentRequest.Request(commentToPost = "Jogo Sensacional!")
+        val request = CommentsModel.PublishCommentRequest.Request("Jogo Sensacional!", "1")
 
         //call
         this.interactor?.publishNewComment(request)
@@ -80,8 +80,10 @@ class CommentsInteractorTest {
         //prepare
         val backup = interactor?.presenter
         interactor?.presenter = null
+        val mockComment = Comment("1", "1", "", Date())
+        val mutList = mutableListOf(mockComment)
         //call
-        interactor?.updateDeleteComment(CommentsModel.DeleteCommentRequest.Response(Comment("", "", "", Date())))
+        interactor?.updateDeleteComment(CommentsModel.DeleteCommentRequest.Response(mutList))
         //assert
         assertEquals(mock?.passedHere, false)
         //backup
@@ -129,9 +131,7 @@ class CommentsInteractorTest {
     @Test
     fun successSendComplaint(){
         //prepare
-        val request = CommentsModel.ComplaintRequest.Request(
-                3
-        )
+        val request = CommentsModel.ComplaintRequest.Request(3, "1")
 
         //call
         this.interactor?.sendComplaint(request)
@@ -144,8 +144,7 @@ class CommentsInteractorTest {
     fun successDeleteComment(){
         //prepare
         val request = CommentsModel.DeleteCommentRequest.Request(
-                108
-        )
+                108, "1")
 
         //call
         this.interactor?.deleteComment(request)
@@ -188,8 +187,9 @@ class CommentsInteractorTest {
         val comment: String? = ""
         val date: Date? = Date()
         val comments = Comment(id, userId, comment, date)
+        val mutList = mutableListOf(comments)
 
-        val response = CommentsModel.DeleteCommentRequest.Response(comments)
+        val response = CommentsModel.DeleteCommentRequest.Response(mutList)
 
         this.interactor?.updateDeleteComment(response)
 

@@ -28,20 +28,23 @@ class CommentsModelTest {
 
     @Test
     fun successSettersTest(){
-        val response1 = CommentsModel.GetCommentsRequest.Response(mutableListOf())
-        val response2 = CommentsModel.DeleteCommentRequest.Response(Comment("1", "1", "1", Date()))
-        val request = CommentsModel.DeleteCommentRequest.Request(1)
-
         val comments = mutableListOf(Comment("1", "1", "1", Date()))
         val comment = Comment("2", "2", "2", Date())
         val commentId = 2
 
+        val response1 = CommentsModel.GetCommentsRequest.Response(mutableListOf())
+        val response2 = CommentsModel.DeleteCommentRequest.Response(comments)
+        val request = CommentsModel.DeleteCommentRequest.Request(1, "1")
+
+
+
         response1.comments = comments
-        response2.delComments = comment
+        response2.delComments = comments
         request.commentIdentifier = commentId
 
         assertEquals(response1.comments, comments)
-        assertEquals(response2.delComments, comment)
+        assertEquals(response2.delComments[0].id, comments[0].id)
+        assertEquals(response2.delComments[0].userId, comments[0].userId)
         assertEquals(request.commentIdentifier, commentId)
     }
 
@@ -49,9 +52,10 @@ class CommentsModelTest {
     fun successSecondRequest(){
         //prepare
         val testRequest = "identifier"
+        val testStorId = "1"
 
         //call
-        val request = CommentsModel.PublishCommentRequest.Request(testRequest)
+        val request = CommentsModel.PublishCommentRequest.Request(testRequest, testStorId)
 
         //assert
         assertEquals(testRequest, request.commentToPost)
@@ -63,7 +67,7 @@ class CommentsModelTest {
         val newTestRequest = "newComment"
 
         //call
-        val request = CommentsModel.PublishCommentRequest.Request("comment")
+        val request = CommentsModel.PublishCommentRequest.Request("comment", "1")
         request.commentToPost = newTestRequest
 
         //assert
@@ -442,9 +446,10 @@ class CommentsModelTest {
     fun successComplaintRequest(){
         //prepare
         val commentId = 3
+        val storyId = "1"
 
         //call
-        val request = CommentsModel.ComplaintRequest.Request(commentId)
+        val request = CommentsModel.ComplaintRequest.Request(commentId, storyId)
 
         //assert
         assertEquals(request.commentID, commentId)
@@ -482,9 +487,9 @@ class CommentsModelTest {
         val errorValue = 2
         val response = CommentsModel.ComplaintRequest.Response(0)
         val commentId = 3
+        val storyId = "1"
         val request = CommentsModel.ComplaintRequest.Request(
-                commentId
-        )
+                commentId, storyId)
 
         //call
         response.serverResponse = errorValue
@@ -515,9 +520,10 @@ class CommentsModelTest {
     fun DeleteCommentRequest() {
         //prepare
         val position = 5
+        val storyId = "1"
 
         //call
-        val testRequest = CommentsModel.DeleteCommentRequest.Request(position)
+        val testRequest = CommentsModel.DeleteCommentRequest.Request(position, storyId)
 
         //assert
         assertEquals(position, testRequest.commentIdentifier)
@@ -532,20 +538,20 @@ class CommentsModelTest {
                 "Joga muito", Date())
 
 
-        val commentsList = Comment("hahaha", "lehaha", "Joga muito", Date())
+        val commentsList = mutableListOf(Comment("hahaha", "lehaha", "Joga muito", Date()))
 
         //call
 
         val response = CommentsModel.DeleteCommentRequest.Response(commentsList)
 
         //assert
-        assertEquals(comment1.id, response.delComments.id)
+        assertEquals(comment1.id, response.delComments[0].id)
 
-        assertEquals(comment1.userId, response.delComments.userId)
+        assertEquals(comment1.userId, response.delComments[0].userId)
 
-        assertEquals(comment1.comment, response.delComments.comment)
+        assertEquals(comment1.comment, response.delComments[0].comment)
 
-        assertEquals(comment1.date, response.delComments.date)
+        assertEquals(comment1.date, response.delComments[0].date)
 
 
     }
