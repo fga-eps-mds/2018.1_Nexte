@@ -26,9 +26,9 @@ A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utili
 
 A seguir está apresentada a arquitetura de microsserviços/serviços utilizados na aplicação. Ressalta-se que os quadrados representam containers ou serviços. As logos do Docker e Gitlab representam containers que utilizam como integração contínua o Gitlab CI. Este CI foi utilizado em diferentes âmbitos dentro da aplicação.
 
-![Architecture](https://i.imgur.com/lkbYbts.png)
+![Architecture](https://i.imgur.com/IngfWJE.png)
 
-### 2.1 Arquitetura* Frontend* Android
+### 2.1 Arquitetura *Frontend* Android
 
 Em maior grau detalhamento, no processo de desenvolvimento do *frontend*, utilizou-se de quatro *frameworks*, são eles:
 
@@ -40,7 +40,7 @@ MPAndroidChart: *Framework* mais estável para desenvolvimento de gráficos para
 
 Picasso: *Framework* utilizado para manipular o uso de imagens oriundos de URLS e path, realiza o tratamento de tarefas assíncronas de maneira fácil e eficiente.
 
-![FrontendAndroid](https://i.imgur.com/lkbYbts.png)
+![FrontendAndroid](https://i.imgur.com/VdubD18.png)
 
 ### 2.2 Arquitetura Servidor de Imagem
 
@@ -49,7 +49,7 @@ Este servidor foi criado com o objetivo de armazenar imagens. Optou-se por utili
 * Google Cloud Storage: API para armazenamento de dados no serviço de Cloud da Google. 
 * Mux: API mais consistente e sólida para criar rotas em Go!
 
-![GoMicroservice](https://i.imgur.com/lkbYbts.png)
+![GoMicroservice](https://i.imgur.com/545g8M4.png)
 
 ### 2.3 Arquitetura Servidor Principal
 
@@ -59,7 +59,7 @@ O servidor principal tem como finalidade realizar a comunicação com o Neo4J, b
 * Restify: Uma das maiores e mais estáveis APIS para rotas em node
 * Lodash: *Framework* que dispõe de inúmeras ferramentas no desenvolvimento com Ecmascript.
 
-![NodeMicroservice](https://i.imgur.com/lkbYbts.png)
+![NodeMicroservice](https://i.imgur.com/DpDow0C.png)
 
 
 ### 3. Histórico de Versões
@@ -67,7 +67,7 @@ O servidor principal tem como finalidade realizar a comunicação com o Neo4J, b
 ### Versão 0.4
 
 
-![microservice4](https://i.imgur.com/lkbYbts.png
+![microservice4](https://i.imgur.com/IngfWJE.png)
 
 ### Versão 0.3
 
@@ -86,4 +86,4 @@ O servidor principal tem como finalidade realizar a comunicação com o Neo4J, b
 
 * No contexto da disciplina, não foram consideradas o servidor principal e o banco de dados, visto as restrições do cliente. Este optou por deixar o Servidor Principal em cargo dos membros fundadores do projeto, dentre eles Miguel Pimentel e Guilherme Baldissera. Entretanto, essa arquitetura foi concebida na discplina de MDS/EPS. 
 
-*  
+*  O contexto de microsserviços é extremamente válido no contexto de servidores, visto que favorece a evolução e intoperabilidade de serviços. Utilizando esta prática a granularização de serviços acontece em vários âmbitos, assim escolhendo tecnologias que melhor se adaptam a funcionalidade pretendida. Não obstante, devido a esta granularização pode se economizar esforços em níveis arquiteturais, tais como, padrões de projeto, desenvolvimento de frameworks, entre outras práticas. Ao logo da discplina foi possível compreender estes conceitos, e trouxe maior maturidade ao projeto apesar do nosso contexto não ser favorecido por esta prática.
