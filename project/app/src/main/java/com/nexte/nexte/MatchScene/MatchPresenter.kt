@@ -1,10 +1,6 @@
 package com.nexte.nexte.MatchScene
 
-import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
-import com.nexte.nexte.Entities.User.User
-import com.nexte.nexte.Entities.User.UserManager
-import com.nexte.nexte.UserSingleton
 
 /**
  * Created by leticia on 01/05/18.
@@ -56,7 +52,6 @@ interface MatchPresentationLogic {
 class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPresentationLogic {
 
     var challengeManager: ChallengeManager? = null
-    var userManager: UserManager? = null
 
     override fun presentMatch(response: MatchModel.InitScene.Response) {
 
@@ -105,8 +100,8 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
 //
     private fun formatMatch(toFormat: MatchModel.MatchData, user: User): List<MatchModel.FormattedMatchData> {
 
-        var challengesSent = challengeManager?.getSentChallengeFromRealm(user.id)
         val challengeModelChallengesMutable = mutableListOf<MatchModel.FormattedMatchData>()
+
 
         for (challenge in challengeModelChallengesMutable){
             if (challengesSent == null) {
@@ -120,12 +115,13 @@ class MatchPresenter(var viewController: MatchDisplayLogic? = null) : MatchPrese
         val challengerName = toFormat.challenger.name
         val challengerPhoto = toFormat.challenger.photo
 
+        val challengesSent = challengeManager?.getSentChallengeFromRealm("")
 
         val matchFormatted = MatchModel.FormattedMatchData(challengedName,
                 challengedPhoto,
                 challengerName,
-                challengerPhoto)
-
+                challengerPhoto,
+                challengesSent)
     }
         challengeModelChallengesMutable.add()
         return challengeModelChallengesMutable.toList()
