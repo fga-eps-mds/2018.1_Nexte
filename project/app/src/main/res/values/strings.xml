@@ -17,6 +17,9 @@
     <string name="title_activity_show_profile">ShowProfileActivity</string>
     <string name="title_activity_feed_view">FeedView</string>
 
+    <!-- Google Cloud url -->
+    <string name="image_server_URL">https://storage.googleapis.com/nexte-profile-images/profile_image</string>
+
     <!--Account Kit-->
 
     <string name="FACEBOOK_APP_ID">165708047598044</string>

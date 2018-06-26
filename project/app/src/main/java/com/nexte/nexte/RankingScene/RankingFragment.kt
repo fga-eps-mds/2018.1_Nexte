@@ -20,6 +20,9 @@ import android.support.v7.widget.DividerItemDecoration
 import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.UserType
+import com.squareup.picasso.Picasso
+
 
 /**
  * Interface responsible to define methods used to get user information data
@@ -107,9 +110,18 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
             view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
             view?.name?.text = UserSingleton.loggedUser.name
+
             UserSingleton.loggedUser.profilePicture?.let {
-                view?.picture_img_view?.setImageResource(it.toInt())
+                if(UserSingleton.userType == UserType.REAL)  {
+                    val url = getResources().getString(R.string.image_server_URL) +
+                            UserSingleton.loggedUser.id +
+                            ".png"
+                    Picasso.get().load(url).into(view?.picture_img_view)
+                } else {
+                    view?.picture_img_view?.setImageResource(it.toInt())
+                }
             }
+
             view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }
