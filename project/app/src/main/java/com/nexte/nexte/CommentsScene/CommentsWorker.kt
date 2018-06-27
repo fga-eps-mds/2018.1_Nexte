@@ -8,6 +8,7 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
+import com.nexte.nexte.Entities.Comment.CommentMocker
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.UserSingleton
@@ -29,6 +30,7 @@ interface CommentsWorkerUpdateLogic {
  * call completion to send data for called class
  */
 class CommentsWorker {
+
 
     var updateLogic: CommentsWorkerUpdateLogic? = null
     var commentsManager: CommentManager? = null
@@ -105,15 +107,31 @@ class CommentsWorker {
      */
 
     fun setNewComment (request: CommentsModel.PublishCommentRequest.Request) {
+        var story = storyManager?.get(request.storyId)
+        val emptyStory = Story()
+        story = story ?: emptyStory
+
+        CommentMocker.newCommentsId.add(request.commentToPost)
+        val numberNewComments = CommentMocker.newCommentsId.size
+        val newCommentId = numberNewComments + antComments
 
         val message = request.commentToPost
         val today = Date()
-        val author = "1"
-        var newComment = Comment(idComment, author, message, today)
+        val author = UserSingleton.loggedUserID
+        var newComment = Comment(newCommentId.toString(), author, message, today)
         newComment = commentsManager?.update(newComment)!!
+        storyManager?.addComment(story, newComment.id!!)
         val response = CommentsModel.PublishCommentRequest.Response(newComment)
 
         updateLogic?.updateNewComment(response)
+
+
+
+//        if (UserSingleton.userType != UserType.MOCKED) {
+//            val header = mapOf("accept-version" to "0.1.0")
+//            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
+//            url.httpGet().header(header).responseJson(handleResulComments)
+//        }
     }
 
     /**
@@ -140,13 +158,21 @@ class CommentsWorker {
      */
     fun getToDeleteComment (request: CommentsModel.DeleteCommentRequest.Request){
 
-        val comments = this.commentsManager?.delete(request.commentIdentifier.toString())
-        val response = CommentsModel.DeleteCommentRequest.Response(comments!!)
+        var story = storyManager?.get(request.storyId)
+        val emptyStory = Story()
+        story = story ?: emptyStory
 
+        story = storyManager?.removeComment(story, request.commentIdentifier)
+
+        val newComments = commentsManager?.getCommentsFromStory(story?.commentsId!!)
+
+       // val comments = this.commentsManager?.delete(request.commentIdentifier.toString())
+        val response = CommentsModel.DeleteCommentRequest.Response(newComments!!.toMutableList())
        updateLogic?.updateDeleteComment(response)
     }
 
     companion object {
+        const val antComments = 10
         const val okMessage = 200
         const val idComment = "108"
     }

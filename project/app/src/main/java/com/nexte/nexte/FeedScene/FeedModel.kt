@@ -53,7 +53,7 @@ class FeedModel {
          *
          * @property likedActivity activity to be altered on likes list (adding or removing user)
          */
-        class Response(var likedActivity: FeedActivity)
+        class Response(var likedActivity: Story)
 
         /**
          * Class responsible to define the format of the activity to be displayed

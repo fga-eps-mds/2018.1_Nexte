@@ -15,8 +15,12 @@ class StoryManager(val storyAdapter: StoryAdapter = StoryAdapterRealm()) {
         return insertedStories.toList()
     }
 
-    fun get(identifier: String): Story? {
-        return storyAdapter.get(identifier)
+    fun get(identifier: String?): Story? {
+        var toReturn: Story? = null
+        if(identifier != null){
+            toReturn = storyAdapter.get(identifier)
+        }
+        return toReturn
     }
 
     fun getAll(): List<Story> {
@@ -40,5 +44,17 @@ class StoryManager(val storyAdapter: StoryAdapter = StoryAdapterRealm()) {
 
     fun delete(identifier: String): Story? {
         return storyAdapter.delete(identifier)
+    }
+
+    fun updateLike(story: Story, userId: String): Story?{
+        return storyAdapter.updateLikes(story, userId)
+    }
+
+    fun addComment(story: Story, commentId: String): Story? {
+        return storyAdapter.addComment(story, commentId)
+    }
+
+    fun removeComment(story: Story, commentPos: Int): Story? {
+        return storyAdapter.removeComment(story, commentPos)
     }
 }

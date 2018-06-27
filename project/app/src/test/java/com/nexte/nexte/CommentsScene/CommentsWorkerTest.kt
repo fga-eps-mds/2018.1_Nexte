@@ -170,7 +170,7 @@ class CommentsWorkerTest {
     fun successSetNewComment() {
         //prepare
         val comment = ""
-        val request = CommentsModel.PublishCommentRequest.Request(comment)
+        val request = CommentsModel.PublishCommentRequest.Request(comment, "1")
         val today = Date()
         val id = "1"
         val userId = "2"
@@ -189,8 +189,7 @@ class CommentsWorkerTest {
     @Test
     fun successSetComplaint() {
         val request = CommentsModel.ComplaintRequest.Request(
-                3
-        )
+                3, "1")
 
         //call
         worker?.sendComplaint(request)
@@ -209,16 +208,16 @@ class CommentsWorkerTest {
                 "", Date())
 
 
-        val requestToDel = CommentsModel.DeleteCommentRequest.Request(1)
+        val requestToDel = CommentsModel.DeleteCommentRequest.Request(1, "1")
 
         //call
         thread {this.worker?.getToDeleteComment(requestToDel)}.join()
 
 
         //assert
-        assertEquals(comment1.id, this.mock?.response4?.delComments?.id)
-        assertEquals(comment1.userId, this.mock?.response4?.delComments?.userId)
-        assertEquals(comment1.comment, this.mock?.response4?.delComments?.comment)
+        assertEquals(comment1.id, this.mock?.response4?.delComments!![0].id)
+        assertEquals(comment1.userId, this.mock?.response4?.delComments!![0].userId)
+        assertEquals(comment1.comment, this.mock?.response4?.delComments!![0].comment)
     }
 
     @Test
@@ -268,7 +267,7 @@ class CommentsWorkerTest {
         val backup = worker?.updateLogic
         worker?.updateLogic = null
 
-        val requestToDel = CommentsModel.DeleteCommentRequest.Request(1)
+        val requestToDel = CommentsModel.DeleteCommentRequest.Request(1, "1")
 
         //call
         thread {this.worker?.getToDeleteComment(requestToDel)}.join()

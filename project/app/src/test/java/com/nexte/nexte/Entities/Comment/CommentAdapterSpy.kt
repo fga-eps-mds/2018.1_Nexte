@@ -1,4 +1,5 @@
 package com.nexte.nexte.Entities.Comment
+import com.nexte.nexte.Entities.Challenge.ChallengeMocker
 import java.util.*
 
 class CommentAdapterSpy: CommentAdapter {
@@ -37,13 +38,18 @@ class CommentAdapterSpy: CommentAdapter {
     }
 
     override fun updateOrInsert(challenge: Comment): Comment? {
+        val compNumb = CommentMocker.newCommentsId.size + 10
         if (challenge.id == "1") {
             return mockComment()
 
-        } else if(challenge.id == "108") {
+        }
+        else if(challenge.id == "108") {
             return mockComment()
         }
-        else {
+        else if(challenge.id == compNumb.toString()){
+            return mockComment()
+        }
+        else{
             return null
         }
     }
