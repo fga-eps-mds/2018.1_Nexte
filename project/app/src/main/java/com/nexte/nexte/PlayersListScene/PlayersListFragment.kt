@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.nexte.nexte.R
 import kotlinx.android.synthetic.main.columns_challenged.view.*
 import android.app.AlertDialog
-import android.graphics.Color
 import com.nexte.nexte.Entities.User.UserManager
 import android.widget.Button
 import android.widget.ImageView
@@ -24,8 +23,6 @@ import com.nexte.nexte.MainActivity
 import com.nexte.nexte.RankingScene.RankingFragment
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
-import kotlinx.android.synthetic.main.row_likes.view.*
-import kotlinx.android.synthetic.main.row_match_info.view.*
 
 
 /**
@@ -138,7 +135,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        this.hasMatch = this.arguments.getBoolean("has match")
+        this.hasMatch = this.arguments?.getBoolean("has match")
         userManager = UserManager()
         this.setupPlayersListScene()
     }
@@ -164,9 +161,8 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     /**
      * Method that set the correct fragment layout according to the selected tab
      */
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        val newView = inflater?.inflate(R.layout.activity_challenger_sent, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val newView = inflater.inflate(R.layout.activity_challenger_sent, container, false)
 
         this.sendChallengeButton = newView?.findViewById(R.id.sendChallengeButton)
         this.recyclerView = newView?.findViewById(R.id.challengeRecyclerView)
@@ -187,9 +183,9 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.circulo5 = newView?.findViewById(R.id.circulo5)
 
 
-            if(hasMatch!!) {
-                this.message?.visibility = View.VISIBLE
-            }
+        if(hasMatch!!) {
+            this.message?.visibility = View.VISIBLE
+        }
 
         return newView
     }
@@ -197,8 +193,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     /**
      * Method responsible to set action listeners
      */
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         sendChallengeButton?.setOnClickListener {
@@ -261,7 +256,7 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.expandedPerfil?.visibility = View.VISIBLE
         this.expandedPerfil?.setOnClickListener{
             val fragment = ShowProfileFragment().getInstance(currentPlayer.id)
-            fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.main_frame_layout, fragment)?.addToBackStack(null)?.commit()
         }
         this.circulo1?.visibility = View.VISIBLE
         this.circulo2?.visibility = View.VISIBLE
@@ -269,11 +264,11 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
         this.circulo4?.visibility = View.VISIBLE
         this.circulo5?.visibility = View.VISIBLE
         val rankingFragment = RankingFragment()
-        rankingFragment.setUserGameCircle(this?.circulo1, currentPlayer.userLastGames[0])
-        rankingFragment.setUserGameCircle(this?.circulo2, currentPlayer.userLastGames[1])
-        rankingFragment.setUserGameCircle(this?.circulo3, currentPlayer.userLastGames[2])
-        rankingFragment.setUserGameCircle(this?.circulo4, currentPlayer.userLastGames[3])
-        rankingFragment.setUserGameCircle(this?.circulo5, currentPlayer.userLastGames[4])
+        rankingFragment.setUserGameCircle(this.circulo1, currentPlayer.userLastGames[0])
+        rankingFragment.setUserGameCircle(this.circulo2, currentPlayer.userLastGames[1])
+        rankingFragment.setUserGameCircle(this.circulo3, currentPlayer.userLastGames[2])
+        rankingFragment.setUserGameCircle(this.circulo4, currentPlayer.userLastGames[3])
+        rankingFragment.setUserGameCircle(this.circulo5, currentPlayer.userLastGames[4])
 
 
     }

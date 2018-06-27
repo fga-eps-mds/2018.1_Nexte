@@ -10,7 +10,6 @@ enum class UserType { REAL, MOCKED }
  * characteristics of interest for the functionality
  */
 object UserSingleton {
-
     var userType: UserType = UserType.MOCKED
     var loggedUserID: String = "9"
         private set

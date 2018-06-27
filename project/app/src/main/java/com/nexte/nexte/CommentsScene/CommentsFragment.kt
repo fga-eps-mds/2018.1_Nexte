@@ -13,6 +13,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Fragment
 import android.support.constraint.ConstraintLayout
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -47,13 +48,28 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     var mainLayout: ConstraintLayout? = null
     var commentManager: CommentManager? = null
     var storyManager: StoryManager? = null
+    var storyID: String? = null
 
     /**
      * On Create method that will setup this scene and call first Request for Interactor
      */
-    fun getInstance(): CommentsFragment{
+    fun getInstance(identifier: String): CommentsFragment{
         val commentsFragment = CommentsFragment()
+        val args = Bundle()
+        args.putString("storyID", identifier)
+        commentsFragment.arguments = args
         return commentsFragment
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if(arguments != null){
+            storyID = arguments.getString("storyID")
+        }
+        else{
+            storyID = ""
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,12 +85,8 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         this.commentManager = CommentManager()
         this.storyManager = StoryManager()
         this.setUpCommentsScene()
-
+        createGetCommentsRequest()
         this.setActionToCloseKeyboard(newView)
-
-        val request = CommentsModel.GetCommentsRequest
-                .Request("1", "d2c02630-b20d-45fc-a5f3-41c399dbd075")
-        interactor?.recentComments(request)
 
         checkButton?.setOnClickListener(sendCommentAction)
         commentEditText?.setOnClickListener {
@@ -83,6 +95,15 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
         return newView
 
+    }
+
+    /**
+     * This function send the request built with the identified story
+     */
+    fun createGetCommentsRequest(){
+        val request = CommentsModel.GetCommentsRequest
+                .Request("1", this.storyID)
+        interactor?.recentComments(request)
     }
 
 
@@ -111,7 +132,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
      */
     override fun displayComments(viewModel: CommentsModel.GetCommentsRequest.ViewModel) {
 
-        commentsRecyclerView?.adapter = CommentsAdapter(viewModel.commentsFormatted, this)
+        commentsRecyclerView?.adapter = CommentsAdapter(viewModel.commentsFormatted, this, storyID)
     }
 
     /**
@@ -179,8 +200,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
     private val sendCommentAction = View.OnClickListener {
         if(commentEditText?.text!!.isNotEmpty()){
             val request = CommentsModel.PublishCommentRequest.Request(
-                    commentEditText?.text.toString()
-            )
+                    commentEditText?.text.toString(), this.storyID)
             interactor?.publishNewComment(request)
             commentEditText?.text?.clear()
             rollToEndOfList()
@@ -194,7 +214,8 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
      * @property fragment Context that will show this adapter
      */
     class CommentsAdapter(var comments: MutableList<CommentsModel.CommentFormatted>,
-                          private val fragment: Fragment) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+                          private val fragment: Fragment,
+                          val storyIDin: String?) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 CommentsFragment.CommentsAdapter.ViewHolder {
@@ -219,7 +240,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 builder.setCancelable(true)
                 builder.setMessage(message)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
-                    val request = CommentsModel.ComplaintRequest.Request(position)
+                    val request = CommentsModel.ComplaintRequest.Request(position, storyIDin)
                     (fragment as CommentsFragment).interactor?.sendComplaint(request)
                     dialogInterface.dismiss()
                 })
@@ -235,7 +256,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 builder.setCancelable(true)
                 builder.setMessage(messageDel)
                 builder.setPositiveButton("Sim", { dialogInterface, _ ->
-                    val request = CommentsModel.DeleteCommentRequest.Request(position)
+                    val request = CommentsModel.DeleteCommentRequest.Request(position, storyIDin)
                     (fragment as CommentsFragment).interactor?.deleteComment(request)
                     dialogInterface.dismiss()
                 })
@@ -256,15 +277,18 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
         /**
          * Adds item on List and notify RecycleView that have a new item.
          */
-
         fun addItem(comment: CommentsModel.CommentFormatted) {
             comments.add(comment)
             this.notifyItemInserted(comments.size -1)
         }
 
+        /**
+         * Notify the recycler view that the specified item was removed
+         */
         fun deleteComment(delComments: MutableList<CommentsModel.CommentFormatted>) {
             this.comments = delComments
             this.notifyDataSetChanged()
+            Log.e("deveria ter dado update", delComments.toString())
         }
 
         /**

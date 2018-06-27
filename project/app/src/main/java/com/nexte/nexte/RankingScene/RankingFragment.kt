@@ -20,6 +20,9 @@ import android.support.v7.widget.DividerItemDecoration
 import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.UserType
+import com.squareup.picasso.Picasso
+
 
 /**
  * Interface responsible to define methods used to get user information data
@@ -62,7 +65,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         this.setupRankingScene()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View? = inflater?.inflate(R.layout.activity_ranking, container, false)
 
         fixedFragment = view?.findViewById(R.id.fixedFragment)
@@ -72,9 +75,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         val dividerItemDecoration = DividerItemDecoration(this.activity, DividerItemDecoration.VERTICAL)
         rankingRecyclerView?.addItemDecoration(dividerItemDecoration)
 
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fixedFragment, FixedRowRankingFragment())
-        fragmentTransaction.commit()
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fixedFragment, FixedRowRankingFragment())
+        fragmentTransaction?.commit()
 
         this.createGetPlayersRequest()
 
@@ -88,7 +91,7 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
     private fun goToShowProfileView(id: String) {
         val fragment = ShowProfileFragment().getInstance(id)
-        fragmentManager.beginTransaction().replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit()
+        fragmentManager?.beginTransaction()?.replace(R.id.main_frame_layout, fragment)?.addToBackStack(null)?.commit()
     }
 
 
@@ -103,13 +106,21 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
             return inflater.inflate(R.layout.row_ranking, container, false)
         }
 
-        override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             view?.position?.text = String.format("%d", UserSingleton.loggedUser.rankingPosition)
             view?.name?.text = UserSingleton.loggedUser.name
+
             UserSingleton.loggedUser.profilePicture?.let {
-                view?.picture_img_view?.setImageResource(it.toInt())
+                if(UserSingleton.userType == UserType.REAL)  {
+                    val url = getResources().getString(R.string.image_server_URL) +
+                            UserSingleton.loggedUser.id +
+                            ".png"
+                    Picasso.get().load(url).into(view.picture_img_view)
+                } else {
+                    view?.picture_img_view?.setImageResource(it.toInt())
+                }
             }
+
             view?.playerCategory?.text = UserSingleton.loggedUser.category?.name
             view?.rowRankingLayout?.background = ColorDrawable(Color.GRAY)
         }

@@ -17,6 +17,9 @@
     <string name="title_activity_show_profile">ShowProfileActivity</string>
     <string name="title_activity_feed_view">FeedView</string>
 
+    <!-- Google Cloud url -->
+    <string name="image_server_URL">https://storage.googleapis.com/nexte-profile-images/profile_image</string>
+
     <!--Account Kit-->
 
     <string name="FACEBOOK_APP_ID">165708047598044</string>
@@ -113,7 +116,7 @@
 
     <!-- Login Scene -->
     <string name="loginButtonNavegate">Navegar pelo NEXTE!</string>
-    <string name="loginOrDescription">ou</string>
+    <string name="loginOrDescription">Entrar com e-mail ou telefone</string>
     <string name="loginButtonLogin">Entrar</string>
     <string name="loginPasswordDescription">Senha</string>
     <string name="loginEmailOrPhoneDescription">E-mail ou Telefone</string>
@@ -121,6 +124,7 @@
     <string name="loginBackgroundDescription">Background of Nexte</string>
     <string name="userOnboardingPages">Página X do UserOnboarding</string>
     <string name="userOnboardingImageOne">Primeira imagem do UserOnboarding</string>
+    <string name="meus_jogos">Meus Jogos</string>
 
 
 </resources>

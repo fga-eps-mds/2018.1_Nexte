@@ -93,7 +93,7 @@ Em cada marco principal haverá 6 marcos menores chamados _sprints_, cada um ter
 | _Sprint 4_| 14/04/2018 |
 | _Sprint 6_| 21/04/2018 |
 
-## _Release 2_  - xx/ xx /xxxx
+## _Release 2_  - 28/06/2018
 
 | _Sprint_ | Data |
 | ---- | ---- | 

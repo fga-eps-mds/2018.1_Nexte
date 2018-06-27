@@ -24,31 +24,47 @@
 | 01/05/2018| 1.1.2| Adição do novo diagrama de classe da Comments. | Gabriel Albino |
 | 03/05/2018| 2.0| Atualização da Arquitetura((Frontend) | Miguel Pimentel|
 | 10/05/2018| 2.0.1| Atualização do novo diagrama da classe da Comments | Alexandre Miguel|
+| 26/06/2018| 2.1| Atualização Arquitetural e Adição do Microsserviços atualizados | Miguel Pimentel|
 
 ### Índice Analítico
 
-* [1 INTRODUÇÃO](#1-introdução)
-    * [1.1 Finalidade](#11-finalidade)
-    * [1.2 Escopo](#12-escopo)
-    * [1.3 Definições, Acrônimos e Abreviações](#13-definições-acrônimos-e-abreviações)
-    * [1.4 Referências](#14-referências)
-* [2. REPRESENTAÇÃO ARQUITETURAL](#2-representação-arquitetural)
-    * [2.1 Representação Arquitetural das Cenas](#21-Representação Arquitetural das Cenas)
-    * [2.2 Representação Arquitetural das Entidades Globais](#22-escopo)
-* [3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA](#3-requisitos-e-restrições-de-arquitetura)
-    * [3.1 Requisitos gerais](#31-requisitos-gerais)
-    * [3.2 Restrições de arquitetura](#32-restrições-de-arquitetura)
-* [4. VISÃO LÓGICA](#4-visÃo-lógica)
-    * [4.1 Visão Geral – pacotes e camadas](#41-visão-geral-–-pacotes-e-camadas)
-    * [4.1.1 Diagrama de pacotes](#411-diagrama-de-pacotes)
-    * [4.1.2 Diagrama de camadas](#412-diagrama-de-camadas)
-* [5. VISÃO DE IMPLEMENTAÇÃO](#5-visão-de-implementação)
-    * [5.1 Caso de Uso](#51-caso-de-uso)
-    * [5.1.1  <em>Diagrama de Classes</em>](#511-diagrama-de-classes)
-    * [5.1.2 <em>Diagrama de Sequência</em>](#512-diagrama-de-sequência)
-* [6. DIMENSIONAMENTO](#6-dimensionamento)
-* [7. QUALIDADE](#7-qualidade)
-* [8. Apêndice](#8-apendice)
+- [Nexte](#nexte)
+    - [Objetivo desse documento](#objetivo-desse-documento)
+- [1 INTRODUÇÃO](#1-introdu%C3%A7%C3%A3o)
+    - [1.1 Finalidade](#11-finalidade)
+    - [1.2 Escopo](#12-escopo)
+    - [1.3 Definições, Acrônimos e Abreviações](#13-defini%C3%A7%C3%B5es-acr%C3%B4nimos-e-abrevia%C3%A7%C3%B5es)
+    - [1.4 Referências](#14-refer%C3%AAncias)
+- [2. REPRESENTAÇÃO ARQUITETURAL](#2-representa%C3%A7%C3%A3o-arquitetural)
+    - [2.1 Representação Arquitetural das Cenas](#21-representa%C3%A7%C3%A3o-arquitetural-das-cenas)
+    - [2.2 Representação Arquitetural das Entidades Globais](#22-representa%C3%A7%C3%A3o-arquitetural-das-entidades-globais)
+- [3. REQUISITOS E RESTRIÇÕES DE ARQUITETURA](#3-requisitos-e-restri%C3%A7%C3%B5es-de-arquitetura)
+    - [3.1 Requisitos gerais](#31-requisitos-gerais)
+    - [3.2 Restrições de arquitetura](#32-restri%C3%A7%C3%B5es-de-arquitetura)
+- [4. VISÃO LÓGICA](#4-vis%C3%A3o-l%C3%B3gica)
+    - [4.1 Visão Geral para as Cenas – pacotes e camada](#41-vis%C3%A3o-geral-para-as-cenas-%E2%80%93-pacotes-e-camada)
+        - [4.1.1 Divisão dos módulos por responsabilidades](#411-divis%C3%A3o-dos-m%C3%B3dulos-por-responsabilidades)
+        - [4.1.2 Diagrama de camadas](#412-diagrama-de-camadas)
+    - [4.2 Visão Geral para as Entidade Globais – pacotes e camada](#42-vis%C3%A3o-geral-para-as-entidade-globais-%E2%80%93-pacotes-e-camada)
+    - [4.3 Observações](#43-observa%C3%A7%C3%B5es)
+- [5. VISÃO DE IMPLEMENTAÇÃO](#5-vis%C3%A3o-de-implementa%C3%A7%C3%A3o)
+    - [5.1 Caso de Uso](#51-caso-de-uso)
+        - [5.1.1 *Diagrama de Classes*](#511-diagrama-de-classes)
+        - [5.1.2 *Diagrama de Sequência*](#512-diagrama-de-sequ%C3%AAncia)
+- [6. DIMENSIONAMENTO](#6-dimensionamento)
+- [7. QUALIDADE](#7-qualidade)
+- [8. ARQUITETURA DE MICROSSERVIÇOS](#8-arquitetura-de-microsservi%C3%A7os)
+    - [8.1 *Overview*](#81-overview)
+- [8.2 Arquitetura Geral](#82-arquitetura-geral)
+    - [8.2.1 Arquitetura *Frontend* Android](#821-arquitetura-frontend-android)
+    - [8.2.2 Arquitetura Servidor de Imagem](#822-arquitetura-servidor-de-imagem)
+    - [8.2.3 Arquitetura Servidor Principal](#823-arquitetura-servidor-principal)
+        - [8.3. Histórico de Versões](#83-hist%C3%B3rico-de-vers%C3%B5es)
+            - [8.3.1. Versão 0.4](#831-vers%C3%A3o-04)
+            - [8.3.2. Versão 0.3](#832-vers%C3%A3o-03)
+            - [8.3.3. Versão 0.2](#833-vers%C3%A3o-02)
+            - [8.3.4. Versão 0.1](#834-vers%C3%A3o-01)
+        - [8.4. Observações](#84-observa%C3%A7%C3%B5es)
 
 ## Nexte
 
@@ -241,3 +257,94 @@ Nos aspectos gerais, o aplicativo pode abrangir uma grande quantidade de clubes 
 |  Disponibilidade | Manutenção periódica e _clean architecture_ | A solução apresentada permite que o software passe o menor tempo possível fora do ar devido às falhas do sistema, possibilitando o funcionamento contínuo. Isso ocorre pelo fato da arquitetura utilizada proporcionar um maior controle e maior modularização do código |  
 | Portabilidade  | Linguagem Kotlin  | A linguagem escolhida permite a compilação na máquina virtual Java, permitindo que os programas sejam executados em qualquer sistema Android que contenha uma versão da JVM.  |
 | Segurança  | Servidor remoto | Os dados dos usuários serão protegidos em um servidor remoto, e informações confidenciais como senha serão armazenadas em HASH. |
+
+
+## 8. ARQUITETURA DE MICROSSERVIÇOS
+
+### 8.1 *Overview*
+
+No processo de desenvolvimento do Nexte foram utilizadas uma série de microserviços/serviços com o objetivo de granularizar os componentes e delegar funções específicas para estes. Para gerenciar esses serviços foram utilizados *containers* do docker para o controle por meio de imagens, e assim garantindo maior qualidade da infraestrutura. Foram adotados alguns containers nesse processo, são eles:
+
+* Container Frontend Android;
+* Container Servidor Principal; 
+* Container para Banco de Dados; 
+* Container para Servidor de Imagens;
+
+Não obstante, foram adicionados muitos serviços externos, no qual cada um é relacionado a uma feature específica. Desta forma, pode-se citar os seguintes serviços:
+
+* Firebase Cloud Messsaging: "*Real time server*" utilizado para notificações remotas, é possível utilizá-lo no Android e iOS.  No entanto, como o escopo do Servidor principal estava em cargo do membros do Nexte, **não houve disponibilidade de tempo para implantação deste serviço**. Entretanto, em futuras evoluções, externas a disciplina, esta feature será implementada.
+
+* *Image server *(Servidor de Imagens): Servidor que irá armazenar as imagens dos usuários do Nexte. Este servidor foi implementado utilizando GO juntamente a API do Google Cloud. 
+
+* Neo4j: Banco de dados não relacional, orientado a grafos, que possui boa adaptabilidade as regras de negócio da aplicação.
+
+* *Account Kit*: Serviço de autenticação provido pelo facebook que utiliza apenas do e-mail ou telefone para realizar essa terefa. Este serviço é adicionado diretamente ao *frontend*.
+
+A seguir é apresentado a arquitetura e alguns dos micro serviços a serem utilizados.
+
+
+## 8.2 Arquitetura Geral
+
+A seguir está apresentada a arquitetura de microsserviços/serviços utilizados na aplicação. Ressalta-se que os quadrados representam containers ou serviços. As logos do Docker e Gitlab representam containers que utilizam como integração contínua o Gitlab CI. Este CI foi utilizado em diferentes âmbitos dentro da aplicação.
+
+![Architecture](https://i.imgur.com/IngfWJE.png)
+
+### 8.2.1 Arquitetura *Frontend* Android
+
+Em maior grau detalhamento, no processo de desenvolvimento do *frontend*, utilizou-se de quatro *frameworks*, são eles:
+
+Realm: *Framework* utilizado para realizar a persistência dos dados localmente. Atualmente, é bastante difundido e na alicação tem papel de guardar os dados do mock, e persistir informações do usuário internamente, assim optimizando a dependência e o número de requisições a serem realizadas ao servidor principal.
+
+Fuel: *Framework* para requisições HTTP para android com kotlin. Atualmente, ele é um dos mais estáveis para esta tecnologia, e com maior número de contribuidores no Github.
+
+MPAndroidChart: *Framework* mais estável para desenvolvimento de gráficos para android. Além disso, sua documentação é bastante completa. 
+
+Picasso: *Framework* utilizado para manipular o uso de imagens oriundos de URLS e path, realiza o tratamento de tarefas assíncronas de maneira fácil e eficiente.
+
+![FrontendAndroid](https://i.imgur.com/VdubD18.png)
+
+### 8.2.2 Arquitetura Servidor de Imagem
+
+Este servidor foi criado com o objetivo de armazenar imagens. Optou-se por utilizar Go, devido a sua perfomance e APIS relacionadas ao propósito desse servidor. Não obstante, utilizou-se de conceitos como tranferência de arquivos por multipart/form-data como maneira de trabalhar com imagens em requisições HTTP. Para realizar essas tarefas, utilizou-se das seguintes tecnologias:
+
+* Google Cloud Storage: API para armazenamento de dados no serviço de Cloud da Google. 
+* Mux: API mais consistente e sólida para criar rotas em Go!
+
+![GoMicroservice](https://i.imgur.com/545g8M4.png)
+
+### 8.2.3 Arquitetura Servidor Principal
+
+O servidor principal tem como finalidade realizar a comunicação com o Neo4J, banco de dados da aplicação, e fazer o controle das ações provenientes do *frontend*. Neste processo, utilizou-se dos seguintes *frameworks* até o momento:
+
+* Nodemon: *Framework* que facilita o processo de desenvolvimento, visto que a partir do salvamento de qualquer alteração de código, ele reinicia o servidor, automatizando este processo. 
+* Restify: Uma das maiores e mais estáveis APIS para rotas em node
+* Lodash: *Framework* que dispõe de inúmeras ferramentas no desenvolvimento com Ecmascript.
+
+![NodeMicroservice](https://i.imgur.com/DpDow0C.png)
+
+
+#### 8.3. Histórico de Versões
+
+##### 8.3.1. Versão 0.4
+
+
+![microservice4](https://i.imgur.com/IngfWJE.png)
+
+##### 8.3.2. Versão 0.3
+
+![microservice3](https://i.imgur.com/lkbYbts.png)
+
+##### 8.3.3. Versão 0.2
+
+[![Group_5.png](https://s9.postimg.cc/ui64atben/Group_5.png)](https://postimg.cc/image/pwa02gpvf/)
+
+##### 8.3.4. Versão 0.1
+
+[![microservice2.png](https://s17.postimg.cc/i0gs7p1i7/microservice2.png)](https://postimg.cc/image/bzj3amevv/)
+
+
+#### 8.4. Observações
+
+* No contexto da disciplina, não foram consideradas o servidor principal e o banco de dados, visto as restrições do cliente. Este optou por deixar o Servidor Principal em cargo dos membros fundadores do projeto, dentre eles Miguel Pimentel e Guilherme Baldissera. Entretanto, essa arquitetura foi concebida na discplina de MDS/EPS. 
+
+*  O contexto de microsserviços é extremamente válido no contexto de servidores, visto que favorece a evolução e intoperabilidade de serviços. Utilizando esta prática a granularização de serviços acontece em vários âmbitos, assim escolhendo tecnologias que melhor se adaptam a funcionalidade pretendida. Não obstante, devido a esta granularização pode se economizar esforços em níveis arquiteturais, tais como, padrões de projeto, desenvolvimento de *frameworks*, entre outras práticas. Ao logo da discplina foi possível compreender estes conceitos, e trouxe maior maturidade ao projeto apesar do nosso contexto não ser favorecido por esta prática.

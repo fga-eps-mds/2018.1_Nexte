@@ -38,6 +38,9 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
 import android.widget.Toast
+import com.nexte.nexte.UserType
+import com.squareup.picasso.Picasso
+
 
 
 /**
@@ -67,7 +70,8 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     var userManager: UserManager? = null
     private var showProfileRecyclerView: RecyclerView? = null
     private val graphManager = GraphManager(this)
-    var contactButton: Button? = null
+    private var contactButton: Button? = null
+    private val editProfileFragment = EditProfileFragment().getInstance(UserSingleton.loggedUserID)
 
     /*
     This method is called on instantiate, and it's responsible to set the player that the profile will be
@@ -95,23 +99,22 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
-        this.playerIdToShow = arguments.getString("id")
+        this.playerIdToShow = arguments!!.getString("id")
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val newView = inflater.inflate(R.layout.activity_show_profile, container, false)
 
         showProfileRecyclerView = newView?.findViewById(R.id.challengesShowRecyclerView)
 
         buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
         buttonEditProfile?.setOnClickListener {
-            val editProfileFragment = EditProfileFragment().getInstance()
-            val fragmentManager = activity.fragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+
+            val fragmentManager = activity?.fragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
+            fragmentTransaction?.addToBackStack(null)
+            fragmentTransaction?.commit()
         }
 
         contactButton = newView?.findViewById(R.id.contactButton)
@@ -130,7 +133,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         return newView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val player = userManager?.get(playerIdToShow)
         if(this.playerIdToShow == UserSingleton.loggedUserID){
@@ -158,9 +161,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             this.numb_games.text = (player.wins + player.loses).toString()
             this.numb_victory.text = player.wins.toString()
         }
-
     }
-
 
     /**
      * Method responsible for creating the show profile request and passing it to the interactor
@@ -211,12 +212,12 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         private fun setYAxisValuesRanking(): ArrayList<Entry> {
 
             val yValsRanking = ArrayList<Entry>() //array responsible to store all values of Y
-            yValsRanking.add(Entry(0f, 3f))
-            yValsRanking.add(Entry(1f, 2f))
-            yValsRanking.add(Entry(2f, 5f))
-            yValsRanking.add(Entry(3f, 2f))
-            yValsRanking.add(Entry(4f, 1f))
-            yValsRanking.add(Entry(5f, 4f))
+            yValsRanking.add(Entry(0f, 6f))
+            yValsRanking.add(Entry(1f, 6f))
+            yValsRanking.add(Entry(2f, 8f))
+            yValsRanking.add(Entry(3f, 3f))
+            yValsRanking.add(Entry(4f, 4f))
+            yValsRanking.add(Entry(5f, 7f))
 
             return yValsRanking
         }
@@ -393,7 +394,17 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
     override fun displayProfile(viewModel: ShowProfileModel.ViewModel) {
         username?.text = viewModel.playerInfo.name
         RankingID?.text = viewModel.playerInfo.rank
-        imageView?.setImageResource(viewModel.playerInfo.profileImage!!)
+
+        imageView?.let {
+            if(UserSingleton.userType == UserType.REAL) {
+                val url = getResources().getString(R.string.image_server_URL) +
+                        UserSingleton.loggedUser.id +
+                        ".png"
+                Picasso.get().load(url).into(imageView)
+            } else {
+                imageView?.setImageResource(viewModel.playerInfo.profileImage!!)
+            }
+        }
 
         showProfileRecyclerView?.adapter = ShowProfileAdapter(viewModel.formattedChallenges,this)
 
@@ -513,9 +524,8 @@ class ContactDialogFragment: DialogFragment() {
                             emailDialog()
                         }
                         3 -> {
-                                whatsAppDialog()
-                            }
-
+                            whatsAppDialog()
+                        }
                         4 -> {
                             telegramDialog()
                         }
@@ -609,6 +619,10 @@ class DepartDialogFragment: DialogFragment() {
     }
 
     private fun setStatus(status: User.Status) {
-        println(status)         /*todo on issue #381*/
+        val user = UserSingleton.loggedUser
+        UserManager().update(User(user.id, user.name, user.profilePicture,
+                user.nickname, user.birthDate, user.rankingPosition, user.email,
+                user.phone,  user.wins, user.loses, user.gender, user.category, status, user.challengeSended,
+                user.challengeReceived, user.latestGames))
     }
 }

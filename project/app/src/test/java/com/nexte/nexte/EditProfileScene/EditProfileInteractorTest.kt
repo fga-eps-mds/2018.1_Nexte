@@ -2,8 +2,6 @@ package com.nexte.nexte.EditProfileScene
 
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.HelpForRealm
-import com.nexte.nexte.Player
-import com.nexte.nexte.UserSingleton
 import org.junit.After
 import org.junit.Test
 
@@ -11,6 +9,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import java.util.*
 
+@Suppress("DEPRECATION")
 class EditProfileInteractorTest: HelpForRealm() {
 
     var interactor: EditProfileInteractor? = null
@@ -29,13 +28,21 @@ class EditProfileInteractorTest: HelpForRealm() {
     @Test
     fun testGetProfileToEdit() {
         //prepare
-        var requestTest = EditProfileModel.RecoverUserRequest.Request("Aleronupe", "1234f")
+        val requestTest = EditProfileModel.RecoverUserRequest.Request("Aleronupe", "1234f")
 
         //call
         this.interactor?.getProfileToEdit(requestTest)
 
         //assert
         assertEquals( true, this.mocker?.passedHere)
+    }
+
+    @Test
+    fun getFormatUserDataPresenter(){
+        //call
+        val userDataPresenter = interactor?.formatUserDataPresenter
+        //assert
+        assertEquals(userDataPresenter, interactor?.formatUserDataPresenter)
     }
 
     @Test
@@ -92,7 +99,8 @@ class EditProfileInteractorTest: HelpForRealm() {
 
     class EditProfilePresenterMock: ShowProfileToEditPresentationLogic, SendEditedProfileDataPresentationLogic
     {
-        var  passedHere = false
+        var  passedHere = true
+
         override fun presentProfileToEdit(response: EditProfileModel.RecoverUserRequest.Response) {
             passedHere = true
         }

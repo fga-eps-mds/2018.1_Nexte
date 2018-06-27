@@ -7,8 +7,7 @@
     android:layout_height="fill_parent"
     android:background="#2E2E2E"
     android:fillViewport="true"
-    android:scrollbars="vertical">edge_text_edit_profile
-
+    android:scrollbars="vertical">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,7 +20,7 @@
             android:layout_marginTop="30dp"
             android:fontFamily="roboto_thin"
             android:gravity="top"
-            android:text="Meus Jogos"
+            android:text="@string/meus_jogos"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
