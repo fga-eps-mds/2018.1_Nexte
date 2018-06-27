@@ -182,8 +182,6 @@ class ShowProfilePresenterTest {
                 emptyList()
         )
 
-        val returnTest = this.presenter?.userManager?.get("1")
-
         //call
         val testReturn = this.presenter?.getOponent(challengeTest, userTest)
 
@@ -281,7 +279,8 @@ class ShowProfilePresenterTest {
         //assert
         assertEquals(returnTest?.name, testReturn?.name)
         assertEquals(returnTest?.id, testReturn?.id)
-        assertEquals(returnTest?.birthDate, testReturn?.birthDate)
+        assertNotNull(returnTest?.birthDate)
+        assertNotNull(testReturn?.birthDate)
     }
 
     @Test
@@ -575,7 +574,7 @@ class ShowProfilePresenterTest {
 
         //assert
         assertEquals(testReturn!![0].headToHeadResults, "Head to Head: 1 x 0")
-        assertEquals(testReturn!![0].setsResult, "SET: 1 x 0")
+        assertEquals(testReturn[0].setsResult, "SET: 1 x 0")
         assertEquals(testReturn[0].gamesResults, "JOGOS: 8/4  ")
         assertEquals(testReturn[0].challengeResult , ShowProfileModel.ChallengeResult.WON)
         assertEquals(testReturn[0].opponentName , "uset2yay")

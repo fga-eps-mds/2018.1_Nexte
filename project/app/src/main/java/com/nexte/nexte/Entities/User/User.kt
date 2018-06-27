@@ -40,11 +40,7 @@ class User(val id: String,
          * @return user created from json
          */
         fun createUserFromJsonObject(jsonUser: JSONObject, userCategoryManagerArgument: UserCategoryAdapter? = null): User {
-            val userCategoryManager: UserCategoryManager? = if(userCategoryManagerArgument == null){
-                UserCategoryManager()
-            } else{
-                UserCategoryManager(userCategoryManagerArgument)
-            }
+            val userCategoryManager = getUserCategoryManager(userCategoryManagerArgument)
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
             val profilePicture = jsonUser["profileImageURL"] as String
@@ -54,32 +50,53 @@ class User(val id: String,
             val phone = jsonUser["phone"] as String
             val wins = jsonUser["wins"] as Int
             val loses = jsonUser["loses"] as Int
-            var birthDateFromJSON = Date().toString()
-            try {
-                birthDateFromJSON = jsonUser["birthDate"] as String
+            val birthDateFromJSON = try {
+                jsonUser["birthDate"] as String
             } catch (e: JSONException) {
-                birthDateFromJSON = Date().toString()
+                Date().toString()
             }
-            var birthDate = Date()
-            try {
-                birthDate = SimpleDateFormat("dd-MM-yyyy")
+            val birthDate = try {
+                SimpleDateFormat("dd-MM-yyyy")
                         .parse(birthDateFromJSON)
             }catch (e: ParseException){
-                birthDate = Date()
+                Date()
             }
 
             val genderString = jsonUser["gender"] as String
             val gender: Gender?
-            gender = if (genderString == "M") {
-                Gender.MALE
-            } else {
-                Gender.FEMALE
-            }
+            gender = getGenderFromGenderString(genderString)
             val categoryInt = jsonUser["category"] as Int
             val category = userCategoryManager?.get(categoryInt.toString())
             val statusInt = jsonUser["status"] as Int
             val status: Status?
-            status = when (statusInt) {
+            status = getStatusFromStatusInt(statusInt)
+            val challengeSended = null
+            val challengeReceived = null
+            val latestGames = null
+
+            return User(id, name, profilePicture, nickname, birthDate,
+                    rankingPosition, email, phone, wins, loses, gender,
+                    category, status, challengeSended, challengeReceived, latestGames)
+        }
+
+        fun getUserCategoryManager(userCategoryManagerArgument: UserCategoryAdapter?): UserCategoryManager?{
+            return if(userCategoryManagerArgument == null){
+                UserCategoryManager()
+            } else{
+                UserCategoryManager(userCategoryManagerArgument)
+            }
+        }
+
+        fun getGenderFromGenderString(genderString: String): Gender{
+            return if (genderString == "M") {
+                Gender.MALE
+            } else {
+                Gender.FEMALE
+            }
+        }
+
+        fun getStatusFromStatusInt(statusInt: Int): Status{
+            return when (statusInt) {
                 0 ->
                     Status.AVAILABLE
                 1 ->
@@ -90,13 +107,6 @@ class User(val id: String,
                     Status.AVAILABLE
                 }
             }
-            val challengeSended = null
-            val challengeReceived = null
-            val latestGames = null
-
-            return User(id, name, profilePicture, nickname, birthDate,
-                    rankingPosition, email, phone, wins, loses, gender,
-                    category, status, challengeSended, challengeReceived, latestGames)
         }
     }
 

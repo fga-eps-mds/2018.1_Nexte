@@ -86,18 +86,18 @@
 | **Análise**              | O projeto se divide em dois momentos:<br>Release I : onde ao final da release a cobertura deve ser maior ou igual a 40%<br> - [40, 100[ - Completo <br> - [0, 40[ - Incompleto <br>Release II: onde ao final da release a cobertura deve ser maior ou igual a 90%<br> - [90, 100[ - Completo<br> - [0, 90[ - Incompleto|
 | **Providência**        |  Caso o status de cobertura de teste se encontre como incompleta, deve-se adicionar histórias com esta finalidade, realizar mais treinamentos, e mudar o quadro de pareamentos.|
 
-* Métrica 07 - Duplicação de Código
+* Métrica 07 - Número de Code Smells
 
-| **Métrica** | Duplicação de Código |
+| **Métrica** | Número de Code Smells |
 | --- | --- |
-| **Objetivo de Medição** | Evitar a redundância de código no projeto, desta forma, criando componentes que possam ser reutilizados. |
-| **Descrição** | A duplicação de código consiste na repetição de uma determinada parte de código. |
-| **Fórmula** | O _detekt_ utiliza árvore sintática abstrata (AST) para definir se o código está ou não duplicado. Assim, ele compara os valores do nós com objetivo de encontrar valores idênticos. |
+| **Objetivo de Medição** | Evitar a redundância de código no projeto, más práticas, alta complexidade, métodos muito grandes, muitos métodos por classe, etc.. |
+| **Descrição** | Code smell é uma caracterísctica no código que possívelmente indica um problema maior. |
+| **Fórmula** | A ferramente _detekt_ indica o número de ocorrências de code smell |
 | **Escala** | Racional |
 | **Coleta** | Responsável: Miguel Pimentel <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal) |
 | **Procedimento** | Submeter código fonte a ferramenta Detekt |
-| **Análise** | Se MC > X - Código Duplicado<br>Se MC <= X - Código Não Duplicado |
-| **Providência** | Caso o estado do arquivo esteja como duplicado, deve-se utilizar da abordagem apresentada no *Code Craft*, ou seja, o refatoramento a partir da técnica: "*Do not repear yourself*". |
+| **Análise** | Se NCS < 10 - BOM<br>Se NCS >= 10 - RUIM |
+| **Providência** | Caso o projeto esteja com quantidade de code smells muito grande, serão alocados histórias de refatoções. |
 
 * Métrica 08- Média da complexidade ciclomática dos métodos (_Average McCabe’s Cyclomatic Complexity_)
 
@@ -138,7 +138,33 @@
 | **Coleta**              | Responsável: Guilherme Baldissera, Miguel Pimentel, Luís Gustavo e Geovanni Oliveira </br> Periocidade: Semanalmente  |
 | **Procedimento**        | Ao final de cada *sprint* os membros de EPS se reunirão para decidir como cada risco pode impactar o projeto |
 | **Análise**             | Pode ser definido da seguinte forma: </br> Sob Controle - se Exposição de Risco < 15 </br> Preocupante - se Exposição de Risco > 15 </br>|
-| **Providência**        | Caso os riscos se encontrem como preocupante, deve-se realizar ações e medidas para reduzí-los. 
+| **Providência**        | Caso os riscos se encontrem como preocupante, deve-se realizar ações e medidas para reduzí-los.
+
+* Métrica 12 - Quantidade de linhas por método
+
+| **Métrica** | Quantidade de linhas por método |
+| --- | --- |
+| **Objetivo de Medição** | Verificar a existência de métodos muito longos |
+| **Descrição** | Quantidade de linhas por método |
+| **Fórmula** | A ferramente _detekt_ indica o número de linhas em cada método |
+| **Escala** | Racional |
+| **Coleta** | Responsável: Miguel Pimentel <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal) |
+| **Procedimento** | Submeter código fonte a ferramenta Detekt |
+| **Análise** | Se QLM < 30 - BOM<br>Se QLM >= 30 e QLM < 50 - RUIM<br>Se QLM >= 50 - HORRÍVEL |
+| **Providência** | Caso um método esteja com número de linhas maior ou igual a 30, serão feitas refatorações de modo a dividir esse método em dois ou mais. |
+
+* Métrica 13 - Quantidade de métodos por classe
+
+| **Métrica** | Quantidade de métodos por classe |
+| --- | --- |
+| **Objetivo de Medição** | Verificar a existência de classes muito abrangentes, com número de métodos muito grandes |
+| **Descrição** | Quantidade de métodos por classe |
+| **Fórmula** | A ferramente _detekt_ indica o número de métodos por classe |
+| **Escala** | Racional |
+| **Coleta** | Responsável: Miguel Pimentel <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal) |
+| **Procedimento** | Submeter código fonte a ferramenta Detekt |
+| **Análise** | Se QMC <= 15 - BOM<br>Se QMC > 15 e QMC < 20 - RUIM<br>Se QMC >= 20 - HORRÍVEL |
+| **Providência** | Caso sejam encontrados classes com número de métodos maior que 15 serão feitas refatorações de modo a deixar a classe com apenas uma funcionalidade, talvez sendo necessário criar outras classes.  |
 
 
 ## **Observações**
