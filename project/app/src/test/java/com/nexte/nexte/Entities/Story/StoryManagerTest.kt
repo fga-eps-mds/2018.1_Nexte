@@ -25,7 +25,7 @@ class StoryManagerTest {
         LikeMocker.likeAdapter = LikeAdapterSpy()
         StoryMocker.commentAdapter = CommentAdapterSpy()
         CommentMocker.userAdapter = UserAdapterSpy()
-        storyManager = StoryManager(storyAdapter = StoryAdapterSpy())
+        storyManager = StoryManager(StoryAdapterSpy())
     }
 
     @Test

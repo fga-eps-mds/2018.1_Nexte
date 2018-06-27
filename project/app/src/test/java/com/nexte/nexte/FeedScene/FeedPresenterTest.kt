@@ -93,46 +93,47 @@ class FeedPresenterTest: HelpForRealm() {
     @Test
     fun testUpdateViewActivity() {
         //prepare
-        val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
-        val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
-        val identifier = "1"
-        val likes = mutableListOf<FeedModel.FeedPlayer>()
-        val date = Date()
-        val activity1 = FeedModel.FeedActivity(challenge = FeedModel.FeedChallenge(challenger = challenger1, challenged = challenged1, challengeDate = date), feedDate = date, identifier = identifier, likes = likes)
-        val response = FeedModel.LikeAndUnlike.Response(likedActivity = activity1)
+
+        val id: String? = "1"
+        val winner: StoryPlayer? = StoryPlayer(userId = "1", setResult = 5)
+        val loser: StoryPlayer? = StoryPlayer(userId = "2", setResult = 4)
+        val date: Date? = Date()
+        val commentsId: List<String> = listOf("1", "2", "3")
+        val likesId: List<String> = listOf("A", "B", "C")
+        val story1 = Story(id, winner, loser, date, commentsId, likesId)
+        val response = FeedModel.LikeAndUnlike.Response(story1)
+
+        val comChallenger = UserAdapterSpy().get("1")
+        val comChallenged = UserAdapterSpy().get("2")
 
         //call
         this.presenter?.updateViewActivity(response = response)
 
         //assert
         assertNotNull(this.mock?.formattedGetFeedActivities)
-        assertEquals(challenger1.name, this.mock?.formattedGetFeedActivities?.challengerName)
-        assertEquals(challenger1.set.toString(), this.mock?.formattedGetFeedActivities?.challengerSets)
-        assertEquals(challenger1.photo, this.mock?.formattedGetFeedActivities?.challengerPhoto)
-        assertEquals(challenged1.name, this.mock?.formattedGetFeedActivities?.challengedName)
-        assertEquals(challenged1.set.toString(), this.mock?.formattedGetFeedActivities?.challengedSets)
-        assertEquals(challenged1.photo, this.mock?.formattedGetFeedActivities?.challengedPhoto)
+        assertEquals(comChallenger?.name, this.mock?.formattedGetFeedActivities?.challengerName)
+        assertEquals(comChallenged?.name, this.mock?.formattedGetFeedActivities?.challengedName)
         assertEquals(date.toString(), this.mock?.formattedGetFeedActivities?.feedDate)
-        assertEquals(likes.size.toString(), this.mock?.formattedGetFeedActivities?.numberOfLikes)
+        assertEquals(likesId.size.toString(), this.mock?.formattedGetFeedActivities?.numberOfLikes)
     }
 
     @Test
     fun testUserIsOnLikeList() {
         //prepare
-        val userLogged = FeedModel.FeedPlayer(UserSingleton.loggedUser.name, 1, 2)
-        val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
-        val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
-        val identifier = "1"
-        val likes = mutableListOf(userLogged)
-        val date = Date()
-        val activity1 = FeedModel.FeedActivity(challenge = FeedModel.FeedChallenge(challenger = challenger1, challenged = challenged1, challengeDate = date), feedDate = date, identifier = identifier, likes = likes)
-        val response = FeedModel.LikeAndUnlike.Response(likedActivity = activity1)
+        val id: String? = "1"
+        val winner: StoryPlayer? = StoryPlayer(userId = "1", setResult = 5)
+        val loser: StoryPlayer? = StoryPlayer(userId = "2", setResult = 4)
+        val date: Date? = Date()
+        val commentsId: List<String> = listOf("1", "2", "3")
+        val likesId: List<String> = listOf("A", "B", "C")
+        val story1 = Story(id, winner, loser, date, commentsId, likesId)
+        val response = FeedModel.LikeAndUnlike.Response(story1)
 
         //call
         this.presenter?.updateViewActivity(response = response)
 
         //assert
-        assertTrue(this.mock?.formattedGetFeedActivities?.currentUserLiked!!)
+        assertFalse(this.mock?.formattedGetFeedActivities?.currentUserLiked!!)
 
     }
 
@@ -173,10 +174,10 @@ private class MockFeedDisplayLogic: FeedDisplayLogic{
         formattedGetFeedActivities = viewModel.formattedLikedActivities
     }
 
-        override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
-            formattedGetFeedActivities = null
-            formattedGetFeedActivities = viewModel.feedActivities[0]
-            this.passedHere = true
-        }
+    override fun displayFeed(viewModel: FeedModel.GetFeedActivities.ViewModel) {
+        formattedGetFeedActivities = null
+        formattedGetFeedActivities = viewModel.feedActivities[0]
+        this.passedHere = true
+    }
 }
 

@@ -19,6 +19,7 @@ class StoryAdapterRealm: StoryAdapter{
     }
 
     override fun get(identifier: String): Story? {
+
         val storyRealm = realm.where<StoryRealm>().equalTo("id", identifier).findFirst()
         return if (storyRealm == null) {
             null
@@ -38,6 +39,45 @@ class StoryAdapterRealm: StoryAdapter{
             realm.insertOrUpdate(it)
             realm.commitTransaction()
             return story
+        }
+    }
+
+    override fun addComment(story: Story, commentId: String): Story? {
+        convertStoryToStoryRealm(story).let {
+            val mutableComments = story.commentsId.toMutableList()
+            mutableComments.add(commentId)
+            story.commentsId = mutableComments.toList()
+            return updateOrInsert(story)
+        }
+    }
+
+    override fun removeComment(story: Story, commentPos: Int): Story? {
+
+        convertStoryToStoryRealm(story).let {
+
+            val mutableComments = story.commentsId.toMutableList()
+            mutableComments.removeAt(commentPos)
+            story.commentsId = mutableComments.toList()
+            return updateOrInsert(story)
+
+        }
+    }
+
+    override fun updateLikes(story: Story, userId: String): Story? {
+        //verifies if the user is on list
+        convertStoryToStoryRealm(story).let {
+            val storyIndex = story.likesId.contains(userId)
+            val mutableLikes = story.likesId.toMutableList()
+
+            if(storyIndex){
+                mutableLikes.remove(userId)
+            }
+            else{
+                mutableLikes.add(userId)
+            }
+
+            story.likesId = mutableLikes.toList()
+            return updateOrInsert(story)
         }
     }
 
