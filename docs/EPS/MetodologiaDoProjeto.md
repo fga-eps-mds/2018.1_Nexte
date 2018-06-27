@@ -88,8 +88,13 @@ Cada *sprint* se inicia ao domingo e termina ao sábado.
 ### 3.1. *Daily Scrum*
 As *daily scrum* são reuniões diárias feitas pela equipe e tem como objetivo disseminar conhecimento sobre o que foi feito no dia anterior, identificar impedimentos e priorizar o trabalho a ser realizado. Como os membros da equipe de desenvolvimento e os membros da equipe de gerência possuem horários muito diferentes, foi definido que as reuniões seriam da seguinte forma:
 
+* Até release 1
 - **Segunda** e **Quarta** a reunião será via Hangouts às 21h30.
 - **Terça** e **Quinta** a reunião será presencial, após a aula de EPS.
+- **Sexta** e **Domingo** a reunião será feita via bot standuply no Slack, o bot poderá ser respondido de 20h até 23h59.
+
+* Pós release 1
+- **Segunda**, **Terça**, **Quarta** e **Quinta** a reunião será via Hangouts às 21h30.
 - **Sexta** e **Domingo** a reunião será feita via bot standuply no Slack, o bot poderá ser respondido de 20h até 23h59.
 
 A reunião deverá durar até 15 minutos.
