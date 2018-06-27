@@ -40,21 +40,14 @@ class MatchWorker {
     var userManager: UserManager? = null
 
 
-    fun sortListByChallenges(list: List<Challenge>?): List<Challenge>? {
-        return list?.sortedBy { it.id }
-    }
-
-
     fun getUserChallenges(request: MatchModel.InitScene.Request) {
 
-        var sentChallenges = challengeManager?.getAll()
-        sentChallenges = sortListByChallenges(sentChallenges)
+        val challenges = challengeManager?.getAll()
 
-        val response: MatchModel.InitScene.Response = MatchModel.InitScene.Response(sentChallenges!!.toMutableList())
+        val response: MatchModel.InitScene.Response = MatchModel.InitScene.Response()
 
         updateLogic?.updateSentChallenge(response)
 
-//        (?)
         if (UserSingleton.userType != UserType.MOCKED) {
             val url = "http://10.0.2.2:3000/users"
             url.httpGet().responseJson()
@@ -62,6 +55,7 @@ class MatchWorker {
             //Do nothing
         }
     }
+
 
     /**
      * Method responsible for saving the match result on the database

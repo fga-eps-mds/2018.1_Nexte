@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.nexte.nexte.ChallengeTabsFragment
+import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.MainActivity
@@ -66,7 +67,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     var numberOfSets = MatchModel.SetsNumber.One
     var challenged: String = ""
     var challenger: String = ""
+    var challengesSent: List<Challenge>? = null
     private var challengeManager: ChallengeManager? = null
+    var userManager: UserManager? = null
 
     /**
      * Method created because in the future maybe this class will receive arguments.
@@ -339,7 +342,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             val match = MatchModel.FormattedMatchData(challenged,
                     R.drawable.profile_image1,
                     challenger,
-                    R.drawable.profile_image2)
+                    R.drawable.profile_image2,
+                    challengesSent)
 
             this.sendButton?.isEnabled = false
 

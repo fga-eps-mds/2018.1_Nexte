@@ -29,14 +29,14 @@ class MatchModel {
        *
        * @param match informations about the match as they should be altered on program
        */
-      class Response(var match: MutableList<Challenge>)
+      class Response(var match: MatchData)
 
       /**
        * Class responsible to store the formatted data and use it to display on view
        *
        * @param matchFormatted data ready to be displayed on screen
        */
-      class ViewModel(var matchFormatted: MutableList<FormattedMatchData>)
+      class ViewModel(var matchFormatted: FormattedMatchData)
 
   }
     // --------- Aux classes ---------
@@ -64,12 +64,8 @@ class MatchModel {
     class FormattedMatchData (var challengedName: String,
                               var challengedPhoto: Int,
                               var challengerName: String,
-<<<<<<< HEAD
-                              var challengerPhoto: Int)
-=======
                               var challengerPhoto: Int,
-                              var challengesSent: ChallengeManager)
->>>>>>> parent of 5dd778d... Started to formatted a challenge in MatchPresenter
+                              var challengesSent: List<Challenge>?)
 
     /**
      * Class that defines the types of sets to be used on definition by user on view
