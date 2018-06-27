@@ -11,7 +11,7 @@ class LikeListModel {
      * Class responsible to pass data from View to Interactor and then to Worker,
      * so it can request data.
      */
-    class Request(var tokenId: String, var storyId: String)
+    class Request(var tokenId: String, var storyId: String?)
 
     /**
      * Class responsible to store received information from Worker and pass to Presenter
