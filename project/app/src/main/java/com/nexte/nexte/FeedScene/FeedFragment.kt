@@ -42,7 +42,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
         return FeedFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
         this.userManager = UserManager()
@@ -90,22 +90,22 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     private fun goToLikesList() {
 
         val likeListFragment = LikeListFragment().getInstance()
-        val fragmentManager = activity.fragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_frame_layout, likeListFragment, "like")
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val fragmentManager = activity?.fragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.main_frame_layout, likeListFragment, "like")
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
     }
 
 
     private fun goToCommentsList() {
 
         val commentsFragment = CommentsFragment().getInstance()
-        val fragmentManager = activity.fragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_frame_layout, commentsFragment, "comments")
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val fragmentManager = activity?.fragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.main_frame_layout, commentsFragment, "comments")
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
     }
 
     /**
