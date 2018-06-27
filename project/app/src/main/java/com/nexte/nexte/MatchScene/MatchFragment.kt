@@ -64,6 +64,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     var numberOfSets = MatchModel.SetsNumber.One
     var challenged: String = ""
     var challenger: String = ""
+    var challengeId: String = ""
     private var challengeManager: ChallengeManager? = null
 
     /**
@@ -81,11 +82,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             bundle.putInt("HasChallenge", 0)
             bundle.putString("Challenger", "")
             bundle.putString("Challenged", "")
+            bundle.putString("ChallengeId", "")
         }
         else {
             bundle.putInt("HasChallenge", 1)
             bundle.putString("Challenger", challenge.challenger.name)
             bundle.putString("Challenged", challenge.challenged.name)
+            bundle.putString("ChallengeId", challenge.challengeId)
         }
 
         fragmentFirst.arguments = bundle
@@ -322,6 +325,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         super.onCreate(savedInstanceState)
 
         this.challenged = arguments!!.getString("Challenged")
+        this.challengeId = arguments!!.getString("ChallengeId")
         this.challenger = arguments!!.getString("Challenger")
         this.hasChallenge = arguments!!.getInt("HasChallenge")
     }
@@ -336,7 +340,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          */
 
         if(hasChallenge == 1) {
-            view = inflater?.inflate(R.layout.activity_match, container, false)
+            view = inflater.inflate(R.layout.activity_match, container, false)
             this.setUpMatchScene()
             this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
             this.sendButton = view?.findViewById(R.id.sendButton)
@@ -355,8 +359,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
             val request = MatchModel.InitScene.Request(MatchModel.MatchData(
                     MatchModel.MatchPlayer(challenged, R.drawable.profile_image1),
-                    MatchModel.MatchPlayer(challenger, R.drawable.profile_image2)
-            ))
+                    MatchModel.MatchPlayer(challenger, R.drawable.profile_image2),
+                    this.challengeId))
             interactor?.getInfoMatches(request)
 
             sendButton?.setOnClickListener {
@@ -381,7 +385,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      */
     fun declineMatch(){
         val request = MatchModel.DeclineChallengeRequest.
-                Request("1")
+                Request("ca94da1c-b113-417a-87ee-b8c0f231f498")
         interactor?.declineMatchResult(request)
     }
 

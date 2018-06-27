@@ -91,12 +91,12 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
             // Do nothing
         }
 
-        for (challenge in challenges) {
+        for (challenge in challenges!!) {
 
             when (challenge.stage) {
                 is Challenge.Stage.Played -> {
 
-                    val stage = challenge.stage
+                    val stage = challenge.stage as Challenge.Stage.Played
 
                     val dateToShow = SimpleDateFormat("dd/MM/yyyy")
 
@@ -250,7 +250,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         else{
             res = gamePlayed.gameChallenger.toString() + "/" + gamePlayed.gameChallenged.toString() + "  "
         }
-        return res;
+        return res
     }
 
     /**

@@ -49,7 +49,8 @@ class MatchModel {
      * @param challenger informations of the challenger player
      */
     class MatchData (var challenged: MatchPlayer,
-                     var challenger: MatchPlayer)
+                     var challenger: MatchPlayer,
+                     var challengeId: String)
 
 
     /**
