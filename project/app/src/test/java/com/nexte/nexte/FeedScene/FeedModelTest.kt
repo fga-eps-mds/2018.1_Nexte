@@ -1,6 +1,7 @@
 package com.nexte.nexte.FeedScene
 
 import com.nexte.nexte.Entities.Story.Story
+import com.nexte.nexte.Entities.Story.StoryAdapterSpy
 import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.FeedScene.FeedModel.GetFeedActivities.ViewModel
 import com.nexte.nexte.R
@@ -211,25 +212,25 @@ class FeedModelTest {
     @Test
     fun successCreateResponseLikeAndUnlike(){
         //prepare
-        val challenger1 = FeedModel.FeedPlayer("Helena", R.mipmap.ic_launcher, 2)
-        val challenged1 = FeedModel.FeedPlayer("Gabriel", R.mipmap.ic_launcher, 3)
-        val date = Date()
-        val identifier = "id"
-        val challenge = FeedModel.FeedChallenge(challenger = challenger1, challenged = challenged1, challengeDate = date)
-        val likes = mutableListOf(challenger1)
-        val activity1 = FeedModel.FeedActivity(challenge = challenge, feedDate = date, identifier = identifier, likes = likes)
+        val id: String? = "1"
+        val winner: StoryPlayer? = StoryPlayer(userId = "1", setResult = 5)
+        val loser: StoryPlayer? = StoryPlayer(userId = "2", setResult = 4)
+        val date: Date? = Date()
+        val commentsId: List<String> = listOf("1", "2", "3")
+        val likesId: List<String> = listOf("A", "B", "C")
+        val story1 = Story(id, winner, loser, date, commentsId, likesId)
 
         //call
-        val response = FeedModel.LikeAndUnlike.Response(activity1)
-       response.likedActivity  = activity1
+        val response = FeedModel.LikeAndUnlike.Response(story1)
+       response.likedActivity  = story1
 
 
         //assert
-        assertEquals(activity1, response.likedActivity)
-        assertEquals(challenge, response.likedActivity.challenge)
-        assertEquals(identifier, response.likedActivity.identifier)
-        assertEquals(date, response.likedActivity.feedDate)
-        assertEquals(likes, response.likedActivity.likes)
+        assertEquals(story1, response.likedActivity)
+        assertEquals(story1.winner, response.likedActivity.winner)
+        assertEquals(story1.id, response.likedActivity.id)
+        assertEquals(story1.commentsId, response.likedActivity.commentsId)
+        assertEquals(story1.likesId, response.likedActivity.likesId)
 
     }
 

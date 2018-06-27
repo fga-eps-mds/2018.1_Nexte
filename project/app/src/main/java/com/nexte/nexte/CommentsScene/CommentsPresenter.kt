@@ -110,8 +110,7 @@ class CommentsPresenter : CommentsPresentationLogic {
      * @param response unformatted list of comments after deletion
      */
     override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
-
-        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(mutableListOf(response.delComments)))
+        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(response.delComments))
         viewController?.displayCommentsAfterDel(viewModel)
     }
 

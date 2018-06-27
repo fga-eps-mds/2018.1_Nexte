@@ -18,7 +18,7 @@ class CommentsModel {
          * Class responsible to pass data from View to Interactor and then to worker,
          * so it can request data
          */
-        class Request(val tokenId: String, val storyId: String)
+        class Request(val tokenId: String, val storyId: String?)
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
@@ -46,7 +46,7 @@ class CommentsModel {
          *
          * @param commentID contains the identifier of the reported comment
          */
-        class Request(var commentID: Int)
+        class Request(var commentID: Int, val storyId: String?)
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
          * @param serverResponse contains the server response to the user
@@ -72,7 +72,7 @@ class CommentsModel {
          * so it can request data
          * @param commentToPost contains the message of the comment that will be posted
          */
-        class Request(var commentToPost: String)
+        class Request(var commentToPost: String, var storyId: String?)
 
         /**
          * Class responsible to store received information from Worker and pass it to Presenter
@@ -102,7 +102,7 @@ class CommentsModel {
          *
          * @param commentIdentifier position of the comment to be removed
          */
-        class Request (var commentIdentifier: Int)
+        class Request (var commentIdentifier: Int, val storyId: String?)
 
         /**
          * Class responsible to get the new list of comments, without the comment
@@ -110,7 +110,7 @@ class CommentsModel {
          *
          * @param delComments list of unformatted comments without deleted comment
          */
-        class Response (var delComments: Comment)
+        class Response (var delComments: MutableList<Comment>)
 
         /**
          * Class responsible to define the standar format of the information that will
