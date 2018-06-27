@@ -1,4 +1,5 @@
 package com.nexte.nexte.LoginScene
+import android.util.Log
 
 /**
  * Interface that defines Business Login to Interactor and defines comunication
@@ -38,6 +39,10 @@ class LoginInteractor : LoginBusinessLogic, LoginWorkerUpdateLogic {
         worker.authenticateUser(request)
     }
 
+    override fun accountKitAuthentication(request: LoginModel.AccountKit.Request) {
+        worker.requestForAuth(request)
+    }
+
     override fun authenticateUser(response: LoginModel.Authentication.Response) {
         val responseStatus = response.authenticateStatusCode
         when(responseStatus) {
@@ -47,10 +52,6 @@ class LoginInteractor : LoginBusinessLogic, LoginWorkerUpdateLogic {
                 this.presenter?.presentError(response)
             }
         }
-    }
-
-    override fun accountKitAuthentication(request: LoginModel.AccountKit.Request) {
-        worker.requestForAuth(request)
     }
 
     override fun requestAuth(response: LoginModel.AccountKit.Response) {

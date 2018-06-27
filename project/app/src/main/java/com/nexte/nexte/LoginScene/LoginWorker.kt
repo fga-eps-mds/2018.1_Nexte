@@ -47,7 +47,6 @@ class LoginWorker {
     var userManager: UserManager? = UserManager()
 
     val authenticateHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-
         result.success {
             val json = result.get().obj()
             val data = json["data"] as JSONObject
@@ -69,11 +68,9 @@ class LoginWorker {
     }
 
     val requestAuthHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-
         result.success {
 
             UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
-
             val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
             updateLogic?.requestAuth(response)
         }
@@ -93,7 +90,7 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "http://192.168.100.3:3000/sessions" // Local url for auth
+        val authentication = "http://192.168.100.2:3000/sessions" // http://10.0.2.2:3000
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val json = JSONObject()

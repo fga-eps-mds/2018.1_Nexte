@@ -58,14 +58,14 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_login_view)
         this.setup()
 
-        login.setOnClickListener { createAuthenticationRequest() }
+        login.setOnClickListener { this.loginPhoneNumber() } //createAuthenticationRequest() }
 
         navigationLogin.setOnClickListener{ this.finish() }
 
         accountKitLogin.setOnClickListener {
             var dialog = AuthenticationDialogFragment()
             dialog.acitivity = this
-            dialog.show(supportFragmentManager, "dssdd")
+            dialog.show(supportFragmentManager, "Authenticate Dialog")
         }
 
 
@@ -80,34 +80,31 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         }
     }
 
-    override fun onBackPressed() { this.finishAffinity() }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         when (requestCode) {
             LoginModel.AccountKit.accountKit_code -> {
-                Log.e("debug", "Here")
                 val loginResult: AccountKitLoginResult = data!!.getParcelableExtra(AccountKitLoginResult.RESULT_KEY)
-                this.handleLoginResult(loginResult)
+                if (loginResult.authorizationCode != null) {
+                    Log.e("Deu", "Ruimzera")
+                }
             }
         }
     }
 
+    override fun onBackPressed() { this.finishAffinity() }
+
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         val message: String
-
         if (viewModel.tokenId != "") {
             message = "Sucess to authenticate"
-            saveUserIdentifier(viewModel.tokenId)
-            this.finish()
+//            saveUserIdentifier(viewModel.tokenId)
         } else {
             message = "Error to authenticate"
         }
 
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
-        this.finish()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
@@ -121,8 +118,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      * Method responsible for creating the authetication request an passing it to the interactor
      */
     private fun createAuthenticationRequest(){
-        val account = userField.text.toString()
-        val password = passwordField.text.toString()
+        val account =  userField.text.toString() // Expected "ramires"
+        val password = passwordField.text.toString() // Expected "test-nexte-ramires"
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
@@ -243,8 +240,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         interactor.worker.updateLogic = interactor
         presenter.view = view
     }
-
-
 }
 
 
