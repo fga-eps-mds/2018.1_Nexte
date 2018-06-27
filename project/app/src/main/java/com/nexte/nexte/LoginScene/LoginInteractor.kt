@@ -1,5 +1,4 @@
 package com.nexte.nexte.LoginScene
-import android.util.Log
 
 /**
  * Interface that defines Business Login to Interactor and defines comunication

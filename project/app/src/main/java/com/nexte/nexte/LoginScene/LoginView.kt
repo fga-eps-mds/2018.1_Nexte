@@ -49,6 +49,7 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
+    val authorizationCode: String? = null
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -58,7 +59,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_login_view)
         this.setup()
 
-        login.setOnClickListener { this.loginPhoneNumber() } //createAuthenticationRequest() }
+        login.setOnClickListener { createAuthenticationRequest() }
 
         navigationLogin.setOnClickListener{ this.finish() }
 
@@ -67,7 +68,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             dialog.acitivity = this
             dialog.show(supportFragmentManager, "Authenticate Dialog")
         }
-
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
         val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
@@ -84,13 +84,45 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             LoginModel.AccountKit.accountKit_code -> {
-                val loginResult: AccountKitLoginResult = data!!.getParcelableExtra(AccountKitLoginResult.RESULT_KEY)
-                if (loginResult.authorizationCode != null) {
-                    Log.e("Deu", "Ruimzera")
+                val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+                if (loginResult?.error != null) {
+                    Log.d("Error", "login result $loginResult")
+                    if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
+                } else {
+                    val token = loginResult?.accessToken!!.token
+                    Log.e("Token", token)
                 }
             }
         }
     }
+
+
+    private fun getAccount(authCode: String) {
+        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
+            override fun onSuccess(account: Account) {
+                val phoneNumber = account.phoneNumber
+                val email = account.email
+                val phoneNumberString = phoneNumber.toString()
+                val emailString = email.toString()
+
+                if(phoneNumberString !=  "") {
+                    Log.i("Phone", phoneNumberString)
+                    val request = LoginModel.AccountKit.Request(null, phoneNumberString, authCode)
+                    interactor?.accountKitAuthentication(request)
+                }
+
+                if(emailString != "") {
+                    val request = LoginModel.AccountKit.Request(emailString, null, authCode)
+                    interactor?.accountKitAuthentication(request)
+                }
+            }
+
+            override fun onError(error: AccountKitError) {
+                Log.e("AccountKit", error.toString())
+            }
+        })
+    }
+
 
     override fun onBackPressed() { this.finishAffinity() }
 
@@ -98,7 +130,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         val message: String
         if (viewModel.tokenId != "") {
             message = "Sucess to authenticate"
-//            saveUserIdentifier(viewModel.tokenId)
+            saveUserIdentifier(viewModel.tokenId)
+            this.finish()
         } else {
             message = "Error to authenticate"
         }
@@ -108,10 +141,13 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
-        val message: String  = viewModel.message
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast.show()
-        this.finish()
+        if (viewModel.message == LoginModel.AccountKit.StatusCode.SUCESSED.toString()) {
+            this.finish()
+        } else {
+            val message: String  = viewModel.message
+            val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+            toast.show()
+        }
     }
 
     /**
@@ -123,35 +159,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
-    }
-
-    /**
-     * Gets current account from Facebook Account Kit which include user's phone number
-     */
-    private fun getAccount(token: String) {
-        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
-            override fun onSuccess(account: Account) {
-                val phoneNumber = account.phoneNumber
-                val email = account.email
-                val phoneNumberString = phoneNumber.toString()
-                val emailString = email.toString()
-
-                if(phoneNumberString !=  "") {
-                    val request = LoginModel.AccountKit.Request(null, phoneNumberString, "dsfsd")
-                    interactor?.accountKitAuthentication(request)
-                }
-
-                if(emailString != "") {
-                    val request = LoginModel.AccountKit.Request(emailString, null, "dfsfd")
-                    interactor?.accountKitAuthentication(request)
-                }
-
-            }
-
-            override fun onError(error: AccountKitError) {
-                Log.e("AccountKit", error.toString())
-            }
-        })
     }
 
     /**
@@ -176,51 +183,10 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 
-    /*
-     * Handle with Login Result
-     */
-    private fun handleLoginResult(loginResult: AccountKitLoginResult): String? {
-        var message: String? = null
-
-        if (loginResult.error != null) {
-            Log.e("debug", "login error")
-            message = loginResult.error?.errorType?.message
-        } else if (loginResult.wasCancelled()) {
-            Log.d("debug", "login cancelled")
-            message = "login cancel"
-        } else {
-            if (loginResult.accessToken != null) {
-                val accessToken = loginResult.authorizationCode
-                getAccount(accessToken!!)
-                Log.i("info", accessToken)
-            } else {
-                Log.e("debug", "access token null")
-            }
-        }
-        return message
-    }
-
-    class AuthenticationDialogFragment: DialogFragment() {
-
-        var acitivity: LoginView? = null
-
-        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-            val builder = AlertDialog.Builder(activity)
-            builder.setTitle("Vamos entrar com o seu email ou telefone?")
-                    .setItems(R.array.authenticationArray, DialogInterface.OnClickListener { _, which ->
-                        when (which) {
-                            0 -> { this.acitivity?.loginByEmail() }
-                            1 -> { this.acitivity?.loginPhoneNumber() }
-                        }
-                    })
-            return builder.create()
-        }
-    }
-
     /**
      * Persist userId when authentication is sucessfully
      */
-    private fun saveUserIdentifier(id: String) {
+    fun saveUserIdentifier(id: String) {
         val sharedPreferences = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("userId", id)
@@ -239,6 +205,23 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         interactor.presenter = presenter
         interactor.worker.updateLogic = interactor
         presenter.view = view
+    }
+
+    class AuthenticationDialogFragment: DialogFragment() {
+
+        var acitivity: LoginView? = null
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Vamos entrar com o seu email ou telefone?")
+                    .setItems(R.array.authenticationArray, DialogInterface.OnClickListener { _, which ->
+                        when (which) {
+                            0 -> { this.acitivity?.loginByEmail() }
+                            1 -> { this.acitivity?.loginPhoneNumber() }
+                        }
+                    })
+            return builder.create()
+        }
     }
 }
 

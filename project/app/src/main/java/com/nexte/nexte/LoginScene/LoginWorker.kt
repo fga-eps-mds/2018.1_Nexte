@@ -9,7 +9,6 @@ import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
-import com.nexte.nexte.UserSingleton
 import org.json.JSONObject
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
@@ -69,8 +68,12 @@ class LoginWorker {
 
     val requestAuthHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
         result.success {
+            val json = result.get().obj()
+            val data = json["data"] as JSONObject
+            val userJson = data ["user"] as JSONObject
+            val user  = User.createUserFromJsonObject(userJson)
+            NexteApplication().updateUserLoggedStatus(user)
 
-            UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
             val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
             updateLogic?.requestAuth(response)
         }
@@ -94,8 +97,8 @@ class LoginWorker {
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val json = JSONObject()
-        json.put("username", "ramires") // Expected ramires
-        json.put("password",  "test-nexte-ramires") // Expected test-nexte-ramires
+        json.put("username", request.userName) // Expected ramires
+        json.put("password",  request.password) // Expected test-nexte-ramires
 
         Fuel.post(authentication).header(headers).body(json.toString()).responseJson(authenticateHandler)
     }
@@ -136,4 +139,8 @@ class LoginWorker {
 
         return json.toString()
     }
+
+    /*
+     *
+     */
 }

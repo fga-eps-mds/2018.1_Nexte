@@ -39,7 +39,7 @@ class LoginPresenterTest {
         //prepare
         val sucessed = LoginModel.AccountKit.StatusCode.SUCESSED
         val response = LoginModel.AccountKit.Response(statusCode = sucessed)
-        val expectedMessage = "Autenticação realizada com sucesso"
+        val expectedMessage = "SUCESSED"
 
         //call
         this.presenter?.presentAccountKit(response = response)

@@ -59,7 +59,7 @@ class LoginPresenter: LoginPresentationLogic {
         var message: String = ""
 
         when(statusCode) {
-            LoginModel.AccountKit.StatusCode.SUCESSED -> { message = "Autenticação realizada com sucesso" }
+            LoginModel.AccountKit.StatusCode.SUCESSED -> { message = LoginModel.AccountKit.StatusCode.SUCESSED.toString() }
             LoginModel.AccountKit.StatusCode.CANCELLED -> { message = "Ops, a autenticação foi cancelada" }
             LoginModel.AccountKit.StatusCode.ERROR -> { message = "Ops, houve um erro, tente novamente" }
         }
