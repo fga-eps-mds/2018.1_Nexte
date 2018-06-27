@@ -36,6 +36,14 @@
 
 ### **1.1. Velocity**
 
+![Velocity](https://i.imgur.com/TnxCR6m.png)
+
+Existem algumas diferenças encontradas nas pontuações de na imagem acima do que está documentado em alguns planejamentos e resultados de sprint. Isso deve-se ao fato da equipe documentar dívidas técnicas de sprint anteriores como pontos planejados em algumas sprints. Nessa imagem está o certo.
+
+Na imagem acima pode-se observar o velocity da equipe, que terminou em **73,78** pontos. 
+
+Pode-se observar que a equipe errou bastante nos planejamentos, e só conseguiu chegar próximo a produtividade máxima, mantendo-a, a partir da sprint 9. Os erros devem-se muito ao fato da equipe querer constantemente aumentar o velocity, dessa forma, planejando pontos demais. Mesmo quando a equipe aumentava o velocity haviam dívidas técnicas. Um grande aprendizado foi respeitar ao máximo a metodologia e os dados dela, e não confiar que "nessa sprint" a equipe vai conseguir entregar muito mais.
+
 ### **1.2. Quadro de Conhecimento**
 
 \* *O quadro de conhecimentos foi adicionado na sprint 4.*
@@ -46,13 +54,45 @@
 
 * Sprint 15
 
-![Quadro de Conhecimento Sprint 15]()
+![Quadro de Conhecimento Sprint 15](https://i.imgur.com/BY2aYth.png)
+
+Pode-se observar que houve grande avanço no conhecimento da equipe, em vários assuntos tanto EPS como MDS estão bem nivelados. 
+
+As maiores discrepâncias são:
+
+* Baldissera em EPS que tem conhecimentos de Docker maior que o resto do grupo. Visto que ele foi o Devops na Release 1 e como a maior parte das tarefas de devops(Ambientes de desenvolvimento, testes, homologação, CI, CD) foram entregues na R1, os demais membros de EPS não conseguiram atuar muito nesse papel. Dessa forma, aprendendo menos de Docker;
+
+* Houve muita dificuldade e muitos problemas em testes unitários e testes instrumentação ao longo do projeto, devido as particularidades e dificuldades excessivas de testes em android. A equipe de MDS conseguiu aprender e testar muita coisa mas não se sentiu tão segura no conhecimento, visto que várias vezes tiveram que recorrer a EPS para descobrir como testar algumas funcionalidades;
 
 ### **1.3. EVM**
 
+![EVM](https://i.imgur.com/eVhwDjZ.png)
+
+Como pode-se observar a equipe esteve ao longo da Release 2 inteira a frente do Roadmap, e, mesmo com dívidas técnicas, entregou mais valor pro cliente do que o planejado. Além disso, foram entregues mais funcionalidades do que o planejado inicialmente com o cliente.
+
 ### **1.4. Métricas**
 
+![Análise Estática](https://i.imgur.com/5uAV0gO.png)
+
+Foram feitas as refatorações citadas na documentação da sprint passada e todas as métricas de código: Quantidade de linhas por método, Quantidade de métodos por classe, Quantidade de CodeSmells, Complexidade Ciclomática e Adequação a folha de estilo estão dentro do aceitável. Nenhuma destas métricas está sendo acusada pela ferramenta _detekt_.
+
+Foi bem simples monitorar e refatorar as métricas ao longo de todo o projeto, muito disso deve-se a arquitetura utilizada(VIP).
+
+![Cobertura de Testes](https://i.imgur.com/H3g8K08.png)
+
+Observa-se que a cobertura de testes terminou em 87%. 
+
+Testes unitários foram um dos maiores, se não o maior, problemas que a equipe teve. Qualquer coisa que a equipe precisava testar gerava problemas, e muitos desses problemas tinham que ser resolvidos com frameworks terceiras externas. Muitas dessas sem documentação, com documentação só em java, desatualizadas. Algumas não funcionavam da forma esperada e geraram problemas no projeto. 
+
+Enfim, testes unitários em android são instáveis e a política do android de "se preocupar apenas em testar seu código" dificultou muito a equipe a chegar na cobertura de testes esperada - 90%.
+
 ### **1.5. Riscos**
+
+![Riscos](https://i.imgur.com/hcXe3c4.png)
+
+Quanto aos riscos do projeto pode-se perceber que praticamente todos chegaram ao "fim". O monitoramente de riscos foi essencial para a equipe, ajudou a prever e mitigar vários problemas que a equipe teve. 
+
+O único porém é que a equipe deveria ter focado em mitigar alguns riscos maiores, como o servidor e testes, por exemplo, mais cedo.
 
 ## **2. Post Mortem**
 
