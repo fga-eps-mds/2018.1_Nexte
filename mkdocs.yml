@@ -23,6 +23,7 @@ pages:
     - Gestão de Risco: EPS/GestaoDeRisco.md
     - Definição de Produtividade: EPS/DefinicaoDeProdutividade.md
     - Canvas: EPS/Canvas.md
+    - Pipeline: EPS/Pipeline.md
     - EVM vs Burndown: EPS/EVM_vs_Burndown.md
     - Plano de Qualidade:
       - Abtraction Sheet: EPS/PlanoDeQualidade/AbstractionSheet.md
