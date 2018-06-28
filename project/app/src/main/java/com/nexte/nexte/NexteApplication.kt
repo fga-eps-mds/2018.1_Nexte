@@ -55,11 +55,11 @@ class NexteApplication: Application() {
     }
 
     fun updateUserLoggedStatus(user: User) {
-        UserSingleton.setLoggedUser(user.id, UserType.REAL) // User Singleton
+        UserSingleton.setLoggedUser(user.id, UserType.MOCKED) // User Singleton
 
         // Realm instance for real user
-        val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
-        Realm.setDefaultConfiguration(config)
-        UserManager().update(user)
+//        val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
+//        Realm.setDefaultConfiguration(config)
+//        UserManager().update(user)
     }
 }

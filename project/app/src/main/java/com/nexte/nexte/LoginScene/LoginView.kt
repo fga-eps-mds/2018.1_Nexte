@@ -49,7 +49,6 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
-    val authorizationCode: String? = null
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -101,17 +100,11 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     override fun onBackPressed() { this.finishAffinity() }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
-        val message: String
-        if (viewModel.tokenId != "") {
-            message = "Sucess to authenticate"
-            saveUserIdentifier(viewModel.tokenId)
-            this.finish()
-        } else {
-            message = "Error to authenticate"
-        }
-
+        val message = "Sucess to authenticate"
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
+
+        this.finish()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
@@ -122,6 +115,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
             val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
             toast.show()
         }
+
+        this.finish()
     }
 
     /**
