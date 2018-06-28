@@ -78,6 +78,12 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
         return newView
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.activity.fragmentManager.popBackStack()
+
+    }
+
     /**
      * Method responsible for creating the fetch data to list request and passing it to the interactor
      */

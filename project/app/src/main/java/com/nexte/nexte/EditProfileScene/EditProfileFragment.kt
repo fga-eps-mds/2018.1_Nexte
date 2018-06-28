@@ -114,6 +114,11 @@ class EditProfileFragment : Fragment(),
         return newView
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.activity.fragmentManager.popBackStack()
+
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         this.createGetProfileRequest()
