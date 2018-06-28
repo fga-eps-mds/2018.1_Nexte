@@ -140,6 +140,7 @@ class CommentsPresenter : CommentsPresentationLogic {
             }
 
 
+
             var image = user.profilePicture?.toInt()
             if(image == null){
                 image = 1
