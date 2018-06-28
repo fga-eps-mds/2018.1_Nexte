@@ -16,7 +16,6 @@ import com.nexte.nexte.R
 import com.nexte.nexte.ShowProfileScene.ShowProfileFragment
 import com.nexte.nexte.UserSingleton
 import kotlinx.android.synthetic.main.row_ranking.view.*
-import android.support.v7.widget.DividerItemDecoration
 import android.widget.ImageView
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.User.UserManager
@@ -72,8 +71,6 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
         rankingRecyclerView = view?.findViewById(R.id.rankingRecyclerView)
         rankingConstraintLayout = view?.findViewById(R.id.rankingConstraintLayout)
         rankingRecyclerView?.layoutManager = LinearLayoutManager(this.activity)
-        val dividerItemDecoration = DividerItemDecoration(this.activity, DividerItemDecoration.VERTICAL)
-        rankingRecyclerView?.addItemDecoration(dividerItemDecoration)
 
         val fragmentTransaction = fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.fixedFragment, FixedRowRankingFragment())
