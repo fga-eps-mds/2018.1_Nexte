@@ -64,6 +64,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     var numberOfSets = MatchModel.SetsNumber.One
     var challenged: String = ""
     var challenger: String = ""
+    var challengeId: String = ""
     private var challengeManager: ChallengeManager? = null
 
     /**
@@ -81,11 +82,13 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             bundle.putInt("HasChallenge", 0)
             bundle.putString("Challenger", "")
             bundle.putString("Challenged", "")
+            bundle.putString("ChallengeId", "")
         }
         else {
             bundle.putInt("HasChallenge", 1)
             bundle.putString("Challenger", challenge.challenger.name)
             bundle.putString("Challenged", challenge.challenged.name)
+            bundle.putString("ChallengeId", challenge.challengeId)
         }
 
         fragmentFirst.arguments = bundle
@@ -242,10 +245,10 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     }
 
     /**
-     * This method validates enables or diables the send button according to the validation of sets result
+     * This method validates enable or disable the send button according to the validation of sets result
      */
     private fun defineSetsValid(){
-        sendButton?.isEnabled = validateSetResults()
+        sendButton?.isEnabled = true//validateSetResults()
     }
 
     private fun checkIfSetResultIsValid(i: Int,
@@ -322,6 +325,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         super.onCreate(savedInstanceState)
 
         this.challenged = arguments!!.getString("Challenged")
+        this.challengeId = arguments!!.getString("ChallengeId")
         this.challenger = arguments!!.getString("Challenger")
         this.hasChallenge = arguments!!.getInt("HasChallenge")
     }
@@ -336,7 +340,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
          */
 
         if(hasChallenge == 1) {
-            view = inflater?.inflate(R.layout.activity_match, container, false)
+            view = inflater.inflate(R.layout.activity_match, container, false)
             this.setUpMatchScene()
             this.recyclerView = view?.findViewById(R.id.matchRecyclerView)
             this.sendButton = view?.findViewById(R.id.sendButton)
@@ -347,7 +351,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                     challenger,
                     R.drawable.profile_image2)
 
-            this.sendButton?.isEnabled = false
+            this.sendButton?.isEnabled = true//false
 
             this.matchViewAdapter = MatchDataAdapter(match, this)
             recyclerView?.adapter = this.matchViewAdapter
@@ -355,8 +359,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
             val request = MatchModel.InitScene.Request(MatchModel.MatchData(
                     MatchModel.MatchPlayer(challenged, R.drawable.profile_image1),
-                    MatchModel.MatchPlayer(challenger, R.drawable.profile_image2)
-            ))
+                    MatchModel.MatchPlayer(challenger, R.drawable.profile_image2),
+                    this.challengeId))
             interactor?.getInfoMatches(request)
 
             sendButton?.setOnClickListener {
@@ -380,8 +384,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      * Method responsible for the decline match result request to the interactor
      */
     fun declineMatch(){
+        //aqui
         val request = MatchModel.DeclineChallengeRequest.
-                Request("1")
+                Request(this.challengeId)
         interactor?.declineMatchResult(request)
     }
 
@@ -415,7 +420,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      * Method responsible to send the match result request to the interactor
      */
      fun sendMatchResult(){
-        val request = MatchModel.SendMatchResult.Request()
+        val request = MatchModel.SendMatchResult.
+                Request(this.challengeId)
         this.interactor?.getMatchResult(request)
     }
 
@@ -804,7 +810,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 }
                 itemView.buttonGroupWO.buttonSelect.setOnClickListener {
                     itemView.buttonGroupWO.setPosition(1, true)
-                    fragment.sendButton?.isEnabled = false
+                    fragment.sendButton?.isEnabled = true//false
                 }
                 itemView.buttonGroupWO.buttonChallenged.setOnClickListener {
                     itemView.buttonGroupWO.setPosition(2, true)

@@ -158,7 +158,7 @@ class PlayersListWorker {
 
             val challenged = MatchModel.MatchPlayer(challengedUser.name, R.mipmap.ic_launcher_round)
             val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
-            val match = MatchModel.MatchData(challenged, challenger)
+            val match = MatchModel.MatchData(challenged, challenger, challenge.id)
             val response = PlayersListModel.ChallengeButtonRequest.Response(challengedUser.name, match)
 
             this.updateLogic?.generateChallengeReponse(response)

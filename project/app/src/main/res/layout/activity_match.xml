@@ -25,28 +25,32 @@
 
         <Button
             android:id="@+id/sendButton"
-            android:layout_width="128dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="37dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/green"
-            android:text="Send  Challenge"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:enabled="true"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/challengeButtonPlay"
+            android:textColor="@color/text_focus_regular"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/declineButton" />
 
         <Button
             android:id="@+id/declineButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:layout_constraintTop_toBottomOf="@id/matchRecyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
             android:background="@android:color/transparent"
-            android:textColor="@color/text_focus_regular"
+            android:fontFamily="@font/roboto_light"
             android:text="@string/challengeButtonCancel"
+            android:textColor="@color/text_focus_regular"
             android:textSize="12sp"
-            android:textAllCaps="false"
-            android:fontFamily="@font/roboto_light" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/matchRecyclerView" />
 
     </android.support.constraint.ConstraintLayout>
 

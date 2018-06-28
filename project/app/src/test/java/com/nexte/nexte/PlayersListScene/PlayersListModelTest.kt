@@ -203,7 +203,7 @@ class PlayersListModelTest {
         val testUsername = "Letícia Meneses"
         val challenged = MatchModel.MatchPlayer("Letícia Meneses", 1)
         val challenger = MatchModel.MatchPlayer("Helena Goulart", 2)
-        val testChallenge = MatchModel.MatchData(challenged, challenger)
+        val testChallenge = MatchModel.MatchData(challenged, challenger, "1")
 
 
         //call
@@ -227,7 +227,7 @@ class PlayersListModelTest {
         val challenged = MatchModel.MatchPlayer("Letícia Meneses", 1)
         val challenger = MatchModel.MatchPlayer("Helena Goulart", 2)
         val testMatchData: MatchModel.MatchData?
-        testMatchData = MatchModel.MatchData(challenged, challenger)
+        testMatchData = MatchModel.MatchData(challenged, challenger, "1")
 
         //call
         val testChallengeButtonViewModel = PlayersListModel.ChallengeButtonRequest.ViewModel(testMessageForChallenge,

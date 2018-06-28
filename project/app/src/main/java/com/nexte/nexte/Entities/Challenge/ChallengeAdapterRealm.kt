@@ -96,10 +96,10 @@ class ChallengeAdapterRealm: ChallengeAdapter {
                 this.challegeDate = it.challengeDate
                 when (it.stage) {
                     is Challenge.Stage.Played -> {
-                        this.stagePlayedRealm = PlayedRealm(it.stage)
+                        this.stagePlayedRealm = PlayedRealm(it.stage as Challenge.Stage.Played)
                     }
                     is Challenge.Stage.Canceled -> {
-                        this.stageCancelledRealm = CancelledRealm(it.stage)
+                        this.stageCancelledRealm = CancelledRealm(it.stage as Challenge.Stage.Canceled)
                     }
                     is Challenge.Stage.Scheduled -> {
                         // Do Nothing

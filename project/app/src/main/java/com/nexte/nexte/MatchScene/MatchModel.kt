@@ -49,7 +49,8 @@ class MatchModel {
      * @param challenger informations of the challenger player
      */
     class MatchData (var challenged: MatchPlayer,
-                     var challenger: MatchPlayer)
+                     var challenger: MatchPlayer,
+                     var challengeId: String)
 
 
     /**
@@ -94,7 +95,7 @@ class MatchModel {
         /**
          * Class responsible to define the request data of the match result
          */
-        class Request
+        class Request(val challengeId: String)
 
         /**
          * Class responsible to define the response data of the match result
