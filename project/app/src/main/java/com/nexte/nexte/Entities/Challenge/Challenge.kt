@@ -7,11 +7,11 @@ class Challenge(val id: String,
                 val challengedId: String,
                 val challengeDate: Date,
                 val status: Status,
-                val stage: Stage) {
+                var stage: Stage) {
     val winner: String?
         get() {
             if (stage is Stage.Played) {
-                return if (stage.winner == UserType.CHALLENGER) challengerId else challengedId
+                return if ((stage as Stage.Played?)?.winner == UserType.CHALLENGER) challengerId else challengedId
             }
             return null
         }

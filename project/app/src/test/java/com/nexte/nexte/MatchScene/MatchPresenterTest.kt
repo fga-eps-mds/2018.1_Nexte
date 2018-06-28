@@ -36,7 +36,7 @@ class MatchPresenterTest {
         //prepare
         val testFormattedMatchData = MatchModel.FormattedMatchData("Lele", 1, "Ale", 2)
         val response = MatchModel.InitScene.Response(match = MatchModel.MatchData(challenged = MatchModel.MatchPlayer("Lele", 1),
-                                                     challenger = MatchModel.MatchPlayer("Ale", 2)))
+                                                     challenger = MatchModel.MatchPlayer("Ale", 2), challengeId = "1"))
         //call
         this.presenter?.presentMatch(response = response)
 
@@ -121,7 +121,7 @@ class MatchPresenterTest {
     fun testPresentMatchWithoutViewController(){
         //prepare
         val response = MatchModel.InitScene.Response(match = MatchModel.MatchData(challenged = MatchModel.MatchPlayer("Lele", 1),
-                challenger = MatchModel.MatchPlayer("Ale", 2)))
+                challenger = MatchModel.MatchPlayer("Ale", 2), challengeId = "1"))
         val viewModel = this.presenter?.viewController
         this.presenter?.viewController = null
         this.mock?.matchDataFormatted = null
