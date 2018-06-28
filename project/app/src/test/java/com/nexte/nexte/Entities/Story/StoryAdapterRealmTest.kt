@@ -1,6 +1,9 @@
 package com.nexte.nexte.Entities.Story
 
+import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.HelpForRealm
+import io.realm.Realm
+import junit.framework.Assert
 
 import org.junit.After
 import org.junit.Before
@@ -18,6 +21,45 @@ class StoryAdapterRealmTest: HelpForRealm() {
     fun setUp() {
         setUpWithStory()
         storyAdapterRealm = StoryAdapterRealm()
+    }
+
+    @Test
+    fun testGet(){
+        this.storyAdapterRealm?.realm
+        val story = this.storyAdapterRealm?.get("9")
+        assertEquals(story?.id, "9")
+        assertEquals(story?.winner?.setResult, 3)
+        assertEquals(story?.loser?.setResult, 1)
+    }
+
+    @Test
+    fun testGetAll(){
+        storyAdapterRealm?.realm
+        val stories = storyAdapterRealm?.getAll()
+
+        Assert.assertNotNull(stories)
+    }
+
+    @Test
+    fun testUpdateOrInsert(){
+        val story = Story()
+
+        val storyInserted = this.storyAdapterRealm?.updateOrInsert(story)
+
+        Assert.assertNotNull(storyInserted)
+    }
+
+    @Test
+    fun testDelete(){
+        val story = this.storyAdapterRealm?.delete("X")
+
+        Assert.assertNull(story)
+    }
+
+    @Test
+    fun testGetSetRealm() {
+        this.storyAdapterRealm?.realm = Realm.getDefaultInstance()
+        org.junit.Assert.assertNotNull(this.storyAdapterRealm?.realm)
     }
 
     @Test
@@ -43,19 +85,6 @@ class StoryAdapterRealmTest: HelpForRealm() {
         assertEquals(loserSetResult, storyRealm?.loserSetResult)
         assertEquals(date, storyRealm?.date)
     }
-
-    @Test
-    fun testGet(){
-        Story()
-        StoryRealm()
-        StoryPlayer()
-        this.storyAdapterRealm?.realm
-        val story = this.storyAdapterRealm?.get("9")
-        assertEquals(story?.id, "9")
-        assertEquals(story?.winner?.setResult, 3)
-        assertEquals(story?.loser?.setResult, 1)
-    }
-
 
     @Test
     fun testConvertStoryRealmToStory(){
@@ -99,44 +128,6 @@ class StoryAdapterRealmTest: HelpForRealm() {
         assertEquals(loserSetResult, stories[0].loser?.setResult)
         assertEquals(date, stories[0].date)
     }
-
-
-//
-//    @Test
-//    fun testConvertStoryRealmListToStoryList(){
-//        //prepare
-//        val id = "1"
-//        val winnerId = "1"
-//        val winnerSetResult  = 5
-//        val loserId = "2"
-//        val loserSetResult = 3
-//        val date = Date()
-//        val commentsId = RealmList<String>()
-//        val likesId = RealmList<String>()
-//
-//        //call
-//        val storyRealm = StoryRealm(id, winnerId, winnerSetResult, loserId, loserSetResult, date, commentsId, likesId)
-//        val storyRealmList = listOf(storyRealm)
-//        val storyList = storyAdapterRealm?.convertStoryRealmListToStoryList(storyRealmList)
-//
-//        //assert
-//        assertEquals(storyList?.size, 1)
-//        assertEquals(storyList is List<Story>, true)
-//        assertEquals(storyList!![0].id, "1")
-//        assertEquals(storyList!![0].winner?.userId, "1")
-//        assertEquals(storyList!![0].winner?.setResult, 5)
-//        assertEquals(storyList!![0].loser?.userId, "2")
-//        assertEquals(storyList!![0].loser?.setResult, 3)
-//        assertEquals(storyList!![0].date, date)
-//        assertEquals(storyList!![0].commentsId.size, 0)
-//        assertEquals(storyList!![0].likesId?.size, 0)
-//    }
-//
-//    @Test
-//    fun testConvertStoryToStoryRealm(){
-//
-//    }
-
 
     @After
     fun tearDown() {

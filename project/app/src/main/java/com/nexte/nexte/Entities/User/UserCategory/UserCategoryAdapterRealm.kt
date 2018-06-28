@@ -63,9 +63,12 @@ class UserCategoryAdapterRealm: UserCategoryAdapter {
     fun convertUserCategoryRealmListToUserCategoryList(userCategoryRealmResults: List<UserCategoryRealm>): List<UserCategory> {
 
         val userCategories: MutableList<UserCategory> = mutableListOf()
-        for (userCategoryRealm in userCategoryRealmResults) {
-            convertUserCategoryRealmToUserCategory(userCategoryRealm)?.let {
-                userCategories.add(it)
+
+        if (userCategoryRealmResults.size > 0) {
+            for (userCategoryRealm in userCategoryRealmResults) {
+                convertUserCategoryRealmToUserCategory(userCategoryRealm)?.let {
+                    userCategories.add(it)
+                }
             }
         }
         return userCategories

@@ -5,6 +5,7 @@ import com.nexte.nexte.Entities.Comment.CommentAdapterSpy
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.User.UserAdapterSpy
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.HelpForRealm
 import com.nexte.nexte.LikeListScene.LikeListPresenter
 import org.junit.After
 import org.junit.Before
@@ -12,13 +13,14 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
 
-class CommentsPresenterTest {
+class CommentsPresenterTest: HelpForRealm() {
 
     private var mock: MockCommentsDisplayLogic? = null
     private var presenter: CommentsPresenter? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
         this.mock = MockCommentsDisplayLogic()
         this.presenter = CommentsPresenter()
         this.presenter?.viewController = mock
@@ -100,7 +102,7 @@ class CommentsPresenterTest {
 
     @After
     fun tearDown() {
-
+        this.tearDownRealm()
         this.mock = null
         this.presenter = null
     }
