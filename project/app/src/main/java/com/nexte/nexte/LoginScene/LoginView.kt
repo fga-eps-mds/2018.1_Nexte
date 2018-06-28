@@ -58,7 +58,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_login_view)
         this.setup()
 
-        login.setOnClickListener { createAuthenticationRequest() }
+        login.setOnClickListener {  }
 
         navigationLogin.setOnClickListener{ this.finish() }
 
@@ -82,16 +82,16 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            LoginModel.AccountKit.accountKit_code -> {
-                val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-                println(loginResult)
-                if (loginResult?.error != null) {
-                    Log.d("Error", "login result $loginResult")
-                    if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
-                } else {
-                    val token = loginResult.accessToken!!.token
-                    Log.e("Auth code", token)
-                    this.createAccountKitRequest(token)
+//            LoginModel.AccountKit.accountKit_code -> {
+//                val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+//                println(loginResult)
+//                if (loginResult?.error != null) {
+//                    Log.d("Error", "login result $loginResult")
+//                    if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
+//                } else {
+//                    val token = loginResult.accessToken!!.token
+//                    Log.e("Auth code", token)
+//                    this.createAccountKitRequest(token)
                 }
             }
         }
