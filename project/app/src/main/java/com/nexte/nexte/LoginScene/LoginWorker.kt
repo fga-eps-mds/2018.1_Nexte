@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import android.util.Log
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
@@ -52,6 +53,8 @@ class LoginWorker {
             val userJson = data ["user"] as JSONObject
             val user  = User.createUserFromJsonObject(userJson)
             NexteApplication().updateUserLoggedStatus(user)
+            Log.i("Sucess", "Here")
+            Log.i("User name", "Name")
 
             val status = LoginModel.Authentication.StatusCode.AUTHORIZED
             val response = LoginModel.Authentication.Response(user.id, status)
@@ -93,14 +96,12 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "http://10.0.2.2:3000:3000/sessions" // http://10.0.2.2:3000
+        val authentication = "https://nexte-dev.herokuapp.com/sessions/" // http://10.0.2.2:3000
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val json = JSONObject()
-        json.put("username", request.userName) // Expected ramires
-        json.put("password",  request.password) // Expected test-nexte-ramires
+        val body = defineBodyForUserAuth("ramires", "test-nexte-ramires")
 
-        Fuel.post(authentication).header(headers).body(json.toString()).responseJson(authenticateHandler)
+        Fuel.post(authentication).header(headers).body(body).responseJson(authenticateHandler)
     }
 
     /**
@@ -118,6 +119,28 @@ class LoginWorker {
         val body = defineBodyForAccountKitAuth(request.token)
 
         Fuel.post(authentication).header(headers).body(body).responseJson(requestAuthHandler)
+    }
+
+    /* Define body to authenticate user with Nexte main server
+    * @param username user username
+    * @param password user password
+    */
+    fun defineBodyForUserAuth(username: String, password: String): String {
+        val json = JSONObject()
+
+        val appJson = JSONObject()
+        appJson.put("version", "1.0.0")
+        appJson.put("type", "android")
+
+        val loginContent = JSONObject()
+        loginContent.put("username", username)
+        loginContent.put("password", password)
+        val loginJson = JSONObject().put("login", loginContent)
+
+        json.put("app", appJson)
+        json.put("data", loginJson)
+
+        return json.toString()
     }
 
     /**

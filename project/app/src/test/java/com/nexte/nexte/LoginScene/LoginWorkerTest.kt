@@ -173,6 +173,32 @@ class LoginWorkerTest: HelpForRealm() {
 
 
     @Test
+    fun testDefineBodyForUserAuth() {
+        //prepare
+        val json = JSONObject()
+
+        val appJson = JSONObject()
+        appJson.put("version", "1.0.0")
+        appJson.put("type", "android")
+
+        val loginContent = JSONObject()
+        loginContent.put("username", "miguel")
+        loginContent.put("password", "123456")
+        val loginJson = JSONObject().put("login", loginContent)
+
+        json.put("app", appJson)
+        json.put("data", loginJson)
+
+        val finalBody = json.toString()
+
+        //call
+        val userBodyRequest = worker?.defineBodyForUserAuth("miguel", "123456")
+
+        //assert
+        assertEquals(finalBody, userBodyRequest)
+    }
+
+    @Test
     fun testRequestAuthenticateHandlerOnFailure() {
         //prepare
         updateLogicMock?.response1 = null

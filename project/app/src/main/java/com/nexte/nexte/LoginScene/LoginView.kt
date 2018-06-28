@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.R
 import android.widget.Toast
-import android.util.Log
-import com.facebook.accountkit.*
+//import android.util.Log
+//import com.facebook.accountkit.*
 import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.AccountKitConfiguration
 import com.facebook.accountkit.ui.LoginType
@@ -49,7 +49,6 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
-    val authorizationCode: String? = null
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -60,7 +59,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         this.setup()
 
         login.setOnClickListener {
-//            createAuthenticationRequest()
+            createAuthenticationRequest()
         }
 
         navigationLogin.setOnClickListener{ this.finish() }
