@@ -1,6 +1,9 @@
 package com.nexte.nexte.Entities.Comment
 
+import com.nexte.nexte.Entities.Like.Like
 import com.nexte.nexte.HelpForRealm
+import io.realm.Realm
+import junit.framework.Assert
 import org.junit.After
 import org.junit.Before
 
@@ -26,6 +29,43 @@ class CommentAdapterRealmTest: HelpForRealm() {
         assertEquals(comment!!.id, "9")
         assertEquals(comment.userId, "1")
         assertEquals(comment.comment, "Jogo top demais")
+    }
+
+    @Test
+    fun testGetAll(){
+        commentAdapterRealm?.realm
+        val comments = commentAdapterRealm?.getAll()
+
+        Assert.assertNotNull(comments)
+    }
+
+    @Test
+    fun testUpdateOrInsert(){
+        val comment = Comment("123", "124141", "hahahaha", Date(1234512))
+
+        val commentInserted = this.commentAdapterRealm?.updateOrInsert(comment)
+
+        Assert.assertNotNull(commentInserted)
+    }
+
+    @Test
+    fun testDelete(){
+        val comment = this.commentAdapterRealm?.delete("9")
+
+        Assert.assertNull(comment)
+    }
+
+    @Test
+    fun testGetCommentsFromStory(){
+        val comments = this.commentAdapterRealm?.getCommentsFromStory(listOf("1", "2", "3"))
+
+        Assert.assertNotNull(comments)
+    }
+
+    @Test
+    fun testGetSetRealm() {
+        this.commentAdapterRealm?.realm = Realm.getDefaultInstance()
+        org.junit.Assert.assertNotNull(this.commentAdapterRealm?.realm)
     }
 
     @Test
