@@ -245,10 +245,10 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     }
 
     /**
-     * This method validates enables or diables the send button according to the validation of sets result
+     * This method validates enable or disable the send button according to the validation of sets result
      */
     private fun defineSetsValid(){
-        sendButton?.isEnabled = validateSetResults()
+        sendButton?.isEnabled = true//validateSetResults()
     }
 
     private fun checkIfSetResultIsValid(i: Int,
@@ -351,7 +351,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                     challenger,
                     R.drawable.profile_image2)
 
-            this.sendButton?.isEnabled = false
+            this.sendButton?.isEnabled = true//false
 
             this.matchViewAdapter = MatchDataAdapter(match, this)
             recyclerView?.adapter = this.matchViewAdapter
@@ -384,8 +384,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      * Method responsible for the decline match result request to the interactor
      */
     fun declineMatch(){
+        //aqui
         val request = MatchModel.DeclineChallengeRequest.
-                Request("ca94da1c-b113-417a-87ee-b8c0f231f498")
+                Request(this.challengeId)
         interactor?.declineMatchResult(request)
     }
 
@@ -419,7 +420,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      * Method responsible to send the match result request to the interactor
      */
      fun sendMatchResult(){
-        val request = MatchModel.SendMatchResult.Request()
+        val request = MatchModel.SendMatchResult.
+                Request(this.challengeId)
         this.interactor?.getMatchResult(request)
     }
 
@@ -808,7 +810,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
                 }
                 itemView.buttonGroupWO.buttonSelect.setOnClickListener {
                     itemView.buttonGroupWO.setPosition(1, true)
-                    fragment.sendButton?.isEnabled = false
+                    fragment.sendButton?.isEnabled = true//false
                 }
                 itemView.buttonGroupWO.buttonChallenged.setOnClickListener {
                     itemView.buttonGroupWO.setPosition(2, true)

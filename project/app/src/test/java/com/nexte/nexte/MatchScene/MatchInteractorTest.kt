@@ -53,7 +53,7 @@ class MatchInteractorTest {
         //prepare
         val matchData = MatchModel.MatchData(
                 MatchModel.MatchPlayer("larissa", 1),
-                MatchModel.MatchPlayer("larissa2", 1))
+                MatchModel.MatchPlayer("larissa2", 1), "1")
         val request = MatchModel.InitScene.Request(matchData)
         val presenter = this.interactor?.presenter
         this.interactor?.presenter = null
@@ -72,7 +72,7 @@ class MatchInteractorTest {
         //prepare
         val matchData = MatchModel.MatchData(
                 MatchModel.MatchPlayer("larissa", 1),
-                MatchModel.MatchPlayer("larissa2", 1))
+                MatchModel.MatchPlayer("larissa2", 1), "1")
         val request = MatchModel.InitScene.Request(matchData)
 
         //call
@@ -85,7 +85,7 @@ class MatchInteractorTest {
 
     @Test
     fun testGetMatchResult(){
-        val request = MatchModel.SendMatchResult.Request()
+        val request = MatchModel.SendMatchResult.Request("1")
 
         this.interactor?.getMatchResult(request)
 

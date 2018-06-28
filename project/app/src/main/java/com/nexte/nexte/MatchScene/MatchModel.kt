@@ -95,7 +95,7 @@ class MatchModel {
         /**
          * Class responsible to define the request data of the match result
          */
-        class Request
+        class Request(val challengeId: String)
 
         /**
          * Class responsible to define the response data of the match result
