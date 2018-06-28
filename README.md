@@ -115,5 +115,12 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE](https://github.
 * Utiliza as tecnologias mais recentes em desenvolvimento Android
 * Alto suporte dos mantedores
 
+# Extras
+
+O Nexte também possui outro repositório relacionado ao servidor de imagem, este foi desenvolvido em Go e realiza o armazenamento de imagens no serviço de Cloud da Google. Estes estão disponíveis no Gitlab e Github e seguem as mesmas políticas desse projeto:
+
+* [Servidor de Imagem no Gitlab](https://gitlab.com/Baldissera/NexteImageServer)
+* [Servidor de Imagem no Github](https://github.com/miguelpimentel/ImageServer)
+
 
 
