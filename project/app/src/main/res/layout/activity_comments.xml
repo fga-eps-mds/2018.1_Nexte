@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="#393939"
         android:ems="10"
         android:hint="Adicione um comentário"
@@ -65,7 +65,7 @@
 
     <ImageButton
         android:id="@+id/checkButton"
-        android:layout_width="45dp"
+        android:layout_width="60dp"
         android:layout_height="0dp"
         android:background="#2a2a2a"
         android:backgroundTint="#2a2a2a"

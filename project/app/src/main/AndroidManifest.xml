@@ -56,7 +56,9 @@
         <activity android:name=".UserOnBoardingView"
             android:label="UserOnboarding"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            />
 
         <meta-data
             android:name="io.fabric.ApiKey"
