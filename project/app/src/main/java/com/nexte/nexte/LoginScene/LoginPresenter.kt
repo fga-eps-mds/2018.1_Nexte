@@ -43,29 +43,23 @@ class LoginPresenter: LoginPresentationLogic {
 
     override fun presentLogin(response: LoginModel.Authentication.Response) {
 
-        val message: String
-        val tokenId: String = response.tokenId
-
-        if(tokenId.equals("")) {
-            message = "Something is wrong. Try again"
-        } else {
-            message = "Congratz! U get it"
-        }
-
-        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(message)
+        val token: String = response.tokenId
+        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(token)
         this.view?.displayAuthenticateState(viewModel)
     }
 
-    override fun presentError(response: LoginModel.Authentication.Response) { }
+    override fun presentError(response: LoginModel.Authentication.Response) {
+        val token: String = ""
+        val viewModel: LoginModel.Authentication.ViewModel = LoginModel.Authentication.ViewModel(token)
+        this.view?.displayAuthenticateState(viewModel)
+    }
 
     override fun presentAccountKit(response: LoginModel.AccountKit.Response) {
-
         val statusCode = response.statusCode
         var message: String = ""
 
         when(statusCode) {
-
-            LoginModel.AccountKit.StatusCode.SUCESSED -> { message = "Autenticação realizada com sucesso" }
+            LoginModel.AccountKit.StatusCode.SUCESSED -> { message = LoginModel.AccountKit.StatusCode.SUCESSED.toString() }
             LoginModel.AccountKit.StatusCode.CANCELLED -> { message = "Ops, a autenticação foi cancelada" }
             LoginModel.AccountKit.StatusCode.ERROR -> { message = "Ops, houve um erro, tente novamente" }
         }

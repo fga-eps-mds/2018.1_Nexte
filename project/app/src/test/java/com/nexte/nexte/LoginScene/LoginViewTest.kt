@@ -1,12 +1,13 @@
 package com.nexte.nexte.LoginScene
 
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Test
 
-class LoginViewTest {
+class LoginViewTest: HelpForRealm() {
 
     var view: LoginView? = null
 
