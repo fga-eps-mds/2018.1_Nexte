@@ -31,13 +31,13 @@ class ChallengeTabsFragment : Fragment() {
         return ChallengeTabsFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val newView: View? = inflater?.inflate(R.layout.activity_challenger, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val newView: View? = inflater.inflate(R.layout.activity_challenger, container, false)
         //Above occurs the view instantiation
         viewpager = newView?.findViewById(R.id.challengerviewpager)
         tabs = newView?.findViewById(R.id.tabs)
 
-        viewpager?.adapter = ViewPagerAdapter(this.activity.supportFragmentManager, this)
+        viewpager?.adapter = ViewPagerAdapter(this.activity!!.supportFragmentManager, this)
         tabs?.setupWithViewPager(viewpager)
 
         return newView
@@ -56,10 +56,11 @@ class ChallengeTabsFragment : Fragment() {
 
         val randomMatch = MatchModel.MatchData(
                 MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round),
-                MatchModel.MatchPlayer("Gabriel Albino", R.mipmap.calendar_logo_round)
+                MatchModel.MatchPlayer("Gabriel Albino", R.mipmap.calendar_logo_round),
+                "1"
         )
 
-        override fun getItemPosition(`object`: Any?): Int {
+        override fun getItemPosition(`object`: Any): Int {
             return PagerAdapter.POSITION_NONE
         }
 

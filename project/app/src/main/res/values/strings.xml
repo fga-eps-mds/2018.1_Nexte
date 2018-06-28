@@ -80,6 +80,7 @@
     <string name="challengeDateDescription">Data</string>
     <string name="challengeTimeDescription">Hora</string>
     <string name="challengeButtonCancel">Cancelar Desafio</string>
+    <string name="challengeButtonPlay">Enviar Desafio</string>
 
     <string name="challengeNotReceived">Que pena, você ainda não recebeu um desafio!</string>
     <string name="challengeNotSended">Você ainda não tem desafios enviados, desafie alguém.</string>

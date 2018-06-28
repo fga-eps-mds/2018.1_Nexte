@@ -37,12 +37,14 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     var feedRecyclerView : RecyclerView? = null
     var storyManager: StoryManager? = null
     var userManager: UserManager? = null
+    var feedCommentsFragment: CommentsFragment? = null
+    var feedLikesFragment: LikeListFragment? = null
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
         this.userManager = UserManager()
@@ -56,6 +58,32 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
         this.createGetActivitiesRequest()
         return newView
+    }
+
+    /**
+     *
+     */
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if(feedCommentsFragment == null){
+            feedCommentsFragment = CommentsFragment()
+        }
+        if(feedCommentsFragment?.isVisible!!){
+            feedCommentsFragment?.onDestroy()
+            feedCommentsFragment?.onDetach()
+            feedCommentsFragment?.onDestroyView()
+        }
+
+        if(feedLikesFragment == null){
+            feedLikesFragment= LikeListFragment()
+        }
+        if(feedLikesFragment?.isVisible!!){
+            feedLikesFragment?.onDestroy()
+            feedLikesFragment?.onDetach()
+            feedLikesFragment?.onDestroyView()
+        }
+
+
     }
 
 
@@ -87,25 +115,27 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     /**
      * Method to open LikesList scene
      */
-    private fun goToLikesList() {
+    private fun goToLikesList(identifier: String) {
+        val likeListFragment = LikeListFragment().getInstance(identifier)
+        feedLikesFragment = likeListFragment
+        val fragmentManager = activity?.fragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.main_frame_layout, likeListFragment, "like")
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
 
-        val likeListFragment = LikeListFragment().getInstance()
-        val fragmentManager = activity.fragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_frame_layout, likeListFragment, "like")
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
     }
 
 
-    private fun goToCommentsList() {
+    private fun goToCommentsList(identifier: String) {
+        val commentsFragment = CommentsFragment().getInstance(identifier)
+        feedCommentsFragment = commentsFragment
+        val fragmentManager = activity?.fragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.main_frame_layout, commentsFragment, "comments")
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
 
-        val commentsFragment = CommentsFragment().getInstance()
-        val fragmentManager = activity.fragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_frame_layout, commentsFragment, "comments")
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
     }
 
     /**
@@ -238,17 +268,17 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
                 itemView.numberOfLikes.setOnClickListener {
 
-                    (fragment as FeedFragment).goToLikesList()
+                    (fragment as FeedFragment).goToLikesList(activity.identifier)
                 }
 
                 itemView.comments.setOnClickListener {
 
-                    (fragment as FeedFragment).goToCommentsList()
+                    (fragment as FeedFragment).goToCommentsList(activity.identifier)
                 }
 
                 itemView.commentsButton.setOnClickListener {
 
-                    (fragment as FeedFragment).goToCommentsList()
+                    (fragment as FeedFragment).goToCommentsList(activity.identifier)
                 }
 
                 itemView.challengerPhoto.setImageResource(activity.challengerPhoto)

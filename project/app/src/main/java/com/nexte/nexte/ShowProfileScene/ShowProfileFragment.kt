@@ -37,6 +37,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
+
 import android.widget.Toast
 import com.nexte.nexte.UserType
 import com.squareup.picasso.Picasso
@@ -99,23 +100,22 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         super.onCreate(savedInstanceState)
         this.userManager = UserManager()
         setupShowProfileScene()
-        this.playerIdToShow = arguments.getString("id")
+        this.playerIdToShow = arguments!!.getString("id")
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val newView = inflater?.inflate(R.layout.activity_show_profile, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val newView = inflater.inflate(R.layout.activity_show_profile, container, false)
 
         showProfileRecyclerView = newView?.findViewById(R.id.challengesShowRecyclerView)
 
         buttonEditProfile = newView?.findViewById(R.id.editProfileButton)
         buttonEditProfile?.setOnClickListener {
 
-            val fragmentManager = activity.fragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            val fragmentManager = activity?.fragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.main_frame_layout, editProfileFragment, "editProfile")
+            fragmentTransaction?.addToBackStack(null)
+            fragmentTransaction?.commit()
         }
 
         contactButton = newView?.findViewById(R.id.contactButton)
@@ -134,7 +134,7 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
         return newView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val player = userManager?.get(playerIdToShow)
         if(this.playerIdToShow == UserSingleton.loggedUserID){
@@ -162,9 +162,17 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             this.numb_games.text = (player.wins + player.loses).toString()
             this.numb_victory.text = player.wins.toString()
         }
-
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if(editProfileFragment.isVisible){
+            editProfileFragment.onDestroy()
+            editProfileFragment.onDetach()
+            editProfileFragment.onDestroyView()
+        }
+
+    }
 
     /**
      * Method responsible for creating the show profile request and passing it to the interactor

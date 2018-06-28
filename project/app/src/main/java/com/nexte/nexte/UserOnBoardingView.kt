@@ -27,28 +27,28 @@ class UserOnBoardingView : AppCompatActivity() {
         }
 
         override fun onCreate(savedInstanceState: Bundle?) {
-            board = this.arguments.getInt("board")
+            board = this.arguments?.getInt("board")
             super.onCreate(savedInstanceState)
         }
 
-        override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             return when(board) {
-                0 -> inflater?.inflate(R.layout.user_onboarding_one, container, false)
-                1 -> inflater?.inflate(R.layout.user_onboarding_two, container, false)
-                2 -> inflater?.inflate(R.layout.user_onboarding_three, container, false)
+                0 -> inflater.inflate(R.layout.user_onboarding_one, container, false)
+                1 -> inflater.inflate(R.layout.user_onboarding_two, container, false)
+                2 -> inflater.inflate(R.layout.user_onboarding_three, container, false)
                 else -> {
                     throw IllegalArgumentException()
                 }
             }
         }
 
-        override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             if(board == 2) {
                 sentRequestButton.setOnClickListener {
-                    this.activity.finish()
+                    this.activity?.finish()
                 }
                 closeView.setOnClickListener{
-                    this.activity.finish()
+                    this.activity?.finish()
                 }
             }
         }

@@ -43,9 +43,14 @@ class LikeListPresenter(var viewList: LikeListDisplayLogic? = null) :
 
         val playersFormatted: MutableList<LikeListModel.PlayersFormatted> = mutableListOf()
         for (likePlayer in likePlayers) {
+
+            var image = R.drawable.temp
+            if (likePlayer.profilePicture != null) {
+                image = likePlayer.profilePicture.toInt()
+            }
             val likePlayerFormatted = LikeListModel.PlayersFormatted(
                     likePlayer.name,
-                    R.mipmap.ic_launcher)
+                    image)
 
             playersFormatted.add(likePlayerFormatted)
         }

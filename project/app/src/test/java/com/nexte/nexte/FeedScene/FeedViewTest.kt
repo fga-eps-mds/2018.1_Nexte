@@ -82,6 +82,10 @@ private class MockFeedsPresentationLogic: FeedPresentationLogic, FeedWorkerUpdat
     }
 
     override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
+        this.getActivitiesResponse = response
+    }
 
+    override fun updateLikes(response: FeedModel.LikeAndUnlike.Response) {
+        this.likeAndUnlikeResponse = response
     }
 }

@@ -12,13 +12,14 @@ class StoryAdapterRealm: StoryAdapter{
     override fun delete(identifier: String): Story? {
         val storyRealm = realm.where<StoryRealm>().equalTo("id", identifier).findAll()
         realm.beginTransaction()
-        val story = convertStoryRealmToStory(storyRealm.first()!!)
+        val story = convertStoryRealmToStory(storyRealm.first())
         storyRealm.deleteAllFromRealm()
         realm.commitTransaction()
         return story
     }
 
     override fun get(identifier: String): Story? {
+
         val storyRealm = realm.where<StoryRealm>().equalTo("id", identifier).findFirst()
         return if (storyRealm == null) {
             null
@@ -41,73 +42,110 @@ class StoryAdapterRealm: StoryAdapter{
         }
     }
 
-    fun convertStoryRealmToStory(storyRealm: StoryRealm): Story{
-        //Id
-        val storyId = storyRealm.id
+    override fun addComment(story: Story, commentId: String): Story? {
+        convertStoryToStoryRealm(story).let {
+            val mutableComments = story.commentsId.toMutableList()
+            mutableComments.add(commentId)
+            story.commentsId = mutableComments.toList()
+            return updateOrInsert(story)
+        }
+    }
 
-        //winner
-        val winner = StoryPlayer(userId = storyRealm.winnerId!!, setResult = storyRealm.winnerSetResult!!)
+    override fun removeComment(story: Story, commentPos: Int): Story? {
 
-        //loser
-        val loser = StoryPlayer(userId = storyRealm.loserId!!, setResult = storyRealm.loserSetResult!!)
+        convertStoryToStoryRealm(story).let {
 
-        //Date
-        val date = storyRealm.date
+            val mutableComments = story.commentsId.toMutableList()
+            mutableComments.removeAt(commentPos)
+            story.commentsId = mutableComments.toList()
+            return updateOrInsert(story)
 
-        //Comments
-        val commentsId = storyRealm.commentsId
+        }
+    }
 
-        //Likes
-        val likesId = storyRealm.likesId
+    override fun updateLikes(story: Story, userId: String): Story? {
+        //verifies if the user is on list
+        convertStoryToStoryRealm(story).let {
+            val storyIndex = story.likesId.contains(userId)
+            val mutableLikes = story.likesId.toMutableList()
 
+            if(storyIndex){
+                mutableLikes.remove(userId)
+            }
+            else{
+                mutableLikes.add(userId)
+            }
 
-         return Story(id = storyId, winner = winner, loser = loser, commentsId = commentsId, date = date, likesId = likesId)
+            story.likesId = mutableLikes.toList()
+            return updateOrInsert(story)
+        }
+    }
+
+    fun convertStoryRealmToStory(storyRealm: StoryRealm?): Story? {
+
+        var story: Story? = null
+
+        storyRealm?.let {
+            val storyId = it.id
+            val winner = StoryPlayer(userId = it.winnerId!!, setResult = it.winnerSetResult!!)
+            val loser = StoryPlayer(userId = it.loserId!!, setResult = it.loserSetResult!!)
+            val date = it.date
+            val commentsId = it.commentsId
+            val likesId = it.likesId
+
+            story = Story(id = storyId, winner = winner, loser = loser, commentsId = commentsId, date = date, likesId = likesId)
+        }
+        return story
+    }
+
+    fun convertStoryToStoryRealm(story: Story?): StoryRealm? {
+
+        var storyRealm: StoryRealm? = null
+        story?.let {
+            val id = it.id
+
+            val winnerId = it.winner?.userId
+            val winnerSetResult = it.winner?.setResult
+
+            val loserId = it.loser?.userId
+            val loserSetResult = it.loser?.setResult
+
+            val date = it.date
+
+            val commentsIdRealmList = RealmList<String>()
+            val comments = it.commentsId.toList()
+            for (comment in comments){
+                commentsIdRealmList.add(comment)
+            }
+
+            val likesIdRealmList = RealmList<String>()
+            val likes = it.likesId.toList()
+            for (like in likes){
+                likesIdRealmList.add(like)
+            }
+
+            storyRealm = StoryRealm(id = id, winnerId = winnerId,
+                     winnerSetResult = winnerSetResult, loserId = loserId,
+                     loserSetResult = loserSetResult, date = date,
+                     commentsId = commentsIdRealmList,
+                     likesId = likesIdRealmList)
+        }
+
+        return storyRealm
     }
 
     fun convertStoryRealmListToStoryList(storiesRealm: List<StoryRealm>): List<Story>{
-        val storiesRealmMutable = storiesRealm.toMutableList()
         val storiesMutable = mutableListOf<Story>()
 
-        for (storyRealm in storiesRealmMutable){
-            val story = convertStoryRealmToStory(storyRealm)
-            storiesMutable.add(story)
+        if (storiesRealm.size > 0) {
+            for (storyRealm in storiesRealm) {
+                convertStoryRealmToStory(storyRealm)?.let {
+                    storiesMutable.add(it)
+                }
+            }
         }
 
-         return storiesMutable.toList()
-    }
-
-    fun convertStoryToStoryRealm(story: Story): StoryRealm{
-        //Id
-        val id = story.id
-
-        //Winner
-        val winnerId = story.winner?.userId
-        val winnerSetResult = story.winner?.setResult
-
-        //Loser
-        val loserId = story.loser?.userId
-        val loserSetResult = story.loser?.setResult
-
-        //Date
-        val date = story.date
-
-        val commentsIdRealmList = RealmList<String>()
-        val comments = story.commentsId.toList()
-        for (comment in comments){
-            commentsIdRealmList.add(comment)
-        }
-
-        val likesIdRealmList = RealmList<String>()
-        val likes = story.likesId.toList()
-        for (like in likes){
-            likesIdRealmList.add(like)
-        }
-
-         return StoryRealm(id = id, winnerId = winnerId,
-                 winnerSetResult = winnerSetResult, loserId = loserId,
-                 loserSetResult = loserSetResult, date = date,
-                 commentsId = commentsIdRealmList,
-                 likesId = likesIdRealmList)
+        return storiesMutable.toList()
     }
 
 }

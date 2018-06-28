@@ -1,6 +1,9 @@
 package com.nexte.nexte.Entities.Like
 
+import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.HelpForRealm
+import io.realm.Realm
+import junit.framework.Assert
 import org.junit.After
 import org.junit.Before
 
@@ -25,6 +28,43 @@ class LikeAdapterRealmTest: HelpForRealm() {
 
         assertEquals("9", like!!.id)
         assertEquals("1", like.userId)
+    }
+
+    @Test
+    fun testGetAll(){
+        likeAdapterRealm?.realm
+        val likes = likeAdapterRealm?.getAll()
+
+        Assert.assertNotNull(likes)
+    }
+
+    @Test
+    fun testUpdateOrInsert(){
+        val like = Like("123", "124141", Date(1234512))
+
+        val likeInserted = this.likeAdapterRealm?.updateOrInsert(like)
+
+        Assert.assertNotNull(likeInserted)
+    }
+
+    @Test
+    fun testDelete(){
+        val like = this.likeAdapterRealm?.delete("9")
+
+        Assert.assertNull(like)
+    }
+
+    @Test
+    fun testGetLikesFromStory(){
+        val likes = this.likeAdapterRealm?.getLikesFromStory(listOf("1", "2", "3"))
+
+        Assert.assertNotNull(likes)
+    }
+
+    @Test
+    fun testGetSetRealm() {
+        this.likeAdapterRealm?.realm = Realm.getDefaultInstance()
+        org.junit.Assert.assertNotNull(this.likeAdapterRealm?.realm)
     }
 
     @Test

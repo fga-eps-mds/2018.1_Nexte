@@ -91,7 +91,7 @@ class PlayersListPresenterTest{
         val testUsername = "Letícia Meneses"
         val challenged = MatchModel.MatchPlayer("Letícia Meneses", 1)
         val challenger = MatchModel.MatchPlayer("Helena Goulart", 2)
-        val testChallenge = MatchModel.MatchData(challenged, challenger)
+        val testChallenge = MatchModel.MatchData(challenged, challenger, "1")
 
         val testResponse = PlayersListModel.ChallengeButtonRequest.Response(testUsername, testChallenge)
 

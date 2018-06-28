@@ -37,7 +37,7 @@ class MatchModelTest {
         //prepare
         val matchData  = MatchModel.MatchData(
         MatchModel.MatchPlayer("larissa", 1),
-        MatchModel.MatchPlayer("larissa2", 1))
+        MatchModel.MatchPlayer("larissa2", 1), "1")
 
         //call
         val request = MatchModel.InitScene.Request(matchData)
@@ -52,7 +52,7 @@ class MatchModelTest {
         //prepare
         val challengerResponse = MatchModel.MatchPlayer("Fiona", R.mipmap.ic_launcher)
         val challengedResponse = MatchModel.MatchPlayer("Marquinhos", R.mipmap.ic_launcher)
-        val matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse)
+        val matchDataResponse = MatchModel.MatchData(challengedResponse, challengerResponse, "1")
         //call
         val matchTest = MatchModel.InitScene.Response(matchDataResponse)
         matchTest.match = matchDataResponse
@@ -71,7 +71,7 @@ class MatchModelTest {
         val challenged = MatchModel.MatchPlayer(name = "Alexandre", photo = R.mipmap.ic_launcher)
 
         //call
-        val matchData = MatchModel.MatchData(challenger = challenger, challenged = challenged)
+        val matchData = MatchModel.MatchData(challenger = challenger, challenged = challenged, challengeId = "1")
 
         //asserts
 
@@ -141,7 +141,7 @@ class MatchModelTest {
 
     @Test
     fun testSendMatchResultRequest(){
-        val request = MatchModel.SendMatchResult.Request()
+        val request = MatchModel.SendMatchResult.Request("1")
 
         assertNotNull(request)
     }

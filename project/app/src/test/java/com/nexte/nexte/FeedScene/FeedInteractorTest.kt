@@ -24,7 +24,6 @@ class FeedInteractorTest: HelpForRealm() {
     }
 
     @Test
-
     fun feedInteractorTest() {
         val testInteractor = FeedInteractor()
 
@@ -59,6 +58,20 @@ class FeedInteractorTest: HelpForRealm() {
         assertEquals(this.mock?.passedHere, true)
     }
 
+    @Test
+    fun testUpdateLikes(){
+        //prepare
+        val request = FeedModel.LikeAndUnlike.Request(identifier = "1")
+
+        //call
+        this.interactor?.fetchLikes(request = request)
+
+        //assert
+        assertNotNull(this.mock?.passedHere)
+        assertEquals(this.mock?.passedHere, true)
+    }
+
+
     @After
     fun tearDown() {
         super.tearDownRealm()
@@ -79,6 +92,10 @@ private class MockFeedPresentationLogic: FeedPresentationLogic, FeedWorkerUpdate
     }
 
     override fun updateFeed(response: FeedModel.GetFeedActivities.Response) {
+        passedHere = true
+    }
+
+    override fun updateLikes(response: FeedModel.LikeAndUnlike.Response) {
         passedHere = true
     }
 }

@@ -90,15 +90,15 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
                 challenged
             }
 
-            val challengerPhoto: Int = validateUserPhoto(challenger?.profilePicture)
-            val challengedPhoto: Int = validateUserPhoto(challenged?.profilePicture)
+            val challengerPhoto: Int = validateUserPhoto(challenger.profilePicture)
+            val challengedPhoto: Int = validateUserPhoto(challenged.profilePicture)
             
             val feedActivityFormatted = FeedModel.FeedActivityFormatted(
                     activity.id!!,
-                    challenger?.name!!,
+                    challenger.name,
                     challengerPhoto,
                     activity.winner?.setResult.toString(),
-                    challenged?.name!!,
+                    challenged.name,
                     challengedPhoto,
                     activity.loser?.setResult.toString(),
                     activity.date.toString(),
@@ -117,27 +117,42 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
      * @param activity Unformatted activity
      * @return Formatted activity
      */
-    private fun formatFeedActivity(activity: FeedModel.FeedActivity):
-            FeedModel.FeedActivityFormatted {
+    private fun formatFeedActivity(activity: Story): FeedModel.FeedActivityFormatted {
 
-        val matchingUser = activity.likes.find { it.name == UserSingleton.loggedUser.name }
-        var userIsOnLikeList = false
+        val userIsOnLikeList = activity.likesId.contains(UserSingleton.loggedUserID)
 
-        if(matchingUser != null) {
-            userIsOnLikeList = true
+        val emptyUser = User("", "", "", "", null, -1,
+                "", "", -1, -1, User.Gender.FEMALE, UserCategory("", ""),
+                User.Status.UNAVAILABLE,null, null, null)
+        var challenger = userManager?.get(activity.winner?.userId!!)
+        challenger = if (challenger == null) {
+            emptyUser
+        } else {
+            challenger
+        }
+        var challenged = userManager?.get(activity.loser?.userId!!)
+        challenged = if (challenged == null) {
+            emptyUser
+        } else {
+            challenged
         }
 
-        return FeedModel.FeedActivityFormatted(
-                activity.identifier,
-                activity.challenge.challenger.name,
-                activity.challenge.challenger.photo,
-                activity.challenge.challenger.set.toString(),
-                activity.challenge.challenged.name,
-                activity.challenge.challenged.photo,
-                activity.challenge.challenged.set.toString(),
-                activity.feedDate.toString(),
-                activity.likes.size.toString(),
+        val challengerPhoto: Int = validateUserPhoto(challenger.profilePicture)
+        val challengedPhoto: Int = validateUserPhoto(challenged.profilePicture)
+
+        val feedActivityFormatted = FeedModel.FeedActivityFormatted(
+                activity.id!!,
+                challenger.name,
+                challengerPhoto,
+                activity.winner?.setResult.toString(),
+                challenged.name,
+                challengedPhoto,
+                activity.loser?.setResult.toString(),
+                activity.date.toString(),
+                activity.likesId.size.toString(),
                 userIsOnLikeList)
+
+        return feedActivityFormatted
     }
 
      fun validateUserPhoto(imageIdentifier: String?) : Int {
@@ -147,5 +162,5 @@ class FeedPresenter(var viewController: FeedDisplayLogic? = null) : FeedPresenta
         } else {
             return R.mipmap.ic_launcher
         }
-    }
-}
+     }
+   }

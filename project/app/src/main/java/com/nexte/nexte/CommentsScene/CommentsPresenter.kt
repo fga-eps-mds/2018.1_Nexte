@@ -5,7 +5,7 @@ import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserManager
-import com.nexte.nexte.R
+import com.nexte.nexte.UserSingleton
 import java.text.SimpleDateFormat
 
 
@@ -70,15 +70,17 @@ class CommentsPresenter : CommentsPresentationLogic {
         val newComment = response.newComment
         val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
         val time = dateToShow.format(newComment.date)
+        var image = UserSingleton.loggedUser.profilePicture?.toInt()
+        if(image == null){
+            image = 1
+        }
 
         val userComment = userManager?.get(newComment.userId!!)
         val formatted = CommentsModel.CommentFormatted(
-
                 newComment.comment!!,
                 time,
                 userComment!!.name,
-                R.mipmap.ic_launcher
-        )
+                image)
 
         val viewModel = CommentsModel.PublishCommentRequest.ViewModel(formatted)
 
@@ -110,8 +112,7 @@ class CommentsPresenter : CommentsPresentationLogic {
      * @param response unformatted list of comments after deletion
      */
     override fun presentPositionToDelete(response: CommentsModel.DeleteCommentRequest.Response) {
-
-        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(mutableListOf(response.delComments)))
+        val viewModel = CommentsModel.DeleteCommentRequest.ViewModel(formatComment(response.delComments))
         viewController?.displayCommentsAfterDel(viewModel)
     }
 
@@ -138,14 +139,22 @@ class CommentsPresenter : CommentsPresentationLogic {
                 user
             }
 
+
+
+            var image = user.profilePicture?.toInt()
+            if(image == null){
+                image = 1
+            }
+
+
             val dateToShow = SimpleDateFormat("EEE, dd 'of' LLL")
             val time = dateToShow.format(gameComment.date)
 
             val commentFormatted = CommentsModel.CommentFormatted(
                     gameComment.comment!!,
                     time,
-                    user!!.name,
-                    R.mipmap.ic_launcher)
+                    user.name,
+                    image)
 
             commentsFormatted.add(commentFormatted)
         }

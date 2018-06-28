@@ -31,7 +31,7 @@ class LikeAdapterRealm : LikeAdapter {
     override fun delete(identifier: String): Like? {
         val likeRealm = realm.where<LikeRealm>().equalTo("id", identifier).findAll()
         realm.beginTransaction()
-        val like = convertLikeRealmToLike(likeRealm.first()!!)
+        val like = convertLikeRealmToLike(likeRealm.first())
         likeRealm.deleteAllFromRealm()
         realm.commitTransaction()
         return like
@@ -42,8 +42,9 @@ class LikeAdapterRealm : LikeAdapter {
         for(likeId in likesIds){
             val likeRealm = realm.where<LikeRealm>().equalTo("id", likeId).findFirst()
             if (likeRealm != null) {
-                val like = convertLikeRealmToLike(likeRealm!!)
-                likesMutable.add(like)
+                convertLikeRealmToLike(likeRealm)?.let {
+                    likesMutable.add(it)
+                }
             } else {
                 //Do nothing
             }
@@ -52,35 +53,42 @@ class LikeAdapterRealm : LikeAdapter {
     }
 
 
-    fun convertLikeRealmToLike(likeRealm: LikeRealm) : Like {
+    fun convertLikeRealmToLike(likeRealm: LikeRealm?) : Like? {
 
-        val id = likeRealm.id
+        var like: Like? = null
 
-        val userId = likeRealm.userId
+        likeRealm?.let {
+            val id = it.id
+            val userId = it.userId
+            val date = it.date
+            like = Like(id = id, userId = userId, date = date)
+        }
+        return like
+    }
 
-        val date = likeRealm.date
+    fun convertLikeToLikeRealm(like: Like?) : LikeRealm? {
 
-        return Like(id = id, userId = userId, date = date)
+        var likeRealm: LikeRealm? = null
+        like?.let {
+            val id = it.id
+            val userId = it.id
+            val date = it.date
+            likeRealm = LikeRealm(id = id, userId = userId, date = date)
+        }
+
+        return likeRealm
     }
 
     fun convertListLikeRealmToLikeList(likeRealm: List<LikeRealm>) : List<Like> {
         val likes: MutableList<Like> = mutableListOf()
-        for(currentLikeRealm in likeRealm) {
-            convertLikeRealmToLike(currentLikeRealm).let {
-                likes.add(it)
+
+        if (likeRealm.size > 0) {
+            for (currentLikeRealm in likeRealm) {
+                convertLikeRealmToLike(currentLikeRealm)?.let {
+                    likes.add(it)
+                }
             }
         }
         return likes.toList()
-    }
-
-    fun convertLikeToLikeRealm(like: Like) : LikeRealm {
-
-        val id = like.id
-
-        val userId = like.id
-
-        val date = like.date
-
-        return LikeRealm(id = id, userId = userId, date = date)
     }
 }

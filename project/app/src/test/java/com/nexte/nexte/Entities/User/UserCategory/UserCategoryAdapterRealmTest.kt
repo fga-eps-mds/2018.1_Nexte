@@ -1,6 +1,7 @@
 package com.nexte.nexte.Entities.User.UserCategory
 
 import com.nexte.nexte.HelpForRealm
+import io.realm.Realm
 import org.junit.After
 import org.junit.Before
 
@@ -18,8 +19,8 @@ class UserCategoryAdapterRealmTest: HelpForRealm() {
     }
 
     @Test
-    fun testConvertUserCategoryToUserCategoryRealm(){
-        val userCategory = UserCategory("1", "1")
+    fun testConvertUserCategoryToUserCategoryRealm() {
+        val userCategory = UserCategory("1", "Primeira Classe")
 
         val userCategoryRealm = this.userAdapterRealm?.convertUserCategoryToUserCategoryRealm(userCategory)
 
@@ -28,36 +29,85 @@ class UserCategoryAdapterRealmTest: HelpForRealm() {
     }
 
     @Test
-    fun testConvertUserCategoryRealmToUserCategory(){
-        val userCategoryRealm = UserCategoryRealm("1", "1")
+    fun testConvertUserCategoryToUserCategoryRealmFail() {
+        val userCategoryRealm = this.userAdapterRealm?.convertUserCategoryToUserCategoryRealm(null)
+
+        assertNull(userCategoryRealm)
+    }
+
+    @Test
+    fun testConvertUserCategoryRealmToUserCategory() {
+        val userCategoryRealm = UserCategoryRealm("1", "Primeira Classe")
 
         val userCategory = this.userAdapterRealm?.convertUserCategoryRealmToUserCategory(userCategoryRealm)
 
-        assertEquals(userCategory!!.id, userCategoryRealm.id)
-        assertEquals(userCategory.name, userCategoryRealm.name)
+        assertNotNull(userCategory)
+        if (userCategory != null) {
+            assertEquals(userCategory.name, userCategoryRealm.name)
+            assertEquals(userCategory.id, userCategoryRealm.id)
+        }
     }
 
     @Test
-    fun testConvertListUserCategoryRealmToUserCategory(){
-        val userCategoryRealm = UserCategoryRealm("1", "1")
+    fun testConvertUserCategoryRealmToUserCategoryFail() {
+        val userCategory = this.userAdapterRealm?.convertUserCategoryRealmToUserCategory(null)
 
-        val userCategory = this.userAdapterRealm?.convertUserCategoryRealmListToUserCategoryList(listOf(userCategoryRealm, userCategoryRealm))
-
-        assertEquals(userCategory!!.size, 2)
-        assertEquals(userCategory[0].id, userCategoryRealm.id)
-        assertEquals(userCategory[0].name, userCategoryRealm.name)
+        assertNull(userCategory)
     }
 
     @Test
-    fun testGet(){
-        this.userAdapterRealm?.realm
+    fun testConvertListUserCategoryRealmToUserCategory() {
+        val userCategoryRealm = UserCategoryRealm("1", "Primeira Classe")
+
+        val userCategoryList= this.userAdapterRealm?.convertUserCategoryRealmListToUserCategoryList(listOf(userCategoryRealm, userCategoryRealm))
+
+
+        assertNotNull(userCategoryList)
+        if (userCategoryList != null) {
+            assert(userCategoryList.size == 2)
+            assertEquals(userCategoryList[0].id, userCategoryRealm.id)
+            assertEquals(userCategoryList[0].name, userCategoryRealm.name)
+        }
+    }
+
+    @Test
+    fun testGet() {
         val userCategory = this.userAdapterRealm?.get("1")
 
         assertEquals(userCategory!!.id, "1")
         assertEquals(userCategory.name, "Primeira Classe")
     }
 
+    @Test
+    fun testGetAll() {
+        val userCategory = this.userAdapterRealm?.getAll()
+
+        assertNotNull(userCategory)
+    }
+
+    @Test
+    fun testInsertOrUpdate() {
+        val userCategory = UserCategory("2", "Segunda Classe")
+        val userCategoryAfterInsert = this.userAdapterRealm?.updateOrInsert(userCategory = userCategory)
+
+        assertNotNull(userCategoryAfterInsert)
+    }
+
+    @Test
+    fun testDelete() {
+        val userCategory = this.userAdapterRealm?.delete("1")
+
+        assertNull(userCategory)
+    }
+
+    @Test
+    fun testGetSetRealm() {
+        this.userAdapterRealm?.realm = Realm.getDefaultInstance()
+        assertNotNull(this.userAdapterRealm?.realm)
+    }
+
     @After
     fun tearDown() {
+        super.tearDownRealm()
     }
 }
