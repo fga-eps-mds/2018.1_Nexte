@@ -29,7 +29,7 @@ class MatchModel {
        *
        * @param match informations about the match as they should be altered on program
        */
-      class Response(var match: MatchData)
+      class Response(var match: Challenge)
 
       /**
        * Class responsible to store the formatted data and use it to display on view

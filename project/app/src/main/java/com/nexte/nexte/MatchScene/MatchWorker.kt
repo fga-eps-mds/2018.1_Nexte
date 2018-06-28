@@ -40,13 +40,19 @@ class MatchWorker {
     var userManager: UserManager? = null
 
 
-    fun getUserChallenges(request: MatchModel.InitScene.Request) {
+    fun getUserChallenges(sendChallenges: MatchModel.InitScene.Request, user: User) {
 
         val challenges = challengeManager?.getAll()
-
-        val response: MatchModel.InitScene.Response = MatchModel.InitScene.Response()
-
+        val challengesId = Challenge()
+        val sentChalleges = challengeManager?.getSentChallengeFromRealm(challengesId.toString())
+        val response: MatchModel.InitScene.Response = MatchModel.InitScene.Response(sentChalleges!!.toList())
         updateLogic?.updateSentChallenge(response)
+        for (sendchallenge in sendChallenges) {
+            if (UserSingleton.loggedUserID == challengesId.id){
+                sentChalleges
+            }
+        }
+
 
         if (UserSingleton.userType != UserType.MOCKED) {
             val url = "http://10.0.2.2:3000/users"
