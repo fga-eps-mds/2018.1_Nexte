@@ -155,6 +155,7 @@ class LikeListFragment : Fragment(), LikeListDisplayLogic {
              */
             fun bindView(printedPlayer: LikeListModel.PlayersFormatted) {
                 itemView.PlayerName.text = printedPlayer.name
+                itemView.profilePicture?.setImageResource(printedPlayer.photo)
             }
         }
     }
