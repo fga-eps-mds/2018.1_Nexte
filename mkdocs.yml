@@ -20,6 +20,7 @@ pages:
     - Politica de Branches: EPS/PoliticaDeBranches.md
     - Definição de Pronto: EPS/Definicao-de-Pronto.md
     - Arquitetura de Microserviços: EPS/ArquiteturaMicroservicos.md
+    - Benchmarks: Benchmarks/Benchmark.md 
     - Gestão de Risco: EPS/GestaoDeRisco.md
     - Definição de Produtividade: EPS/DefinicaoDeProdutividade.md
     - Canvas: EPS/Canvas.md
@@ -85,9 +86,9 @@ pages:
     - Resultados: Sprints/Sprint14/Sprint14-Resultados.md 
   - Sprint15:
     - Planejamento: Sprints/Sprint15/Sprint15-Planejamento.md
-    - Resultados: Sprints/Sprint15/Sprint-15-Resultados.md
+    - Resultados: Sprints/Sprint15/Sprint15-Resultados.md
   - Testes:
     - Testes de Usabilidade: Testes/TestesUsabilidade.md
   - Post Mortem:
     - Post Mortem - Release 1: PostMortem/PostMortemRelease1.md
-    - Post Mortem Release 2 + Fechamento do Projeto: PostMortem/PostMortemRelease2-FechamentoDoProjeto.md
+    - Post Mortem Release 2 + Fechamento do Projeto: PostMortemRelease2-FechamentoDoProjeto.md

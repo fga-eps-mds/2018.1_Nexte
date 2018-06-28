@@ -37,6 +37,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
+
 import android.widget.Toast
 import com.nexte.nexte.UserType
 import com.squareup.picasso.Picasso
@@ -161,6 +162,16 @@ class ShowProfileFragment : Fragment(), ShowProfileDisplayLogic {
             this.numb_games.text = (player.wins + player.loses).toString()
             this.numb_victory.text = player.wins.toString()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if(editProfileFragment.isVisible){
+            editProfileFragment.onDestroy()
+            editProfileFragment.onDetach()
+            editProfileFragment.onDestroyView()
+        }
+
     }
 
     /**
