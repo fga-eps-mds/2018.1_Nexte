@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.R
 import android.widget.Toast
-import android.util.Log
-import com.facebook.accountkit.*
+//import android.util.Log
+//import com.facebook.accountkit.*
 import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.AccountKitConfiguration
 import com.facebook.accountkit.ui.LoginType
@@ -49,7 +49,6 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
-    val authorizationCode: String? = null
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -60,7 +59,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         this.setup()
 
         login.setOnClickListener {
-//            createAuthenticationRequest()
+            createAuthenticationRequest()
         }
 
         navigationLogin.setOnClickListener{ this.finish() }
@@ -84,45 +83,39 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-//        when (requestCode) {
-//            LoginModel.AccountKit.accountKit_code -> {
-//                val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
-//                println(loginResult)
-//                if (loginResult?.error != null) {
-//                    Log.d("Error", "login result $loginResult")
-//                    if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
-//                } else {
-//                    val token = loginResult.accessToken!!.token
-//                    Log.e("Auth code", token)
-//                    this.createAccountKitRequest(token)
-//                }
-//            }
-//        }
+        when (requestCode) {
+            LoginModel.AccountKit.accountKit_code -> {
+                val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+                println(loginResult)
+                if (loginResult?.error != null) {
+                    Log.d("Error", "login result $loginResult")
+                    if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
+                } else {
+                    val token = loginResult.accessToken!!.token
+                    Log.e("Auth code", token)
+                    this.createAccountKitRequest(token)
+                }
+            }
+        }
     }
 
     override fun onBackPressed() { this.finishAffinity() }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
-        val message: String
-        if (viewModel.tokenId != "") {
-            message = "Sucess to authenticate"
+        if (viewModel.tokenId != "") {)
             saveUserIdentifier(viewModel.tokenId)
             this.finish()
         } else {
-            message = "Error to authenticate"
+            val message = "Error to authenticate"
+            this.triggerNotification(message)
         }
-
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast.show()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
         if (viewModel.message == LoginModel.AccountKit.StatusCode.SUCESSED.toString()) {
             this.finish()
         } else {
-            val message: String  = viewModel.message
-            val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-            toast.show()
+            this.triggerNotification(viewModel.message.toString())
         }
     }
 
@@ -142,6 +135,15 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      */
     private fun createAccountKitRequest(token: String) {
         val request: LoginModel.AccountKit.Request = LoginModel.AccountKit.Request(token)
+    }
+
+    /*
+     *  Trigger Notification
+
+     */
+    private fun triggerNotification(message: String) {
+        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        toast.show()
     }
 
     /**
