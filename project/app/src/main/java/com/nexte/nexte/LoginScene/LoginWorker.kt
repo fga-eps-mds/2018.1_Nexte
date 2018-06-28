@@ -93,7 +93,7 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "http://192.168.100.2:3000/sessions" // http://10.0.2.2:3000
+        val authentication = "http://10.0.2.2:3000:3000/sessions" // http://10.0.2.2:3000
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val json = JSONObject()
@@ -115,32 +115,18 @@ class LoginWorker {
         val authentication = "http://10.0.2.2:3000:3000/users" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val body = defineBodyForAccountKitAuth(request.phone, request.email, request.token)
+        val body = defineBodyForAccountKitAuth(request.token)
 
         Fuel.post(authentication).header(headers).body(body).responseJson(requestAuthHandler)
     }
 
     /**
      * Define body to authenticate user with Nexte main server
-     * @param phone Phone from a user - used in Account Kit auth
-     * @param phone Email from a user - used in Account Kit auth
+     * @param token Token from a user - used in Account Kit auth
      */
-    fun defineBodyForAccountKitAuth(phone: String?, email: String?, token: String): String {
+    fun defineBodyForAccountKitAuth(token: String): String {
         val json = JSONObject()
-
-        if(phone != null) {
-            json.put("phone",  phone) // Expected test-nexte-ramires
-            json.put("tokenAccountKit",  token)  // Expected ramires
-
-        } else {
-            json.put("email",  email)
-            json.put("tokenAccountKit",  token)  // Expected ramires
-        }
-
+        json.put("fbAuthCode",  token)  // Expected ramires
         return json.toString()
     }
-
-    /*
-     *
-     */
 }

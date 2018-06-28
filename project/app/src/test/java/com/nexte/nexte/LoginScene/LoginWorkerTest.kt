@@ -66,10 +66,8 @@ class LoginWorkerTest: HelpForRealm() {
     @Test
     fun testRequestForAuth() {
         //prepare
-        val email = "helenaHtona@nexte.com"
-        val phone = "123456"
         val token = "d453243gfecwg4"
-        val request = LoginModel.AccountKit.Request(email = email, phone = phone, token = token)
+        val request = LoginModel.AccountKit.Request(token = token)
 
         //call
         thread { this.worker?.requestForAuth(request = request) }.join()
@@ -142,7 +140,7 @@ class LoginWorkerTest: HelpForRealm() {
         //prepare
         val backup = worker?.updateLogic
         worker?.updateLogic = null
-        val request = LoginModel.AccountKit.Request("miugel", "dsdvdv", "dfdf")
+        val request = LoginModel.AccountKit.Request("miugel")
         updateLogicMock?.response2 = null
 
         //call
@@ -228,47 +226,16 @@ class LoginWorkerTest: HelpForRealm() {
     @Test
     fun testDefineBodyForAccountKitAuth() {
         val json = JSONObject()
-        val phone = "333"
-        val email = "eai.com"
         val token = "2e5tn4ugnreiu"
 
-        val mockRequest = LoginModel.AccountKit.Request(email, phone, token = token)
+        val mockRequest = worker?.defineBodyForAccountKitAuth(token)
 
-        json.put("phone", phone)
-        json.put("password", "bla")
+        json.put("fbAuthCode", token)
 
-        assertEquals(mockRequest.email, email)
+
+        assertEquals(mockRequest, json.toString())
     }
 
-    @Test
-    fun testDefineBodyForAccountKitAuthPhoneNotNull(){
-        val phone = "123456789"
-        val email = "email@email.com"
-        val token = "498ufj9834f"
-
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("phone", phone)
-        jsonObject.put("tokenAccountKit", token)
-
-        assertEquals(json.toString(), jsonObject.toString())
-    }
-
-    @Test
-    fun testDefineBodyForAccountKitAuthPhoneNull(){
-        val phone = null
-        val email = "email@email.com"
-        val token = "498ufj9834f"
-
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("email", email)
-        jsonObject.put("tokenAccountKit", token)
-
-        assertEquals(json.toString(), jsonObject.toString())
-    }
 
     @After
     fun tearDown() {

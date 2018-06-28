@@ -85,44 +85,18 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         when (requestCode) {
             LoginModel.AccountKit.accountKit_code -> {
                 val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+                println(loginResult)
                 if (loginResult?.error != null) {
                     Log.d("Error", "login result $loginResult")
                     if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
                 } else {
-                    val token = loginResult?.accessToken!!.token
-                    Log.e("Token", token)
+                    val token = loginResult.accessToken!!.token
+                    Log.e("Auth code", token)
+                    this.createAccountKitRequest(token)
                 }
             }
         }
     }
-
-
-    private fun getAccount(authCode: String) {
-        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
-            override fun onSuccess(account: Account) {
-                val phoneNumber = account.phoneNumber
-                val email = account.email
-                val phoneNumberString = phoneNumber.toString()
-                val emailString = email.toString()
-
-                if(phoneNumberString !=  "") {
-                    Log.i("Phone", phoneNumberString)
-                    val request = LoginModel.AccountKit.Request(null, phoneNumberString, authCode)
-                    interactor?.accountKitAuthentication(request)
-                }
-
-                if(emailString != "") {
-                    val request = LoginModel.AccountKit.Request(emailString, null, authCode)
-                    interactor?.accountKitAuthentication(request)
-                }
-            }
-
-            override fun onError(error: AccountKitError) {
-                Log.e("AccountKit", error.toString())
-            }
-        })
-    }
-
 
     override fun onBackPressed() { this.finishAffinity() }
 
@@ -159,6 +133,13 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
+    }
+
+    /**
+     * Method responsible for creating the accountKit request passing it to the interactor
+     */
+    private fun createAccountKitRequest(token: String) {
+        val request: LoginModel.AccountKit.Request = LoginModel.AccountKit.Request(token)
     }
 
     /**
