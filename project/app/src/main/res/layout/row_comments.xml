@@ -8,7 +8,7 @@
     android:background="#393939"
     android:paddingBottom="8dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilePicture"
         android:layout_width="23dp"
         android:layout_height="23dp"

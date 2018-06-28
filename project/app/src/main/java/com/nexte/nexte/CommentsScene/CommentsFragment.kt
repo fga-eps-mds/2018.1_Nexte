@@ -308,6 +308,7 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
                 itemView.commentBox.text = commentsFormatted.comment
                 itemView.commentDate.text = commentsFormatted.commentDate
                 itemView.playerName.text = commentsFormatted.username
+                itemView.profilePicture?.setImageResource(commentsFormatted.profilePic)
 
                 if(itemView.playerName.text == UserSingleton.loggedUser.name) {
                     itemView.deleteButton.visibility = View.VISIBLE
