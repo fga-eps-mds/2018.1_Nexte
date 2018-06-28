@@ -11,7 +11,7 @@ class CommentAdapterRealm : CommentAdapter {
 
     override fun get(identifier: String): Comment? {
         val commentRealm = realm.where<CommentRealm>().equalTo("id", identifier).findFirst()
-        return convertCommentRealmToComment(commentRealm!!)
+        return convertCommentRealmToComment(commentRealm)
     }
 
     override fun getAll(): List<Comment> {
@@ -33,7 +33,7 @@ class CommentAdapterRealm : CommentAdapter {
     override fun delete(identifier: String): Comment? {
         val commentRealm = realm.where<CommentRealm>().equalTo("id", identifier).findAll()
         realm.beginTransaction()
-        val comment = convertCommentRealmToComment(commentRealm.first()!!)
+        val comment = convertCommentRealmToComment(commentRealm.first())
         commentRealm.deleteAllFromRealm()
         realm.commitTransaction()
         return comment
@@ -44,48 +44,56 @@ class CommentAdapterRealm : CommentAdapter {
         for (commentId in commentsIds) {
             val commentRealm = realm.where<CommentRealm>().equalTo("id", commentId).findFirst()
             if(commentRealm != null){
-                val comment = convertCommentRealmToComment(commentRealm!!)
-                commentsMutable.add(comment)
+                convertCommentRealmToComment(commentRealm)?.let {
+                    commentsMutable.add(it)
+                }
             }
         }
-        return commentsMutable.toList()!!
+        return commentsMutable.toList()
     }
 
-    fun convertCommentRealmToComment(commentRealm: CommentRealm) : Comment {
+    fun convertCommentRealmToComment(commentRealm: CommentRealm?) : Comment? {
 
-        val commentId = commentRealm.id
+        var comment: Comment? = null
 
-        val userId = commentRealm.userId
+        commentRealm?.let {
+            val commentId = it.id
+            val userId = it.userId
+            val text = it.comment
+            val date = it.date
 
-        val comment = commentRealm.comment
+            comment = Comment(id = commentId, userId = userId, comment = text, date = date)
+        }
 
-        val date = commentRealm.date
+        return comment
+    }
 
-        return Comment(id = commentId, userId = userId, comment = comment, date = date)
+    fun convertCommentToCommentRealm(comment: Comment?): CommentRealm? {
+
+        var commentRealm: CommentRealm? = null
+        comment?.let {
+            val id = it.id
+            val userId = it.userId
+            val text = it.comment
+            val date = it.date
+
+            commentRealm = CommentRealm(id = id, userId = userId, comment = text, date = date)
+        }
+
+        return commentRealm
     }
 
     fun convertListCommentRealmToCommentList(commentRealm: List<CommentRealm>) : List<Comment> {
         val comments: MutableList<Comment> = mutableListOf()
-        for(currentCommentRealm in commentRealm) {
-            convertCommentRealmToComment(currentCommentRealm).let {
-                comments.add(it)
+
+        if (commentRealm.size > 0) {
+            for (currentCommentRealm in commentRealm) {
+                convertCommentRealmToComment(currentCommentRealm)?.let {
+                    comments.add(it)
+                }
             }
         }
 
         return comments.toList()
     }
-
-    fun convertCommentToCommentRealm(comment: Comment): CommentRealm {
-
-        val id = comment.id
-
-        val userId = comment.userId
-
-        val comments = comment.comment
-
-        val date = comment.date
-
-        return CommentRealm(id = id, userId = userId, comment = comments, date = date)
-    }
-
 }
