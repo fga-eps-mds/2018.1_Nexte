@@ -85,7 +85,9 @@ pages:
     - Resultados: Sprints/Sprint14/Sprint14-Resultados.md 
   - Sprint15:
     - Planejamento: Sprints/Sprint15/Sprint15-Planejamento.md
+    - Resultados: Sprints/Sprint15/Sprint-15-Resultados.md
   - Testes:
     - Testes de Usabilidade: Testes/TestesUsabilidade.md
   - Post Mortem:
     - Post Mortem - Release 1: PostMortem/PostMortemRelease1.md
+    - Post Mortem Release 2 + Fechamento do Projeto: PostMortem/PostMortemRelease2-FechamentoDoProjeto.md
