@@ -156,8 +156,20 @@ class PlayersListWorker {
 
             challengeManager.update(challenge)
 
-            val challenged = MatchModel.MatchPlayer(challengedUser.name, R.mipmap.ic_launcher_round)
-            val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
+
+            val picture = userManager?.get(UserSingleton.loggedUserID)?.profilePicture
+            val challengerPicture = if (picture != null) {
+                picture.toInt()
+            } else {
+                R.drawable.profile_image9
+            }
+            val challengedProfile = if (it.profilePicture != null) {
+                it.profilePicture.toInt()
+            } else {
+                R.mipmap.ic_launcher_round
+            }
+            val challenged = MatchModel.MatchPlayer(challengedUser.name, challengedProfile)
+            val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, challengerPicture)
             val match = MatchModel.MatchData(challenged, challenger, challenge.id)
             val response = PlayersListModel.ChallengeButtonRequest.Response(challengedUser.name, match)
 
