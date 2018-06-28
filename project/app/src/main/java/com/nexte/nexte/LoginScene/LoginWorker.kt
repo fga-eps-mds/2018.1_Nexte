@@ -9,8 +9,10 @@ import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
-import com.nexte.nexte.UserSingleton
 import org.json.JSONObject
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.NexteApplication
 
 /**
  * Interface to define Response Logic of Ranking Class
@@ -41,17 +43,18 @@ interface LoginWorkerUpdateLogic {
 class LoginWorker {
 
     var updateLogic: LoginWorkerUpdateLogic? = null
+    var userManager: UserManager? = UserManager()
 
     val authenticateHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-
         result.success {
-            val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+            val json = result.get().obj()
+            val data = json["data"] as JSONObject
+            val userJson = data ["user"] as JSONObject
+            val user  = User.createUserFromJsonObject(userJson)
+            NexteApplication().updateUserLoggedStatus(user)
+
             val status = LoginModel.Authentication.StatusCode.AUTHORIZED
-            val response = LoginModel.Authentication.Response(token, status)
-
-            // TODO: Add more user to server to authenticate with
-            UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
-
+            val response = LoginModel.Authentication.Response(user.id, status)
             updateLogic?.authenticateUser(response)
         }
 
@@ -64,11 +67,12 @@ class LoginWorker {
     }
 
     val requestAuthHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-
         result.success {
-
-            //TODO: Add auth with token in NEXTE main server
-            UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
+            val json = result.get().obj()
+            val data = json["data"] as JSONObject
+            val userJson = data ["user"] as JSONObject
+            val user  = User.createUserFromJsonObject(userJson)
+            NexteApplication().updateUserLoggedStatus(user)
 
             val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
             updateLogic?.requestAuth(response)
@@ -89,11 +93,11 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
+        val authentication = "http://10.0.2.2:3000:3000/sessions" // http://10.0.2.2:3000
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val json = JSONObject()
-        json.put("username",  request.userName) // Expected ramires
+        json.put("username", request.userName) // Expected ramires
         json.put("password",  request.password) // Expected test-nexte-ramires
 
         Fuel.post(authentication).header(headers).body(json.toString()).responseJson(authenticateHandler)
@@ -111,28 +115,18 @@ class LoginWorker {
         val authentication = "http://10.0.2.2:3000:3000/users" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val body = defineBodyForAccountKitAuth(request.phone, request.email, request.token)
+        val body = defineBodyForAccountKitAuth(request.token)
 
         Fuel.post(authentication).header(headers).body(body).responseJson(requestAuthHandler)
     }
 
     /**
      * Define body to authenticate user with Nexte main server
-     * @param phone Phone from a user - used in Account Kit auth
-     * @param phone Email from a user - used in Account Kit auth
+     * @param token Token from a user - used in Account Kit auth
      */
-    fun defineBodyForAccountKitAuth(phone: String?, email: String?, token: String): String {
+    fun defineBodyForAccountKitAuth(token: String): String {
         val json = JSONObject()
-
-        if(phone != null) {
-            json.put("phone",  phone) // Expected test-nexte-ramires
-            json.put("tokenAccountKit",  token)  // Expected ramires
-
-        } else {
-            json.put("email",  email)
-            json.put("tokenAccountKit",  token)  // Expected ramires
-        }
-
+        json.put("fbAuthCode",  token)  // Expected ramires
         return json.toString()
     }
 }

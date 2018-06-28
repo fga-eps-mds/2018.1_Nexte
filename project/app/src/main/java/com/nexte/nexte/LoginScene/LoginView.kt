@@ -16,6 +16,7 @@ import com.facebook.accountkit.ui.LoginType
 import com.nexte.nexte.UserOnBoardingView
 import kotlinx.android.synthetic.main.activity_login_view.*
 import android.preference.PreferenceManager
+import android.content.Context
 import android.support.v4.app.DialogFragment
 
 
@@ -48,6 +49,7 @@ interface LoginDisplayLogic {
 class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     var interactor: LoginBusinessLogic? = null
+    val authorizationCode: String? = null
 
     /**
      * On Create is a method that will setup this scene and call first Request and actions from UI
@@ -57,16 +59,17 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         setContentView(R.layout.activity_login_view)
         this.setup()
 
-        login.setOnClickListener { createAuthenticationRequest() }
+        login.setOnClickListener {
+//            createAuthenticationRequest()
+        }
 
         navigationLogin.setOnClickListener{ this.finish() }
 
         accountKitLogin.setOnClickListener {
             var dialog = AuthenticationDialogFragment()
             dialog.acitivity = this
-            dialog.show(supportFragmentManager, "dssdd")
+            dialog.show(supportFragmentManager, "Authenticate Dialog")
         }
-
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
         val previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false)
@@ -79,72 +82,66 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         }
     }
 
-    override fun onBackPressed() { this.finishAffinity() }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode) {
-            LoginModel.AccountKit.accountKit_code -> {
-                Log.e("debug", "Here")
-                val loginResult: AccountKitLoginResult = data!!.getParcelableExtra(AccountKitLoginResult.RESULT_KEY)
-                this.handleLoginResult(loginResult)
-            }
-        }
+//        when (requestCode) {
+//            LoginModel.AccountKit.accountKit_code -> {
+//                val loginResult = data!!.getParcelableExtra<AccountKitLoginResult>(AccountKitLoginResult.RESULT_KEY)
+//                println(loginResult)
+//                if (loginResult?.error != null) {
+//                    Log.d("Error", "login result $loginResult")
+//                    if (loginResult.wasCancelled()){ Log.e("Error", "Authentication canceled") }
+//                } else {
+//                    val token = loginResult.accessToken!!.token
+//                    Log.e("Auth code", token)
+//                    this.createAccountKitRequest(token)
+//                }
+//            }
+//        }
     }
 
+    override fun onBackPressed() { this.finishAffinity() }
+
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
-        val message: String = viewModel.message
+        val message: String
+        if (viewModel.tokenId != "") {
+            message = "Sucess to authenticate"
+            saveUserIdentifier(viewModel.tokenId)
+            this.finish()
+        } else {
+            message = "Error to authenticate"
+        }
+
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
-        this.finish()
     }
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
-        val message: String  = viewModel.message
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast.show()
-        this.finish()
+        if (viewModel.message == LoginModel.AccountKit.StatusCode.SUCESSED.toString()) {
+            this.finish()
+        } else {
+            val message: String  = viewModel.message
+            val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+            toast.show()
+        }
     }
 
     /**
      * Method responsible for creating the authetication request an passing it to the interactor
      */
     private fun createAuthenticationRequest(){
-        val account = userField.text.toString()
-        val password = passwordField.text.toString()
+        val account =  userField.text.toString() // Expected "ramires"
+        val password = passwordField.text.toString() // Expected "test-nexte-ramires"
 
         val request: LoginModel.Authentication.Request = LoginModel.Authentication.Request(account, password)
         this.interactor?.doAuthentication(request)
     }
 
     /**
-     * Gets current account from Facebook Account Kit which include user's phone number
+     * Method responsible for creating the accountKit request passing it to the interactor
      */
-    private fun getAccount(token: String) {
-        AccountKit.getCurrentAccount(object : AccountKitCallback<Account> {
-            override fun onSuccess(account: Account) {
-                val phoneNumber = account.phoneNumber
-                val email = account.email
-                val phoneNumberString = phoneNumber.toString()
-                val emailString = email.toString()
-
-                if(phoneNumberString !=  "") {
-                    val request = LoginModel.AccountKit.Request(null, phoneNumberString, "dsfsd")
-                    interactor?.accountKitAuthentication(request)
-                }
-
-                if(emailString != "") {
-                    val request = LoginModel.AccountKit.Request(emailString, null, "dfsfd")
-                    interactor?.accountKitAuthentication(request)
-                }
-
-            }
-
-            override fun onError(error: AccountKitError) {
-                Log.e("AccountKit", error.toString())
-            }
-        })
+    private fun createAccountKitRequest(token: String) {
+        val request: LoginModel.AccountKit.Request = LoginModel.AccountKit.Request(token)
     }
 
     /**
@@ -169,28 +166,28 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         startActivityForResult(intent, LoginModel.AccountKit.accountKit_code)
     }
 
-    /*
-     * Handle with Login Result
+    /**
+     * Persist userId when authentication is sucessfully
      */
-    private fun handleLoginResult(loginResult: AccountKitLoginResult): String? {
-        var message: String? = null
+    fun saveUserIdentifier(id: String) {
+        val sharedPreferences = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("userId", id)
+        editor.apply()
+     }
 
-        if (loginResult.error != null) {
-            Log.e("debug", "login error")
-            message = loginResult.error?.errorType?.message
-        } else if (loginResult.wasCancelled()) {
-            Log.d("debug", "login cancelled")
-            message = "login cancel"
-        } else {
-            if (loginResult.accessToken != null) {
-                val accessToken = loginResult.authorizationCode
-                getAccount(accessToken!!)
-                Log.i("info", accessToken)
-            } else {
-                Log.e("debug", "access token null")
-            }
-        }
-        return message
+    /**
+     * Method responsible for setup protocol between scenes
+     */
+    fun setup() {
+        val view = this
+        val interactor = LoginInteractor()
+        val presenter = LoginPresenter()
+
+        view.interactor = interactor
+        interactor.presenter = presenter
+        interactor.worker.updateLogic = interactor
+        presenter.view = view
     }
 
     class AuthenticationDialogFragment: DialogFragment() {
@@ -208,19 +205,6 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
                     })
             return builder.create()
         }
-    }
-
-    /**
-     * Method responsible for setup protocol between scenes
-     */
-    fun setup() {
-        val view = this
-        val interactor = LoginInteractor()
-        val presenter = LoginPresenter()
-
-        view.interactor = interactor
-        interactor.presenter = presenter
-        presenter.view = view
     }
 }
 

@@ -27,7 +27,7 @@ class LoginModel {
          * Class responsible to store received information from Presenter to View
          * @param message message according with authentication result
          */
-        class ViewModel(val message: String)
+        class ViewModel(val tokenId: String)
 
         /**
          *  Enum class to handle with error and responses from server
@@ -52,7 +52,7 @@ class LoginModel {
          * @param email: Email used to auth with facebook API
          * @param phone: Phone used to auth with facebook API
          */
-        class Request(val email: String?, val phone: String?, val token: String)
+        class Request(val token: String)
 
         /**
          * Class responsible to store received information from worker to Presenter
