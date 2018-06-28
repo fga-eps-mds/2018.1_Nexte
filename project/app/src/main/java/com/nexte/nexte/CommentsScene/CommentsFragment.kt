@@ -97,6 +97,12 @@ class CommentsFragment : Fragment(), CommentsDisplayLogic {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.activity.fragmentManager.popBackStack()
+
+    }
+
     /**
      * This function send the request built with the identified story
      */

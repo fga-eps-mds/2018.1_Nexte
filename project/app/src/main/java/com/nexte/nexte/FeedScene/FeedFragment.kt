@@ -37,6 +37,8 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
     var feedRecyclerView : RecyclerView? = null
     var storyManager: StoryManager? = null
     var userManager: UserManager? = null
+    var feedCommentsFragment: CommentsFragment? = null
+    var feedLikesFragment: LikeListFragment? = null
 
     fun getInstance() : FeedFragment {
         return FeedFragment()
@@ -56,6 +58,32 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
         this.createGetActivitiesRequest()
         return newView
+    }
+
+    /**
+     *
+     */
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if(feedCommentsFragment == null){
+            feedCommentsFragment = CommentsFragment()
+        }
+        if(feedCommentsFragment?.isVisible!!){
+            feedCommentsFragment?.onDestroy()
+            feedCommentsFragment?.onDetach()
+            feedCommentsFragment?.onDestroyView()
+        }
+
+        if(feedLikesFragment == null){
+            feedLikesFragment= LikeListFragment()
+        }
+        if(feedLikesFragment?.isVisible!!){
+            feedLikesFragment?.onDestroy()
+            feedLikesFragment?.onDetach()
+            feedLikesFragment?.onDestroyView()
+        }
+
+
     }
 
 
@@ -89,6 +117,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
      */
     private fun goToLikesList(identifier: String) {
         val likeListFragment = LikeListFragment().getInstance(identifier)
+        feedLikesFragment = likeListFragment
         val fragmentManager = activity?.fragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.main_frame_layout, likeListFragment, "like")
@@ -100,6 +129,7 @@ class FeedFragment : Fragment(), FeedDisplayLogic {
 
     private fun goToCommentsList(identifier: String) {
         val commentsFragment = CommentsFragment().getInstance(identifier)
+        feedCommentsFragment = commentsFragment
         val fragmentManager = activity?.fragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.main_frame_layout, commentsFragment, "comments")
