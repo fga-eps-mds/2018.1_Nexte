@@ -1,18 +1,20 @@
 package com.nexte.nexte.LoginScene
 
+import com.nexte.nexte.HelpForRealm
 import org.junit.After
 import org.junit.Before
 import org.junit.Assert.*
 import org.junit.Test
 import kotlin.concurrent.thread
 
-class LoginInteractorTest {
+class LoginInteractorTest: HelpForRealm() {
 
     private var mock: MockLoginPresentationLogic? = null
     private var interactor: LoginInteractor? = null
 
     @Before
     fun setUp() {
+        super.setUpWithUser()
         this.mock = MockLoginPresentationLogic()
         this.interactor = LoginInteractor()
         this.interactor?.presenter = mock
@@ -96,7 +98,7 @@ class LoginInteractorTest {
 
     @Test
     fun testAccountKitAuthentication(){
-        val request = LoginModel.AccountKit.Request("123", "123", "123")
+        val request = LoginModel.AccountKit.Request("123")
 
         thread{this.interactor?.accountKitAuthentication(request)}.join()
 

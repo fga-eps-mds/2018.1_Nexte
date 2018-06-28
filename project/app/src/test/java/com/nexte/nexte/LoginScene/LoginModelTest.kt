@@ -58,10 +58,10 @@ class LoginModelTest {
         val message = "teste funcionando"
 
         //call
-        val viewModel = LoginModel.Authentication.ViewModel(message = "teste funcionando")
+        val viewModel = LoginModel.Authentication.ViewModel(tokenId = "teste funcionando")
 
         //assert
-        assertEquals(message, viewModel.message)
+        assertEquals(message, viewModel.tokenId)
     }
 
     @Test
@@ -124,15 +124,13 @@ class LoginModelTest {
     @Test
     fun testAccountKitRequest() {
         //prepare
-        val email = "lele@nexte.com"
-        val phone = "61992067115"
         val token = "1323444566"
 
         //call
-        val request = LoginModel.AccountKit.Request(email, phone, token)
+        val request = LoginModel.AccountKit.Request(token)
 
         //assert
-        assertNotNull(request.email) //Esse teste não pode ser assim
+        assertNotNull(request.token) //Esse teste não pode ser assim
 
     }
 

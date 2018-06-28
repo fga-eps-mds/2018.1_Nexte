@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
     tools:context="com.nexte.nexte.LoginScene.LoginView">
 
     <ImageView
@@ -194,3 +196,5 @@
         android:contentDescription="@string/loginLogoDescription"/>
 
 </android.support.constraint.ConstraintLayout>
+
+
