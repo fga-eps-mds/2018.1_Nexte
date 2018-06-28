@@ -47,10 +47,12 @@ class MatchWorker {
     val httpPatchHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
         when (result) {
             is Result.Failure -> {
+                println("DEU ERRADO")
                 println(result.getException())
             }
 
             is Result.Success -> {
+                println("DEU CERTO")
                 println(result.get())
             }
         }
