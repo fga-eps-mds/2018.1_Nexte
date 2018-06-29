@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_login_view.*
 import android.preference.PreferenceManager
 import android.content.Context
 import android.support.v4.app.DialogFragment
+import android.util.Log
+import com.facebook.accountkit.AccountKitLoginResult
 
 
 /**
@@ -102,7 +104,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
     override fun onBackPressed() { this.finishAffinity() }
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
-        if (viewModel.tokenId != "") {)
+        if (viewModel.tokenId != "") {
             saveUserIdentifier(viewModel.tokenId)
             this.finish()
         } else {
@@ -135,6 +137,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      */
     private fun createAccountKitRequest(token: String) {
         val request: LoginModel.AccountKit.Request = LoginModel.AccountKit.Request(token)
+        interactor?.accountKitAuthentication(request)
     }
 
     /*

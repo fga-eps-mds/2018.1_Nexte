@@ -96,7 +96,7 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "https://nexte-dev.herokuapp.com/sessions/" // http://10.0.2.2:3000
+        val authentication = "/sessions" // http://10.0.2.2:3000
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val body = defineBodyForUserAuth("ramires", "test-nexte-ramires")
@@ -113,7 +113,7 @@ class LoginWorker {
      */
     fun requestForAuth(request: LoginModel.AccountKit.Request) {
 
-        val authentication = "http://10.0.2.2:3000:3000/users" // Local route for auth
+        val authentication = "/users" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
         val body = defineBodyForAccountKitAuth(request.token)
@@ -149,7 +149,7 @@ class LoginWorker {
      */
     fun defineBodyForAccountKitAuth(token: String): String {
         val json = JSONObject()
-        json.put("fbAuthCode",  token)  // Expected ramires
+        json.put("data", JSONObject().put("fbAuthCode",  token))  // Expected ramires
         return json.toString()
     }
 }

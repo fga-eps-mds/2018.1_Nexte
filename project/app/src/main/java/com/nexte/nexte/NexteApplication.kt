@@ -2,6 +2,7 @@ package com.nexte.nexte
 
 import android.app.Application
 import android.content.Context
+import com.github.kittinunf.fuel.core.FuelManager
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.Comment.CommentManager
 import com.nexte.nexte.Entities.Like.LikeManager
@@ -21,6 +22,7 @@ class NexteApplication: Application() {
         val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
         val config = RealmConfiguration.Builder().name("mockerRealm.realm").build()
         Realm.setDefaultConfiguration(config)
+        FuelManager.instance.basePath = "https://nexte-dev.herokuapp.com"
 
         if (sharedPreference.getBoolean("FirstRun", true)) {
             UserCategoryManager().createInitialMocker()
