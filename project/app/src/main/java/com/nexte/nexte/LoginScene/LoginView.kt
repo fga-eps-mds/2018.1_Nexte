@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nexte.nexte.R
 import android.widget.Toast
-//import android.util.Log
-//import com.facebook.accountkit.*
 import com.facebook.accountkit.ui.AccountKitActivity
 import com.facebook.accountkit.ui.AccountKitConfiguration
 import com.facebook.accountkit.ui.LoginType
@@ -117,7 +115,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
         if (viewModel.message == LoginModel.AccountKit.StatusCode.SUCESSED.toString()) {
             this.finish()
         } else {
-            this.triggerNotification(viewModel.message.toString())
+            this.triggerNotification(viewModel.message)
         }
     }
 

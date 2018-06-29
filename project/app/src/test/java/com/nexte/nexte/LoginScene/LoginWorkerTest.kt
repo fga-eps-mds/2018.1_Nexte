@@ -256,7 +256,7 @@ class LoginWorkerTest: HelpForRealm() {
 
         val mockRequest = worker?.defineBodyForAccountKitAuth(token)
 
-        json.put("fbAuthCode", token)
+        json.put("data", JSONObject().put("fbAuthCode",  token))
 
 
         assertEquals(mockRequest, json.toString())
