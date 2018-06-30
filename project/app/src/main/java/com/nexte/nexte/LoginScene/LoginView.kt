@@ -18,7 +18,6 @@ import android.content.Context
 import android.support.v4.app.DialogFragment
 import android.util.Log
 import com.facebook.accountkit.AccountKitLoginResult
-import com.nexte.nexte.NexteApplication
 import com.nexte.nexte.UserSingleton
 
 

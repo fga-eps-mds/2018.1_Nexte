@@ -1,7 +1,5 @@
 package com.nexte.nexte.LoginScene
 
-import android.preference.PreferenceManager
-import android.util.Log
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
@@ -15,8 +13,6 @@ import org.json.JSONObject
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.NexteApplication
-import com.nexte.nexte.UserSingleton
-import com.nexte.nexte.UserType
 
 /**
  * Interface to define Response Logic of Ranking Class

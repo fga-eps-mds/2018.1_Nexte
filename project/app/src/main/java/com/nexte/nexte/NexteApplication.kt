@@ -2,7 +2,6 @@ package com.nexte.nexte
 
 import android.app.Application
 import android.content.Context
-import android.preference.PreferenceManager
 import com.github.kittinunf.fuel.core.FuelManager
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -12,7 +11,6 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
 import com.nexte.nexte.Entities.User.UserManager
 import io.realm.Realm
-import io.realm.RealmConfiguration
 
 class NexteApplication: Application() {
 

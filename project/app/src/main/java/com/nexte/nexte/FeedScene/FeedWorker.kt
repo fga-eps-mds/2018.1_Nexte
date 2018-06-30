@@ -4,15 +4,12 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
-import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
-import okhttp3.Request
-import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
