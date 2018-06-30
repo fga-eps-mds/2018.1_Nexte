@@ -92,49 +92,6 @@ class LoginWorkerTest: HelpForRealm() {
         assertNotNull(updateLogicMock?.response1)
     }
 
-
-
-//    @Test
-//    fun testAuthenticateHandlerOnSuccess() {
-//        //prepare
-//        updateLogicMock?.response1 = null
-//        val url = URL("http://www.randomsite.com/")
-//        val request = Request(Method.GET, "",url)
-//        val response = Response(url)
-//
-//        val jsonUser = JSONObject()
-//        jsonUser.put("id", "1")
-//        jsonUser.put("name", "teste")
-//        jsonUser.put("profileImageURL", "www.lol.com.br")
-//        jsonUser.put("nickname", "biel")
-//        jsonUser.put("rankPosition", 1)
-//        jsonUser.put("email", "biel@poc.br")
-//        jsonUser.put("phone", "3232323232")
-//        jsonUser.put("wins", 1)
-//        jsonUser.put("loses", 1)
-//        jsonUser.put("birthDate", "2018-01-07T00:00:00.000Z")
-//        jsonUser.put("gender", "M")
-//        jsonUser.put("category", 1)
-//        jsonUser.put("status", 1)
-//
-//        val dataJson = JSONObject()
-//
-//        dataJson.put("user", jsonUser)
-//        jsonObject.put("data", dataJson)
-//
-//        val json = Json(jsonObject.toString())
-//        val result: Result<Json, FuelError> = Result.Success(json)
-//
-//        //call
-//        thread { worker?.authenticateHandler?.invoke(request, response, result) }.join()
-//
-//        //assert
-//        assertNotNull(updateLogicMock?.response1)
-//
-//        //reset
-//        this.jsonObject = JSONObject()
-//    }
-
     @Test
     fun testNullUpdateLogicForAccountKit(){
         //prepare
@@ -230,24 +187,6 @@ class LoginWorkerTest: HelpForRealm() {
         //assert
         assertNotNull(updateLogicMock?.response2)
     }
-
-
-//    @Test
-//    fun testRequestAuthHandlerOnSuccess() {
-//        //prepare
-//        updateLogicMock?.response2 = null
-//        val url = URL("http://www.randomsite.com/")
-//        val request = Request(Method.GET, "",url)
-//        val response = Response(url)
-//        val json = Json(jsonObject.toString())
-//        val result: Result<Json, FuelError> = Result.Success(json)
-//
-//        //call
-//        thread { worker?.requestAuthHandler?.invoke(request, response, result) }.join()
-//
-//        //assert
-//        assertNotNull(updateLogicMock?.response2)
-//    }
 
     @Test
     fun testDefineBodyForAccountKitAuth() {

@@ -52,7 +52,7 @@ class ShowProfilePresenter : ShowProfilePresentationLogic {
         val number: String? = response.user?.phone
 
         val photo: Int? = if (response.user?.profilePicture != null && response.user?.profilePicture != "") {
-            response.user?.profilePicture!!.toInt()
+            response.user?.profilePicture?.toIntOrNull()
         } else {
             R.mipmap.ic_launcher
         }

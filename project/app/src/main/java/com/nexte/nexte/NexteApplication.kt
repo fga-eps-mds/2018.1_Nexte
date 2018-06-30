@@ -2,6 +2,7 @@ package com.nexte.nexte
 
 import android.app.Application
 import android.content.Context
+import android.preference.PreferenceManager
 import com.github.kittinunf.fuel.core.FuelManager
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -17,12 +18,13 @@ class NexteApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        FuelManager.instance.basePath = "https://nexte-dev.herokuapp.com"
         Realm.init(this)
 
+        this.setupLoggedUser()
+
         val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
-        val config = RealmConfiguration.Builder().name("mockerRealm.realm").build()
-        Realm.setDefaultConfiguration(config)
-        FuelManager.instance.basePath = "https://nexte-dev.herokuapp.com"
 
         if (sharedPreference.getBoolean("FirstRun", true)) {
             UserCategoryManager().createInitialMocker()
@@ -37,8 +39,6 @@ class NexteApplication: Application() {
             ChallengeManager().createInitialMocker()
             sharedPreference.edit().putBoolean("FirstRun_v2", false).apply()
         }
-
-        this.setupLoggedUser()
     }
 
     /*
@@ -47,21 +47,17 @@ class NexteApplication: Application() {
     private fun  setupLoggedUser() {
 
         val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
-        val token = sharedPreference.getString("userId", null)
+        val token = sharedPreference.getString("authUser", null)
 
         if(token != null) {
             UserSingleton.setLoggedUser(token, UserType.REAL)
-            val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
-            Realm.setDefaultConfiguration(config)
+        } else {
+            UserSingleton.setLoggedUser("9", UserType.MOCKED)
         }
     }
 
     fun updateUserLoggedStatus(user: User) {
-        UserSingleton.setLoggedUser(user.id, UserType.REAL) // User Singleton
-
-        // Realm instance for real user
-        val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
-        Realm.setDefaultConfiguration(config)
+        UserSingleton.setLoggedUser(user.id, UserType.REAL)
         UserManager().update(user)
     }
 }

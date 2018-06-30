@@ -2,6 +2,8 @@ package com.nexte.nexte
 
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 enum class UserType { REAL, MOCKED }
 
@@ -23,6 +25,17 @@ object UserSingleton {
         }
 
     fun setLoggedUser(identifier: String, userType: UserType = UserType.MOCKED) {
+        when (userType) {
+            UserType.MOCKED -> {
+                val config = RealmConfiguration.Builder().name("mockerRealm.realm").build()
+                Realm.setDefaultConfiguration(config)
+            }
+            UserType.REAL -> {
+                val config =  RealmConfiguration.Builder().name("realRealm.realm").build()
+                Realm.setDefaultConfiguration(config)
+            }
+        }
+
         this.loggedUserID = identifier
         this.userType = userType
     }

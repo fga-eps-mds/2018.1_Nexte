@@ -1,5 +1,6 @@
 package com.nexte.nexte.RankingScene
 
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
@@ -71,8 +72,10 @@ class RankingWorker {
         updateLogic?.updateUsersInRanking(response)
 
         if (UserSingleton.userType != UserType.MOCKED) {
-            val url = "http://10.0.2.2:3000/users"
-            url.httpGet().responseJson(httpGetHandler)
+            val url = "/ranking"
+            val header = mapOf("Content-Type" to "application/json",
+                    "Accept-Version" to "0.1.0")
+            Fuel.get(url).header(header).responseJson(httpGetHandler)
         } else {
             //Do nothing
         }

@@ -18,6 +18,8 @@ import android.content.Context
 import android.support.v4.app.DialogFragment
 import android.util.Log
 import com.facebook.accountkit.AccountKitLoginResult
+import com.nexte.nexte.NexteApplication
+import com.nexte.nexte.UserSingleton
 
 
 /**
@@ -103,7 +105,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     override fun displayAuthenticateState(viewModel: LoginModel.Authentication.ViewModel) {
         if (viewModel.tokenId != "") {
-            saveUserIdentifier(viewModel.tokenId)
+            saveUserIdentifier(UserSingleton.loggedUserID)
             this.finish()
         } else {
             val message = "Error to authenticate"
@@ -113,6 +115,7 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
 
     override fun displayAccountKit(viewModel: LoginModel.AccountKit.ViewModel) {
         if (viewModel.message == LoginModel.AccountKit.StatusCode.SUCESSED.toString()) {
+            saveUserIdentifier(UserSingleton.loggedUserID)
             this.finish()
         } else {
             this.triggerNotification(viewModel.message)
@@ -173,10 +176,8 @@ class LoginView : AppCompatActivity(), LoginDisplayLogic {
      * Persist userId when authentication is sucessfully
      */
     fun saveUserIdentifier(id: String) {
-        val sharedPreferences = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("userId", id)
-        editor.apply()
+        val sharedPreference = getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE)
+        sharedPreference.edit().putString("authUser", id).apply()
      }
 
     /**

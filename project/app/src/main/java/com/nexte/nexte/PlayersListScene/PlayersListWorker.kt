@@ -107,8 +107,10 @@ class PlayersListWorker {
         updateLogic?.getPlayersToChallenge(response)
 
         if (UserSingleton.userType != UserType.MOCKED) {
-            val url = "http://10.0.2.2:3000/users/"
-            url.httpGet().responseJson(this.httpHandler)
+            val url = "/users"
+            val header = mapOf("Content-Type" to "application/json",
+                    "Accept-Version" to "0.1.0")
+            Fuel.get(url).header(header).responseJson(httpHandler)
         }
 
     }
@@ -178,7 +180,7 @@ class PlayersListWorker {
             if(UserSingleton.userType != UserType.MOCKED) {
                 val header = mapOf("Content-Type" to "application/json",
                         "Accept-Version" to "0.1.0")
-                val url = "http://10.0.2.2:3000/challenges"
+                val url = "/challenges"
                 val challengeJSON = createChallengeJson(challenge)
                 Fuel.post(url).header(header).body(challengeJSON.toString()).responseJson(httpPostHandler)
 

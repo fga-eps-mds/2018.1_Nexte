@@ -1,5 +1,6 @@
 package com.nexte.nexte.LoginScene
 
+import android.preference.PreferenceManager
 import android.util.Log
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
@@ -14,6 +15,8 @@ import org.json.JSONObject
 import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserManager
 import com.nexte.nexte.NexteApplication
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 
 /**
  * Interface to define Response Logic of Ranking Class
@@ -52,9 +55,8 @@ class LoginWorker {
             val data = json["data"] as JSONObject
             val userJson = data ["user"] as JSONObject
             val user  = User.createUserFromJsonObject(userJson)
+
             NexteApplication().updateUserLoggedStatus(user)
-            Log.i("Sucess", "Here")
-            Log.i("User name", "Name")
 
             val status = LoginModel.Authentication.StatusCode.AUTHORIZED
             val response = LoginModel.Authentication.Response(user.id, status)
@@ -75,6 +77,7 @@ class LoginWorker {
             val data = json["data"] as JSONObject
             val userJson = data ["user"] as JSONObject
             val user  = User.createUserFromJsonObject(userJson)
+
             NexteApplication().updateUserLoggedStatus(user)
 
             val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
@@ -86,6 +89,8 @@ class LoginWorker {
             updateLogic?.requestAuth(response)
         }
     }
+
+
 
     /**
      * Method that realize request for user authentication

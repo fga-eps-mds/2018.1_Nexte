@@ -66,7 +66,9 @@ class RankingPresenter( var viewScene: RankingDisplayLogic? = null) : RankingPre
             val lastGame = calculatePlayerLastGame(user.latestGames, Date())
             var image = R.drawable.temp
             if (user.profilePicture != null) {
-                image = user.profilePicture.toInt()
+                user.profilePicture.toIntOrNull()?.let {
+                    image = it
+                }
             }
             var playerCategory = ""
             if (user.category != null){

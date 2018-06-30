@@ -330,7 +330,9 @@ class RankingFragment : Fragment(), RankingDisplayLogic {
 
             itemHolder?.expandedView?.currentUser?.setImageResource(item.player.userPictureURL)
             UserSingleton.loggedUser.profilePicture?.let {
-                itemHolder?.expandedView?.loggedUser?.setImageResource(it.toInt())
+                it.toIntOrNull()?.let {
+                    itemHolder?.expandedView?.loggedUser?.setImageResource(it)
+                }
             }
 
 

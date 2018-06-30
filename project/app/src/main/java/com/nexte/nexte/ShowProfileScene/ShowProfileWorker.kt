@@ -1,5 +1,6 @@
 package com.nexte.nexte.ShowProfileScene
 
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
@@ -11,6 +12,8 @@ import com.nexte.nexte.Entities.User.User
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapter
 import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.UserSingleton
+import com.nexte.nexte.UserType
 import org.json.JSONObject
 
 /**
@@ -73,9 +76,14 @@ class ShowProfileWorker {
 
         val response: ShowProfileModel.Response = ShowProfileModel.Response(returnedUser)
         updateLogic?.updateUserProfile(response)
+
         if(!returnedUser.id.isEmpty()) {
-            val url = "http://10.0.2.2:3000/users/" + returnedUser.id
-            url.httpGet().responseJson(httpRequestHandler)
+            if (UserSingleton.userType != UserType.MOCKED) {
+                val url = "/users/" + returnedUser.id
+                val header = mapOf("Content-Type" to "application/json",
+                        "Accept-Version" to "0.1.0")
+                Fuel.get(url).header(header).responseJson(httpRequestHandler)
+            }
         }else{
             //Do nothing
         }

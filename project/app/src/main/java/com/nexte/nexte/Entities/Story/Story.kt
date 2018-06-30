@@ -32,13 +32,13 @@ open class Story(var id: String? = null,
 
             //Winner and its attributes
             val winnerJson = challengeJson["winner"] as JSONObject
-            val winnerId = winnerJson["userID"] as String
+            val winnerId = winnerJson.optString("userID")
             val winnerSetResult = winnerJson["setResult"] as Int
             val winner = StoryPlayer(userId = winnerId, setResult = winnerSetResult)
 
             //Loser and its attributes
             val loserJson = challengeJson["loser"] as JSONObject
-            val loserId = loserJson["userID"] as String
+            val loserId = loserJson.optString("userID")
             val loserSetResult = loserJson["setResult"] as Int
             val loser = StoryPlayer(userId = loserId, setResult = loserSetResult)
 

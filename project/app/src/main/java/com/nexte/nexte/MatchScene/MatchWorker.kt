@@ -108,7 +108,7 @@ class MatchWorker {
             if(UserSingleton.userType == UserType.REAL) {
                 val header = mapOf("Content-Type" to "application/json",
                         "Accept-Version" to "0.1.0")
-                val url = "http://10.0.2.2:3000/challenges/" + playedChallenge.id
+                val url = "/challenges/" + playedChallenge.id
                 val challengeJSON = createMatchPlayedJson(stage)
                 Fuel.patch(url).header(header).body(challengeJSON.toString()).responseJson(httpPatchHandler)
             }
@@ -138,7 +138,7 @@ class MatchWorker {
             if(UserSingleton.userType == UserType.REAL) {
                 val header = mapOf("Content-Type" to "application/json",
                         "Accept-Version" to "0.1.0")
-                val url = "http://10.0.2.2:3000/challenges/" + deletedChallenge.id
+                val url = "/challenges/" + deletedChallenge.id
                 val challengeJSON = createMatchCancelJson(stage, UserSingleton.loggedUserID)
                 Fuel.patch(url).header(header).body(challengeJSON.toString()).responseJson(httpPatchHandler)
             }
