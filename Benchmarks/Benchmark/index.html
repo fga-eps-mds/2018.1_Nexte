@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Benchmarks - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../docs/css/landing-page.min.css" rel="stylesheet">
+  <link href="../../docs/css/landing-page.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Benchmarks";
+    var mkdocs_page_input_path = "Benchmarks/Benchmark.md";
+    var mkdocs_page_url = "/Benchmarks/Benchmark/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../EPS/TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Benchmarks</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#benchamark">Benchamark</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-objetivo">1. Objetivo</a></li>
+        
+            <li><a class="toctree-l4" href="#2-tarefas-mensuradas">2. Tarefas Mensuradas</a></li>
+        
+            <li><a class="toctree-l4" href="#3-benchmark-ios">3. Benchmark iOS</a></li>
+        
+            <li><a class="toctree-l4" href="#4-benchmark-android">4. Benchmark Android</a></li>
+        
+            <li><a class="toctree-l4" href="#5-conclusao">5. Conclusão</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Pipeline/">Pipeline</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EVM_vs_Burndown/">EVM vs Burndown</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 10</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint10/Sprint10-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint10/Sprint10-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint11</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint11/Sprint11-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint11/Sprint11-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint12</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint12/Sprint12-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint12/Sprint12-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint13</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint13/Sprint13-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint13/Sprint13-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint14</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint14/Sprint14-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint14/Sprint14-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint15</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint15/Sprint15-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint15/Sprint15-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Testes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Testes/TestesUsabilidade/">Testes de Usabilidade</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease2-FechamentoDoProjeto/">Post Mortem Release 2 + Fechamento do Projeto</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>EPS &raquo;</li>
+        
+      
+    
+    <li>Benchmarks</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/Benchmarks/Benchmark.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="benchamark">Benchamark</h2>
+<h3 id="1-objetivo">1. Objetivo</h3>
+<p>Com o objetivo de obter métricas e compreender <em>gaps</em> de desempenho da aplicação foram realizados <em>benchmarks</em> sob o ponto de vista do arquiteto de software. A partir desses resultados é possível identificar possíveis melhorias em partes específicas da aplicação, e assim realizar ações para corrigi-las. Foram realizados <em>benchmarks</em> no aplicação iOS e Android, ambas com funcionalidades equivalentes. </p>
+<h3 id="2-tarefas-mensuradas">2. Tarefas Mensuradas</h3>
+<p>No processo de mensuração dos dados sobre CPU, bateria e consumo de memótia foram realizadas todas as tarefas descritas a seguir nas plataformas iOS e Android:</p>
+<h4 id="21-realizar-login">2.1 Realizar Login</h4>
+<ul>
+<li>Ação de login da aplicação apartir do <em>username</em> e senha.</li>
+</ul>
+<h4 id="22-visualizar-perfil">2.2 Visualizar Perfil</h4>
+<ul>
+<li>Visualizar perfil e suas estatísticas de vitórias, derrotas, jogos e posição ao longo do tempo. </li>
+<li>Mudar o status atual(afastado, disponível, machucado) </li>
+<li>Acessar contatos whatsapp, telefone e adicionar contato.</li>
+</ul>
+<h4 id="23-visualizar-ranking">2.3 Visualizar Ranking</h4>
+<ul>
+<li>Visualizar posições do ranking </li>
+</ul>
+<h4 id="24-visualizar-feed">2.4 Visualizar Feed</h4>
+<ul>
+<li>Visualizar feed </li>
+<li>Curtir publicações </li>
+<li>Comentar em publicações  </li>
+</ul>
+<h4 id="25-desafiar-oponente">2.5 Desafiar Oponente</h4>
+<ul>
+<li>Selecionar oponente  </li>
+<li>Confirmar desafio </li>
+<li>Colocar resultados para o desafio criado </li>
+</ul>
+<h3 id="3-benchmark-ios">3. <em>Benchmark</em> iOS</h3>
+<p>A medição da aplicação iOS foi realizada por meio do <em>instruments</em>, e os arquivos com os <em>benchmarks</em> encontram-se disponíveis em nosso Google Drive. Não obstante, foram realizados <em>benchmarks</em> para casa uma das tarefas citadas a seguir, sendo que para cada uma categoria geral foi gerado um relatório. <a href="https://drive.google.com/drive/folders/1nhNff6rZr_pc9mGPFH-lXtjwPxksNDfx?usp=sharing">Clique aqui para acessar o benchmarks referentes ao iOS</a></p>
+<p><strong>Observação:</strong> Teste realizado no Iphone 6S na versão iOS 11.3</p>
+<h3 id="4-benchmark-android">4. <em>Benchmark</em> Android</h3>
+<p>O processo de <em>benchmark</em> do Android foi realizado a partir do Android Profiler. Os dados para cada uma das tarefas estão apresentados nas tarefas a seguir. Os prints dos resultados encontrados, encontram-se disponíveis a seguir. <a href="https://drive.google.com/open?id=1QUbCals5_5-CCnYV8gVEk1jSyS1s52hQ">Clique aqui para acessar o benchmarks referentes ao Android</a></p>
+<p><strong>Observação:</strong> Teste realizado no Xiaomi Mi A1 na versão 7.1.2 do Android</p>
+<h4 id="41-realizar-login">4.1 Realizar Login</h4>
+<table>
+<thead>
+<tr>
+<th>Medição</th>
+<th>Tempo de Execução</th>
+<th>Dados Recebidos (KB/s)</th>
+<th>Dados Enviados (KB/s))</th>
+<th>Uso de Memória (em MB)</th>
+<th>Consumo de CPU (%)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0:00:02</td>
+<td>0,5</td>
+<td>53,3</td>
+<td>135,49</td>
+<td>9,82</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0:00:02</td>
+<td>5,47</td>
+<td>37,42</td>
+<td>157,52</td>
+<td>23,05</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0:00:01</td>
+<td>2,45</td>
+<td>6,91</td>
+<td>104,77</td>
+<td>35,27</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="42-visualizar-perfil">4.2 Visualizar Perfil</h4>
+<table>
+<thead>
+<tr>
+<th>Medição</th>
+<th>Tempo de Execução</th>
+<th>Dados Recebidos (KB/s)</th>
+<th>Dados Enviados (KB/s))</th>
+<th>Uso de Memória (em MB)</th>
+<th>Consumo de CPU (%)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0:00:03</td>
+<td>0</td>
+<td>0</td>
+<td>135,45</td>
+<td>16,41</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0:00:03</td>
+<td>0</td>
+<td>0</td>
+<td>161,54</td>
+<td>31,69</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0:00:01</td>
+<td>0</td>
+<td>0</td>
+<td>162,88</td>
+<td>1,53</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="43-visualizar-ranking">4.3 Visualizar Ranking</h4>
+<table>
+<thead>
+<tr>
+<th>Medição</th>
+<th>Tempo de Execução</th>
+<th>Dados Recebidos (KB/s)</th>
+<th>Uso de Memória (em MB)</th>
+<th>Uso de Memória (em MB)</th>
+<th>Consumo de CPU (%)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0:00:03</td>
+<td>27,17</td>
+<td>23,17</td>
+<td>156,9</td>
+<td>14</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0:00:01</td>
+<td>0</td>
+<td>0</td>
+<td>140,27</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0:00:01</td>
+<td>0</td>
+<td>0</td>
+<td>204,35</td>
+<td>15,93</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="44-visualizar-feed">4.4 Visualizar Feed</h4>
+<table>
+<thead>
+<tr>
+<th>Medição</th>
+<th>Tempo de Execução</th>
+<th>Dados Recebidos (KB/s)</th>
+<th>Uso de Memória (em MB)</th>
+<th>Uso de Memória (em MB)</th>
+<th>Consumo de CPU (%)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0:00:02</td>
+<td>0</td>
+<td>10,61</td>
+<td>161,55</td>
+<td>8,36</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0:00:01</td>
+<td>0</td>
+<td>0</td>
+<td>168,14</td>
+<td>17,82</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0:00:01</td>
+<td>0</td>
+<td>0</td>
+<td>152,7</td>
+<td>12,32</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="45-desafiar-oponente">4.5 Desafiar Oponente</h4>
+<table>
+<thead>
+<tr>
+<th>Medição</th>
+<th>Tempo de Execução</th>
+<th>Dados Recebidos (KB/s)</th>
+<th>Uso de Memória (em MB)</th>
+<th>Uso de Memória (em MB)</th>
+<th>Consumo de CPU (%)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0:00:02</td>
+<td>0</td>
+<td>0</td>
+<td>140,28</td>
+<td>14,75</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0:00:03</td>
+<td>0</td>
+<td>0</td>
+<td>147,34</td>
+<td>4,47</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0:00:02</td>
+<td>0</td>
+<td>0</td>
+<td>152,99</td>
+<td>20,73</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-conclusao">5. Conclusão</h3>
+<p>Pode-se observar pelos <em>benchmarks</em> do iOS que a aplicação está fluída e atualmente não apresenta gargalos de performance. Entretanto, foi possível concluir que principalmente ao carregar um nova tela(fragment/activity) o consumo de hardware é exigido com mais intensidade, e esse foi um dos GAPS encontrados com este benchmark. Não obstante, identificou-se que este gargalo pode ser oriundo de dois fatores:</p>
+<ul>
+<li>
+<p>Fluxo de telas: Controle de instancias e fluxo entre fragments e Acitvities;</p>
+</li>
+<li>
+<p>Requisições ao servidor;</p>
+</li>
+</ul>
+<p>Em futuras releases, o time irá gastar esforços para obter melhores métricas..</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../EPS/GestaoDeRisco/" class="btn btn-neutral float-right" title="Gestão de Risco">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../EPS/ArquiteturaMicroservicos/" class="btn btn-neutral" title="Arquitetura de Microserviços"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../EPS/ArquiteturaMicroservicos/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../EPS/GestaoDeRisco/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Pipeline - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../docs/css/landing-page.min.css" rel="stylesheet">
+  <link href="../../docs/css/landing-page.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Pipeline";
+    var mkdocs_page_input_path = "EPS/Pipeline.md";
+    var mkdocs_page_url = "/EPS/Pipeline/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Benchmarks/Benchmark/">Benchmarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Canvas/">Canvas</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Pipeline</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-da-revisao">Histórico da Revisão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#integracao-continua">Integração Contínua</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#test">Test</a></li>
+        
+            <li><a class="toctree-l4" href="#build">Build</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#deploy-continuo">Deploy Contínuo</a></li>
+    
+
+    <li class="toctree-l3"><a href="#ci-no-servidor-de-imagens">CI no servidor de imagens</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EVM_vs_Burndown/">EVM vs Burndown</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 10</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint10/Sprint10-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint10/Sprint10-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint11</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint11/Sprint11-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint11/Sprint11-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint12</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint12/Sprint12-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint12/Sprint12-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint13</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint13/Sprint13-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint13/Sprint13-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint14</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint14/Sprint14-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint14/Sprint14-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint15</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint15/Sprint15-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint15/Sprint15-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Testes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Testes/TestesUsabilidade/">Testes de Usabilidade</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../PostMortem/PostMortemRelease2-FechamentoDoProjeto/">Post Mortem Release 2 + Fechamento do Projeto</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>EPS &raquo;</li>
+        
+      
+    
+    <li>Pipeline</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/EPS/Pipeline.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="historico-da-revisao">Histórico da Revisão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26/06/2018</td>
+<td>0.1</td>
+<td>Criado versão inicial</td>
+<td>Geovanni Oliveira</td>
+</tr>
+<tr>
+<td>----</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>### Introdução</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>O pipeline é usado tanto para realização da Integração Contínua quanto para o Deploy Contínuo.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="integracao-continua">Integração Contínua</h3>
+<p>O GitLab CI é usado pela equipe apara a implementação da integração contínua, e nela existem três estágios </p>
+<ul>
+<li>Test</li>
+<li>Build</li>
+<li>Deploy</li>
+</ul>
+<h4 id="test">Test</h4>
+<p>No estágio de teste é executado a <strong>análise estática</strong> de código, feita pela ferramenta Detekt, cujo os parâmetros aceitáveis são:</p>
+<p><strong>Métricas Detekt</strong><br />
+<em> Code Smells &lt; 10<br />
+</em> Adequação à folha de estilo<br />
+<em> Complexidade ciclomática por método &lt; 10<br />
+</em> Método &lt; 30 linhas
+* Classe &lt;= 15 métodos</p>
+<p>Em paralelo s testes unitários são executados, caso algúm teste falhe o pipeline quebra ou se a cobertura de testes estiver menor do que a aceitável ele também quebra.</p>
+<p>Para a Release 1 o critério para passar no estágio de Test era ter 40% de cobertura de código, já na Release 2 o objetivo era de deixar o projeto com cobertura de 90%, mas como até alguns dias atrás não estava, o projeto estava com o critério que de acordo que acobertura ia aumentando ela não poderia abaixar, somente aumentar, e até chegar à 90% de cobertura esse critério foi utilizado.</p>
+<p>Esta etapa é feita em todas as branches e tags.  </p>
+<h4 id="build">Build</h4>
+<p>Nesta etapa é verificado se o projeto está com problemas em sua compilação e sua build.</p>
+<p>Além de fazer a build do projeto, esta etapa é responsável por fazer o deploy da documentação do projeto para a página do GitHub Pages, porém está etapa só é realizada na branch dev.
+Assim como a etapa anterior, esta etapa é executada  em todas as branches e tags.
+<img src = "https://i.imgur.com/gFm6hHB.png" ></p>
+<h3 id="deploy-continuo">Deploy Contínuo</h3>
+<p>Stage onde acontece: - deploy<br />
+O Deploy Contínuo é feito com a participação do GitLab CI e do fastlane, no script do o Deploy Contínuo é feito ao gerar uma nova tag. O Aplicativo é submetido para Play Store em Modo Beta, devido a algumas limitações externas, fora de controle, impostas à equipe.</p>
+<div>
+   <p align="center"> 
+        <img src = "https://i.imgur.com/BGA37Jf.png" width="30%">
+   </p>
+</div>
+
+<h3 id="ci-no-servidor-de-imagens">CI no servidor de imagens</h3>
+<p>O servidor de imagens se encontra em um repositório separado em relação ao de código e nele também há a Integração Contínua, e em relação ao servidor o CI tem apenas três estágios, e são eles: </p>
+<ul>
+<li>Test</li>
+<li>Build</li>
+</ul>
+<p>A Integração Contínua do servidor é feito em um outro repositório a parte do repositório do código fonte.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../EVM_vs_Burndown/" class="btn btn-neutral float-right" title="EVM vs Burndown">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Canvas/" class="btn btn-neutral" title="Canvas"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Canvas/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../EVM_vs_Burndown/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

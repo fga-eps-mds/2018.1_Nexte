@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Centralização de Informações - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../docs/css/landing-page.min.css" rel="stylesheet">
+  <link href="../docs/css/landing-page.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Centraliza\u00e7\u00e3o de Informa\u00e7\u00f5es";
+    var mkdocs_page_input_path = "CentralizacaoInformacoes.md";
+    var mkdocs_page_url = "/CentralizacaoInformacoes/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Centralização de Informações</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-de-reivsao">Histórico de reivsão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#sumario">Sumário</a></li>
+    
+
+    <li class="toctree-l3"><a href="#0-boas-praticas-para-kotlin">0. Boas Práticas para Kotlin</a></li>
+    
+
+    <li class="toctree-l3"><a href="#1-testes-unitarios">1. Testes Unitários</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#11-criando-documento-de-testes">1.1. Criando documento de testes</a></li>
+        
+            <li><a class="toctree-l4" href="#12-setup-e-teardown">1.2. setUp e tearDown</a></li>
+        
+            <li><a class="toctree-l4" href="#13-testando">1.3. Testando</a></li>
+        
+            <li><a class="toctree-l4" href="#14-mocking">1.4. Mocking</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#2-testes-de-integracao">2. Testes de Integração</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#21-roboeletric">2.1 Roboeletric</a></li>
+        
+            <li><a class="toctree-l4" href="#22-mockito-e-mock">2.2 Mockito e Mock</a></li>
+        
+            <li><a class="toctree-l4" href="#23-testing-external-frameworks">2.3 Testing external frameworks</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#3-testes-assincronos">3. Testes Assíncronos</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#31-couroutines-e-tarefas-assincronas">3.1 Couroutines e Tarefas Assíncronas</a></li>
+        
+            <li><a class="toctree-l4" href="#32-tarefas-assincronas-em-kotlin">3.2 Tarefas Assíncronas em Kotlin</a></li>
+        
+            <li><a class="toctree-l4" href="#33-teste-unitarios">3.3 Teste Unitários</a></li>
+        
+            <li><a class="toctree-l4" href="#observacoes">Observações</a></li>
+        
+            <li><a class="toctree-l4" href="#4-custom-application-class">4. Custom Application Class</a></li>
+        
+            <li><a class="toctree-l4" href="#5-enum-class-com-sealed-class">5. Enum Class com Sealed Class</a></li>
+        
+            <li><a class="toctree-l4" href="#6-realm-database">6. Realm Database</a></li>
+        
+            <li><a class="toctree-l4" href="#7-relatorio-cobertura-de-testes">7. Relatorio Cobertura de Testes</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../EPS/TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Benchmarks/Benchmark/">Benchmarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/Pipeline/">Pipeline</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../EPS/EVM_vs_Burndown/">EVM vs Burndown</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../EPS/PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../EPS/PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../EPS/PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../EPS/PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../EPS/PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint9/Sprint9-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 10</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint10/Sprint10-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint10/Sprint10-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint11</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint11/Sprint11-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint11/Sprint11-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint12</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint12/Sprint12-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint12/Sprint12-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint13</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint13/Sprint13-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint13/Sprint13-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint14</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint14/Sprint14-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint14/Sprint14-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint15</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint15/Sprint15-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Sprints/Sprint15/Sprint15-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Testes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Testes/TestesUsabilidade/">Testes de Usabilidade</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../PostMortem/PostMortemRelease2-FechamentoDoProjeto/">Post Mortem Release 2 + Fechamento do Projeto</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Estudos &raquo;</li>
+        
+      
+    
+    <li>Centralização de Informações</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/CentralizacaoInformacoes.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="historico-de-reivsao">Histórico de reivsão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16/04/2018</td>
+<td>0.1</td>
+<td>Criação do Documento e adição de testes unitários</td>
+<td>Luis Gustavo</td>
+</tr>
+<tr>
+<td>28/04/2018</td>
+<td>0.2</td>
+<td>Adição de boas práticas, realm, enum class e sealed class, e custom application class</td>
+<td>Guilherme Baldissera</td>
+</tr>
+<tr>
+<td>28/04/2018</td>
+<td>0.3</td>
+<td>Testes de Integração e  Alguns Frameworks</td>
+<td>Miguel Pimentel</td>
+</tr>
+<tr>
+<td>28/04/2018</td>
+<td>0.4</td>
+<td>Testes Assíncronos</td>
+<td>Miguel Pimentel</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sumario">Sumário</h2>
+<p><a href="#0-boas-práticas-para-kotlin">0. Boas Práticas para Kotlin</a><br />
+<a href="#1-testes-unitários">1. Testes Unitários</a><br />
+<a href="#2-testes-de-integracao">2. Testes de Integração</a><br />
+<a href="#3-testes-assincronos">3. Testes Assíncronos</a><br />
+<a href="#4-custom-application-class">4. Custom Application Class</a><br />
+<a href="#5-enum-class-com-sealed-class">5. Enum Class com Sealed Class</a><br />
+<a href="#6-realm-database">6. Realm Database</a> 
+<a href="#7-Relatorio-Cobertura-de-Testes">7. Executar relatório de cobertura de testes Intrumentais</a></p>
+<h2 id="0-boas-praticas-para-kotlin">0. Boas Práticas para Kotlin</h2>
+<ul>
+<li><a href="https://blog.philipphauer.de/clean-code-kotlin/">Clean Code</a></li>
+<li><a href="https://blog.philipphauer.de/idiomatic-kotlin-best-practices/">Kotlin e Melhores práticas</a></li>
+<li><a href="https://blog.philipphauer.de/best-practices-unit-testing-kotlin/">Boas práticas para Teste Unitário em Kotlin</a></li>
+</ul>
+<h2 id="1-testes-unitarios">1. Testes Unitários</h2>
+<ul>
+<li><a href="https://developer.android.com/training/testing/unit-testing/local-unit-tests?hl=pt-br">Testes Unitário com Mockito</a></li>
+</ul>
+<h3 id="11-criando-documento-de-testes">1.1. Criando documento de testes</h3>
+<p>Na classe que deseja testar, clique em cima da declaração da classe e aperte: <em>Ctrl + shift + t</em>. Em seguida clique em <em>Create New Text</em>, conforme a figura abaixo.
+<img alt="Criação de testes" src="https://i.imgur.com/bmNmfMp.png" /></p>
+<p>Na tela seguinte, adicione os os métodos <em>setUp</em> e <em>tearDown</em> e clique em <em>Ok</em>.
+<img alt="Configuração de testes" src="https://i.imgur.com/CUJaUB7.png" /></p>
+<p>Após isso, sua classe de testes será criada.</p>
+<h3 id="12-setup-e-teardown">1.2. <em>setUp</em> e <em>tearDown</em></h3>
+<ul>
+<li>
+<p><strong>setUp</strong>: Método que será executado antes de cada teste unitário.</p>
+</li>
+<li>
+<p><strong>tearDown</strong>: Método que será executado após cada teste unitário.</p>
+</li>
+</ul>
+<p>Esses métodos são úteis para instanciar e desalocar variáveis que serão utilizadas em mais de um teste, desse modo, não sendo necessário declarar e instanciar novas variáveis em cada teste.</p>
+<p>Ex:</p>
+<pre><code class="Kotlin">var worker: FeedWorker? = null
+
+fun setUp(){
+    this.worker = FeedWorker()
+}
+
+//@Test
+//Vários testes que utilizarão a variável worker
+
+fun tearDown(){
+    this.worker = null
+}
+
+</code></pre>
+
+<h3 id="13-testando">1.3. Testando</h3>
+<p>A estrutura do teste unitário se dá em três etapas:</p>
+<ul>
+<li>
+<p><strong>prepare</strong>: Preparação dos dados que serão utilizados no teste e criação do objeto a ser testado.</p>
+</li>
+<li>
+<p><strong>call</strong>: Chamada do método a ser testado, com os parâmetros utilizados na etapa <em>prepare</em>.</p>
+</li>
+<li>
+<p><strong>assert</strong>: Verificar se o objeto testado tem o valor esperado.</p>
+</li>
+</ul>
+<p>Ex:</p>
+<pre><code class="Kotlin">@Test
+fun successRequest(){
+    //prepare
+    val userName = &quot;luis-gustavo&quot;
+    val tokenId = &quot;akjbd2130as&quot;
+
+   //call
+    val request = ShowProfileModel.Request(username = &quot;luis-gustavo&quot;, tokenID = &quot;akjbd2130as&quot;)
+
+    //assert
+    assertEquals(userName, request.username)
+    assertEquals(tokenId, request.tokenID)
+}
+</code></pre>
+
+<h3 id="14-mocking">1.4. Mocking</h3>
+<p><em>Mocking</em> é usado principalmente em testes unitários. Um objeto em teste pode ter dependências em outros objetos (complexos). Para isolar o comportamento do objeto que você deseja testar, substitua os outros objetos por simulados que simulam o comportamento dos objetos reais. Isso é útil se os objetos reais forem impraticáveis ​​para incorporar ao teste de unitário.</p>
+<p>Ou seja, <em>mocking</em> deve ser utilizado para criar objetos que irão simular o comportamento de objetos reais.</p>
+<p>Ex: </p>
+<p>Como se pode-se observar na imagem abaixo, no método <em>presentLogin()</em> há a chamada do metodo <em>displayAuthenticateState()</em> da variável <em>viewController</em>. Entretanto, para o teste unitário do método <em>presentLogin()</em>, o comportamento do método <em>displayAuthenticateState()</em>, não deve ser considerado. Assim, para que não ficar dependente do comportamento desse método, utiliza-se mocking.</p>
+<p><img alt="Login Presenter" src="https://i.imgur.com/d3aOrAr.png" /></p>
+<p><strong>Mockando *LoginDisplayLogic</strong>*</p>
+<pre><code class="Kotlin">
+class MockLoginDisplayLogic: LoginDisplayLogic{
+
+    //Simulando o comportamento real
+    var message: String? = null
+
+    override fun fun displayAuthenticateState(viewModel: LoginModel.ViewModel){
+
+        //Aqui deve ser implementado o comportamento simulado desse método
+
+        //Nesse caso, será atribuido em uma variável local desse classe, a mensagem que vem como parâmetro desse método
+        this.message = viewModel.message
+    }
+}
+</code></pre>
+
+<p><strong>Utilizando o objeto mockado no teste unitário</strong></p>
+<pre><code class="Kotlin">class LoginPresenterTest {
+
+    //Declaração do objeto mockado
+    private var mock: MockLoginDisplayLogic? = null
+
+    private var presenter: LoginPresenter? = null
+
+    @Before
+    fun setUp() {
+        this.mock = MockLoginDisplayLogic()
+        this.presenter = LoginPresenter()
+
+        //Atribuição do objeto mockado
+        this.presenter?.viewControler = mock
+    }
+
+    @Test
+    fun successMessagePresentLogin(){
+        //prepare
+        val response = LoginModel.Response(tokenId = &quot;h1n3vv3u13ola&quot;)
+        val expectedMessage = &quot;Congratz! U get it&quot;
+
+        //call
+        this.presenter?.presentLogin(response = response)
+
+        //assert
+        //Utilização do objeto mockado para a finalidade do teste
+        assertEquals(this.mock?.message, expectedMessage)
+    }
+}
+</code></pre>
+
+<h1 id="2-testes-de-integracao">2. Testes de Integração</h1>
+<h3 id="21-roboeletric">2.1 Roboeletric</h3>
+<p>O Roboeletric torna o processo de teste mais eficiente, visto que é capaz de rodar testes de tecnologias presentes na SDK na JVM, a partir de simulação de condições de um device na execução dos testes.</p>
+<p>Configuração em Kotlin:</p>
+<ul>
+<li><strong>No gradle</strong></li>
+</ul>
+<pre><code>testCompile &quot;org.robolectric:robolectric:3.8&quot;
+</code></pre>
+
+<ul>
+<li><strong>Nas classes de teste</strong></li>
+</ul>
+<pre><code>@RunWith(RobolectricTestRunner::class) //  Executa a ferramenta
+@Config(manifest= Config.NONE) // Carrega configurações específicas definidas pelo ambiente de desenvolvimento
+</code></pre>
+
+<h3 id="22-mockito-e-mock">2.2 Mockito e Mock</h3>
+<p>Para simular condições necessárias para o testes, muitas vezes se faz necerrário a criação de  mocks e para isso pode se fazer o uso de dois frameworks:</p>
+<ul>
+<li><a href="http://site.mockito.org">Mockito</a></li>
+<li><a href="http://mockk.io">Mockk</a></li>
+</ul>
+<p>Dentre eles, destaca-se o mockk, pois ele é propriamente provido a Kotlin.</p>
+<h3 id="23-testing-external-frameworks">2.3 Testing external frameworks</h3>
+<ul>
+<li><strong>Testing Fuel</strong></li>
+</ul>
+<p>Na documentação da framework, eles requerem o uso do Mockk, um framework para mock em kotlin. </p>
+<pre><code>val client = mockk&lt;Client&gt;()
+
+val someJson = &quot;{\&quot;key\&quot;:\&quot;value\&quot;}&quot;
+
+every { client.executeRequest(any()).statusCode } returns 200
+every { client.executeRequest(any()).responseMessage } returns &quot;OK&quot;
+every { client.executeRequest(any()).data } returns someJson.toByteArray()
+
+FuelManager.instance.client = client
+</code></pre>
+
+<p>Para mais informações, acesse esta <a href="https://github.com/kittinunf/Fuel/issues/186">issue</a> presente no repositório oficial</p>
+<ul>
+<li><strong>Testing Realm</strong></li>
+</ul>
+<p>O teste do realm pode ser feito a partir de ferramentas já providas pelo <em>framework</em>. Este processo consiste em  simular uma instancia e garantir a manipulação destes valores.</p>
+<pre><code>// Configuring Test
+
+RealmConfiguration testConfig = 
+   new RealmConfiguration.Builder().
+      inMemory().
+      name(&quot;test-realm&quot;).build();
+Realm testRealm = Realm.getInstance(testConfig);
+
+// Execute Tests
+
+//0. inject the prepared Realm
+MyBusinessLogic interactor = new MyBusinessLogic(testRealm);
+//1.1 write expected data
+testRealm.executeTransaction(copyExpectedData);
+//1.2 assert that business logic loads correct data
+MyBusinessEntity actualData = interactor.loadBusinessStuff();
+assertThat(actualData, equalTo(expectedData));
+//2.1 write actual data
+interactor.saveBusinessStuff(actualData);
+//2.2 assert that business logic writes correct data
+actualData = testRealm.where(MyBusinessEntity.class).findAll();
+assertThat(actualData, equalTo(expectedData));
+</code></pre>
+
+<p>Para mais informações: <a href="https://medium.com/@q2ad/android-testing-realm-2dc1e1c94ee1">Android testing Realm</a></p>
+<h1 id="3-testes-assincronos">3. Testes Assíncronos</h1>
+<h2 id="31-couroutines-e-tarefas-assincronas">3.1 <em>Couroutines</em> e Tarefas Assíncronas</h2>
+<p>No desenvolvimento de software é bastante usual a utilização de Courotines, isto é a capacidade de suspender e continuar sua própria execução. Esta prática se torna bastante comum quando utilizada em paralelo com tarefas assíncronas.</p>
+<p>Pseudo-código para <em>couroutine</em>:</p>
+<pre><code>    start courotine 
+    var dataFromServer = fetchDataFromServer().await()
+    var data = parserData(dataFromServer).await()
+    displayInList(data)
+</code></pre>
+
+<p>Entretanto, alguns frameworks disponibilizam métodos assync</p>
+<h2 id="32-tarefas-assincronas-em-kotlin">3.2 Tarefas Assíncronas em Kotlin</h2>
+<p>Em Android com Kotlin, podemos fazer uso de tarefas assynchronas da seguinte forma:</p>
+<pre><code>suspend fun getListOfThings() {
+    asyncTask { storageHelper.getListFromDb() }
+        .let { list -&gt; 
+            view.useTheResult(list)
+    }
+}
+</code></pre>
+
+<pre><code>suspend fun &lt;T&gt; asyncTask(function: () -&gt; T): T {
+    return run(CommonPool) { function() }
+}
+</code></pre>
+
+<p>Vale ressaltar, que muitos frameworks de terceiros disponibilizam métodos assíncronos que não necessita do uso de funções auxiliares como <em>asyncTask</em></p>
+<h2 id="33-teste-unitarios">3.3 <strong>Teste Unitários</strong></h2>
+<p>Para realizar testes unitários, com o uso do Mockito podemos realizar os testes da seguinte forma:</p>
+<pre><code>// TEST
+
+@Test
+fun getPackageFiltersForWidget() {
+    val list: ArrayList&lt;PackageFilter&gt; = ArrayList()
+    `when`(storageHelper.getListFromDb()).thenReturn(list)
+    presenter.getListOfThings()
+    Mockito.verify(view).useTheResult(ArgumentMatchers.eq(list))
+}
+
+// PRESENTER
+
+fun getListOfThings() {
+    launch(Android) {
+        asyncTask { storageHelper.getListFromDb() }.await()
+        .let { list -&gt; 
+            view.useTheResult(list)
+        }
+    }
+}
+
+fun &lt;T&gt; asyncTask(function: () -&gt; T): Deferred&lt;T&gt; {
+    return async(CommonPool) { function() }
+}
+
+// ACTIVITY
+
+fun getList() {
+    presenter.getListOfThings()
+}
+</code></pre>
+
+<h2 id="observacoes">Observações</h2>
+<ul>
+<li>Para utilizar tarefas assíncronas em kotlin é necessário importar o módulo de cotoutines:</li>
+</ul>
+<pre><code>compile &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:0.11-rc&quot;
+</code></pre>
+
+<h3 id="referencias"><strong>Referências</strong></h3>
+<p>Para mais informações sobre testes e tarefas assíncronas:</p>
+<ul>
+<li>
+<p><a href="https://medium.com/@macastiblancot/android-coroutines-getting-rid-of-runonuithread-and-callbacks-cleaner-thread-handling-and-more-234c0a9bd8eb">Android Coroutines</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/@tonyowen/android-kotlin-coroutines-unit-test-16e984ba35b4">Android Couroutine - Unit Test</a></p>
+</li>
+</ul>
+<h2 id="4-custom-application-class">4. Custom Application Class</h2>
+<ul>
+<li><a href="https://github.com/codepath/android_guides/wiki/Understanding-the-Android-Application-Class">Understanding the Android Application Class</a></li>
+</ul>
+<h2 id="5-enum-class-com-sealed-class">5. Enum Class com Sealed Class</h2>
+<p>Artigo do medium usado para isso, usado na entidade Challenge.
+- <a href="https://medium.com/@arturogdg/creating-enums-with-associated-data-in-kotlin-d9e2cdcf4a99">Medium Enum Class com Sealed Class</a></p>
+<h2 id="6-realm-database">6. Realm Database</h2>
+<p>Documentação do Realm Database utilizado para a adição da Database local esscolhida para o nosso app.
+- <a href="https://realm.io/docs/java/latest">Realm Database</a></p>
+<h2 id="7-relatorio-cobertura-de-testes">7. Relatorio Cobertura de Testes</h2>
+<p>Para executar o relatório de cobertura de testes é necesário acessar a pasta project do projeto e executar o seguinte comando no termina:</p>
+<p>./gradlew createDebugCoverageReport</p>
+<p>E então, será criado (se não existir) uma pasta reports dentro, com o caminho: app/build/reports/coverage/debug e então um arquivo index.html estará disponível para consultar a cobertura de testes Instrumentais do projeto. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../EPS/TAP/" class="btn btn-neutral float-right" title="Termo de abertura">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../EPS/TAP/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

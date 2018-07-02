@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Post Mortem Release 2 + Fechamento do Projeto - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../docs/css/landing-page.min.css" rel="stylesheet">
+  <link href="../../docs/css/landing-page.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Post Mortem Release 2 + Fechamento do Projeto";
+    var mkdocs_page_input_path = "PostMortem/PostMortemRelease2-FechamentoDoProjeto.md";
+    var mkdocs_page_url = "/PostMortem/PostMortemRelease2-FechamentoDoProjeto/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../EPS/TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Benchmarks/Benchmark/">Benchmarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/Pipeline/">Pipeline</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EPS/EVM_vs_Burndown/">EVM vs Burndown</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Metricas/">Métricas</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../EPS/PlanoDeQualidade/Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint9/Sprint9-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 10</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint10/Sprint10-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint10/Sprint10-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint11</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint11/Sprint11-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint11/Sprint11-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint12</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint12/Sprint12-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint12/Sprint12-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint13</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint13/Sprint13-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint13/Sprint13-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint14</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint14/Sprint14-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint14/Sprint14-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint15</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint15/Sprint15-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Sprints/Sprint15/Sprint15-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Testes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Testes/TestesUsabilidade/">Testes de Usabilidade</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Post Mortem Release 2 + Fechamento do Projeto</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#historico-da-revisao">Histórico da Revisão</a></li>
+    
+
+    <li class="toctree-l3"><a href="#1-fechamento-do-projeto">1. Fechamento do Projeto</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#11-velocity">1.1. Velocity</a></li>
+        
+            <li><a class="toctree-l4" href="#12-quadro-de-conhecimento">1.2. Quadro de Conhecimento</a></li>
+        
+            <li><a class="toctree-l4" href="#13-evm">1.3. EVM</a></li>
+        
+            <li><a class="toctree-l4" href="#14-metricas">1.4. Métricas</a></li>
+        
+            <li><a class="toctree-l4" href="#15-riscos">1.5. Riscos</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#2-post-mortem">2. Post Mortem</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#21-pontos-fortes">2.1. Pontos Fortes</a></li>
+        
+            <li><a class="toctree-l4" href="#22-pontos-fracos">2.2. Pontos Fracos</a></li>
+        
+            <li><a class="toctree-l4" href="#23-licoes-aprendidas">2.3. Lições Aprendidas</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Post Mortem &raquo;</li>
+        
+      
+    
+    <li>Post Mortem Release 2 + Fechamento do Projeto</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/PostMortem/PostMortemRelease2-FechamentoDoProjeto.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="historico-da-revisao">Histórico da Revisão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24/06/2018</td>
+<td>0.1</td>
+<td>Criação do documento</td>
+<td>Luis Gustavo</td>
+</tr>
+<tr>
+<td>-------------------------------------------------------------------------------------------------</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total de Sprints:</strong> 16</p>
+<p><strong>Data de ínicio:</strong> 08/03/2018</p>
+<p><strong>Data de término:</strong> 27/06/2018</p>
+<p><strong>Tempo de Duração:</strong> 3 meses e 19 dias</p>
+<p><a href="#1-fechamento-do-projeto">1. Fechamento do Projeto</a></p>
+<ul>
+<li>
+<p><a href="#11-velocity">1.1 Velocity</a></p>
+</li>
+<li>
+<p><a href="#12-quadro-de-conhecimento">1.2 Quadro de Conhecimento</a></p>
+</li>
+<li>
+<p><a href="#13-evm">1.3 EVM</a></p>
+</li>
+<li>
+<p><a href="#14-métricas">1.4 Métricas</a></p>
+</li>
+<li>
+<p><a href="#15-riscos">1.5 Riscos</a></p>
+</li>
+</ul>
+<p><a href="#2-post-mortem">2. Post Mortem</a></p>
+<ul>
+<li>
+<p><a href="#21-pontos-fortes">2.1 Pontos Fortes</a></p>
+</li>
+<li>
+<p><a href="#22-pontos-fracos">2.2 Pontos Fracos</a></p>
+</li>
+<li>
+<p><a href="#23-lições-aprendidas">2.3 Lições Aprendidas</a></p>
+</li>
+</ul>
+<h2 id="1-fechamento-do-projeto"><strong>1. Fechamento do Projeto</strong></h2>
+<h3 id="11-velocity"><strong>1.1. Velocity</strong></h3>
+<p><img alt="Velocity" src="https://i.imgur.com/TnxCR6m.png" /></p>
+<p>Existem algumas diferenças encontradas nas pontuações de na imagem acima do que está documentado em alguns planejamentos e resultados de sprint. Isso deve-se ao fato da equipe documentar dívidas técnicas de sprint anteriores como pontos planejados em algumas sprints. Nessa imagem está o certo.</p>
+<p>Na imagem acima pode-se observar o velocity da equipe, que terminou em <strong>73,78</strong> pontos. </p>
+<p>Pode-se observar que a equipe errou bastante nos planejamentos, e só conseguiu chegar próximo a produtividade máxima, mantendo-a, a partir da sprint 9. Os erros devem-se muito ao fato da equipe querer constantemente aumentar o velocity, dessa forma, planejando pontos demais. Mesmo quando a equipe aumentava o velocity haviam dívidas técnicas. Um grande aprendizado foi respeitar ao máximo a metodologia e os dados dela, e não confiar que "nessa sprint" a equipe vai conseguir entregar muito mais.</p>
+<h3 id="12-quadro-de-conhecimento"><strong>1.2. Quadro de Conhecimento</strong></h3>
+<p>* <em>O quadro de conhecimentos foi adicionado na sprint 4.</em></p>
+<ul>
+<li>Sprint 4</li>
+</ul>
+<p><img alt="Quadro de Conhecimento Sprint 4" src="https://i.imgur.com/7XaE6gr.png" /></p>
+<ul>
+<li>Sprint 15</li>
+</ul>
+<p><img alt="Quadro de Conhecimento Sprint 15" src="https://i.imgur.com/BY2aYth.png" /></p>
+<p>Pode-se observar que houve grande avanço no conhecimento da equipe, em vários assuntos tanto EPS como MDS estão bem nivelados. </p>
+<p>As maiores discrepâncias são:</p>
+<ul>
+<li>
+<p>Baldissera em EPS que tem conhecimentos de Docker maior que o resto do grupo. Visto que ele foi o Devops na Release 1 e como a maior parte das tarefas de devops(Ambientes de desenvolvimento, testes, homologação, CI, CD) foram entregues na R1, os demais membros de EPS não conseguiram atuar muito nesse papel. Dessa forma, aprendendo menos de Docker;</p>
+</li>
+<li>
+<p>Houve muita dificuldade e muitos problemas em testes unitários e testes instrumentação ao longo do projeto, devido as particularidades e dificuldades excessivas de testes em android. A equipe de MDS conseguiu aprender e testar muita coisa mas não se sentiu tão segura no conhecimento, visto que várias vezes tiveram que recorrer a EPS para descobrir como testar algumas funcionalidades;</p>
+</li>
+</ul>
+<h3 id="13-evm"><strong>1.3. EVM</strong></h3>
+<p><img alt="EVM" src="https://i.imgur.com/eVhwDjZ.png" /></p>
+<p>Como pode-se observar a equipe esteve ao longo da Release 2 inteira a frente do Roadmap, e, mesmo com dívidas técnicas, entregou mais valor pro cliente do que o planejado. Além disso, foram entregues mais funcionalidades do que o planejado inicialmente com o cliente.</p>
+<h3 id="14-metricas"><strong>1.4. Métricas</strong></h3>
+<p><img alt="Análise Estática" src="https://i.imgur.com/5uAV0gO.png" /></p>
+<p>Foram feitas as refatorações citadas na documentação da sprint passada e todas as métricas de código: Quantidade de linhas por método, Quantidade de métodos por classe, Quantidade de CodeSmells, Complexidade Ciclomática e Adequação a folha de estilo estão dentro do aceitável. Nenhuma destas métricas está sendo acusada pela ferramenta <em>detekt</em>.</p>
+<p>Foi bem simples monitorar e refatorar as métricas ao longo de todo o projeto, muito disso deve-se a arquitetura utilizada(VIP).</p>
+<p><img alt="Cobertura de Testes" src="https://i.imgur.com/H3g8K08.png" /></p>
+<p>Observa-se que a cobertura de testes terminou em 87%. </p>
+<p>Testes unitários foram um dos maiores, se não o maior, problemas que a equipe teve. Qualquer coisa que a equipe precisava testar gerava problemas, e muitos desses problemas tinham que ser resolvidos com frameworks terceiras externas. Muitas dessas sem documentação, com documentação só em java, desatualizadas. Algumas não funcionavam da forma esperada e geraram problemas no projeto. </p>
+<p>Enfim, testes unitários em android são instáveis e a política do android de "se preocupar apenas em testar seu código" dificultou muito a equipe a chegar na cobertura de testes esperada - 90%.</p>
+<h3 id="15-riscos"><strong>1.5. Riscos</strong></h3>
+<p><img alt="Riscos" src="https://i.imgur.com/hcXe3c4.png" /></p>
+<p>Quanto aos riscos do projeto pode-se perceber que praticamente todos chegaram ao "fim". O monitoramente de riscos foi essencial para a equipe, ajudou a prever e mitigar vários problemas que a equipe teve. </p>
+<p>O único porém é que a equipe deveria ter focado em mitigar alguns riscos maiores, como o servidor e testes, por exemplo, mais cedo.</p>
+<h2 id="2-post-mortem"><strong>2. Post Mortem</strong></h2>
+<h3 id="21-pontos-fortes"><strong>2.1. Pontos Fortes</strong></h3>
+<ul>
+<li>Kotlin é muito bom e foi muito bom aprender uma nova linguagem, que tem muita documentação;</li>
+<li>Trabalho colaborativo da equipe, se ajudavam bastante para fazer as histórias;</li>
+<li>Comunicação foi um ponto forte da equipe;</li>
+<li>MDS e EPS se tornaram uma só equipe;</li>
+<li>Equipe não parou de trabalhar em nenhum momento;</li>
+<li>Entregamos o escopo definido e algumas funcionalidades a mais;</li>
+<li>MDS percebeu que o modelo ágil/scrum/dailys/pareamentos/... foram muito importantes para a entrega do projeto;</li>
+<li>Arquitetura VIP foi um ponto positivo para manutenibilidade e testabilidade da aplicação;</li>
+<li>Código ficou muito limpo, manutenível e com muitos comentários;</li>
+<li>Tracking e refatoração de métricas de código foi muito simples de manter nas faixas ideais;</li>
+<li>Dar atenção e gastar tempo com gerenciamento de riscos foi muito importante para mitigar problemas que poderiam ter tido mais impacto no projeto;</li>
+<li>Utilização de github para comunicação(<em>PRs e Issues</em>) foi um ponto forte da equipe;</li>
+<li>Bot da daily no slack;</li>
+<li>Devops foi um ponto muito forte da equipe, quase tudo(CI, Deploy, Ambiente de desenvolvimento/teste/homologação) ficou pronto e estável desde a release 1;</li>
+<li>Miguel melhorou muito depois que o grupo conversou com ele;</li>
+<li>EPS deu muito suporte a MDS;</li>
+<li>EPS teve preocupação em capacitar MDS para o desenvolvimento;</li>
+<li>Luis cobrava a equipe de maneira muito incisiva;</li>
+<li>Equipe não deixou de entregar;</li>
+<li>Equipe manteve o foco durante todo o semestre;</li>
+<li>Arquitetura de micro-serviços trouxe uma nova maturidade de projeto, e reflexão sobre o assunto.</li>
+</ul>
+<h3 id="22-pontos-fracos"><strong>2.2. Pontos Fracos</strong></h3>
+<ul>
+<li>Luis cobrava a equipe de maneira muito incisiva, o que era chato muitas vezes;</li>
+<li>Android Studio e os simuladores(muitos integrantes da equipe não tinha celular android) são ruins e instáveis;</li>
+<li>Alta dependência do Android Studio para o desenvolvimento android;</li>
+<li>Complicações para testes em android, qualquer coisa além do básico necessita de frameworks externas para mock(http, json, view, ...);</li>
+<li>Erros nos planejamentos, por tentar sempre aumentar o <em>velocity</em>, e muitas vezes não considerava a curva de aprendizado e eventuais problemas;</li>
+<li>Membros da equipe não tiveram semanas saudaveis por causa da dedicação, tempo e esforço gigantesco que a matérias(e as demais matérias da FGA) exigem;</li>
+<li>Viagens constantes: Baldissera 3 viagens; Geovanni 1 viagem; Miguel 1 viagem; Larissa 1 viagem; Além da Hackaton da Uber que os membros de EPS(menos o Luis) participaram. E as pessoas que viajavam não se preocupavam em fazer mais histórias para não sobrecarregar a equipe(não se aplica a viagem do Miguel);</li>
+<li>Miguel sempre tomava mais responsabilidade para si do que ele conseguia fazer e não era transparente quanto ao andamentos das histórias, e no final isso resultava em dívidas técnicas;</li>
+<li>Muitas issues não foram feitas granularizadas, e algumas com pontuação muito abaixo do que deveria ter sido;</li>
+<li>Baldissera esquecia de colocar os critérios de aceitação das issues;</li>
+<li>A aplicação da metodologia ágil e demais coisas necessarias da disciplinas ficaram prejudicadas no projeto, pois o  Baldissera tomou deciões como cliente/PO, aparentemente sem se importar com as obrigações da disciplina, sem importando apenas com ter o aplicativo na versão android;</li>
+<li>Algumas vezes o Baldissera(membro de EPS e cliente do projeto Nexte) parecia que não se importava com a disciplina, por ele ser o cliente muitas vezes não ligou para mitigar riscos do projeto, como colocar o servidor no projeto o quanto antes. Isso fez alguns membros da equipe se sentirem prejudicados;</li>
+<li>Larissa não mudou mesmo após a equipe convesar com ela;</li>
+<li>Falta de proatividade de pilotar no pareamento fez com que alguns membros do grupo ficassem desnivelados em relação ao conhecimento;</li>
+<li>Testes de view foram um problema gigante, demorou muito para a equipe conseguir achar uma solução para esse problema;</li>
+<li>Dados mockados(exigência do cliente) atrasaram muito o desenvolvimento do projeto. O servidor poderia ter entrado antes;</li>
+<li>Desenvolvimento da matéria ficou muito travado algumas vezes por um membro da equipe ser também o cliente;</li>
+<li>Design e servidor deixados para o final do projeto atrapalharam o desenvolvimento;</li>
+<li>Ter que encaixar micro-serviço após ter arquitetura definida, fez com que houvesse um replanejamento e gasto de esforços que resultaram em dívidas técnicas. </li>
+</ul>
+<h3 id="23-licoes-aprendidas"><strong>2.3. Lições Aprendidas</strong></h3>
+<ul>
+<li>NÃO TENHA UM CLIENTE QUE É MEMBRO DO GRUPO;</li>
+<li>Brincadeira de mal gosto, ainda que não tenha a intenção real de ofender, não fazem bem para o relacionamento e comunicação entre a equipe;</li>
+<li>Não utilize <em>git add .</em>;</li>
+<li>Não confie quando a equipe fala que dessa vez vai conseguir entregar mais pontos essa sprint, confie nos dados e se baseie neles para planejar;</li>
+<li>Sempre seja transparente com os membros da equipe;</li>
+<li>Coloque os riscos principais no início do projeto, indepentende das coisas sem sentido que o cliente falar;</li>
+<li>Não fique dependente do android studio para desenvolvimento android;</li>
+<li>Monitorar os membros da equipe e os riscos é um trabalho muito cansativo e difícil, mas é extramamente necessário e traz bons resultados;</li>
+<li>Não confie que alguém vai entregar as histórias no final da sprint. Cobre transparência e impedimentos nas dailys;</li>
+<li>Gastem esforços para preparar todos os dados para o planejamento. Siga os dados utilizados para o planejamento e produtividade da equipe;</li>
+<li>Aceitar menos decisões de EPS, questionar mais;</li>
+<li>Se você sabe mais da tecnologia que os demais integrantes, não saia se metendo nos pareamentos alheios. Deixa as pessoas pesquisarem e aprenderem sozinhas/com suas respectivas duplas;</li>
+<li>Seja rigoroso em aceitar as entregas no dias marcados da sprint, uma vez que se aceita uma entrega após a sprint ter fechada a equipe tenderá a atrasar as entregas;</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../PostMortemRelease1/" class="btn btn-neutral" title="Post Mortem - Release 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../PostMortemRelease1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

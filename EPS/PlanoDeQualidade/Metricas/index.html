@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Métricas - nexte</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link href="../../../docs/css/landing-page.min.css" rel="stylesheet">
+  <link href="../../../docs/css/landing-page.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "M\u00e9tricas";
+    var mkdocs_page_input_path = "EPS/PlanoDeQualidade/Metricas.md";
+    var mkdocs_page_url = "/EPS/PlanoDeQualidade/Metricas/";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> nexte</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Estudos</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../CentralizacaoInformacoes/">Centralização de Informações</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EPS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../TAP/">Termo de abertura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EAP/">Estrutura analítica do projeto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../AgileEVM/">AgileEVM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../RoadMap/">ROADMAP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../MetodologiaDoProjeto/">Metodologia</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../PoliticaDeBranches/">Politica de Branches</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Definicao-de-Pronto/">Definição de Pronto</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../ArquiteturaMicroservicos/">Arquitetura de Microserviços</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Benchmarks/Benchmark/">Benchmarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../GestaoDeRisco/">Gestão de Risco</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../DefinicaoDeProdutividade/">Definição de Produtividade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Canvas/">Canvas</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Pipeline/">Pipeline</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../EVM_vs_Burndown/">EVM vs Burndown</a>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">Plano de Qualidade</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../AbstractionSheet/">Abtraction Sheet</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../GQM/">GQM</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">Métricas</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#plano-goal-question-metricgqm">Plano Goal Question Metric(GQM)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#metricas-metrics">Métricas (Metrics)</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#observacoes">Observações</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../Objetivos/">Objetivos</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../Questoes/">Questões</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">MDS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../MDS/DocVisao/">Documento de visão</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../MDS/DocArquitetura/">Documento de arquitetura</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../MDS/DocEspecificacaoSuplementar/">Especificação Suplementar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../MDS/DocPrototipodeBaixaFidelidade/">Protótipo de Baixa Fidelidade</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../MDS/DocFolhaEstilo/">Folha de Estilo</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 0</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint0/Sprint0-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint0/Sprint0-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 1</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint1/Sprint1-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint1/Sprint1-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 2</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint2/Sprint2-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint2/Sprint2-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 3</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint3/Sprint3-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint3/Sprint3-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 4</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint4/Sprint4-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint4/Sprint4-Resultados/">Resultado</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 5</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint5/Sprint5-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint5/Sprint5-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 6</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint6/Sprint6-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint6/Sprint6-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 7</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint7/Sprint7-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint7/Sprint7-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 8</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint8/Sprint8-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint8/Sprint8-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 9</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint9/Sprint9-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint9/Sprint9-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint 10</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint10/Sprint10-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint10/Sprint10-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint11</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint11/Sprint11-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint11/Sprint11-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint12</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint12/Sprint12-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint12/Sprint12-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint13</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint13/Sprint13-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint13/Sprint13-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint14</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint14/Sprint14-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint14/Sprint14-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sprint15</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint15/Sprint15-Planejamento/">Planejamento</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../Sprints/Sprint15/Sprint15-Resultados/">Resultados</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Testes</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../Testes/TestesUsabilidade/">Testes de Usabilidade</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Post Mortem</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../PostMortem/PostMortemRelease1/">Post Mortem - Release 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../PostMortem/PostMortemRelease2-FechamentoDoProjeto/">Post Mortem Release 2 + Fechamento do Projeto</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">nexte</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>EPS &raquo;</li>
+        
+      
+        
+          <li>Plano de Qualidade &raquo;</li>
+        
+      
+    
+    <li>Métricas</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/edit/master/docs/EPS/PlanoDeQualidade/Metricas.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="plano-goal-question-metricgqm">Plano Goal Question Metric(GQM)</h2>
+<h3 id="metricas-metrics">Métricas (<em>Metrics</em>)</h3>
+<h4 id="metricas-para-o-objetivo-01equipe-do-projeto-nexte-android"><strong>Métricas para o objetivo 01(Equipe do Projeto Nexte Android)</strong></h4>
+<ul>
+<li>Métrica 01 - Burndown</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><strong>Burndown</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Verificar se as tarefas da sprint estão sendo entregues de forma contínua.</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>O <em>burndown</em> apresenta a progressão de <em>user stories</em> entregues em relação ao tempo da <em>sprint</em>. A partir desta métrica é possível compreender a lista de pendência(antes do término da <em>sprint</em>), compreender o tempo desempenhado que a equipe demanda para suas tarefas e prever quando a equipe atingirá suas metas.</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Consiste em um gráfico de pontos planejados por <em>sprint</em> x tempo da <em>sprint</em>  (usualmente, em dias). Assim, conforme as histórias vão terminando o gráfico vai tomando um formato de uma reta decrescente.</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Luís Gustavo Periodicidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Utilizar o <em>burndown</em> disponibilizado pelo zenHub.</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Caso a histórias sejam entregues antes do término da <em>sprint</em>, significa que a equipe foi subestimada, ou os <em>sprint points</em> foram estimados de forma errada. Caso os as histórias não sejam entregues, isso significa que a equipe não se aplicou tanto quanto deveria na realizacão das histórias, ou que a equipe foi super estimada. Num cenário ideal, é que as histórias sejam entregues de forma gradual, e que sejam executadas no tempo de uma interação, formando uma uma gráfico linear decrescente.</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Para o caso que as histórias sejam entregues de forma antecipada ao término da <em>sprint</em>, significa que será necessário replanejamento. Caso as história sejam entregues no final ou não entregues, precisa haver novas políticas que assegurem maior respeito as práticas da metodologia, tais como: Replanejar duplas de pareamento; definir horários de planejamento; e delegar histórias de acordo com preferências de cada dupla.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 02 - Velocity</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><strong>Velocity</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Verificar o desempenho da equipe por sprints</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>O <em>Velocity</em> é métrica que apresenta quantos <em>sprint points</em>  foram realizados em uma <em>sprint</em></td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Dado uma sprint n o velocity da equipe é calculado com base no histórico das sprints passadas logo velocity=1n−1∑i=0n−1PCSi. Onde PCS representa a quantidade de Pontos Completos na Sprint.</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Luís Gustavo </br> Periocidade: Semalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Analisar a quantidade de pontos concluídos na <em>sprint</em></td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>O <em>velocity</em> é uma métrica oriunda de <em>sprints</em>, dessa forma, a partir das primeiras <em>sprints</em> será possível determina um <em>baseline</em> de pontos<strong>. A partir disso, espera-se que a quantidade de pontos entre as <em>sprints</em> se mantenham ou aumentem. Ressalta-se que a partir do velocity que são planejados a quantidade de pontos</strong> que são esperados para cada sprint.</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso a equipe a equipe apresente diminuicões grande de pontos entre <em>sprints</em>, por exemplo (-13) pontos. Será necessário adotar uma série de práticas, tais como: Replanejar duplas de pareamento; definir horários de planejamento; e delegar histórias de acordo com preferências de cada dupla.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 03 - Nível de conhecimento sobre tecnologias</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><strong>Quadro de Conhecimento</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Melhorar o conhecimento dos membros sobre as tecnologias do projeto</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Quadro utilizado para visualizar o conhecimento de cada membro sobre as tecnologias utilizadas no projeto</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Não se aplica</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Ordinal</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Geovanni Oliveira </br> Periocidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Verificar com todos os membros do time se houve melhora no conhecimento sobre determinadas tecnologias ou ferramentas em relacão a <em>sprint</em> anterior.</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>A análise do conhecimento sobre tecnologias será descrito de acordo com a escala ordinal apresentadas a seguir: </br>  <strong>Excelente:</strong> Tenho total seguraca sobre determinada tecnologia </br> <strong>Bom:</strong> Consigo fazer uso desta detcnologia quase sempre com facilidade </br> <strong>Regular:</strong> Tenho certa dificuldade, mas consigo trabalhar com esta tecnologia </br> <strong>Ruim:</strong>  Tenho dificuldade, e preciso de ajudar para trabalhar com esta tecnologia </br> <strong>Péssimo:</strong> Tenho dificuldades, e quase sempre procuro ajuda com esta tecnologia</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso seja notável uma grande dificuldade da maioria dos integrantes com certa tecnologia, será necessário a utilizacão de treinamentos. Caso esta dificuldade esteja reduzida a um pequeno grupo de integrantes, será realizada políticas de pareamento entre os que mais dominam o conteúdo e os que estão com mais dificuldades.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 04 - Nível de contribuição por número de <em>commits</em> diários</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><strong>Números de commits por dia da *Sprint</strong>*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Verificar se existe constância na realização das tarefas por meio do número de <em>commits</em></td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>O número de <em>commits</em> diário ao longo da <em>sprint</em> apresenta se as tarefas estão sendo executadas de forma contínua e gradual, esta métrica foi utilizada com o objetivo de ser uma alternativa ao <em>burndown</em> que não considera a curva de aprendizado.</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Não se aplica</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Intervalar</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Luís Gustavo </br> Periodicidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Verificar ao final de cada <em>sprint</em> quantos <em>commits</em> foram entregues em cada dia</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Analisar a quantidade de <em>commits</em> para cada dia da interação, e comparar em valores absolutos com os demais dias dessa <em>sprint</em></td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso seja possível notar grandes diferenças de <em>commits</em> por dia ao longo da sprint, será necessário tentar compreender se há impedimentos, para então realizar medidas tais como:  Replanejar duplas de pareamento; definir horários de planejamento;  e delegar histórias de acordo com preferências de cada integrante.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 05 - Nível de horas dedicadas por <strong>sprint</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><strong>Números de horas dedicadas por *sprint</strong>*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Analisar o número de horas dedicadas por cada integrante ao longo de uma <em>sprint</em></td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>A quantidade de horas dedicadas por cada integrante apresenta em números absolutos sua proatividade e responsabilidade com o projeto, esta métrica adicionadas a outras podem trazer informações importantes sobre a eficiência dos integrantes do times.</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Não se aplica</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Ordinal</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Luís Gustavo </br> Periodicidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Recolher os dados disponíveis na planilha de horas no Google Drive</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>A dedicação de horas trabalhadas pode ser divida em horas: </br > Esperado[8, 12] </br> Menos que o Esperado ]0, 8] </br> Mais que o esperado ]12, ∞]</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso a pessoa tenha realizado suas histórias e se encontre definida como menos que esperado de dedicação, requer replanejamento. Caso a pessoa se apresente como Dedicação menos que o esperado e não tenha finalizado suas histórias, será necessário encontrar se há algum impedimento. Caso a pessoa esteja trabalhando mais que o esperado, será necessário tomar uma das seguintes medidas: Alteração no quadro de pareamentos; Adoção de mais treinamentos, entre outras práticas.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="metricas-para-o-objetivo-02codigo-fonte"><strong>Métricas para o objetivo 02(Código Fonte)</strong></h4>
+<ul>
+<li>Métrica 06 - Cobertura de Testes do Código</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><strong>Cobertura de Testes do Código Fonte</strong>*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Garantir se o <em>software</em> funciona de acordo com o comportamento esperado, e consequentemente, sua qualidade.</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Determina por meio de um porcentual a quantidade de código que foi testada</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>No contexto de código fonte, a cobertura do código é dado por: <code>CoberturadoCódigo=LOC/LCT</code> <br>No LOC é a quantidade de linhas de código (<em>Lines of Code</em>) e LCT é a quantidade de linhas de código testadas</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Miguel Pimentel </br> Periodicidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Submeter o código fonte a ferramenta nativa de <em>test coverage</em> presente no Android Studio</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>O projeto se divide em dois momentos:<br>Release I : onde ao final da release a cobertura deve ser maior ou igual a 40%<br> - [40, 100[ - Completo <br> - [0, 40[ - Incompleto <br>Release II: onde ao final da release a cobertura deve ser maior ou igual a 90%<br> - [90, 100[ - Completo<br> - [0, 90[ - Incompleto</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso o status de cobertura de teste se encontre como incompleta, deve-se adicionar histórias com esta finalidade, realizar mais treinamentos, e mudar o quadro de pareamentos.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 07 - Número de Code Smells</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th>Número de Code Smells</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Evitar a redundância de código no projeto, más práticas, alta complexidade, métodos muito grandes, muitos métodos por classe, etc..</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Code smell é uma caracterísctica no código que possívelmente indica um problema maior.</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>A ferramente <em>detekt</em> indica o número de ocorrências de code smell</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Miguel Pimentel <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal)</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Submeter código fonte a ferramenta Detekt</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Se NCS &lt; 10 - BOM<br>Se NCS &gt;= 10 - RUIM</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso o projeto esteja com quantidade de code smells muito grande, serão alocados histórias de refatoções.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 08- Média da complexidade ciclomática dos métodos (<em>Average McCabe’s Cyclomatic Complexity</em>)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th>Média da complexidade ciclomática dos métodos(AMCC)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Melhorar a eficiência e complexidade do código, tornando-o mais manutenível</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Complexidade ciclomática é o número de possibilidades independentes que um software pode seguir em sua execução, calculado a partir de grafos em fluxos de controle. Esta métrica normalmente esta associada a uma classe.</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Dado um grafo de fluxo que representa o método: <code>MCC = E- N+2</code>. Onde, MCC é a complexidade ciclomática do método, E é o número de arestas e N é o número de nós do grafo G. Diante disso, a média da complexidade ciclomática dos métodos de uma classe é dada por:  <code>ACCM = (1/n) ∑CC(Métodoi)</code>. Onde n é quantidade de métodos da classe e i representa cada um dos métodos.</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Geovanni Oliveira  <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal)</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Submeter código fonte a ferramenta ao Detekt</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td><ul> <li>[X, Y[ - Excelente </li> <li>[Y, Z[ - Bom </li><li> [Z, T[ - Regular </li> <li> [T, ∞[ - Preocupante</li> </ul></td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso o módulo ou classe se encontre nas classificações de Regular ou Preocupante, deve-se optar pela refatoração, principalmente fazendo uso de funções atômicas.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 10 - Code <em>Style</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><em>Code Style</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Ver se o código fonte está de acordo com as normas apresentadas na folha de estilo</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Verificar se o código desenvolvido segue as normas apresentadas na folha de estilo</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Não se aplica</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Ordinal</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Guilherme Baldissera e Miguel Pimentel </br> Periocidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Será realizado durante a integração contínua por meio da ferramenta Detekt. E também pela avaliação dos Pull Requests pelos membros de EPS</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Pode ser definido da seguinte forma: </br> Atende - Quando aceito pelos <em>committers</em> e Detekt(CI) </br> Não aceito - Quando recusado pelos <em>committers</em> ou Detekt(CI)</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Refatoração do código aos padrões definidos na folha de estilo</td>
+</tr>
+</tbody>
+</table>
+<h4 id="metricas-para-o-objetivo-03riscos-do-projeto"><strong>Métricas para o objetivo 03(Riscos do Projeto)</strong></h4>
+<ul>
+<li>Métrica 11 - <em>Burndown de Riscos</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th><em>Burndown de Riscos</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Compreender se os riscos do projeto se reduzem a cada <em>sprint</em></td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>A partir da identificação dos riscos, essa métrica tem como fundamento possibilitar o monitoramente e gerenciamento destes</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>Não se aplica</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Ordinal</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Guilherme Baldissera, Miguel Pimentel, Luís Gustavo e Geovanni Oliveira </br> Periocidade: Semanalmente</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Ao final de cada <em>sprint</em> os membros de EPS se reunirão para decidir como cada risco pode impactar o projeto</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Pode ser definido da seguinte forma: </br> Sob Controle - se Exposição de Risco &lt; 15 </br> Preocupante - se Exposição de Risco &gt; 15 </br></td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso os riscos se encontrem como preocupante, deve-se realizar ações e medidas para reduzí-los.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 12 - Quantidade de linhas por método</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th>Quantidade de linhas por método</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Verificar a existência de métodos muito longos</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Quantidade de linhas por método</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>A ferramente <em>detekt</em> indica o número de linhas em cada método</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Miguel Pimentel <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal)</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Submeter código fonte a ferramenta Detekt</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Se QLM &lt; 30 - BOM<br>Se QLM &gt;= 30 e QLM &lt; 50 - RUIM<br>Se QLM &gt;= 50 - HORRÍVEL</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso um método esteja com número de linhas maior ou igual a 30, serão feitas refatorações de modo a dividir esse método em dois ou mais.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Métrica 13 - Quantidade de métodos por classe</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Métrica</strong></th>
+<th>Quantidade de métodos por classe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo de Medição</strong></td>
+<td>Verificar a existência de classes muito abrangentes, com número de métodos muito grandes</td>
+</tr>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Quantidade de métodos por classe</td>
+</tr>
+<tr>
+<td><strong>Fórmula</strong></td>
+<td>A ferramente <em>detekt</em> indica o número de métodos por classe</td>
+</tr>
+<tr>
+<td><strong>Escala</strong></td>
+<td>Racional</td>
+</tr>
+<tr>
+<td><strong>Coleta</strong></td>
+<td>Responsável: Miguel Pimentel <br>Periodicidade ou Evento: A cada iteração (Semanal ou Quinzenal)</td>
+</tr>
+<tr>
+<td><strong>Procedimento</strong></td>
+<td>Submeter código fonte a ferramenta Detekt</td>
+</tr>
+<tr>
+<td><strong>Análise</strong></td>
+<td>Se QMC &lt;= 15 - BOM<br>Se QMC &gt; 15 e QMC &lt; 20 - RUIM<br>Se QMC &gt;= 20 - HORRÍVEL</td>
+</tr>
+<tr>
+<td><strong>Providência</strong></td>
+<td>Caso sejam encontrados classes com número de métodos maior que 15 serão feitas refatorações de modo a deixar a classe com apenas uma funcionalidade, talvez sendo necessário criar outras classes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="observacoes"><strong>Observações</strong></h2>
+<ul>
+<li>
+<p>Ressalta-se que algumas das métricas, pode ser mais bem compreendidas como indicadores, visto que agrega mais valor a parte interna da organizacão.</p>
+</li>
+<li>
+<p>Os pontos serão definidos a partir da prática do <em>planning poker</em>, e utilizarão os valores apresentados pela sequência de Fibonacci.</p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Objetivos/" class="btn btn-neutral float-right" title="Objetivos">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../GQM/" class="btn btn-neutral" title="GQM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/fga-gpp-mds/2018.1_Nexte/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../GQM/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Objetivos/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/require.js"></script>
+      <script src="../../../search/search.js"></script>
+
+</body>
+</html>

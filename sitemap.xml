@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>/CentralizacaoInformacoes/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/EPS/TAP/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/EAP/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/AgileEVM/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/RoadMap/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/MetodologiaDoProjeto/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/PoliticaDeBranches/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/Definicao-de-Pronto/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/ArquiteturaMicroservicos/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Benchmarks/Benchmark/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/GestaoDeRisco/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/DefinicaoDeProdutividade/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/Canvas/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/Pipeline/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/EPS/EVM_vs_Burndown/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc></loc>
+     <lastmod></lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/MDS/DocVisao/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/MDS/DocArquitetura/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/MDS/DocEspecificacaoSuplementar/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/MDS/DocPrototipodeBaixaFidelidade/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/MDS/DocFolhaEstilo/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint0/Sprint0-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint0/Sprint0-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint1/Sprint1-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint1/Sprint1-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint2/Sprint2-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint2/Sprint2-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint3/Sprint3-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint3/Sprint3-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint4/Sprint4-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint4/Sprint4-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint5/Sprint5-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint5/Sprint5-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint6/Sprint6-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint6/Sprint6-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint7/Sprint7-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint7/Sprint7-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint8/Sprint8-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint8/Sprint8-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint9/Sprint9-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint9/Sprint9-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint10/Sprint10-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint10/Sprint10-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint11/Sprint11-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint11/Sprint11-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint12/Sprint12-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint12/Sprint12-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint13/Sprint13-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint13/Sprint13-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint14/Sprint14-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint14/Sprint14-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Sprints/Sprint15/Sprint15-Planejamento/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Sprints/Sprint15/Sprint15-Resultados/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Testes/TestesUsabilidade/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/PostMortem/PostMortemRelease1/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/PostMortem/PostMortemRelease2-FechamentoDoProjeto/</loc>
+     <lastmod>2018-07-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>
