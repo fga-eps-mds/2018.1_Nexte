@@ -163,37 +163,34 @@ class FeedWorkerTest: HelpForRealm() {
         assertEquals(false, this.worker?.senderHTTP)
     }
 
-
-
-    @Test
-    fun testJsonConvertJsonFeed(){
-
-        val feed = this.worker?.convertJsonStoryToStories(jsonObject)
-
-        val getDataJson = jsonObject["data"] as JSONObject
-        val getFeedJson = getDataJson["feed"] as JSONArray
-        val feedJson = getFeedJson.getJSONObject(0)
-
-        val getChallenge = feedJson["challenge"] as JSONObject
-        val getWinner = getChallenge["winner"] as JSONObject
-        val getLoser = getChallenge["loser"] as JSONObject
-        val getComments = feedJson["comments"] as JSONArray
-        val getLikes = feedJson["likes"] as JSONArray
-
-        //assert attributes after building Json objects
-        assertEquals(feed!![0].id, feedJson["id"] as String)
-
-        assertEquals(feed[0].winner?.userId, getWinner["userID"] as String)
-        assertEquals(feed[0].winner?.setResult, getWinner["setResult"] as Int)
-
-        assertEquals(feed[0].loser?.userId, getLoser["userID"] as String)
-        assertEquals(feed[0].loser?.setResult, getLoser["setResult"] as Int)
-
-        assertEquals(feed[0].commentsId[0], getComments.getString(0))
-        assertEquals(feed[0].likesId[0], getLikes.getString(0))
-
-
-    }
+    //    fun testJsonConvertJsonFeed(){
+    //
+    //        val feed = this.worker?.convertJsonStoryToStories(jsonObject)
+    //
+    //        val getDataJson = jsonObject["data"] as JSONObject
+    //        val getFeedJson = getDataJson["feed"] as JSONArray
+    //        val feedJson = getFeedJson.getJSONObject(0)
+    //
+    //        val getChallenge = feedJson["challenge"] as JSONObject
+    //        val getWinner = getChallenge["winner"] as JSONObject
+    //        val getLoser = getChallenge["loser"] as JSONObject
+    //        val getComments = feedJson["comments"] as JSONArray
+    //        val getLikes = feedJson["likes"] as JSONArray
+    //
+    //        //assert attributes after building Json objects
+    //        assertEquals(feed!![0].id, feedJson["id"] as String)
+    //
+    //        assertEquals(feed[0].winner?.userId, getWinner["userID"] as String)
+    //        assertEquals(feed[0].winner?.setResult, getWinner["setResult"] as Int)
+    //
+    //        assertEquals(feed[0].loser?.userId, getLoser["userID"] as String)
+    //        assertEquals(feed[0].loser?.setResult, getLoser["setResult"] as Int)
+    //
+    //        assertEquals(feed[0].commentsId[0], getComments.getString(0))
+    //        assertEquals(feed[0].likesId[0], getLikes.getString(0))
+    //
+    //
+    //    }
 
     @Test
     fun testManageLikes(){
@@ -217,9 +214,6 @@ class FeedWorkerTest: HelpForRealm() {
         assertEquals(storyComp.likesId, this.mock?.response2?.likedActivity?.likesId)
         assertEquals(storyComp.commentsId, this.mock?.response2?.likedActivity?.commentsId)
         assertEquals(storyComp.id, this.mock?.response2?.likedActivity?.id)
-
-
-
     }
 
     @Test
@@ -237,23 +231,23 @@ class FeedWorkerTest: HelpForRealm() {
         assertNull(this.mock?.response1)
     }
 
-    @Test
-    fun testInvokeSuccess(){
-        this.mock?.response1 = null
-
-        val url = URL("http://www.youtube.com")
-        val request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
-                "",
-                url)
-        val response = com.github.kittinunf.fuel.core.Response(url)
-
-        val json = Json(jsonObject.toString())
-        val result: Result<Json, FuelError> = Result.Success(json)
-
-        this.worker?.httpRequestHandler?.invoke(request, response, result)
-
-        assertNotNull(this.mock?.response1)
-    }
+//    @Test
+//    fun testInvokeSuccess(){
+//        this.mock?.response1 = null
+//
+//        val url = URL("http://www.youtube.com")
+//        val request = com.github.kittinunf.fuel.core.Request(com.github.kittinunf.fuel.core.Method.GET,
+//                "",
+//                url)
+//        val response = com.github.kittinunf.fuel.core.Response(url)
+//
+//        val json = Json(jsonObject.toString())
+//        val result: Result<Json, FuelError> = Result.Success(json)
+//
+//        this.worker?.httpRequestHandler?.invoke(request, response, result)
+//
+//        assertNotNull(this.mock?.response1)
+//    }
 
 
     @Test

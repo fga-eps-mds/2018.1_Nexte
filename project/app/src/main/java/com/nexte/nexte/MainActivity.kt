@@ -2,6 +2,7 @@ package com.nexte.nexte
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -35,8 +36,10 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation?.selectedItemId = R.id.feedNavigation
         disableShiftMode(bottom_navigation)
 
-        val intent = Intent(this, LoginView::class.java)
-        startActivity(intent)
+        if (getSharedPreferences("NexteAndroid", Context.MODE_PRIVATE).getString("authUser", null) == null) {
+            val intent = Intent(this, LoginView::class.java)
+            startActivity(intent)
+        }
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener  { item ->

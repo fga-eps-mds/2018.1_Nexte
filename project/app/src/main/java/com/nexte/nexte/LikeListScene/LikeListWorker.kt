@@ -1,11 +1,11 @@
     package com.nexte.nexte.LikeListScene
 
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
-import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Like.Like
 import com.nexte.nexte.Entities.Like.LikeManager
@@ -79,10 +79,12 @@ class LikeListWorker {
         val allUsers = getUserFromLikes(likes)
         val response = LikeListModel.Response(allUsers)
         this.updateLogic?.updateUsers(response)
+
         if (UserSingleton.userType != UserType.MOCKED) {
-            val header = mapOf("accept-version" to "0.1.0")
-            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/likes"
-            url.httpGet().header(header).responseJson(handleResultLikeList)
+            val url = "/stories/" + request.storyId + "/likes"
+            val header = mapOf("Content-Type" to "application/json",
+                    "Accept-Version" to "0.1.0")
+            Fuel.get(url).header(header).responseJson(handleResultLikeList)
         } else {
             // Do nothing
         }

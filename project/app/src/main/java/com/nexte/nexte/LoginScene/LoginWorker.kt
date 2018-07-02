@@ -9,8 +9,10 @@ import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
-import com.nexte.nexte.UserSingleton
 import org.json.JSONObject
+import com.nexte.nexte.Entities.User.User
+import com.nexte.nexte.Entities.User.UserManager
+import com.nexte.nexte.NexteApplication
 
 /**
  * Interface to define Response Logic of Ranking Class
@@ -41,17 +43,19 @@ interface LoginWorkerUpdateLogic {
 class LoginWorker {
 
     var updateLogic: LoginWorkerUpdateLogic? = null
+    var userManager: UserManager? = UserManager()
 
     val authenticateHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-
         result.success {
-            val token = "1820uf09183h9d12db092ed9has9d1j020hf90aasfjialuch"
+            val json = result.get().obj()
+            val data = json["data"] as JSONObject
+            val userJson = data ["user"] as JSONObject
+            val user  = User.createUserFromJsonObject(userJson)
+
+            NexteApplication().updateUserLoggedStatus(user)
+
             val status = LoginModel.Authentication.StatusCode.AUTHORIZED
-            val response = LoginModel.Authentication.Response(token, status)
-
-            // TODO: Add more user to server to authenticate with
-            UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
-
+            val response = LoginModel.Authentication.Response(user.id, status)
             updateLogic?.authenticateUser(response)
         }
 
@@ -64,11 +68,13 @@ class LoginWorker {
     }
 
     val requestAuthHandler: (Request, Response, Result<Json, FuelError>) -> Unit = { _, _, result ->
-
         result.success {
+            val json = result.get().obj()
+            val data = json["data"] as JSONObject
+            val userJson = data ["user"] as JSONObject
+            val user  = User.createUserFromJsonObject(userJson)
 
-            //TODO: Add auth with token in NEXTE main server
-            UserSingleton.setLoggedUser(UserSingleton.loggedUserID)
+            NexteApplication().updateUserLoggedStatus(user)
 
             val response = LoginModel.AccountKit.Response(LoginModel.AccountKit.StatusCode.SUCESSED)
             updateLogic?.requestAuth(response)
@@ -80,6 +86,8 @@ class LoginWorker {
         }
     }
 
+
+
     /**
      * Method that realize request for user authentication
      * pass request for the Worker and send response to the Presenter
@@ -89,14 +97,12 @@ class LoginWorker {
      */
     fun authenticateUser(request: LoginModel.Authentication.Request) {
 
-        val authentication = "http://192.168.100.7:3000/auth/login" // Local route for auth
+        val authentication = "/sessions" // http://10.0.2.2:3000
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val json = JSONObject()
-        json.put("username",  request.userName) // Expected ramires
-        json.put("password",  request.password) // Expected test-nexte-ramires
+        val body = defineBodyForUserAuth("ramires", "test-nexte-ramires")
 
-        Fuel.post(authentication).header(headers).body(json.toString()).responseJson(authenticateHandler)
+        Fuel.post(authentication).header(headers).body(body).responseJson(authenticateHandler)
     }
 
     /**
@@ -108,31 +114,43 @@ class LoginWorker {
      */
     fun requestForAuth(request: LoginModel.AccountKit.Request) {
 
-        val authentication = "http://10.0.2.2:3000:3000/users" // Local route for auth
+        val authentication = "/users" // Local route for auth
         val headers = mapOf("Content-Type" to "application/json",
                 "Accept-Version" to "1.0.0")
-        val body = defineBodyForAccountKitAuth(request.phone, request.email, request.token)
+        val body = defineBodyForAccountKitAuth(request.token)
 
         Fuel.post(authentication).header(headers).body(body).responseJson(requestAuthHandler)
     }
 
-    /**
-     * Define body to authenticate user with Nexte main server
-     * @param phone Phone from a user - used in Account Kit auth
-     * @param phone Email from a user - used in Account Kit auth
-     */
-    fun defineBodyForAccountKitAuth(phone: String?, email: String?, token: String): String {
+    /* Define body to authenticate user with Nexte main server
+    * @param username user username
+    * @param password user password
+    */
+    fun defineBodyForUserAuth(username: String, password: String): String {
         val json = JSONObject()
 
-        if(phone != null) {
-            json.put("phone",  phone) // Expected test-nexte-ramires
-            json.put("tokenAccountKit",  token)  // Expected ramires
+        val appJson = JSONObject()
+        appJson.put("version", "1.0.0")
+        appJson.put("type", "android")
 
-        } else {
-            json.put("email",  email)
-            json.put("tokenAccountKit",  token)  // Expected ramires
-        }
+        val loginContent = JSONObject()
+        loginContent.put("username", username)
+        loginContent.put("password", password)
+        val loginJson = JSONObject().put("login", loginContent)
 
+        json.put("app", appJson)
+        json.put("data", loginJson)
+
+        return json.toString()
+    }
+
+    /**
+     * Define body to authenticate user with Nexte main server
+     * @param token Token from a user - used in Account Kit auth
+     */
+    fun defineBodyForAccountKitAuth(token: String): String {
+        val json = JSONObject()
+        json.put("data", JSONObject().put("fbAuthCode",  token))  // Expected ramires
         return json.toString()
     }
 }

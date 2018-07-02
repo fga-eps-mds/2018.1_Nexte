@@ -7,7 +7,6 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
-import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.Challenge.ChallengeManager
@@ -107,8 +106,10 @@ class PlayersListWorker {
         updateLogic?.getPlayersToChallenge(response)
 
         if (UserSingleton.userType != UserType.MOCKED) {
-            val url = "http://10.0.2.2:3000/users/"
-            url.httpGet().responseJson(this.httpHandler)
+            val url = "/users"
+            val header = mapOf("Content-Type" to "application/json",
+                    "Accept-Version" to "0.1.0")
+            Fuel.get(url).header(header).responseJson(httpHandler)
         }
 
     }
@@ -156,8 +157,20 @@ class PlayersListWorker {
 
             challengeManager.update(challenge)
 
-            val challenged = MatchModel.MatchPlayer(challengedUser.name, R.mipmap.ic_launcher_round)
-            val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, R.mipmap.ic_launcher_round)
+
+            val picture = userManager?.get(UserSingleton.loggedUserID)?.profilePicture
+            val challengerPicture = if (picture != null) {
+                picture.toInt()
+            } else {
+                R.drawable.profile_image9
+            }
+            val challengedProfile = if (it.profilePicture != null) {
+                it.profilePicture.toInt()
+            } else {
+                R.mipmap.ic_launcher_round
+            }
+            val challenged = MatchModel.MatchPlayer(challengedUser.name, challengedProfile)
+            val challenger = MatchModel.MatchPlayer(UserSingleton.loggedUser.name, challengerPicture)
             val match = MatchModel.MatchData(challenged, challenger, challenge.id)
             val response = PlayersListModel.ChallengeButtonRequest.Response(challengedUser.name, match)
 
@@ -166,7 +179,7 @@ class PlayersListWorker {
             if(UserSingleton.userType != UserType.MOCKED) {
                 val header = mapOf("Content-Type" to "application/json",
                         "Accept-Version" to "0.1.0")
-                val url = "http://10.0.2.2:3000/challenges"
+                val url = "/challenges"
                 val challengeJSON = createChallengeJson(challenge)
                 Fuel.post(url).header(header).body(challengeJSON.toString()).responseJson(httpPostHandler)
 

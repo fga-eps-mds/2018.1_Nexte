@@ -1,17 +1,15 @@
 package com.nexte.nexte.FeedScene
 
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
-import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Story.Story
 import com.nexte.nexte.Entities.Story.StoryManager
 import com.nexte.nexte.Entities.Story.StoryPlayer
 import com.nexte.nexte.UserSingleton
 import com.nexte.nexte.UserType
-import okhttp3.Request
-import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
@@ -83,9 +81,10 @@ class FeedWorker {
 
         if (UserSingleton.userType != UserType.MOCKED){
             senderHTTP = true
-            val header = mapOf("accept-version" to "0.1.0")
-            val url = "http://10.0.2.2:3000/stories"
-            url.httpGet().header(header).responseJson(httpRequestHandler)
+            val url = "/stories"
+            val header = mapOf("Content-Type" to "application/json",
+                    "Accept-Version" to "0.1.0")
+            Fuel.get(url).header(header).responseJson(httpRequestHandler)
         } else {
             senderHTTP = false
         }
@@ -144,7 +143,7 @@ class FeedWorker {
      */
     fun convertJsonStoryToStories(jsonObject: JSONObject) : List<Story> {
         val dataJson = jsonObject["data"] as JSONObject
-        val storiesJsonArray = dataJson["feed"] as JSONArray
+        val storiesJsonArray = dataJson["stories"] as JSONArray
 
         val storiesMutableList = mutableListOf<Story>()
         for (counter in 0 until storiesJsonArray.length()){

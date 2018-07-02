@@ -5,7 +5,6 @@ import com.nexte.nexte.Entities.Challenge.Challenge
 import com.nexte.nexte.Entities.User.UserCategory.UserCategory
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryAdapter
 import com.nexte.nexte.Entities.User.UserCategory.UserCategoryManager
-import org.json.JSONException
 import org.json.JSONObject
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -43,29 +42,23 @@ class User(val id: String,
             val userCategoryManager = getUserCategoryManager(userCategoryManagerArgument)
             val id = jsonUser["id"] as String
             val name = jsonUser["name"] as String
-            val profilePicture = jsonUser["profileImageURL"] as String
-            val nickname = jsonUser["nickname"] as String
-            val rankingPosition = jsonUser["rankPosition"] as Int
+            val profilePicture = jsonUser.optString("profileImageURL")
+            val nickname = jsonUser.optString("nickname")
+            var rankingPosition = jsonUser.optInt("rankPosition")
             val email = jsonUser["email"] as String
             val phone = jsonUser["phone"] as String
             val wins = jsonUser["wins"] as Int
             val loses = jsonUser["loses"] as Int
-            val birthDateFromJSON = try {
-                jsonUser["birthDate"] as String
-            } catch (e: JSONException) {
-                Date().toString()
-            }
+            val birthDateFromJSON = jsonUser.optString("birthDate")
             val birthDate = try {
-                SimpleDateFormat("dd-MM-yyyy")
-                        .parse(birthDateFromJSON)
-            }catch (e: ParseException){
+                SimpleDateFormat("dd-MM-yyyy").parse(birthDateFromJSON)
+            } catch (e: ParseException) {
                 Date()
             }
 
-            val genderString = jsonUser["gender"] as String
-            val gender: Gender?
-            gender = getGenderFromGenderString(genderString)
-            val categoryInt = jsonUser["category"] as Int
+            val genderString = jsonUser.optString("gender")
+            var gender: Gender = getGenderFromGenderString(genderString)
+            val categoryInt = jsonUser.optInt("category")
             val category = userCategoryManager?.get(categoryInt.toString())
             val statusInt = jsonUser["status"] as Int
             val status: Status?

@@ -65,6 +65,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
     var challenged: String = ""
     var challenger: String = ""
     var challengeId: String = ""
+    var challengerPicture = 0
+    var challengedPicture = 0
     private var challengeManager: ChallengeManager? = null
 
     /**
@@ -83,12 +85,16 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             bundle.putString("Challenger", "")
             bundle.putString("Challenged", "")
             bundle.putString("ChallengeId", "")
+            bundle.putInt("ChallengerPicture", 0)
+            bundle.putInt("ChallengedPicture", 0)
         }
         else {
             bundle.putInt("HasChallenge", 1)
             bundle.putString("Challenger", challenge.challenger.name)
             bundle.putString("Challenged", challenge.challenged.name)
             bundle.putString("ChallengeId", challenge.challengeId)
+            bundle.putInt("ChallengerPicture", challenge.challenger.photo)
+            bundle.putInt("ChallengedPicture", challenge.challenged.photo)
         }
 
         fragmentFirst.arguments = bundle
@@ -328,6 +334,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         this.challengeId = arguments!!.getString("ChallengeId")
         this.challenger = arguments!!.getString("Challenger")
         this.hasChallenge = arguments!!.getInt("HasChallenge")
+        this.challengedPicture = arguments!!.getInt("ChallengedPicture")
+        this.challengerPicture = arguments!!.getInt("ChallengerPicture")
     }
 
     /**
@@ -347,9 +355,9 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             this.declineButton = view?.findViewById(R.id.declineButton)
 
             val match = MatchModel.FormattedMatchData(challenged,
-                    R.drawable.profile_image1,
+                    this.challengedPicture,
                     challenger,
-                    R.drawable.profile_image2)
+                    this.challengerPicture)
 
             this.sendButton?.isEnabled = true//false
 
@@ -358,8 +366,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
             recyclerView?.layoutManager = LinearLayoutManager(activity)
 
             val request = MatchModel.InitScene.Request(MatchModel.MatchData(
-                    MatchModel.MatchPlayer(challenged, R.drawable.profile_image1),
-                    MatchModel.MatchPlayer(challenger, R.drawable.profile_image2),
+                    MatchModel.MatchPlayer(challenged, this.challengedPicture),
+                    MatchModel.MatchPlayer(challenger, this.challengerPicture),
                     this.challengeId))
             interactor?.getInfoMatches(request)
 
@@ -398,11 +406,19 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
      */
     override fun displayDeclineMatch(viewModel: MatchModel.DeclineChallengeRequest.ViewModel) =
             if (viewModel.status == MatchModel.DeclineChallengeRequest.Status.SUCCESS) {
+                val builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setMessage("Desafio cancelado com sucesso!")
+                builder.setPositiveButton("Ok", { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                    val challenge = (this.activity as MainActivity).supportFragmentManager.findFragmentByTag("challenge") as ChallengeTabsFragment
+                    challenge.match = null
+                    (this.activity as MainActivity).tabs.getTabAt(0)?.select()
+                    challenge.viewpager?.adapter?.notifyDataSetChanged()
+                })
 
-                val challenge = (this.activity as MainActivity).supportFragmentManager.findFragmentByTag("challenge") as ChallengeTabsFragment
-                challenge.match = null
-                (this.activity as MainActivity).tabs.getTabAt(0)?.select()
-                challenge.viewpager?.adapter?.notifyDataSetChanged()
+                val alert = builder.create()
+                alert.show()
 
             } else {
                 val builder = AlertDialog.Builder(context)
@@ -435,7 +451,7 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         val view = this
 
         interactor.worker.updateLogic = interactor
-        interactor.worker.challengeManager = challengeManager
+        interactor.worker.challengeManager = ChallengeManager()
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = view
@@ -475,6 +491,10 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
         builder.setMessage(viewModel.message)
         builder.setPositiveButton("Ok", { dialogInterface, _ ->
             dialogInterface.cancel()
+            val challenge = (this.activity as MainActivity).supportFragmentManager.findFragmentByTag("challenge") as ChallengeTabsFragment
+            challenge.match = null
+            (this.activity as MainActivity).tabs.getTabAt(0)?.select()
+            challenge.viewpager?.adapter?.notifyDataSetChanged()
         })
 
         val alert = builder.create()
@@ -699,6 +719,8 @@ class MatchFragment : Fragment(), MatchDisplayLogic {
 
                 itemView.challengedName.text = matchInfo.challengedName
                 itemView.challengerName.text = matchInfo.challengerName
+                println(matchInfo.challengedPhoto)
+                println(matchInfo.challengerPhoto)
                 itemView.imageChallenged.setImageResource(matchInfo.challengedPhoto)
                 itemView.imageChallenger.setImageResource(matchInfo.challengerPhoto)
 

@@ -1,10 +1,10 @@
 package com.nexte.nexte.CommentsScene
 
+import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.core.Json
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.core.FuelError
 import com.github.kittinunf.fuel.core.Request
-import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.nexte.nexte.Entities.Comment.Comment
 import com.nexte.nexte.Entities.Comment.CommentManager
@@ -71,10 +71,12 @@ class CommentsWorker {
         val comments = commentsManager?.getCommentsFromStory(commentsIdsMutable.toList())
         val response = CommentsModel.GetCommentsRequest.Response(comments!!.toMutableList())
         updateLogic?.updateComment(response)
+
         if (UserSingleton.userType != UserType.MOCKED) {
-            val header = mapOf("accept-version" to "0.1.0")
-            val url = "http://10.0.2.2:3000/stories/" + request.storyId + "/comments"
-            url.httpGet().header(header).responseJson(handleResulComments)
+            val url = "/stories/" + request.storyId + "/comments"
+            val header = mapOf("Content-Type" to "application/json",
+                    "Accept-Version" to "0.1.0")
+            Fuel.get(url).header(header).responseJson(handleResulComments)
         }
     }
 

@@ -443,8 +443,9 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
             fun bindView(player: PlayersListModel.FormattedPlayer) {
                 view.userName.text = player.name
                 view.rankingTextView.text = player.rankingPosition
-                view.userPicture.setImageResource(player.pictureAddress.toInt())
-
+                player.pictureAddress.toIntOrNull()?.let {
+                    view.userPicture.setImageResource(it)
+                }
             }
         }
     }

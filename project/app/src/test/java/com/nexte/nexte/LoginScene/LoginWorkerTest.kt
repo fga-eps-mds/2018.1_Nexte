@@ -6,27 +6,48 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.result.Result
+import com.nexte.nexte.Entities.User.UserAdapterSpy
+import com.nexte.nexte.HelpForRealm
 import org.json.JSONObject
 import org.junit.After
 import org.junit.Before
+import com.nexte.nexte.Entities.User.UserManager
 
 import org.junit.Assert.*
 import org.junit.Test
 import java.net.URL
 import kotlin.concurrent.thread
 
-class LoginWorkerTest {
+class LoginWorkerTest: HelpForRealm() {
 
     private var worker: LoginWorker? = null
     private var updateLogicMock: MockUpdateLogic? = null
-    private val jsonObject = JSONObject()
+    private var jsonObject = JSONObject()
+    private var userManager:  UserManager? = null
 
     @Before
     fun setUp() {
-        worker = LoginWorker()
+        super.setUpWithUser()
+        super.setUpWithUserCategory()
+        super.setUpRealm()
+        this.userManager = UserManager(UserAdapterSpy())
         this.updateLogicMock = MockUpdateLogic()
-        this.worker?.updateLogic = updateLogicMock
+        worker = LoginWorker()
+        worker?.userManager = this.userManager
+        worker?.updateLogic = this.updateLogicMock
     }
+
+    @Test
+    fun testSettersAndGetters(){
+        //prepare  and call
+        val updateLogic = this.worker?.updateLogic
+        val userManager = this.worker?.userManager
+
+        //assert
+        assertEquals(worker?.updateLogic, updateLogic)
+        assertEquals(worker?.userManager, userManager)
+    }
+
 
     @Test
     fun testAuthenticateUserTokenEmpty(){
@@ -45,10 +66,8 @@ class LoginWorkerTest {
     @Test
     fun testRequestForAuth() {
         //prepare
-        val email = "helenaHtona@nexte.com"
-        val phone = "123456"
         val token = "d453243gfecwg4"
-        val request = LoginModel.AccountKit.Request(email = email, phone = phone, token = token)
+        val request = LoginModel.AccountKit.Request(token = token)
 
         //call
         thread { this.worker?.requestForAuth(request = request) }.join()
@@ -62,7 +81,7 @@ class LoginWorkerTest {
         //prepare
         updateLogicMock?.response1 = null
         val url = URL("http://www.randomsite.com/")
-        val request = Request(Method.GET, "",url)
+        val request = Request(Method.POST, "", url)
         val response = Response(url)
         val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
@@ -74,31 +93,76 @@ class LoginWorkerTest {
     }
 
     @Test
-    fun testRequestAuthHandlerOnFailure() {
+    fun testNullUpdateLogicForAccountKit(){
         //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        val request = LoginModel.AccountKit.Request("miugel")
         updateLogicMock?.response2 = null
-        val url = URL("http://www.randomsite.com/")
-        val request = Request(Method.GET, "",url)
-        val response = Response(url)
-        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
         //call
-        worker?.requestAuthHandler?.invoke(request, response, result)
+        thread{  worker?.requestForAuth(request) }.join()
 
         //assert
-        assertNotNull(updateLogicMock?.response2)
+        assertNull(updateLogicMock?.response2)
+
+        //backup
+        worker?.updateLogic = backup
     }
 
     @Test
-    fun testAuthenticateHandlerOnSuccess() {
+    fun testNullUpdateLogicForDefaultAuthentication(){
+        //prepare
+        val backup = worker?.updateLogic
+        worker?.updateLogic = null
+        val request = LoginModel.Authentication.Request("miguel", "2343545")
+        updateLogicMock?.response1 = null
+
+        //call
+        thread{  worker?.authenticateUser(request) }.join()
+
+        //assert
+        assertNull(updateLogicMock?.response1)
+
+        //backup
+        worker?.updateLogic = backup
+    }
+
+
+    @Test
+    fun testDefineBodyForUserAuth() {
+        //prepare
+        val json = JSONObject()
+
+        val appJson = JSONObject()
+        appJson.put("version", "1.0.0")
+        appJson.put("type", "android")
+
+        val loginContent = JSONObject()
+        loginContent.put("username", "miguel")
+        loginContent.put("password", "123456")
+        val loginJson = JSONObject().put("login", loginContent)
+
+        json.put("app", appJson)
+        json.put("data", loginJson)
+
+        val finalBody = json.toString()
+
+        //call
+        val userBodyRequest = worker?.defineBodyForUserAuth("miguel", "123456")
+
+        //assert
+        assertEquals(finalBody, userBodyRequest)
+    }
+
+    @Test
+    fun testRequestAuthenticateHandlerOnFailure() {
         //prepare
         updateLogicMock?.response1 = null
         val url = URL("http://www.randomsite.com/")
         val request = Request(Method.GET, "",url)
         val response = Response(url)
-
-        val json = Json(jsonObject.toString())
-        val result: Result<Json, FuelError> = Result.Success(json)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
         //call
         thread { worker?.authenticateHandler?.invoke(request, response, result) }.join()
@@ -107,16 +171,15 @@ class LoginWorkerTest {
         assertNotNull(updateLogicMock?.response1)
     }
 
+
     @Test
-    fun testRequestAuthHandlerOnSuccess() {
+    fun testRequestAuthHandlerOnFailure() {
         //prepare
         updateLogicMock?.response2 = null
         val url = URL("http://www.randomsite.com/")
         val request = Request(Method.GET, "",url)
         val response = Response(url)
-
-        val json = Json(jsonObject.toString())
-        val result: Result<Json, FuelError> = Result.Success(json)
+        val result: Result<Json, FuelError> = Result.error(FuelError(Exception("quero uma moto pra morrer antes dos 30")))
 
         //call
         thread { worker?.requestAuthHandler?.invoke(request, response, result) }.join()
@@ -128,56 +191,21 @@ class LoginWorkerTest {
     @Test
     fun testDefineBodyForAccountKitAuth() {
         val json = JSONObject()
-        val phone = "333"
-        val email = "eai.com"
         val token = "2e5tn4ugnreiu"
 
-        val mockRequest = LoginModel.AccountKit.Request(email, phone, token = token)
+        val mockRequest = worker?.defineBodyForAccountKitAuth(token)
+
+        json.put("data", JSONObject().put("fbAuthCode",  token))
 
 
-
-        json.put("phone", phone)
-        json.put("password", "bla")
-
-
-        assertEquals(mockRequest.email, email)
+        assertEquals(mockRequest, json.toString())
     }
 
-    @Test
-    fun testDefineBodyForAccountKitAuthPhoneNotNull(){
-        val phone = "123456789"
-        val email = "email@email.com"
-        val token = "498ufj9834f"
-
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("phone", phone)
-        jsonObject.put("tokenAccountKit", token)
-
-        assertEquals(json.toString(), jsonObject.toString())
-    }
-
-    @Test
-    fun testDefineBodyForAccountKitAuthPhoneNull(){
-        val phone = null
-        val email = "email@email.com"
-        val token = "498ufj9834f"
-
-        val json = this.worker?.defineBodyForAccountKitAuth(phone, email, token)
-
-        val jsonObject = JSONObject()
-        jsonObject.put("email", email)
-        jsonObject.put("tokenAccountKit", token)
-
-        assertEquals(json.toString(), jsonObject.toString())
-    }
 
     @After
     fun tearDown() {
         worker = null
     }
-
 }
 
 class MockUpdateLogic: LoginWorkerUpdateLogic {
