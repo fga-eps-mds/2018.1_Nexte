@@ -66,7 +66,6 @@ interface PlayersListDisplayLogic {
  * @property userManager is the [UserManager] object that will be passed to the worker
  * @property fragment is the parent fragment instance that will be used to update tabs when user send challenge
  * @property sendChallengeButton is the instance of the button responsible to send the challenge
- * @property expandedLosses is the instance of field that will hold player losses when expanded view is visible
  * @property expandedWins is the instance of field that will hold player wins when expanded view is visible
  * @property expandedRankingTextView is the instance of field that will hold player ranking position when expanded view is visible]
  * @property expandedName is the instance of field that will hold player username when expanded view is visible
@@ -81,7 +80,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     var userManager: UserManager? = null
     var fragment: Fragment?= null
     var sendChallengeButton: Button?= null
-    var expandedLosses: TextView?= null
     var expandedWins: TextView?= null
     var expandedRankingTextView: TextView?= null
     var expandedName: TextView?= null
@@ -166,7 +164,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
         this.sendChallengeButton = newView?.findViewById(R.id.sendChallengeButton)
         this.recyclerView = newView?.findViewById(R.id.challengeRecyclerView)
-        this.expandedLosses = newView?.findViewById(R.id.expandedLosses)
         this.expandedName = newView?.findViewById(R.id.expandedName)
         this.expandedWins = newView?.findViewById(R.id.expandedWins)
         this.noPlayersText = newView?.findViewById(R.id.noPlayersText)
@@ -239,7 +236,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
 
         val currentPlayer = viewModel.challengedRankingDetails
 
-        this.expandedLosses?.visibility = View.VISIBLE
         this.expandedName?.visibility = View.VISIBLE
         this.expandedName?.text = currentPlayer.name
         this.expandedRankingTextView?.visibility = View.VISIBLE
@@ -331,8 +327,6 @@ class PlayersListFragment : Fragment(), PlayersListDisplayLogic {
     fun removePlayerDetailedInfo() {
 
         this.selectedUserIdentifier = null
-        this.expandedLosses?.visibility = View.INVISIBLE
-        this.expandedLosses?.text = ""
         this.expandedName?.visibility = View.INVISIBLE
         this.expandedName?.text = ""
         this.expandedRankingTextView?.visibility = View.INVISIBLE
